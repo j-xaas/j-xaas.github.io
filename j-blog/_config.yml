@@ -4,11 +4,11 @@
 
 # Site
 title: J-Hack
-subtitle: ''
-description: ''
+subtitle: '作ってみました'
+description: 'hoge'
 keywords:
 author: Junya
-language: jagit
+language: ja
 timezone: 'Asia/Tokyo'
 
 # URL
@@ -95,7 +95,7 @@ theme: landscape
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: 'github'
+  type: 'git'
   repo: git@github.com:j-xaas/j-xaas.github.io.git
   branch: master
 
