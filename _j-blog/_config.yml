@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: J-Hack
-subtitle: '作ってみました'
-description: 'hoge'
-keywords:
+title: J's Blog
+subtitle: 'About tech'
+description: 'tech'
+keywords: angular
 author: Junya
 language: ja
 timezone: 'Asia/Tokyo'
@@ -22,7 +22,7 @@ pretty_urls:
 
 # Directory
 source_dir: source
-public_dir: ../ #public ⇒ ../
+public_dir: ../ #public ⇒ ../ #これでgenerate実行時にリポジトリ直下に静的ファイルが生成される
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
