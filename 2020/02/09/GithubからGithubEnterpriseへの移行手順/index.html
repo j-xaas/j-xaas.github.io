@@ -5,17 +5,20 @@
   
 
   
-  <title>J&#39;s Blog</title>
+  <title>Github.comからGithubEnterpriseへの移行手順 | J&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="tech">
-<meta name="keywords" content="angular">
-<meta property="og:type" content="website">
-<meta property="og:title" content="J&#39;s Blog">
-<meta property="og:url" content="https:&#x2F;&#x2F;j-xaas.github.io&#x2F;index.html">
+  <meta name="description" content="概要 リポジトリ移行(Github⇒GHE)の備忘録です 想定する状況 Organizationごと中身をまるまる移行したいパターン Commitログ等は特に移行する必要無く、シンプルな手法で手早く終わらせたい   事前調査  organization単位の以降はできない リポジトリ単位の移行は可能 GHE内に同じ名称のOrganizationやリポジトリを作成可能 ★一意性のチェックがGithu">
+<meta name="keywords" content="Github.com,GithubEnterprise,GithubPages">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Github.comからGithubEnterpriseへの移行手順">
+<meta property="og:url" content="https:&#x2F;&#x2F;j-xaas.github.io&#x2F;2020&#x2F;02&#x2F;09&#x2F;Github%E3%81%8B%E3%82%89GithubEnterprise%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86&#x2F;index.html">
 <meta property="og:site_name" content="J&#39;s Blog">
-<meta property="og:description" content="tech">
+<meta property="og:description" content="概要 リポジトリ移行(Github⇒GHE)の備忘録です 想定する状況 Organizationごと中身をまるまる移行したいパターン Commitログ等は特に移行する必要無く、シンプルな手法で手早く終わらせたい   事前調査  organization単位の以降はできない リポジトリ単位の移行は可能 GHE内に同じ名称のOrganizationやリポジトリを作成可能 ★一意性のチェックがGithu">
 <meta property="og:locale" content="ja">
+<meta property="og:image" content="https:&#x2F;&#x2F;media.github-enterprise-16ae0.paas1.nec-cloud.com&#x2F;user&#x2F;16&#x2F;files&#x2F;e0a2e680-49b2-11ea-802c-f247b17a1e04">
+<meta property="og:updated_time" content="2020-02-09T14:04:20.557Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;media.github-enterprise-16ae0.paas1.nec-cloud.com&#x2F;user&#x2F;16&#x2F;files&#x2F;e0a2e680-49b2-11ea-802c-f247b17a1e04">
   
     <link rel="alternate" href="/atom.xml" title="J&#39;s Blog" type="application/atom+xml">
   
@@ -66,9 +69,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-GithubからGithubEnterpriseへの移行手順" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-GithubからGithubEnterpriseへの移行手順" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/02/09/Github%E3%81%8B%E3%82%89GithubEnterprise%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86/" class="article-date">
   <time datetime="2020-02-09T13:52:47.000Z" itemprop="datePublished">2020-02-09</time>
@@ -81,8 +82,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/09/Github%E3%81%8B%E3%82%89GithubEnterprise%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86/">Github.comからGithubEnterpriseへの移行手順</a>
+    <h1 class="article-title" itemprop="name">
+      Github.comからGithubEnterpriseへの移行手順
     </h1>
   
 
@@ -188,101 +189,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-About-This-Blog" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/02/04/About-This-Blog/" class="article-date">
-  <time datetime="2020-02-04T14:38:20.000Z" itemprop="datePublished">2020-02-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/04/About-This-Blog/">About This Blog</a>
-    </h1>
+    <a href="/2020/02/04/About-This-Blog/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">About This Blog</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="本ページについて"><a href="#本ページについて" class="headerlink" title="本ページについて"></a>本ページについて</h1><p>　初めまして。本ページをご覧頂き有難うございます。<br>都内の大手IT企業で、主にSaaS/クラウド/IoT関連のPoCや、サーバレスAPの開発に携わっている若手社員です。学生時代はコンピューターサイエンスを学んでいたわけではないので、日々悪戦苦闘しています。<br>以下によると、学習定着率を高めるにはOutputする機会が大事だそうなので、この場で私がハマった事の解決策をまとめていきたいと考えております。  </p>
-<p><img src="https://user-images.githubusercontent.com/41946222/73755094-dd3c0f00-47a8-11ea-9ec5-e1e537559054.png" alt="image"></p>
-<p>技術的に未熟で稚拙な箇所も多々あると思われますが、公開した記事が私と同じように困っている誰かの助けになれば嬉しいです。<br>思い付きのWEB AP開発や家のSmart Home化が趣味に近くなってきたため、ゆるめの内容も載せていく予定です。<br>個人的に開発したいSaaSもあるので、手伝ってくれる方も募集してます。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://j-xaas.github.io/2020/02/04/About-This-Blog/" data-id="ck6f3djo20001zwko4kg73qct" class="article-share-link">共有</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Purpose/" rel="tag">Purpose</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/24/hello-world/" class="article-date">
-  <time datetime="2019-11-24T02:55:25.405Z" itemprop="datePublished">2019-11-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/24/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://j-xaas.github.io/2019/11/24/hello-world/" data-id="ck6f3djo80003zwko4nou9v8b" class="article-share-link">共有</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
