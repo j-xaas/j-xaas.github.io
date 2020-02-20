@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Angularアプリの開発支援ツールAugury(Chrome拡張機能) | J&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今回はAngularでWEBアプリを開発する際に簡単に利用できるツールを紹介します  Auguryとは？ Angularの開発支援ツール Google Chromeの拡張機能 Chromeをメインブラウザとして利用しているデベロッパーには必須とも言えるツール  できること 標準のデベロッパーツールに以下の機能を追加できます Componentの階層構造やプロパティ値の図示 ルーティング情報のグラ">
+<meta name="keywords" content="angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angularアプリの開発支援ツールAugury(Chrome拡張機能)">
+<meta property="og:url" content="https:&#x2F;&#x2F;j-xaas.github.io&#x2F;2020&#x2F;02&#x2F;20&#x2F;Angular%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E9%96%8B%E7%99%BA%E6%94%AF%E6%8F%B4%E3%83%84%E3%83%BC%E3%83%ABAugury-Chrome%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD&#x2F;index.html">
+<meta property="og:site_name" content="J&#39;s Blog">
+<meta property="og:description" content="今回はAngularでWEBアプリを開発する際に簡単に利用できるツールを紹介します  Auguryとは？ Angularの開発支援ツール Google Chromeの拡張機能 Chromeをメインブラウザとして利用しているデベロッパーには必須とも言えるツール  できること 標準のデベロッパーツールに以下の機能を追加できます Componentの階層構造やプロパティ値の図示 ルーティング情報のグラ">
+<meta property="og:locale" content="ja">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;41946222&#x2F;74917091-5030c100-540a-11ea-9060-2d05fc6c6c23.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;41946222&#x2F;74912170-74d46b00-5401-11ea-956d-93801c3cce13.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;41946222&#x2F;74917567-0b595a00-540b-11ea-8dc3-5a257af3bd45.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;41946222&#x2F;74918209-19f44100-540c-11ea-9953-c4734a0685ed.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;41946222&#x2F;74917975-c2ee6c00-540b-11ea-89d0-e1fbd9b7195c.png">
+<meta property="og:updated_time" content="2020-02-20T09:15:20.895Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;41946222&#x2F;74917091-5030c100-540a-11ea-9060-2d05fc6c6c23.png">
+  
+    <link rel="alternate" href="/atom.xml" title="J&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">J&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">About tech</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSSフィード"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="検索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://j-xaas.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Angularアプリの開発支援ツールAugury-Chrome拡張機能" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/20/Angular%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E9%96%8B%E7%99%BA%E6%94%AF%E6%8F%B4%E3%83%84%E3%83%BC%E3%83%ABAugury-Chrome%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/" class="article-date">
+  <time datetime="2020-02-20T09:12:39.000Z" itemprop="datePublished">2020-02-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Angularアプリの開発支援ツールAugury(Chrome拡張機能)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>今回はAngularでWEBアプリを開発する際に簡単に利用できるツールを紹介します<br><img src="https://user-images.githubusercontent.com/41946222/74917091-5030c100-540a-11ea-9060-2d05fc6c6c23.png" alt="image"></li>
+</ul>
+<h2 id="Auguryとは？"><a href="#Auguryとは？" class="headerlink" title="Auguryとは？"></a>Auguryとは？</h2><ul>
+<li>Angularの開発支援ツール</li>
+<li>Google Chromeの拡張機能</li>
+<li>Chromeをメインブラウザとして利用しているデベロッパーには必須とも言えるツール</li>
+</ul>
+<h2 id="できること"><a href="#できること" class="headerlink" title="できること"></a>できること</h2><ul>
+<li>標準のデベロッパーツールに以下の機能を追加できます<ul>
+<li>Componentの階層構造やプロパティ値の図示</li>
+<li>ルーティング情報のグラフ化</li>
+<li>import済みモジュール構成のリスト表示</li>
+</ul>
+</li>
+</ul>
+<h2 id="導入方法"><a href="#導入方法" class="headerlink" title="導入方法"></a>導入方法</h2><ul>
+<li><a href="https://chrome.google.com/webstore/search/Augury" target="_blank" rel="noopener">Chrome Webstore</a>にアクセス</li>
+<li>“Chromeに追加”をClick</li>
+<li>ブラウザの右上にAuguryの丸いアイコンが追加されます<br><img src="https://user-images.githubusercontent.com/41946222/74912170-74d46b00-5401-11ea-956d-93801c3cce13.png" alt="image"></li>
+</ul>
+<h2 id="利用方法"><a href="#利用方法" class="headerlink" title="利用方法"></a>利用方法</h2><ul>
+<li><p>Angular APの起動</p>
+<ul>
+<li>まずは以下のコマンドでAPの画面をChromeに表示しましょう<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng serve --open</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>F12キーで開発者ツールを起動</p>
+</li>
+<li><p>ブラウザの右側に表示される開発者ツールに追加されているAuguryタブを選択</p>
+</li>
+<li><p>“Component Tree”タブのInjection Graph</p>
+<ul>
+<li>コンポーネントとサービスの依存関係をグラフ表示<ul>
+<li>個人的に一番利用する機能です</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/74917567-0b595a00-540b-11ea-8dc3-5a257af3bd45.png" alt="image"></p>
+<ul>
+<li>“Router Tree”タブ<ul>
+<li>ルート構造をツリー表示</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/74918209-19f44100-540c-11ea-9953-c4734a0685ed.png" alt="image"></p>
+<ul>
+<li>“NgModule”タブ<ul>
+<li>import済みのモジュール構成を確認可能</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/74917975-c2ee6c00-540b-11ea-89d0-e1fbd9b7195c.png" alt="image"></p>
+<h2 id="備考"><a href="#備考" class="headerlink" title="備考"></a>備考</h2><ul>
+<li>以下も便利そうでした。APの構成管理やドキュメント作成の手間は極力自動化していきましょう。<ul>
+<li><a href="https://one-it-thing.com/3254/" target="_blank" rel="noopener">compodocでAngularプロジェクトのビジュアルなドキュメントを自動生成する</a></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://j-xaas.github.io/2020/02/20/Angular%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E9%96%8B%E7%99%BA%E6%94%AF%E6%8F%B4%E3%83%84%E3%83%BC%E3%83%ABAugury-Chrome%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/" data-id="ck6uj6a1v00018sko7g4vesqi" class="article-share-link">共有</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/02/09/Github%E3%81%8B%E3%82%89GithubEnterprise%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Github.comからGithubEnterpriseへの移行手順</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-com/" rel="tag">Github.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GithubEnterprise/" rel="tag">GithubEnterprise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GithubPages/" rel="tag">GithubPages</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Purpose/" rel="tag">Purpose</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Purpose/" style="font-size: 10px;">Purpose</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/02/20/Angular%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E9%96%8B%E7%99%BA%E6%94%AF%E6%8F%B4%E3%83%84%E3%83%BC%E3%83%ABAugury-Chrome%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/">Angularアプリの開発支援ツールAugury(Chrome拡張機能)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/09/Github%E3%81%8B%E3%82%89GithubEnterprise%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86/">Github.comからGithubEnterpriseへの移行手順</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/04/About-This-Blog/">About This Blog</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/24/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Junya<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -7,18 +7,19 @@
   
   <title>Github.comからGithubEnterpriseへの移行手順 | J&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="概要 リポジトリ移行(Github⇒GHE)の備忘録です 想定する状況 Organizationごと中身をまるまる移行したいパターン Commitログ等は特に移行する必要無く、シンプルな手法で手早く終わらせたい   事前調査  organization単位の以降はできない リポジトリ単位の移行は可能 GHE内に同じ名称のOrganizationやリポジトリを作成可能 ★一意性のチェックがGithu">
+  <meta name="description" content="概要 リポジトリ移行(Github⇒GHE)の備忘録です 想定する状況 Organizationごと中身をまるまる移行したいパターン Commitログ等は特に移行する必要無く、シンプルな手法で手早く終わらせたい   事前調査  organization単位の以降はできない リポジトリ単位の移行は可能 GHE内に同じ名称のOrganizationやリポジトリを作成可能 ★一意性のチェックがGith">
 <meta name="keywords" content="Github.com,GithubEnterprise,GithubPages">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Github.comからGithubEnterpriseへの移行手順">
 <meta property="og:url" content="https:&#x2F;&#x2F;j-xaas.github.io&#x2F;2020&#x2F;02&#x2F;09&#x2F;Github%E3%81%8B%E3%82%89GithubEnterprise%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86&#x2F;index.html">
 <meta property="og:site_name" content="J&#39;s Blog">
-<meta property="og:description" content="概要 リポジトリ移行(Github⇒GHE)の備忘録です 想定する状況 Organizationごと中身をまるまる移行したいパターン Commitログ等は特に移行する必要無く、シンプルな手法で手早く終わらせたい   事前調査  organization単位の以降はできない リポジトリ単位の移行は可能 GHE内に同じ名称のOrganizationやリポジトリを作成可能 ★一意性のチェックがGithu">
+<meta property="og:description" content="概要 リポジトリ移行(Github⇒GHE)の備忘録です 想定する状況 Organizationごと中身をまるまる移行したいパターン Commitログ等は特に移行する必要無く、シンプルな手法で手早く終わらせたい   事前調査  organization単位の以降はできない リポジトリ単位の移行は可能 GHE内に同じ名称のOrganizationやリポジトリを作成可能 ★一意性のチェックがGith">
 <meta property="og:locale" content="ja">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;41946222&#x2F;74919073-64c28880-540d-11ea-8b40-15036b3fee05.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;media.github-enterprise-16ae0.paas1.nec-cloud.com&#x2F;user&#x2F;16&#x2F;files&#x2F;e0a2e680-49b2-11ea-802c-f247b17a1e04">
-<meta property="og:updated_time" content="2020-02-09T14:04:20.557Z">
+<meta property="og:updated_time" content="2020-02-20T09:19:07.311Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;media.github-enterprise-16ae0.paas1.nec-cloud.com&#x2F;user&#x2F;16&#x2F;files&#x2F;e0a2e680-49b2-11ea-802c-f247b17a1e04">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;41946222&#x2F;74919073-64c28880-540d-11ea-8b40-15036b3fee05.png">
   
     <link rel="alternate" href="/atom.xml" title="J&#39;s Blog" type="application/atom+xml">
   
@@ -91,7 +92,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><ul>
+        <p><img src="https://user-images.githubusercontent.com/41946222/74919073-64c28880-540d-11ea-8b40-15036b3fee05.png" alt="image"></p>
+<h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><ul>
 <li>リポジトリ移行(Github⇒GHE)の備忘録です</li>
 <li>想定する状況<ul>
 <li>Organizationごと中身をまるまる移行したいパターン</li>
@@ -181,7 +183,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://j-xaas.github.io/2020/02/09/Github%E3%81%8B%E3%82%89GithubEnterprise%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86/" data-id="ck6f3djnr0000zwko8e1mcfiy" class="article-share-link">共有</a>
+      <a data-url="https://j-xaas.github.io/2020/02/09/Github%E3%81%8B%E3%82%89GithubEnterprise%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86/" data-id="ck6uj6a1l00008sko7f41culi" class="article-share-link">共有</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github-com/" rel="tag">Github.com</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GithubEnterprise/" rel="tag">GithubEnterprise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GithubPages/" rel="tag">GithubPages</a></li></ul>
@@ -191,6 +193,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/02/20/Angular%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E9%96%8B%E7%99%BA%E6%94%AF%E6%8F%B4%E3%83%84%E3%83%BC%E3%83%ABAugury-Chrome%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">次の記事</strong>
+      <div class="article-nav-title">
+        
+          Angularアプリの開発支援ツールAugury(Chrome拡張機能)
+        
+      </div>
+    </a>
   
   
     <a href="/2020/02/04/About-This-Blog/" id="article-nav-older" class="article-nav-link-wrap">
@@ -244,6 +255,10 @@
     <h3 class="widget-title">最近の投稿</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/02/20/Angular%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E9%96%8B%E7%99%BA%E6%94%AF%E6%8F%B4%E3%83%84%E3%83%BC%E3%83%ABAugury-Chrome%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/">Angularアプリの開発支援ツールAugury(Chrome拡張機能)</a>
+          </li>
         
           <li>
             <a href="/2020/02/09/Github%E3%81%8B%E3%82%89GithubEnterprise%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86/">Github.comからGithubEnterpriseへの移行手順</a>
