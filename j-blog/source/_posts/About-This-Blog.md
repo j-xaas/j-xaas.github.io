@@ -1,0 +1,34 @@
+---
+title: About This Blog
+date: 2020-02-04 23:38:20
+tags: Purpose
+---
+
+　初めまして。本ページをご覧頂き有難うございます。  
+都内の大手IT企業で、先端技術検証を担当している若手社員です。主にSaaS/Multi Cloud/Serverless/IoT関連のPoCに携わっています。学生時代はコンピューターサイエンスを学んでいたわけではないので、日々悪戦苦闘しています。  
+　以下によると、学習定着率を高めるにはOutputする機会が大事なので、この場で個人的なTipsやハマった事の解決策をまとめていきたいと考えております。  
+
+![image](https://user-images.githubusercontent.com/41946222/73755094-dd3c0f00-47a8-11ea-9ec5-e1e537559054.png)
+  
+  
+　技術的に稚拙な表現もあるかもしれませんが、公開した記事が私と同じように困っている誰かの助けになれば嬉しいです。  
+　IoT案件に関わった影響で始めた家のSmart Home化等のゆるめの内容も載せていく予定です。個人的に開発したいSaaSもあるので、手伝ってくれる方も募集してます。  
+
+
+- 良く扱う技術
+    - FW
+        - Angular
+        - Ionic
+    - Cloud
+        - AWS
+            - IaC: CloudFormation
+            - Cognito
+        - Google Cloud
+            - AutoML
+            - AdMob
+    - BaaS
+        - Firebase (Google)
+        - Amplify (AWS)
+    - IoT
+        - IFTTT
+        - Rasberry Pi
