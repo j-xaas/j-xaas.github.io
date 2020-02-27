@@ -1,9 +1,9 @@
 ---
-title: Angular x ADS SDK for JavaScriptの始め方
+title: Angular x AWS SDK for JavaScriptの始め方
 date: 2020-02-28 00:13:23
 tags: 
 - Angular
-- ADS SDk for JavaScript
+- AWS SDk for JavaScript
 ---
 
 - angularで開発していたアプリケーションにaws-sdkを導入する際の備忘録
