@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Angular x ADS SDK for JavaScriptの始め方 | J&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="angularで開発していたアプリケーションにaws-sdkを導入する際の備忘録 AWS SDKを入れることで、アプリケーションからAWSのリソースを操作可能になります ex.) S3やDynamoDBへのデータの格納、Cognitoによる認証、Lambdaの実行…     Angularの場合、公式の開発者ガイド通りにやると鬼のようにエラーが出るので共有しておきます。ひと手間必要でした。  1">
+<meta name="keywords" content="Angular,ADS SDk for JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular x ADS SDK for JavaScriptの始め方">
+<meta property="og:url" content="https:&#x2F;&#x2F;j-xaas.github.io&#x2F;2020&#x2F;02&#x2F;28&#x2F;Angular-x-ADS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9&#x2F;index.html">
+<meta property="og:site_name" content="J&#39;s Blog">
+<meta property="og:description" content="angularで開発していたアプリケーションにaws-sdkを導入する際の備忘録 AWS SDKを入れることで、アプリケーションからAWSのリソースを操作可能になります ex.) S3やDynamoDBへのデータの格納、Cognitoによる認証、Lambdaの実行…     Angularの場合、公式の開発者ガイド通りにやると鬼のようにエラーが出るので共有しておきます。ひと手間必要でした。  1">
+<meta property="og:locale" content="ja">
+<meta property="og:updated_time" content="2020-02-27T15:17:40.023Z">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="J&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">J&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">About tech</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSSフィード"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="検索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://j-xaas.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Angular-x-ADS-SDK-for-JavaScriptの始め方" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/28/Angular-x-ADS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/" class="article-date">
+  <time datetime="2020-02-27T15:13:23.000Z" itemprop="datePublished">2020-02-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Angular x ADS SDK for JavaScriptの始め方
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>angularで開発していたアプリケーションにaws-sdkを導入する際の備忘録<ul>
+<li><a href="https://aws.amazon.com/jp/tools/" target="_blank" rel="noopener">AWS SDK</a>を入れることで、アプリケーションからAWSのリソースを操作可能になります<ul>
+<li>ex.) S3やDynamoDBへのデータの格納、Cognitoによる認証、Lambdaの実行…</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Angularの場合、公式の開発者ガイド通りにやると鬼のようにエラーが出るので共有しておきます。ひと手間必要でした。</li>
+</ul>
+<h2 id="1-aws-sdk-for-javascriptのinstall"><a href="#1-aws-sdk-for-javascriptのinstall" class="headerlink" title="1. aws sdk for javascriptのinstall"></a>1. aws sdk for javascriptのinstall</h2><ul>
+<li>angular PJ直下で実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install aws-sdk --save-dev</span><br></pre></td></tr></table></figure></li>
+<li>この時点でAPを確認すると、以下のエラーが大量に出ます<ul>
+<li>APの画面もブラウザに表示されなくなります</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;ng serve --open</span><br><span class="line"></span><br><span class="line">ERROR in node_modules/aws-sdk/clients/acm.d.ts:141:37 - error TS2591: Cannot find name &apos;Buffer&apos;. Do you need to install type definitions for node? Try `npm i @types/node` and then add `node` to the types field in your tsconfig.</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-types-nodeをinstallする"><a href="#2-types-nodeをinstallする" class="headerlink" title="2. @types/nodeをinstallする"></a>2. @types/nodeをinstallする</h2><ul>
+<li>Angular PJ直下で以下を実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install --save @types/node</span><br><span class="line"></span><br><span class="line">+ @types/node@8.9.5</span><br><span class="line">updated 1 package and audited 19123 packages in 41.418s</span><br><span class="line">found 0 vulnerabilities</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="3-tsconfig-json-ファイルに以下を追記"><a href="#3-tsconfig-json-ファイルに以下を追記" class="headerlink" title="3. tsconfig.json ファイルに以下を追記"></a>3. tsconfig.json ファイルに以下を追記</h2><ul>
+<li><p>Angular PJ直下にあります</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;compilerOptions&quot;: &#123;</span><br><span class="line">  &quot;types&quot;: [&quot;node&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>場所は以下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; code .\tsconfig.json</span><br></pre></td></tr></table></figure>
+</li>
+<li><ol start="4">
+<li>tsconfig.app.json にも、同じく追記<ul>
+<li>Angular PJ直下にあります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;compilerOptions&quot;: &#123;</span><br><span class="line">   &quot;types&quot;: [&quot;node&quot;]</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>エラーの解消を確認</p>
+<ul>
+<li>ng serve時に正しくAPの画面が表示される</li>
+</ul>
+</li>
+<li><p>ここまででAngular APからAWSのリソースとAPI連携する下準備が整いました</p>
+<ul>
+<li>以下についても後日UP予定です<ul>
+<li>AWSの各リソースの利用方法、実装方法</li>
+<li>Ampliyfy(BaaS)でAWSと連携させる手法</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://j-xaas.github.io/2020/02/28/Angular-x-ADS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/" data-id="ck74w3l0e00039ckohgu091za" class="article-share-link">共有</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ADS-SDk-for-JavaScript/" rel="tag">ADS SDk for JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/" rel="tag">Angular</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/02/20/Angular%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E9%96%8B%E7%99%BA%E6%94%AF%E6%8F%B4%E3%83%84%E3%83%BC%E3%83%ABAugury-Chrome%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前の記事</strong>
+      <div class="article-nav-title">Angularアプリの開発支援ツールAugury(Chrome拡張機能)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグ</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ADS-SDk-for-JavaScript/" rel="tag">ADS SDk for JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/" rel="tag">Angular</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-com/" rel="tag">Github.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GithubEnterprise/" rel="tag">GithubEnterprise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GithubPages/" rel="tag">GithubPages</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Purpose/" rel="tag">Purpose</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">タグクラウド</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ADS-SDk-for-JavaScript/" style="font-size: 10px;">ADS SDk for JavaScript</a> <a href="/tags/Angular/" style="font-size: 10px;">Angular</a> <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Purpose/" style="font-size: 10px;">Purpose</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">アーカイブ</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近の投稿</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/02/28/Angular-x-ADS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/">Angular x ADS SDK for JavaScriptの始め方</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/20/Angular%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E9%96%8B%E7%99%BA%E6%94%AF%E6%8F%B4%E3%83%84%E3%83%BC%E3%83%ABAugury-Chrome%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/">Angularアプリの開発支援ツールAugury(Chrome拡張機能)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/09/Github%E3%81%8B%E3%82%89GithubEnterprise%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86/">Github.comからGithubEnterpriseへの移行手順</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/04/About-This-Blog/">About This Blog</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/24/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Junya<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
