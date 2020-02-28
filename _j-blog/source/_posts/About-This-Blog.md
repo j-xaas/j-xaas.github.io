@@ -5,15 +5,22 @@ tags: Purpose
 ---
 
 　初めまして。本ページをご覧頂き有難うございます。  
-都内の大手IT企業で、先端技術検証を担当している若手社員です。主にSaaS/Multi Cloud/Serverless/IoT関連のPoCに携わっています。学生時代はコンピューターサイエンスを学んでいたわけではないので、日々悪戦苦闘しています。  
+都内の大手IT企業で、先端技術検証を担当している若手社員です。主にSaaS/Multi Cloud/Serverless/IoT/DevOps関連のPoCに携わっています。学生時代はコンピューターサイエンスを学んでいたわけではないので、日々悪戦苦闘しています。  
+  
 　以下によると、学習定着率を高めるにはOutputする機会が大事なので、この場で個人的なTipsやハマった事の解決策をまとめていきたいと考えております。  
 
 ![image](https://user-images.githubusercontent.com/41946222/73755094-dd3c0f00-47a8-11ea-9ec5-e1e537559054.png)
   
   
 　技術的に稚拙な表現もあるかもしれませんが、公開した記事が私と同じように困っている誰かの助けになれば嬉しいです。  
-　IoT案件に関わった影響で始めた家のSmart Home化等のゆるめの内容も載せていく予定です。個人的に開発したいSaaSもあるので、手伝ってくれる方も募集してます。  
+  
+　IoT案件に関わった影響で始めた家のSmart Home化等のゆるめの内容も載せていく予定です。今は以下のような構成を作っています。
 
+![smarthome](https://user-images.githubusercontent.com/41946222/75523195-e2f6de80-5a4e-11ea-94fd-862c110cd075.PNG)
+
+個人的に開発したいSaaSもあるので、手伝ってくれる方も募集してます。  
+
+Mail: junjunjunya108@gmail.com
 
 - 良く扱う技術
     - FW
@@ -24,6 +31,7 @@ tags: Purpose
             - IaC: CloudFormation
             - Cognito
         - Google Cloud
+            - Authentication
             - AutoML
             - AdMob
     - BaaS
