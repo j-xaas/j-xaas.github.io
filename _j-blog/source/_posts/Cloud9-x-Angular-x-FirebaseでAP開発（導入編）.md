@@ -8,14 +8,12 @@ tags:
 - AngularFire
 ---
   
-こんにちは。今回は上記の３つを組み合わせてWEB AP開発を行う際の手順を解説していこうと思います。  
-それぞれの使用経験があっても組み合わせると細かい所で沢山ハマってしまうので注意しましょう。  
-（新設の開発チームの大半がこの段階で躓く印象です）  
+こんにちは。今回は上記の３つを組み合わせてWEB AP開発を行う際の手順を解説していこうと思います。それぞれの使用経験があっても組み合わせると細かい所で沢山ハマってしまうので注意しましょう。（新設の開発チームの大半がこの段階で躓く印象です）  
 
 ## 各技術についての基礎知識  
 
 簡単にポイントだけを解説します。分かっている方は飛ばしてください  
-手順を細かく書いているので分からない内容があっても、一先ず触りなから理解していきましょう  
+手順を細かく書いているので分からない言葉があっても、一先ず触りなから理解していきましょう  
 
 - [cloud9](https://aws.amazon.com/jp/cloud9/)
     - AWSのブラウザ型IDE
@@ -24,30 +22,35 @@ tags:
     - 社内プロキシ問題に悩まされない
         - 個人的には最重要ポイント
     - 環境構築を省略可能
-        - NodeJS, Git, AWS CLI等の便利なものが元から入っている
+        - node_module, Git, AWS CLI等の便利なものが元から入っている
     - 複数ユーザーで同時編集可能
         - リモートワークやレビューに便利です
+        - 対抗の[Google Cloud Shell](https://cloud.google.com/shell/docs?hl=ja)との差分
+            - 後に同様の機能が付きそうではあります
 
 - [Angular](https://angular.jp/)
     - Googleが出しているWEB APのフレームワーク
-    - SPA(Single Page Application)を開発可能
+        - 言語はHTML, TypeScript, scss
+    - [SPA (Single Page Application)](https://digitalidentity.co.jp/blog/creative/about-single-page-application.html)を開発可能
     - APの画面はAngular Materialでほぼ自動構築可能
-    - Firebase HostingやAWSのS3等の[静的WEBサイトホスティング](https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/dev/WebsiteHosting.html)を用いれば、[サーバレス](https://qiita.com/y-some/items/e9b78468428d1c481fac)を実現可能
+    - [静的WEBサイトホスティング](https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/dev/WebsiteHosting.html)サービスを用いれば、[サーバレス](https://qiita.com/y-some/items/e9b78468428d1c481fac)を実現可能
+        - 代表例として[Firebase Hosting](https://firebase.google.com/docs/hosting?hl=ja)や[Amazon S3](https://aws.amazon.com/jp/s3/)等が挙げられます
 
 - [Firebase](https://firebase.google.com/)
     - Googleの[BaaS(Backend as a Service)](https://boxil.jp/mag/a3651/#3651-2)
     - 認証機能やデータベースなどのバックエンドの機能を提供してくれるサービス
         - 開発工数を大幅削減可能
-        - 本質的な機能開発に集中可能
-    - APのHostingや顧客分析もそのまま可能  
+        - 本質的な機能の開発に集中可能
+    - APのHostingや顧客分析、収益管理まで可能  
   
 この３つを抑えれば開発環境の用意からAPの公開まで高速でできます。  
     
 ## 前提条件
 - cloud9環境を作成済み
-    - 簡単なので参考サイトだけ載せておきます
+    - 指示に従って設定していくだけなので参考サイトを載せておきます
         - [初めてのAWS Cloud9導入](https://qiita.com/tu-kun/items/d7b4f1fa19cc93bc5b75)
 - Googleアカウントを作成済み
+    - [Googelアカウントの作成](https://support.google.com/accounts/answer/27441?hl=ja)
 
 ## 手順
 
@@ -57,7 +60,7 @@ tags:
     - node_module
     - Angular CLI
   
-cloud9には初めからnode_moduleが入っている為、Angular CLIを入れるだけでOKです。  
+cloud9には初めからnode_moduleが入っている為、Angular CLIを入れるだけでOKです。（Windowsにnode_moduleを入れようとすると、それだけでだいぶ工数をロスします）  
   
 - 1.1. Angular CLIのinstall
 ```
@@ -65,6 +68,7 @@ npm install -g @angular cli
 ```
 - 確認
     - 以下のようにngコマンドを使えるようになればOKです
+        - ngはangularの略です
 ```
 ng --version
 
@@ -83,7 +87,7 @@ Angular: 8.2.14
 ```
 
 - ０から開発する場合
-    - 以下のコマンドでAngular PJを作成しましょう
+    - 以下のコマンドでAngular PJを開始しましょう
     ```
     ng new <AP名>
     ```
@@ -94,17 +98,16 @@ Angular: 8.2.14
     ```
 
 ### 2. firebaseの登録～project作成
-- 基本的にWEBのFirebaseコンソールで操作していきます
+- 初めは基本的にWEBのFirebaseコンソールで操作していきます
     - Googleアカウントを作成していればすぐに始められます
 
 - 2.1. [公式ページ](https://firebase.google.com/?hl=ja)から右上の”コンソールへ移動"を押下
 
 - 2.2. projectを作成します（APの単位です）
-  - Name: <pj-name>
+  - AP名を設定
 - 2.3. アプリを登録
     - ios/android/webからwebを選択
     - ニックネームを設定
-        - <pj-name>
 - 2.4. Firebase SDKの追加
     - 公式の説明は以下
 ```
@@ -112,7 +115,7 @@ Angular: 8.2.14
 ```
 
 - Angularの場合はindex.htmlのbody配下に置きます
-  - SPAなので、index.htmlがJSで書き換わっていくのがAngularの特徴です
+  - SPAなので、単一ページであるindex.htmlがJSで書き換わっていくのがAngularの特徴です
 ```
     <body>
     <app-root></app-root>
@@ -133,8 +136,8 @@ Angular: 8.2.14
 
 ### 3. firebaseとAPの関連付け(Angular Fireの導入)
 - Angular APとfirebaseを関連付けるまでに必要な作業の一覧は以下になります
-    - angular fireのinstall
-    - Firebase Toolのinstal
+    - angularfireのinstall
+    - Firebase CLIのinstal
     - (firebase側でアプリを追加　 2で先に行った内容です)
         - Firebase SDKの追加
         - FirebaseのAPIキーを取得
@@ -156,7 +159,8 @@ Angular: 8.2.14
 それぞれ詳しく解説していきます  
 
 #### 3.1. angular fireのinstall
-- 以下を実行
+- [angularfire](https://github.com/angular/angularfire)を入れます
+    - AngularとFirebase連携用のLibraryです
 ```
 npm install firebase @angular/fire
 ```
@@ -169,8 +173,9 @@ found 5 vulnerabilities (3 moderate, 2 high)
 ```
 - ここまでではまだ、Firebaseコマンドが使えない状態です
 
-#### 3.2. firebase-toolの導入
-- 以下を実行
+#### 3.2. [Firebase CLI](https://firebase.google.com/docs/cli?hl=ja#install-cli-mac-linux)の導入
+- 以下を実行することでinstallできます
+    - firebase コマンドが有効になります
 ```
 npm install -g firebase-tools
 ```
@@ -220,8 +225,8 @@ export const environment = {
 
 
 #### 3.4. CLIとFirebaseの関連付け
-- 次にCloud9のCLIとfirebaseを関連付ける
-  - c9の場合--nolocalhostが必要
+- 次にCloud9のCLIとfirebaseを関連付けます
+  - c9の場合--nolocalhostが必須
     - ★社内Local環境でloginをやろうとするとFirebaseの認証がProxyに阻まれて突破できず詰むので気を付けましょう
         - 調べた解決策を全て講じてもこれだけは解決できませんでした...
 
@@ -244,7 +249,7 @@ Visit this URL on any device to log in:
 
 ✔  Success! Logged in as <googleアカウント名>
 ```
-- Cloud9のCLIからGoogle Cloud上のリソースをいじれるようになりました
+- Cloud9のCLIからFirebase(=Google Cloud)上のリソースにアクセス可能になりました
 
 #### 3.5. APとfirebaseのpjの関連付け
 
@@ -252,7 +257,7 @@ Visit this URL on any device to log in:
 ```
 firebase init
 ```
-- 以下のように出力されればOKです
+- 以下のように出力されれば成功です
     - 使いたいサービスを選択すると簡単にCloud側と連携できます
 ```
 
@@ -282,7 +287,7 @@ You're about to initialize a Firebase project in this directory:
     - browserのURLの指定
     - disableHostCheck
 - 大抵の人が必ず一度はハマるポイントです
-- 上部タブから"Preview"を選択後"Preview Runnig Application"を選択すると
+- 上部タブから"Preview"を選択後"Preview Runnig Application"を選択するとCloud9上に表示できます
     - Previewの中のURL欄をコピーして控えてください
 
 ```
@@ -290,7 +295,7 @@ ng serve --public-host <cloud9のPreviewのURL> --disableHostCheck --port 8080
 ```
 
 ## 後書き
-如何だったでしょうか？ここまでで本格的な実装に入る準備が整いました。Firebaseを使いこなせば、認証機能もデータのCRUD機能も１日で簡単に実装することができます。モダン手法を使いこなして素早くAPを開発していきましょう。
+如何だったでしょうか？ここまでで本格的な実装に入る準備が整いました。Firebaseを使いこなせば、認証機能もデータのCRUD機能も１日で簡単に実装することができます。モダンな手法を使いこなして素早くAPを開発していきましょう。
   
 - 最後に、この先の機能実装の際に参考になりそうなページを共有しておきます。
   - [AngularFireでFirestoreのCRUD処理を実装する【Angular + Firebase】](https://mae.chab.in/archives/60256)
