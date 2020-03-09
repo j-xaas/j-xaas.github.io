@@ -3,7 +3,7 @@ title: Angular x AWS SDK for JavaScriptの始め方
 date: 2020-02-28 00:13:23
 tags: 
 - Angular
-- AWS SDk for JavaScript
+- AWS SDK for JavaScript
 ---
 
 - angularで開発していたアプリケーションにaws-sdkを導入する際の備忘録
