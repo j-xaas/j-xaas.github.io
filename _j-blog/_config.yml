@@ -89,6 +89,13 @@ ignore:
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
+sitemap:
+  path: sitemap.xml
+  tag: false
+  category: false
+
+
+
 ## Themes: https://hexo.io/themes/
 theme: landscape
 

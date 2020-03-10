@@ -4,7 +4,7 @@ date: 2020-03-09 23:38:20
 tags: 
 - Angular
 - ”global is not defined”
-- AWS SDK for Javascript
+- AWS SDK for JavaScript
 ---
 
 ## 概要
