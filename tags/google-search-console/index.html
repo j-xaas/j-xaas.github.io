@@ -18,17 +18,16 @@ ga('send', 'pageview');
 
 
   
-  <title>Angular x AWS SDK for JavaScriptの始め方 | J&#39;s Blog</title>
+  <title>タグ: google search console | J&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="angularで開発していたアプリケーションにaws-sdkを導入する際の備忘録 AWS SDKを入れることで、アプリケーションからAWSのリソースを操作可能になります ex.) S3やDynamoDBへのデータの格納、Cognitoによる認証、Lambdaの実行…     Angularの場合、公式の開発者ガイド通りにやると鬼のようにエラーが出るので共有しておきます。ひと手間必要でした。  1">
-<meta name="keywords" content="Angular,AWS SDK for JavaScript">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Angular x AWS SDK for JavaScriptの始め方">
-<meta property="og:url" content="https:&#x2F;&#x2F;j-xaas.github.io&#x2F;2020&#x2F;02&#x2F;28&#x2F;Angular-x-AWS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9&#x2F;index.html">
+  <meta name="description" content="tech">
+<meta name="keywords" content="angular">
+<meta property="og:type" content="website">
+<meta property="og:title" content="J&#39;s Blog">
+<meta property="og:url" content="https:&#x2F;&#x2F;j-xaas.github.io&#x2F;tags&#x2F;google-search-console&#x2F;index.html">
 <meta property="og:site_name" content="J&#39;s Blog">
-<meta property="og:description" content="angularで開発していたアプリケーションにaws-sdkを導入する際の備忘録 AWS SDKを入れることで、アプリケーションからAWSのリソースを操作可能になります ex.) S3やDynamoDBへのデータの格納、Cognitoによる認証、Lambdaの実行…     Angularの場合、公式の開発者ガイド通りにやると鬼のようにエラーが出るので共有しておきます。ひと手間必要でした。  1">
+<meta property="og:description" content="tech">
 <meta property="og:locale" content="ja">
-<meta property="og:updated_time" content="2020-03-09T12:24:07.725Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="J&#39;s Blog" type="application/atom+xml">
@@ -80,116 +79,40 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Angular-x-AWS-SDK-for-JavaScriptの始め方" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/02/28/Angular-x-AWS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/" class="article-date">
-  <time datetime="2020-02-27T15:13:23.000Z" itemprop="datePublished">2020-02-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      Angular x AWS SDK for JavaScriptの始め方
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/" class="archive-article-date">
+  <time datetime="2020-03-10T14:23:23.000Z" itemprop="datePublished">3月 10</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/">Hexoでサイトマップを自動生成 ~ Google Search Consoleへ登録</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>angularで開発していたアプリケーションにaws-sdkを導入する際の備忘録<ul>
-<li><a href="https://aws.amazon.com/jp/tools/" target="_blank" rel="noopener">AWS SDK</a>を入れることで、アプリケーションからAWSのリソースを操作可能になります<ul>
-<li>ex.) S3やDynamoDBへのデータの格納、Cognitoによる認証、Lambdaの実行…</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Angularの場合、公式の開発者ガイド通りにやると鬼のようにエラーが出るので共有しておきます。ひと手間必要でした。</li>
-</ul>
-<h2 id="1-aws-sdk-for-javascriptのinstall"><a href="#1-aws-sdk-for-javascriptのinstall" class="headerlink" title="1. aws sdk for javascriptのinstall"></a>1. aws sdk for javascriptのinstall</h2><ul>
-<li>angular PJ直下で実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install aws-sdk --save-dev</span><br></pre></td></tr></table></figure></li>
-<li>この時点でAPを確認すると、以下のエラーが大量に出ます<ul>
-<li>APの画面もブラウザに表示されなくなります</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;ng serve --open</span><br><span class="line"></span><br><span class="line">ERROR in node_modules/aws-sdk/clients/acm.d.ts:141:37 - error TS2591: Cannot find name &apos;Buffer&apos;. Do you need to install type definitions for node? Try `npm i @types/node` and then add `node` to the types field in your tsconfig.</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-types-nodeをinstallする"><a href="#2-types-nodeをinstallする" class="headerlink" title="2. @types/nodeをinstallする"></a>2. @types/nodeをinstallする</h2><ul>
-<li>Angular PJ直下で以下を実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install --save @types/node</span><br><span class="line"></span><br><span class="line">+ @types/node@8.9.5</span><br><span class="line">updated 1 package and audited 19123 packages in 41.418s</span><br><span class="line">found 0 vulnerabilities</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="3-tsconfig-json-ファイルに以下を追記"><a href="#3-tsconfig-json-ファイルに以下を追記" class="headerlink" title="3. tsconfig.json ファイルに以下を追記"></a>3. tsconfig.json ファイルに以下を追記</h2><ul>
-<li><p>Angular PJ直下にあります</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;compilerOptions&quot;: &#123;</span><br><span class="line">  &quot;types&quot;: [&quot;node&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>場所は以下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; code .\tsconfig.json</span><br></pre></td></tr></table></figure>
-</li>
-<li><ol start="4">
-<li>tsconfig.app.json にも、同じく追記<ul>
-<li>Angular PJ直下にあります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;compilerOptions&quot;: &#123;</span><br><span class="line">   &quot;types&quot;: [&quot;node&quot;]</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><p>エラーの解消を確認</p>
-<ul>
-<li>ng serve時に正しくAPの画面が表示される</li>
-</ul>
-</li>
-<li><p>ここまででAngular APからAWSのリソースとAPI連携する下準備が整いました</p>
-<ul>
-<li>以下についても後日UP予定です<ul>
-<li>AWSの各リソースの利用方法、実装方法</li>
-<li>Ampliyfy(BaaS)でAWSと連携させる手法</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://j-xaas.github.io/2020/02/28/Angular-x-AWS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/" data-id="ck7lzlptz000x0oko7udvfc78" class="article-share-link">共有</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AWS-SDK-for-JavaScript/" rel="tag">AWS SDK for JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/" rel="tag">Angular</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2020/03/05/Cloud9-x-Angular-x-Firebase%E3%81%A7AP%E9%96%8B%E7%99%BA%EF%BC%88%E5%B0%8E%E5%85%A5%E7%B7%A8%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">次の記事</strong>
-      <div class="article-nav-title">
-        
-          Cloud9 x Angular x FirebaseでAP開発（導入編）
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/02/20/Angular%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E9%96%8B%E7%99%BA%E6%94%AF%E6%8F%B4%E3%83%84%E3%83%BC%E3%83%ABAugury-Chrome%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前の記事</strong>
-      <div class="article-nav-title">Angularアプリの開発支援ツールAugury(Chrome拡張機能)</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
+
 
 </section>
         

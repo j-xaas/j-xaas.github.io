@@ -81,6 +81,176 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-Hexoでサイトマップを自動生成-Google-Search-Consoleへ登録" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/" class="article-date">
+  <time datetime="2020-03-10T14:23:23.000Z" itemprop="datePublished">2020-03-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/">Hexoでサイトマップを自動生成 ~ Google Search Consoleへ登録</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>こんにちは。今回はHexoでサイトマップを自動生成してGoogleに登録するまでの手法を紹介します。<br>本サイトもHexoを用いて自動生成しています。  </p>
+<h3 id="想定読者"><a href="#想定読者" class="headerlink" title="想定読者"></a>想定読者</h3><ul>
+<li>静的サイトジェネレータhexoでWEBページを作成済み<ul>
+<li>Google検索でヒットしない状態</li>
+</ul>
+</li>
+<li>サイトマップ未登録</li>
+</ul>
+<h3 id="基礎知識"><a href="#基礎知識" class="headerlink" title="基礎知識"></a>基礎知識</h3><ul>
+<li><p>サイトマップとは</p>
+<ul>
+<li>サイトにどのようなページがあるのか表す為のもの</li>
+<li>以下の二種類があります<ul>
+<li>HTMLサイトマップ</li>
+<li>XMLサイトマップ<ul>
+<li>検索エンジンが情報収集する対象となるため、SEO対策において重要    </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>hexoではプラグインを利用することでサイトマップを自動生成できます</li>
+</ul>
+</li>
+<li><p><a href="https://support.google.com/webmasters/answer/9128668?hl=ja&ref_topic=9128571" target="_blank" rel="noopener">Google Search Console</a></p>
+<ul>
+<li><a href="https://support.google.com/webmasters/answer/9128668?hl=ja&ref_topic=9128571" target="_blank" rel="noopener">Serch Consoleの概要</a> （公式サイトより引用）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Google Search Console は、Google 検索結果でのサイトの掲載順位を監視、管理、改善するのに役立つ Google の無料サービスです。Search Console に登録しなくても Google 検索結果にサイトが表示されるようにすることはできますが、Search Console に登録することで、Google のサイトに対する認識を理解し、改善できるようになります。</span><br></pre></td></tr></table></figure></li>
+<li>生成したサイトマップをこちらに登録することで、Google検索結果に自分のWEBページが出るようになります<ul>
+<li>WEBページを公開したばかりの場合、登録しなければ検索結果に出ないと思われます</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="手順"><a href="#手順" class="headerlink" title="手順"></a>手順</h2><ul>
+<li><ol>
+<li>Pluginの導入</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>_config.ymlにPluginの設定を追加</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>sitemap.xmlの生成</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>本番環境へデプロイ</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>Google Search Consoleへ登録</li>
+</ol>
+</li>
+</ul>
+<h3 id="1-Pluginの導入"><a href="#1-Pluginの導入" class="headerlink" title="1. Pluginの導入"></a>1. Pluginの導入</h3><ul>
+<li><p>HEXOでサイトマップを生成できるプライグインは二種類あります</p>
+<ul>
+<li><a href="https://github.com/hexojs/hexo-generator-sitemap" target="_blank" rel="noopener">hexo-generator-sitemap</a></li>
+<li><a href="">hexo-generator-seo-friendly-sitemap</a><ul>
+<li>今回はこちらを採用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>インストール</p>
+<ul>
+<li>HEXOディレクトリ直下で以下を実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-seo-friendly-sitemap --save</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-config-ymlにPluginの設定を追加"><a href="#2-config-ymlにPluginの設定を追加" class="headerlink" title="2. _config.ymlにPluginの設定を追加"></a>2. _config.ymlにPluginの設定を追加</h3><ul>
+<li><p>HEXOの設定ファイルに先ほどのPluginを登録します</p>
+<ul>
+<li>ファイルはhexoディレクトリ直下にあります</li>
+</ul>
+</li>
+<li><p>_config.ymlに追記する内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## Plugins: https://hexo.io/plugins/</span><br><span class="line">sitemap:</span><br><span class="line">  path: sitemap.xml</span><br><span class="line">  tag: false</span><br><span class="line">  category: false</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="3-sitemap-xmlの生成"><a href="#3-sitemap-xmlの生成" class="headerlink" title="3. sitemap.xmlの生成"></a>3. sitemap.xmlの生成</h3><ul>
+<li><p>いつも通りにhexoコマンドでジェネレートする際に、sitemapが生成されます</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure></li>
+<li><p>sitemap.xmlの生成を確認</p>
+<ul>
+<li>index.htmlと<ul>
+<li>通常はpublic配下</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>開いてみると、以下のように書かれています</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;sitemap.xsl&quot;?&gt;</span><br><span class="line">&lt;sitemapindex xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;sitemap&gt;</span><br><span class="line">        &lt;loc&gt;https://j-xaas.github.io/post-sitemap.xml&lt;/loc&gt;</span><br><span class="line">        &lt;lastmod&gt;2020-03-10T13:04:39.446Z&lt;/lastmod&gt;</span><br><span class="line">    &lt;/sitemap&gt;</span><br><span class="line"></span><br><span class="line">&lt;/sitemapindex&gt;</span><br><span class="line">&lt;!-- XML Sitemap generated by Hexo SEO Friendly Sitemap Generator --&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="4-本番環境へデプロイ"><a href="#4-本番環境へデプロイ" class="headerlink" title="4. 本番環境へデプロイ"></a>4. 本番環境へデプロイ</h3><ul>
+<li>WEBページをホスティングしている、サーバ等へsitemap.xmlファイルをおきましょう</li>
+<li>github pagesを用いている場合は、Gitへpushします</li>
+</ul>
+<h3 id="5-Google-Search-Consoleへ登録"><a href="#5-Google-Search-Consoleへ登録" class="headerlink" title="5. Google Search Consoleへ登録"></a>5. Google Search Consoleへ登録</h3><ul>
+<li><p><a href="https://search.google.com/search-console" target="_blank" rel="noopener">公式サイト</a>へアクセス</p>
+<ul>
+<li>未登録であれば、自分のWEBサイトのURLを登録しましょう</li>
+</ul>
+</li>
+<li><p>サイドメニュー内、インデックスのサイトマップを選択</p>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/76317221-2d197300-631f-11ea-9b4c-4c7dbb3b3d75.PNG" alt="sitemap"></p>
+<ul>
+<li>新しいサイトマップの追加<ul>
+<li>入力欄に”sitemap.xml”を入力</li>
+<li>送信</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/76317318-5df9a800-631f-11ea-8995-7722bd39ddc5.png" alt="image"></p>
+<ul>
+<li>しばらく待って更新すると、以下のようにステータスが”成功しました”と表示されます<ul>
+<li>以上でサイトマップの登録は完了です<ul>
+<li>hexo g の度に更新されるので、事後作業は特にありません</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/76319276-5687ce00-6322-11ea-98de-c4837c6f1785.png" alt="image"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://j-xaas.github.io/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/" data-id="ck7lzlpt200030okogdord8r8" class="article-share-link">共有</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sitemap/" rel="tag">Sitemap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/google-search-console/" rel="tag">google search console</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Angular8-global-is-not-definedの解消法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/" class="article-date">
@@ -148,7 +318,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://j-xaas.github.io/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/" data-id="ck7kfrb5q0004lskocbz64rxz" class="article-share-link">共有</a>
+      <a data-url="https://j-xaas.github.io/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/" data-id="ck7lzlpsk00000okoco6n941k" class="article-share-link">共有</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AWS-SDK-for-JavaScript/" rel="tag">AWS SDK for JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/" rel="tag">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" rel="tag">”global is not defined”</a></li></ul>
@@ -280,7 +450,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://j-xaas.github.io/2020/03/07/cloud9%E3%81%AB%E3%82%88%E3%82%8B%E5%85%B1%E5%90%8C%E7%B7%A8%E9%9B%86%E3%83%BB%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%96%8B%E7%99%BA/" data-id="ck7kfrb5n0003lsko7lvf49ud" class="article-share-link">共有</a>
+      <a data-url="https://j-xaas.github.io/2020/03/07/cloud9%E3%81%AB%E3%82%88%E3%82%8B%E5%85%B1%E5%90%8C%E7%B7%A8%E9%9B%86%E3%83%BB%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%96%8B%E7%99%BA/" data-id="ck7lzlpt700050oko7a3thqfj" class="article-share-link">共有</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cloud9/" rel="tag">cloud9</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" rel="tag">テレワーク</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" rel="tag">共同開発</a></li></ul>
@@ -581,7 +751,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://j-xaas.github.io/2020/03/05/Cloud9-x-Angular-x-Firebase%E3%81%A7AP%E9%96%8B%E7%99%BA%EF%BC%88%E5%B0%8E%E5%85%A5%E7%B7%A8%EF%BC%89/" data-id="ck7kfrb6v000vlskodtmo1s8u" class="article-share-link">共有</a>
+      <a data-url="https://j-xaas.github.io/2020/03/05/Cloud9-x-Angular-x-Firebase%E3%81%A7AP%E9%96%8B%E7%99%BA%EF%BC%88%E5%B0%8E%E5%85%A5%E7%B7%A8%EF%BC%89/" data-id="ck7lzlptw000u0oko0wg380ga" class="article-share-link">共有</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/" rel="tag">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AngularFire/" rel="tag">AngularFire</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Firebase/" rel="tag">Firebase</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cloud9/" rel="tag">cloud9</a></li></ul>
@@ -673,7 +843,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://j-xaas.github.io/2020/02/28/Angular-x-AWS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/" data-id="ck7kfrb5y0009lskocofs95jn" class="article-share-link">共有</a>
+      <a data-url="https://j-xaas.github.io/2020/02/28/Angular-x-AWS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/" data-id="ck7lzlptz000x0oko7udvfc78" class="article-share-link">共有</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AWS-SDK-for-JavaScript/" rel="tag">AWS SDK for JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/" rel="tag">Angular</a></li></ul>
@@ -772,7 +942,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://j-xaas.github.io/2020/02/20/Angular%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E9%96%8B%E7%99%BA%E6%94%AF%E6%8F%B4%E3%83%84%E3%83%BC%E3%83%ABAugury-Chrome%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/" data-id="ck7kfrb5w0008lsko36frdljy" class="article-share-link">共有</a>
+      <a data-url="https://j-xaas.github.io/2020/02/20/Angular%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E9%96%8B%E7%99%BA%E6%94%AF%E6%8F%B4%E3%83%84%E3%83%BC%E3%83%ABAugury-Chrome%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/" data-id="ck7lzlpsw00010okodukef8ko" class="article-share-link">共有</a>
       
       
     </footer>
@@ -895,7 +1065,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://j-xaas.github.io/2020/02/09/Github%E3%81%8B%E3%82%89GithubEnterprise%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86/" data-id="ck7kfrb540001lskoc5112dla" class="article-share-link">共有</a>
+      <a data-url="https://j-xaas.github.io/2020/02/09/Github%E3%81%8B%E3%82%89GithubEnterprise%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86/" data-id="ck7lzlpt400040oko4t1x3asl" class="article-share-link">共有</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github-com/" rel="tag">Github.com</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GithubEnterprise/" rel="tag">GithubEnterprise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GithubPages/" rel="tag">GithubPages</a></li></ul>
@@ -976,7 +1146,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://j-xaas.github.io/2020/02/04/About-This-Blog/" data-id="ck7kfrb4r0000lsko0nc902n8" class="article-share-link">共有</a>
+      <a data-url="https://j-xaas.github.io/2020/02/04/About-This-Blog/" data-id="ck7lzlpty000v0okohnq2hrzz" class="article-share-link">共有</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Purpose/" rel="tag">Purpose</a></li></ul>
@@ -1027,7 +1197,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://j-xaas.github.io/2019/11/24/hello-world/" data-id="ck7kfrb5t0005lskohi972zh6" class="article-share-link">共有</a>
+      <a data-url="https://j-xaas.github.io/2019/11/24/hello-world/" data-id="ck7lzlpta00070okog9ul6hj5" class="article-share-link">共有</a>
       
       
     </footer>
@@ -1050,7 +1220,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">タグ</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS-SDK-for-JavaScript/" rel="tag">AWS SDK for JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/" rel="tag">Angular</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularFire/" rel="tag">AngularFire</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Firebase/" rel="tag">Firebase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-com/" rel="tag">Github.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GithubEnterprise/" rel="tag">GithubEnterprise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GithubPages/" rel="tag">GithubPages</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Purpose/" rel="tag">Purpose</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cloud9/" rel="tag">cloud9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" rel="tag">”global is not defined”</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" rel="tag">テレワーク</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" rel="tag">共同開発</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS-SDK-for-JavaScript/" rel="tag">AWS SDK for JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/" rel="tag">Angular</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularFire/" rel="tag">AngularFire</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Firebase/" rel="tag">Firebase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-com/" rel="tag">Github.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GithubEnterprise/" rel="tag">GithubEnterprise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GithubPages/" rel="tag">GithubPages</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Purpose/" rel="tag">Purpose</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sitemap/" rel="tag">Sitemap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cloud9/" rel="tag">cloud9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google-search-console/" rel="tag">google search console</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" rel="tag">”global is not defined”</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" rel="tag">テレワーク</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" rel="tag">共同開発</a></li></ul>
     </div>
   </div>
 
@@ -1060,7 +1230,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">タグクラウド</h3>
     <div class="widget tagcloud">
-      <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 15px;">AWS SDK for JavaScript</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Purpose/" style="font-size: 10px;">Purpose</a> <a href="/tags/cloud9/" style="font-size: 15px;">cloud9</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+      <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 15px;">AWS SDK for JavaScript</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Purpose/" style="font-size: 10px;">Purpose</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/cloud9/" style="font-size: 15px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
     </div>
   </div>
 
@@ -1082,6 +1252,10 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/">Hexoでサイトマップを自動生成 ~ Google Search Consoleへ登録</a>
+          </li>
+        
+          <li>
             <a href="/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/">Angular8:”global is not defined”の回避策</a>
           </li>
         
@@ -1095,10 +1269,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="/2020/02/28/Angular-x-AWS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/">Angular x AWS SDK for JavaScriptの始め方</a>
-          </li>
-        
-          <li>
-            <a href="/2020/02/20/Angular%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E9%96%8B%E7%99%BA%E6%94%AF%E6%8F%B4%E3%83%84%E3%83%BC%E3%83%ABAugury-Chrome%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/">Angularアプリの開発支援ツールAugury(Chrome拡張機能)</a>
           </li>
         
       </ul>
