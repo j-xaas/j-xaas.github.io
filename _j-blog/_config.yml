@@ -3,8 +3,8 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: J's Blog
-subtitle: 'About tech'
+title: J's Tech Blog
+subtitle: ''
 description: 'tech'
 keywords: angular
 author: Junya
@@ -97,7 +97,7 @@ sitemap:
 
 
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: icarus
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

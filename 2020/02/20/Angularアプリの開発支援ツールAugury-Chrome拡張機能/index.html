@@ -1,114 +1,171 @@
 <!DOCTYPE html>
-<html>
+<html  lang="ja">
 <head>
-  <meta charset="utf-8">
-  
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <script data-ad-client="ca-pub-9328277883112913" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<meta charset="utf-8" />
 
-ga('create', 'UA-160034164-1', 'auto');
-ga('send', 'pageview');
+<meta name="generator" content="Hexo 4.2.0" />
 
-</script>
-<!-- End Google Analytics -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Angularアプリの開発支援ツールAugury(Chrome拡張機能) - J&#39;s Tech Blog</title>
 
 
-  
-  <title>Angularアプリの開発支援ツールAugury(Chrome拡張機能) | J&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今回はAngularでWEBアプリを開発する際に簡単に利用できるツールを紹介します  Auguryとは？ Angularの開発支援ツール Google Chromeの拡張機能 Chromeをメインブラウザとして利用しているデベロッパーには必須とも言えるツール  できること 標準のデベロッパーツールに以下の機能を追加できます Componentの階層構造やプロパティ値の図示 ルーティング情報のグラ">
-<meta name="keywords" content="angular">
+    <meta name="description" content="今回はAngularでWEBアプリを開発する際に簡単に利用できるツールを紹介します  Auguryとは？ Angularの開発支援ツール Google Chromeの拡張機能 Chromeをメインブラウザとして利用しているデベロッパーには必須とも言えるツール  できること 標準のデベロッパーツールに以下の機能を追加できます Componentの階層構造やプロパティ値の図示 ルーティング情報のグラ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angularアプリの開発支援ツールAugury(Chrome拡張機能)">
-<meta property="og:url" content="https:&#x2F;&#x2F;j-xaas.github.io&#x2F;2020&#x2F;02&#x2F;20&#x2F;Angular%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E9%96%8B%E7%99%BA%E6%94%AF%E6%8F%B4%E3%83%84%E3%83%BC%E3%83%ABAugury-Chrome%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD&#x2F;index.html">
-<meta property="og:site_name" content="J&#39;s Blog">
+<meta property="og:url" content="https://j-xaas.github.io/2020/02/20/Angular%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E9%96%8B%E7%99%BA%E6%94%AF%E6%8F%B4%E3%83%84%E3%83%BC%E3%83%ABAugury-Chrome%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/index.html">
+<meta property="og:site_name" content="J&#39;s Tech Blog">
 <meta property="og:description" content="今回はAngularでWEBアプリを開発する際に簡単に利用できるツールを紹介します  Auguryとは？ Angularの開発支援ツール Google Chromeの拡張機能 Chromeをメインブラウザとして利用しているデベロッパーには必須とも言えるツール  できること 標準のデベロッパーツールに以下の機能を追加できます Componentの階層構造やプロパティ値の図示 ルーティング情報のグラ">
-<meta property="og:locale" content="ja">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;41946222&#x2F;74917091-5030c100-540a-11ea-9060-2d05fc6c6c23.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;41946222&#x2F;74912170-74d46b00-5401-11ea-956d-93801c3cce13.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;41946222&#x2F;74917567-0b595a00-540b-11ea-8dc3-5a257af3bd45.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;41946222&#x2F;74918209-19f44100-540c-11ea-9953-c4734a0685ed.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;41946222&#x2F;74917975-c2ee6c00-540b-11ea-89d0-e1fbd9b7195c.png">
-<meta property="og:updated_time" content="2020-02-20T09:15:20.895Z">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://j-xaas.github.io/images/og_image.png">
+<meta property="article:published_time" content="2020-02-20T09:12:39.000Z">
+<meta property="article:modified_time" content="2020-03-12T14:32:02.779Z">
+<meta property="article:author" content="Junya">
+<meta property="article:tag" content="angular">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;41946222&#x2F;74917091-5030c100-540a-11ea-9060-2d05fc6c6c23.png">
-  
-    <link rel="alternate" href="/atom.xml" title="J&#39;s Blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
+<meta name="twitter:image" content="https://j-xaas.github.io/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-160034164-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-160034164-1');
+</script>
+
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
 </head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">J&#39;s Blog</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">About tech</a>
-        </h2>
-      
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Angularアプリの開発支援ツールAugury(Chrome拡張機能)" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSSフィード"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="検索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://j-xaas.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-Angularアプリの開発支援ツールAugury-Chrome拡張機能" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/02/20/Angular%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E9%96%8B%E7%99%BA%E6%94%AF%E6%8F%B4%E3%83%84%E3%83%BC%E3%83%ABAugury-Chrome%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/" class="article-date">
-  <time datetime="2020-02-20T09:12:39.000Z" itemprop="datePublished">2020-02-20</time>
-</a>
+</nav>
     
-  </div>
-  <div class="article-inner">
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+<div class="card">
     
-    
-      <header class="article-header">
+    <div class="card-content article ">
         
-  
-    <h1 class="article-title" itemprop="name">
-      Angularアプリの開発支援ツールAugury(Chrome拡張機能)
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-20T09:12:39.000Z">2020-02-20</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3分 read (About 524 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Angularアプリの開発支援ツールAugury(Chrome拡張機能)
+            
+        </h1>
+        <div class="content">
+            <ul>
 <li>今回はAngularでWEBアプリを開発する際に簡単に利用できるツールを紹介します<br><img src="https://user-images.githubusercontent.com/41946222/74917091-5030c100-540a-11ea-9060-2d05fc6c6c23.png" alt="image"></li>
 </ul>
 <h2 id="Auguryとは？"><a href="#Auguryとは？" class="headerlink" title="Auguryとは？"></a>Auguryとは？</h2><ul>
@@ -170,138 +227,972 @@ ga('send', 'pageview');
 </li>
 </ul>
 
-      
+        </div>
+        
+        
+        
     </div>
-    <footer class="article-footer">
-      <a data-url="https://j-xaas.github.io/2020/02/20/Angular%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E9%96%8B%E7%99%BA%E6%94%AF%E6%8F%B4%E3%83%84%E3%83%BC%E3%83%ABAugury-Chrome%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/" data-id="ck7lzlpsw00010okodukef8ko" class="article-share-link">共有</a>
-      
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2020/02/28/Angular-x-AWS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">次の記事</strong>
-      <div class="article-nav-title">
-        
-          Angular x AWS SDK for JavaScriptの始め方
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/02/09/Github%E3%81%8B%E3%82%89GithubEnterprise%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前の記事</strong>
-      <div class="article-nav-title">Github.comからGithubEnterpriseへの移行手順</div>
-    </a>
-  
-</nav>
+</div>
 
-  
-</article>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">タグ</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS-SDK-for-JavaScript/" rel="tag">AWS SDK for JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/" rel="tag">Angular</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AngularFire/" rel="tag">AngularFire</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Firebase/" rel="tag">Firebase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-com/" rel="tag">Github.com</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GithubEnterprise/" rel="tag">GithubEnterprise</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GithubPages/" rel="tag">GithubPages</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Purpose/" rel="tag">Purpose</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sitemap/" rel="tag">Sitemap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cloud9/" rel="tag">cloud9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google-search-console/" rel="tag">google search console</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" rel="tag">”global is not defined”</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" rel="tag">テレワーク</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" rel="tag">共同開発</a></li></ul>
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">Gefällt Ihnen der Artikel? Unterstützen Sie den Autor mit</h3>
+        <div class="buttons is-centered">
+            
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<div class="notification is-danger">
+    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+        </div>
     </div>
-  </div>
+</div>
 
 
-  
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2020/02/28/Angular-x-AWS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Angular x AWS SDK for JavaScriptの始め方</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/02/09/Github%E3%81%8B%E3%82%89GithubEnterprise%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86/">
+                <span class="level-item">Github.comからGithubEnterpriseへの移行手順</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">タグクラウド</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 15px;">AWS SDK for JavaScript</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Purpose/" style="font-size: 10px;">Purpose</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/cloud9/" style="font-size: 15px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="is-rounded" src="/images/oshushi.png" alt="J">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        J
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        IT Specialist
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Tokyo Japan</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        投稿
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            9
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        カテゴリ
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            0
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        タグ
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            15
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/ppoffice" target="_blank" rel="noopener">
+                フォローする</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/ppoffice">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Facebook" href="https://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
     </div>
-  </div>
-
-  
+</div>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">アーカイブ</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">三月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
+        
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">最近の投稿</h3>
-    <div class="widget">
-      <ul>
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            リンク
+        </h3>
+        <ul class="menu-list">
         
-          <li>
-            <a href="/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/">Hexoでサイトマップを自動生成 ~ Google Search Consoleへ登録</a>
-          </li>
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
         
-          <li>
-            <a href="/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/">Angular8:”global is not defined”の回避策</a>
-          </li>
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
         
-          <li>
-            <a href="/2020/03/07/cloud9%E3%81%AB%E3%82%88%E3%82%8B%E5%85%B1%E5%90%8C%E7%B7%A8%E9%9B%86%E3%83%BB%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%96%8B%E7%99%BA/">cloud9による共同編集・リモート開発</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/05/Cloud9-x-Angular-x-Firebase%E3%81%A7AP%E9%96%8B%E7%99%BA%EF%BC%88%E5%B0%8E%E5%85%A5%E7%B7%A8%EF%BC%89/">Cloud9 x Angular x FirebaseでAP開発（導入編）</a>
-          </li>
-        
-          <li>
-            <a href="/2020/02/28/Angular-x-AWS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/">Angular x AWS SDK for JavaScriptの始め方</a>
-          </li>
-        
-      </ul>
+        </ul>
+        </div>
     </div>
-  </div>
+</div>
 
-  
-</aside>
+    
         
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 Junya<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                カテゴリ
+            </h3>
+            <ul class="menu-list">
+            
+            </ul>
+        </div>
     </div>
-  </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            タグクラウド
+        </h3>
+        <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 15px;">AWS SDK for JavaScript</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Purpose/" style="font-size: 10px;">Purpose</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/cloud9/" style="font-size: 15px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最近の記事
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/03/12/hello-world/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-12T14:32:02.795Z">2020-03-12</time></div>
+                    <a href="/2020/03/12/hello-world/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hello World</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hexoでサイトマップを自動生成 ~ Google Search Consoleへ登録">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T14:23:23.000Z">2020-03-10</time></div>
+                    <a href="/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hexoでサイトマップを自動生成 ~ Google Search Consoleへ登録</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Angular8:”global is not defined”の回避策">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-09T14:38:20.000Z">2020-03-09</time></div>
+                    <a href="/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Angular8:”global is not defined”の回避策</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/07/cloud9%E3%81%AB%E3%82%88%E3%82%8B%E5%85%B1%E5%90%8C%E7%B7%A8%E9%9B%86%E3%83%BB%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%96%8B%E7%99%BA/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="cloud9による共同編集・リモート開発">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-06T16:47:37.000Z">2020-03-07</time></div>
+                    <a href="/2020/03/07/cloud9%E3%81%AB%E3%82%88%E3%82%8B%E5%85%B1%E5%90%8C%E7%B7%A8%E9%9B%86%E3%83%BB%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%96%8B%E7%99%BA/" class="title has-link-black-ter is-size-6 has-text-weight-normal">cloud9による共同編集・リモート開発</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/05/Cloud9-x-Angular-x-Firebase%E3%81%A7AP%E9%96%8B%E7%99%BA%EF%BC%88%E5%B0%8E%E5%85%A5%E7%B7%A8%EF%BC%89/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Cloud9 x Angular x FirebaseでAP開発（導入編）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-05T13:28:41.000Z">2020-03-05</time></div>
+                    <a href="/2020/03/05/Cloud9-x-Angular-x-Firebase%E3%81%A7AP%E9%96%8B%E7%99%BA%EF%BC%88%E5%B0%8E%E5%85%A5%E7%B7%A8%EF%BC%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Cloud9 x Angular x FirebaseでAP開発（導入編）</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            アーカイブ
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                タグ
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS-SDK-for-JavaScript/">
+                        <span class="tag">AWS SDK for JavaScript</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Angular/">
+                        <span class="tag">Angular</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AngularFire/">
+                        <span class="tag">AngularFire</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Firebase/">
+                        <span class="tag">Firebase</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Github-com/">
+                        <span class="tag">Github.com</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GithubEnterprise/">
+                        <span class="tag">GithubEnterprise</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GithubPages/">
+                        <span class="tag">GithubPages</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Purpose/">
+                        <span class="tag">Purpose</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Sitemap/">
+                        <span class="tag">Sitemap</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/cloud9/">
+                        <span class="tag">cloud9</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/google-search-console/">
+                        <span class="tag">google search console</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/">
+                        <span class="tag">”global is not defined”</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/">
+                        <span class="tag">テレワーク</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/">
+                        <span class="tag">共同開発</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最近の記事
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/03/12/hello-world/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-12T14:32:02.795Z">2020-03-12</time></div>
+                    <a href="/2020/03/12/hello-world/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hello World</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hexoでサイトマップを自動生成 ~ Google Search Consoleへ登録">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T14:23:23.000Z">2020-03-10</time></div>
+                    <a href="/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hexoでサイトマップを自動生成 ~ Google Search Consoleへ登録</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Angular8:”global is not defined”の回避策">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-09T14:38:20.000Z">2020-03-09</time></div>
+                    <a href="/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Angular8:”global is not defined”の回避策</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/07/cloud9%E3%81%AB%E3%82%88%E3%82%8B%E5%85%B1%E5%90%8C%E7%B7%A8%E9%9B%86%E3%83%BB%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%96%8B%E7%99%BA/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="cloud9による共同編集・リモート開発">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-06T16:47:37.000Z">2020-03-07</time></div>
+                    <a href="/2020/03/07/cloud9%E3%81%AB%E3%82%88%E3%82%8B%E5%85%B1%E5%90%8C%E7%B7%A8%E9%9B%86%E3%83%BB%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%96%8B%E7%99%BA/" class="title has-link-black-ter is-size-6 has-text-weight-normal">cloud9による共同編集・リモート開発</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/03/05/Cloud9-x-Angular-x-Firebase%E3%81%A7AP%E9%96%8B%E7%99%BA%EF%BC%88%E5%B0%8E%E5%85%A5%E7%B7%A8%EF%BC%89/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Cloud9 x Angular x FirebaseでAP開発（導入編）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-05T13:28:41.000Z">2020-03-05</time></div>
+                    <a href="/2020/03/05/Cloud9-x-Angular-x-Firebase%E3%81%A7AP%E9%96%8B%E7%99%BA%EF%BC%88%E5%B0%8E%E5%85%A5%E7%B7%A8%EF%BC%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Cloud9 x Angular x FirebaseでAP開発（導入編）</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            アーカイブ
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                タグ
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS-SDK-for-JavaScript/">
+                        <span class="tag">AWS SDK for JavaScript</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Angular/">
+                        <span class="tag">Angular</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AngularFire/">
+                        <span class="tag">AngularFire</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Firebase/">
+                        <span class="tag">Firebase</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Github-com/">
+                        <span class="tag">Github.com</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GithubEnterprise/">
+                        <span class="tag">GithubEnterprise</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GithubPages/">
+                        <span class="tag">GithubPages</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Purpose/">
+                        <span class="tag">Purpose</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Sitemap/">
+                        <span class="tag">Sitemap</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/cloud9/">
+                        <span class="tag">cloud9</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/google-search-console/">
+                        <span class="tag">google search console</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/">
+                        <span class="tag">”global is not defined”</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/">
+                        <span class="tag">テレワーク</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/">
+                        <span class="tag">共同開発</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Angularアプリの開発支援ツールAugury(Chrome拡張機能)" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Junya&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("ja");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'https://j-xaas.github.io',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Zurück nach oben" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
     
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-
-
-  </div>
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '投稿',
+                PAGES: 'Pages',
+                CATEGORIES: 'カテゴリ',
+                TAGS: 'タグ',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
 </body>
 </html>
