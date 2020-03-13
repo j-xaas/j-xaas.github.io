@@ -157,11 +157,15 @@
             <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-03-10T14:23:23.000Z">2020-03-10</time>
                 
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/WEB-Page-Dev-Hexo/">WEB Page Dev (Hexo)</a>
+                </div>
+                
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    7分 read (About 1058 words)
+                    7分 read (About 1059 words)
                 </span>
                 
                 
@@ -174,15 +178,34 @@
             
         </h1>
         <div class="content">
-            <h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>こんにちは。今回はHexoでサイトマップを自動生成してGoogleに登録するまでの手法を紹介します。<br>本サイトもHexoを用いて自動生成しています。  </p>
-<h3 id="想定読者"><a href="#想定読者" class="headerlink" title="想定読者"></a>想定読者</h3><ul>
+            <!-- toc -->
+
+<ul>
+<li><a href="#概要">概要</a><ul>
+<li><a href="#想定読者">想定読者</a></li>
+<li><a href="#基礎知識">基礎知識</a></li>
+</ul>
+</li>
+<li><a href="#手順">手順</a><ul>
+<li><a href="#1-pluginの導入">1. Pluginの導入</a></li>
+<li><a href="#2-_configymlにpluginの設定を追加">2. _config.ymlにPluginの設定を追加</a></li>
+<li><a href="#3-sitemapxmlの生成">3. sitemap.xmlの生成</a></li>
+<li><a href="#4-本番環境へデプロイ">4. 本番環境へデプロイ</a></li>
+<li><a href="#5-google-search-consoleへ登録">5. Google Search Consoleへ登録</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="概要">概要</span></h2><p>こんにちは。今回はHexoでサイトマップを自動生成してGoogleに登録するまでの手法を紹介します。<br>本サイトもHexoを用いて自動生成しています。  </p>
+<h3><span id="想定読者">想定読者</span></h3><ul>
 <li>静的サイトジェネレータhexoでWEBページを作成済み<ul>
 <li>Google検索でヒットしない状態</li>
 </ul>
 </li>
 <li>サイトマップ未登録</li>
 </ul>
-<h3 id="基礎知識"><a href="#基礎知識" class="headerlink" title="基礎知識"></a>基礎知識</h3><ul>
+<h3><span id="基礎知識">基礎知識</span></h3><ul>
 <li><p>サイトマップとは</p>
 <ul>
 <li>サイトにどのようなページがあるのか表す為のもの</li>
@@ -197,9 +220,9 @@
 <li>hexoではプラグインを利用することでサイトマップを自動生成できます</li>
 </ul>
 </li>
-<li><p><a href="https://support.google.com/webmasters/answer/9128668?hl=ja&ref_topic=9128571" target="_blank" rel="noopener">Google Search Console</a></p>
+<li><p><a href="https://support.google.com/webmasters/answer/9128668?hl=ja&ref_topic=9128571">Google Search Console</a></p>
 <ul>
-<li><a href="https://support.google.com/webmasters/answer/9128668?hl=ja&ref_topic=9128571" target="_blank" rel="noopener">Serch Consoleの概要</a> （公式サイトより引用）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Google Search Console は、Google 検索結果でのサイトの掲載順位を監視、管理、改善するのに役立つ Google の無料サービスです。Search Console に登録しなくても Google 検索結果にサイトが表示されるようにすることはできますが、Search Console に登録することで、Google のサイトに対する認識を理解し、改善できるようになります。</span><br></pre></td></tr></table></figure></li>
+<li><a href="https://support.google.com/webmasters/answer/9128668?hl=ja&ref_topic=9128571">Serch Consoleの概要</a> （公式サイトより引用）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Google Search Console は、Google 検索結果でのサイトの掲載順位を監視、管理、改善するのに役立つ Google の無料サービスです。Search Console に登録しなくても Google 検索結果にサイトが表示されるようにすることはできますが、Search Console に登録することで、Google のサイトに対する認識を理解し、改善できるようになります。</span><br></pre></td></tr></table></figure></li>
 <li>生成したサイトマップをこちらに登録することで、Google検索結果に自分のWEBページが出るようになります<ul>
 <li>WEBページを公開したばかりの場合、登録しなければ検索結果に出ないと思われます</li>
 </ul>
@@ -207,7 +230,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="手順"><a href="#手順" class="headerlink" title="手順"></a>手順</h2><ul>
+<h2><span id="手順">手順</span></h2><ul>
 <li><ol>
 <li>Pluginの導入</li>
 </ol>
@@ -229,11 +252,11 @@
 </ol>
 </li>
 </ul>
-<h3 id="1-Pluginの導入"><a href="#1-Pluginの導入" class="headerlink" title="1. Pluginの導入"></a>1. Pluginの導入</h3><ul>
+<h3><span id="1-pluginの導入">1. Pluginの導入</span></h3><ul>
 <li><p>HEXOでサイトマップを生成できるプライグインは二種類あります</p>
 <ul>
-<li><a href="https://github.com/hexojs/hexo-generator-sitemap" target="_blank" rel="noopener">hexo-generator-sitemap</a></li>
-<li><a href="">hexo-generator-seo-friendly-sitemap</a><ul>
+<li><a href="https://github.com/hexojs/hexo-generator-sitemap">hexo-generator-sitemap</a></li>
+<li><a href>hexo-generator-seo-friendly-sitemap</a><ul>
 <li>今回はこちらを採用</li>
 </ul>
 </li>
@@ -247,7 +270,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="2-config-ymlにPluginの設定を追加"><a href="#2-config-ymlにPluginの設定を追加" class="headerlink" title="2. _config.ymlにPluginの設定を追加"></a>2. _config.ymlにPluginの設定を追加</h3><ul>
+<h3><span id="2-_configymlにpluginの設定を追加">2. _config.ymlにPluginの設定を追加</span></h3><ul>
 <li><p>HEXOの設定ファイルに先ほどのPluginを登録します</p>
 <ul>
 <li>ファイルはhexoディレクトリ直下にあります</li>
@@ -258,7 +281,7 @@
 
 </li>
 </ul>
-<h3 id="3-sitemap-xmlの生成"><a href="#3-sitemap-xmlの生成" class="headerlink" title="3. sitemap.xmlの生成"></a>3. sitemap.xmlの生成</h3><ul>
+<h3><span id="3-sitemapxmlの生成">3. sitemap.xmlの生成</span></h3><ul>
 <li><p>いつも通りにhexoコマンドでジェネレートする際に、sitemapが生成されます</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure></li>
 <li><p>sitemap.xmlの生成を確認</p>
@@ -274,12 +297,12 @@
 
 </li>
 </ul>
-<h3 id="4-本番環境へデプロイ"><a href="#4-本番環境へデプロイ" class="headerlink" title="4. 本番環境へデプロイ"></a>4. 本番環境へデプロイ</h3><ul>
+<h3><span id="4-本番環境へデプロイ">4. 本番環境へデプロイ</span></h3><ul>
 <li>WEBページをホスティングしている、サーバ等へsitemap.xmlファイルをおきましょう</li>
 <li>github pagesを用いている場合は、Gitへpushします</li>
 </ul>
-<h3 id="5-Google-Search-Consoleへ登録"><a href="#5-Google-Search-Consoleへ登録" class="headerlink" title="5. Google Search Consoleへ登録"></a>5. Google Search Consoleへ登録</h3><ul>
-<li><p><a href="https://search.google.com/search-console" target="_blank" rel="noopener">公式サイト</a>へアクセス</p>
+<h3><span id="5-google-search-consoleへ登録">5. Google Search Consoleへ登録</span></h3><ul>
+<li><p><a href="https://search.google.com/search-console">公式サイト</a>へアクセス</p>
 <ul>
 <li>未登録であれば、自分のWEBサイトのURLを登録しましょう</li>
 </ul>
@@ -366,7 +389,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            8
+                            9
                         </p>
                     </a>
                 </div>
@@ -378,7 +401,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            0
+                            4
                         </p>
                     </a>
                 </div>
@@ -390,7 +413,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            15
+                            17
                         </p>
                     </a>
                 </div>
@@ -492,7 +515,39 @@
                 カテゴリ
             </h3>
             <ul class="menu-list">
-            
+            <li>
+        <a class="level is-marginless" href="/categories/Single-Page-Application-Dev/">
+            <span class="level-start">
+                <span class="level-item">Single Page Application Dev</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Single-Page-Application-Dev/Cloud-Service/">
+            <span class="level-start">
+                <span class="level-item">Cloud Service</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Tool-Tips/">
+            <span class="level-start">
+                <span class="level-item">Tool Tips</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/WEB-Page-Dev-Hexo/">
+            <span class="level-start">
+                <span class="level-item">WEB Page Dev (Hexo)</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li>
             </ul>
         </div>
     </div>
@@ -503,7 +558,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 15px;">AWS SDK for JavaScript</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Purpose/" style="font-size: 10px;">Purpose</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/cloud9/" style="font-size: 15px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+        <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 15px;">AWS SDK for JavaScript</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Hexo/" style="font-size: 15px;">Hexo</a> <a href="/tags/Purpose/" style="font-size: 10px;">Purpose</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/cloud9/" style="font-size: 15px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/icarus/" style="font-size: 10px;">icarus</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
     </div>
 </div>
     
@@ -518,6 +573,25 @@
         
         <article class="media">
             
+            <a href="/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hexoテーマ(theme)変更: icarus">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-13T14:01:02.000Z">2020-03-13</time></div>
+                    <a href="/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hexoテーマ(theme)変更: icarus</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev-Hexo/">WEB Page Dev (Hexo)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Hexoでサイトマップを自動生成 ~ Google Search Consoleへ登録">
@@ -529,7 +603,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T14:23:23.000Z">2020-03-10</time></div>
                     <a href="/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hexoでサイトマップを自動生成 ~ Google Search Consoleへ登録</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev-Hexo/">WEB Page Dev (Hexo)</a>
                     </p>
                 </div>
             </div>
@@ -548,7 +622,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-09T14:38:20.000Z">2020-03-09</time></div>
                     <a href="/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Angular8:”global is not defined”の回避策</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/">Single Page Application Dev</a>
                     </p>
                 </div>
             </div>
@@ -567,7 +641,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-06T16:47:37.000Z">2020-03-07</time></div>
                     <a href="/2020/03/07/cloud9%E3%81%AB%E3%82%88%E3%82%8B%E5%85%B1%E5%90%8C%E7%B7%A8%E9%9B%86%E3%83%BB%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%96%8B%E7%99%BA/" class="title has-link-black-ter is-size-6 has-text-weight-normal">cloud9による共同編集・リモート開発</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a>
                     </p>
                 </div>
             </div>
@@ -586,26 +660,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-05T13:28:41.000Z">2020-03-05</time></div>
                     <a href="/2020/03/05/Cloud9-x-Angular-x-Firebase%E3%81%A7AP%E9%96%8B%E7%99%BA%EF%BC%88%E5%B0%8E%E5%85%A5%E7%B7%A8%EF%BC%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Cloud9 x Angular x FirebaseでAP開発（導入編）</a>
                     <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/02/28/Angular-x-AWS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Angular x AWS SDK for JavaScriptの始め方">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-27T15:13:23.000Z">2020-02-28</time></div>
-                    <a href="/2020/02/28/Angular-x-AWS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Angular x AWS SDK for JavaScriptの始め方</a>
-                    <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/">Single Page Application Dev</a> / <a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/Cloud-Service/">Cloud Service</a>
                     </p>
                 </div>
             </div>
@@ -628,7 +683,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -667,13 +722,20 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/AngularFire/">
                         <span class="tag">AngularFire</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Augury/">
+                        <span class="tag">Augury</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -709,7 +771,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -737,6 +799,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/google-search-console/">
                         <span class="tag">google search console</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/icarus/">
+                        <span class="tag">icarus</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -786,6 +855,25 @@
         
         <article class="media">
             
+            <a href="/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hexoテーマ(theme)変更: icarus">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-13T14:01:02.000Z">2020-03-13</time></div>
+                    <a href="/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hexoテーマ(theme)変更: icarus</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev-Hexo/">WEB Page Dev (Hexo)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Hexoでサイトマップを自動生成 ~ Google Search Consoleへ登録">
@@ -797,7 +885,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T14:23:23.000Z">2020-03-10</time></div>
                     <a href="/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hexoでサイトマップを自動生成 ~ Google Search Consoleへ登録</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev-Hexo/">WEB Page Dev (Hexo)</a>
                     </p>
                 </div>
             </div>
@@ -816,7 +904,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-09T14:38:20.000Z">2020-03-09</time></div>
                     <a href="/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Angular8:”global is not defined”の回避策</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/">Single Page Application Dev</a>
                     </p>
                 </div>
             </div>
@@ -835,7 +923,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-06T16:47:37.000Z">2020-03-07</time></div>
                     <a href="/2020/03/07/cloud9%E3%81%AB%E3%82%88%E3%82%8B%E5%85%B1%E5%90%8C%E7%B7%A8%E9%9B%86%E3%83%BB%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%96%8B%E7%99%BA/" class="title has-link-black-ter is-size-6 has-text-weight-normal">cloud9による共同編集・リモート開発</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a>
                     </p>
                 </div>
             </div>
@@ -854,26 +942,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-05T13:28:41.000Z">2020-03-05</time></div>
                     <a href="/2020/03/05/Cloud9-x-Angular-x-Firebase%E3%81%A7AP%E9%96%8B%E7%99%BA%EF%BC%88%E5%B0%8E%E5%85%A5%E7%B7%A8%EF%BC%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Cloud9 x Angular x FirebaseでAP開発（導入編）</a>
                     <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/02/28/Angular-x-AWS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Angular x AWS SDK for JavaScriptの始め方">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-27T15:13:23.000Z">2020-02-28</time></div>
-                    <a href="/2020/02/28/Angular-x-AWS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Angular x AWS SDK for JavaScriptの始め方</a>
-                    <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/">Single Page Application Dev</a> / <a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/Cloud-Service/">Cloud Service</a>
                     </p>
                 </div>
             </div>
@@ -896,7 +965,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -935,13 +1004,20 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/AngularFire/">
                         <span class="tag">AngularFire</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Augury/">
+                        <span class="tag">Augury</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -977,7 +1053,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1005,6 +1081,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/google-search-console/">
                         <span class="tag">google search console</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/icarus/">
+                        <span class="tag">icarus</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

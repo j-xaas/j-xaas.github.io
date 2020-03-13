@@ -1,7 +1,11 @@
 ---
 title: Angularアプリの開発支援ツールAugury(Chrome拡張機能)
 date: 2020-02-20 18:12:39
+categories:
+- Single Page Application Dev
 tags:
+- Angular
+- Augury
 ---
 
 - 今回はAngularでWEBアプリを開発する際に簡単に利用できるツールを紹介します

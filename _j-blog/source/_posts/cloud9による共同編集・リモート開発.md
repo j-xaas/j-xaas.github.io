@@ -1,6 +1,8 @@
 ---
 title: cloud9による共同編集・リモート開発
 date: 2020-03-07 01:47:37
+categories:
+- Tool Tips
 tags:
 - cloud9
 - 共同開発

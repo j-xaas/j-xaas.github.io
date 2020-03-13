@@ -1,12 +1,18 @@
 ---
 title: Hexoでサイトマップを自動生成 ~ Google Search Consoleへ登録
+thumbnails: 
+    /gallery/sitemap.png
 date: 2020-03-10 23:23:23
+toc: true
+categories:
+- WEB Page Dev (Hexo)
 tags:
 - Hexo
 - Sitemap
 - google search console
 ---
 
+<!-- toc -->
 
 ## 概要
 こんにちは。今回はHexoでサイトマップを自動生成してGoogleに登録するまでの手法を紹介します。  

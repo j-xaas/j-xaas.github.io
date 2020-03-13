@@ -1,6 +1,9 @@
 ---
 title: Cloud9 x Angular x FirebaseでAP開発（導入編）
 date: 2020-03-05 22:28:41
+categories:
+- Single Page Application Dev
+- Cloud Service
 tags: 
 - cloud9
 - Angular

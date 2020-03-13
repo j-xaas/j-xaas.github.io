@@ -1,6 +1,8 @@
 ---
 title: Angular x AWS SDK for JavaScriptの始め方
 date: 2020-02-28 00:13:23
+categories:
+- Single Page Application Dev
 tags: 
 - Angular
 - AWS SDK for JavaScript

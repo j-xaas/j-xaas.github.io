@@ -157,6 +157,10 @@
             <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-03-06T16:47:37.000Z">2020-03-07</time>
                 
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a>
+                </div>
+                
                 
                 <span class="level-item has-text-grey">
                     
@@ -176,8 +180,8 @@
         <div class="content">
             <p><img src="https://user-images.githubusercontent.com/41946222/76097639-63977b00-600b-11ea-8586-cf30b3608a1f.png" alt="image"></p>
 <p>　こんにちは。最近ウィルス対策の影響でテレワークの利用が広がっているようです。IT界隈の方達は慣れているとは思いますが、「トラシューやコードレビュー、ペアプロ等は対面でないと困る」という声をちらほら聞きます。新入社員が先輩に横で教えてもらうためにわざわざ出社するケースもあるようです。そこで、今回は開発の遠隔・同時編集を可能にするTipsを紹介します。利用するのはAWSのブラウザ型IDEであるcloud9のワークスペース共有機能です。</p>
-<h2 id="前提知識"><a href="#前提知識" class="headerlink" title="前提知識"></a>前提知識</h2><ul>
-<li><p><a href="https://docs.aws.amazon.com/ja_jp/cloud9/latest/user-guide/share-environment.html" target="_blank" rel="noopener">cloud9のワークスペース共有機能</a></p>
+<h2><span id="前提知識">前提知識</span></h2><ul>
+<li><p><a href="https://docs.aws.amazon.com/ja_jp/cloud9/latest/user-guide/share-environment.html">cloud9のワークスペース共有機能</a></p>
 <ul>
 <li>画像の様に複数メンバでエディタ＆CLIを同時に遠隔操作できます<ul>
 <li>右側のタブに参加メンバが表示されます</li>
@@ -194,7 +198,7 @@
 </li>
 </ul>
 </li>
-<li><p>対抗：<a href="https://qiita.com/taichi0514/items/95aca7428376a7b41f90" target="_blank" rel="noopener">VSCode LiveShare</a></p>
+<li><p>対抗：<a href="https://qiita.com/taichi0514/items/95aca7428376a7b41f90">VSCode LiveShare</a></p>
 <ul>
 <li>Microsoftのエディターでもプラグインによって似たようなことができます</li>
 <li>個人的な使用感としては以下の差異があります<ul>
@@ -212,11 +216,11 @@
 </ul>
 </li>
 </ul>
-<h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><ul>
+<h2><span id="前提条件">前提条件</span></h2><ul>
 <li>AWSアカウントを作成済み or 作成可能</li>
 <li>cloud9 開発環境を作成済み<ul>
 <li>公式ドキュメントを参考にしてください<ul>
-<li><a href="https://docs.aws.amazon.com/ja_jp/cloud9/latest/user-guide/create-environment.html" target="_blank" rel="noopener">AWS Cloud9 で 環境 を作成する</a></li>
+<li><a href="https://docs.aws.amazon.com/ja_jp/cloud9/latest/user-guide/create-environment.html">AWS Cloud9 で 環境 を作成する</a></li>
 </ul>
 </li>
 </ul>
@@ -227,7 +231,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="cloud9環境共有手順"><a href="#cloud9環境共有手順" class="headerlink" title="cloud9環境共有手順"></a>cloud9環境共有手順</h2><ul>
+<h2><span id="cloud9環境共有手順">cloud9環境共有手順</span></h2><ul>
 <li><p>以下の二点が必要です</p>
 <ul>
 <li>AWSのIAM Userの作成</li>
@@ -239,7 +243,7 @@
 <li><p>共有機能の設定画面が出ます<br><img src="https://user-images.githubusercontent.com/41946222/76102262-17e8cf80-6013-11ea-9f0c-55a8f0889a29.png" alt="image"></p>
 </li>
 </ul>
-<h3 id="Cloud9への参加メンバの登録"><a href="#Cloud9への参加メンバの登録" class="headerlink" title="Cloud9への参加メンバの登録"></a>Cloud9への参加メンバの登録</h3><ul>
+<h3><span id="cloud9への参加メンバの登録">Cloud9への参加メンバの登録</span></h3><ul>
 <li>共有機能の設定画面の”Invite Members”にIAM User名を入力</li>
 <li>タブで権限を設定<ul>
 <li>R: Readのみ</li>
@@ -248,7 +252,7 @@
 </li>
 <li>まだ未作成の場合は”create a new user”よりAWS Consoleに飛びましょう</li>
 </ul>
-<h3 id="IAMユーザの追加"><a href="#IAMユーザの追加" class="headerlink" title="IAMユーザの追加"></a>IAMユーザの追加</h3><ul>
+<h3><span id="iamユーザの追加">IAMユーザの追加</span></h3><ul>
 <li>★cloud9で共同編集したいだけのメンバ向けの権限についてです。最小権限の原則に従いましょう<ul>
 <li>アクセス許可の設定の”既存のポリシーを直接アタッチ”を選択</li>
 <li>検索欄に”cloud9”と打つ</li>
@@ -256,12 +260,12 @@
 </ul>
 </li>
 </ul>
-<h2 id="まとめ"><a href="#まとめ" class="headerlink" title="まとめ"></a>まとめ</h2><p>　以上で複数メンバでの共同編集ができます。テレワークにおける情報伝達のもどかしさを解消して気持ちよく開発しましょう。ハンズオン研修・学習用途にも便利だと思います。</p>
-<h2 id="関連記事"><a href="#関連記事" class="headerlink" title="関連記事"></a>関連記事</h2><ul>
+<h2><span id="まとめ">まとめ</span></h2><p>　以上で複数メンバでの共同編集ができます。テレワークにおける情報伝達のもどかしさを解消して気持ちよく開発しましょう。ハンズオン研修・学習用途にも便利だと思います。</p>
+<h2><span id="関連記事">関連記事</span></h2><ul>
 <li><a href="https://j-xaas.github.io/2020/03/05/Cloud9-x-Angular-x-Firebase%E3%81%A7AP%E9%96%8B%E7%99%BA%EF%BC%88%E5%B0%8E%E5%85%A5%E7%B7%A8%EF%BC%89/">cloud9 x Angular x FirebaseでWEB AP開発</a></li>
 </ul>
 <p>画像ファイル<br>D:\Users\0000011349117\Desktop\memo_article\cloud9member</p>
-<h2 id="補足：Angular開発環境の構築手順-cloud9"><a href="#補足：Angular開発環境の構築手順-cloud9" class="headerlink" title="補足：Angular開発環境の構築手順(cloud9)"></a>補足：Angular開発環境の構築手順(cloud9)</h2><ul>
+<h2><span id="補足angular開発環境の構築手順cloud9">補足：Angular開発環境の構築手順(cloud9)</span></h2><ul>
 <li>以下を実行するだけでOKです<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install @angular&#x2F;.....</span><br><span class="line">ng add @angular&#x2F;material</span><br></pre></td></tr></table></figure></li>
 <li>自動で入るとは思いますが、もし利用中にCDKがないというエラーが出たら以下も実行してください<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ng add @angular&#x2F;CDK</span><br></pre></td></tr></table></figure>
 
@@ -292,6 +296,10 @@
             <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-03-05T13:28:41.000Z">2020-03-05</time>
                 
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/">Single Page Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/Cloud-Service/">Cloud Service</a>
+                </div>
+                
                 
                 <span class="level-item has-text-grey">
                     
@@ -310,9 +318,9 @@
         </h1>
         <div class="content">
             <p>こんにちは。今回は上記の３つを組み合わせてWEB AP開発を行う際の手順を解説していこうと思います。それぞれの使用経験があっても組み合わせると細かい所で沢山ハマってしまうので注意しましょう。（新設の開発チームの大半がこの段階で躓く印象です）  </p>
-<h2 id="各技術についての基礎知識"><a href="#各技術についての基礎知識" class="headerlink" title="各技術についての基礎知識"></a>各技術についての基礎知識</h2><p>簡単にポイントだけを解説します。分かっている方は飛ばしてください<br>手順を細かく書いているので分からない言葉があっても、一先ず触りなから理解していきましょう  </p>
+<h2><span id="各技術についての基礎知識">各技術についての基礎知識</span></h2><p>簡単にポイントだけを解説します。分かっている方は飛ばしてください<br>手順を細かく書いているので分からない言葉があっても、一先ず触りなから理解していきましょう  </p>
 <ul>
-<li><p><a href="https://aws.amazon.com/jp/cloud9/" target="_blank" rel="noopener">cloud9</a></p>
+<li><p><a href="https://aws.amazon.com/jp/cloud9/">cloud9</a></p>
 <ul>
 <li>AWSのブラウザ型IDE</li>
 <li>自端末のOSに依存せず開発可能<ul>
@@ -329,7 +337,7 @@
 </li>
 <li>複数ユーザーで同時編集可能<ul>
 <li>リモートワークやレビューに便利です</li>
-<li>対抗の<a href="https://cloud.google.com/shell/docs?hl=ja" target="_blank" rel="noopener">Google Cloud Shell</a>との差分<ul>
+<li>対抗の<a href="https://cloud.google.com/shell/docs?hl=ja">Google Cloud Shell</a>との差分<ul>
 <li>後に同様の機能が付きそうではあります</li>
 </ul>
 </li>
@@ -337,23 +345,23 @@
 </li>
 </ul>
 </li>
-<li><p><a href="https://angular.jp/" target="_blank" rel="noopener">Angular</a></p>
+<li><p><a href="https://angular.jp/">Angular</a></p>
 <ul>
 <li>Googleが出しているWEB APのフレームワーク<ul>
 <li>言語はHTML, TypeScript, scss</li>
 </ul>
 </li>
-<li><a href="https://digitalidentity.co.jp/blog/creative/about-single-page-application.html" target="_blank" rel="noopener">SPA (Single Page Application)</a>を開発可能</li>
+<li><a href="https://digitalidentity.co.jp/blog/creative/about-single-page-application.html">SPA (Single Page Application)</a>を開発可能</li>
 <li>APの画面はAngular Materialでほぼ自動構築可能</li>
-<li><a href="https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/dev/WebsiteHosting.html" target="_blank" rel="noopener">静的WEBサイトホスティング</a>サービスを用いれば、<a href="https://qiita.com/y-some/items/e9b78468428d1c481fac" target="_blank" rel="noopener">サーバレス</a>を実現可能<ul>
-<li>代表例として<a href="https://firebase.google.com/docs/hosting?hl=ja" target="_blank" rel="noopener">Firebase Hosting</a>や<a href="https://aws.amazon.com/jp/s3/" target="_blank" rel="noopener">Amazon S3</a>等が挙げられます</li>
+<li><a href="https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/dev/WebsiteHosting.html">静的WEBサイトホスティング</a>サービスを用いれば、<a href="https://qiita.com/y-some/items/e9b78468428d1c481fac">サーバレス</a>を実現可能<ul>
+<li>代表例として<a href="https://firebase.google.com/docs/hosting?hl=ja">Firebase Hosting</a>や<a href="https://aws.amazon.com/jp/s3/">Amazon S3</a>等が挙げられます</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p><a href="https://firebase.google.com/" target="_blank" rel="noopener">Firebase</a></p>
+<li><p><a href="https://firebase.google.com/">Firebase</a></p>
 <ul>
-<li>Googleの<a href="https://boxil.jp/mag/a3651/#3651-2" target="_blank" rel="noopener">BaaS(Backend as a Service)</a></li>
+<li>Googleの<a href="https://boxil.jp/mag/a3651/#3651-2">BaaS(Backend as a Service)</a></li>
 <li>認証機能やデータベースなどのバックエンドの機能を提供してくれるサービス<ul>
 <li>開発工数を大幅削減可能</li>
 <li>本質的な機能の開発に集中可能</li>
@@ -364,20 +372,20 @@
 </li>
 </ul>
 <p>この３つを抑えれば開発環境の用意からAPの公開まで高速でできます。  </p>
-<h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><ul>
+<h2><span id="前提条件">前提条件</span></h2><ul>
 <li>cloud9環境を作成済み<ul>
 <li>指示に従って設定していくだけなので参考サイトを載せておきます<ul>
-<li><a href="https://qiita.com/tu-kun/items/d7b4f1fa19cc93bc5b75" target="_blank" rel="noopener">初めてのAWS Cloud9導入</a></li>
+<li><a href="https://qiita.com/tu-kun/items/d7b4f1fa19cc93bc5b75">初めてのAWS Cloud9導入</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li>Googleアカウントを作成済み<ul>
-<li><a href="https://support.google.com/accounts/answer/27441?hl=ja" target="_blank" rel="noopener">Googelアカウントの作成</a></li>
+<li><a href="https://support.google.com/accounts/answer/27441?hl=ja">Googelアカウントの作成</a></li>
 </ul>
 </li>
 </ul>
-<h2 id="手順"><a href="#手順" class="headerlink" title="手順"></a>手順</h2><h3 id="1-Angular開発環境の準備"><a href="#1-Angular開発環境の準備" class="headerlink" title="1. Angular開発環境の準備"></a>1. Angular開発環境の準備</h3><ul>
+<h2><span id="手順">手順</span></h2><h3><span id="1-angular開発環境の準備">1. Angular開発環境の準備</span></h3><ul>
 <li>Angularが動くために必要なもの<ul>
 <li>node_module</li>
 <li>Angular CLI</li>
@@ -410,13 +418,13 @@
 </ul>
 </li>
 </ul>
-<h3 id="2-firebaseの登録～project作成"><a href="#2-firebaseの登録～project作成" class="headerlink" title="2. firebaseの登録～project作成"></a>2. firebaseの登録～project作成</h3><ul>
+<h3><span id="2-firebaseの登録~project作成">2. firebaseの登録～project作成</span></h3><ul>
 <li><p>初めは基本的にWEBのFirebaseコンソールで操作していきます</p>
 <ul>
 <li>Googleアカウントを作成していればすぐに始められます</li>
 </ul>
 </li>
-<li><p>2.1. <a href="https://firebase.google.com/?hl=ja" target="_blank" rel="noopener">公式ページ</a>から右上の”コンソールへ移動”を押下</p>
+<li><p>2.1. <a href="https://firebase.google.com/?hl=ja">公式ページ</a>から右上の”コンソールへ移動”を押下</p>
 </li>
 <li><p>2.2. projectを作成します（APの単位です）</p>
 <ul>
@@ -444,7 +452,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="3-firebaseとAPの関連付け-Angular-Fireの導入"><a href="#3-firebaseとAPの関連付け-Angular-Fireの導入" class="headerlink" title="3. firebaseとAPの関連付け(Angular Fireの導入)"></a>3. firebaseとAPの関連付け(Angular Fireの導入)</h3><ul>
+<h3><span id="3-firebaseとapの関連付けangular-fireの導入">3. firebaseとAPの関連付け(Angular Fireの導入)</span></h3><ul>
 <li>Angular APとfirebaseを関連付けるまでに必要な作業の一覧は以下になります<ul>
 <li>angularfireのinstall</li>
 <li>Firebase CLIのinstal</li>
@@ -482,15 +490,15 @@
 </li>
 </ul>
 <p>それぞれ詳しく解説していきます  </p>
-<h4 id="3-1-angular-fireのinstall"><a href="#3-1-angular-fireのinstall" class="headerlink" title="3.1. angular fireのinstall"></a>3.1. angular fireのinstall</h4><ul>
-<li><a href="https://github.com/angular/angularfire" target="_blank" rel="noopener">angularfire</a>を入れます<ul>
+<h4><span id="31-angular-fireのinstall">3.1. angular fireのinstall</span></h4><ul>
+<li><a href="https://github.com/angular/angularfire">angularfire</a>を入れます<ul>
 <li>AngularとFirebase連携用のLibraryです<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install firebase @angular&#x2F;fire</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li>出力結果<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+ @angular&#x2F;fire@5.4.2</span><br><span class="line">+ firebase@7.9.3</span><br><span class="line">added 140 packages from 98 contributors and audited 19218 packages in 17.919s</span><br><span class="line">found 5 vulnerabilities (3 moderate, 2 high)</span><br></pre></td></tr></table></figure></li>
 <li>ここまでではまだ、Firebaseコマンドが使えない状態です</li>
 </ul>
-<h4 id="3-2-Firebase-CLIの導入"><a href="#3-2-Firebase-CLIの導入" class="headerlink" title="3.2. Firebase CLIの導入"></a>3.2. <a href="https://firebase.google.com/docs/cli?hl=ja#install-cli-mac-linux" target="_blank" rel="noopener">Firebase CLI</a>の導入</h4><ul>
+<h4><span id="32-firebase-cliの導入">3.2. の導入</span></h4><ul>
 <li>以下を実行することでinstallできます<ul>
 <li>firebase コマンドが有効になります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g firebase-tools</span><br></pre></td></tr></table></figure>
 
@@ -498,7 +506,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="3-3-Angular環境設定ファイルにAPIキーを貼り付け"><a href="#3-3-Angular環境設定ファイルにAPIキーを貼り付け" class="headerlink" title="3.3. Angular環境設定ファイルにAPIキーを貼り付け"></a>3.3. Angular環境設定ファイルにAPIキーを貼り付け</h3><ul>
+<h3><span id="33-angular環境設定ファイルにapiキーを貼り付け">3.3. Angular環境設定ファイルにAPIキーを貼り付け</span></h3><ul>
 <li><p>開発環境向けと本番環境向けの２つの設定ファイルの改修が必要。よくはまるポイントです</p>
 <ul>
 <li>各値はfirebase consoleより確認</li>
@@ -522,7 +530,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="3-4-CLIとFirebaseの関連付け"><a href="#3-4-CLIとFirebaseの関連付け" class="headerlink" title="3.4. CLIとFirebaseの関連付け"></a>3.4. CLIとFirebaseの関連付け</h4><ul>
+<h4><span id="34-cliとfirebaseの関連付け">3.4. CLIとFirebaseの関連付け</span></h4><ul>
 <li>次にCloud9のCLIとfirebaseを関連付けます<ul>
 <li>c9の場合–nolocalhostが必須<ul>
 <li>★社内Local環境でloginをやろうとするとFirebaseの認証がProxyに阻まれて突破できず詰むので気を付けましょう<ul>
@@ -540,7 +548,7 @@
 <li>貼り付けてSuccessとでれば成功です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">? Paste authorization code here: &lt;Code&gt;</span><br><span class="line"></span><br><span class="line">✔  Success! Logged in as &lt;googleアカウント名&gt;</span><br></pre></td></tr></table></figure></li>
 <li>Cloud9のCLIからFirebase(=Google Cloud)上のリソースにアクセス可能になりました</li>
 </ul>
-<h4 id="3-5-APとfirebaseのpjの関連付け"><a href="#3-5-APとfirebaseのpjの関連付け" class="headerlink" title="3.5. APとfirebaseのpjの関連付け"></a>3.5. APとfirebaseのpjの関連付け</h4><ul>
+<h4><span id="35-apとfirebaseのpjの関連付け">3.5. APとfirebaseのpjの関連付け</span></h4><ul>
 <li>Angular PJ直下で実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firebase init</span><br></pre></td></tr></table></figure></li>
 <li>以下のように出力されれば成功です<ul>
 <li>使いたいサービスを選択すると簡単にCloud側と連携できます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">     ######## #### ########  ######## ########     ###     ######  ########</span><br><span class="line">     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##</span><br><span class="line">     ######    ##  ########  ######   ########  #########  ######  ######</span><br><span class="line">     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##</span><br><span class="line">     ##       #### ##     ## ######## ########  ##     ##  ######  ########</span><br><span class="line"></span><br><span class="line">You&#39;re about to initialize a Firebase project in this directory:</span><br><span class="line"></span><br><span class="line">  &#x2F;home&#x2F;ec2-user&#x2F;environment&#x2F;test-app</span><br><span class="line"></span><br><span class="line">? Which Firebase CLI features do you want to set up for this folder? Press Space to select features, then Enter to confirm your choices. (Press</span><br><span class="line"> &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection)</span><br><span class="line">❯◯ Database: Deploy Firebase Realtime Database Rules</span><br><span class="line"> ◯ Firestore: Deploy rules and create indexes for Firestore</span><br><span class="line"> ◯ Functions: Configure and deploy Cloud Functions</span><br><span class="line"> ◯ Hosting: Configure and deploy Firebase Hosting sites</span><br><span class="line"> ◯ Storage: Deploy Cloud Storage security rules</span><br><span class="line"> ◯ Emulators: Set up local emulators for Firebase features</span><br></pre></td></tr></table></figure>
@@ -549,7 +557,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="おまけ：cloud9でng-serveを実行してAPの画面を確認する際の注意"><a href="#おまけ：cloud9でng-serveを実行してAPの画面を確認する際の注意" class="headerlink" title="おまけ：cloud9でng serveを実行してAPの画面を確認する際の注意"></a>おまけ：cloud9でng serveを実行してAPの画面を確認する際の注意</h2><ul>
+<h2><span id="おまけcloud9でng-serveを実行してapの画面を確認する際の注意">おまけ：cloud9でng serveを実行してAPの画面を確認する際の注意</span></h2><ul>
 <li>cloud9で必要なこと<ul>
 <li>portの指定(8080)</li>
 <li>browserのURLの指定</li>
@@ -564,11 +572,11 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng serve --public-host &lt;cloud9のPreviewのURL&gt; --disableHostCheck --port 8080</span><br></pre></td></tr></table></figure>
 
-<h2 id="後書き"><a href="#後書き" class="headerlink" title="後書き"></a>後書き</h2><p>如何だったでしょうか？ここまでで本格的な実装に入る準備が整いました。Firebaseを使いこなせば、認証機能もデータのCRUD機能も１日で簡単に実装することができます。モダンな手法を使いこなして素早くAPを開発していきましょう。</p>
+<h2><span id="後書き">後書き</span></h2><p>如何だったでしょうか？ここまでで本格的な実装に入る準備が整いました。Firebaseを使いこなせば、認証機能もデータのCRUD機能も１日で簡単に実装することができます。モダンな手法を使いこなして素早くAPを開発していきましょう。</p>
 <ul>
 <li>最後に、この先の機能実装の際に参考になりそうなページを共有しておきます。<ul>
-<li><a href="https://mae.chab.in/archives/60256" target="_blank" rel="noopener">AngularFireでFirestoreのCRUD処理を実装する【Angular + Firebase】</a></li>
-<li><a href="https://satolabo.net/2019/11/30/angular8-fire-google-auth/" target="_blank" rel="noopener">Angular8でFirebaseを使ってGoogleアカウント認証機能を実装する</a></li>
+<li><a href="https://mae.chab.in/archives/60256">AngularFireでFirestoreのCRUD処理を実装する【Angular + Firebase】</a></li>
+<li><a href="https://satolabo.net/2019/11/30/angular8-fire-google-auth/">Angular8でFirebaseを使ってGoogleアカウント認証機能を実装する</a></li>
 </ul>
 </li>
 </ul>
@@ -632,7 +640,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            8
+                            9
                         </p>
                     </a>
                 </div>
@@ -644,7 +652,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            0
+                            4
                         </p>
                     </a>
                 </div>
@@ -656,7 +664,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            15
+                            17
                         </p>
                     </a>
                 </div>
@@ -758,7 +766,39 @@
                 カテゴリ
             </h3>
             <ul class="menu-list">
-            
+            <li>
+        <a class="level is-marginless" href="/categories/Single-Page-Application-Dev/">
+            <span class="level-start">
+                <span class="level-item">Single Page Application Dev</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">4</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Single-Page-Application-Dev/Cloud-Service/">
+            <span class="level-start">
+                <span class="level-item">Cloud Service</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Tool-Tips/">
+            <span class="level-start">
+                <span class="level-item">Tool Tips</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/WEB-Page-Dev-Hexo/">
+            <span class="level-start">
+                <span class="level-item">WEB Page Dev (Hexo)</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li>
             </ul>
         </div>
     </div>
@@ -769,7 +809,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 15px;">AWS SDK for JavaScript</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Purpose/" style="font-size: 10px;">Purpose</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/cloud9/" style="font-size: 15px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+        <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 15px;">AWS SDK for JavaScript</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Hexo/" style="font-size: 15px;">Hexo</a> <a href="/tags/Purpose/" style="font-size: 10px;">Purpose</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/cloud9/" style="font-size: 15px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/icarus/" style="font-size: 10px;">icarus</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
     </div>
 </div>
     
@@ -784,6 +824,25 @@
         
         <article class="media">
             
+            <a href="/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hexoテーマ(theme)変更: icarus">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-13T14:01:02.000Z">2020-03-13</time></div>
+                    <a href="/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hexoテーマ(theme)変更: icarus</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev-Hexo/">WEB Page Dev (Hexo)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Hexoでサイトマップを自動生成 ~ Google Search Consoleへ登録">
@@ -795,7 +854,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T14:23:23.000Z">2020-03-10</time></div>
                     <a href="/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hexoでサイトマップを自動生成 ~ Google Search Consoleへ登録</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev-Hexo/">WEB Page Dev (Hexo)</a>
                     </p>
                 </div>
             </div>
@@ -814,7 +873,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-09T14:38:20.000Z">2020-03-09</time></div>
                     <a href="/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Angular8:”global is not defined”の回避策</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/">Single Page Application Dev</a>
                     </p>
                 </div>
             </div>
@@ -833,7 +892,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-06T16:47:37.000Z">2020-03-07</time></div>
                     <a href="/2020/03/07/cloud9%E3%81%AB%E3%82%88%E3%82%8B%E5%85%B1%E5%90%8C%E7%B7%A8%E9%9B%86%E3%83%BB%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%96%8B%E7%99%BA/" class="title has-link-black-ter is-size-6 has-text-weight-normal">cloud9による共同編集・リモート開発</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a>
                     </p>
                 </div>
             </div>
@@ -852,26 +911,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-05T13:28:41.000Z">2020-03-05</time></div>
                     <a href="/2020/03/05/Cloud9-x-Angular-x-Firebase%E3%81%A7AP%E9%96%8B%E7%99%BA%EF%BC%88%E5%B0%8E%E5%85%A5%E7%B7%A8%EF%BC%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Cloud9 x Angular x FirebaseでAP開発（導入編）</a>
                     <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/02/28/Angular-x-AWS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Angular x AWS SDK for JavaScriptの始め方">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-27T15:13:23.000Z">2020-02-28</time></div>
-                    <a href="/2020/02/28/Angular-x-AWS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Angular x AWS SDK for JavaScriptの始め方</a>
-                    <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/">Single Page Application Dev</a> / <a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/Cloud-Service/">Cloud Service</a>
                     </p>
                 </div>
             </div>
@@ -894,7 +934,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -933,13 +973,20 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/AngularFire/">
                         <span class="tag">AngularFire</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Augury/">
+                        <span class="tag">Augury</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -975,7 +1022,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1003,6 +1050,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/google-search-console/">
                         <span class="tag">google search console</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/icarus/">
+                        <span class="tag">icarus</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1052,6 +1106,25 @@
         
         <article class="media">
             
+            <a href="/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hexoテーマ(theme)変更: icarus">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-13T14:01:02.000Z">2020-03-13</time></div>
+                    <a href="/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hexoテーマ(theme)変更: icarus</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev-Hexo/">WEB Page Dev (Hexo)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Hexoでサイトマップを自動生成 ~ Google Search Consoleへ登録">
@@ -1063,7 +1136,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-10T14:23:23.000Z">2020-03-10</time></div>
                     <a href="/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hexoでサイトマップを自動生成 ~ Google Search Consoleへ登録</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev-Hexo/">WEB Page Dev (Hexo)</a>
                     </p>
                 </div>
             </div>
@@ -1082,7 +1155,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-09T14:38:20.000Z">2020-03-09</time></div>
                     <a href="/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Angular8:”global is not defined”の回避策</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/">Single Page Application Dev</a>
                     </p>
                 </div>
             </div>
@@ -1101,7 +1174,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-06T16:47:37.000Z">2020-03-07</time></div>
                     <a href="/2020/03/07/cloud9%E3%81%AB%E3%82%88%E3%82%8B%E5%85%B1%E5%90%8C%E7%B7%A8%E9%9B%86%E3%83%BB%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%96%8B%E7%99%BA/" class="title has-link-black-ter is-size-6 has-text-weight-normal">cloud9による共同編集・リモート開発</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a>
                     </p>
                 </div>
             </div>
@@ -1120,26 +1193,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-05T13:28:41.000Z">2020-03-05</time></div>
                     <a href="/2020/03/05/Cloud9-x-Angular-x-Firebase%E3%81%A7AP%E9%96%8B%E7%99%BA%EF%BC%88%E5%B0%8E%E5%85%A5%E7%B7%A8%EF%BC%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Cloud9 x Angular x FirebaseでAP開発（導入編）</a>
                     <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/02/28/Angular-x-AWS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Angular x AWS SDK for JavaScriptの始め方">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-27T15:13:23.000Z">2020-02-28</time></div>
-                    <a href="/2020/02/28/Angular-x-AWS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Angular x AWS SDK for JavaScriptの始め方</a>
-                    <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/">Single Page Application Dev</a> / <a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/Cloud-Service/">Cloud Service</a>
                     </p>
                 </div>
             </div>
@@ -1162,7 +1216,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -1201,13 +1255,20 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/AngularFire/">
                         <span class="tag">AngularFire</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Augury/">
+                        <span class="tag">Augury</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1243,7 +1304,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1271,6 +1332,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/google-search-console/">
                         <span class="tag">google search console</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/icarus/">
+                        <span class="tag">icarus</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
