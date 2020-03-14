@@ -2,7 +2,8 @@
 title: Angular8:”global is not defined”の回避策
 date: 2020-03-09 23:38:20
 categories:
-- Single Page Application Dev
+- Serverless Application Dev
+- Single Page Application
 tags: 
 - Angular
 - ”global is not defined”

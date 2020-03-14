@@ -3,6 +3,7 @@ title: Github.comからGithubEnterpriseへの移行手順
 date: 2020-02-09 22:52:47
 categories:
 - Tool Tips
+- Github
 tags: 
 - Github.com
 - GithubEnterprise

@@ -11,13 +11,13 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>カテゴリ: Cloud Service - J&#39;s Tech Blog</title>
+<title>カテゴリ: Serverless Application Dev - J&#39;s Tech Blog</title>
 
 
     <meta name="description" content="tech">
 <meta property="og:type" content="website">
 <meta property="og:title" content="J&#39;s Tech Blog">
-<meta property="og:url" content="https://j-xaas.github.io/categories/Single-Page-Application-Dev/Cloud-Service/index.html">
+<meta property="og:url" content="https://j-xaas.github.io/categories/Serverless-Application-Dev/index.html">
 <meta property="og:site_name" content="J&#39;s Tech Blog">
 <meta property="og:description" content="tech">
 <meta property="og:locale" content="ja_JP">
@@ -146,9 +146,7 @@
         <ul>
             <li><a href="/categories">カテゴリ</a></li>
             
-            <li><a href="/categories/Single-Page-Application-Dev/">Single Page Application Dev</a></li>
-            
-            <li class="is-active"><a href="#" aria-current="page">Cloud Service</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Serverless Application Dev</a></li>
         </ul>
         </nav>
     </div>
@@ -161,10 +159,96 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-09T14:38:20.000Z">2020-03-09</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Single-Page-Application/">Single Page Application</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2分 read (About 331 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/">Angular8:”global is not defined”の回避策</a>
+            
+        </h1>
+        <div class="content">
+            <h2><span id="概要">概要</span></h2><ul>
+<li><p>Angular8で以下のエラーにハマった際の解消法を解説します</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">”global is not defined”</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>上記のエラーについて</p>
+<ul>
+<li>Angularでグローバルオブジェクトを参照する外部ライブラリを利用している環境で発生する事象</li>
+<li>今回はAngularとAWS間のAPI連携機能を実装した際に発生</li>
+</ul>
+</li>
+<li><p>環境の詳細</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Angular CLI: 8.3.24</span><br><span class="line">Node: 10.16.3</span><br><span class="line">OS: win32 x64</span><br><span class="line">Angular: 8.2.14</span><br><span class="line">... animations, common, compiler, compiler-cli, core, forms</span><br><span class="line">... language-service, platform-browser, platform-browser-dynamic</span><br><span class="line">... router</span><br><span class="line"></span><br><span class="line">Package                           Version</span><br><span class="line">-----------------------------------------------------------</span><br><span class="line">@angular-devkit&#x2F;architect         0.803.24</span><br><span class="line">@angular-devkit&#x2F;build-angular     0.803.24</span><br><span class="line">@angular-devkit&#x2F;build-optimizer   0.803.24</span><br><span class="line">@angular-devkit&#x2F;build-webpack     0.803.24</span><br><span class="line">@angular-devkit&#x2F;core              8.3.24</span><br><span class="line">@angular-devkit&#x2F;schematics        8.3.24</span><br><span class="line">@angular&#x2F;cdk                      8.2.3</span><br><span class="line">@angular&#x2F;cli                      8.3.24</span><br><span class="line">@angular&#x2F;material                 8.2.3</span><br><span class="line">@ngtools&#x2F;webpack                  8.3.24</span><br><span class="line">@schematics&#x2F;angular               8.3.24</span><br><span class="line">@schematics&#x2F;update                0.803.24</span><br><span class="line">rxjs                              6.4.0</span><br><span class="line">typescript                        3.5.3</span><br><span class="line">webpack                           4.39.2</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2><span id="解決策">解決策</span></h2><ul>
+<li>pollyfills.tsに設定が必要<ul>
+<li>所在<ul>
+<li>“pj-name”\srcの配下</li>
+</ul>
+</li>
+<li>以下を追記すると解決します<pre><code>// &quot;global is not defined&quot;の対応
+(window as any).global = window;</code></pre></li>
+</ul>
+</li>
+</ul>
+<h3><span id="解説">解説</span></h3><ul>
+<li>polyfillとは<ul>
+<li>JavaScriptのversion間の互換性を補うもの</li>
+<li>利用したい機能に未対応のブラウザでも使えるように、同等の機能をJavaScriptで供給できる</li>
+</ul>
+</li>
+<li>pollyfills.ts<ul>
+<li>Angularにおけるpolyfillの設定ファイル</li>
+<li>例えば、Angularで開発したAPをIEでも動かしたい時には設定が必要<ul>
+<li>Angularは”デフォルトではIEに未対応”です</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-03-05T13:28:41.000Z">2020-03-05</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/">Single Page Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/Cloud-Service/">Cloud Service</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/Cloud-Service/Firebase/">Firebase</a>
+                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Firebase/">Firebase</a>
                 </div>
                 
                 
@@ -465,6 +549,243 @@
 
 
 
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-27T15:13:23.000Z">2020-02-28</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3分 read (About 442 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/28/Angular-x-AWS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/">Angular x AWS SDK for JavaScriptの始め方</a>
+            
+        </h1>
+        <div class="content">
+            <ul>
+<li>angularで開発していたアプリケーションにaws-sdkを導入する際の備忘録<ul>
+<li><a href="https://aws.amazon.com/jp/tools/">AWS SDK</a>を入れることで、アプリケーションからAWSのリソースを操作可能になります<ul>
+<li>ex.) S3やDynamoDBへのデータの格納、Cognitoによる認証、Lambdaの実行…</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Angularの場合、公式の開発者ガイド通りにやると鬼のようにエラーが出るので共有しておきます。ひと手間必要でした。</li>
+</ul>
+<h2><span id="1-aws-sdk-for-javascriptのinstall">1. aws sdk for javascriptのinstall</span></h2><ul>
+<li>angular PJ直下で実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install aws-sdk --save-dev</span><br></pre></td></tr></table></figure></li>
+<li>この時点でAPを確認すると、以下のエラーが大量に出ます<ul>
+<li>APの画面もブラウザに表示されなくなります</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;ng serve --open</span><br><span class="line"></span><br><span class="line">ERROR in node_modules&#x2F;aws-sdk&#x2F;clients&#x2F;acm.d.ts:141:37 - error TS2591: Cannot find name &#39;Buffer&#39;. Do you need to install type definitions for node? Try &#96;npm i @types&#x2F;node&#96; and then add &#96;node&#96; to the types field in your tsconfig.</span><br></pre></td></tr></table></figure>
+
+<h2><span id="2-typesnodeをinstallする">2. @types/nodeをinstallする</span></h2><ul>
+<li>Angular PJ直下で以下を実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install --save @types&#x2F;node</span><br><span class="line"></span><br><span class="line">+ @types&#x2F;node@8.9.5</span><br><span class="line">updated 1 package and audited 19123 packages in 41.418s</span><br><span class="line">found 0 vulnerabilities</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2><span id="3-tsconfigjson-ファイルに以下を追記">3. tsconfig.json ファイルに以下を追記</span></h2><ul>
+<li><p>Angular PJ直下にあります</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;compilerOptions&quot;: &#123;</span><br><span class="line">  &quot;types&quot;: [&quot;node&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>場所は以下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; code .\tsconfig.json</span><br></pre></td></tr></table></figure>
+</li>
+<li><ol start="4">
+<li>tsconfig.app.json にも、同じく追記<ul>
+<li>Angular PJ直下にあります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;compilerOptions&quot;: &#123;</span><br><span class="line">   &quot;types&quot;: [&quot;node&quot;]</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>エラーの解消を確認</p>
+<ul>
+<li>ng serve時に正しくAPの画面が表示される</li>
+</ul>
+</li>
+<li><p>ここまででAngular APからAWSのリソースとAPI連携する下準備が整いました</p>
+<ul>
+<li>以下についても後日UP予定です<ul>
+<li>AWSの各リソースの利用方法、実装方法</li>
+<li>Ampliyfy(BaaS)でAWSと連携させる手法</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-20T09:12:39.000Z">2020-02-20</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Single-Page-Application/">Single Page Application</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3分 read (About 453 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/20/Angular%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E9%96%8B%E7%99%BA%E6%94%AF%E6%8F%B4%E3%83%84%E3%83%BC%E3%83%ABAugury-Chrome%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/">Angularアプリの開発支援ツールAugury(Chrome拡張機能)</a>
+            
+        </h1>
+        <div class="content">
+            <ul>
+<li>今回はAngularでWEBアプリを開発する際に簡単に利用できるツールを紹介します</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/74917091-5030c100-540a-11ea-9060-2d05fc6c6c23.png" height="100%" width="100%">
+</div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#auguryと-は">Auguryと は？</a></li>
+<li><a href="#できること">できること</a></li>
+<li><a href="#導入方法">導入方法</a></li>
+<li><a href="#利用方法">利用方法</a></li>
+<li><a href="#備考">備考</a></li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="auguryと-は">Auguryと は？</span></h2><ul>
+<li>Angularの開発支援ツール</li>
+<li>Google Chromeの拡張機能</li>
+<li>Chromeをメインブラウザとして利用しているデベロッパーには必須とも言えるツール</li>
+</ul>
+<h2><span id="できること">できること</span></h2><ul>
+<li>標準のデベロッパーツールに以下の機能を追加できます<ul>
+<li>Componentの階層構造やプロパティ値の図示</li>
+<li>ルーティング情報のグラフ化</li>
+<li>import済みモジュール構成のリスト表示</li>
+</ul>
+</li>
+</ul>
+<h2><span id="導入方法">導入方法</span></h2><ul>
+<li><p><a href="https://chrome.google.com/webstore/search/Augury">Chrome Webstore</a>にアクセス</p>
+</li>
+<li><p>“Chromeに追加”をClick</p>
+</li>
+<li><p>ブラウザの右上にAuguryの丸いアイコンが追加されます</p>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/74912170-74d46b00-5401-11ea-956d-93801c3cce13.png" height="100%" width="100%">
+</div>
+
+
+</li>
+</ul>
+<h2><span id="利用方法">利用方法</span></h2><ul>
+<li><p>Angular APの起動</p>
+<ul>
+<li>まずは以下のコマンドでAPの画面をChromeに表示しましょう<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng serve --open</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>F12キーで開発者ツールを起動</p>
+</li>
+<li><p>ブラウザの右側に表示される開発者ツールに追加されているAuguryタブを選択</p>
+</li>
+<li><p>“Component Tree”タブのInjection Graph</p>
+<ul>
+<li>コンポーネントとサービスの依存関係をグラフ表示<ul>
+<li>個人的に一番利用する機能です</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/74917567-0b595a00-540b-11ea-8dc3-5a257af3bd45.png" height="100%" width="100%">
+</div>
+</li>
+<li><p>“Router Tree”タブ</p>
+<ul>
+<li>ルート構造をツリー表示</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/74918209-19f44100-540c-11ea-9953-c4734a0685ed.png" height="100%" width="100%">
+</div>
+
+
+</li>
+</ul>
+<ul>
+<li>“NgModule”タブ<ul>
+<li>import済みのモジュール構成を確認可能<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/74917975-c2ee6c00-540b-11ea-89d0-e1fbd9b7195c.png" height="100%" width="100%">
+</div>
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="備考">備考</span></h2><ul>
+<li>以下も便利そうでした。APの構成管理やドキュメント作成の手間は極力自動化していきましょう。<ul>
+<li><a href="https://one-it-thing.com/3254/">compodocでAngularプロジェクトのビジュアルなドキュメントを自動生成する</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
 </div>
                 
 
@@ -522,7 +843,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            7
+                            8
                         </p>
                     </a>
                 </div>
@@ -637,15 +958,15 @@
             </h3>
             <ul class="menu-list">
             <li>
-        <a class="level is-marginless" href="/categories/Single-Page-Application-Dev/">
+        <a class="level is-marginless" href="/categories/Serverless-Application-Dev/">
             <span class="level-start">
-                <span class="level-item">Single Page Application Dev</span>
+                <span class="level-item">Serverless Application Dev</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">4</span>
             </span>
         </a><ul><li>
-        <a class="level is-marginless" href="/categories/Single-Page-Application-Dev/AWS/">
+        <a class="level is-marginless" href="/categories/Serverless-Application-Dev/AWS/">
             <span class="level-start">
                 <span class="level-item">AWS</span>
             </span>
@@ -653,12 +974,20 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li><li>
-        <a class="level is-marginless" href="/categories/Single-Page-Application-Dev/Cloud-Service/">
+        <a class="level is-marginless" href="/categories/Serverless-Application-Dev/Firebase/">
             <span class="level-start">
-                <span class="level-item">Cloud Service</span>
+                <span class="level-item">Firebase</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Serverless-Application-Dev/Single-Page-Application/">
+            <span class="level-start">
+                <span class="level-item">Single Page Application</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Tool-Tips/">
@@ -672,6 +1001,14 @@
         <a class="level is-marginless" href="/categories/Tool-Tips/AWS/">
             <span class="level-start">
                 <span class="level-item">AWS</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Tool-Tips/Github/">
+            <span class="level-start">
+                <span class="level-item">Github</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -759,7 +1096,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-09T14:38:20.000Z">2020-03-09</time></div>
                     <a href="/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Angular8:”global is not defined”の回避策</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/">Single Page Application Dev</a>
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Single-Page-Application/">Single Page Application</a>
                     </p>
                 </div>
             </div>
@@ -797,7 +1134,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-05T13:28:41.000Z">2020-03-05</time></div>
                     <a href="/2020/03/05/Cloud9-x-Angular-x-Firebase%E3%81%A7AP%E9%96%8B%E7%99%BA%EF%BC%88%E5%B0%8E%E5%85%A5%E7%B7%A8%EF%BC%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Cloud9 x Angular x FirebaseでAP開発（導入編）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/">Single Page Application Dev</a> / <a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/Cloud-Service/">Cloud Service</a>
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Firebase/">Firebase</a>
                     </p>
                 </div>
             </div>
@@ -1041,7 +1378,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-09T14:38:20.000Z">2020-03-09</time></div>
                     <a href="/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Angular8:”global is not defined”の回避策</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/">Single Page Application Dev</a>
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Single-Page-Application/">Single Page Application</a>
                     </p>
                 </div>
             </div>
@@ -1079,7 +1416,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-05T13:28:41.000Z">2020-03-05</time></div>
                     <a href="/2020/03/05/Cloud9-x-Angular-x-Firebase%E3%81%A7AP%E9%96%8B%E7%99%BA%EF%BC%88%E5%B0%8E%E5%85%A5%E7%B7%A8%EF%BC%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Cloud9 x Angular x FirebaseでAP開発（導入編）</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/">Single Page Application Dev</a> / <a class="has-link-grey -link" href="/categories/Single-Page-Application-Dev/Cloud-Service/">Cloud Service</a>
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Firebase/">Firebase</a>
                     </p>
                 </div>
             </div>
