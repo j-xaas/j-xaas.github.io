@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://j-xaas.github.io/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/</loc>
+        <lastmod>2020-03-13T15:22:08.388Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://j-xaas.github.io/2020/03/07/cloud9%E3%81%AB%E3%82%88%E3%82%8B%E5%85%B1%E5%90%8C%E7%B7%A8%E9%9B%86%E3%83%BB%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%96%8B%E7%99%BA/</loc>
         <lastmod>2020-03-13T15:08:56.434Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -58,14 +66,6 @@
     <url>
         <loc>https://j-xaas.github.io/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/</loc>
         <lastmod>2020-03-13T15:00:35.526Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://j-xaas.github.io/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/</loc>
-        <lastmod>2020-03-13T14:58:50.131Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
