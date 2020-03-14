@@ -3,17 +3,22 @@ title: cloud9による共同編集・リモート開発
 date: 2020-03-07 01:47:37
 categories:
 - Tool Tips
+- AWS
 tags:
 - cloud9
 - 共同開発
 - テレワーク
+toc: true
 ---
 
-
-![image](https://user-images.githubusercontent.com/41946222/76097639-63977b00-600b-11ea-8586-cf30b3608a1f.png)
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/76097639-63977b00-600b-11ea-8586-cf30b3608a1f.png" height="100%" width="100%">
+</div>
 
   
 　こんにちは。最近ウィルス対策の影響でテレワークの利用が広がっているようです。IT界隈の方達は慣れているとは思いますが、「トラシューやコードレビュー、ペアプロ等は対面でないと困る」という声をちらほら聞きます。新入社員が先輩に横で教えてもらうためにわざわざ出社するケースもあるようです。そこで、今回は開発の遠隔・同時編集を可能にするTipsを紹介します。利用するのはAWSのブラウザ型IDEであるcloud9のワークスペース共有機能です。
+
+<!--- toc -->
 
 ## 前提知識
 - [cloud9のワークスペース共有機能](https://docs.aws.amazon.com/ja_jp/cloud9/latest/user-guide/share-environment.html)
@@ -49,10 +54,14 @@ tags:
     - Cloud9への参加メンバの登録
 
 - 右上の"Share"を押下
-![image](https://user-images.githubusercontent.com/41946222/76101952-96913d00-6012-11ea-9004-ab8ae6dd81ea.png)
+    <div style="text-align:center;">
+    <img src="https://user-images.githubusercontent.com/41946222/76101952-96913d00-6012-11ea-9004-ab8ae6dd81ea.png" height="100%" width="100%">
+    </div>
 
 - 共有機能の設定画面が出ます
-![image](https://user-images.githubusercontent.com/41946222/76102262-17e8cf80-6013-11ea-9f0c-55a8f0889a29.png)
+    <div style="text-align:center;">
+    <img src="https://user-images.githubusercontent.com/41946222/76102262-17e8cf80-6013-11ea-9f0c-55a8f0889a29.png" height="100%" width="100%">
+    </div>
 
 ### Cloud9への参加メンバの登録
 - 共有機能の設定画面の”Invite Members”にIAM User名を入力

@@ -9,8 +9,10 @@ tags:
 toc: true
 ---
 
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/76524916-3c7af680-64ae-11ea-9a71-81530f93167c.png" height="100%" width="100%">
+</div>
 
-![image](https://user-images.githubusercontent.com/41946222/76524916-3c7af680-64ae-11ea-9a71-81530f93167c.png)
 
 <!-- toc -->
 
@@ -18,8 +20,12 @@ toc: true
 ## 概要
 - Hexoにはテーマのテンプレートが数百種類用意されており、簡単に変更することができます
     - デフォルトはlandscape
-        - シンプルでいいのですが、デザインとして物足りなく、プロフィール欄も欲しいので変更します
-        ![image](https://user-images.githubusercontent.com/41946222/76521887-038c5300-64a9-11ea-8dfd-8454b8ce0dd2.png)
+        - シンプルでいいのですが、デザインとして物足りなく、プロフィール欄も欲しいので変更します  
+
+
+    <div style="text-align:center;">
+    <img src="https://user-images.githubusercontent.com/41946222/76521887-038c5300-64a9-11ea-8dfd-8454b8ce0dd2.png" height="100%" width="100%">
+    </div>
 
 
 ## 変更手順
@@ -68,7 +74,9 @@ toc: true
 - [icarus](https://github.com/ppoffice/hexo-theme-icarus)
     - GitのStar数ランク5位で人気のテーマです
 
-![image](https://user-images.githubusercontent.com/41946222/76520745-d8086900-64a6-11ea-9d0d-d10ef9bad261.png)
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/76520745-d8086900-64a6-11ea-9d0d-d10ef9bad261.png" height="100%" width=100%">
+</div>
 
 
 - 採用理由
@@ -125,14 +133,17 @@ theme: icarus
         WARN  themes\icarus\_config.yml is not found. We are creating one for you...
         INFO  themes\icarus\_config.yml is created. Please restart Hexo to apply changes.
         ```
+- 画面を確認
+```
+hexo server
+```
 
-- 画面で変更内容を確認
-    - APを起動
-    ```
-    hexo server
-    ```
 - 以下のようにテーマの変更を確認
-![image](https://user-images.githubusercontent.com/41946222/76524367-4c460b00-64ad-11ea-876c-2c64cdaaf093.png)
+
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/76524367-4c460b00-64ad-11ea-876c-2c64cdaaf093.png" height="100%" width=100%">
+</div>
+
 
 - 後はいつも通りgenerateして本番環境へデプロイしましょう
 ```
@@ -220,8 +231,12 @@ widgets:
 
 ```
 
-- Profileの変更結果
-![profile](https://user-images.githubusercontent.com/41946222/76530468-1d349700-64b7-11ea-8cae-6ed0407cc359.png)
+- Profileの変更結果  
+  
+
+    <div style="text-align:center;">
+    <img src="https://user-images.githubusercontent.com/41946222/76530468-1d349700-64b7-11ea-8cae-6ed0407cc359.png" height="50%" width=50%">
+    </div>
 
 ### 背景の変更
 
@@ -282,6 +297,7 @@ tags:
 ```
 
 - 画面を確認すると以下のように反映されていました。
-![image](https://user-images.githubusercontent.com/41946222/76619886-46186300-656f-11ea-979d-878690e12d0c.png)
 
-
+    <div style="text-align:center;">
+    <img src="https://user-images.githubusercontent.com/41946222/76619886-46186300-656f-11ea-979d-878690e12d0c.png" height="100%" width="100%">
+    </div>

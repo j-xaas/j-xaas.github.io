@@ -16,16 +16,16 @@
 <title>Angularアプリの開発支援ツールAugury(Chrome拡張機能) - J&#39;s Tech Blog</title>
 
 
-    <meta name="description" content="今回はAngularでWEBアプリを開発する際に簡単に利用できるツールを紹介します  Auguryとは？ Angularの開発支援ツール Google Chromeの拡張機能 Chromeをメインブラウザとして利用しているデベロッパーには必須とも言えるツール  できること 標準のデベロッパーツールに以下の機能を追加できます Componentの階層構造やプロパティ値の図示 ルーティング情報のグラ">
+    <meta name="description" content="今回はAngularでWEBアプリを開発する際に簡単に利用できるツールを紹介します         Auguryと は？ できること 導入方法 利用方法 備考    Auguryと は？ Angularの開発支援ツール Google Chromeの拡張機能 Chromeをメインブラウザとして利用しているデベロッパーには必須とも言えるツール  できること 標準のデベロッパーツールに以下の機能を追加">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angularアプリの開発支援ツールAugury(Chrome拡張機能)">
 <meta property="og:url" content="https://j-xaas.github.io/2020/02/20/Angular%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E9%96%8B%E7%99%BA%E6%94%AF%E6%8F%B4%E3%83%84%E3%83%BC%E3%83%ABAugury-Chrome%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/index.html">
 <meta property="og:site_name" content="J&#39;s Tech Blog">
-<meta property="og:description" content="今回はAngularでWEBアプリを開発する際に簡単に利用できるツールを紹介します  Auguryとは？ Angularの開発支援ツール Google Chromeの拡張機能 Chromeをメインブラウザとして利用しているデベロッパーには必須とも言えるツール  できること 標準のデベロッパーツールに以下の機能を追加できます Componentの階層構造やプロパティ値の図示 ルーティング情報のグラ">
+<meta property="og:description" content="今回はAngularでWEBアプリを開発する際に簡単に利用できるツールを紹介します         Auguryと は？ できること 導入方法 利用方法 備考    Auguryと は？ Angularの開発支援ツール Google Chromeの拡張機能 Chromeをメインブラウザとして利用しているデベロッパーには必須とも言えるツール  できること 標準のデベロッパーツールに以下の機能を追加">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://j-xaas.github.io/images/og_image.png">
 <meta property="article:published_time" content="2020-02-20T09:12:39.000Z">
-<meta property="article:modified_time" content="2020-03-13T15:02:49.679Z">
+<meta property="article:modified_time" content="2020-03-14T15:55:57.992Z">
 <meta property="article:author" content="Junya">
 <meta property="article:tag" content="Angular">
 <meta property="article:tag" content="Augury">
@@ -132,6 +132,10 @@
                     
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="カタログ" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -162,7 +166,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3分 read (About 524 words)
+                    3分 read (About 453 words)
                 </span>
                 
                 
@@ -176,9 +180,24 @@
         </h1>
         <div class="content">
             <ul>
-<li>今回はAngularでWEBアプリを開発する際に簡単に利用できるツールを紹介します<br><img src="https://user-images.githubusercontent.com/41946222/74917091-5030c100-540a-11ea-9060-2d05fc6c6c23.png" alt="image"></li>
+<li>今回はAngularでWEBアプリを開発する際に簡単に利用できるツールを紹介します</li>
 </ul>
-<h2><span id="auguryとは">Auguryとは？</span></h2><ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/74917091-5030c100-540a-11ea-9060-2d05fc6c6c23.png" height="100%" width="100%">
+</div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#auguryと-は">Auguryと は？</a></li>
+<li><a href="#できること">できること</a></li>
+<li><a href="#導入方法">導入方法</a></li>
+<li><a href="#利用方法">利用方法</a></li>
+<li><a href="#備考">備考</a></li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="auguryと-は">Auguryと は？</span></h2><ul>
 <li>Angularの開発支援ツール</li>
 <li>Google Chromeの拡張機能</li>
 <li>Chromeをメインブラウザとして利用しているデベロッパーには必須とも言えるツール</li>
@@ -192,9 +211,17 @@
 </li>
 </ul>
 <h2><span id="導入方法">導入方法</span></h2><ul>
-<li><a href="https://chrome.google.com/webstore/search/Augury">Chrome Webstore</a>にアクセス</li>
-<li>“Chromeに追加”をClick</li>
-<li>ブラウザの右上にAuguryの丸いアイコンが追加されます<br><img src="https://user-images.githubusercontent.com/41946222/74912170-74d46b00-5401-11ea-956d-93801c3cce13.png" alt="image"></li>
+<li><p><a href="https://chrome.google.com/webstore/search/Augury">Chrome Webstore</a>にアクセス</p>
+</li>
+<li><p>“Chromeに追加”をClick</p>
+</li>
+<li><p>ブラウザの右上にAuguryの丸いアイコンが追加されます</p>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/74912170-74d46b00-5401-11ea-956d-93801c3cce13.png" height="100%" width="100%">
+</div>
+
+
+</li>
 </ul>
 <h2><span id="利用方法">利用方法</span></h2><ul>
 <li><p>Angular APの起動</p>
@@ -213,23 +240,32 @@
 </ul>
 </li>
 </ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/74917567-0b595a00-540b-11ea-8dc3-5a257af3bd45.png" height="100%" width="100%">
+</div>
 </li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/41946222/74917567-0b595a00-540b-11ea-8dc3-5a257af3bd45.png" alt="image"></p>
+<li><p>“Router Tree”タブ</p>
 <ul>
-<li>“Router Tree”タブ<ul>
 <li>ルート構造をツリー表示</li>
 </ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/74918209-19f44100-540c-11ea-9953-c4734a0685ed.png" height="100%" width="100%">
+</div>
+
+
 </li>
 </ul>
-<p><img src="https://user-images.githubusercontent.com/41946222/74918209-19f44100-540c-11ea-9953-c4734a0685ed.png" alt="image"></p>
 <ul>
 <li>“NgModule”タブ<ul>
-<li>import済みのモジュール構成を確認可能</li>
+<li>import済みのモジュール構成を確認可能<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/74917975-c2ee6c00-540b-11ea-89d0-e1fbd9b7195c.png" height="100%" width="100%">
+</div>
+
+
+</li>
 </ul>
 </li>
 </ul>
-<p><img src="https://user-images.githubusercontent.com/41946222/74917975-c2ee6c00-540b-11ea-89d0-e1fbd9b7195c.png" alt="image"></p>
 <h2><span id="備考">備考</span></h2><ul>
 <li>以下も便利そうでした。APの構成管理やドキュメント作成の手間は極力自動化していきましょう。<ul>
 <li><a href="https://one-it-thing.com/3254/">compodocでAngularプロジェクトのビジュアルなドキュメントを自動生成する</a></li>
@@ -370,7 +406,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            4
+                            7
                         </p>
                     </a>
                 </div>
@@ -439,6 +475,38 @@
 </div>
     
         
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    カタログ
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">1</span>
+        <span>Auguryと は？</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">2</span>
+        <span>できること</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">3</span>
+        <span>導入方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">4</span>
+        <span>利用方法</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">5</span>
+        <span>備考</span>
+        </a></li></ul>
+            </div>
+        </div>
+    </div>
+
     
         <div class="card widget">
     <div class="card-content">
@@ -493,6 +561,14 @@
                 <span class="level-item tag">4</span>
             </span>
         </a><ul><li>
+        <a class="level is-marginless" href="/categories/Single-Page-Application-Dev/AWS/">
+            <span class="level-start">
+                <span class="level-item">AWS</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/Single-Page-Application-Dev/Cloud-Service/">
             <span class="level-start">
                 <span class="level-item">Cloud Service</span>
@@ -508,7 +584,15 @@
             <span class="level-end">
                 <span class="level-item tag">2</span>
             </span>
-        </a></li><li>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Tool-Tips/AWS/">
+            <span class="level-start">
+                <span class="level-item">AWS</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/WEB-Page-Dev-Hexo/">
             <span class="level-start">
                 <span class="level-item">WEB Page Dev (Hexo)</span>
@@ -610,7 +694,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-06T16:47:37.000Z">2020-03-07</time></div>
                     <a href="/2020/03/07/cloud9%E3%81%AB%E3%82%88%E3%82%8B%E5%85%B1%E5%90%8C%E7%B7%A8%E9%9B%86%E3%83%BB%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%96%8B%E7%99%BA/" class="title has-link-black-ter is-size-6 has-text-weight-normal">cloud9による共同編集・リモート開発</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a>
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/AWS/">AWS</a>
                     </p>
                 </div>
             </div>
@@ -892,7 +976,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-06T16:47:37.000Z">2020-03-07</time></div>
                     <a href="/2020/03/07/cloud9%E3%81%AB%E3%82%88%E3%82%8B%E5%85%B1%E5%90%8C%E7%B7%A8%E9%9B%86%E3%83%BB%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%96%8B%E7%99%BA/" class="title has-link-black-ter is-size-6 has-text-weight-normal">cloud9による共同編集・リモート開発</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a>
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/AWS/">AWS</a>
                     </p>
                 </div>
             </div>

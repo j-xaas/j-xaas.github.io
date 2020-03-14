@@ -9,14 +9,19 @@ tags: Purpose
   
 　以下によると、学習定着率を高めるにはOutputする機会が大事なので、この場で個人的なTipsやハマった事の解決策をまとめていきたいと考えております。  
 
-![image](https://user-images.githubusercontent.com/41946222/73755094-dd3c0f00-47a8-11ea-9ec5-e1e537559054.png)
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/73755094-dd3c0f00-47a8-11ea-9ec5-e1e537559054.png" height="100%" width="100%">
+</div>
+   
+　IT業界では、ベテランの方々とのスキルギャップで苦しむシーンが多いと思います。私も初期配属された頃、8ヵ月間毎月資格を取り続けたことがありました。技術的に稚拙な表現もあるかもしれませんが、公開した記事が同じように困っている誰かの助けになれば嬉しいです。  
   
-  
-　私は初期配属された頃、プレッシャーに負けない為に8ヵ月間毎月資格を取り続けたことがあります。０から学んだ私だからこそ、初級者を助けられるのではないかと考えています。経験が浅く、技術的に稚拙な表現もあるかもしれませんが、公開した記事が私と同じように困っている誰かの助けになれば嬉しいです。  
-  
-　IoT案件に関わった影響で始めた、家のSmart Home化の手法についても載せていく予定です。今は以下のような構成を作っています。IoTマットで消耗品の発注を自動化するとQOLが向上するのでお勧めです。
+　IoT案件に関わった影響で始めたSmart Home構築の手法についても載せていく予定です。現在は以下のような構成を作っています。IoTマットで消耗品の発注を自動化するとQOLが向上するのでお勧めです。
 
-![smarthome](https://user-images.githubusercontent.com/41946222/75523195-e2f6de80-5a4e-11ea-94fd-862c110cd075.PNG)
+
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/75523195-e2f6de80-5a4e-11ea-94fd-862c110cd075.PNG" height="100%" width="100%">
+</div>
+
 
 個人的に開発したいSaaSもあるので、手伝ってくれる方も募集してます。  
 
@@ -26,15 +31,16 @@ Mail: junjunjunya108@gmail.com
     - FW
         - Angular
         - Ionic
+        - Flutter
     - Cloud
         - AWS
             - IaC: CloudFormation
             - Cognito
         - Google Cloud
             - Authentication
+            - Firestore
             - AutoML
             - AdMob
-            - Firestore
     - BaaS
         - Firebase (Google)
         - Amplify (AWS)

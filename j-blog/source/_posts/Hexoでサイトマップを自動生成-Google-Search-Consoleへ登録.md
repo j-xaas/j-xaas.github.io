@@ -110,16 +110,25 @@ hexo g
 
 - サイドメニュー内、インデックスのサイトマップを選択
 
-![sitemap](https://user-images.githubusercontent.com/41946222/76317221-2d197300-631f-11ea-9b4c-4c7dbb3b3d75.PNG)
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/76317221-2d197300-631f-11ea-9b4c-4c7dbb3b3d75.PNG" height="50%" width="50%">
+</div>
+
 
 - 新しいサイトマップの追加
     - 入力欄に"sitemap.xml"を入力
     - 送信
 
-![image](https://user-images.githubusercontent.com/41946222/76317318-5df9a800-631f-11ea-8995-7722bd39ddc5.png)
+
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/76317318-5df9a800-631f-11ea-8995-7722bd39ddc5.png" height="100%" width="100%">
+</div>
+
 
 - しばらく待って更新すると、以下のようにステータスが”成功しました”と表示されます
     - 以上でサイトマップの登録は完了です
         - hexo g の度に更新されるので、事後作業は特にありません
 
-![image](https://user-images.githubusercontent.com/41946222/76319276-5687ce00-6322-11ea-98de-c4837c6f1785.png)
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/76319276-5687ce00-6322-11ea-98de-c4837c6f1785.png" height="100%" width="100%">
+</div>

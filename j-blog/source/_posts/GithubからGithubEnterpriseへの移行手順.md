@@ -9,7 +9,10 @@ tags:
 - GithubPages
 ---
 
-![image](https://user-images.githubusercontent.com/41946222/74919073-64c28880-540d-11ea-8b40-15036b3fee05.png)
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/74919073-64c28880-540d-11ea-8b40-15036b3fee05.png" height="100%" width="100%">
+</div>
+
 
 ## 概要
 - リポジトリ移行(Github⇒GHE)の備忘録です
@@ -75,7 +78,10 @@ https://pages.<gheのURL>/<Organization名 or ユーザ名>/<リポジトリ名>
 
 - リポジトリのSettingsより、以下のようにGithub pagesを有効にしてSave
 
-![githubpages_setting](https://media.github-enterprise-16ae0.paas1.nec-cloud.com/user/16/files/e0a2e680-49b2-11ea-802c-f247b17a1e04)
+<div style="text-align:center;">
+<img src="https://media.github-enterprise-16ae0.paas1.nec-cloud.com/user/16/files/e0a2e680-49b2-11ea-802c-f247b17a1e04" height="100%" width="100%">
+</div>
+
 
 - GHEにおけるGithub PagesのURLは以下
 ```
