@@ -2,7 +2,8 @@
 title: 'Hexoテーマ(theme)変更: icarus'
 date: 2020-03-13 23:01:02
 categories:
-- WEB Page Dev (Hexo)
+- WEB Page Dev
+- Hexo
 tags:
 - Hexo
 - icarus

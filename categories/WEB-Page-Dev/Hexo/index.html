@@ -11,13 +11,13 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>タグ: Angular - J&#39;s Tech Blog</title>
+<title>カテゴリ: Hexo - J&#39;s Tech Blog</title>
 
 
     <meta name="description" content="tech">
 <meta property="og:type" content="website">
 <meta property="og:title" content="J&#39;s Tech Blog">
-<meta property="og:url" content="https://j-xaas.github.io/tags/Angular/index.html">
+<meta property="og:url" content="https://j-xaas.github.io/categories/WEB-Page-Dev/Hexo/index.html">
 <meta property="og:site_name" content="J&#39;s Tech Blog">
 <meta property="og:description" content="tech">
 <meta property="og:locale" content="ja_JP">
@@ -144,8 +144,11 @@
     <div class="card-content">
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
-            <li><a href="/tags">タグ</a></li>
-            <li class="is-active"><a href="#" aria-current="page">Angular</a></li>
+            <li><a href="/categories">カテゴリ</a></li>
+            
+            <li><a href="/categories/WEB-Page-Dev/">WEB Page Dev</a></li>
+            
+            <li class="is-active"><a href="#" aria-current="page">Hexo</a></li>
         </ul>
         </nav>
     </div>
@@ -158,17 +161,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-09T14:38:20.000Z">2020-03-09</time>
+                <time class="level-item has-text-grey" datetime="2020-03-15T09:00:22.000Z">2020-03-15</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Single-Page-Application/">Single Page Application</a>
+                <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    2分 read (About 331 words)
+                    11分 read (About 1619 words)
                 </span>
                 
                 
@@ -177,600 +180,747 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/">Angular8:”global is not defined”の回避策</a>
+                <a class="has-link-black-ter" href="/2020/03/15/Hexo%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AEAMP%E5%8C%96/">HexoブログのAMP化【完全版】</a>
             
         </h1>
         <div class="content">
-            <h2><span id="概要">概要</span></h2><ul>
-<li><p>Angular8で以下のエラーにハマった際の解消法を解説します</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">”global is not defined”</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>上記のエラーについて</p>
+            <p>こんにちは。今回はHexoで生成したWEBページのAMP化の手法について解説します。簡単にいうとWEBページを高速表示可能な形式にします。同様の記事も数件見つけたのですが、所々でハマったので、完全版としてまとめました。</p>
+<!-- toc -->
+
 <ul>
-<li>Angularでグローバルオブジェクトを参照する外部ライブラリを利用している環境で発生する事象</li>
-<li>今回はAngularとAWS間のAPI連携機能を実装した際に発生</li>
+<li><a href="#基礎知識">基礎知識</a><ul>
+<li><a href="#ampaccelerated-mobile-pagesとは">AMP(Accelerated Mobile Pages)とは？</a></li>
+<li><a href="#hexo-generator-ampとは">hexo-generator-ampとは</a></li>
 </ul>
 </li>
-<li><p>環境の詳細</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Angular CLI: 8.3.24</span><br><span class="line">Node: 10.16.3</span><br><span class="line">OS: win32 x64</span><br><span class="line">Angular: 8.2.14</span><br><span class="line">... animations, common, compiler, compiler-cli, core, forms</span><br><span class="line">... language-service, platform-browser, platform-browser-dynamic</span><br><span class="line">... router</span><br><span class="line"></span><br><span class="line">Package                           Version</span><br><span class="line">-----------------------------------------------------------</span><br><span class="line">@angular-devkit&#x2F;architect         0.803.24</span><br><span class="line">@angular-devkit&#x2F;build-angular     0.803.24</span><br><span class="line">@angular-devkit&#x2F;build-optimizer   0.803.24</span><br><span class="line">@angular-devkit&#x2F;build-webpack     0.803.24</span><br><span class="line">@angular-devkit&#x2F;core              8.3.24</span><br><span class="line">@angular-devkit&#x2F;schematics        8.3.24</span><br><span class="line">@angular&#x2F;cdk                      8.2.3</span><br><span class="line">@angular&#x2F;cli                      8.3.24</span><br><span class="line">@angular&#x2F;material                 8.2.3</span><br><span class="line">@ngtools&#x2F;webpack                  8.3.24</span><br><span class="line">@schematics&#x2F;angular               8.3.24</span><br><span class="line">@schematics&#x2F;update                0.803.24</span><br><span class="line">rxjs                              6.4.0</span><br><span class="line">typescript                        3.5.3</span><br><span class="line">webpack                           4.39.2</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2><span id="解決策">解決策</span></h2><ul>
-<li>pollyfills.tsに設定が必要<ul>
-<li>所在<ul>
-<li>“pj-name”\srcの配下</li>
+<li><a href="#導入手順">導入手順</a><ul>
+<li><a href="#1-hexo-generator-ampのinstall">1. hexo-generator-ampのinstall</a></li>
+<li><a href="#2-headタグにamp-htmlのパスを指定">2. headタグにAMP HTMLのパスを指定</a></li>
+<li><a href="#3-_configymlの改修">3. ./_config.ymlの改修</a><ul>
+<li><a href="#trouble-shooting">Trouble Shooting</a></li>
 </ul>
 </li>
-<li>以下を追記すると解決します<pre><code>// &quot;global is not defined&quot;の対応
-(window as any).global = window;</code></pre></li>
+<li><a href="#4-markdown記法の修正画像">4. Markdown記法の修正(画像)</a><ul>
+<li><a href="#trouble-shooting-1">Trouble Shooting</a></li>
 </ul>
 </li>
-</ul>
-<h3><span id="解説">解説</span></h3><ul>
-<li>polyfillとは<ul>
-<li>JavaScriptのversion間の互換性を補うもの</li>
-<li>利用したい機能に未対応のブラウザでも使えるように、同等の機能をJavaScriptで供給できる</li>
-</ul>
-</li>
-<li>pollyfills.ts<ul>
-<li>Angularにおけるpolyfillの設定ファイル</li>
-<li>例えば、Angularで開発したAPをIEでも動かしたい時には設定が必要<ul>
-<li>Angularは”デフォルトではIEに未対応”です</li>
+<li><a href="#5-web上でのチェック">5. WEB上でのチェック</a><ul>
+<li><a href="#ampテスト">AMPテスト</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
+<!-- tocstop -->
 
-        </div>
-        
-        
-        
-    </div>
-</div>
+<h2><span id="基礎知識">基礎知識</span></h2><h3><span id="ampaccelerated-mobile-pagesとは">AMP(Accelerated Mobile Pages)とは？</span></h3><ul>
+<li><a href="https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/?referrer=ampproject.org&utm_source=search_console&utm_campaign=sc-amp-test">AMP HTML</a><ul>
+<li>モバイルでのコンテンツ表示を高速化させるための手法<ul>
+<li>GoogleとTwitterが協同で立ち上げたプロジェクトです</li>
+<li>ページ読み込みに3秒以上かかる場合、53%のユーザーが離脱してしまうと言われています</li>
+<li>検索結果で並んでいるサイトに、稲妻マークが小さくついているものを見つけたことはありませんか？<ul>
+<li>実はあのマークはAMPサイトであるサインです</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>AMP化するには規格に則った記法でサイトを構築する必要があります<ul>
+<li>自力での対応は難しいので、自動生成する手法を今回解説します</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="hexo-generator-ampとは">hexo-generator-ampとは</span></h3><ul>
+<li><a href="https://github.com/tea3/hexo-generator-amp">hexo-generator-amp</a><ul>
+<li>Google AMP (Accelerated Mobile Pages) を自動で生成してくれるプラグイン</li>
+<li>各記事のHTMLに対して、AMP HTMLを生成<ul>
+<li>hexo generate実行時に通常のHTMLとAMP版のHTMLの双方ができます</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="導入手順">導入手順</span></h2><h3><span id="1-hexo-generator-ampのinstall">1. hexo-generator-ampのinstall</span></h3><ul>
+<li>Hexoディレクトリ直下で実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-amp --save</span><br></pre></td></tr></table></figure>
 
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-05T13:28:41.000Z">2020-03-05</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Firebase/">Firebase</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    17分 read (About 2564 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/03/05/Cloud9-x-Angular-x-Firebase%E3%81%A7AP%E9%96%8B%E7%99%BA%EF%BC%88%E5%B0%8E%E5%85%A5%E7%B7%A8%EF%BC%89/">Cloud9 x Angular x FirebaseでAP開発（導入編）</a>
-            
-        </h1>
-        <div class="content">
-            <p>こんにちは。今回は上記の３つを組み合わせてWEB AP開発を行う際の手順を解説していこうと思います。それぞれの使用経験があっても組み合わせると細かい所で沢山ハマってしまうので注意しましょう。（新設の開発チームの大半がこの段階で躓く印象です）  </p>
-<!-- toc-->
-
-
-<h2><span id="各技術についての基礎知識">各技術についての基礎知識</span></h2><p>簡単にポイントだけを解説します。分かっている方は飛ばしてください<br>手順を細かく書いているので分からない言葉があっても、一先ず触りなから理解していきましょう  </p>
+</li>
+</ul>
+<h3><span id="2-headタグにamp-htmlのパスを指定">2. headタグにAMP HTMLのパスを指定</span></h3><ul>
+<li><p>head.ejs</p>
 <ul>
-<li><p><a href="https://aws.amazon.com/jp/cloud9/">cloud9</a></p>
+<li>自動生成するHTMLのheaderの設定を規定するファイルです</li>
+<li>ファイルの所在は以下  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\themes\theme-name\layout\</span><br></pre></td></tr></table></figure>
 <ul>
-<li>AWSのブラウザ型IDE</li>
-<li>自端末のOSに依存せず開発可能<ul>
-<li>iPadでも開発可能（よく使ってます）</li>
-</ul>
-</li>
-<li>社内プロキシ問題に悩まされない<ul>
-<li>個人的には最重要ポイント</li>
-</ul>
-</li>
-<li>環境構築を省略可能<ul>
-<li>node_module, Git, AWS CLI等の便利なものが元から入っている</li>
-</ul>
-</li>
-<li>複数ユーザーで同時編集可能<ul>
-<li>リモートワークやレビューに便利です</li>
-<li>対抗の<a href="https://cloud.google.com/shell/docs?hl=ja">Google Cloud Shell</a>との差分<ul>
-<li>後に同様の機能が付きそうではあります</li>
-</ul>
+<li>私が利用しているテーマ:icarusの場合は一階層深い所にありました<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\themes\icarus\layout\common\</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p><a href="https://angular.jp/">Angular</a></p>
+<li><p>以下を追記</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (is_post() &amp;&amp; config.generator_amp)&#123; %&gt;</span><br><span class="line">    &lt;link rel&#x3D;&quot;amphtml&quot; href&#x3D;&quot;&lt;%&#x3D; config.url %&gt;&#x2F;&lt;%&#x3D; page.path %&gt;&#x2F;amp&#x2F;index.html&quot;&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>WEBページを作成する中で、度々headerにscriptを追加するシーンがあると思われます</p>
 <ul>
-<li>Googleが出しているWEB APのフレームワーク<ul>
-<li>言語はHTML, TypeScript, scss</li>
-</ul>
-</li>
-<li><a href="https://digitalidentity.co.jp/blog/creative/about-single-page-application.html">SPA (Single Page Application)</a>を開発可能</li>
-<li>APの画面はAngular Materialでほぼ自動構築可能</li>
-<li><a href="https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/dev/WebsiteHosting.html">静的WEBサイトホスティング</a>サービスを用いれば、<a href="https://qiita.com/y-some/items/e9b78468428d1c481fac">サーバレス</a>を実現可能<ul>
-<li>代表例として<a href="https://firebase.google.com/docs/hosting?hl=ja">Firebase Hosting</a>や<a href="https://aws.amazon.com/jp/s3/">Amazon S3</a>等が挙げられます</li>
+<li>基本的にhead.elsに同様に追記することで目的を達成可能です。覚えておきましょう</li>
 </ul>
 </li>
 </ul>
-</li>
-<li><p><a href="https://firebase.google.com/">Firebase</a></p>
+<h3><span id="3-_configymlの改修">3. ./_config.ymlの改修</span></h3><ul>
+<li><p>_config.ymlにPluginの設定を追加します</p>
 <ul>
-<li>Googleの<a href="https://boxil.jp/mag/a3651/#3651-2">BaaS(Backend as a Service)</a></li>
-<li>認証機能やデータベースなどのバックエンドの機能を提供してくれるサービス<ul>
-<li>開発工数を大幅削減可能</li>
-<li>本質的な機能の開発に集中可能</li>
+<li>theme配下ではなくHexoディレクトリ直下のファイルです</li>
 </ul>
 </li>
-<li>APのHostingや顧客分析、収益管理まで可能  </li>
-</ul>
-</li>
-</ul>
-<p>この３つを抑えれば開発環境の用意からAPの公開まで高速でできます。  </p>
-<h2><span id="前提条件">前提条件</span></h2><ul>
-<li>cloud9環境を作成済み<ul>
-<li>指示に従って設定していくだけなので参考サイトを載せておきます<ul>
-<li><a href="https://qiita.com/tu-kun/items/d7b4f1fa19cc93bc5b75">初めてのAWS Cloud9導入</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Googleアカウントを作成済み<ul>
-<li><a href="https://support.google.com/accounts/answer/27441?hl=ja">Googelアカウントの作成</a></li>
-</ul>
-</li>
-</ul>
-<h2><span id="手順">手順</span></h2><h3><span id="1-angular開発環境の準備">1. Angular開発環境の準備</span></h3><ul>
-<li>Angularが動くために必要なもの<ul>
-<li>node_module</li>
-<li>Angular CLI</li>
-</ul>
-</li>
-</ul>
-<p>cloud9には初めからnode_moduleが入っている為、Angular CLIを入れるだけでOKです。（Windowsにnode_moduleを入れようとすると、それだけでだいぶ工数をロスします）  </p>
+<li><p>以下を追記</p>
 <ul>
-<li><p>1.1. Angular CLIのinstall</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @angular cli</span><br></pre></td></tr></table></figure></li>
+<li>Gitの公式ページの説明はpathの記法が少し間違っていました<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># hexo-generator-amp</span><br><span class="line"></span><br><span class="line">generator_amp:</span><br><span class="line">  templateDir: amp-template</span><br><span class="line">  assetDistDir: amp-dist</span><br><span class="line">  logo:</span><br><span class="line">    path: sample&#x2F;sample-logo.png</span><br><span class="line">    width: 600</span><br><span class="line">    height: 60</span><br><span class="line">  substituteTitleImage:</span><br><span class="line">    path: sample&#x2F;sample-substituteTitleImage.png</span><br><span class="line">    width: 1024</span><br><span class="line">    height: 800</span><br><span class="line">  warningLog: false</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>hexo serverで確認</p>
+</li>
+</ul>
+<h4><span id="trouble-shooting">Trouble Shooting</span></h4><ul>
+<li>以下のエラーが出た場合</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[00:44:36.025] [hexo-generator-amp] hexo-generator-amp&#39;s template has been copied to</span><br><span class="line">the your project.</span><br><span class="line">Please check the following file.</span><br><span class="line">-&gt; j-blog\amp-template\sample</span><br><span class="line">[00:44:36.040] [hexo-generator-amp] error:  Not found the hexo-generator-amp&#39;s asset</span><br><span class="line">files. If you do not have the file please download the sample file from the following site. ( see: https:&#x2F;&#x2F;github.com&#x2F;tea3&#x2F;hexo-generator-amp&#x2F;tree&#x2F;master&#x2F;template )</span><br><span class="line">Please check the following file.</span><br><span class="line">-&gt; j-blog\amp-template\sample-logo.png</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>上記はpathの指定が間違っている<ul>
+<li>sample配下にsample-logo.png等が格納されているため、sample/を頭に付けましょう</li>
+</ul>
+</li>
+</ul>
+<h3><span id="4-markdown記法の修正画像">4. Markdown記法の修正(画像)</span></h3><ul>
+<li><p>hexo server実行時にAMPの書式チェックがプラグインによって実行されます</p>
+</li>
+<li><p>恐らく以下のErrorが大量に出る人が多いと思われます</p>
+<ul>
+<li>markdownの画像のURL指定の表記がAMPでは通用しない為です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">This plugin can not acquire the width and height of such url images.</span><br><span class="line">Please change the URL to HTTP or HTTPS, or add height and width.</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>エラーメッセージについて解説</p>
+<ul>
+<li>このプラグインは、URL画像の幅と高さを取得できない</li>
+<li>URLをHTTPまたはHTTPSに変更するか、高さと幅を追加してください</li>
+</ul>
+</li>
+<li><p>どういうこと？</p>
+<ul>
+<li>AMPの規格では画像のheightとwidthを設定する必要があります。</li>
+<li>そのため、各記事のURL指定の画像に対してエラーが出ています</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>とりあえず以下のErrorが出ている記事の画像を修正してみます</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-&gt; _posts&#x2F;About-This-Blog.md</span><br><span class="line">[18:39:10.984] [hexo-generator-amp] error:  This plugin can not acquire the width and height of such url images.</span><br><span class="line">Please change the URL to HTTP or HTTPS, or add height and width. </span><br><span class="line">img path: https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;41946222&#x2F;73755094-dd3c0f00-47a8-11ea-9ec5-e1e537559054.png</span><br><span class="line">Please check the following file.</span><br><span class="line">-&gt; _posts&#x2F;About-This-Blog.md</span><br><span class="line">[18:39:10.985] [hexo-generator-amp] error:  Error: connect ETIMEDOUT 151.101.108.133:443</span><br><span class="line">This plugin checks whether the image URL exists. </span><br><span class="line">img path: https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;41946222&#x2F;74917091-5030c100-540a-11ea-9060-2d05fc6c6c23.png</span><br><span class="line">Please check the following file.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>現在のmarkdown記法</p>
+<ul>
+<li>heightとwidthを定められない<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![image_title](image_url)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>回避策</p>
+<ul>
+<li>以下のようにHTMLの記法で修正<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div style&#x3D;&quot;text-align:center;&quot;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;image_url&quot; height&#x3D;&quot;500px&quot; width&#x3D;&quot;500px&quot;&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>各記事のURL指定の画像に対して同様の修正を実施します</p>
+<ul>
+<li>割と大変なので、記事が少なめの段階で対処した方がいいです</li>
+</ul>
+</li>
 <li><p>確認</p>
 <ul>
-<li>以下のようにngコマンドを使えるようになればOKです<ul>
-<li>ngはangularの略です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ng --version</span><br><span class="line"></span><br><span class="line">     _                      _                 ____ _     ___</span><br><span class="line">    &#x2F; \   _ __   __ _ _   _| | __ _ _ __     &#x2F; ___| |   |_ _|</span><br><span class="line">   &#x2F; △ \ | &#39;_ \ &#x2F; _&#96; | | | | |&#x2F; _&#96; | &#39;__|   | |   | |    | |</span><br><span class="line">  &#x2F; ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |</span><br><span class="line"> &#x2F;_&#x2F;   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|</span><br><span class="line">                |___&#x2F;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">Angular CLI: 8.3.20</span><br><span class="line">Node: 10.16.2</span><br><span class="line">OS: linux x64</span><br><span class="line">Angular: 8.2.14</span><br></pre></td></tr></table></figure>
-</li>
+<li>以下を実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure></li>
+<li>エラーの解消を確認</li>
 </ul>
 </li>
-</ul>
-</li>
-<li><p>０から開発する場合</p>
+<li><p>起動したAPをブラウザで確認</p>
 <ul>
-<li>以下のコマンドでAngular PJを開始しましょう<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng new &lt;AP名&gt;</span><br></pre></td></tr></table></figure></li>
+<li>以下のように記事を開いている状態で、URLの後ろにampを付ければ生成されたAMP HTMLを確認可能です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;localhost:4000&#x2F;article_name&#x2F;amp</span><br></pre></td></tr></table></figure></li>
+<li>各記事で確認しましょう</li>
 </ul>
 </li>
-<li><p>Gitから開発途中のソースを持ってきた場合</p>
-<ul>
-<li>APのディレクトリ直下にもnode_moduleを入れなければ動かないので注意です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="2-firebaseの登録~project作成">2. firebaseの登録～project作成</span></h3><ul>
-<li><p>初めは基本的にWEBのFirebaseコンソールで操作していきます</p>
-<ul>
-<li>Googleアカウントを作成していればすぐに始められます</li>
-</ul>
-</li>
-<li><p>2.1. <a href="https://firebase.google.com/?hl=ja">公式ページ</a>から右上の”コンソールへ移動”を押下</p>
-</li>
-<li><p>2.2. projectを作成します（APの単位です）</p>
-<ul>
-<li>AP名を設定</li>
-</ul>
-</li>
-<li><p>2.3. アプリを登録</p>
-<ul>
-<li>ios/android/webからwebを選択</li>
-<li>ニックネームを設定</li>
-</ul>
-</li>
-<li><p>2.4. Firebase SDKの追加</p>
-<ul>
-<li>公式の説明は以下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">これらのスクリプトをコピーして &lt;body&gt; タグの下部に貼り付けます。この作業は Firebase サービスを使用する前に行ってください。</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>Angularの場合はindex.htmlのbody配下に置きます</p>
-<ul>
-<li>SPAなので、単一ページであるindex.htmlがJSで書き換わっていくのがAngularの特徴です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;app-root&gt;&lt;&#x2F;app-root&gt;</span><br><span class="line">&lt;!----firebaseSDKの追加--&gt;</span><br><span class="line">  &lt;!-- The core Firebase JS SDK is always required and must be listed first --&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;__&#x2F;firebase&#x2F;7.8.2&#x2F;firebase-app.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- TODO: Add SDKs for Firebase products that you want to use</span><br><span class="line">     https:&#x2F;&#x2F;firebase.google.com&#x2F;docs&#x2F;web&#x2F;setup#available-libraries --&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;__&#x2F;firebase&#x2F;7.8.2&#x2F;firebase-analytics.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- Initialize Firebase --&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;__&#x2F;firebase&#x2F;init.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="3-firebaseとapの関連付けangular-fireの導入">3. firebaseとAPの関連付け(Angular Fireの導入)</span></h3><ul>
-<li>Angular APとfirebaseを関連付けるまでに必要な作業の一覧は以下になります<ul>
-<li>angularfireのinstall</li>
-<li>Firebase CLIのinstal</li>
-<li>(firebase側でアプリを追加　 2で先に行った内容です)<ul>
-<li>Firebase SDKの追加</li>
-<li>FirebaseのAPIキーを取得</li>
-</ul>
-</li>
-<li>Angular環境設定ファイルにAPIキーを貼り付け<ul>
-<li>★二点に設定が必要。よくはまるポイントです</li>
-<li>開発環境<ul>
-<li>src/environments/environment.ts</li>
-</ul>
-</li>
-<li>本番環境<ul>
-<li>src/environments/environment.prod.ts</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>firebase login/init </li>
-<li>環境設定ファイルをapp.module.tsに読み込む<ul>
-<li>@angular/fireからAngularFireModuleを呼び出して、<br>上記のenvironmentオブジェクトを使ってAPIキーをインストール</li>
-</ul>
-</li>
-<li>（特定の機能を利用する場合の作業：認証機能を利用する際の例）<ul>
-<li>@angular/fire/authからAngularFireModuleを呼び出して、NgModuleに登録<ul>
-<li>Firebase Authenticationを利用するために必要な工程</li>
-<li>@angular/fireは全機能をinstallすると重くなる為、上記の様に必要なものだけを登録する仕様になっているらしい</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>それぞれ詳しく解説していきます  </p>
-<h4><span id="31-angular-fireのinstall">3.1. angular fireのinstall</span></h4><ul>
-<li><a href="https://github.com/angular/angularfire">angularfire</a>を入れます<ul>
-<li>AngularとFirebase連携用のLibraryです<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install firebase @angular&#x2F;fire</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>出力結果<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+ @angular&#x2F;fire@5.4.2</span><br><span class="line">+ firebase@7.9.3</span><br><span class="line">added 140 packages from 98 contributors and audited 19218 packages in 17.919s</span><br><span class="line">found 5 vulnerabilities (3 moderate, 2 high)</span><br></pre></td></tr></table></figure></li>
-<li>ここまでではまだ、Firebaseコマンドが使えない状態です</li>
-</ul>
-<h4><span id="32-firebase-cliの導入">3.2. の導入</span></h4><ul>
-<li>以下を実行することでinstallできます<ul>
-<li>firebase コマンドが有効になります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g firebase-tools</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="33-angular環境設定ファイルにapiキーを貼り付け">3.3. Angular環境設定ファイルにAPIキーを貼り付け</span></h3><ul>
-<li><p>開発環境向けと本番環境向けの２つの設定ファイルの改修が必要。よくはまるポイントです</p>
-<ul>
-<li>各値はfirebase consoleより確認</li>
-</ul>
-</li>
-<li><p>src/environments/environment.ts</p>
-<ul>
-<li>開発環境用の設定ファイル<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">export const environment &#x3D; &#123;</span><br><span class="line">  production: false</span><br><span class="line">  &#x2F;&#x2F; Firebaseの設定情報を登録</span><br><span class="line">    firebase: &#123;</span><br><span class="line">      apiKey: &#39;&lt;your-key&gt;&#39;,</span><br><span class="line">      authDomain: &#39;&lt;your-project-authdomain&gt;&#39;,</span><br><span class="line">      databaseURL: &#39;&lt;your-database-URL&gt;&#39;,</span><br><span class="line">      projectId: &#39;&lt;your-project-id&gt;&#39;,</span><br><span class="line">      storageBucket: &#39;&lt;your-storage-bucket&gt;&#39;,</span><br><span class="line">      messagingSenderId: &#39;&lt;your-messaging-sender-id&gt;&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>src/environments/environment.prod.ts</p>
-<ul>
-<li>本番環境用の設定ファイル<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">export const environment &#x3D; &#123;</span><br><span class="line">  production: false</span><br><span class="line">  &#x2F;&#x2F; Firebaseの設定情報を登録</span><br><span class="line">    firebase: &#123;</span><br><span class="line">      apiKey: &#39;&lt;your-key&gt;&#39;,</span><br><span class="line">      authDomain: &#39;&lt;your-project-authdomain&gt;&#39;,</span><br><span class="line">      databaseURL: &#39;&lt;your-database-URL&gt;&#39;,</span><br><span class="line">      projectId: &#39;&lt;your-project-id&gt;&#39;,</span><br><span class="line">      storageBucket: &#39;&lt;your-storage-bucket&gt;&#39;,</span><br><span class="line">      messagingSenderId: &#39;&lt;your-messaging-sender-id&gt;&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-<h4><span id="34-cliとfirebaseの関連付け">3.4. CLIとFirebaseの関連付け</span></h4><ul>
-<li>次にCloud9のCLIとfirebaseを関連付けます<ul>
-<li>c9の場合–nolocalhostが必須<ul>
-<li>★社内Local環境でloginをやろうとするとFirebaseの認証がProxyに阻まれて突破できず詰むので気を付けましょう<ul>
-<li>調べた解決策を全て講じてもこれだけは解決できませんでした…</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">firebase login --no-localhost --reauth</span><br><span class="line"></span><br><span class="line">i  Firebase optionally collects CLI usage and error reporting information to help improve our products. Data is collected in accordance with Google&#39;s privacy policy (https:&#x2F;&#x2F;policies.google.com&#x2F;privacy) and is not used to identify you.</span><br><span class="line"></span><br><span class="line">? Allow Firebase to collect CLI usage and error reporting information? Yes</span><br><span class="line">i  To change your data collection preference at any time, run &#96;firebase logout&#96; and log in again.</span><br><span class="line"></span><br><span class="line">Visit this URL on any device to log in:</span><br><span class="line">&lt;認証用のURL&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>上記のURLから、ブラウザで認Googleアカウント証を進めるとコードが表示される</li>
-<li>貼り付けてSuccessとでれば成功です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">? Paste authorization code here: &lt;Code&gt;</span><br><span class="line"></span><br><span class="line">✔  Success! Logged in as &lt;googleアカウント名&gt;</span><br></pre></td></tr></table></figure></li>
-<li>Cloud9のCLIからFirebase(=Google Cloud)上のリソースにアクセス可能になりました</li>
-</ul>
-<h4><span id="35-apとfirebaseのpjの関連付け">3.5. APとfirebaseのpjの関連付け</span></h4><ul>
-<li>Angular PJ直下で実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firebase init</span><br></pre></td></tr></table></figure></li>
-<li>以下のように出力されれば成功です<ul>
-<li>使いたいサービスを選択すると簡単にCloud側と連携できます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">     ######## #### ########  ######## ########     ###     ######  ########</span><br><span class="line">     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##</span><br><span class="line">     ######    ##  ########  ######   ########  #########  ######  ######</span><br><span class="line">     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##</span><br><span class="line">     ##       #### ##     ## ######## ########  ##     ##  ######  ########</span><br><span class="line"></span><br><span class="line">You&#39;re about to initialize a Firebase project in this directory:</span><br><span class="line"></span><br><span class="line">  &#x2F;home&#x2F;ec2-user&#x2F;environment&#x2F;test-app</span><br><span class="line"></span><br><span class="line">? Which Firebase CLI features do you want to set up for this folder? Press Space to select features, then Enter to confirm your choices. (Press</span><br><span class="line"> &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection)</span><br><span class="line">❯◯ Database: Deploy Firebase Realtime Database Rules</span><br><span class="line"> ◯ Firestore: Deploy rules and create indexes for Firestore</span><br><span class="line"> ◯ Functions: Configure and deploy Cloud Functions</span><br><span class="line"> ◯ Hosting: Configure and deploy Firebase Hosting sites</span><br><span class="line"> ◯ Storage: Deploy Cloud Storage security rules</span><br><span class="line"> ◯ Emulators: Set up local emulators for Firebase features</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h2><span id="おまけcloud9でng-serveを実行してapの画面を確認する際の注意">おまけ：cloud9でng serveを実行してAPの画面を確認する際の注意</span></h2><ul>
-<li>cloud9で必要なこと<ul>
-<li>portの指定(8080)</li>
-<li>browserのURLの指定</li>
-<li>disableHostCheck</li>
-</ul>
-</li>
-<li>大抵の人が必ず一度はハマるポイントです</li>
-<li>上部タブから”Preview”を選択後”Preview Runnig Application”を選択するとCloud9上に表示できます<ul>
-<li>Previewの中のURL欄をコピーして控えてください</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng serve --public-host &lt;cloud9のPreviewのURL&gt; --disableHostCheck --port 8080</span><br></pre></td></tr></table></figure>
-
-<h2><span id="後書き">後書き</span></h2><p>如何だったでしょうか？ここまでで本格的な実装に入る準備が整いました。Firebaseを使いこなせば、認証機能もデータのCRUD機能も１日で簡単に実装することができます。モダンな手法を使いこなして素早くAPを開発していきましょう。</p>
-<ul>
-<li>最後に、この先の機能実装の際に参考になりそうなページを共有しておきます。<ul>
-<li><a href="https://mae.chab.in/archives/60256">AngularFireでFirestoreのCRUD処理を実装する【Angular + Firebase】</a></li>
-<li><a href="https://satolabo.net/2019/11/30/angular8-fire-google-auth/">Angular8でFirebaseを使ってGoogleアカウント認証機能を実装する</a></li>
-</ul>
-</li>
-</ul>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-27T15:13:23.000Z">2020-02-28</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3分 read (About 442 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/02/28/Angular-x-AWS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/">Angular x AWS SDK for JavaScriptの始め方</a>
-            
-        </h1>
-        <div class="content">
-            <ul>
-<li>angularで開発していたアプリケーションにaws-sdkを導入する際の備忘録<ul>
-<li><a href="https://aws.amazon.com/jp/tools/">AWS SDK</a>を入れることで、アプリケーションからAWSのリソースを操作可能になります<ul>
-<li>ex.) S3やDynamoDBへのデータの格納、Cognitoによる認証、Lambdaの実行…</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Angularの場合、公式の開発者ガイド通りにやると鬼のようにエラーが出るので共有しておきます。ひと手間必要でした。</li>
-</ul>
-<h2><span id="1-aws-sdk-for-javascriptのinstall">1. aws sdk for javascriptのinstall</span></h2><ul>
-<li>angular PJ直下で実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install aws-sdk --save-dev</span><br></pre></td></tr></table></figure></li>
-<li>この時点でAPを確認すると、以下のエラーが大量に出ます<ul>
-<li>APの画面もブラウザに表示されなくなります</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;ng serve --open</span><br><span class="line"></span><br><span class="line">ERROR in node_modules&#x2F;aws-sdk&#x2F;clients&#x2F;acm.d.ts:141:37 - error TS2591: Cannot find name &#39;Buffer&#39;. Do you need to install type definitions for node? Try &#96;npm i @types&#x2F;node&#96; and then add &#96;node&#96; to the types field in your tsconfig.</span><br></pre></td></tr></table></figure>
-
-<h2><span id="2-typesnodeをinstallする">2. @types/nodeをinstallする</span></h2><ul>
-<li>Angular PJ直下で以下を実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install --save @types&#x2F;node</span><br><span class="line"></span><br><span class="line">+ @types&#x2F;node@8.9.5</span><br><span class="line">updated 1 package and audited 19123 packages in 41.418s</span><br><span class="line">found 0 vulnerabilities</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2><span id="3-tsconfigjson-ファイルに以下を追記">3. tsconfig.json ファイルに以下を追記</span></h2><ul>
-<li><p>Angular PJ直下にあります</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;compilerOptions&quot;: &#123;</span><br><span class="line">  &quot;types&quot;: [&quot;node&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>場所は以下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; code .\tsconfig.json</span><br></pre></td></tr></table></figure>
-</li>
-<li><ol start="4">
-<li>tsconfig.app.json にも、同じく追記<ul>
-<li>Angular PJ直下にあります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;compilerOptions&quot;: &#123;</span><br><span class="line">   &quot;types&quot;: [&quot;node&quot;]</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><p>エラーの解消を確認</p>
-<ul>
-<li>ng serve時に正しくAPの画面が表示される</li>
-</ul>
-</li>
-<li><p>ここまででAngular APからAWSのリソースとAPI連携する下準備が整いました</p>
-<ul>
-<li>以下についても後日UP予定です<ul>
-<li>AWSの各リソースの利用方法、実装方法</li>
-<li>Ampliyfy(BaaS)でAWSと連携させる手法</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-20T09:12:39.000Z">2020-02-20</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Single-Page-Application/">Single Page Application</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3分 read (About 453 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/02/20/Angular%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E9%96%8B%E7%99%BA%E6%94%AF%E6%8F%B4%E3%83%84%E3%83%BC%E3%83%ABAugury-Chrome%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/">Angularアプリの開発支援ツールAugury(Chrome拡張機能)</a>
-            
-        </h1>
-        <div class="content">
-            <ul>
-<li>今回はAngularでWEBアプリを開発する際に簡単に利用できるツールを紹介します</li>
 </ul>
 <div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/74917091-5030c100-540a-11ea-9060-2d05fc6c6c23.png" height="100%" width="100%">
+<img src="https://user-images.githubusercontent.com/41946222/76687185-ee5c2380-6664-11ea-8e75-f699f17a498a.png" height="300px" width="600px">
+</div>
+
+
+<h4><span id="trouble-shooting">Trouble Shooting</span></h4><ul>
+<li>AMP画像が表示されない<ul>
+<li>heightとwidthの%指定はダメです</li>
+<li>pxでかっちり定めなければAMPでは表示されません</li>
+</ul>
+</li>
+</ul>
+<h3><span id="5-web上でのチェック">5. WEB上でのチェック</span></h3><ul>
+<li>本番環境にデプロイ⇒WEBから確認<ul>
+<li>以下のように各記事のURLに/ampを足すとAMP HTML版のページの表示を確認可能です<ul>
+<li>AMP版と通常版の両方のページをWEBから確認出来るようになっている状態です</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="ampテスト">AMPテスト</span></h4><ul>
+<li><a href="https://search.google.com/test/amp">GoogleのAMPテスト</a><ul>
+<li>指定したURLがAMPに対応しているかチェック可能です<ul>
+<li>AMP版のURLを指定してください</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/76698001-1e490c80-66e1-11ea-90d2-12f01b0c5b78.png" height="200px" width="600px">
+</div>
+
+
+
+<ul>
+<li>以上でHexoで生成したWEBページのAMP化は完了です</li>
+<li>各種設定やTipsについては別記事で解説します</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-13T14:01:02.000Z">2020-03-13</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    13分 read (About 1963 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/">Hexoテーマ(theme)変更: icarus</a>
+            
+        </h1>
+        <div class="content">
+            <div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/76524916-3c7af680-64ae-11ea-9a71-81530f93167c.png" height="100%" width="100%">
 </div>
 
 <!-- toc -->
 
 <ul>
-<li><a href="#auguryと-は">Auguryと は？</a></li>
-<li><a href="#できること">できること</a></li>
-<li><a href="#導入方法">導入方法</a></li>
-<li><a href="#利用方法">利用方法</a></li>
-<li><a href="#備考">備考</a></li>
+<li><a href="#概要">概要</a></li>
+<li><a href="#変更手順">変更手順</a><ul>
+<li><a href="#1-テーマの選定">1. テーマの選定</a><ul>
+<li><a href="#今回採用したテーマ">今回採用したテーマ</a></li>
+</ul>
+</li>
+<li><a href="#2-githubからダウンロード">2. Githubからダウンロード</a></li>
+<li><a href="#3-設定_configymlを変更">3. 設定(_config.yml)を変更</a><ul>
+<li><a href="#trouble-shooting">Trouble Shooting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#icarus設定tips">icarus設定Tips</a><ul>
+<li><a href="#ウィジェットを変更">ウィジェットを変更</a><ul>
+<li><a href="#プロフィールを変更">プロフィールを変更</a></li>
+</ul>
+</li>
+<li><a href="#背景の変更">背景の変更</a></li>
+<li><a href="#目次を自動作成するプラグインの導入">目次を自動作成するプラグインの導入</a></li>
+</ul>
+</li>
 </ul>
 <!-- tocstop -->
 
-<h2><span id="auguryと-は">Auguryと は？</span></h2><ul>
-<li>Angularの開発支援ツール</li>
-<li>Google Chromeの拡張機能</li>
-<li>Chromeをメインブラウザとして利用しているデベロッパーには必須とも言えるツール</li>
-</ul>
-<h2><span id="できること">できること</span></h2><ul>
-<li>標準のデベロッパーツールに以下の機能を追加できます<ul>
-<li>Componentの階層構造やプロパティ値の図示</li>
-<li>ルーティング情報のグラフ化</li>
-<li>import済みモジュール構成のリスト表示</li>
+<h2><span id="概要">概要</span></h2><ul>
+<li>Hexoにはテーマのテンプレートが数百種類用意されており、簡単に変更することができます<ul>
+<li>デフォルトはlandscape<ul>
+<li>シンプルでいいのですが、デザインとして物足りなく、プロフィール欄も欲しいので変更します  </li>
 </ul>
 </li>
 </ul>
-<h2><span id="導入方法">導入方法</span></h2><ul>
-<li><p><a href="https://chrome.google.com/webstore/search/Augury">Chrome Webstore</a>にアクセス</p>
 </li>
-<li><p>“Chromeに追加”をClick</p>
+</ul>
+<pre><code>&lt;div style=&quot;text-align:center;&quot;&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/41946222/76521887-038c5300-64a9-11ea-8dfd-8454b8ce0dd2.png&quot; height=&quot;100%&quot; width=&quot;100%&quot;&gt;
+&lt;/div&gt;</code></pre><h2><span id="変更手順">変更手順</span></h2><ul>
+<li><ol>
+<li>テーマの選定</li>
+</ol>
 </li>
-<li><p>ブラウザの右上にAuguryの丸いアイコンが追加されます</p>
+<li><ol start="2">
+<li>Githubからダウンロード</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>設定(_config.yml)を変更</li>
+</ol>
+</li>
+</ul>
+<h3><span id="1-テーマの選定">1. テーマの選定</span></h3><ul>
+<li><p>まずは採用したいテーマを決めましょう</p>
+</li>
+<li><p>Hexoのテーマ一覧は以下より確認できます</p>
+<ul>
+<li><a href="https://hexo.io/themes/index.html">Themes | Hexo</a></li>
+<li>295種(2020/03/12時点)あります</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/search?o=desc&q=hexo-theme&s=stars&type=Repositories">Star数のランキング</a>はこちらです</p>
+<ul>
+<li>自身のWEBページの方向性に合わせて選定しましょう</li>
+</ul>
+</li>
+<li><p>個人的にイケてると感じたテーマを紹介します</p>
+<ul>
+<li><p>シンプル</p>
+<ul>
+<li><a href="https://ppoffice.github.io/hexo-theme-icarus">icarus</a><ul>
+<li>プロフィール欄がデフォルトである</li>
+<li>各記事がサムネで表示される<ul>
+<li>手間は少し増えてしまいそう</li>
+</ul>
+</li>
+<li>サイドのメニューと記事一覧を、画面サイズに応じて１～３列で表示</li>
+</ul>
+</li>
+<li><a href="https://theme-next.org/">NexT</a><ul>
+<li>プロフィール欄がデフォルトである</li>
+<li>モノトーン</li>
+<li>１～２列で表示</li>
+</ul>
+</li>
+<li><a href="https://github.com/viosey/hexo-theme-material">Material</a></li>
+<li><a href="https://github.com/yscoder/hexo-theme-indigo">indigo</a></li>
+<li><a href="http://louisbarranqueiro.github.io/hexo-theme-tranquilpeak">Tranquilpeak</a><ul>
+<li>最近見つけたので追加。そのうちこちらに変更するかも</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ダイナミック</p>
+<ul>
+<li><a href="https://github.com/NoahDragon/hexo-theme-react">React</a>       <ul>
+<li>会社サイト向け<ul>
+<li>デザインが作りこまれています</li>
+</ul>
+</li>
+<li>別の機会に利用してみようと考えています</li>
+</ul>
+</li>
+<li><a href="http://ochukai.me/">Ochuunn</a><ul>
+<li>サイトを開いた時の動作がおしゃれです</li>
+</ul>
+</li>
+<li>デザイナー向け<ul>
+<li><a href="http://miccall.tech/">MiccallTheme</a></li>
+<li><a href="https://www.izhaoo.com/">Zhaoo</a></li>
+</ul>
+</li>
+<li><a href="https://go.kieran.top/">TKL</a><ul>
+<li>一枚目から始まるタイプですが記事欄は質素です</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="今回採用したテーマ">今回採用したテーマ</span></h4><ul>
+<li><a href="https://github.com/ppoffice/hexo-theme-icarus">icarus</a><ul>
+<li>GitのStar数ランク5位で人気のテーマです</li>
+</ul>
+</li>
+</ul>
 <div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/74912170-74d46b00-5401-11ea-956d-93801c3cce13.png" height="100%" width="100%">
+<img src="https://user-images.githubusercontent.com/41946222/76520745-d8086900-64a6-11ea-9d0d-d10ef9bad261.png" height="100%" width="100%"">
 </div>
 
 
+<ul>
+<li>採用理由<ul>
+<li>tech記事らしいシンプルさ</li>
+<li>各記事がサムネで一覧表示される</li>
+<li>サイドメニューに以下が表示される<ul>
+<li>Profile</li>
+<li>Categories</li>
+<li>Tag</li>
+<li>RECENT</li>
+<li>ARCHIVES</li>
+</ul>
 </li>
 </ul>
-<h2><span id="利用方法">利用方法</span></h2><ul>
-<li><p>Angular APの起動</p>
+</li>
+</ul>
+<h3><span id="2-githubからダウンロード">2. Githubからダウンロード</span></h3><ul>
+<li><p>2.1. Gitの<a href="https://github.com/ppoffice/hexo-theme-icarus">hexo-theme-icarus</a>のソースをhexo-pj-name/themes直下に配置します</p>
+</li>
+<li><p>以下のコマンド一発で入ります</p>
 <ul>
-<li>まずは以下のコマンドでAPの画面をChromeに表示しましょう<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng serve --open</span><br></pre></td></tr></table></figure></li>
+<li>hexoディレクトリ直下で実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;ppoffice&#x2F;hexo-theme-icarus.git themes&#x2F;icarus</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
-<li><p>F12キーで開発者ツールを起動</p>
-</li>
-<li><p>ブラウザの右側に表示される開発者ツールに追加されているAuguryタブを選択</p>
-</li>
-<li><p>“Component Tree”タブのInjection Graph</p>
+<li><p>gitが入っていない方は<a href="https://github.com/ppoffice/hexo-theme-icarus">hexo-theme-icarus</a>の”clone or download”よりLocalにダウンロードしてthemes配下に展開してください</p>
 <ul>
-<li>コンポーネントとサービスの依存関係をグラフ表示<ul>
-<li>個人的に一番利用する機能です</li>
+<li>その際にフォルダ名を”icarus”に変更することを忘れないでください</li>
+</ul>
+</li>
+</ul>
+<h3><span id="3-設定_configymlを変更">3. 設定(_config.yml)を変更</span></h3><ul>
+<li>_config.ymlをthemeにicarusを利用するように改修<ul>
+<li>HEXOディレクトリ直下にあります</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## Themes: https:&#x2F;&#x2F;hexo.io&#x2F;themes&#x2F;</span><br><span class="line">theme: icarus</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>icarusを適用</p>
+<ul>
+<li>以下を実行します<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure></li>
+<li>出力<ul>
+<li>icarusが出てきます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">j-blog&gt; hexo s</span><br><span class="line">INFO  &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line"> ██╗ ██████╗ █████╗ ██████╗ ██╗   ██╗███████╗</span><br><span class="line"> ██║██╔════╝██╔══██╗██╔══██╗██║   ██║██╔════╝</span><br><span class="line"> ██║██║     ███████║██████╔╝██║   ██║███████╗</span><br><span class="line"> ██║██║     ██╔══██║██╔══██╗██║   ██║╚════██║</span><br><span class="line"> ██║╚██████╗██║  ██║██║  ██║╚██████╔╝███████║</span><br><span class="line"> ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝</span><br><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">INFO  Checking dependencies</span><br><span class="line">INFO  Validating the configuration file</span><br><span class="line">WARN  themes\icarus\_config.yml is not found. We are creating one for you...</span><br><span class="line">INFO  themes\icarus\_config.yml is created. Please restart Hexo to apply changes.</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>画面を確認</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以下のようにテーマの変更を確認</p>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/76524367-4c460b00-64ad-11ea-876c-2c64cdaaf093.png" height="100%" width="100%"">
+</div>
+
+
+<ul>
+<li>後はいつも通りgenerateして本番環境へデプロイしましょう<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4><span id="trouble-shooting">Trouble Shooting</span></h4><ul>
+<li><p>本番環境で表示が崩れている場合</p>
+<ul>
+<li>前のテーマからgenerateされていたファイルが邪魔をしています（私もハマりました）<ul>
+<li>generateで生成されるファイル群を削除すれば、修正できます</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>cheerioがないというエラーが出た場合</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR Package cheerio is not installed.</span><br><span class="line">ERROR Please install the missing dependencies from the root directory of your Hexo site.</span><br></pre></td></tr></table></figure>
+<ul>
+<li>以下を実行<ul>
+<li>Hexoディレクトリ直下で<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install cheerio --save</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>hexo sを実行できます</li>
+</ul>
+</li>
+</ul>
+<h2><span id="icarus設定tips">icarus設定Tips</span></h2><ul>
+<li>ハマる場面もあったので各種設定についても解説しておきます</li>
+</ul>
+<h3><span id="ウィジェットを変更">ウィジェットを変更</span></h3><ul>
+<li>icarus/layout/widget内のファイルを改修することで、左右の表示を変更できます</li>
+</ul>
+<h4><span id="プロフィールを変更">プロフィールを変更</span></h4><ul>
+<li><p><a href="https://github.com/ppoffice/hexo-theme-icarus/wiki/Theme">icarusのwiki</a>を参考に改修します</p>
+</li>
+<li><p>上記には書いてありませんでしたが、改修する設定ファイルは以下になります</p>
+<ul>
+<li>themes\icarus_cofig.yml</li>
+</ul>
+</li>
+<li><p>中を確認すると以下のようにprofileの初期設定がされていることが分かります</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># https:&#x2F;&#x2F;ppoffice.github.io&#x2F;hexo-theme-icarus&#x2F;categories&#x2F;Widgets&#x2F;</span><br><span class="line">widgets:</span><br><span class="line">    -</span><br><span class="line">        # Widget name</span><br><span class="line">        type: profile</span><br><span class="line">        # Where should the widget be placed, left or right</span><br><span class="line">        position: left</span><br><span class="line">        # Author name to be shown in the profile widget</span><br><span class="line">        author: Your name</span><br><span class="line">        # Title of the author to be shown in the profile widget</span><br><span class="line">        author_title: Your title</span><br><span class="line">        # Author&#39;s current location to be shown in the profile widget</span><br><span class="line">        location: Your location</span><br><span class="line">        # Path or URL to the avatar to be shown in the profile widget</span><br><span class="line">        avatar: </span><br><span class="line">        # Email address for the Gravatar to be shown in the profile widget</span><br><span class="line">        gravatar: </span><br><span class="line">        # Whether to show avatar image rounded or square</span><br><span class="line">        avatar_rounded: false</span><br><span class="line">        # Path or URL for the follow button</span><br><span class="line">        follow_link: &#39;https:&#x2F;&#x2F;github.com&#x2F;ppoffice&#39;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>変更</p>
+<ul>
+<li>profile画像は以下に格納しましょう<ul>
+<li>\themes\icarus\source\images<ul>
+<li><a href="https://kai-you.net/word/%E3%81%8A%E3%81%97%E3%82%85%E3%81%97%E3%81%A0%E3%82%88">おしゅし</a> のフリー素材として公開されている画像を用意しました</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>改修例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">widgets:</span><br><span class="line">    -</span><br><span class="line">        # Widget name</span><br><span class="line">        type: profile</span><br><span class="line">        # Where should the widget be placed, left or right</span><br><span class="line">        position: left</span><br><span class="line">        # Author name to be shown in the profile widget</span><br><span class="line">        author: J</span><br><span class="line">        # Title of the author to be shown in the profile widget</span><br><span class="line">        author_title: IT Specialist</span><br><span class="line">        # Author&#39;s current location to be shown in the profile widget</span><br><span class="line">        location: Tokyo Japan</span><br><span class="line">        # Path or URL to the avatar to be shown in the profile widget</span><br><span class="line">        avatar: images&#x2F;oshushi.png</span><br><span class="line">        # Email address for the Gravatar to be shown in the profile widget</span><br><span class="line">        gravatar: </span><br><span class="line">        # Whether to show avatar image rounded or square</span><br><span class="line">        avatar_rounded: true</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Profileの変更結果  </p>
+</li>
+</ul>
+<pre><code>&lt;div style=&quot;text-align:center;&quot;&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/41946222/76530468-1d349700-64b7-11ea-8cae-6ed0407cc359.png&quot; height=&quot;50%&quot; width=50%&quot;&gt;
+&lt;/div&gt;</code></pre><h3><span id="背景の変更">背景の変更</span></h3><ul>
+<li>以下からできます<br><a href="https://github.com/highlightjs/highlight.js/tree/master/src/styles">https://github.com/highlightjs/highlight.js/tree/master/src/styles</a></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Article display settings</span><br><span class="line">article:</span><br><span class="line">    # Code highlight settings</span><br><span class="line">    highlight:</span><br><span class="line">        # Code highlight themes</span><br><span class="line">        # https:&#x2F;&#x2F;github.com&#x2F;highlightjs&#x2F;highlight.js&#x2F;tree&#x2F;master&#x2F;src&#x2F;styles</span><br><span class="line">        theme: atom-one-light</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h3><span id="目次を自動作成するプラグインの導入">目次を自動作成するプラグインの導入</span></h3><ul>
+<li>hexo-tocをインストール<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-toc --save</span><br></pre></td></tr></table></figure></li>
+<li>目次を入れたい箇所に下記を追記すればOK。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- toc --&gt;</span><br></pre></td></tr></table></figure>
+
+<p>オプションとしてthemes/icarus/config.ymlに下記を追加します。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">toc:</span><br><span class="line">  maxdepth: 3</span><br><span class="line">  class: toc</span><br><span class="line">  slugify: transliteration</span><br><span class="line">  decodeEntities: false</span><br><span class="line">  anchor:</span><br><span class="line">    position: after</span><br><span class="line">    symbol: &#39;#&#39;</span><br><span class="line">    style: header-anchor</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>実際に記事に入れて見ましょう</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hexoでサイトマップを自動生成 ~ Google Search Consoleへ登録</span><br><span class="line">thumbnails: &#x2F;gallery&#x2F;sitemap_thumnail.png</span><br><span class="line">date: 2020-03-10 23:23:23</span><br><span class="line">toc: true</span><br><span class="line">tags:</span><br><span class="line">- Hexo</span><br><span class="line">- Sitemap</span><br><span class="line">- google search console</span><br><span class="line">---</span><br><span class="line">&lt;!-- toc --&gt;</span><br><span class="line">## 概要</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>画面を確認すると以下のように反映されていました。</p>
+  <div style="text-align:center;">
+  <img src="https://user-images.githubusercontent.com/41946222/76619886-46186300-656f-11ea-979d-878690e12d0c.png" height="100%" width="100%">
+  </div></li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-10T14:23:23.000Z">2020-03-10</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7分 read (About 1017 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/">Hexoでサイトマップを自動生成 ~ Google Search Consoleへ登録</a>
+            
+        </h1>
+        <div class="content">
+            <!-- toc -->
+
+<ul>
+<li><a href="#概要">概要</a><ul>
+<li><a href="#想定読者">想定読者</a></li>
+<li><a href="#基礎知識">基礎知識</a></li>
+</ul>
+</li>
+<li><a href="#手順">手順</a><ul>
+<li><a href="#1-pluginの導入">1. Pluginの導入</a></li>
+<li><a href="#2-_configymlにpluginの設定を追加">2. _config.ymlにPluginの設定を追加</a></li>
+<li><a href="#3-sitemapxmlの生成">3. sitemap.xmlの生成</a></li>
+<li><a href="#4-本番環境へデプロイ">4. 本番環境へデプロイ</a></li>
+<li><a href="#5-google-search-consoleへ登録">5. Google Search Consoleへ登録</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="概要">概要</span></h2><p>こんにちは。今回はHexoでサイトマップを自動生成してGoogleに登録するまでの手法を紹介します。<br>本サイトもHexoを用いて自動生成しています。  </p>
+<h3><span id="想定読者">想定読者</span></h3><ul>
+<li>静的サイトジェネレータhexoでWEBページを作成済み<ul>
+<li>Google検索でヒットしない状態</li>
+</ul>
+</li>
+<li>サイトマップ未登録</li>
+</ul>
+<h3><span id="基礎知識">基礎知識</span></h3><ul>
+<li><p>サイトマップとは</p>
+<ul>
+<li>サイトにどのようなページがあるのか表す為のもの</li>
+<li>以下の二種類があります<ul>
+<li>HTMLサイトマップ</li>
+<li>XMLサイトマップ<ul>
+<li>検索エンジンが情報収集する対象となるため、SEO対策において重要    </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>hexoではプラグインを利用することでサイトマップを自動生成できます</li>
+</ul>
+</li>
+<li><p><a href="https://support.google.com/webmasters/answer/9128668?hl=ja&ref_topic=9128571">Google Search Console</a></p>
+<ul>
+<li><a href="https://support.google.com/webmasters/answer/9128668?hl=ja&ref_topic=9128571">Serch Consoleの概要</a> （公式サイトより引用）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Google Search Console は、Google 検索結果でのサイトの掲載順位を監視、管理、改善するのに役立つ Google の無料サービスです。Search Console に登録しなくても Google 検索結果にサイトが表示されるようにすることはできますが、Search Console に登録することで、Google のサイトに対する認識を理解し、改善できるようになります。</span><br></pre></td></tr></table></figure></li>
+<li>生成したサイトマップをこちらに登録することで、Google検索結果に自分のWEBページが出るようになります<ul>
+<li>WEBページを公開したばかりの場合、登録しなければ検索結果に出ないと思われます</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="手順">手順</span></h2><ul>
+<li><ol>
+<li>Pluginの導入</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>_config.ymlにPluginの設定を追加</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>sitemap.xmlの生成</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>本番環境へデプロイ</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>Google Search Consoleへ登録</li>
+</ol>
+</li>
+</ul>
+<h3><span id="1-pluginの導入">1. Pluginの導入</span></h3><ul>
+<li><p>HEXOでサイトマップを生成できるプライグインは二種類あります</p>
+<ul>
+<li><a href="https://github.com/hexojs/hexo-generator-sitemap">hexo-generator-sitemap</a></li>
+<li><a href>hexo-generator-seo-friendly-sitemap</a><ul>
+<li>今回はこちらを採用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>インストール</p>
+<ul>
+<li>HEXOディレクトリ直下で以下を実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-seo-friendly-sitemap --save</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="2-_configymlにpluginの設定を追加">2. _config.ymlにPluginの設定を追加</span></h3><ul>
+<li><p>HEXOの設定ファイルに先ほどのPluginを登録します</p>
+<ul>
+<li>ファイルはhexoディレクトリ直下にあります</li>
+</ul>
+</li>
+<li><p>_config.ymlに追記する内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## Plugins: https:&#x2F;&#x2F;hexo.io&#x2F;plugins&#x2F;</span><br><span class="line">sitemap:</span><br><span class="line">  path: sitemap.xml</span><br><span class="line">  tag: false</span><br><span class="line">  category: false</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3><span id="3-sitemapxmlの生成">3. sitemap.xmlの生成</span></h3><ul>
+<li><p>いつも通りにhexoコマンドでジェネレートする際に、sitemapが生成されます</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure></li>
+<li><p>sitemap.xmlの生成を確認</p>
+<ul>
+<li>index.htmlと<ul>
+<li>通常はpublic配下</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>開いてみると、以下のように書かれています</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;&lt;?xml-stylesheet type&#x3D;&quot;text&#x2F;xsl&quot; href&#x3D;&quot;sitemap.xsl&quot;?&gt;</span><br><span class="line">&lt;sitemapindex xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.sitemaps.org&#x2F;schemas&#x2F;sitemap&#x2F;0.9&quot;&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;sitemap&gt;</span><br><span class="line">        &lt;loc&gt;https:&#x2F;&#x2F;j-xaas.github.io&#x2F;post-sitemap.xml&lt;&#x2F;loc&gt;</span><br><span class="line">        &lt;lastmod&gt;2020-03-10T13:04:39.446Z&lt;&#x2F;lastmod&gt;</span><br><span class="line">    &lt;&#x2F;sitemap&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;sitemapindex&gt;</span><br><span class="line">&lt;!-- XML Sitemap generated by Hexo SEO Friendly Sitemap Generator --&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3><span id="4-本番環境へデプロイ">4. 本番環境へデプロイ</span></h3><ul>
+<li>WEBページをホスティングしている、サーバ等へsitemap.xmlファイルをおきましょう</li>
+<li>github pagesを用いている場合は、Gitへpushします</li>
+</ul>
+<h3><span id="5-google-search-consoleへ登録">5. Google Search Consoleへ登録</span></h3><ul>
+<li><p><a href="https://search.google.com/search-console">公式サイト</a>へアクセス</p>
+<ul>
+<li>未登録であれば、自分のWEBサイトのURLを登録しましょう</li>
+</ul>
+</li>
+<li><p>サイドメニュー内、インデックスのサイトマップを選択</p>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/76317221-2d197300-631f-11ea-9b4c-4c7dbb3b3d75.PNG" height="50%" width="50%">
+</div>
+
+
+<ul>
+<li>新しいサイトマップの追加<ul>
+<li>入力欄に”sitemap.xml”を入力</li>
+<li>送信</li>
 </ul>
 </li>
 </ul>
 <div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/74917567-0b595a00-540b-11ea-8dc3-5a257af3bd45.png" height="100%" width="100%">
+<img src="https://user-images.githubusercontent.com/41946222/76317318-5df9a800-631f-11ea-8995-7722bd39ddc5.png" height="100%" width="100%">
 </div>
-</li>
-<li><p>“Router Tree”タブ</p>
+
+
 <ul>
-<li>ルート構造をツリー表示</li>
+<li>しばらく待って更新すると、以下のようにステータスが”成功しました”と表示されます<ul>
+<li>以上でサイトマップの登録は完了です<ul>
+<li>hexo g の度に更新されるので、事後作業は特にありません</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/74918209-19f44100-540c-11ea-9953-c4734a0685ed.png" height="100%" width="100%">
+<img src="https://user-images.githubusercontent.com/41946222/76319276-5687ce00-6322-11ea-98de-c4837c6f1785.png" height="100%" width="100%">
 </div>
-
-
-</li>
-</ul>
-<ul>
-<li>“NgModule”タブ<ul>
-<li>import済みのモジュール構成を確認可能<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/74917975-c2ee6c00-540b-11ea-89d0-e1fbd9b7195c.png" height="100%" width="100%">
-</div>
-
-
-</li>
-</ul>
-</li>
-</ul>
-<h2><span id="備考">備考</span></h2><ul>
-<li>以下も便利そうでした。APの構成管理やドキュメント作成の手間は極力自動化していきましょう。<ul>
-<li><a href="https://one-it-thing.com/3254/">compodocでAngularプロジェクトのビジュアルなドキュメントを自動生成する</a></li>
-</ul>
-</li>
-</ul>
-
         </div>
         
         

@@ -5,7 +5,8 @@ thumbnails:
 date: 2020-03-10 23:23:23
 toc: true
 categories:
-- WEB Page Dev (Hexo)
+- WEB Page Dev
+- Hexo
 tags:
 - Hexo
 - Sitemap
