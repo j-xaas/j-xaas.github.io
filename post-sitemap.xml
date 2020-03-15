@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://j-xaas.github.io/2020/02/04/About-This-Blog/</loc>
+        <lastmod>2020-03-15T08:55:57.722Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://j-xaas.github.io/2020/02/09/Github%E3%81%8B%E3%82%89GithubEnterprise%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86/</loc>
         <lastmod>2020-03-14T17:50:36.513Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -66,14 +74,6 @@
     <url>
         <loc>https://j-xaas.github.io/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/</loc>
         <lastmod>2020-03-14T10:25:46.323Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://j-xaas.github.io/2020/02/04/About-This-Blog/</loc>
-        <lastmod>2020-03-14T10:07:51.062Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
