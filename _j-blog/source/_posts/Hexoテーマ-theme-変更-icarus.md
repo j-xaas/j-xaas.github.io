@@ -302,3 +302,7 @@ tags:
     <div style="text-align:center;">
     <img src="https://user-images.githubusercontent.com/41946222/76619886-46186300-656f-11ea-979d-878690e12d0c.png" height="100%" width="100%">
     </div>
+
+- 関連記事
+    - [icarus(Hexo Theme) Tips Menuの編集](https://j-xaas.github.io/2020/03/17/icarus-Hexo-Theme-Tips-Menuの編集/)
+        - 続いてメニューをカスタマイズしましょう

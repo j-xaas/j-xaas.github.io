@@ -11,13 +11,13 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>タグ: hexo-generator-amp - J&#39;s Tech Blog</title>
+<title>J&#39;s Tech Blog</title>
 
 
     <meta name="description" content="tech">
 <meta property="og:type" content="website">
 <meta property="og:title" content="J&#39;s Tech Blog">
-<meta property="og:url" content="https://j-xaas.github.io/tags/hexo-generator-amp/index.html">
+<meta property="og:url" content="https://j-xaas.github.io/page/2/index.html">
 <meta property="og:site_name" content="J&#39;s Tech Blog">
 <meta property="og:description" content="tech">
 <meta property="og:locale" content="ja_JP">
@@ -146,17 +146,7 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">タグ</a></li>
-            <li class="is-active"><a href="#" aria-current="page">hexo-generator-amp</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
     
 <div class="card">
     
@@ -164,17 +154,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-15T09:00:22.000Z">2020-03-15</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
-                </div>
+                <time class="level-item has-text-grey" datetime="2020-02-04T14:38:20.000Z">2020-02-04</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    11分 read (About 1619 words)
+                    5分 read (About 800 words)
                 </span>
                 
                 
@@ -183,213 +169,84 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/15/Hexo%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AEAMP%E5%8C%96/">HexoブログのAMP化【完全版】</a>
+                <a class="has-link-black-ter" href="/2020/02/04/About-This-Blog/">About This Blog</a>
             
         </h1>
         <div class="content">
-            <p>こんにちは。今回はHexoで生成したWEBページのAMP化の手法について解説します。簡単にいうとWEBページを高速表示可能な形式にします。同様の記事も数件見つけたのですが、所々でハマったので、完全版としてまとめました。</p>
-<!-- toc -->
+            <p>初めまして。本ページをご覧頂き有難うございます。  </p>
+<p>都内の大手IT企業で、先端技術検証や新規サービスの実証～事業化を担当している若手社員です。主にSaaS/Multi Cloud/Serverless/IoT/DevOps関連のPoCに携わっています。  </p>
+<p>学生時代は早稲田大学の創造理工学部で3Dプリンターの研究をしていました。コンピューターサイエンスの基礎を学ばないまま、モダンな技術を扱うことになったので、日々悪戦苦闘しています。</p>
+<p>　アメリカ国立訓練研究所で提唱されている<a href="https://www.researchgate.net/figure/Learning-Pyramid-developed-by-National-Training-Laboratories-7_fig1_302480305">Learning Pyramid</a>によれば、学習定着率を高める最善手は “Teach Others” です。Outputする機会として、この場で個人的なTipsやハマった事の解決策をまとめていきたいと考えております。また、開発チームの立ち上げ段階で質問されがちな基礎の手順を先に用意して、教育コストを削減する意図もあります。マッチした記事があれば、PJのスタートダッシュにお使いください。  </p>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/73755094-dd3c0f00-47a8-11ea-9ec5-e1e537559054.png" height="600px" width="600px">
+</div>
 
+<p>　IT業界では、ベテランの優秀層とのスキルのギャップで苦しむシーンが多いと思います。私も初期配属された頃、8ヵ月間毎月資格を取り続けたことがありました。特にモダンな技術の文献は一定の暗黙知を有するものが多く、初級者に優しくありません。技術的に稚拙な表現もあるかもしれませんが、公開した記事が同じように困っている誰かの助けになれば嬉しいです。  </p>
+<p>　また、IoT案件に関わった影響で始めたSmart Homeの構築手法についても載せていく予定です。現在は以下のような構成を作っています。 ↓ 辺りを実現するだけでもだいぶQOLが向上するのでお勧めです。DIYの感覚で楽をする為にやってます。</p>
 <ul>
-<li><a href="#基礎知識">基礎知識</a><ul>
-<li><a href="#ampaccelerated-mobile-pagesとは">AMP(Accelerated Mobile Pages)とは？</a></li>
-<li><a href="#hexo-generator-ampとは">hexo-generator-ampとは</a></li>
-</ul>
-</li>
-<li><a href="#導入手順">導入手順</a><ul>
-<li><a href="#1-hexo-generator-ampのinstall">1. hexo-generator-ampのinstall</a></li>
-<li><a href="#2-headタグにamp-htmlのパスを指定">2. headタグにAMP HTMLのパスを指定</a></li>
-<li><a href="#3-_configymlの改修">3. ./_config.ymlの改修</a><ul>
-<li><a href="#trouble-shooting">Trouble Shooting</a></li>
-</ul>
-</li>
-<li><a href="#4-markdown記法の修正画像">4. Markdown記法の修正(画像)</a><ul>
-<li><a href="#trouble-shooting-1">Trouble Shooting</a></li>
-</ul>
-</li>
-<li><a href="#5-web上でのチェック">5. WEB上でのチェック</a><ul>
-<li><a href="#ampテスト">AMPテスト</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-
-<h2><span id="基礎知識">基礎知識</span></h2><h3><span id="ampaccelerated-mobile-pagesとは">AMP(Accelerated Mobile Pages)とは？</span></h3><ul>
-<li><a href="https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/?referrer=ampproject.org&utm_source=search_console&utm_campaign=sc-amp-test">AMP HTML</a><ul>
-<li>モバイルでのコンテンツ表示を高速化させるための手法<ul>
-<li>GoogleとTwitterが協同で立ち上げたプロジェクトです</li>
-<li>ページ読み込みに3秒以上かかる場合、53%のユーザーが離脱してしまうと言われています</li>
-<li>検索結果で並んでいるサイトに、稲妻マークが小さくついているものを見つけたことはありませんか？<ul>
-<li>実はあのマークはAMPサイトであるサインです</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>AMP化するには規格に則った記法でサイトを構築する必要があります<ul>
-<li>自力での対応は難しいので、自動生成する手法を今回解説します</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="hexo-generator-ampとは">hexo-generator-ampとは</span></h3><ul>
-<li><a href="https://github.com/tea3/hexo-generator-amp">hexo-generator-amp</a><ul>
-<li>Google AMP (Accelerated Mobile Pages) を自動で生成してくれるプラグイン</li>
-<li>各記事のHTMLに対して、AMP HTMLを生成<ul>
-<li>hexo generate実行時に通常のHTMLとAMP版のHTMLの双方ができます</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2><span id="導入手順">導入手順</span></h2><h3><span id="1-hexo-generator-ampのinstall">1. hexo-generator-ampのinstall</span></h3><ul>
-<li>Hexoディレクトリ直下で実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-amp --save</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3><span id="2-headタグにamp-htmlのパスを指定">2. headタグにAMP HTMLのパスを指定</span></h3><ul>
-<li><p>head.ejs</p>
-<ul>
-<li>自動生成するHTMLのheaderの設定を規定するファイルです</li>
-<li>ファイルの所在は以下  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\themes\theme-name\layout\</span><br></pre></td></tr></table></figure>
-<ul>
-<li>私が利用しているテーマ:icarusの場合は一階層深い所にありました<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\themes\icarus\layout\common\</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>以下を追記</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (is_post() &amp;&amp; config.generator_amp)&#123; %&gt;</span><br><span class="line">    &lt;link rel&#x3D;&quot;amphtml&quot; href&#x3D;&quot;&lt;%&#x3D; config.url %&gt;&#x2F;&lt;%&#x3D; page.path %&gt;&#x2F;amp&#x2F;index.html&quot;&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>WEBページを作成する中で、度々headerにscriptを追加するシーンがあると思われます</p>
-<ul>
-<li>基本的にhead.elsに同様に追記することで目的を達成可能です。覚えておきましょう</li>
-</ul>
-</li>
-</ul>
-<h3><span id="3-_configymlの改修">3. ./_config.ymlの改修</span></h3><ul>
-<li><p>_config.ymlにPluginの設定を追加します</p>
-<ul>
-<li>theme配下ではなくHexoディレクトリ直下のファイルです</li>
-</ul>
-</li>
-<li><p>以下を追記</p>
-<ul>
-<li>Gitの公式ページの説明はpathの記法が少し間違っていました<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># hexo-generator-amp</span><br><span class="line"></span><br><span class="line">generator_amp:</span><br><span class="line">  templateDir: amp-template</span><br><span class="line">  assetDistDir: amp-dist</span><br><span class="line">  logo:</span><br><span class="line">    path: sample&#x2F;sample-logo.png</span><br><span class="line">    width: 600</span><br><span class="line">    height: 60</span><br><span class="line">  substituteTitleImage:</span><br><span class="line">    path: sample&#x2F;sample-substituteTitleImage.png</span><br><span class="line">    width: 1024</span><br><span class="line">    height: 800</span><br><span class="line">  warningLog: false</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>hexo serverで確認</p>
-</li>
-</ul>
-<h4><span id="trouble-shooting">Trouble Shooting</span></h4><ul>
-<li>以下のエラーが出た場合</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[00:44:36.025] [hexo-generator-amp] hexo-generator-amp&#39;s template has been copied to</span><br><span class="line">the your project.</span><br><span class="line">Please check the following file.</span><br><span class="line">-&gt; j-blog\amp-template\sample</span><br><span class="line">[00:44:36.040] [hexo-generator-amp] error:  Not found the hexo-generator-amp&#39;s asset</span><br><span class="line">files. If you do not have the file please download the sample file from the following site. ( see: https:&#x2F;&#x2F;github.com&#x2F;tea3&#x2F;hexo-generator-amp&#x2F;tree&#x2F;master&#x2F;template )</span><br><span class="line">Please check the following file.</span><br><span class="line">-&gt; j-blog\amp-template\sample-logo.png</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>上記はpathの指定が間違っている<ul>
-<li>sample配下にsample-logo.png等が格納されているため、sample/を頭に付けましょう</li>
-</ul>
-</li>
-</ul>
-<h3><span id="4-markdown記法の修正画像">4. Markdown記法の修正(画像)</span></h3><ul>
-<li><p>hexo server実行時にAMPの書式チェックがプラグインによって実行されます</p>
-</li>
-<li><p>恐らく以下のErrorが大量に出る人が多いと思われます</p>
-<ul>
-<li>markdownの画像のURL指定の表記がAMPでは通用しない為です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">This plugin can not acquire the width and height of such url images.</span><br><span class="line">Please change the URL to HTTP or HTTPS, or add height and width.</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>エラーメッセージについて解説</p>
-<ul>
-<li>このプラグインは、URL画像の幅と高さを取得できない</li>
-<li>URLをHTTPまたはHTTPSに変更するか、高さと幅を追加してください</li>
-</ul>
-</li>
-<li><p>どういうこと？</p>
-<ul>
-<li>AMPの規格では画像のheightとwidthを設定する必要があります。</li>
-<li>そのため、各記事のURL指定の画像に対してエラーが出ています</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>とりあえず以下のErrorが出ている記事の画像を修正してみます</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-&gt; _posts&#x2F;About-This-Blog.md</span><br><span class="line">[18:39:10.984] [hexo-generator-amp] error:  This plugin can not acquire the width and height of such url images.</span><br><span class="line">Please change the URL to HTTP or HTTPS, or add height and width. </span><br><span class="line">img path: https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;41946222&#x2F;73755094-dd3c0f00-47a8-11ea-9ec5-e1e537559054.png</span><br><span class="line">Please check the following file.</span><br><span class="line">-&gt; _posts&#x2F;About-This-Blog.md</span><br><span class="line">[18:39:10.985] [hexo-generator-amp] error:  Error: connect ETIMEDOUT 151.101.108.133:443</span><br><span class="line">This plugin checks whether the image URL exists. </span><br><span class="line">img path: https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;41946222&#x2F;74917091-5030c100-540a-11ea-9060-2d05fc6c6c23.png</span><br><span class="line">Please check the following file.</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>現在のmarkdown記法</p>
-<ul>
-<li>heightとwidthを定められない<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![image_title](image_url)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>回避策</p>
-<ul>
-<li>以下のようにHTMLの記法で修正<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div style&#x3D;&quot;text-align:center;&quot;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;image_url&quot; height&#x3D;&quot;500px&quot; width&#x3D;&quot;500px&quot;&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>各記事のURL指定の画像に対して同様の修正を実施します</p>
-<ul>
-<li>割と大変なので、記事が少なめの段階で対処した方がいいです</li>
-</ul>
-</li>
-<li><p>確認</p>
-<ul>
-<li>以下を実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure></li>
-<li>エラーの解消を確認</li>
-</ul>
-</li>
-<li><p>起動したAPをブラウザで確認</p>
-<ul>
-<li>以下のように記事を開いている状態で、URLの後ろにampを付ければ生成されたAMP HTMLを確認可能です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;localhost:4000&#x2F;article_name&#x2F;amp</span><br></pre></td></tr></table></figure></li>
-<li>各記事で確認しましょう</li>
-</ul>
-</li>
+<li><a href="https://amzn.to/33mE08M">Smart Mat</a>で消耗品の発注を自動化</li>
+<li><a href="https://amzn.to/2x2nLS8">Smartリモコン</a>で赤外線リモコンの機能を集約</li>
 </ul>
 <div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/76687185-ee5c2380-6664-11ea-8e75-f699f17a498a.png" height="300px" width="600px">
+<img src="https://user-images.githubusercontent.com/41946222/75523195-e2f6de80-5a4e-11ea-94fd-862c110cd075.PNG" height="550px" width="900px">
 </div>
 
 
-<h4><span id="trouble-shooting">Trouble Shooting</span></h4><ul>
-<li>AMP画像が表示されない<ul>
-<li>heightとwidthの%指定はダメです</li>
-<li>pxでかっちり定めなければAMPでは表示されません</li>
-</ul>
-</li>
-</ul>
-<h3><span id="5-web上でのチェック">5. WEB上でのチェック</span></h3><ul>
-<li>本番環境にデプロイ⇒WEBから確認<ul>
-<li>以下のように各記事のURLに/ampを足すとAMP HTML版のページの表示を確認可能です<ul>
-<li>AMP版と通常版の両方のページをWEBから確認出来るようになっている状態です</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4><span id="ampテスト">AMPテスト</span></h4><ul>
-<li><a href="https://search.google.com/test/amp">GoogleのAMPテスト</a><ul>
-<li>指定したURLがAMPに対応しているかチェック可能です<ul>
-<li>AMP版のURLを指定してください</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/76698001-1e490c80-66e1-11ea-90d2-12f01b0c5b78.png" height="200px" width="600px">
-</div>
-
-
-
+<p>個人的に開発したいSaaSがあるので、手伝ってくれる方も募集してます。<br>Mail: <a href="mailto:junjunjunya108@gmail.com">junjunjunya108@gmail.com</a>  </p>
 <ul>
-<li>以上でHexoで生成したWEBページのAMP化は完了です</li>
-<li>各種設定やTipsについては別記事で解説します</li>
+<li><p>良く扱う技術</p>
+<ul>
+<li>Framework<ul>
+<li>Angular</li>
+<li>Ionic</li>
+<li>Flutter</li>
+</ul>
+</li>
+<li>Cloud<ul>
+<li>AWS<ul>
+<li>CloudFormation</li>
+<li>Cognito</li>
+<li>Lambda</li>
+<li>S3</li>
+</ul>
+</li>
+<li>Google Cloud<ul>
+<li>Authentication</li>
+<li>Firestore</li>
+<li>AutoML</li>
+<li>AdMob</li>
+<li>Hosting</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>BaaS<ul>
+<li>Firebase (Google)</li>
+<li>Amplify (AWS)</li>
+</ul>
+</li>
+<li>IoT<ul>
+<li>IFTTT</li>
+<li>Rasberry Pi</li>
+<li>AWS IoT</li>
+<li>Switch Bot</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>資格/スキル</p>
+<ul>
+<li>クラウド関連がメイン ex.) AWS Solution Architect, ITIL Foundation… </li>
+</ul>
+</li>
+<li><p>趣味</p>
+<ul>
+<li>ベース/映画<ul>
+<li>バンドのECサイトです ⇒ <a href="https://sheeps.official.ec/">The Sheep’s Goods</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -406,6 +263,25 @@
 
 
 
+
+    
+<div class="card card-transparent">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous">
+            <a class="is-flex-grow has-text-black-ter" href="/">前</a>
+        </div>
+        <div class="pagination-next is-invisible is-hidden-mobile">
+            <a class="is-flex-grow has-text-black-ter" href="/page/3/">次</a>
+        </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link has-text-black-ter" href="/">1</a></li>
+            
+            <li><a class="pagination-link is-current" href="/page/2/">2</a></li>
+            
+        </ul>
+    </nav>
+</div>
 </div>
                 
 
