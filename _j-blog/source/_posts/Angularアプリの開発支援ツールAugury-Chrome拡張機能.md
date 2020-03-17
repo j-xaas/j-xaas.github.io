@@ -3,7 +3,7 @@ title: Angularアプリの開発支援ツールAugury(Chrome拡張機能)
 date: 2020-02-20 18:12:39
 categories:
 - Serverless Application Dev
-- Single Page Application
+- SPA (Angular)
 tags:
 - Angular
 - Augury

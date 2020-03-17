@@ -7,12 +7,15 @@ categories:
 tags: 
 - Angular
 - AWS SDK for JavaScript
+toc: true
 ---
 
 - angularで開発していたアプリケーションにaws-sdkを導入する際の備忘録
     - [AWS SDK](https://aws.amazon.com/jp/tools/)を入れることで、アプリケーションからAWSのリソースを操作可能になります
         - ex.) S3やDynamoDBへのデータの格納、Cognitoによる認証、Lambdaの実行...
 - Angularの場合、公式の開発者ガイド通りにやると鬼のようにエラーが出るので共有しておきます。ひと手間必要でした。
+
+<!--toc-->
 
 ## 1. aws sdk for javascriptのinstall
 - angular PJ直下で実行

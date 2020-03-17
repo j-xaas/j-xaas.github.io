@@ -3,12 +3,15 @@ title: Angular8:”global is not defined”の回避策
 date: 2020-03-09 23:38:20
 categories:
 - Serverless Application Dev
-- Single Page Application
+- SPA (Angular)
 tags: 
 - Angular
 - ”global is not defined”
 - AWS SDK for JavaScript
+toc: true
 ---
+
+<!--toc-->
 
 ## 概要
 - Angular8で以下のエラーにハマった際の解消法を解説します

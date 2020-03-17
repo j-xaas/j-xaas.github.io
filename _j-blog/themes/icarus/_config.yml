@@ -32,8 +32,8 @@ navbar:
         Categories: /categories
         Tags: /tags
         About: /2020/02/04/About-This-Blog/ #/about
-        Policy: /policy
         EC: https://sheeps.official.ec/
+        Policy: /policy
     # Navigation bar links to be shown on the right
     links:
         Download on GitHub:

@@ -115,10 +115,10 @@
                 href="/2020/02/04/About-This-Blog/">About</a>
                 
                 <a class="navbar-item"
-                href="/policy">Policy</a>
+                href="https://sheeps.official.ec/">EC</a>
                 
                 <a class="navbar-item"
-                href="https://sheeps.official.ec/">EC</a>
+                href="/policy">Policy</a>
                 
             </div>
             
@@ -147,6 +147,146 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-09T13:52:47.000Z">2020-02-09</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4分 read (About 668 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/09/Github%E3%81%8B%E3%82%89GithubEnterprise%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86/">Github.comからGithubEnterpriseへの移行手順</a>
+            
+        </h1>
+        <div class="content">
+            <div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/74919073-64c28880-540d-11ea-8b40-15036b3fee05.png" height="100%" width="100%">
+</div>
+
+
+<h2><span id="概要">概要</span></h2><ul>
+<li>リポジトリ移行(Github⇒GHE)の備忘録です</li>
+<li>想定する状況<ul>
+<li>Organizationごと中身をまるまる移行したいパターン</li>
+<li>Commitログ等は特に移行する必要無く、シンプルな手法で手早く終わらせたい</li>
+</ul>
+</li>
+<li>事前調査 <ul>
+<li>organization単位の以降はできない</li>
+<li>リポジトリ単位の移行は可能</li>
+<li>GHE内に同じ名称のOrganizationやリポジトリを作成可能<ul>
+<li>★一意性のチェックがGithub側とは隔絶されている</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="手順">手順</span></h2><h3><span id="1-gheでorganizationを作成">1. GHEでOrganizationを作成</span></h3><ul>
+<li>Githubと同様の名称で問題無し<ul>
+<li>URLは前半が企業ごとのものに変わる</li>
+<li>SiteAdmin権限が必要<ul>
+<li>GUIで操作</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="2-gheでリポジトリを作成">2. GHEでリポジトリを作成</span></h3><ul>
+<li>Github.com側と同様の名称で問題無し<ul>
+<li>空のリポジトリを一通り作成<ul>
+<li>GUIで操作</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="3-local端末で移行対象のリポジトリのデータを退避">3. Local端末で移行対象のリポジトリのデータを退避</span></h3><ul>
+<li>各リポジトリの中身をデスクトップ等へコピー</li>
+<li>Gitリポジトリの管理場所:Dドライブから削除<ul>
+<li>この後、GHEから同様の名称のリポジトリをCloneするため</li>
+<li>Dドライブでlsコマンドを打って削除されたことを確認</li>
+</ul>
+</li>
+</ul>
+<h3><span id="4-gheからlocalへclone">4. GHEからLocalへClone</span></h3><ul>
+<li>各リポジトリ（空）を端末へClone<ul>
+<li>URLはリポジトリのページの”Clone or download”タブより確認<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone &lt;リポジトリのURL&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="5-cloneした空リポジトリに退避データをコピー">5. Cloneした空リポジトリに退避データをコピー</span></h3><ul>
+<li>GHEからCloneした空リポジトリへ、退避場所からコピー</li>
+</ul>
+<h3><span id="6-gheのremoteにデータを登録">6. GHEのRemoteにデータを登録</span></h3><ul>
+<li>各リポジトリで以下の作業を実施する</li>
+<li>変更内容を保存<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add *</span><br><span class="line">git commit &quot;Repository Migration&quot;</span><br></pre></td></tr></table></figure></li>
+<li>Remoteへ送信<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br></pre></td></tr></table></figure>
+<h4><span id="github-pagesが含まれている場合">Github Pagesが含まれている場合</span></h4></li>
+<li>_config.ymlに設定する公開URLを変更する必要がある</li>
+<li>GHEにおけるGithub PagesのURLは以下のようになる<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;pages.&lt;gheのURL&gt;&#x2F;&lt;Organization名 or ユーザ名&gt;&#x2F;&lt;リポジトリ名&gt;.io</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3><span id="7-gheで確認">7. GHEで確認</span></h3><ul>
+<li><p>GHEの問題無くデータが移行できていることを確認</p>
+</li>
+<li><p>Github pagesが含まれていたため、ブラウザで表示されるようにする</p>
+</li>
+<li><p>リポジトリのSettingsより、以下のようにGithub pagesを有効にしてSave</p>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://media.github-enterprise-16ae0.paas1.nec-cloud.com/user/16/files/e0a2e680-49b2-11ea-802c-f247b17a1e04" height="100%" width="100%">
+</div>
+
+
+<ul>
+<li>GHEにおけるGithub PagesのURLは以下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;pages.&lt;gheのURL&gt;&#x2F;&lt;Organization名 or ユーザ名&gt;&#x2F;&lt;リポジトリ名&gt;.io</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3><span id="8-githubcomより移行元を削除">8. Github.comより移行元を削除</span></h3><ul>
+<li>リポジトリを削除</li>
+<li>Organizationを削除<ul>
+<li>管理者権限が必要</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
     
 <div class="card">
     
@@ -327,7 +467,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            11
+                            12
                         </p>
                     </a>
                 </div>
@@ -351,7 +491,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            18
+                            19
                         </p>
                     </a>
                 </div>
@@ -459,7 +599,7 @@
                 <span class="level-item">Serverless Application Dev</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">5</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Serverless-Application-Dev/AWS/">
@@ -478,12 +618,12 @@
                 <span class="level-item tag">1</span>
             </span>
         </a></li><li>
-        <a class="level is-marginless" href="/categories/Serverless-Application-Dev/Single-Page-Application/">
+        <a class="level is-marginless" href="/categories/Serverless-Application-Dev/SPA-Angular/">
             <span class="level-start">
-                <span class="level-item">Single Page Application</span>
+                <span class="level-item">SPA (Angular)</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">3</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Tool-Tips/">
@@ -536,7 +676,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 15px;">AWS SDK for JavaScript</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/cloud9/" style="font-size: 15px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+        <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 13.33px;">AWS SDK for JavaScript</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Hexo/" style="font-size: 16.67px;">Hexo</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/cloud9/" style="font-size: 13.33px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/icarus/" style="font-size: 13.33px;">icarus</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
     </div>
 </div>
     
@@ -548,6 +688,25 @@
         <h3 class="menu-label">
             最近の記事
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/03/17/Angular%E3%81%A7%E9%9A%8E%E5%B1%A4%E6%A7%8B%E9%80%A0%E3%81%AE%E8%A1%A8%E3%82%92%E9%96%8B%E7%99%BA-Treetable/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Angularで階層構造の表を開発(Treetable)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-17T12:49:37.000Z">2020-03-17</time></div>
+                    <a href="/2020/03/17/Angular%E3%81%A7%E9%9A%8E%E5%B1%A4%E6%A7%8B%E9%80%A0%E3%81%AE%E8%A1%A8%E3%82%92%E9%96%8B%E7%99%BA-Treetable/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Angularで階層構造の表を開発(Treetable)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -625,25 +784,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Angular8:”global is not defined”の回避策">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-09T14:38:20.000Z">2020-03-09</time></div>
-                    <a href="/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Angular8:”global is not defined”の回避策</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Single-Page-Application/">Single Page Application</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -661,7 +801,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -707,7 +847,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -763,6 +903,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Sitemap/">
                         <span class="tag">Sitemap</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Treetable/">
+                        <span class="tag">Treetable</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -840,6 +987,25 @@
         
         <article class="media">
             
+            <a href="/2020/03/17/Angular%E3%81%A7%E9%9A%8E%E5%B1%A4%E6%A7%8B%E9%80%A0%E3%81%AE%E8%A1%A8%E3%82%92%E9%96%8B%E7%99%BA-Treetable/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Angularで階層構造の表を開発(Treetable)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-17T12:49:37.000Z">2020-03-17</time></div>
+                    <a href="/2020/03/17/Angular%E3%81%A7%E9%9A%8E%E5%B1%A4%E6%A7%8B%E9%80%A0%E3%81%AE%E8%A1%A8%E3%82%92%E9%96%8B%E7%99%BA-Treetable/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Angularで階層構造の表を開発(Treetable)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/17/icarus-Hexo-Theme-Tips-Menu%E3%81%AE%E7%B7%A8%E9%9B%86/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="icarus(Hexo Theme) Tips Menuの編集">
@@ -914,25 +1080,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Angular8:”global is not defined”の回避策">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-09T14:38:20.000Z">2020-03-09</time></div>
-                    <a href="/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Angular8:”global is not defined”の回避策</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Single-Page-Application/">Single Page Application</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -950,7 +1097,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -996,7 +1143,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -1052,6 +1199,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Sitemap/">
                         <span class="tag">Sitemap</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Treetable/">
+                        <span class="tag">Treetable</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

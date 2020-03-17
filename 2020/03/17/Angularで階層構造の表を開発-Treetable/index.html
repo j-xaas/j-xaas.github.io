@@ -4,6 +4,8 @@
     <script data-ad-client="ca-pub-9328277883112913" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 
+    <link rel="amphtml" href="https://j-xaas.github.io/2020/03/17/Angularで階層構造の表を開発-Treetable//amp/index.html">
+
 
 <meta charset="utf-8" />
 
@@ -11,19 +13,22 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>タグ: AMP - J&#39;s Tech Blog</title>
+<title>Angularで階層構造の表を開発(Treetable) - J&#39;s Tech Blog</title>
 
 
-    <meta name="description" content="tech">
-<meta property="og:type" content="website">
-<meta property="og:title" content="J&#39;s Tech Blog">
-<meta property="og:url" content="https://j-xaas.github.io/tags/AMP/index.html">
+    <meta name="description" content="こんにちは。今回は表題の内容を解説します。Angular MaterialのMat-tableとMat-treeを組み合わせれば実現可能ですが、初級者には難しく、コードが複雑になります。そこで、簡単に階層型の表を生成可能なOSS:Treetableを利用します。        Treetableの導入手順 1. install 2. app.module.tsでModuleをimport 3. C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angularで階層構造の表を開発(Treetable)">
+<meta property="og:url" content="https://j-xaas.github.io/2020/03/17/Angular%E3%81%A7%E9%9A%8E%E5%B1%A4%E6%A7%8B%E9%80%A0%E3%81%AE%E8%A1%A8%E3%82%92%E9%96%8B%E7%99%BA-Treetable/index.html">
 <meta property="og:site_name" content="J&#39;s Tech Blog">
-<meta property="og:description" content="tech">
+<meta property="og:description" content="こんにちは。今回は表題の内容を解説します。Angular MaterialのMat-tableとMat-treeを組み合わせれば実現可能ですが、初級者には難しく、コードが複雑になります。そこで、簡単に階層型の表を生成可能なOSS:Treetableを利用します。        Treetableの導入手順 1. install 2. app.module.tsでModuleをimport 3. C">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://j-xaas.github.io/images/og_image.png">
+<meta property="article:published_time" content="2020-03-17T12:49:37.000Z">
+<meta property="article:modified_time" content="2020-03-17T14:03:18.700Z">
 <meta property="article:author" content="Junya">
-<meta property="article:tag" content="angular">
+<meta property="article:tag" content="Angular">
+<meta property="article:tag" content="Treetable">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://j-xaas.github.io/images/og_image.png">
 
@@ -91,7 +96,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="J&#39;s Tech Blog" height="28">
+                <img src="/images/logo.svg" alt="Angularで階層構造の表を開発(Treetable)" height="28">
             
             </a>
         </div>
@@ -146,35 +151,24 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">タグ</a></li>
-            <li class="is-active"><a href="#" aria-current="page">AMP</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
 <div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-15T09:00:22.000Z">2020-03-15</time>
+                <time class="level-item has-text-grey" datetime="2020-03-17T12:49:37.000Z">2020-03-17</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
+                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    11分 read (About 1619 words)
+                    10分 read (About 1536 words)
                 </span>
                 
                 
@@ -183,215 +177,186 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/15/Hexo%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AEAMP%E5%8C%96/">HexoブログのAMP化【完全版】</a>
+                Angularで階層構造の表を開発(Treetable)
             
         </h1>
         <div class="content">
-            <p>こんにちは。今回はHexoで生成したWEBページのAMP化の手法について解説します。簡単にいうとWEBページを高速表示可能な形式にします。同様の記事も数件見つけたのですが、所々でハマったので、完全版としてまとめました。</p>
+            <p>こんにちは。今回は表題の内容を解説します。<br><a href="https://material.angular.io/">Angular Material</a>の<a href="https://material.angular.io/components/table/overview">Mat-table</a>と<a href="https://material.angular.io/components/tree/overview">Mat-tree</a>を組み合わせれば実現可能ですが、初級者には難しく、コードが複雑になります。そこで、簡単に階層型の表を生成可能なOSS:<a href="https://github.com/supamax/ng-material-treetable">Treetable</a>を利用します。</p>
+<div style="text-align:center;">
+<img alt="Treetable" src="https://user-images.githubusercontent.com/41946222/76859307-64969b00-689c-11ea-94de-3b1dac94ed56.png" height="150px" width="400px">
+</div>
+
 <!-- toc -->
 
 <ul>
-<li><a href="#基礎知識">基礎知識</a><ul>
-<li><a href="#ampaccelerated-mobile-pagesとは">AMP(Accelerated Mobile Pages)とは？</a></li>
-<li><a href="#hexo-generator-ampとは">hexo-generator-ampとは</a></li>
+<li><a href="#treetableの導入手順">Treetableの導入手順</a><ul>
+<li><a href="#1-install">1. install</a></li>
+<li><a href="#2-appmoduletsでmoduleをimport">2. app.module.tsでModuleをimport</a></li>
+<li><a href="#3-component側で使用">3. Component側で使用</a><ul>
+<li><a href="#31-html">3.1. HTML</a></li>
+<li><a href="#32-ts">3.2. TS</a></li>
 </ul>
 </li>
-<li><a href="#導入手順">導入手順</a><ul>
-<li><a href="#1-hexo-generator-ampのinstall">1. hexo-generator-ampのinstall</a></li>
-<li><a href="#2-headタグにamp-htmlのパスを指定">2. headタグにAMP HTMLのパスを指定</a></li>
-<li><a href="#3-_configymlの改修">3. ./_config.ymlの改修</a><ul>
-<li><a href="#trouble-shooting">Trouble Shooting</a></li>
+<li><a href="#4-optionを設定">4. Optionを設定</a></li>
+<li><a href="#eventの設定">Eventの設定</a></li>
 </ul>
 </li>
-<li><a href="#4-markdown記法の修正画像">4. Markdown記法の修正(画像)</a><ul>
-<li><a href="#trouble-shooting-1">Trouble Shooting</a></li>
-</ul>
-</li>
-<li><a href="#5-web上でのチェック">5. WEB上でのチェック</a><ul>
-<li><a href="#ampテスト">AMPテスト</a></li>
-</ul>
-</li>
+<li><a href="#サンプルソースの解説">サンプルソースの解説</a></li>
+<li><a href="#自分でサンプルを開発した際のメモ">自分でサンプルを開発した際のメモ</a><ul>
+<li><a href="#サンプルデータで表を出す">サンプルデータで表を出す</a></li>
 </ul>
 </li>
 </ul>
 <!-- tocstop -->
 
-<h2><span id="基礎知識">基礎知識</span></h2><h3><span id="ampaccelerated-mobile-pagesとは">AMP(Accelerated Mobile Pages)とは？</span></h3><ul>
-<li><a href="https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/?referrer=ampproject.org&utm_source=search_console&utm_campaign=sc-amp-test">AMP HTML</a><ul>
-<li>モバイルでのコンテンツ表示を高速化させるための手法<ul>
-<li>GoogleとTwitterが協同で立ち上げたプロジェクトです</li>
-<li>ページ読み込みに3秒以上かかる場合、53%のユーザーが離脱してしまうと言われています</li>
-<li>検索結果で並んでいるサイトに、稲妻マークが小さくついているものを見つけたことはありませんか？<ul>
-<li>実はあのマークはAMPサイトであるサインです</li>
-</ul>
+<h2><span id="treetableの導入手順">Treetableの導入手順</span></h2><h3><span id="1-install">1. install</span></h3><ul>
+<li><p>以下を実行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i ng-material-treetable --save</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-</li>
-<li>AMP化するには規格に則った記法でサイトを構築する必要があります<ul>
-<li>自力での対応は難しいので、自動生成する手法を今回解説します</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="hexo-generator-ampとは">hexo-generator-ampとは</span></h3><ul>
-<li><a href="https://github.com/tea3/hexo-generator-amp">hexo-generator-amp</a><ul>
-<li>Google AMP (Accelerated Mobile Pages) を自動で生成してくれるプラグイン</li>
-<li>各記事のHTMLに対して、AMP HTMLを生成<ul>
-<li>hexo generate実行時に通常のHTMLとAMP版のHTMLの双方ができます</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2><span id="導入手順">導入手順</span></h2><h3><span id="1-hexo-generator-ampのinstall">1. hexo-generator-ampのinstall</span></h3><ul>
-<li>Hexoディレクトリ直下で実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-amp --save</span><br></pre></td></tr></table></figure>
+<li><p>Angular Materialパッケージがinstallされていることを確認</p>
+<ul>
+<li>既に入れていればスルー<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i @angular&#x2F;material @angular&#x2F;cdk @angular&#x2F;animations --save</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
-<h3><span id="2-headタグにamp-htmlのパスを指定">2. headタグにAMP HTMLのパスを指定</span></h3><ul>
-<li><p>head.ejs</p>
+</li>
+</ul>
+<h3><span id="2-appmoduletsでmoduleをimport">2. app.module.tsでModuleをimport</span></h3><ul>
+<li>src/app/app.module.tsを改修<ul>
+<li>TreetableModuleをimport<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import &#123; TreetableModule &#125; from &#39;ng-material-treetable&#39;;</span><br><span class="line"> </span><br><span class="line">@NgModule(&#123;</span><br><span class="line">    ...</span><br><span class="line">  imports: [</span><br><span class="line">    ...</span><br><span class="line">    TreetableModule</span><br><span class="line">  ],</span><br><span class="line">  ...</span><br><span class="line">&#125;)</span><br><span class="line">export class AppModule &#123; &#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="3-component側で使用">3. Component側で使用</span></h3><h4><span id="31-html">3.1. HTML</span></h4><ul>
+<li>sample.component.htmlを改修<ul>
+<li>treetable要素を加えるだけでOKです<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;treetable [tree]&#x3D;&quot;yourTreeDataStructure&quot;&gt;&lt;&#x2F;treetable&gt;</span><br></pre></td></tr></table></figure>
+<h4><span id="32-ts">3.2. TS</span></h4></li>
+</ul>
+</li>
+<li>sample.component.ts<ul>
+<li>データソースとinterface（データの型）を規定します<ul>
+<li>GET等で外部APIからデータを持ってくる場合は、べた書きしているデータ部分を返り値に差し替えてください</li>
+<li>データ構造は自由です。無くてもOK</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Component, OnInit &#125; from &#39;@angular&#x2F;core&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 追加</span><br><span class="line">import &#123; Node, Options &#125; from &#39;ng-material-treetable&#39;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@Component(&#123;</span><br><span class="line">  selector: &#39;app-tree-table&#39;,</span><br><span class="line">  templateUrl: &#39;.&#x2F;tree-table.component.html&#39;,</span><br><span class="line">  styleUrls: [&#39;.&#x2F;tree-table.component.scss&#39;]</span><br><span class="line">&#125;)</span><br><span class="line">export class TreeTableComponent implements OnInit &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; データソースを定義</span><br><span class="line">  &#x2F;&#x2F; 省略部分はJSONデータ　表２のデータソース　class内の先頭に必要であった</span><br><span class="line">  arrayOfNodesTree: Node&lt;Task&gt;[] &#x3D; [</span><br><span class="line">    &#123;</span><br><span class="line">      value: &#123;</span><br><span class="line">        name: &#39;Tasks for Sprint 1&#39;,</span><br><span class="line">        completed: true,</span><br><span class="line">        owner: &#39;Marco&#39;</span><br><span class="line">      &#125;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Complete feature #123&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;Marco&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Update documentation&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;Jane&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: [</span><br><span class="line">            &#123;</span><br><span class="line">              value: &#123;</span><br><span class="line">                name: &#39;Proofread documentation&#39;,</span><br><span class="line">                completed: true,</span><br><span class="line">                owner: &#39;Bob&#39;</span><br><span class="line">              &#125;,</span><br><span class="line">              children: []</span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      value: &#123;</span><br><span class="line">        name: &#39;Tasks for Sprint 2&#39;,</span><br><span class="line">        completed: false,</span><br><span class="line">        owner: &#39;Erika&#39;,</span><br><span class="line">      &#125;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Fix bug #567&#39;,</span><br><span class="line">            completed: false,</span><br><span class="line">            owner: &#39;Marco&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Speak with clients&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;James&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ];</span><br><span class="line"></span><br><span class="line">  constructor() &#123; &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 表のデータ構造の定義</span><br><span class="line">export interface Task &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  completed: boolean;</span><br><span class="line">  owner: string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3><span id="4-optionを設定">4. Optionを設定</span></h3><ul>
+<li>sample.component.tsの改修<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 追加の必要有</span><br><span class="line">import &#123; Node, Options &#125; from &#39;ng-material-treetable&#39;;</span><br></pre></td></tr></table></figure></li>
+<li>sample.component.htmlの改修<ul>
+<li>[options]による指定で適用できます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;treetable</span><br><span class="line">  [tree]&#x3D;&quot;yourTreeDataStructure&quot;</span><br><span class="line">  [options]&#x3D;&quot;yourOptions&quot;&gt;</span><br><span class="line">&lt;&#x2F;treetable&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="eventの設定">Eventの設定</span></h3><ul>
+<li>sample.component.html<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;treetable</span><br><span class="line">  [tree]&#x3D;&quot;yourTreeDataStructure&quot;</span><br><span class="line">  (nodeClicked)&#x3D;&quot;logToggledNode($event)&quot;&gt;</span><br><span class="line">  &lt;!--Clickで開閉--&gt;</span><br><span class="line">&lt;&#x2F;treetable&gt;</span><br></pre></td></tr></table></figure></li>
+<li>sample.component.ts<ul>
+<li>nodeClickedで動くメソッドを定義<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">logToggledNode(node: Node&lt;SomeNodeType&gt;): void &#123;</span><br><span class="line">  console.log(node);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<p>　以上で階層型の表が完成しました。後は、データソースを直接編集するか、外部から取得したデータに差し替えるだけです。手順の解説は以上です。WEB AP開発の初級者は台帳APでも試しに作ってみると良いかもしれません。(Excelはやめましょう)<br>おまけとして、StackBlitzに挙がっていたサンプルソースの解説も置いておきます。</p>
+<h2><span id="サンプルソースの解説">サンプルソースの解説</span></h2><ul>
+<li><p><a href="https://stackblitz.com/edit/angular-qnlruj">StackBlitz</a></p>
+</li>
+<li><ul>
+<li>以下の書き方で今回の要件は満たせそう<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arrayOfNodesTree: Node&lt;Task&gt;[] &#x3D; 外部からGETしてきたデータ</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>app.component.ts</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Component &#125; from &#39;@angular&#x2F;core&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 追加の必要有</span><br><span class="line">import &#123; Node, Options &#125; from &#39;ng-material-treetable&#39;;</span><br><span class="line"></span><br><span class="line">@Component(&#123;</span><br><span class="line">  selector: &#39;my-app&#39;,</span><br><span class="line">  templateUrl: &#39;.&#x2F;app.component.html&#39;,</span><br><span class="line">  styleUrls: [&#39;.&#x2F;app.component.css&#39;]</span><br><span class="line">&#125;)</span><br><span class="line">export class AppComponent &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 表１のOption</span><br><span class="line">  treeOptions: Options&lt;Report&gt; &#x3D; &#123;</span><br><span class="line">    capitalisedHeader: true,</span><br><span class="line">    customColumnOrder: [&#x2F;&#x2F; 列名を定義？</span><br><span class="line">      &#39;owner&#39;, &#39;name&#39;, &#39;backup&#39;, &#39;protected&#39;</span><br><span class="line">    ]</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 省略部分はJSONデータ　表１のデータソース</span><br><span class="line">  singleRootTree: Node&lt;Report&gt; &#x3D; &#123;</span><br><span class="line">    value: &#123;</span><br><span class="line">      name: &#39;Reports&#39;,</span><br><span class="line">      owner: &#39;Eric&#39;,</span><br><span class="line">      protected: true,</span><br><span class="line">      backup: true</span><br><span class="line">    &#125;,</span><br><span class="line">    children: [</span><br><span class="line">      &#123;</span><br><span class="line">          中略</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 省略部分はJSONデータ　表２のデータソース</span><br><span class="line">  arrayOfNodesTree: Node&lt;Task&gt;[] &#x3D; [</span><br><span class="line">    &#123;中略</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line"></span><br><span class="line">  logNode(node: Node&lt;Report&gt;) &#123;</span><br><span class="line">    console.log(node);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 表のデータ型　列の要素を定義</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 表1</span><br><span class="line">export interface Report &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  owner: string;</span><br><span class="line">  protected: boolean;</span><br><span class="line">  backup: boolean;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 表２</span><br><span class="line">export interface Task &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  completed: boolean;</span><br><span class="line">  owner: string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>次にHTML側を確認</p>
 <ul>
-<li>自動生成するHTMLのheaderの設定を規定するファイルです</li>
-<li>ファイルの所在は以下  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\themes\theme-name\layout\</span><br></pre></td></tr></table></figure>
+<li>かなりシンプルに書ける<ul>
+<li>treetable要素の中にデータソースとして定義したものを指定するだけ<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;treetable</span><br><span class="line">  [tree]&#x3D;&quot;TS側で定めたデータソース名&quot;</span><br><span class="line">  (nodeClicked)&#x3D;&quot;logNode($event)&quot;&gt; &#x2F;&#x2F; Clickで開閉</span><br><span class="line">&gt;</span><br><span class="line">&lt;&#x2F;treetable&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 表１</span><br><span class="line">&lt;h2&gt;Tree as Single Root Node&lt;&#x2F;h2&gt;</span><br><span class="line">&lt;treetable</span><br><span class="line">  [tree]&#x3D;&quot;singleRootTree&quot;</span><br><span class="line">  [options]&#x3D;&quot;treeOptions&quot;</span><br><span class="line">  (nodeClicked)&#x3D;&quot;logNode($event)&quot;&gt;</span><br><span class="line">&lt;&#x2F;treetable&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 表２</span><br><span class="line">&lt;h2&gt;Tree as Array of Nodes&lt;&#x2F;h2&gt;</span><br><span class="line">&lt;treetable</span><br><span class="line">  [tree]&#x3D;&quot;arrayOfNodesTree&quot; &#x2F;&#x2F; tsでデータソースを定めたやつ</span><br><span class="line">  (nodeClicked)&#x3D;&quot;logNode($event)&quot;&gt; </span><br><span class="line">&lt;&#x2F;treetable&gt;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="自分でサンプルを開発した際のメモ">自分でサンプルを開発した際のメモ</span></h2><ul>
+<li><p>tree-table Componentを新たに生成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\src\app&gt; ng g component tree-table</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>上の階層のComponentでtree-tableを参照するように変更</p>
 <ul>
-<li>私が利用しているテーマ:icarusの場合は一階層深い所にありました<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\themes\icarus\layout\common\</span><br></pre></td></tr></table></figure>
+<li>serveで画面への反映を確認。問題無し<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;mat-card-header&gt;</span><br><span class="line">&lt;mat-card-content&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;app-tree-table&gt;&lt;&#x2F;app-tree-table&gt;</span><br><span class="line">    &lt;!--tree tableコンポーネントを挿入----&gt;</span><br><span class="line"></span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;mat-card-content&gt;</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
 </li>
 </ul>
+<h3><span id="サンプルデータで表を出す">サンプルデータで表を出す</span></h3><ul>
+<li><p>tree-tableコンポーネントを改修</p>
 </li>
-<li><p>以下を追記</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (is_post() &amp;&amp; config.generator_amp)&#123; %&gt;</span><br><span class="line">    &lt;link rel&#x3D;&quot;amphtml&quot; href&#x3D;&quot;&lt;%&#x3D; config.url %&gt;&#x2F;&lt;%&#x3D; page.path %&gt;&#x2F;amp&#x2F;index.html&quot;&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>WEBページを作成する中で、度々headerにscriptを追加するシーンがあると思われます</p>
+<li><p>HTMLの改修</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;treetable</span><br><span class="line">  [tree]&#x3D;&quot;arrayOfNodesTree&quot;</span><br><span class="line">  (nodeClicked)&#x3D;&quot;logNode($event)&quot;&gt;</span><br><span class="line">&lt;&#x2F;treetable&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>tsの改修</p>
 <ul>
-<li>基本的にhead.elsに同様に追記することで目的を達成可能です。覚えておきましょう</li>
+<li>import, データソース, interfaceを定義</li>
+<li>列を減らしてみる</li>
 </ul>
 </li>
 </ul>
-<h3><span id="3-_configymlの改修">3. ./_config.ymlの改修</span></h3><ul>
-<li><p>_config.ymlにPluginの設定を追加します</p>
-<ul>
-<li>theme配下ではなくHexoディレクトリ直下のファイルです</li>
-</ul>
-</li>
-<li><p>以下を追記</p>
-<ul>
-<li>Gitの公式ページの説明はpathの記法が少し間違っていました<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># hexo-generator-amp</span><br><span class="line"></span><br><span class="line">generator_amp:</span><br><span class="line">  templateDir: amp-template</span><br><span class="line">  assetDistDir: amp-dist</span><br><span class="line">  logo:</span><br><span class="line">    path: sample&#x2F;sample-logo.png</span><br><span class="line">    width: 600</span><br><span class="line">    height: 60</span><br><span class="line">  substituteTitleImage:</span><br><span class="line">    path: sample&#x2F;sample-substituteTitleImage.png</span><br><span class="line">    width: 1024</span><br><span class="line">    height: 800</span><br><span class="line">  warningLog: false</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>hexo serverで確認</p>
-</li>
-</ul>
-<h4><span id="trouble-shooting">Trouble Shooting</span></h4><ul>
-<li>以下のエラーが出た場合</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[00:44:36.025] [hexo-generator-amp] hexo-generator-amp&#39;s template has been copied to</span><br><span class="line">the your project.</span><br><span class="line">Please check the following file.</span><br><span class="line">-&gt; j-blog\amp-template\sample</span><br><span class="line">[00:44:36.040] [hexo-generator-amp] error:  Not found the hexo-generator-amp&#39;s asset</span><br><span class="line">files. If you do not have the file please download the sample file from the following site. ( see: https:&#x2F;&#x2F;github.com&#x2F;tea3&#x2F;hexo-generator-amp&#x2F;tree&#x2F;master&#x2F;template )</span><br><span class="line">Please check the following file.</span><br><span class="line">-&gt; j-blog\amp-template\sample-logo.png</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Node, Options &#125; from &#39;ng-material-treetable&#39;;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 省略部分はJSONデータ　表２のデータソース</span><br><span class="line">  arrayOfNodesTree: Node&lt;Task&gt;[] &#x3D; [</span><br><span class="line">    &#123;</span><br><span class="line">      value: &#123;</span><br><span class="line">        name: &#39;Tasks for Sprint 1&#39;,</span><br><span class="line">        completed: true,</span><br><span class="line">        owner: &#39;Marco&#39;</span><br><span class="line">      &#125;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Complete feature #123&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;Marco&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Update documentation&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;Jane&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: [</span><br><span class="line">            &#123;</span><br><span class="line">              value: &#123;</span><br><span class="line">                name: &#39;Proofread documentation&#39;,</span><br><span class="line">                completed: true,</span><br><span class="line">                owner: &#39;Bob&#39;</span><br><span class="line">              &#125;,</span><br><span class="line">              children: []</span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      value: &#123;</span><br><span class="line">        name: &#39;Tasks for Sprint 2&#39;,</span><br><span class="line">        completed: false,</span><br><span class="line">        owner: &#39;Erika&#39;,</span><br><span class="line">      &#125;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Fix bug #567&#39;,</span><br><span class="line">            completed: false,</span><br><span class="line">            owner: &#39;Marco&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Speak with clients&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;James&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line"></span><br><span class="line">  logNode(node: Node&lt;Report&gt;) &#123;</span><br><span class="line">    console.log(node);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 表のデータ構造を決定</span><br><span class="line">export interface Task &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  completed: boolean;</span><br><span class="line">  owner: string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
 <ul>
-<li>上記はpathの指定が間違っている<ul>
-<li>sample配下にsample-logo.png等が格納されているため、sample/を頭に付けましょう</li>
-</ul>
-</li>
-</ul>
-<h3><span id="4-markdown記法の修正画像">4. Markdown記法の修正(画像)</span></h3><ul>
-<li><p>hexo server実行時にAMPの書式チェックがプラグインによって実行されます</p>
-</li>
-<li><p>恐らく以下のErrorが大量に出る人が多いと思われます</p>
-<ul>
-<li>markdownの画像のURL指定の表記がAMPでは通用しない為です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">This plugin can not acquire the width and height of such url images.</span><br><span class="line">Please change the URL to HTTP or HTTPS, or add height and width.</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>エラーメッセージについて解説</p>
-<ul>
-<li>このプラグインは、URL画像の幅と高さを取得できない</li>
-<li>URLをHTTPまたはHTTPSに変更するか、高さと幅を追加してください</li>
-</ul>
-</li>
-<li><p>どういうこと？</p>
-<ul>
-<li>AMPの規格では画像のheightとwidthを設定する必要があります。</li>
-<li>そのため、各記事のURL指定の画像に対してエラーが出ています</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>とりあえず以下のErrorが出ている記事の画像を修正してみます</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-&gt; _posts&#x2F;About-This-Blog.md</span><br><span class="line">[18:39:10.984] [hexo-generator-amp] error:  This plugin can not acquire the width and height of such url images.</span><br><span class="line">Please change the URL to HTTP or HTTPS, or add height and width. </span><br><span class="line">img path: https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;41946222&#x2F;73755094-dd3c0f00-47a8-11ea-9ec5-e1e537559054.png</span><br><span class="line">Please check the following file.</span><br><span class="line">-&gt; _posts&#x2F;About-This-Blog.md</span><br><span class="line">[18:39:10.985] [hexo-generator-amp] error:  Error: connect ETIMEDOUT 151.101.108.133:443</span><br><span class="line">This plugin checks whether the image URL exists. </span><br><span class="line">img path: https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;41946222&#x2F;74917091-5030c100-540a-11ea-9060-2d05fc6c6c23.png</span><br><span class="line">Please check the following file.</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>現在のmarkdown記法</p>
-<ul>
-<li>heightとwidthを定められない<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![image_title](image_url)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>回避策</p>
-<ul>
-<li>以下のようにHTMLの記法で修正<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div style&#x3D;&quot;text-align:center;&quot;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;image_url&quot; height&#x3D;&quot;500px&quot; width&#x3D;&quot;500px&quot;&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>各記事のURL指定の画像に対して同様の修正を実施します</p>
-<ul>
-<li>割と大変なので、記事が少なめの段階で対処した方がいいです</li>
-</ul>
-</li>
-<li><p>確認</p>
-<ul>
-<li>以下を実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure></li>
-<li>エラーの解消を確認</li>
-</ul>
-</li>
-<li><p>起動したAPをブラウザで確認</p>
-<ul>
-<li>以下のように記事を開いている状態で、URLの後ろにampを付ければ生成されたAMP HTMLを確認可能です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;localhost:4000&#x2F;article_name&#x2F;amp</span><br></pre></td></tr></table></figure></li>
-<li>各記事で確認しましょう</li>
-</ul>
-</li>
+<li>AP画面への反映を確認<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng serve --open</span><br></pre></td></tr></table></figure></li>
+<li>以下のように表示された</li>
 </ul>
 <div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/76687185-ee5c2380-6664-11ea-8e75-f699f17a498a.png" height="300px" width="600px">
+<img src="https://user-images.githubusercontent.com/41946222/76863288-9ca0dc80-68a2-11ea-88a6-e7bb1c46a3c0.png" height="100px" width="400px">
 </div>
-
-
-<h4><span id="trouble-shooting">Trouble Shooting</span></h4><ul>
-<li>AMP画像が表示されない<ul>
-<li>heightとwidthの%指定はダメです</li>
-<li>pxでかっちり定めなければAMPでは表示されません</li>
-</ul>
-</li>
-</ul>
-<h3><span id="5-web上でのチェック">5. WEB上でのチェック</span></h3><ul>
-<li>本番環境にデプロイ⇒WEBから確認<ul>
-<li>以下のように各記事のURLに/ampを足すとAMP HTML版のページの表示を確認可能です<ul>
-<li>AMP版と通常版の両方のページをWEBから確認出来るようになっている状態です</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4><span id="ampテスト">AMPテスト</span></h4><ul>
-<li><a href="https://search.google.com/test/amp">GoogleのAMPテスト</a><ul>
-<li>指定したURLがAMPに対応しているかチェック可能です<ul>
-<li>AMP版のURLを指定してください</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/76698001-1e490c80-66e1-11ea-90d2-12f01b0c5b78.png" height="200px" width="600px">
-</div>
-
-
 
 <ul>
-<li>以上でHexoで生成したWEBページのAMP化は完了です</li>
-<li>各種設定やTipsについては別記事で解説します</li>
+<li><p>エラーが発生</p>
+<ul>
+<li>class内で初めにデータの定義が必要</li>
+<li>順番を入れ替えればOK</li>
+</ul>
+</li>
+<li><p>最終的なtsファイル</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Component, OnInit &#125; from &#39;@angular&#x2F;core&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 追加</span><br><span class="line">import &#123; Node, Options &#125; from &#39;ng-material-treetable&#39;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@Component(&#123;</span><br><span class="line">  selector: &#39;app-tree-table&#39;,</span><br><span class="line">  templateUrl: &#39;.&#x2F;tree-table.component.html&#39;,</span><br><span class="line">  styleUrls: [&#39;.&#x2F;tree-table.component.scss&#39;]</span><br><span class="line">&#125;)</span><br><span class="line">export class TreeTableComponent implements OnInit &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; データソースを定義</span><br><span class="line">  &#x2F;&#x2F; 省略部分はJSONデータ　表２のデータソース　class内の先頭に必要であった</span><br><span class="line">  arrayOfNodesTree: Node&lt;Task&gt;[] &#x3D; [ </span><br><span class="line">    &#123;</span><br><span class="line">      value: &#123;</span><br><span class="line">        name: &#39;Tasks for Sprint 1&#39;,</span><br><span class="line">        completed: true,</span><br><span class="line">        owner: &#39;Marco&#39;</span><br><span class="line">      &#125;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Complete feature #123&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;Marco&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Update documentation&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;Jane&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: [</span><br><span class="line">            &#123;</span><br><span class="line">              value: &#123;</span><br><span class="line">                name: &#39;Proofread documentation&#39;,</span><br><span class="line">                completed: true,</span><br><span class="line">                owner: &#39;Bob&#39;</span><br><span class="line">              &#125;,</span><br><span class="line">              children: []</span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      value: &#123;</span><br><span class="line">        name: &#39;Tasks for Sprint 2&#39;,</span><br><span class="line">        completed: false,</span><br><span class="line">        owner: &#39;Erika&#39;,</span><br><span class="line">      &#125;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Fix bug #567&#39;,</span><br><span class="line">            completed: false,</span><br><span class="line">            owner: &#39;Marco&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Speak with clients&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;James&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ];</span><br><span class="line"></span><br><span class="line">  constructor() &#123; &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 表のデータ構造の定義</span><br><span class="line">export interface Task &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  completed: boolean;</span><br><span class="line">  owner: string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>参考ページ</p>
+<ul>
+<li><a href="https://www.npmjs.com/package/ng-material-treetable">Angular Material TreeTable Component</a></li>
+<li><a href="http://ng-material-treetable.surge.sh/">TreeTable Component画面</a></li>
+</ul>
+</li>
+<li><p>Mat-treeとMat-tableを組み合わせて開発する場合の参考</p>
+<ul>
+<li><a href="https://stackblitz.com/edit/mat-tree-with-drag-and-drop?file=app%2Ftree-flat-overview-example.html">任意のネスト、キー名をTreeで表示するコードサンプル</a></li>
+</ul>
+</li>
 </ul>
 
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Angular/" rel="tag">Angular</a>, <a class="has-link-grey -link" href="/tags/Treetable/" rel="tag">Treetable</a>
+                </div>
+            </div>
         </div>
         
         
@@ -401,9 +366,55 @@
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">Gefällt Ihnen der Artikel? Unterstützen Sie den Autor mit</h3>
+        <div class="buttons is-centered">
+            
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
+
+<div class="notification is-danger">
+    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+                
+<div class="notification is-danger">
+    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
+</div>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2020/03/17/icarus-Hexo-Theme-Tips-Menu%E3%81%AE%E7%B7%A8%E9%9B%86/">
+                <span class="level-item">icarus(Hexo Theme) Tips Menuの編集</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 </div>
@@ -1260,7 +1271,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="J&#39;s Tech Blog" height="28">
+                    <img src="/images/logo.svg" alt="Angularで階層構造の表を開発(Treetable)" height="28">
                 
                 </a>
                 <p class="is-size-7">
