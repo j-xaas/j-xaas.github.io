@@ -119,3 +119,5 @@ deploy:
   repo: git@github.com:j-xaas/j-xaas.github.io.git
   branch: master
 
+# disqus
+disqus_shortname: https-j-xaas-github-io
