@@ -120,4 +120,4 @@ deploy:
   branch: master
 
 # disqus
-disqus_shortname: https-j-xaas-github-io
+#disqus_shortname: https-j-xaas-github-io

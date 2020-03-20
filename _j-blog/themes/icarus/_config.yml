@@ -77,8 +77,11 @@ search:
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment
 
 comment:
-    disqus: https-j-xaas-github-io
-    duoshuo: https-j-xaas-github-io
+    type: disqus
+    shortname: https-j-xaas-github-io
+
+#    disqus: https-j-xaas-github-io
+#    duoshuo: https-j-xaas-github-io
 
 # disqus_shortname: https-j-xaas-github-io
 
