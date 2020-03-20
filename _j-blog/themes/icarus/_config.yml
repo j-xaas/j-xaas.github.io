@@ -33,8 +33,8 @@ navbar:
         Tags: /tags
         About: /2020/02/04/About-This-Blog/ #/about
         EC: https://sheeps.official.ec/
-        Policy: /2020/03/18/Privacy-Policy
-    # Navigation bar links to be shown on the right
+        Policy: /Privacy-Policy
+    # Navigation bar links to be shown on the right ここ消す？
     links:
         Download on GitHub:
             icon: fab fa-github
@@ -75,8 +75,8 @@ search:
 # Comment plugin settings
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment
 comment:
-    # Name of the comment plugin
-    type: 
+    disqus: https-j-xaas-github-io
+    duoshuo: https-j-xaas-github-io
 # Donation entries
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Donation/
 donate:
