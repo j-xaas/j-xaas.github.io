@@ -11,13 +11,13 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>タグ: hexo-generator-amp - J&#39;s Tech Blog</title>
+<title>タグ: Disqus - J&#39;s Tech Blog</title>
 
 
     <meta name="description" content="tech">
 <meta property="og:type" content="website">
 <meta property="og:title" content="J&#39;s Tech Blog">
-<meta property="og:url" content="https://j-xaas.github.io/tags/hexo-generator-amp/index.html">
+<meta property="og:url" content="https://j-xaas.github.io/tags/Disqus/index.html">
 <meta property="og:site_name" content="J&#39;s Tech Blog">
 <meta property="og:description" content="tech">
 <meta property="og:locale" content="ja_JP">
@@ -151,7 +151,7 @@
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
             <li><a href="/tags">タグ</a></li>
-            <li class="is-active"><a href="#" aria-current="page">hexo-generator-amp</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Disqus</a></li>
         </ul>
         </nav>
     </div>
@@ -164,7 +164,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-15T09:00:22.000Z">2020-03-15</time>
+                <time class="level-item has-text-grey" datetime="2020-03-20T17:42:04.000Z">2020-03-21</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
@@ -174,7 +174,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    11分 read (About 1619 words)
+                    10分 read (About 1532 words)
                 </span>
                 
                 
@@ -183,213 +183,285 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/15/Hexo%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AEAMP%E5%8C%96/">HexoブログのAMP化【完全版】</a>
+                <a class="has-link-black-ter" href="/2020/03/21/Hexo%E3%81%AB%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E6%AC%84%E3%82%92%E8%BF%BD%E5%8A%A0-Disqus/">Hexoにコメント欄を追加(Disqus)</a>
             
         </h1>
         <div class="content">
-            <p>こんにちは。今回はHexoで生成したWEBページのAMP化の手法について解説します。簡単にいうとWEBページを高速表示可能な形式にします。同様の記事も数件見つけたのですが、所々でハマったので、完全版としてまとめました。</p>
-<!-- toc -->
+            <p>こんにちは。今回はHexoで生成したWEBサイトにコメント欄を追加する手法について解説します。他の説明記事がどれも間違っていて（恐らくバージョンの問題）だいぶハマったのでまとめておきます。</p>
+<!--toc-->
+
+<h2><span id="1-disqusとは">1. Disqusとは</span></h2><ul>
+<li><a href="https://help.disqus.com/en/articles/1717053-what-is-disqus">Disqus</a><ul>
+<li>コメント機能を拡張するサービス</li>
+<li>様々なPlatformに対してプラグインを提供<ul>
+<li>Hexoの<a href="https://hexo.io/themes/index.html">theme</a>はDisqusの活用を前提としたものが多く、簡単に導入可能です</li>
+<li>※ themeに対して設定する為、選定後の対処をお勧めします<ul>
+<li>関連記事：<a href="https://j-xaas.github.io/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/">Hexoテーマ(theme)変更: icarus</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>無料で利用を開始可能です</li>
+</ul>
+</li>
+</ul>
+<h2><span id="2-導入手順">2. 導入手順</span></h2><h3><span id="21-disqusに登録">2.1. Disqusに登録</span></h3><div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77195868-adad5000-6b25-11ea-8c25-6a432ad7edb3.png" height="400px" width="500px">
+</div>
 
 <ul>
-<li><a href="#基礎知識">基礎知識</a><ul>
-<li><a href="#ampaccelerated-mobile-pagesとは">AMP(Accelerated Mobile Pages)とは？</a></li>
-<li><a href="#hexo-generator-ampとは">hexo-generator-ampとは</a></li>
-</ul>
-</li>
-<li><a href="#導入手順">導入手順</a><ul>
-<li><a href="#1-hexo-generator-ampのinstall">1. hexo-generator-ampのinstall</a></li>
-<li><a href="#2-headタグにamp-htmlのパスを指定">2. headタグにAMP HTMLのパスを指定</a></li>
-<li><a href="#3-_configymlの改修">3. ./_config.ymlの改修</a><ul>
-<li><a href="#trouble-shooting">Trouble Shooting</a></li>
-</ul>
-</li>
-<li><a href="#4-markdown記法の修正画像">4. Markdown記法の修正(画像)</a><ul>
-<li><a href="#trouble-shooting-1">Trouble Shooting</a></li>
-</ul>
-</li>
-<li><a href="#5-web上でのチェック">5. WEB上でのチェック</a><ul>
-<li><a href="#ampテスト">AMPテスト</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-
-<h2><span id="基礎知識">基礎知識</span></h2><h3><span id="ampaccelerated-mobile-pagesとは">AMP(Accelerated Mobile Pages)とは？</span></h3><ul>
-<li><a href="https://amp.dev/documentation/guides-and-tutorials/learn/spec/amphtml/?referrer=ampproject.org&utm_source=search_console&utm_campaign=sc-amp-test">AMP HTML</a><ul>
-<li>モバイルでのコンテンツ表示を高速化させるための手法<ul>
-<li>GoogleとTwitterが協同で立ち上げたプロジェクトです</li>
-<li>ページ読み込みに3秒以上かかる場合、53%のユーザーが離脱してしまうと言われています</li>
-<li>検索結果で並んでいるサイトに、稲妻マークが小さくついているものを見つけたことはありませんか？<ul>
-<li>実はあのマークはAMPサイトであるサインです</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>AMP化するには規格に則った記法でサイトを構築する必要があります<ul>
-<li>自力での対応は難しいので、自動生成する手法を今回解説します</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="hexo-generator-ampとは">hexo-generator-ampとは</span></h3><ul>
-<li><a href="https://github.com/tea3/hexo-generator-amp">hexo-generator-amp</a><ul>
-<li>Google AMP (Accelerated Mobile Pages) を自動で生成してくれるプラグイン</li>
-<li>各記事のHTMLに対して、AMP HTMLを生成<ul>
-<li>hexo generate実行時に通常のHTMLとAMP版のHTMLの双方ができます</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2><span id="導入手順">導入手順</span></h2><h3><span id="1-hexo-generator-ampのinstall">1. hexo-generator-ampのinstall</span></h3><ul>
-<li>Hexoディレクトリ直下で実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-amp --save</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3><span id="2-headタグにamp-htmlのパスを指定">2. headタグにAMP HTMLのパスを指定</span></h3><ul>
-<li><p>head.ejs</p>
+<li><p><a href="https://disqus.com/profile/signup/">Disqus</a>のSignupを実施</p>
 <ul>
-<li>自動生成するHTMLのheaderの設定を規定するファイルです</li>
-<li>ファイルの所在は以下  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\themes\theme-name\layout\</span><br></pre></td></tr></table></figure>
-<ul>
-<li>私が利用しているテーマ:icarusの場合は一階層深い所にありました<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\themes\icarus\layout\common\</span><br></pre></td></tr></table></figure>
-</li>
+<li>Twitter, FB, Googleアカウントの何れかを利用可能です</li>
+<li>私はGoogleアカウントを利用しました</li>
+<li>認証後にSignupを押下</li>
 </ul>
 </li>
-</ul>
-</li>
-<li><p>以下を追記</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (is_post() &amp;&amp; config.generator_amp)&#123; %&gt;</span><br><span class="line">    &lt;link rel&#x3D;&quot;amphtml&quot; href&#x3D;&quot;&lt;%&#x3D; config.url %&gt;&#x2F;&lt;%&#x3D; page.path %&gt;&#x2F;amp&#x2F;index.html&quot;&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>WEBページを作成する中で、度々headerにscriptを追加するシーンがあると思われます</p>
-<ul>
-<li>基本的にhead.elsに同様に追記することで目的を達成可能です。覚えておきましょう</li>
-</ul>
+<li><p>“I want to install Disqus on my install”を選択</p>
 </li>
 </ul>
-<h3><span id="3-_configymlの改修">3. ./_config.ymlの改修</span></h3><ul>
-<li><p>_config.ymlにPluginの設定を追加します</p>
-<ul>
-<li>theme配下ではなくHexoディレクトリ直下のファイルです</li>
-</ul>
-</li>
-<li><p>以下を追記</p>
-<ul>
-<li>Gitの公式ページの説明はpathの記法が少し間違っていました<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># hexo-generator-amp</span><br><span class="line"></span><br><span class="line">generator_amp:</span><br><span class="line">  templateDir: amp-template</span><br><span class="line">  assetDistDir: amp-dist</span><br><span class="line">  logo:</span><br><span class="line">    path: sample&#x2F;sample-logo.png</span><br><span class="line">    width: 600</span><br><span class="line">    height: 60</span><br><span class="line">  substituteTitleImage:</span><br><span class="line">    path: sample&#x2F;sample-substituteTitleImage.png</span><br><span class="line">    width: 1024</span><br><span class="line">    height: 800</span><br><span class="line">  warningLog: false</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>hexo serverで確認</p>
-</li>
-</ul>
-<h4><span id="trouble-shooting">Trouble Shooting</span></h4><ul>
-<li>以下のエラーが出た場合</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[00:44:36.025] [hexo-generator-amp] hexo-generator-amp&#39;s template has been copied to</span><br><span class="line">the your project.</span><br><span class="line">Please check the following file.</span><br><span class="line">-&gt; j-blog\amp-template\sample</span><br><span class="line">[00:44:36.040] [hexo-generator-amp] error:  Not found the hexo-generator-amp&#39;s asset</span><br><span class="line">files. If you do not have the file please download the sample file from the following site. ( see: https:&#x2F;&#x2F;github.com&#x2F;tea3&#x2F;hexo-generator-amp&#x2F;tree&#x2F;master&#x2F;template )</span><br><span class="line">Please check the following file.</span><br><span class="line">-&gt; j-blog\amp-template\sample-logo.png</span><br></pre></td></tr></table></figure>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77196716-3aa4d900-6b27-11ea-984d-5d60050732ee.png" height="300px" width="500px">
+</div>
 
 <ul>
-<li>上記はpathの指定が間違っている<ul>
-<li>sample配下にsample-logo.png等が格納されているため、sample/を頭に付けましょう</li>
-</ul>
-</li>
-</ul>
-<h3><span id="4-markdown記法の修正画像">4. Markdown記法の修正(画像)</span></h3><ul>
-<li><p>hexo server実行時にAMPの書式チェックがプラグインによって実行されます</p>
-</li>
-<li><p>恐らく以下のErrorが大量に出る人が多いと思われます</p>
+<li><p>Create a new Site</p>
 <ul>
-<li>markdownの画像のURL指定の表記がAMPでは通用しない為です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">This plugin can not acquire the width and height of such url images.</span><br><span class="line">Please change the URL to HTTP or HTTPS, or add height and width.</span><br></pre></td></tr></table></figure></li>
+<li>以下の欄を入力<ul>
+<li>Website Name</li>
+<li>Category</li>
 </ul>
 </li>
-<li><p>エラーメッセージについて解説</p>
-<ul>
-<li>このプラグインは、URL画像の幅と高さを取得できない</li>
-<li>URLをHTTPまたはHTTPSに変更するか、高さと幅を追加してください</li>
-</ul>
-</li>
-<li><p>どういうこと？</p>
-<ul>
-<li>AMPの規格では画像のheightとwidthを設定する必要があります。</li>
-<li>そのため、各記事のURL指定の画像に対してエラーが出ています</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>とりあえず以下のErrorが出ている記事の画像を修正してみます</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-&gt; _posts&#x2F;About-This-Blog.md</span><br><span class="line">[18:39:10.984] [hexo-generator-amp] error:  This plugin can not acquire the width and height of such url images.</span><br><span class="line">Please change the URL to HTTP or HTTPS, or add height and width. </span><br><span class="line">img path: https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;41946222&#x2F;73755094-dd3c0f00-47a8-11ea-9ec5-e1e537559054.png</span><br><span class="line">Please check the following file.</span><br><span class="line">-&gt; _posts&#x2F;About-This-Blog.md</span><br><span class="line">[18:39:10.985] [hexo-generator-amp] error:  Error: connect ETIMEDOUT 151.101.108.133:443</span><br><span class="line">This plugin checks whether the image URL exists. </span><br><span class="line">img path: https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;41946222&#x2F;74917091-5030c100-540a-11ea-9060-2d05fc6c6c23.png</span><br><span class="line">Please check the following file.</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>現在のmarkdown記法</p>
-<ul>
-<li>heightとwidthを定められない<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![image_title](image_url)</span><br></pre></td></tr></table></figure>
+<li>CreateSiteを選択<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77197201-1e556c00-6b28-11ea-9f55-d0d1807250c7.png" height="400px" width="500px">
+</div>
 </li>
 </ul>
 </li>
-<li><p>回避策</p>
+<li><p>以下の順に選択</p>
 <ul>
-<li>以下のようにHTMLの記法で修正<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div style&#x3D;&quot;text-align:center;&quot;&gt;</span><br><span class="line">&lt;img src&#x3D;&quot;image_url&quot; height&#x3D;&quot;500px&quot; width&#x3D;&quot;500px&quot;&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+<li>“Got it. Let’s get started!”</li>
+<li>“I don’t see my platform listed, install manually with Universal Code”</li>
+</ul>
+</li>
+<li><p>以上でDisqusのサイト用ページが作成されました</p>
+</li>
+</ul>
+<h3><span id="22-disqus設定">2.2. Disqus設定</span></h3><ul>
+<li>以下が設定ページです</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77198283-0a126e80-6b2a-11ea-9783-437f2ac38657.png" height="400px" width="600px">
+</div>
+
+<ul>
+<li><p>Installation</p>
+<ul>
+<li>Comment機能非対応のthemeの場合はこちらのスクリプトをサイトに貼り付けましょう<ul>
+<li>Hexoデフォルトのlandscapeであれば必要<ul>
+<li>該当のejsとプレフィックスにつくファイルを編集してください</li>
+<li>ファイル所在(landscapeの例)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Your-blog\theme\Your-Theme\layout\_partial</span><br></pre></td></tr></table></figure></li>
+</ul>
 </li>
 </ul>
 </li>
-<li><p>各記事のURL指定の画像に対して同様の修正を実施します</p>
-<ul>
-<li>割と大変なので、記事が少なめの段階で対処した方がいいです</li>
+<li>本サイトに採用しているicarusであれば、この工程はスルーしてOK</li>
 </ul>
 </li>
-<li><p>確認</p>
+<li><p>“Configure”を押下</p>
+</li>
+<li><p>URLを入力</p>
+</li>
+<li><p>“Complete Setup”を押下</p>
+</li>
+<li><p>上部のSettingタブを選択</p>
+</li>
+<li><p>左のリストのGeneralを選択</p>
 <ul>
-<li>以下を実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure></li>
-<li>エラーの解消を確認</li>
+<li>“shortname”の値を控える<ul>
+<li>後でhexoに設定します</li>
 </ul>
 </li>
-<li><p>起動したAPをブラウザで確認</p>
-<ul>
-<li>以下のように記事を開いている状態で、URLの後ろにampを付ければ生成されたAMP HTMLを確認可能です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;localhost:4000&#x2F;article_name&#x2F;amp</span><br></pre></td></tr></table></figure></li>
-<li>各記事で確認しましょう</li>
+<li>各項目に入力して”Save”を押下</li>
 </ul>
 </li>
 </ul>
 <div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/76687185-ee5c2380-6664-11ea-8e75-f699f17a498a.png" height="300px" width="600px">
+<img src="https://user-images.githubusercontent.com/41946222/77200711-7db67a80-6b2e-11ea-9610-d8f568082bce.PNG" height="600px" width="600px">
 </div>
 
-
+<ul>
+<li>以上でDisqus側の設置は完了です<ul>
+<li>細かく設定可能なので</li>
+</ul>
+</li>
+</ul>
+<h3><span id="23-hexoに設定">2.3. Hexoに設定</span></h3><ul>
+<li><p>shortnameをtheme側の_config.ymlに記述</p>
+<ul>
+<li>元の状態<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">comment:</span><br><span class="line"># Name of the comment plugin</span><br><span class="line">type:</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>改修</p>
+<ul>
+<li>typeにdisqusを設定</li>
+<li>shortnameにdisqusで定義された値を設定<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">comment:</span><br><span class="line">    type: disqus</span><br><span class="line">    shortname: &lt;from_disqus&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Comment機能があるthemeの場合は以上でOK(icarus等)</p>
+<ul>
+<li>以下のディレクトリがあるかで判断してください<ul>
+<li>Your-Blog\themes\Your-Theme\layout\comment</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h4><span id="trouble-shooting">Trouble Shooting</span></h4><ul>
-<li>AMP画像が表示されない<ul>
-<li>heightとwidthの%指定はダメです</li>
-<li>pxでかっちり定めなければAMPでは表示されません</li>
+<li><p>※Comment機能がないthemeの場合(デフォルトのLandscape等)の対応も載せておきます</p>
+<ul>
+<li><ol>
+<li>Hexo側の設定ファイルの改修も必要です<ul>
+<li>Your-Blog/_config.yml <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># disqus</span><br><span class="line">disqus_shortname: https-j-xaas-github-io</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>Disqus/Setting/Installationで表示されるScriptを該当するejsファイルにコピペしてください<ul>
+<li>ejsファイルとは？<ul>
+<li>Tour-Blog/theme/Your-Theme/layoutの配下にあります</li>
+<li>例えばheader.ejsはHexoで各記事をgenerateする際に共通の設定を与えてくれるファイルです</li>
+<li>つまり、headerに共通して与えたいスクリプトがあれば、ここにコピペするだけでOKです</li>
 </ul>
 </li>
 </ul>
-<h3><span id="5-web上でのチェック">5. WEB上でのチェック</span></h3><ul>
-<li>本番環境にデプロイ⇒WEBから確認<ul>
-<li>以下のように各記事のURLに/ampを足すとAMP HTML版のページの表示を確認可能です<ul>
-<li>AMP版と通常版の両方のページをWEBから確認出来るようになっている状態です</li>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>※旧バージョンの場合</p>
+<ul>
+<li>他の記事はどれも以下のように設定するよう書かれていましたがエラーになります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">comment:</span><br><span class="line">    disqus: [shortname]</span><br><span class="line">    duoshuo: [shortname]</span><br></pre></td></tr></table></figure></li>
+<li>comment機能の設定ファイルを探して確認<ul>
+<li>以下にありました<ul>
+<li>j-blog\themes\icarus\layout\comment\disqus.ejs</li>
+</ul>
+</li>
+<li>”comment.shortname”とあることから、設定ファイルのcommentのshortnameの値を参照していることが分かります<ul>
+<li>themeによって特殊な設定が必要なケースも予想されるため、同じように確認してみてください<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line">    var d &#x3D; document, s &#x3D; d.createElement(&#39;script&#39;);  </span><br><span class="line">    s.src &#x3D; &#39;&#x2F;&#x2F;&#39; + &#39;&lt;%&#x3D; get_config(&#39;comment.shortname&#39;) %&gt;&#39; + &#39;.disqus.com&#x2F;embed.js&#39;;</span><br><span class="line">    s.setAttribute(&#39;data-timestamp&#39;, +new Date());</span><br><span class="line">    (d.head || d.body).appendChild(s);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<h4><span id="ampテスト">AMPテスト</span></h4><ul>
-<li><a href="https://search.google.com/test/amp">GoogleのAMPテスト</a><ul>
-<li>指定したURLがAMPに対応しているかチェック可能です<ul>
-<li>AMP版のURLを指定してください</li>
+<h2><span id="3-利用テスト">3. 利用テスト</span></h2><h3><span id="31-localでチェック">3.1. Localでチェック</span></h3><ul>
+<li>画面への反映をチェックしましょう<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure></li>
+<li>記事の下部にコメント欄を確認できます<ul>
+<li>仕様はDisqusのSettingで細かく変更可能です</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77222316-678fd500-6b95-11ea-8d26-318bd1970bc4.png" height="500px" width="600px" alt="comment_example">
+</div>
+
+<ul>
+<li><p>コメントの投稿は本番環境でないとエラーになります</p>
+</li>
+<li><p>generate</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure></li>
+<li><p>本番環境へデプロイ</p>
+</li>
+</ul>
+<h3><span id="32-投稿">3.2. 投稿</span></h3><ul>
+<li>WEBから実際にコメントを投稿してみましょう</li>
+<li>”ログイン”よりGoogleアカウントでログイン<ul>
+<li>Disqusのアカウント登録に利用したアカウントを用いれば、管理者のコメントとして認識されます</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77222434-64491900-6b96-11ea-966d-499ff3bfd4ac.png" height="200px" width="500px" alt="comment_example">
+</div>
+
+<ul>
+<li>コメントを投稿してみましょう<ul>
+<li>投稿者名の横に”管理者”が表示されます<ul>
+<li>Googleアカウントが実名なので、Twitterで登録しておけばよかったかも…</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/76698001-1e490c80-66e1-11ea-90d2-12f01b0c5b78.png" height="200px" width="600px">
+<img src="https://user-images.githubusercontent.com/41946222/77222841-6d3be980-6b9a-11ea-8863-11b3f7af74c8.png" height="200px" width="500px" alt="comment_example">
+</div>
+
+<h3><span id="33-アカウント登録">3.3. アカウント登録</span></h3><ul>
+<li>記事の訪問者をイメージして、Twitterアカウントで試してみます<ul>
+<li>事前に管理者アカウントから”ログアウト”しておきます</li>
+</ul>
+</li>
+<li>投稿欄の下のTwitterマークを選択<ul>
+<li>認証画面に飛びます</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>アカウント設定</p>
+<ul>
+<li>各入力項目を埋めて”Sign Up”を押下<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77223016-0d464280-6b9c-11ea-9eb7-8908b20b49a3.PNG" height="300px" width="400px" alt="Disqus_Twitter認証画面">
+</div>
+</li>
+</ul>
+</li>
+<li><p>すると、以下のように規約が表示されます</p>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77223009-f56ebe80-6b9b-11ea-8f60-c66a375029e2.PNG" height="300px" width="400px" alt="disqus_allert">
 </div>
 
 
+<ul>
+<li>設定したアドレスに以下のmailが届きます<ul>
+<li>青字を押下</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77223011-03244400-6b9c-11ea-8bf3-4676ca9b7960.PNG" height="300px" width="400px" alt="disqus_mail">
+</div>
 
 <ul>
-<li>以上でHexoで生成したWEBページのAMP化は完了です</li>
-<li>各種設定やTipsについては別記事で解説します</li>
+<li>認証が完了しました</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77223019-1cc58b80-6b9c-11ea-956d-ce5fe2f311bd.PNG" height="250px" width="400px" alt="email_verified">
+</div>
+
+<ul>
+<li>WEB上でログイン</li>
+<li>コメントを投稿<ul>
+<li>アイコン画像はTwitterのものがそのまま反映されるようです</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77223048-6a41f880-6b9c-11ea-9aae-38987fd1bf52.PNG" height="250px" width="500px" alt="twitter_comment">
+</div>
+
+
+<ul>
+<li>以上でDisqusの解説は終了です。手軽なので是非導入してみましょう。</li>
 </ul>
 
         </div>

@@ -164,6 +164,327 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-20T17:42:04.000Z">2020-03-21</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    10分 read (About 1532 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/21/Hexo%E3%81%AB%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E6%AC%84%E3%82%92%E8%BF%BD%E5%8A%A0-Disqus/">Hexoにコメント欄を追加(Disqus)</a>
+            
+        </h1>
+        <div class="content">
+            <p>こんにちは。今回はHexoで生成したWEBサイトにコメント欄を追加する手法について解説します。他の説明記事がどれも間違っていて（恐らくバージョンの問題）だいぶハマったのでまとめておきます。</p>
+<!--toc-->
+
+<h2><span id="1-disqusとは">1. Disqusとは</span></h2><ul>
+<li><a href="https://help.disqus.com/en/articles/1717053-what-is-disqus">Disqus</a><ul>
+<li>コメント機能を拡張するサービス</li>
+<li>様々なPlatformに対してプラグインを提供<ul>
+<li>Hexoの<a href="https://hexo.io/themes/index.html">theme</a>はDisqusの活用を前提としたものが多く、簡単に導入可能です</li>
+<li>※ themeに対して設定する為、選定後の対処をお勧めします<ul>
+<li>関連記事：<a href="https://j-xaas.github.io/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/">Hexoテーマ(theme)変更: icarus</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>無料で利用を開始可能です</li>
+</ul>
+</li>
+</ul>
+<h2><span id="2-導入手順">2. 導入手順</span></h2><h3><span id="21-disqusに登録">2.1. Disqusに登録</span></h3><div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77195868-adad5000-6b25-11ea-8c25-6a432ad7edb3.png" height="400px" width="500px">
+</div>
+
+<ul>
+<li><p><a href="https://disqus.com/profile/signup/">Disqus</a>のSignupを実施</p>
+<ul>
+<li>Twitter, FB, Googleアカウントの何れかを利用可能です</li>
+<li>私はGoogleアカウントを利用しました</li>
+<li>認証後にSignupを押下</li>
+</ul>
+</li>
+<li><p>“I want to install Disqus on my install”を選択</p>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77196716-3aa4d900-6b27-11ea-984d-5d60050732ee.png" height="300px" width="500px">
+</div>
+
+<ul>
+<li><p>Create a new Site</p>
+<ul>
+<li>以下の欄を入力<ul>
+<li>Website Name</li>
+<li>Category</li>
+</ul>
+</li>
+<li>CreateSiteを選択<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77197201-1e556c00-6b28-11ea-9f55-d0d1807250c7.png" height="400px" width="500px">
+</div>
+</li>
+</ul>
+</li>
+<li><p>以下の順に選択</p>
+<ul>
+<li>“Got it. Let’s get started!”</li>
+<li>“I don’t see my platform listed, install manually with Universal Code”</li>
+</ul>
+</li>
+<li><p>以上でDisqusのサイト用ページが作成されました</p>
+</li>
+</ul>
+<h3><span id="22-disqus設定">2.2. Disqus設定</span></h3><ul>
+<li>以下が設定ページです</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77198283-0a126e80-6b2a-11ea-9783-437f2ac38657.png" height="400px" width="600px">
+</div>
+
+<ul>
+<li><p>Installation</p>
+<ul>
+<li>Comment機能非対応のthemeの場合はこちらのスクリプトをサイトに貼り付けましょう<ul>
+<li>Hexoデフォルトのlandscapeであれば必要<ul>
+<li>該当のejsとプレフィックスにつくファイルを編集してください</li>
+<li>ファイル所在(landscapeの例)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Your-blog\theme\Your-Theme\layout\_partial</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>本サイトに採用しているicarusであれば、この工程はスルーしてOK</li>
+</ul>
+</li>
+<li><p>“Configure”を押下</p>
+</li>
+<li><p>URLを入力</p>
+</li>
+<li><p>“Complete Setup”を押下</p>
+</li>
+<li><p>上部のSettingタブを選択</p>
+</li>
+<li><p>左のリストのGeneralを選択</p>
+<ul>
+<li>“shortname”の値を控える<ul>
+<li>後でhexoに設定します</li>
+</ul>
+</li>
+<li>各項目に入力して”Save”を押下</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77200711-7db67a80-6b2e-11ea-9610-d8f568082bce.PNG" height="600px" width="600px">
+</div>
+
+<ul>
+<li>以上でDisqus側の設置は完了です<ul>
+<li>細かく設定可能なので</li>
+</ul>
+</li>
+</ul>
+<h3><span id="23-hexoに設定">2.3. Hexoに設定</span></h3><ul>
+<li><p>shortnameをtheme側の_config.ymlに記述</p>
+<ul>
+<li>元の状態<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">comment:</span><br><span class="line"># Name of the comment plugin</span><br><span class="line">type:</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>改修</p>
+<ul>
+<li>typeにdisqusを設定</li>
+<li>shortnameにdisqusで定義された値を設定<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">comment:</span><br><span class="line">    type: disqus</span><br><span class="line">    shortname: &lt;from_disqus&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Comment機能があるthemeの場合は以上でOK(icarus等)</p>
+<ul>
+<li>以下のディレクトリがあるかで判断してください<ul>
+<li>Your-Blog\themes\Your-Theme\layout\comment</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="trouble-shooting">Trouble Shooting</span></h4><ul>
+<li><p>※Comment機能がないthemeの場合(デフォルトのLandscape等)の対応も載せておきます</p>
+<ul>
+<li><ol>
+<li>Hexo側の設定ファイルの改修も必要です<ul>
+<li>Your-Blog/_config.yml <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># disqus</span><br><span class="line">disqus_shortname: https-j-xaas-github-io</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>Disqus/Setting/Installationで表示されるScriptを該当するejsファイルにコピペしてください<ul>
+<li>ejsファイルとは？<ul>
+<li>Tour-Blog/theme/Your-Theme/layoutの配下にあります</li>
+<li>例えばheader.ejsはHexoで各記事をgenerateする際に共通の設定を与えてくれるファイルです</li>
+<li>つまり、headerに共通して与えたいスクリプトがあれば、ここにコピペするだけでOKです</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>※旧バージョンの場合</p>
+<ul>
+<li>他の記事はどれも以下のように設定するよう書かれていましたがエラーになります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">comment:</span><br><span class="line">    disqus: [shortname]</span><br><span class="line">    duoshuo: [shortname]</span><br></pre></td></tr></table></figure></li>
+<li>comment機能の設定ファイルを探して確認<ul>
+<li>以下にありました<ul>
+<li>j-blog\themes\icarus\layout\comment\disqus.ejs</li>
+</ul>
+</li>
+<li>”comment.shortname”とあることから、設定ファイルのcommentのshortnameの値を参照していることが分かります<ul>
+<li>themeによって特殊な設定が必要なケースも予想されるため、同じように確認してみてください<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line">    var d &#x3D; document, s &#x3D; d.createElement(&#39;script&#39;);  </span><br><span class="line">    s.src &#x3D; &#39;&#x2F;&#x2F;&#39; + &#39;&lt;%&#x3D; get_config(&#39;comment.shortname&#39;) %&gt;&#39; + &#39;.disqus.com&#x2F;embed.js&#39;;</span><br><span class="line">    s.setAttribute(&#39;data-timestamp&#39;, +new Date());</span><br><span class="line">    (d.head || d.body).appendChild(s);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="3-利用テスト">3. 利用テスト</span></h2><h3><span id="31-localでチェック">3.1. Localでチェック</span></h3><ul>
+<li>画面への反映をチェックしましょう<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure></li>
+<li>記事の下部にコメント欄を確認できます<ul>
+<li>仕様はDisqusのSettingで細かく変更可能です</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77222316-678fd500-6b95-11ea-8d26-318bd1970bc4.png" height="500px" width="600px" alt="comment_example">
+</div>
+
+<ul>
+<li><p>コメントの投稿は本番環境でないとエラーになります</p>
+</li>
+<li><p>generate</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure></li>
+<li><p>本番環境へデプロイ</p>
+</li>
+</ul>
+<h3><span id="32-投稿">3.2. 投稿</span></h3><ul>
+<li>WEBから実際にコメントを投稿してみましょう</li>
+<li>”ログイン”よりGoogleアカウントでログイン<ul>
+<li>Disqusのアカウント登録に利用したアカウントを用いれば、管理者のコメントとして認識されます</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77222434-64491900-6b96-11ea-966d-499ff3bfd4ac.png" height="200px" width="500px" alt="comment_example">
+</div>
+
+<ul>
+<li>コメントを投稿してみましょう<ul>
+<li>投稿者名の横に”管理者”が表示されます<ul>
+<li>Googleアカウントが実名なので、Twitterで登録しておけばよかったかも…</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77222841-6d3be980-6b9a-11ea-8863-11b3f7af74c8.png" height="200px" width="500px" alt="comment_example">
+</div>
+
+<h3><span id="33-アカウント登録">3.3. アカウント登録</span></h3><ul>
+<li>記事の訪問者をイメージして、Twitterアカウントで試してみます<ul>
+<li>事前に管理者アカウントから”ログアウト”しておきます</li>
+</ul>
+</li>
+<li>投稿欄の下のTwitterマークを選択<ul>
+<li>認証画面に飛びます</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>アカウント設定</p>
+<ul>
+<li>各入力項目を埋めて”Sign Up”を押下<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77223016-0d464280-6b9c-11ea-9eb7-8908b20b49a3.PNG" height="300px" width="400px" alt="Disqus_Twitter認証画面">
+</div>
+</li>
+</ul>
+</li>
+<li><p>すると、以下のように規約が表示されます</p>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77223009-f56ebe80-6b9b-11ea-8f60-c66a375029e2.PNG" height="300px" width="400px" alt="disqus_allert">
+</div>
+
+
+<ul>
+<li>設定したアドレスに以下のmailが届きます<ul>
+<li>青字を押下</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77223011-03244400-6b9c-11ea-8bf3-4676ca9b7960.PNG" height="300px" width="400px" alt="disqus_mail">
+</div>
+
+<ul>
+<li>認証が完了しました</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77223019-1cc58b80-6b9c-11ea-956d-ce5fe2f311bd.PNG" height="250px" width="400px" alt="email_verified">
+</div>
+
+<ul>
+<li>WEB上でログイン</li>
+<li>コメントを投稿<ul>
+<li>アイコン画像はTwitterのものがそのまま反映されるようです</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77223048-6a41f880-6b9c-11ea-9aae-38987fd1bf52.PNG" height="250px" width="500px" alt="twitter_comment">
+</div>
+
+
+<ul>
+<li>以上でDisqusの解説は終了です。手軽なので是非導入してみましょう。</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-03-16T15:54:02.000Z">2020-03-17</time>
                 
                 <div class="level-item">
@@ -1129,7 +1450,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            13
+                            14
                         </p>
                     </a>
                 </div>
@@ -1153,7 +1474,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            19
+                            20
                         </p>
                     </a>
                 </div>
@@ -1317,7 +1638,7 @@
                 <span class="level-item">WEB Page Dev</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">5</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/WEB-Page-Dev/Hexo/">
@@ -1325,7 +1646,7 @@
                 <span class="level-item">Hexo</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">5</span>
             </span>
         </a></li></ul></li>
             </ul>
@@ -1338,7 +1659,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 13.33px;">AWS SDK for JavaScript</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Hexo/" style="font-size: 16.67px;">Hexo</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/cloud9/" style="font-size: 13.33px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/icarus/" style="font-size: 13.33px;">icarus</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+        <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 13.33px;">AWS SDK for JavaScript</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/cloud9/" style="font-size: 13.33px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/icarus/" style="font-size: 16.67px;">icarus</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
     </div>
 </div>
     
@@ -1350,6 +1671,25 @@
         <h3 class="menu-label">
             最近の記事
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/03/21/Hexo%E3%81%AB%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E6%AC%84%E3%82%92%E8%BF%BD%E5%8A%A0-Disqus/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hexoにコメント欄を追加(Disqus)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-20T17:42:04.000Z">2020-03-21</time></div>
+                    <a href="/2020/03/21/Hexo%E3%81%AB%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E6%AC%84%E3%82%92%E8%BF%BD%E5%8A%A0-Disqus/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hexoにコメント欄を追加(Disqus)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1427,25 +1767,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hexoテーマ(theme)変更: icarus">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-13T14:01:02.000Z">2020-03-13</time></div>
-                    <a href="/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hexoテーマ(theme)変更: icarus</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -1463,7 +1784,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">9</span>
+                    <span class="level-item tag">10</span>
                 </span>
             </a>
         </li>
@@ -1528,6 +1849,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Disqus/">
+                        <span class="tag">Disqus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Firebase/">
                         <span class="tag">Firebase</span>
                         <span class="tag is-grey">1</span>
@@ -1558,7 +1886,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -1600,7 +1928,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/icarus/">
                         <span class="tag">icarus</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1649,6 +1977,25 @@
         
         <article class="media">
             
+            <a href="/2020/03/21/Hexo%E3%81%AB%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E6%AC%84%E3%82%92%E8%BF%BD%E5%8A%A0-Disqus/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hexoにコメント欄を追加(Disqus)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-20T17:42:04.000Z">2020-03-21</time></div>
+                    <a href="/2020/03/21/Hexo%E3%81%AB%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E6%AC%84%E3%82%92%E8%BF%BD%E5%8A%A0-Disqus/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hexoにコメント欄を追加(Disqus)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/18/Privacy-Policy/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Privacy Policy">
@@ -1723,25 +2070,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hexoテーマ(theme)変更: icarus">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-13T14:01:02.000Z">2020-03-13</time></div>
-                    <a href="/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hexoテーマ(theme)変更: icarus</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1759,7 +2087,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">9</span>
+                    <span class="level-item tag">10</span>
                 </span>
             </a>
         </li>
@@ -1824,6 +2152,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Disqus/">
+                        <span class="tag">Disqus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Firebase/">
                         <span class="tag">Firebase</span>
                         <span class="tag is-grey">1</span>
@@ -1854,7 +2189,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
-                        <span class="tag is-grey">4</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -1896,7 +2231,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/icarus/">
                         <span class="tag">icarus</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
