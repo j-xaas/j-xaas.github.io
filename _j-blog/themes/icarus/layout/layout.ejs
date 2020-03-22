@@ -2,6 +2,7 @@
 <html <%- has_config('language') ? ' lang="' + get_config('language').substring(0, 2) + '"' : '' %>>
 <head>
     <%- _partial('common/head') %>
+
 </head>
 <body class="is-<%= column_count() %>-column">
     <%- _partial('common/navbar') %>

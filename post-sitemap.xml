@@ -8,8 +8,8 @@
     </url>
 
     <url>
-        <loc>https://j-xaas.github.io/2020/03/21/Hexo%E3%81%AB%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E6%AC%84%E3%82%92%E8%BF%BD%E5%8A%A0-Disqus/</loc>
-        <lastmod>2020-03-21T09:04:24.461Z</lastmod>
+        <loc>https://j-xaas.github.io/2020/02/04/About-This-Blog/</loc>
+        <lastmod>2020-03-22T16:10:06.517Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -17,7 +17,15 @@
 
     <url>
         <loc>https://j-xaas.github.io/2020/03/18/Privacy-Policy/</loc>
-        <lastmod>2020-03-17T16:20:58.990Z</lastmod>
+        <lastmod>2020-03-22T16:09:51.052Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://j-xaas.github.io/2020/03/21/Hexo%E3%81%AB%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E6%AC%84%E3%82%92%E8%BF%BD%E5%8A%A0-Disqus/</loc>
+        <lastmod>2020-03-21T09:04:24.461Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -66,14 +74,6 @@
     <url>
         <loc>https://j-xaas.github.io/2020/03/17/icarus-Hexo-Theme-Tips-Menu%E3%81%AE%E7%B7%A8%E9%9B%86/</loc>
         <lastmod>2020-03-16T15:57:22.781Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://j-xaas.github.io/2020/02/04/About-This-Blog/</loc>
-        <lastmod>2020-03-16T15:01:01.370Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

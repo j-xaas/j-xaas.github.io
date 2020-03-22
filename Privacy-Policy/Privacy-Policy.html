@@ -11,17 +11,19 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>タグ: Firebase - J&#39;s Tech Blog</title>
+<title>Privacy Policy - J&#39;s Tech Blog</title>
 
 
-    <meta name="description" content="tech">
+    <meta name="description" content="個人情報の利用目的当ブログでは、メールでのお問い合わせの際に、メールアドレス等の個人情報をご登録頂く場合がございます。 これらの個人情報は質問に対する回答や必要な情報を電子メール等でご連絡する場合に利用させていただくものであり、個人情報をご提供頂く際の目的以外では利用致しません。 広告の配信について当サイトでは、第三者配信の広告サービス「Google Adsense グーグルアドセンス」を利用して">
 <meta property="og:type" content="website">
-<meta property="og:title" content="J&#39;s Tech Blog">
-<meta property="og:url" content="https://j-xaas.github.io/tags/Firebase/index.html">
+<meta property="og:title" content="Privacy Policy">
+<meta property="og:url" content="https://j-xaas.github.io/Privacy-Policy/Privacy-Policy.html">
 <meta property="og:site_name" content="J&#39;s Tech Blog">
-<meta property="og:description" content="tech">
+<meta property="og:description" content="個人情報の利用目的当ブログでは、メールでのお問い合わせの際に、メールアドレス等の個人情報をご登録頂く場合がございます。 これらの個人情報は質問に対する回答や必要な情報を電子メール等でご連絡する場合に利用させていただくものであり、個人情報をご提供頂く際の目的以外では利用致しません。 広告の配信について当サイトでは、第三者配信の広告サービス「Google Adsense グーグルアドセンス」を利用して">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://j-xaas.github.io/images/og_image.png">
+<meta property="article:published_time" content="2020-03-17T16:16:47.000Z">
+<meta property="article:modified_time" content="2020-03-17T16:20:58.990Z">
 <meta property="article:author" content="Junya">
 <meta property="article:tag" content="angular">
 <meta name="twitter:card" content="summary">
@@ -92,7 +94,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="J&#39;s Tech Blog" height="28">
+                <img src="/images/logo.svg" alt="Privacy Policy" height="28">
             
             </a>
         </div>
@@ -147,313 +149,26 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">タグ</a></li>
-            <li class="is-active"><a href="#" aria-current="page">Firebase</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
 <div class="card">
     
     <div class="card-content article ">
         
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-05T13:28:41.000Z">2020-03-05</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Firebase/">Firebase</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    17分 read (About 2564 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/05/Cloud9-x-Angular-x-Firebase%E3%81%A7AP%E9%96%8B%E7%99%BA%EF%BC%88%E5%B0%8E%E5%85%A5%E7%B7%A8%EF%BC%89/">Cloud9 x Angular x FirebaseでAP開発（導入編）</a>
+                Privacy Policy
             
         </h1>
         <div class="content">
-            <p>こんにちは。今回は上記の３つを組み合わせてWEB AP開発を行う際の手順を解説していこうと思います。それぞれの使用経験があっても組み合わせると細かい所で沢山ハマってしまうので注意しましょう。（新設の開発チームの大半がこの段階で躓く印象です）  </p>
-<!-- toc-->
-
-
-<h2><span id="各技術についての基礎知識">各技術についての基礎知識</span></h2><p>簡単にポイントだけを解説します。分かっている方は飛ばしてください<br>手順を細かく書いているので分からない言葉があっても、一先ず触りなから理解していきましょう  </p>
-<ul>
-<li><p><a href="https://aws.amazon.com/jp/cloud9/">cloud9</a></p>
-<ul>
-<li>AWSのブラウザ型IDE</li>
-<li>自端末のOSに依存せず開発可能<ul>
-<li>iPadでも開発可能（よく使ってます）</li>
-</ul>
-</li>
-<li>社内プロキシ問題に悩まされない<ul>
-<li>個人的には最重要ポイント</li>
-</ul>
-</li>
-<li>環境構築を省略可能<ul>
-<li>node_module, Git, AWS CLI等の便利なものが元から入っている</li>
-</ul>
-</li>
-<li>複数ユーザーで同時編集可能<ul>
-<li>リモートワークやレビューに便利です</li>
-<li>対抗の<a href="https://cloud.google.com/shell/docs?hl=ja">Google Cloud Shell</a>との差分<ul>
-<li>後に同様の機能が付きそうではあります</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><a href="https://angular.jp/">Angular</a></p>
-<ul>
-<li>Googleが出しているWEB APのフレームワーク<ul>
-<li>言語はHTML, TypeScript, scss</li>
-</ul>
-</li>
-<li><a href="https://digitalidentity.co.jp/blog/creative/about-single-page-application.html">SPA (Single Page Application)</a>を開発可能</li>
-<li>APの画面はAngular Materialでほぼ自動構築可能</li>
-<li><a href="https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/dev/WebsiteHosting.html">静的WEBサイトホスティング</a>サービスを用いれば、<a href="https://qiita.com/y-some/items/e9b78468428d1c481fac">サーバレス</a>を実現可能<ul>
-<li>代表例として<a href="https://firebase.google.com/docs/hosting?hl=ja">Firebase Hosting</a>や<a href="https://aws.amazon.com/jp/s3/">Amazon S3</a>等が挙げられます</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><a href="https://firebase.google.com/">Firebase</a></p>
-<ul>
-<li>Googleの<a href="https://boxil.jp/mag/a3651/#3651-2">BaaS(Backend as a Service)</a></li>
-<li>認証機能やデータベースなどのバックエンドの機能を提供してくれるサービス<ul>
-<li>開発工数を大幅削減可能</li>
-<li>本質的な機能の開発に集中可能</li>
-</ul>
-</li>
-<li>APのHostingや顧客分析、収益管理まで可能  </li>
-</ul>
-</li>
-</ul>
-<p>この３つを抑えれば開発環境の用意からAPの公開まで高速でできます。  </p>
-<h2><span id="前提条件">前提条件</span></h2><ul>
-<li>cloud9環境を作成済み<ul>
-<li>指示に従って設定していくだけなので参考サイトを載せておきます<ul>
-<li><a href="https://qiita.com/tu-kun/items/d7b4f1fa19cc93bc5b75">初めてのAWS Cloud9導入</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Googleアカウントを作成済み<ul>
-<li><a href="https://support.google.com/accounts/answer/27441?hl=ja">Googelアカウントの作成</a></li>
-</ul>
-</li>
-</ul>
-<h2><span id="手順">手順</span></h2><h3><span id="1-angular開発環境の準備">1. Angular開発環境の準備</span></h3><ul>
-<li>Angularが動くために必要なもの<ul>
-<li>node_module</li>
-<li>Angular CLI</li>
-</ul>
-</li>
-</ul>
-<p>cloud9には初めからnode_moduleが入っている為、Angular CLIを入れるだけでOKです。（Windowsにnode_moduleを入れようとすると、それだけでだいぶ工数をロスします）  </p>
-<ul>
-<li><p>1.1. Angular CLIのinstall</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @angular cli</span><br></pre></td></tr></table></figure></li>
-<li><p>確認</p>
-<ul>
-<li>以下のようにngコマンドを使えるようになればOKです<ul>
-<li>ngはangularの略です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ng --version</span><br><span class="line"></span><br><span class="line">     _                      _                 ____ _     ___</span><br><span class="line">    &#x2F; \   _ __   __ _ _   _| | __ _ _ __     &#x2F; ___| |   |_ _|</span><br><span class="line">   &#x2F; △ \ | &#39;_ \ &#x2F; _&#96; | | | | |&#x2F; _&#96; | &#39;__|   | |   | |    | |</span><br><span class="line">  &#x2F; ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |</span><br><span class="line"> &#x2F;_&#x2F;   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|</span><br><span class="line">                |___&#x2F;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">Angular CLI: 8.3.20</span><br><span class="line">Node: 10.16.2</span><br><span class="line">OS: linux x64</span><br><span class="line">Angular: 8.2.14</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>０から開発する場合</p>
-<ul>
-<li>以下のコマンドでAngular PJを開始しましょう<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng new &lt;AP名&gt;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>Gitから開発途中のソースを持ってきた場合</p>
-<ul>
-<li>APのディレクトリ直下にもnode_moduleを入れなければ動かないので注意です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="2-firebaseの登録~project作成">2. firebaseの登録～project作成</span></h3><ul>
-<li><p>初めは基本的にWEBのFirebaseコンソールで操作していきます</p>
-<ul>
-<li>Googleアカウントを作成していればすぐに始められます</li>
-</ul>
-</li>
-<li><p>2.1. <a href="https://firebase.google.com/?hl=ja">公式ページ</a>から右上の”コンソールへ移動”を押下</p>
-</li>
-<li><p>2.2. projectを作成します（APの単位です）</p>
-<ul>
-<li>AP名を設定</li>
-</ul>
-</li>
-<li><p>2.3. アプリを登録</p>
-<ul>
-<li>ios/android/webからwebを選択</li>
-<li>ニックネームを設定</li>
-</ul>
-</li>
-<li><p>2.4. Firebase SDKの追加</p>
-<ul>
-<li>公式の説明は以下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">これらのスクリプトをコピーして &lt;body&gt; タグの下部に貼り付けます。この作業は Firebase サービスを使用する前に行ってください。</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>Angularの場合はindex.htmlのbody配下に置きます</p>
-<ul>
-<li>SPAなので、単一ページであるindex.htmlがJSで書き換わっていくのがAngularの特徴です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;app-root&gt;&lt;&#x2F;app-root&gt;</span><br><span class="line">&lt;!----firebaseSDKの追加--&gt;</span><br><span class="line">  &lt;!-- The core Firebase JS SDK is always required and must be listed first --&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;__&#x2F;firebase&#x2F;7.8.2&#x2F;firebase-app.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- TODO: Add SDKs for Firebase products that you want to use</span><br><span class="line">     https:&#x2F;&#x2F;firebase.google.com&#x2F;docs&#x2F;web&#x2F;setup#available-libraries --&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;__&#x2F;firebase&#x2F;7.8.2&#x2F;firebase-analytics.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- Initialize Firebase --&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;__&#x2F;firebase&#x2F;init.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="3-firebaseとapの関連付けangular-fireの導入">3. firebaseとAPの関連付け(Angular Fireの導入)</span></h3><ul>
-<li>Angular APとfirebaseを関連付けるまでに必要な作業の一覧は以下になります<ul>
-<li>angularfireのinstall</li>
-<li>Firebase CLIのinstal</li>
-<li>(firebase側でアプリを追加　 2で先に行った内容です)<ul>
-<li>Firebase SDKの追加</li>
-<li>FirebaseのAPIキーを取得</li>
-</ul>
-</li>
-<li>Angular環境設定ファイルにAPIキーを貼り付け<ul>
-<li>★二点に設定が必要。よくはまるポイントです</li>
-<li>開発環境<ul>
-<li>src/environments/environment.ts</li>
-</ul>
-</li>
-<li>本番環境<ul>
-<li>src/environments/environment.prod.ts</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>firebase login/init </li>
-<li>環境設定ファイルをapp.module.tsに読み込む<ul>
-<li>@angular/fireからAngularFireModuleを呼び出して、<br>上記のenvironmentオブジェクトを使ってAPIキーをインストール</li>
-</ul>
-</li>
-<li>（特定の機能を利用する場合の作業：認証機能を利用する際の例）<ul>
-<li>@angular/fire/authからAngularFireModuleを呼び出して、NgModuleに登録<ul>
-<li>Firebase Authenticationを利用するために必要な工程</li>
-<li>@angular/fireは全機能をinstallすると重くなる為、上記の様に必要なものだけを登録する仕様になっているらしい</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>それぞれ詳しく解説していきます  </p>
-<h4><span id="31-angular-fireのinstall">3.1. angular fireのinstall</span></h4><ul>
-<li><a href="https://github.com/angular/angularfire">angularfire</a>を入れます<ul>
-<li>AngularとFirebase連携用のLibraryです<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install firebase @angular&#x2F;fire</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>出力結果<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+ @angular&#x2F;fire@5.4.2</span><br><span class="line">+ firebase@7.9.3</span><br><span class="line">added 140 packages from 98 contributors and audited 19218 packages in 17.919s</span><br><span class="line">found 5 vulnerabilities (3 moderate, 2 high)</span><br></pre></td></tr></table></figure></li>
-<li>ここまでではまだ、Firebaseコマンドが使えない状態です</li>
-</ul>
-<h4><span id="32-firebase-cliの導入">3.2. の導入</span></h4><ul>
-<li>以下を実行することでinstallできます<ul>
-<li>firebase コマンドが有効になります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g firebase-tools</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="33-angular環境設定ファイルにapiキーを貼り付け">3.3. Angular環境設定ファイルにAPIキーを貼り付け</span></h3><ul>
-<li><p>開発環境向けと本番環境向けの２つの設定ファイルの改修が必要。よくはまるポイントです</p>
-<ul>
-<li>各値はfirebase consoleより確認</li>
-</ul>
-</li>
-<li><p>src/environments/environment.ts</p>
-<ul>
-<li>開発環境用の設定ファイル<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">export const environment &#x3D; &#123;</span><br><span class="line">  production: false</span><br><span class="line">  &#x2F;&#x2F; Firebaseの設定情報を登録</span><br><span class="line">    firebase: &#123;</span><br><span class="line">      apiKey: &#39;&lt;your-key&gt;&#39;,</span><br><span class="line">      authDomain: &#39;&lt;your-project-authdomain&gt;&#39;,</span><br><span class="line">      databaseURL: &#39;&lt;your-database-URL&gt;&#39;,</span><br><span class="line">      projectId: &#39;&lt;your-project-id&gt;&#39;,</span><br><span class="line">      storageBucket: &#39;&lt;your-storage-bucket&gt;&#39;,</span><br><span class="line">      messagingSenderId: &#39;&lt;your-messaging-sender-id&gt;&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>src/environments/environment.prod.ts</p>
-<ul>
-<li>本番環境用の設定ファイル<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">export const environment &#x3D; &#123;</span><br><span class="line">  production: false</span><br><span class="line">  &#x2F;&#x2F; Firebaseの設定情報を登録</span><br><span class="line">    firebase: &#123;</span><br><span class="line">      apiKey: &#39;&lt;your-key&gt;&#39;,</span><br><span class="line">      authDomain: &#39;&lt;your-project-authdomain&gt;&#39;,</span><br><span class="line">      databaseURL: &#39;&lt;your-database-URL&gt;&#39;,</span><br><span class="line">      projectId: &#39;&lt;your-project-id&gt;&#39;,</span><br><span class="line">      storageBucket: &#39;&lt;your-storage-bucket&gt;&#39;,</span><br><span class="line">      messagingSenderId: &#39;&lt;your-messaging-sender-id&gt;&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-<h4><span id="34-cliとfirebaseの関連付け">3.4. CLIとFirebaseの関連付け</span></h4><ul>
-<li>次にCloud9のCLIとfirebaseを関連付けます<ul>
-<li>c9の場合–nolocalhostが必須<ul>
-<li>★社内Local環境でloginをやろうとするとFirebaseの認証がProxyに阻まれて突破できず詰むので気を付けましょう<ul>
-<li>調べた解決策を全て講じてもこれだけは解決できませんでした…</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">firebase login --no-localhost --reauth</span><br><span class="line"></span><br><span class="line">i  Firebase optionally collects CLI usage and error reporting information to help improve our products. Data is collected in accordance with Google&#39;s privacy policy (https:&#x2F;&#x2F;policies.google.com&#x2F;privacy) and is not used to identify you.</span><br><span class="line"></span><br><span class="line">? Allow Firebase to collect CLI usage and error reporting information? Yes</span><br><span class="line">i  To change your data collection preference at any time, run &#96;firebase logout&#96; and log in again.</span><br><span class="line"></span><br><span class="line">Visit this URL on any device to log in:</span><br><span class="line">&lt;認証用のURL&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>上記のURLから、ブラウザで認Googleアカウント証を進めるとコードが表示される</li>
-<li>貼り付けてSuccessとでれば成功です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">? Paste authorization code here: &lt;Code&gt;</span><br><span class="line"></span><br><span class="line">✔  Success! Logged in as &lt;googleアカウント名&gt;</span><br></pre></td></tr></table></figure></li>
-<li>Cloud9のCLIからFirebase(=Google Cloud)上のリソースにアクセス可能になりました</li>
-</ul>
-<h4><span id="35-apとfirebaseのpjの関連付け">3.5. APとfirebaseのpjの関連付け</span></h4><ul>
-<li>Angular PJ直下で実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firebase init</span><br></pre></td></tr></table></figure></li>
-<li>以下のように出力されれば成功です<ul>
-<li>使いたいサービスを選択すると簡単にCloud側と連携できます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">     ######## #### ########  ######## ########     ###     ######  ########</span><br><span class="line">     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##</span><br><span class="line">     ######    ##  ########  ######   ########  #########  ######  ######</span><br><span class="line">     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##</span><br><span class="line">     ##       #### ##     ## ######## ########  ##     ##  ######  ########</span><br><span class="line"></span><br><span class="line">You&#39;re about to initialize a Firebase project in this directory:</span><br><span class="line"></span><br><span class="line">  &#x2F;home&#x2F;ec2-user&#x2F;environment&#x2F;test-app</span><br><span class="line"></span><br><span class="line">? Which Firebase CLI features do you want to set up for this folder? Press Space to select features, then Enter to confirm your choices. (Press</span><br><span class="line"> &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection)</span><br><span class="line">❯◯ Database: Deploy Firebase Realtime Database Rules</span><br><span class="line"> ◯ Firestore: Deploy rules and create indexes for Firestore</span><br><span class="line"> ◯ Functions: Configure and deploy Cloud Functions</span><br><span class="line"> ◯ Hosting: Configure and deploy Firebase Hosting sites</span><br><span class="line"> ◯ Storage: Deploy Cloud Storage security rules</span><br><span class="line"> ◯ Emulators: Set up local emulators for Firebase features</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h2><span id="おまけcloud9でng-serveを実行してapの画面を確認する際の注意">おまけ：cloud9でng serveを実行してAPの画面を確認する際の注意</span></h2><ul>
-<li>cloud9で必要なこと<ul>
-<li>portの指定(8080)</li>
-<li>browserのURLの指定</li>
-<li>disableHostCheck</li>
-</ul>
-</li>
-<li>大抵の人が必ず一度はハマるポイントです</li>
-<li>上部タブから”Preview”を選択後”Preview Runnig Application”を選択するとCloud9上に表示できます<ul>
-<li>Previewの中のURL欄をコピーして控えてください</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng serve --public-host &lt;cloud9のPreviewのURL&gt; --disableHostCheck --port 8080</span><br></pre></td></tr></table></figure>
-
-<h2><span id="後書き">後書き</span></h2><p>如何だったでしょうか？ここまでで本格的な実装に入る準備が整いました。Firebaseを使いこなせば、認証機能もデータのCRUD機能も１日で簡単に実装することができます。モダンな手法を使いこなして素早くAPを開発していきましょう。</p>
-<ul>
-<li>最後に、この先の機能実装の際に参考になりそうなページを共有しておきます。<ul>
-<li><a href="https://mae.chab.in/archives/60256">AngularFireでFirestoreのCRUD処理を実装する【Angular + Firebase】</a></li>
-<li><a href="https://satolabo.net/2019/11/30/angular8-fire-google-auth/">Angular8でFirebaseを使ってGoogleアカウント認証機能を実装する</a></li>
-</ul>
-</li>
-</ul>
+            <h2><span id="個人情報の利用目的">個人情報の利用目的</span></h2><p>当ブログでは、メールでのお問い合わせの際に、メールアドレス等の個人情報をご登録頂く場合がございます。</p>
+<p>これらの個人情報は質問に対する回答や必要な情報を電子メール等でご連絡する場合に利用させていただくものであり、個人情報をご提供頂く際の目的以外では利用致しません。</p>
+<h2><span id="広告の配信について">広告の配信について</span></h2><p>当サイトでは、第三者配信の広告サービス「Google Adsense グーグルアドセンス」を利用しております。<br>このような広告配信事業者は、ユーザーの興味に応じた商品やサービスの広告を表示するため、当サイトや他サイトへのアクセスに関する情報 『Cookie』(氏名、住所、メール アドレス、電話番号は含まれません) を使用することがあります。<br>またGoogleアドセンスに関して、このプロセスの詳細やこのような情報が広告配信事業者に使用されないようにする方法については、<a href="http://www.google.co.jp/policies/technologies/ads/">こちら</a>をご確認ください。</p>
+<h2><span id="アクセス解析ツールについて">アクセス解析ツールについて</span></h2><p>当サイトでは、Googleによるアクセス解析ツール「Googleアナリティクス」を利用しております。</p>
+<p>このGoogleアナリティクスはトラフィックデータの収集のためにCookieを使用しています。このトラフィックデータは匿名で収集されており、個人を特定するものではありません。この機能はCookieを無効にすることで収集を拒否することが出来ますので、お使いのブラウザの設定をご確認ください。この規約に関して、詳しくは<a href="http://www.google.com/analytics/terms/jp.html">こちら</a>をご確認ください。</p>
+<h2><span id="免責事項">免責事項</span></h2><p>当サイトのコンテンツ・情報につきまして、可能な限り正確な情報を掲載するよう努めておりますが、必ずしも正確性・信頼性等を保証するものではありません。</p>
+<p>当サイトに掲載された内容によって生じた損害等の一切の責任を負いかねますのでご了承ください。</p>
+<p>当サイトで掲載している画像の著作権・肖像権等は各権利所有者に帰属致します。<br>権利を侵害する目的ではございません。記事の内容や掲載画像等に問題がございましたら、各権利所有者様本人が直接<a href="junjunjunya108@gmail.com">メール</a>でご連絡下さい。確認後、対応させて頂きます。</p>
+<p>当サイトからリンクやバナーなどによって他のサイトに移動された場合、移動先サイトで提供される情報、サービス等について一切の責任を負いません。</p>
 
         </div>
         
@@ -464,11 +179,42 @@
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">Gefällt Ihnen der Artikel? Unterstützen Sie den Autor mit</h3>
+        <div class="buttons is-centered">
+            
+        </div>
+    </div>
+</div>
 
 
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">コメント</h3>
+        
+<script>
+    var disqus_config = function () {
+        this.page.url = 'https://j-xaas.github.io/Privacy-Policy/Privacy-Policy.html';
+        this.page.identifier = 'Privacy-Policy/Privacy-Policy.html';
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'https-j-xaas-github-io' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </div>
+</div>
 </div>
                 
 
@@ -1337,7 +1083,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="J&#39;s Tech Blog" height="28">
+                    <img src="/images/logo.svg" alt="Privacy Policy" height="28">
                 
                 </a>
                 <p class="is-size-7">

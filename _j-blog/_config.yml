@@ -94,6 +94,10 @@ sitemap:
   tag: false
   category: false
 
+# singlepage 足してみる 一旦保留
+single_page:
+  - Privacy-Policy
+
 # hexo-generator-ampで最低限必要なオプションです
 # 以下をそのまま追記すると、プラグインが動作します
 generator_amp:

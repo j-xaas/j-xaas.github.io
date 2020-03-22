@@ -2,7 +2,6 @@
 title: Privacy Policy
 date: 2020-03-18 01:16:47
 tags:
-ads: false
 ---
 
 ## 個人情報の利用目的
