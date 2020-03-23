@@ -30,6 +30,11 @@ toc: true
             - Slack等のチャットだけでコードの話をするのは実際辛いです
         - 開発チームを監督する側も状況を理解しやすく、皆が幸せになれます
 
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77328583-14b64900-6d60-11ea-9aed-3f0414313d5e.png" height="250px" width="500px" alt="共同開発のイメージ">
+</div>
+
+
 - 対抗：[VSCode LiveShare](https://qiita.com/taichi0514/items/95aca7428376a7b41f90)
     - Microsoftのエディターでもプラグインによって似たようなことができます
     - 個人的な使用感としては以下の差異があります

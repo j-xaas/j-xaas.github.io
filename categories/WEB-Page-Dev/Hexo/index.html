@@ -171,6 +171,410 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-23T14:24:25.000Z">2020-03-23</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    19分 read (About 2892 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/23/Hexo-x-Github-Pages-5%E5%88%86%E4%BB%A5%E5%86%85%E3%81%AB%E3%83%96%E3%83%AD%E3%82%B0%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90%E3%81%97%E3%81%A6%E7%84%A1%E6%96%99%E3%81%A7%E5%85%AC%E9%96%8B%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/">[Hexo x Github Pages] 5分以内にブログを自動生成して無料で公開するまで【完全版】</a>
+            
+        </h1>
+        <div class="content">
+            <p>こんにちは。今回は静的WEBサイトジェネレータの<a href="https://hexo.io/">Hexo</a>を用いたWEBページの自動生成手法と、<a href="https://help.github.com/ja/github/working-with-github-pages/about-github-pages">Github Pages</a>を用いた公開手法について解説します。”３分でできる”等という触れ込みを見て始めたのですが、当時素人だった私は相当ハマり諦めました…。初級者向けに説明が欠けている所を重点的にまとめようと思います。  </p>
+<p>昨今はWord PressやNote等のサービスを使って記事を書く方が多いと思いますが、自由度が低く、クオリティを追求すると有料になってしまう事が多いです。</p>
+<p>今回の手法であれば、運用費を1円もかけず、ソースコードを完全に自由にいじれます。エンジニア界隈で流行っている手法ですが、素人や学生でも使えるレベルです。GithubやWEBの基礎の勉強にもなるので、是非挑戦してみてください。  </p>
+<p>ざっくりのイメージ（まだ分からなくてOKです）</p>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77337436-3ae1e600-6d6c-11ea-919a-51893f317e71.png" height="300px" width="700px" alt="About Github Pages">
+</div>
+
+<!---toc--->
+
+<h2><span id="1-関連技術概要">1. 関連技術概要</span></h2><ul>
+<li>早く進めたい人は手順に飛んでOKです</li>
+</ul>
+<h3><span id="11-hexo">1.1. Hexo</span></h3><ul>
+<li><p><a href="https://ferret-plus.com/9413">静的WEBサイトジェネレータ</a></p>
+<ul>
+<li>静的WEBサイト<ul>
+<li>HTML + CSS + JavaScriptで構成されるWEBページ</li>
+</ul>
+</li>
+<li>上記をコマンド一つで自動生成するツールです</li>
+<li>Markdown形式のファイルを自動的にビジュアライズして表示可能<ul>
+<li><a href="https://www.asobou.co.jp/blog/bussiness/markdown">Markdown</a>とは文章を簡単に記述するための記法です<ul>
+<li>ハイフンで箇条書きを表現したり、#で見出しの文字を表現したりできます<ul>
+<li>HTMLで書くよりはるかに簡単なので覚えましょう</li>
+<li>慣れれば普段のメモもこの記法が楽です</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>テーマが300種類近くあります</p>
+<ul>
+<li><a href="https://hexo.io/themes/index.html">Hexo Theme</a><ul>
+<li>ブログや企業サイト、デザイナーのポートフォリオ等、なんでも作れます</li>
+</ul>
+</li>
+<li>Themeの変更方法やカスタマイズ方法は他の記事で解説しているので、ページ作成後にご覧ください<ul>
+<li><a href="https://j-xaas.github.io/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/">Hexoテーマ(theme)変更: icarus</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77341636-5c45d080-6d72-11ea-8ac7-85d6d86a9141.png" height="400px" width="600px" alt="Hexo Theme">
+</div>
+
+<h3><span id="12-github-pages">1.2. Github Pages</span></h3><ul>
+<li><p><a href="https://github.co.jp/">GitHub</a>(<a href="https://tracpath.com/works/development/git-mercurial-subversion/">バージョン管理ツール</a>)が提供しているホスティングサービス</p>
+<ul>
+<li>静的なWEBページを公開可能</li>
+<li>運用費は無料</li>
+<li>一定数のリクエストを超えると落ちてしまう制限がある<ul>
+<li>10万PV以上/月<ul>
+<li>初めは無視してOKです</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="https://github.co.jp/">Github</a>の知識があれば学習コスト0で利用可能</p>
+<ul>
+<li>Githubとは<ul>
+<li>簡単に言うと、ソースコードを置いておく場所です</li>
+<li>開発に必須とも言えるツールであるため、覚えておくに越したことはないです</li>
+<li>Github Pagesが優れている点は、このソースの置き場所でそのまま公開できる手軽さにあります</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Github Pagesで生成可能なページの種類</p>
+<ul>
+<li><ol>
+<li>ユーザーページ（https://ユーザー名.github.io）<ul>
+<li>Githubユーザ名のrepository(名前固定)で公開</li>
+<li>Githubユーザ1名につき、1つまで</li>
+<li>Point<ul>
+<li>Organization(組織)のリポジトリである場合は上記の”ユーザ名”を”Organiztation名”に読み替えて利用できます<ul>
+<li>つまりOrganizationを量産すれば、その数だけユーザページを作成可能です</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>プロジェクトページ（https://ユーザー名.github.io/リポジトリ名/）<ul>
+<li>repositoryを作成すれば、無制限にサイトを作成可能</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>Angularで開発したSingle Page Applicationのホスティングも可能</p>
+<ul>
+<li>WEBアプリの公開にも使えます<ul>
+<li>10万PVで落ちるという制約があるため、ビジネスの現場ではそこまで使われません</li>
+<li>個人で開発したものや、開発途中のものを公開するにはとても便利です</li>
+</ul>
+</li>
+<li>Angularの解説は以下にまとめてます<ul>
+<li><a href="https://j-xaas.github.io/categories/Serverless-Application-Dev/SPA-Angular/">Category/Serverless Application Dev/Angular</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Markdownやasciidoc形式のファイルをそのままおいて、ビジュアライズ表示も可能</p>
+<ul>
+<li>push直後には失敗していた。数分後に確認したところ、確認できた。</li>
+<li>編集内容の反映までに初めはリードタイムが必要</li>
+</ul>
+</li>
+</ul>
+<h2><span id="2-手順">2. 手順</span></h2><ul>
+<li>初級者向けに環境構築から書きます</li>
+</ul>
+<h3><span id="21-前提環境構築">2.1. 前提/環境構築</span></h3><ul>
+<li>エディターを用意 (以下がお勧めです)<ul>
+<li>Local端末の場合<ul>
+<li>VS Code<ul>
+<li><a href="https://eng-entrance.com/texteditor-vscode">【ゼロから！】Visual Studio Codeのインストールと使い方</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>クラウド型IDEの場合 (GoogleアカウントがあればCloud Shellが楽です)<ul>
+<li>Google Cloud Shell<ul>
+<li><a href="https://www.topgate.co.jp/gcp09-how-to-use-cloud-shell">【GCP入門編・第9回】 Cloud Shell で、いつでもどこでも Google Cloud Platform (GCP) が操作可能に！</a></li>
+</ul>
+</li>
+<li>AWS Cloud9<ul>
+<li><a href="https://www.sejuku.net/blog/385">Cloud9の使い方と便利機能！最強プログラミング開発環境（IDE）</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Node.jsを<ul>
+<li>Hexoを動かすために必要です</li>
+<li>まだ入れていなければ、インストールしましょう<ul>
+<li>参考<ul>
+<li><a href="https://www.sejuku.net/blog/72545">【Node.js入門】各OS別のインストール方法まとめ(Windows,Mac,Linux…)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Google Cloud ShellやAWS Cloud9等のクラウドIDEであれば、初めから入っています<ul>
+<li>面倒な環境構築を避けたい方は利用してみましょう</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="22-github-pagesの公開">2.2. github pagesの公開</span></h3><ul>
+<li><p>準備</p>
+<ul>
+<li>ユーザ直下に作成する場合<ul>
+<li>特になし</li>
+</ul>
+</li>
+<li>Organizationで作成する場合<ul>
+<li>Organization名がユーザ名の代わりになります</li>
+<li>URLにそのままなるので、作りたいWEBページに合わせて決めましょう</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>repositoryを作成</p>
+<ul>
+<li>以下のように名称を設定すると中においた静的ソースコードがWEBページとして公開される<ul>
+<li>user-name.github.io</li>
+</ul>
+</li>
+<li>今回のrepository名<ul>
+<li>user-name.github.io</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>最終的に以下のURLで表示されます</p>
+<ul>
+<li><a href="https://user-name.github.io">https://user-name.github.io</a></li>
+</ul>
+</li>
+</ul>
+<h4><span id="markdownファイルをおいてみる">Markdownファイルをおいてみる</span></h4><ul>
+<li>repositoryをコピー<ul>
+<li>PS D:&gt; git clone <a href="https://github.com/user-name/user-name.github.io.git">https://github.com/user-name/user-name.github.io.git</a></li>
+</ul>
+</li>
+<li>適当なmarkdownファイルを作成してreporitoryにpush</li>
+<li>ブラウザで確認<ul>
+<li><a href="https://github.com/user-name/user-name.github.io">https://github.com/user-name/user-name.github.io</a></li>
+</ul>
+</li>
+</ul>
+<h3><span id="23-静的サイトジェネレーターを利用してサイトをビジュアライズ">2.3. 静的サイトジェネレーターを利用してサイトをビジュアライズ</span></h3><ul>
+<li><p>作成したgithub pagesのrepository配下にhexoを入れます</p>
+</li>
+<li><p>Hexoをインストール</p>
+<ul>
+<li>この時点でエラーが出たらNode.jsのバージョンを確認してください<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>Hexoでプロジェクトを作成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init your-blog</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>hexoで起動して、ページを確認</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd your-blog</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></li>
+<li><p>Localhostで以下の画面を確認</p>
+<ul>
+<li>環境構築が事前に済んでいたので、ここまで3分程度</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/69618328-10fa0a80-107d-11ea-85cf-e491879b5b38.png" height="400px" width="500px" alt="Hexo Default">
+</div>
+
+
+<ul>
+<li><p>ポイント</p>
+<ul>
+<li>README.mdは干渉するので削除</li>
+<li>まだgitにLocalで作ったブログをpushしてもWEBサイトには出ません<ul>
+<li>ここでハマったので詳しく解説していきます</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>generate</p>
+<ul>
+<li>HTMLをpublicフォルダ内に生成するコマンド<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>publicというディレクトリが作られ、配下に以下が生成される</p>
+<ul>
+<li>\user-name.github.io\your-blog\public</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Mode                LastWriteTime         Length Name</span><br><span class="line">----                -------------         ------ ----</span><br><span class="line">d-----       2019&#x2F;11&#x2F;26     19:03                2019</span><br><span class="line">d-----       2019&#x2F;11&#x2F;26     19:03                archives</span><br><span class="line">d-----       2019&#x2F;11&#x2F;26     19:03                css</span><br><span class="line">d-----       2019&#x2F;11&#x2F;26     19:03                fancybox</span><br><span class="line">d-----       2019&#x2F;11&#x2F;26     19:03                js</span><br><span class="line">-a----       2019&#x2F;11&#x2F;26     19:03           6589 index.html</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>以下でindex.htmlを確認しましょう<ul>
+<li>file:///D:/user-name.github.io/your-blog/public/index.html</li>
+</ul>
+</li>
+</ul>
+<h4><span id="trouble-shooting">Trouble Shooting</span></h4><ul>
+<li>ここでpushをすると、以下のエラーに悩まされます<ul>
+<li>ググっても関係のない対処法ばかり出て初級者は詰むと思います</li>
+<li>私もSSH鍵の設定を確認したりだいぶ迷走しました</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/69620310-887d6900-1080-11ea-9574-dadb2f4a7a0c.png" height="100px" width="400px" alt="Hexo Default">
+</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GitHub Pages failed to build your site.</span><br><span class="line">The value &#39;&#123;&#125;&#39; was passed to a date-related filter that expects valid dates in &#x2F;_layouts&#x2F;default.html or one of its layouts.</span><br></pre></td></tr></table></figure>
+
+<h4><span id="回避策">回避策</span></h4><ul>
+<li><p>エラーの原因</p>
+<ul>
+<li>Github pagesはリポジトリ内のルートディレクトリを読み込もうとする</li>
+<li>HEXOでgenerateされたWEBページはpublicディレクトリにある<ul>
+<li>読み込めずにエラーが出ている</li>
+</ul>
+</li>
+<li>generateされたファイルがrepository直下におかれるように設定を編集<ul>
+<li>hexoディレクトリ直下の設定ファイルを編集することでできました</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>_config.ymlを編集</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">旧：public_dir: public</span><br><span class="line">新：public_dir: ..&#x2F;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>上記の状態でgenerateコマンドを打つと、public配下に生成されていたファイル群が、repository直下に生成される</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    ディレクトリ: D:\user-name.github.io</span><br><span class="line"></span><br><span class="line">Mode                LastWriteTime         Length Name</span><br><span class="line">----                -------------         ------ ----</span><br><span class="line">d-----       2019&#x2F;11&#x2F;26     21:36                2019</span><br><span class="line">d-----       2019&#x2F;11&#x2F;26     21:36                archives</span><br><span class="line">d-----       2019&#x2F;11&#x2F;26     21:36                css</span><br><span class="line">d-----       2019&#x2F;11&#x2F;26     21:36                fancybox</span><br><span class="line">d-----       2019&#x2F;11&#x2F;24     13:00                your-blog</span><br><span class="line">d-----       2019&#x2F;11&#x2F;26     21:36                js</span><br><span class="line">-a----       2019&#x2F;11&#x2F;26     21:36           6834 index.html</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>your-blog（ソースファイル）をgithub pagesが読み込んでエラーを起こさないように名称を変更</p>
+<ul>
+<li>余計なディレクトリがあるとGithub PagesはWEBページを表示できません<ul>
+<li>初級者は個々でもはまると思います</li>
+</ul>
+</li>
+<li>元々のHexoディレクトリを_で読み込めなくするだけでOKです<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS D:\user-name.github.io&gt; mv your-blog _your-blog</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>ここまでやってからpush</p>
+</li>
+<li><p>WEBブラウザでページの生成を確認</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;user-name.github.io&#x2F;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h3><span id="24-新しい記事を追加">2.4. 新しい記事を追加</span></h3><ul>
+<li>hexo new ‘記事名’<ul>
+<li>概要ページを作ってみましょう</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS D:\user-name.github.io\your-blog&gt; hexo new &quot;about-mob&quot;</span><br><span class="line">INFO  Created: D:\user-name.github.io\your-blog\source\_posts\about-mob.md</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>source/_posts/&lt;記事名&gt;.mdが生成</p>
+</li>
+<li><p>localhostでチェック</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PS D:\user-name.github.io\your-blog\source\_posts&gt; hexo server</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http:&#x2F;&#x2F;localhost:4000 . Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure></li>
+<li><p>記事が増えている</p>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/69628408-08aacb00-108f-11ea-82fb-5baa34dad1a1.png" alt="image"></p>
+<ul>
+<li>生成されたMarkdownファイルを確認</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PS D:\user-name.github.io\your-blog\source\_posts&gt; ls</span><br><span class="line"></span><br><span class="line">Mode                LastWriteTime         Length Name</span><br><span class="line">----                -------------         ------ ----</span><br><span class="line">-a----       2019&#x2F;11&#x2F;26     20:51             57 about-mob.md</span><br><span class="line">-a----       2019&#x2F;11&#x2F;26     18:42            838 hello-world.md</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>abouto_mob.mdを編集</li>
+<li>編集内容がLocal内で反映されていることを確認</li>
+</ul>
+<h3><span id="まとめ">まとめ</span></h3><ul>
+<li>以上で解説は終了です</li>
+<li>以下ができる状態になったと思います<ul>
+<li>静的サイトジェネレーターでWEBサイトを自動生成</li>
+<li>静的WEBサイトホスティングで公開</li>
+</ul>
+</li>
+</ul>
+<h2><span id="hexoサイトのカスタマイズ">Hexoサイトのカスタマイズ</span></h2><ul>
+<li><p>次はテーマを変更してみましょう</p>
+<ul>
+<li><a href="https://j-xaas.github.io/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/">Hexoテーマ(theme)変更: icarus</a></li>
+</ul>
+</li>
+<li><p>その他のカスタマイズ</p>
+<ul>
+<li><a href="https://j-xaas.github.io/categories/WEB-Page-Dev/Hexo/">Category/Hexo</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-03-20T17:42:04.000Z">2020-03-21</time>
                 
                 <div class="level-item">
@@ -1457,7 +1861,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            14
+                            15
                         </p>
                     </a>
                 </div>
@@ -1481,7 +1885,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            20
+                            21
                         </p>
                     </a>
                 </div>
@@ -1645,7 +2049,7 @@
                 <span class="level-item">WEB Page Dev</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">5</span>
+                <span class="level-item tag">6</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/WEB-Page-Dev/Hexo/">
@@ -1653,7 +2057,7 @@
                 <span class="level-item">Hexo</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">5</span>
+                <span class="level-item tag">6</span>
             </span>
         </a></li></ul></li>
             </ul>
@@ -1666,7 +2070,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 13.33px;">AWS SDK for JavaScript</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/cloud9/" style="font-size: 13.33px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/icarus/" style="font-size: 16.67px;">icarus</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+        <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12.5px;">AWS SDK for JavaScript</a> <a href="/tags/Angular/" style="font-size: 17.5px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 12.5px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
     </div>
 </div>
     
@@ -1678,6 +2082,25 @@
         <h3 class="menu-label">
             最近の記事
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/03/23/Hexo-x-Github-Pages-5%E5%88%86%E4%BB%A5%E5%86%85%E3%81%AB%E3%83%96%E3%83%AD%E3%82%B0%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90%E3%81%97%E3%81%A6%E7%84%A1%E6%96%99%E3%81%A7%E5%85%AC%E9%96%8B%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Hexo x Github Pages] 5分以内にブログを自動生成して無料で公開するまで【完全版】">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-23T14:24:25.000Z">2020-03-23</time></div>
+                    <a href="/2020/03/23/Hexo-x-Github-Pages-5%E5%88%86%E4%BB%A5%E5%86%85%E3%81%AB%E3%83%96%E3%83%AD%E3%82%B0%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90%E3%81%97%E3%81%A6%E7%84%A1%E6%96%99%E3%81%A7%E5%85%AC%E9%96%8B%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Hexo x Github Pages] 5分以内にブログを自動生成して無料で公開するまで【完全版】</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1755,25 +2178,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/15/Hexo%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AEAMP%E5%8C%96/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="HexoブログのAMP化【完全版】">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-15T09:00:22.000Z">2020-03-15</time></div>
-                    <a href="/2020/03/15/Hexo%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AEAMP%E5%8C%96/" class="title has-link-black-ter is-size-6 has-text-weight-normal">HexoブログのAMP化【完全版】</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -1791,7 +2195,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">10</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -1893,7 +2297,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -1907,6 +2311,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Treetable/">
                         <span class="tag">Treetable</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/WEB-Page-Dev/">
+                        <span class="tag">WEB Page Dev</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1984,6 +2395,25 @@
         
         <article class="media">
             
+            <a href="/2020/03/23/Hexo-x-Github-Pages-5%E5%88%86%E4%BB%A5%E5%86%85%E3%81%AB%E3%83%96%E3%83%AD%E3%82%B0%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90%E3%81%97%E3%81%A6%E7%84%A1%E6%96%99%E3%81%A7%E5%85%AC%E9%96%8B%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Hexo x Github Pages] 5分以内にブログを自動生成して無料で公開するまで【完全版】">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-23T14:24:25.000Z">2020-03-23</time></div>
+                    <a href="/2020/03/23/Hexo-x-Github-Pages-5%E5%88%86%E4%BB%A5%E5%86%85%E3%81%AB%E3%83%96%E3%83%AD%E3%82%B0%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90%E3%81%97%E3%81%A6%E7%84%A1%E6%96%99%E3%81%A7%E5%85%AC%E9%96%8B%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Hexo x Github Pages] 5分以内にブログを自動生成して無料で公開するまで【完全版】</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/21/Hexo%E3%81%AB%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E6%AC%84%E3%82%92%E8%BF%BD%E5%8A%A0-Disqus/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Hexoにコメント欄を追加(Disqus)">
@@ -2058,25 +2488,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/15/Hexo%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AEAMP%E5%8C%96/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="HexoブログのAMP化【完全版】">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-15T09:00:22.000Z">2020-03-15</time></div>
-                    <a href="/2020/03/15/Hexo%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AEAMP%E5%8C%96/" class="title has-link-black-ter is-size-6 has-text-weight-normal">HexoブログのAMP化【完全版】</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -2094,7 +2505,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">10</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -2196,7 +2607,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -2210,6 +2621,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Treetable/">
                         <span class="tag">Treetable</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/WEB-Page-Dev/">
+                        <span class="tag">WEB Page Dev</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -2403,7 +2821,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 
-<a id="back-to-top" title="Back to Top" href="javascript:;">
+<a id="back-to-top" title="Zurück nach oben" href="javascript:;">
     <i class="fas fa-chevron-up"></i>
 </a>
 <script src="/js/back-to-top.js" defer></script>

@@ -158,6 +158,410 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-23T14:24:25.000Z">2020-03-23</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    19分 read (About 2892 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/23/Hexo-x-Github-Pages-5%E5%88%86%E4%BB%A5%E5%86%85%E3%81%AB%E3%83%96%E3%83%AD%E3%82%B0%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90%E3%81%97%E3%81%A6%E7%84%A1%E6%96%99%E3%81%A7%E5%85%AC%E9%96%8B%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/">[Hexo x Github Pages] 5分以内にブログを自動生成して無料で公開するまで【完全版】</a>
+            
+        </h1>
+        <div class="content">
+            <p>こんにちは。今回は静的WEBサイトジェネレータの<a href="https://hexo.io/">Hexo</a>を用いたWEBページの自動生成手法と、<a href="https://help.github.com/ja/github/working-with-github-pages/about-github-pages">Github Pages</a>を用いた公開手法について解説します。”３分でできる”等という触れ込みを見て始めたのですが、当時素人だった私は相当ハマり諦めました…。初級者向けに説明が欠けている所を重点的にまとめようと思います。  </p>
+<p>昨今はWord PressやNote等のサービスを使って記事を書く方が多いと思いますが、自由度が低く、クオリティを追求すると有料になってしまう事が多いです。</p>
+<p>今回の手法であれば、運用費を1円もかけず、ソースコードを完全に自由にいじれます。エンジニア界隈で流行っている手法ですが、素人や学生でも使えるレベルです。GithubやWEBの基礎の勉強にもなるので、是非挑戦してみてください。  </p>
+<p>ざっくりのイメージ（まだ分からなくてOKです）</p>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77337436-3ae1e600-6d6c-11ea-919a-51893f317e71.png" height="300px" width="700px" alt="About Github Pages">
+</div>
+
+<!---toc--->
+
+<h2><span id="1-関連技術概要">1. 関連技術概要</span></h2><ul>
+<li>早く進めたい人は手順に飛んでOKです</li>
+</ul>
+<h3><span id="11-hexo">1.1. Hexo</span></h3><ul>
+<li><p><a href="https://ferret-plus.com/9413">静的WEBサイトジェネレータ</a></p>
+<ul>
+<li>静的WEBサイト<ul>
+<li>HTML + CSS + JavaScriptで構成されるWEBページ</li>
+</ul>
+</li>
+<li>上記をコマンド一つで自動生成するツールです</li>
+<li>Markdown形式のファイルを自動的にビジュアライズして表示可能<ul>
+<li><a href="https://www.asobou.co.jp/blog/bussiness/markdown">Markdown</a>とは文章を簡単に記述するための記法です<ul>
+<li>ハイフンで箇条書きを表現したり、#で見出しの文字を表現したりできます<ul>
+<li>HTMLで書くよりはるかに簡単なので覚えましょう</li>
+<li>慣れれば普段のメモもこの記法が楽です</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>テーマが300種類近くあります</p>
+<ul>
+<li><a href="https://hexo.io/themes/index.html">Hexo Theme</a><ul>
+<li>ブログや企業サイト、デザイナーのポートフォリオ等、なんでも作れます</li>
+</ul>
+</li>
+<li>Themeの変更方法やカスタマイズ方法は他の記事で解説しているので、ページ作成後にご覧ください<ul>
+<li><a href="https://j-xaas.github.io/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/">Hexoテーマ(theme)変更: icarus</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77341636-5c45d080-6d72-11ea-8ac7-85d6d86a9141.png" height="400px" width="600px" alt="Hexo Theme">
+</div>
+
+<h3><span id="12-github-pages">1.2. Github Pages</span></h3><ul>
+<li><p><a href="https://github.co.jp/">GitHub</a>(<a href="https://tracpath.com/works/development/git-mercurial-subversion/">バージョン管理ツール</a>)が提供しているホスティングサービス</p>
+<ul>
+<li>静的なWEBページを公開可能</li>
+<li>運用費は無料</li>
+<li>一定数のリクエストを超えると落ちてしまう制限がある<ul>
+<li>10万PV以上/月<ul>
+<li>初めは無視してOKです</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="https://github.co.jp/">Github</a>の知識があれば学習コスト0で利用可能</p>
+<ul>
+<li>Githubとは<ul>
+<li>簡単に言うと、ソースコードを置いておく場所です</li>
+<li>開発に必須とも言えるツールであるため、覚えておくに越したことはないです</li>
+<li>Github Pagesが優れている点は、このソースの置き場所でそのまま公開できる手軽さにあります</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Github Pagesで生成可能なページの種類</p>
+<ul>
+<li><ol>
+<li>ユーザーページ（https://ユーザー名.github.io）<ul>
+<li>Githubユーザ名のrepository(名前固定)で公開</li>
+<li>Githubユーザ1名につき、1つまで</li>
+<li>Point<ul>
+<li>Organization(組織)のリポジトリである場合は上記の”ユーザ名”を”Organiztation名”に読み替えて利用できます<ul>
+<li>つまりOrganizationを量産すれば、その数だけユーザページを作成可能です</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>プロジェクトページ（https://ユーザー名.github.io/リポジトリ名/）<ul>
+<li>repositoryを作成すれば、無制限にサイトを作成可能</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>Angularで開発したSingle Page Applicationのホスティングも可能</p>
+<ul>
+<li>WEBアプリの公開にも使えます<ul>
+<li>10万PVで落ちるという制約があるため、ビジネスの現場ではそこまで使われません</li>
+<li>個人で開発したものや、開発途中のものを公開するにはとても便利です</li>
+</ul>
+</li>
+<li>Angularの解説は以下にまとめてます<ul>
+<li><a href="https://j-xaas.github.io/categories/Serverless-Application-Dev/SPA-Angular/">Category/Serverless Application Dev/Angular</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Markdownやasciidoc形式のファイルをそのままおいて、ビジュアライズ表示も可能</p>
+<ul>
+<li>push直後には失敗していた。数分後に確認したところ、確認できた。</li>
+<li>編集内容の反映までに初めはリードタイムが必要</li>
+</ul>
+</li>
+</ul>
+<h2><span id="2-手順">2. 手順</span></h2><ul>
+<li>初級者向けに環境構築から書きます</li>
+</ul>
+<h3><span id="21-前提環境構築">2.1. 前提/環境構築</span></h3><ul>
+<li>エディターを用意 (以下がお勧めです)<ul>
+<li>Local端末の場合<ul>
+<li>VS Code<ul>
+<li><a href="https://eng-entrance.com/texteditor-vscode">【ゼロから！】Visual Studio Codeのインストールと使い方</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>クラウド型IDEの場合 (GoogleアカウントがあればCloud Shellが楽です)<ul>
+<li>Google Cloud Shell<ul>
+<li><a href="https://www.topgate.co.jp/gcp09-how-to-use-cloud-shell">【GCP入門編・第9回】 Cloud Shell で、いつでもどこでも Google Cloud Platform (GCP) が操作可能に！</a></li>
+</ul>
+</li>
+<li>AWS Cloud9<ul>
+<li><a href="https://www.sejuku.net/blog/385">Cloud9の使い方と便利機能！最強プログラミング開発環境（IDE）</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Node.jsを<ul>
+<li>Hexoを動かすために必要です</li>
+<li>まだ入れていなければ、インストールしましょう<ul>
+<li>参考<ul>
+<li><a href="https://www.sejuku.net/blog/72545">【Node.js入門】各OS別のインストール方法まとめ(Windows,Mac,Linux…)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Google Cloud ShellやAWS Cloud9等のクラウドIDEであれば、初めから入っています<ul>
+<li>面倒な環境構築を避けたい方は利用してみましょう</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="22-github-pagesの公開">2.2. github pagesの公開</span></h3><ul>
+<li><p>準備</p>
+<ul>
+<li>ユーザ直下に作成する場合<ul>
+<li>特になし</li>
+</ul>
+</li>
+<li>Organizationで作成する場合<ul>
+<li>Organization名がユーザ名の代わりになります</li>
+<li>URLにそのままなるので、作りたいWEBページに合わせて決めましょう</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>repositoryを作成</p>
+<ul>
+<li>以下のように名称を設定すると中においた静的ソースコードがWEBページとして公開される<ul>
+<li>user-name.github.io</li>
+</ul>
+</li>
+<li>今回のrepository名<ul>
+<li>user-name.github.io</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>最終的に以下のURLで表示されます</p>
+<ul>
+<li><a href="https://user-name.github.io">https://user-name.github.io</a></li>
+</ul>
+</li>
+</ul>
+<h4><span id="markdownファイルをおいてみる">Markdownファイルをおいてみる</span></h4><ul>
+<li>repositoryをコピー<ul>
+<li>PS D:&gt; git clone <a href="https://github.com/user-name/user-name.github.io.git">https://github.com/user-name/user-name.github.io.git</a></li>
+</ul>
+</li>
+<li>適当なmarkdownファイルを作成してreporitoryにpush</li>
+<li>ブラウザで確認<ul>
+<li><a href="https://github.com/user-name/user-name.github.io">https://github.com/user-name/user-name.github.io</a></li>
+</ul>
+</li>
+</ul>
+<h3><span id="23-静的サイトジェネレーターを利用してサイトをビジュアライズ">2.3. 静的サイトジェネレーターを利用してサイトをビジュアライズ</span></h3><ul>
+<li><p>作成したgithub pagesのrepository配下にhexoを入れます</p>
+</li>
+<li><p>Hexoをインストール</p>
+<ul>
+<li>この時点でエラーが出たらNode.jsのバージョンを確認してください<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>Hexoでプロジェクトを作成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init your-blog</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>hexoで起動して、ページを確認</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd your-blog</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></li>
+<li><p>Localhostで以下の画面を確認</p>
+<ul>
+<li>環境構築が事前に済んでいたので、ここまで3分程度</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/69618328-10fa0a80-107d-11ea-85cf-e491879b5b38.png" height="400px" width="500px" alt="Hexo Default">
+</div>
+
+
+<ul>
+<li><p>ポイント</p>
+<ul>
+<li>README.mdは干渉するので削除</li>
+<li>まだgitにLocalで作ったブログをpushしてもWEBサイトには出ません<ul>
+<li>ここでハマったので詳しく解説していきます</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>generate</p>
+<ul>
+<li>HTMLをpublicフォルダ内に生成するコマンド<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>publicというディレクトリが作られ、配下に以下が生成される</p>
+<ul>
+<li>\user-name.github.io\your-blog\public</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Mode                LastWriteTime         Length Name</span><br><span class="line">----                -------------         ------ ----</span><br><span class="line">d-----       2019&#x2F;11&#x2F;26     19:03                2019</span><br><span class="line">d-----       2019&#x2F;11&#x2F;26     19:03                archives</span><br><span class="line">d-----       2019&#x2F;11&#x2F;26     19:03                css</span><br><span class="line">d-----       2019&#x2F;11&#x2F;26     19:03                fancybox</span><br><span class="line">d-----       2019&#x2F;11&#x2F;26     19:03                js</span><br><span class="line">-a----       2019&#x2F;11&#x2F;26     19:03           6589 index.html</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>以下でindex.htmlを確認しましょう<ul>
+<li>file:///D:/user-name.github.io/your-blog/public/index.html</li>
+</ul>
+</li>
+</ul>
+<h4><span id="trouble-shooting">Trouble Shooting</span></h4><ul>
+<li>ここでpushをすると、以下のエラーに悩まされます<ul>
+<li>ググっても関係のない対処法ばかり出て初級者は詰むと思います</li>
+<li>私もSSH鍵の設定を確認したりだいぶ迷走しました</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/69620310-887d6900-1080-11ea-9574-dadb2f4a7a0c.png" height="100px" width="400px" alt="Hexo Default">
+</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GitHub Pages failed to build your site.</span><br><span class="line">The value &#39;&#123;&#125;&#39; was passed to a date-related filter that expects valid dates in &#x2F;_layouts&#x2F;default.html or one of its layouts.</span><br></pre></td></tr></table></figure>
+
+<h4><span id="回避策">回避策</span></h4><ul>
+<li><p>エラーの原因</p>
+<ul>
+<li>Github pagesはリポジトリ内のルートディレクトリを読み込もうとする</li>
+<li>HEXOでgenerateされたWEBページはpublicディレクトリにある<ul>
+<li>読み込めずにエラーが出ている</li>
+</ul>
+</li>
+<li>generateされたファイルがrepository直下におかれるように設定を編集<ul>
+<li>hexoディレクトリ直下の設定ファイルを編集することでできました</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>_config.ymlを編集</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">旧：public_dir: public</span><br><span class="line">新：public_dir: ..&#x2F;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>上記の状態でgenerateコマンドを打つと、public配下に生成されていたファイル群が、repository直下に生成される</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    ディレクトリ: D:\user-name.github.io</span><br><span class="line"></span><br><span class="line">Mode                LastWriteTime         Length Name</span><br><span class="line">----                -------------         ------ ----</span><br><span class="line">d-----       2019&#x2F;11&#x2F;26     21:36                2019</span><br><span class="line">d-----       2019&#x2F;11&#x2F;26     21:36                archives</span><br><span class="line">d-----       2019&#x2F;11&#x2F;26     21:36                css</span><br><span class="line">d-----       2019&#x2F;11&#x2F;26     21:36                fancybox</span><br><span class="line">d-----       2019&#x2F;11&#x2F;24     13:00                your-blog</span><br><span class="line">d-----       2019&#x2F;11&#x2F;26     21:36                js</span><br><span class="line">-a----       2019&#x2F;11&#x2F;26     21:36           6834 index.html</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>your-blog（ソースファイル）をgithub pagesが読み込んでエラーを起こさないように名称を変更</p>
+<ul>
+<li>余計なディレクトリがあるとGithub PagesはWEBページを表示できません<ul>
+<li>初級者は個々でもはまると思います</li>
+</ul>
+</li>
+<li>元々のHexoディレクトリを_で読み込めなくするだけでOKです<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PS D:\user-name.github.io&gt; mv your-blog _your-blog</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>ここまでやってからpush</p>
+</li>
+<li><p>WEBブラウザでページの生成を確認</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;user-name.github.io&#x2F;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h3><span id="24-新しい記事を追加">2.4. 新しい記事を追加</span></h3><ul>
+<li>hexo new ‘記事名’<ul>
+<li>概要ページを作ってみましょう</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PS D:\user-name.github.io\your-blog&gt; hexo new &quot;about-mob&quot;</span><br><span class="line">INFO  Created: D:\user-name.github.io\your-blog\source\_posts\about-mob.md</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>source/_posts/&lt;記事名&gt;.mdが生成</p>
+</li>
+<li><p>localhostでチェック</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PS D:\user-name.github.io\your-blog\source\_posts&gt; hexo server</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http:&#x2F;&#x2F;localhost:4000 . Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure></li>
+<li><p>記事が増えている</p>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/69628408-08aacb00-108f-11ea-82fb-5baa34dad1a1.png" alt="image"></p>
+<ul>
+<li>生成されたMarkdownファイルを確認</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PS D:\user-name.github.io\your-blog\source\_posts&gt; ls</span><br><span class="line"></span><br><span class="line">Mode                LastWriteTime         Length Name</span><br><span class="line">----                -------------         ------ ----</span><br><span class="line">-a----       2019&#x2F;11&#x2F;26     20:51             57 about-mob.md</span><br><span class="line">-a----       2019&#x2F;11&#x2F;26     18:42            838 hello-world.md</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>abouto_mob.mdを編集</li>
+<li>編集内容がLocal内で反映されていることを確認</li>
+</ul>
+<h3><span id="まとめ">まとめ</span></h3><ul>
+<li>以上で解説は終了です</li>
+<li>以下ができる状態になったと思います<ul>
+<li>静的サイトジェネレーターでWEBサイトを自動生成</li>
+<li>静的WEBサイトホスティングで公開</li>
+</ul>
+</li>
+</ul>
+<h2><span id="hexoサイトのカスタマイズ">Hexoサイトのカスタマイズ</span></h2><ul>
+<li><p>次はテーマを変更してみましょう</p>
+<ul>
+<li><a href="https://j-xaas.github.io/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/">Hexoテーマ(theme)変更: icarus</a></li>
+</ul>
+</li>
+<li><p>その他のカスタマイズ</p>
+<ul>
+<li><a href="https://j-xaas.github.io/categories/WEB-Page-Dev/Hexo/">Category/Hexo</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-03-20T17:42:04.000Z">2020-03-21</time>
                 
                 <div class="level-item">
@@ -1787,8 +2191,7 @@
 <!--- toc -->
 
 <h2><span id="前提知識">前提知識</span></h2><ul>
-<li><p><a href="https://docs.aws.amazon.com/ja_jp/cloud9/latest/user-guide/share-environment.html">cloud9のワークスペース共有機能</a></p>
-<ul>
+<li><a href="https://docs.aws.amazon.com/ja_jp/cloud9/latest/user-guide/share-environment.html">cloud9のワークスペース共有機能</a><ul>
 <li>画像の様に複数メンバでエディタ＆CLIを同時に遠隔操作できます<ul>
 <li>右側のタブに参加メンバが表示されます</li>
 </ul>
@@ -1804,8 +2207,14 @@
 </li>
 </ul>
 </li>
-<li><p>対抗：<a href="https://qiita.com/taichi0514/items/95aca7428376a7b41f90">VSCode LiveShare</a></p>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77328583-14b64900-6d60-11ea-9aed-3f0414313d5e.png" height="250px" width="500px" alt="共同開発のイメージ">
+</div>
+
+
 <ul>
+<li>対抗：<a href="https://qiita.com/taichi0514/items/95aca7428376a7b41f90">VSCode LiveShare</a><ul>
 <li>Microsoftのエディターでもプラグインによって似たようなことができます</li>
 <li>個人的な使用感としては以下の差異があります<ul>
 <li>自分のLocal環境を共有<ul>
@@ -1900,317 +2309,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-05T13:28:41.000Z">2020-03-05</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Firebase/">Firebase</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    17分 read (About 2564 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/03/05/Cloud9-x-Angular-x-Firebase%E3%81%A7AP%E9%96%8B%E7%99%BA%EF%BC%88%E5%B0%8E%E5%85%A5%E7%B7%A8%EF%BC%89/">Cloud9 x Angular x FirebaseでAP開発（導入編）</a>
-            
-        </h1>
-        <div class="content">
-            <p>こんにちは。今回は上記の３つを組み合わせてWEB AP開発を行う際の手順を解説していこうと思います。それぞれの使用経験があっても組み合わせると細かい所で沢山ハマってしまうので注意しましょう。（新設の開発チームの大半がこの段階で躓く印象です）  </p>
-<!-- toc-->
-
-
-<h2><span id="各技術についての基礎知識">各技術についての基礎知識</span></h2><p>簡単にポイントだけを解説します。分かっている方は飛ばしてください<br>手順を細かく書いているので分からない言葉があっても、一先ず触りなから理解していきましょう  </p>
-<ul>
-<li><p><a href="https://aws.amazon.com/jp/cloud9/">cloud9</a></p>
-<ul>
-<li>AWSのブラウザ型IDE</li>
-<li>自端末のOSに依存せず開発可能<ul>
-<li>iPadでも開発可能（よく使ってます）</li>
-</ul>
-</li>
-<li>社内プロキシ問題に悩まされない<ul>
-<li>個人的には最重要ポイント</li>
-</ul>
-</li>
-<li>環境構築を省略可能<ul>
-<li>node_module, Git, AWS CLI等の便利なものが元から入っている</li>
-</ul>
-</li>
-<li>複数ユーザーで同時編集可能<ul>
-<li>リモートワークやレビューに便利です</li>
-<li>対抗の<a href="https://cloud.google.com/shell/docs?hl=ja">Google Cloud Shell</a>との差分<ul>
-<li>後に同様の機能が付きそうではあります</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><a href="https://angular.jp/">Angular</a></p>
-<ul>
-<li>Googleが出しているWEB APのフレームワーク<ul>
-<li>言語はHTML, TypeScript, scss</li>
-</ul>
-</li>
-<li><a href="https://digitalidentity.co.jp/blog/creative/about-single-page-application.html">SPA (Single Page Application)</a>を開発可能</li>
-<li>APの画面はAngular Materialでほぼ自動構築可能</li>
-<li><a href="https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/dev/WebsiteHosting.html">静的WEBサイトホスティング</a>サービスを用いれば、<a href="https://qiita.com/y-some/items/e9b78468428d1c481fac">サーバレス</a>を実現可能<ul>
-<li>代表例として<a href="https://firebase.google.com/docs/hosting?hl=ja">Firebase Hosting</a>や<a href="https://aws.amazon.com/jp/s3/">Amazon S3</a>等が挙げられます</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><a href="https://firebase.google.com/">Firebase</a></p>
-<ul>
-<li>Googleの<a href="https://boxil.jp/mag/a3651/#3651-2">BaaS(Backend as a Service)</a></li>
-<li>認証機能やデータベースなどのバックエンドの機能を提供してくれるサービス<ul>
-<li>開発工数を大幅削減可能</li>
-<li>本質的な機能の開発に集中可能</li>
-</ul>
-</li>
-<li>APのHostingや顧客分析、収益管理まで可能  </li>
-</ul>
-</li>
-</ul>
-<p>この３つを抑えれば開発環境の用意からAPの公開まで高速でできます。  </p>
-<h2><span id="前提条件">前提条件</span></h2><ul>
-<li>cloud9環境を作成済み<ul>
-<li>指示に従って設定していくだけなので参考サイトを載せておきます<ul>
-<li><a href="https://qiita.com/tu-kun/items/d7b4f1fa19cc93bc5b75">初めてのAWS Cloud9導入</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Googleアカウントを作成済み<ul>
-<li><a href="https://support.google.com/accounts/answer/27441?hl=ja">Googelアカウントの作成</a></li>
-</ul>
-</li>
-</ul>
-<h2><span id="手順">手順</span></h2><h3><span id="1-angular開発環境の準備">1. Angular開発環境の準備</span></h3><ul>
-<li>Angularが動くために必要なもの<ul>
-<li>node_module</li>
-<li>Angular CLI</li>
-</ul>
-</li>
-</ul>
-<p>cloud9には初めからnode_moduleが入っている為、Angular CLIを入れるだけでOKです。（Windowsにnode_moduleを入れようとすると、それだけでだいぶ工数をロスします）  </p>
-<ul>
-<li><p>1.1. Angular CLIのinstall</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @angular cli</span><br></pre></td></tr></table></figure></li>
-<li><p>確認</p>
-<ul>
-<li>以下のようにngコマンドを使えるようになればOKです<ul>
-<li>ngはangularの略です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ng --version</span><br><span class="line"></span><br><span class="line">     _                      _                 ____ _     ___</span><br><span class="line">    &#x2F; \   _ __   __ _ _   _| | __ _ _ __     &#x2F; ___| |   |_ _|</span><br><span class="line">   &#x2F; △ \ | &#39;_ \ &#x2F; _&#96; | | | | |&#x2F; _&#96; | &#39;__|   | |   | |    | |</span><br><span class="line">  &#x2F; ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |</span><br><span class="line"> &#x2F;_&#x2F;   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|</span><br><span class="line">                |___&#x2F;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">Angular CLI: 8.3.20</span><br><span class="line">Node: 10.16.2</span><br><span class="line">OS: linux x64</span><br><span class="line">Angular: 8.2.14</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>０から開発する場合</p>
-<ul>
-<li>以下のコマンドでAngular PJを開始しましょう<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng new &lt;AP名&gt;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>Gitから開発途中のソースを持ってきた場合</p>
-<ul>
-<li>APのディレクトリ直下にもnode_moduleを入れなければ動かないので注意です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="2-firebaseの登録~project作成">2. firebaseの登録～project作成</span></h3><ul>
-<li><p>初めは基本的にWEBのFirebaseコンソールで操作していきます</p>
-<ul>
-<li>Googleアカウントを作成していればすぐに始められます</li>
-</ul>
-</li>
-<li><p>2.1. <a href="https://firebase.google.com/?hl=ja">公式ページ</a>から右上の”コンソールへ移動”を押下</p>
-</li>
-<li><p>2.2. projectを作成します（APの単位です）</p>
-<ul>
-<li>AP名を設定</li>
-</ul>
-</li>
-<li><p>2.3. アプリを登録</p>
-<ul>
-<li>ios/android/webからwebを選択</li>
-<li>ニックネームを設定</li>
-</ul>
-</li>
-<li><p>2.4. Firebase SDKの追加</p>
-<ul>
-<li>公式の説明は以下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">これらのスクリプトをコピーして &lt;body&gt; タグの下部に貼り付けます。この作業は Firebase サービスを使用する前に行ってください。</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>Angularの場合はindex.htmlのbody配下に置きます</p>
-<ul>
-<li>SPAなので、単一ページであるindex.htmlがJSで書き換わっていくのがAngularの特徴です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;app-root&gt;&lt;&#x2F;app-root&gt;</span><br><span class="line">&lt;!----firebaseSDKの追加--&gt;</span><br><span class="line">  &lt;!-- The core Firebase JS SDK is always required and must be listed first --&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;__&#x2F;firebase&#x2F;7.8.2&#x2F;firebase-app.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- TODO: Add SDKs for Firebase products that you want to use</span><br><span class="line">     https:&#x2F;&#x2F;firebase.google.com&#x2F;docs&#x2F;web&#x2F;setup#available-libraries --&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;__&#x2F;firebase&#x2F;7.8.2&#x2F;firebase-analytics.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- Initialize Firebase --&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;__&#x2F;firebase&#x2F;init.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="3-firebaseとapの関連付けangular-fireの導入">3. firebaseとAPの関連付け(Angular Fireの導入)</span></h3><ul>
-<li>Angular APとfirebaseを関連付けるまでに必要な作業の一覧は以下になります<ul>
-<li>angularfireのinstall</li>
-<li>Firebase CLIのinstal</li>
-<li>(firebase側でアプリを追加　 2で先に行った内容です)<ul>
-<li>Firebase SDKの追加</li>
-<li>FirebaseのAPIキーを取得</li>
-</ul>
-</li>
-<li>Angular環境設定ファイルにAPIキーを貼り付け<ul>
-<li>★二点に設定が必要。よくはまるポイントです</li>
-<li>開発環境<ul>
-<li>src/environments/environment.ts</li>
-</ul>
-</li>
-<li>本番環境<ul>
-<li>src/environments/environment.prod.ts</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>firebase login/init </li>
-<li>環境設定ファイルをapp.module.tsに読み込む<ul>
-<li>@angular/fireからAngularFireModuleを呼び出して、<br>上記のenvironmentオブジェクトを使ってAPIキーをインストール</li>
-</ul>
-</li>
-<li>（特定の機能を利用する場合の作業：認証機能を利用する際の例）<ul>
-<li>@angular/fire/authからAngularFireModuleを呼び出して、NgModuleに登録<ul>
-<li>Firebase Authenticationを利用するために必要な工程</li>
-<li>@angular/fireは全機能をinstallすると重くなる為、上記の様に必要なものだけを登録する仕様になっているらしい</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>それぞれ詳しく解説していきます  </p>
-<h4><span id="31-angular-fireのinstall">3.1. angular fireのinstall</span></h4><ul>
-<li><a href="https://github.com/angular/angularfire">angularfire</a>を入れます<ul>
-<li>AngularとFirebase連携用のLibraryです<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install firebase @angular&#x2F;fire</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>出力結果<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+ @angular&#x2F;fire@5.4.2</span><br><span class="line">+ firebase@7.9.3</span><br><span class="line">added 140 packages from 98 contributors and audited 19218 packages in 17.919s</span><br><span class="line">found 5 vulnerabilities (3 moderate, 2 high)</span><br></pre></td></tr></table></figure></li>
-<li>ここまでではまだ、Firebaseコマンドが使えない状態です</li>
-</ul>
-<h4><span id="32-firebase-cliの導入">3.2. の導入</span></h4><ul>
-<li>以下を実行することでinstallできます<ul>
-<li>firebase コマンドが有効になります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g firebase-tools</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="33-angular環境設定ファイルにapiキーを貼り付け">3.3. Angular環境設定ファイルにAPIキーを貼り付け</span></h3><ul>
-<li><p>開発環境向けと本番環境向けの２つの設定ファイルの改修が必要。よくはまるポイントです</p>
-<ul>
-<li>各値はfirebase consoleより確認</li>
-</ul>
-</li>
-<li><p>src/environments/environment.ts</p>
-<ul>
-<li>開発環境用の設定ファイル<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">export const environment &#x3D; &#123;</span><br><span class="line">  production: false</span><br><span class="line">  &#x2F;&#x2F; Firebaseの設定情報を登録</span><br><span class="line">    firebase: &#123;</span><br><span class="line">      apiKey: &#39;&lt;your-key&gt;&#39;,</span><br><span class="line">      authDomain: &#39;&lt;your-project-authdomain&gt;&#39;,</span><br><span class="line">      databaseURL: &#39;&lt;your-database-URL&gt;&#39;,</span><br><span class="line">      projectId: &#39;&lt;your-project-id&gt;&#39;,</span><br><span class="line">      storageBucket: &#39;&lt;your-storage-bucket&gt;&#39;,</span><br><span class="line">      messagingSenderId: &#39;&lt;your-messaging-sender-id&gt;&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>src/environments/environment.prod.ts</p>
-<ul>
-<li>本番環境用の設定ファイル<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">export const environment &#x3D; &#123;</span><br><span class="line">  production: false</span><br><span class="line">  &#x2F;&#x2F; Firebaseの設定情報を登録</span><br><span class="line">    firebase: &#123;</span><br><span class="line">      apiKey: &#39;&lt;your-key&gt;&#39;,</span><br><span class="line">      authDomain: &#39;&lt;your-project-authdomain&gt;&#39;,</span><br><span class="line">      databaseURL: &#39;&lt;your-database-URL&gt;&#39;,</span><br><span class="line">      projectId: &#39;&lt;your-project-id&gt;&#39;,</span><br><span class="line">      storageBucket: &#39;&lt;your-storage-bucket&gt;&#39;,</span><br><span class="line">      messagingSenderId: &#39;&lt;your-messaging-sender-id&gt;&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-<h4><span id="34-cliとfirebaseの関連付け">3.4. CLIとFirebaseの関連付け</span></h4><ul>
-<li>次にCloud9のCLIとfirebaseを関連付けます<ul>
-<li>c9の場合–nolocalhostが必須<ul>
-<li>★社内Local環境でloginをやろうとするとFirebaseの認証がProxyに阻まれて突破できず詰むので気を付けましょう<ul>
-<li>調べた解決策を全て講じてもこれだけは解決できませんでした…</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">firebase login --no-localhost --reauth</span><br><span class="line"></span><br><span class="line">i  Firebase optionally collects CLI usage and error reporting information to help improve our products. Data is collected in accordance with Google&#39;s privacy policy (https:&#x2F;&#x2F;policies.google.com&#x2F;privacy) and is not used to identify you.</span><br><span class="line"></span><br><span class="line">? Allow Firebase to collect CLI usage and error reporting information? Yes</span><br><span class="line">i  To change your data collection preference at any time, run &#96;firebase logout&#96; and log in again.</span><br><span class="line"></span><br><span class="line">Visit this URL on any device to log in:</span><br><span class="line">&lt;認証用のURL&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>上記のURLから、ブラウザで認Googleアカウント証を進めるとコードが表示される</li>
-<li>貼り付けてSuccessとでれば成功です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">? Paste authorization code here: &lt;Code&gt;</span><br><span class="line"></span><br><span class="line">✔  Success! Logged in as &lt;googleアカウント名&gt;</span><br></pre></td></tr></table></figure></li>
-<li>Cloud9のCLIからFirebase(=Google Cloud)上のリソースにアクセス可能になりました</li>
-</ul>
-<h4><span id="35-apとfirebaseのpjの関連付け">3.5. APとfirebaseのpjの関連付け</span></h4><ul>
-<li>Angular PJ直下で実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firebase init</span><br></pre></td></tr></table></figure></li>
-<li>以下のように出力されれば成功です<ul>
-<li>使いたいサービスを選択すると簡単にCloud側と連携できます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">     ######## #### ########  ######## ########     ###     ######  ########</span><br><span class="line">     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##</span><br><span class="line">     ######    ##  ########  ######   ########  #########  ######  ######</span><br><span class="line">     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##</span><br><span class="line">     ##       #### ##     ## ######## ########  ##     ##  ######  ########</span><br><span class="line"></span><br><span class="line">You&#39;re about to initialize a Firebase project in this directory:</span><br><span class="line"></span><br><span class="line">  &#x2F;home&#x2F;ec2-user&#x2F;environment&#x2F;test-app</span><br><span class="line"></span><br><span class="line">? Which Firebase CLI features do you want to set up for this folder? Press Space to select features, then Enter to confirm your choices. (Press</span><br><span class="line"> &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection)</span><br><span class="line">❯◯ Database: Deploy Firebase Realtime Database Rules</span><br><span class="line"> ◯ Firestore: Deploy rules and create indexes for Firestore</span><br><span class="line"> ◯ Functions: Configure and deploy Cloud Functions</span><br><span class="line"> ◯ Hosting: Configure and deploy Firebase Hosting sites</span><br><span class="line"> ◯ Storage: Deploy Cloud Storage security rules</span><br><span class="line"> ◯ Emulators: Set up local emulators for Firebase features</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h2><span id="おまけcloud9でng-serveを実行してapの画面を確認する際の注意">おまけ：cloud9でng serveを実行してAPの画面を確認する際の注意</span></h2><ul>
-<li>cloud9で必要なこと<ul>
-<li>portの指定(8080)</li>
-<li>browserのURLの指定</li>
-<li>disableHostCheck</li>
-</ul>
-</li>
-<li>大抵の人が必ず一度はハマるポイントです</li>
-<li>上部タブから”Preview”を選択後”Preview Runnig Application”を選択するとCloud9上に表示できます<ul>
-<li>Previewの中のURL欄をコピーして控えてください</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng serve --public-host &lt;cloud9のPreviewのURL&gt; --disableHostCheck --port 8080</span><br></pre></td></tr></table></figure>
-
-<h2><span id="後書き">後書き</span></h2><p>如何だったでしょうか？ここまでで本格的な実装に入る準備が整いました。Firebaseを使いこなせば、認証機能もデータのCRUD機能も１日で簡単に実装することができます。モダンな手法を使いこなして素早くAPを開発していきましょう。</p>
-<ul>
-<li>最後に、この先の機能実装の際に参考になりそうなページを共有しておきます。<ul>
-<li><a href="https://mae.chab.in/archives/60256">AngularFireでFirestoreのCRUD処理を実装する【Angular + Firebase】</a></li>
-<li><a href="https://satolabo.net/2019/11/30/angular8-fire-google-auth/">Angular8でFirebaseを使ってGoogleアカウント認証機能を実装する</a></li>
-</ul>
-</li>
-</ul>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -2275,7 +2373,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            14
+                            15
                         </p>
                     </a>
                 </div>
@@ -2299,7 +2397,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            20
+                            21
                         </p>
                     </a>
                 </div>
@@ -2463,7 +2561,7 @@
                 <span class="level-item">WEB Page Dev</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">5</span>
+                <span class="level-item tag">6</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/WEB-Page-Dev/Hexo/">
@@ -2471,7 +2569,7 @@
                 <span class="level-item">Hexo</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">5</span>
+                <span class="level-item tag">6</span>
             </span>
         </a></li></ul></li>
             </ul>
@@ -2484,7 +2582,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 13.33px;">AWS SDK for JavaScript</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/cloud9/" style="font-size: 13.33px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/icarus/" style="font-size: 16.67px;">icarus</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+        <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12.5px;">AWS SDK for JavaScript</a> <a href="/tags/Angular/" style="font-size: 17.5px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 12.5px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
     </div>
 </div>
     
@@ -2496,6 +2594,25 @@
         <h3 class="menu-label">
             最近の記事
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/03/23/Hexo-x-Github-Pages-5%E5%88%86%E4%BB%A5%E5%86%85%E3%81%AB%E3%83%96%E3%83%AD%E3%82%B0%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90%E3%81%97%E3%81%A6%E7%84%A1%E6%96%99%E3%81%A7%E5%85%AC%E9%96%8B%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Hexo x Github Pages] 5分以内にブログを自動生成して無料で公開するまで【完全版】">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-23T14:24:25.000Z">2020-03-23</time></div>
+                    <a href="/2020/03/23/Hexo-x-Github-Pages-5%E5%88%86%E4%BB%A5%E5%86%85%E3%81%AB%E3%83%96%E3%83%AD%E3%82%B0%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90%E3%81%97%E3%81%A6%E7%84%A1%E6%96%99%E3%81%A7%E5%85%AC%E9%96%8B%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Hexo x Github Pages] 5分以内にブログを自動生成して無料で公開するまで【完全版】</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -2573,25 +2690,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/15/Hexo%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AEAMP%E5%8C%96/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="HexoブログのAMP化【完全版】">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-15T09:00:22.000Z">2020-03-15</time></div>
-                    <a href="/2020/03/15/Hexo%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AEAMP%E5%8C%96/" class="title has-link-black-ter is-size-6 has-text-weight-normal">HexoブログのAMP化【完全版】</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -2609,7 +2707,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">10</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -2711,7 +2809,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -2725,6 +2823,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Treetable/">
                         <span class="tag">Treetable</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/WEB-Page-Dev/">
+                        <span class="tag">WEB Page Dev</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -2802,6 +2907,25 @@
         
         <article class="media">
             
+            <a href="/2020/03/23/Hexo-x-Github-Pages-5%E5%88%86%E4%BB%A5%E5%86%85%E3%81%AB%E3%83%96%E3%83%AD%E3%82%B0%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90%E3%81%97%E3%81%A6%E7%84%A1%E6%96%99%E3%81%A7%E5%85%AC%E9%96%8B%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Hexo x Github Pages] 5分以内にブログを自動生成して無料で公開するまで【完全版】">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-23T14:24:25.000Z">2020-03-23</time></div>
+                    <a href="/2020/03/23/Hexo-x-Github-Pages-5%E5%88%86%E4%BB%A5%E5%86%85%E3%81%AB%E3%83%96%E3%83%AD%E3%82%B0%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90%E3%81%97%E3%81%A6%E7%84%A1%E6%96%99%E3%81%A7%E5%85%AC%E9%96%8B%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Hexo x Github Pages] 5分以内にブログを自動生成して無料で公開するまで【完全版】</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/21/Hexo%E3%81%AB%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E6%AC%84%E3%82%92%E8%BF%BD%E5%8A%A0-Disqus/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Hexoにコメント欄を追加(Disqus)">
@@ -2876,25 +3000,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/15/Hexo%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AEAMP%E5%8C%96/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="HexoブログのAMP化【完全版】">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-15T09:00:22.000Z">2020-03-15</time></div>
-                    <a href="/2020/03/15/Hexo%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AEAMP%E5%8C%96/" class="title has-link-black-ter is-size-6 has-text-weight-normal">HexoブログのAMP化【完全版】</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -2912,7 +3017,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">10</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -3014,7 +3119,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -3028,6 +3133,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Treetable/">
                         <span class="tag">Treetable</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/WEB-Page-Dev/">
+                        <span class="tag">WEB Page Dev</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -3221,7 +3333,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 
-<a id="back-to-top" title="Back to Top" href="javascript:;">
+<a id="back-to-top" title="Zurück nach oben" href="javascript:;">
     <i class="fas fa-chevron-up"></i>
 </a>
 <script src="/js/back-to-top.js" defer></script>
