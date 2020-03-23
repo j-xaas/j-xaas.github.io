@@ -6,7 +6,7 @@
 title: J's Tech Blog
 subtitle: ''
 description: 'tech'
-keywords: angular
+keywords: angular, Firebase, AWS, Serverless
 author: Junya
 language: ja
 timezone: 'Asia/Tokyo'
@@ -94,6 +94,24 @@ sitemap:
   tag: false
   category: false
 
+# robotstxtの設定
+robotstxt:
+  useragent: "*"
+  disallow:
+    - /2020/02/04/About-This-Blog/
+    - /archives/
+    - /categories/
+    - /css/
+    - /galley/
+    - /images/
+    - /js/
+    - /tags/
+  allow:
+  sitemap: /sitemap.xml
+
+
+
+
 # singlepage 足してみる 一旦保留
 single_page:
   - Privacy-Policy
@@ -125,3 +143,16 @@ deploy:
 
 # disqus
 #disqus_shortname: https-j-xaas-github-io
+
+# feed
+
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
+#  icon: icon.png
