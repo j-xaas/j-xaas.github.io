@@ -79,6 +79,7 @@ toc: true
         - 個人で開発したものや、開発途中のものを公開するにはとても便利です
     - Angularの解説は以下にまとめてます
         - [Category/Serverless Application Dev/Angular](https://j-xaas.github.io/categories/Serverless-Application-Dev/SPA-Angular/)
+    - フロントエンドのスキルを深めていくのであれば、次のStepとしてAngularによるWEB AP開発に取り組むのが良いと思います。書籍等で勉強してみてください（[おすすめ](https://amzn.to/2WHzoJ4)）
 
 - Markdownやasciidoc形式のファイルをそのままおいて、ビジュアライズ表示も可能
     - push直後には失敗していた。数分後に確認したところ、確認できた。
