@@ -19,7 +19,7 @@ toc: true
 </div>
 
 
-<!--toc-->
+<!-- toc -->
 
 ## 1. 機材解説
 
@@ -32,28 +32,28 @@ toc: true
     - ジャック×4 ＆ マイクプリアンプx4
         - 複数人の楽器とマイクを繋いで、イヤホンジャック or Bluetoothで出力すれば、サイレントセッションが可能
             - これがやりたくて買った節があります
-    - 手頃
-        - 3万円ちょっと
+    - 価格
+        - 3万円ちょっとで手頃
             - 今回の条件に当てはまる中で最安でした
                 - 他は5万以上
-            - もっとジャックを増やしたければ、予算を挙げるしかないと思います
+            - 更にジャックを増やしたければ、予算を上げるしかないと思います
                 - まだ初級者なので、必要になったらミキサーでも買おうかなぁというスタンスです
     -  USB 3.0（USB Type-C）対応
-        - PCを毎回立ち上げるのは面倒なため
-    - Cubase fo iosがついてくる
+        - PCを毎回立ち上げるのは面倒なため、タブレットで済ませたい
+    - ios版のCubaseがついてくる
         - [Cubase](https://new.steinberg.net/ja/cubase/)
-            - 最も有名な音楽制作ソフトの一つでプロもよく使っています
+            - 最も有名な音楽制作ソフトでプロもよく使っています
             - 機能が豊富で、宅録には必須
         - 無料
             - 本来は購入する必要があります
         - セットアップが楽
             - Apple StoreでinstallしてUSB-Cケーブルで繋げるだけ
-        - 実は今回のハードもCubaseもSteinburg社が開発しているので相性が良い
-    - ループバック機能により、動画配信まで可能
+            - 実は今回のハードもCubaseもSteinburg社が開発しているので相性が良い
+    - ループバック機能により、動画配信も可能
 
-### 1.2. [iPad Pro 2020（第4世代）](https://amzn.to/2wCDtnl)
+### 1.2. iPad Pro 2020（第4世代）
 
-- [12.9インチ](https://amzn.to/2wCNvF1)モデルを採用しました
+- [12.9インチモデル](https://amzn.to/2wCNvF1)を採用しました
 
 <a href="https://www.amazon.co.jp/Apple-iPad-12-9%E3%82%A4%E3%83%B3%E3%83%81-Wi-Fi-128GB/dp/B0863RN4V2/ref=as_li_ss_il?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&keywords=ipad+pro&qid=1585062568&sr=8-5&linkCode=li3&tag=junjun10804-22&linkId=82ff7b87c17b0b401f6bd8e169725ce2&language=ja_JP" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B0863RN4V2&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun10804-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun10804-22&language=ja_JP&l=li3&o=9&a=B0863RN4V2" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
@@ -71,11 +71,12 @@ toc: true
 - メモリの増強以外のポイントはiPad Pro（第三世代）でも満たしています
     - コスパ重視の方は[11インチ](https://amzn.to/2QJ0lbB)なら8万程度です
 
-### 1.3. [USB-C Hub](https://amzn.to/2vQU5ra)
+### 1.3. Hub
+- [USB-C Hub](https://amzn.to/2vQU5ra)を付けました
 
 <a href="https://www.amazon.co.jp/gp/product/B084WPZ5NR/ref=as_li_ss_il?ie=UTF8&psc=1&linkCode=li3&tag=junjun10804-22&linkId=60b4dc5c8f9005bcc043c7540b3225f4&language=ja_JP" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B084WPZ5NR&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun10804-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun10804-22&language=ja_JP&l=li3&o=9&a=B084WPZ5NR" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
-- 以下のような入出力を実現するために採用しました
+- 以下のような入出力を実現するために採用してます
     - 入力
         - USB-C
     - 出力
@@ -84,7 +85,7 @@ toc: true
         - Bluetooth
 
 ### 1.4. Bluetoothスピーカー＆イヤホン
-- [WX1000XM-3](https://amzn.to/2UzfvRN)
+- [WF1000XM-3](https://amzn.to/2UzfvRN)
     - 立って弾く際にコードが引っかかるのが面倒で、結局生音でしかやらない節があったため採用
     - 専用アプリから細かくイコライザーを弄れて楽しい
     - Bluetoothのノイキャンイヤホンの中では一番音質が良い(2020/03 時点)
@@ -104,28 +105,35 @@ toc: true
 
 ### 1.5. アンプ
 - Fender信者なので、[Fenderのベースアンプ](https://amzn.to/3dt8j2o)を使っています
-    - ”でかくてかっこいい”という理由で40Wを購入したものの、近所迷惑になるので音量最低でもそのままスピーカーからは出せない..
+    - ”でかくてかっこいい”という理由で40Wを購入したものの、近所迷惑になるので音量最低でもそのまま音を出せない..
 
-<a href="https://www.amazon.co.jp/Fender-%E3%83%95%E3%82%A7%E3%83%B3%E3%83%80%E3%83%BC-%E3%83%99%E3%83%BC%E3%82%B9%E3%82%A2%E3%83%B3%E3%83%97-RUMBLE-100V/dp/B01D5R6O7M/ref=as_li_ss_il?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&keywords=Fender+%E3%83%99%E3%83%BC%E3%82%B9+%E3%82%A2%E3%83%B3%E3%83%97&qid=1585068032&s=diy&sr=8-1&linkCode=li3&tag=junjun10804-22&linkId=f2bb86e5a18a1cbed8ad9c7ae19161ba&language=ja_JP" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01D5R6O7M&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun10804-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun10804-22&language=ja_JP&l=li3&o=9&a=B01D5R6O7M" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="https://www.amazon.co.jp/Fender-%E3%83%95%E3%82%A7%E3%83%B3%E3%83%80%E3%83%BC-%E3%83%99%E3%83%BC%E3%82%B9%E3%82%A2%E3%83%B3%E3%83%97-RUMBLE-100V/dp/B01D5R6O7M/ref=as_li_ss_il?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&keywords=Fender+%E3%83%99%E3%83%BC%E3%82%B9+%E3%82%A2%E3%83%B3%E3%83%97&qid=1585068032&s=diy&sr=8-1&linkCode=li3&tag=junjun10804-22&linkId=f2bb86e5a18a1cbed8ad9c7ae19161ba&language=ja_JP" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01D5R6O7M&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun10804-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun10804-22&language=ja_JP&l=li3&o=9&a=B01D5R6O7M" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
 
 ## 2. AlexaでAuto Setting
 - せっかくDTM環境を作っても、セッティングに時間がかかるとやる気が失せてしまうので、自動化しました。電気代にも優しくなります。
-    - ITの知識が無くても説明に従えば簡単に使えます。良かったら真似てみてください。（そのうちSmartHomeの解説記事で手法を書くかもしれないです）
+    - ITの知識が無くても説明に従えば簡単にできるので。良かったら真似てみてください。
     - 機器が増えるほど効果を発揮してくると思います
+
+### 定型アクション
+- Alexaに「DTM」と言うと、実行される”定型アクション”を設定しました
+
+- Trigger
+    - 音声：「DTM」
+- Action
+    - スマート電源タップAをON/OFF
+        - Bassアンプを接続
+    - スマート電源タップBをON/OFF
+        - エフェクターを接続
+    - スマートリモコンを起動
+        - Monitorのリモコンの電源ボタンを登録
+
+### 解説
 
 - スマートスピーカー
     - 画面付きの[Echo Show 5](https://amzn.to/3dr24fs)を採用
 
         <a href="https://www.amazon.co.jp/Echo-Show-5-%E3%82%A8%E3%82%B3%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%BC5-%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E4%BB%98%E3%81%8D%E3%82%B9%E3%83%9E%E3%83%BC%E3%83%88%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC-with-Alexa-%E3%83%81%E3%83%A3%E3%82%B3%E3%83%BC%E3%83%AB/dp/B07KD87NCM/ref=as_li_ss_il?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&keywords=Alexa+Echo&qid=1585070659&s=musical-instruments&sr=1-1-catcorr&linkCode=li2&tag=junjun10804-22&linkId=83bd9d0bfdbe970070a18861c20f4a65&language=ja_JP" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B07KD87NCM&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun10804-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun10804-22&language=ja_JP&l=li2&o=9&a=B07KD87NCM" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
-
-- Alexaに「DTM」と言うと、以下が実行される”定型アクション”を設定しました
-    - Bass AMP
-        - スマート電源タップAをON/OFF
-    - Effector
-        - スマート電源タップBをON/OFF
-    - Monitor
-        - スマートリモコンでON/OFF
 
 - [Smart電源タップ](https://amzn.to/33PCDQo)
     - 電源のON/OFFで操作する機器であれば基本これでOKです
@@ -137,7 +145,7 @@ toc: true
     - 赤外線リモコンで動くものであれば、Smartリモコンに記憶させて、Alexaから実行できます
     - 大量のリモコンを纏められるのですっきりします
     - 私は[Nature Remo mini](https://amzn.to/2y3uifX)を使っています
-        - 人感センサーまでついているので、近づいたら勝手に起動させることもできますよ
+        - 人感センサーまでついているので、勝手にON/OFFさせることもできます
 
     <a href="https://www.amazon.co.jp/Nature-Remo-mini-%E5%AE%B6%E9%9B%BB%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD-%E3%83%A9-REMO2W1/dp/B07CWNLHJ8/ref=as_li_ss_il?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=37HI5Y32WTKQA&keywords=nature+remo&qid=1585065062&sprefix=Nature%E3%80%80,aps,259&sr=8-4&linkCode=li3&tag=junjun10804-22&linkId=1dcf8efb29ee246be4faa38c3f6f5256&language=ja_JP" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B07CWNLHJ8&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun10804-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun10804-22&language=ja_JP&l=li3&o=9&a=B07CWNLHJ8" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
