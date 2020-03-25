@@ -169,6 +169,357 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-25T13:07:15.000Z">2020-03-25</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Tool-Tips/Google-Cloud-Shell/">Google Cloud Shell</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    15分 read (About 2207 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/25/iPad-Pro%E3%81%A7WEB-AP%E9%96%8B%E7%99%BA/">iPad ProでWEB AP開発 x RPA</a>
+            
+        </h1>
+        <div class="content">
+            <p>こんにちは。先日<a href="https://amzn.to/2WMiw3M">iPad 2020(第４世代)</a>を購入しました。発売日の今日受け取ってこの記事を書いています。最近はPCライクな作業の効率がUpしているので、WEB APの開発をできるようにしてみました。一言で開発環境が立ち上がるように自動化もしています。さっき<a href="https://j-xaas.github.io/2020/03/25/iPad-Pro%E3%81%A7DTM%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89/">DTM環境</a>も構築しました。</p>
+<!-- toc -->
+
+<ul>
+<li><a href="#概要">概要</a><ul>
+<li><a href="#基礎知識">基礎知識</a></li>
+<li><a href="#選定基準">選定基準</a></li>
+</ul>
+</li>
+<li><a href="#周辺機器">周辺機器</a><ul>
+<li><a href="#マウス">マウス</a></li>
+<li><a href="#keyboard">Keyboard</a></li>
+<li><a href="#イヤホン">イヤホン</a></li>
+</ul>
+</li>
+<li><a href="#google-cloud-shellの設定手順">Google Cloud Shellの設定手順</a><ul>
+<li><a href="#ショートカット-x-siriでideを開くまでを自動化">ショートカット x SiriでIDEを開くまでを自動化</a><ul>
+<li><a href="#手順">手順</a></li>
+</ul>
+</li>
+<li><a href="#開発の周辺作業">開発の周辺作業</a></li>
+</ul>
+</li>
+<li><a href="#関連記事">関連記事</a></li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="概要">概要</span></h2><ul>
+<li>ざっくりのイメージ図を書きました</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77545699-2c233c80-6eee-11ea-9e2c-fad4fd8dd3f3.png" height="300px" width="500px" alt="iPad Dev ">
+</div>
+
+<ul>
+<li>流行りのブラウザ型IDEを利用して、iPadでの開発を可能にします</li>
+<li>また、iPadのRPAツールで一言でIDEが立ち上がるようにします</li>
+</ul>
+<h3><span id="基礎知識">基礎知識</span></h3><ul>
+<li><p>ブラウザ型IDEとは？</p>
+<ul>
+<li>URLで即アクセスして、ブラウザで利用可能なIDE<ul>
+<li>RDPをするより手軽<ul>
+<li>そもそもiPadからのRDPはできなくもないがまだ厳しい</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>裏側で動いているのはクラウド上の仮想サーバ<ul>
+<li>Cloud9ならEC2、Cloud ShellならGCEのリソースを利用<ul>
+<li>意識せずに使えるので安心してください</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>自端末のOSに依存せず開発可能<ul>
+<li>つまりiPadでも開発可能<ul>
+<li>普通のWinows PCでも効果が大きいです</li>
+</ul>
+</li>
+<li>社内プロキシ問題に悩まされない<ul>
+<li>個人的には最重要ポイント</li>
+</ul>
+</li>
+<li>環境構築を省略可能<ul>
+<li>node_module, Git, AWSやGCPのCLI等の便利なものが元から入っている<ul>
+<li>新設チームや初級者への効果は計り知れないと思います</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>お勧めできるブラウザ型IDEは以下の二つです</p>
+<ul>
+<li><a href="https://cloud.google.com/shell/docs?hl=ja">Google Cloud Shell</a><ul>
+<li>Googleのブラウザ型IDE</li>
+<li>Googleアカウントで利用</li>
+<li>環境構築を省略可能<ul>
+<li>Firebase CLI等のGCP向けのものが入っている</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://aws.amazon.com/jp/cloud9/">AWS Cloud9</a><ul>
+<li>AWSのブラウザ型IDE</li>
+<li>AWSアカウントで利用</li>
+<li>環境構築を省略可能<ul>
+<li>AWS CLI等の便利なものが入っている</li>
+</ul>
+</li>
+<li>★複数ユーザーで同時編集可能<ul>
+<li>リモートワークやレビューに便利です</li>
+<li>やり方は以下にまとめてあります<ul>
+<li><a href="https://j-xaas.github.io/2020/03/07/cloud9%E3%81%AB%E3%82%88%E3%82%8B%E5%85%B1%E5%90%8C%E7%B7%A8%E9%9B%86%E3%83%BB%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%96%8B%E7%99%BA/">cloud9による共同編集・リモート開発</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="選定基準">選定基準</span></h3><ul>
+<li><p>用途から</p>
+<ul>
+<li>手軽さ優先・今すぐ使いたい<ul>
+<li>Google Cloud Shell<ul>
+<li>Googleアカウントさえあれば、5分以内に使い始められます</li>
+<li>Cloud9はAWSのアカウントが必要なので、権限周りがシビアです<ul>
+<li>組織で共有している場合、少し面倒なことになります</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>複数人で同時編集したい<ul>
+<li>AWS Cloud9<ul>
+<li>そのうち、Google Cloud Shellにも同じ機能がつきそうではあります</li>
+<li>以下を参考にどうぞ<ul>
+<li><a href="https://j-xaas.github.io/2020/03/07/cloud9%E3%81%AB%E3%82%88%E3%82%8B%E5%85%B1%E5%90%8C%E7%B7%A8%E9%9B%86%E3%83%BB%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%96%8B%E7%99%BA/">cloud9による共同編集・リモート開発</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>開発するサービスから</p>
+<ul>
+<li>バックエンドに利用するクラウドが決まっていれば、環境構築の手間を削減できるので、合わせましょう<ul>
+<li>Firebase, GCPを利用する<ul>
+<li>Google Cloud Shell</li>
+</ul>
+</li>
+<li>AWS, Amplify, Lambdaを利用する<ul>
+<li>AWS Cloud9</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="周辺機器">周辺機器</span></h2><h3><span id="マウス">マウス</span></h3><ul>
+<li>iPadとマウスはBluetoothで繋げられます<ul>
+<li>iPad対応で”発信機が不要”なモノにしましょう<ul>
+<li>安めで、USB充電が可能な<a href="https://amzn.to/33L13KB">Fenifox</a>を使っています<ul>
+<li>amazonで探していたら、ipadに対応していないにも関わらず、”対応”と書かれているものがあったので、よく確認してください<ul>
+<li>fenifoxの説明には全くないのですが、接続時にパスワードを求められたら”0000”,”1234”,”1111”の何れかを入力すればOKです</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>拘る人には<a href="https://amzn.to/3dwoL1A">Apple純正</a>のマウスもあります</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="keyboard">Keyboard</span></h3><ul>
+<li><p>ひとまず<a href="https://amzn.to/2ybfNXL">Magic Keyboard</a>を使用しています</p>
+<ul>
+<li>非常に軽く、登録後は叩くだけでipadと繋がります</li>
+<li>打鍵感に拘る人はこれが良いと思います</li>
+</ul>
+</li>
+<li><p>話題のiPadが浮くキーボードは2020/05発売なので待機中です</p>
+<ul>
+<li><p><a href="https://amzn.to/2JeoFxV">Apple Magic Keyboard</a></p>
+<ul>
+<li>イケてるけど、エントリーモデルのipadより高い…</li>
+</ul>
+<p><a href="https://www.amazon.co.jp/Apple-Magic-Keyboard-12-9%E3%82%A4%E3%83%B3%E3%83%81iPad-Pro-%E7%AC%AC3%E4%B8%96%E4%BB%A3%E3%81%A8%E7%AC%AC4%E4%B8%96%E4%BB%A3/dp/B0863JB6GL/ref=as_li_ss_il?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&keywords=keyboard&qid=1585148574&s=computers&sr=1-8&linkCode=li3&tag=junjun10804-22&linkId=db9e7a94a54397fd62458a97a42bf10a&language=ja_JP" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B0863JB6GL&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun10804-22&language=ja_JP"></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun10804-22&language=ja_JP&l=li3&o=9&a=B0863JB6GL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="イヤホン">イヤホン</span></h3><ul>
+<li>会議用に用意しておくと便利です</li>
+<li>Sony製品が好きなので<a href="https://amzn.to/2UzfvRN">WF1000XM-3</a>を使っています</li>
+</ul>
+<h2><span id="google-cloud-shellの設定手順">Google Cloud Shellの設定手順</span></h2><ul>
+<li>Google アカウントを作成</li>
+<li>ログインした状態でGCPを開く<ul>
+<li><a href="https://console.cloud.google.com/?hl=ja">Google Cloud Platform</a></li>
+</ul>
+</li>
+<li>Googleアカウントでそのままログイン<ul>
+<li>GCPコンソールが開きます</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77556836-54199c80-6efc-11ea-8c6c-46d5084b2f69.png" height="400px" width="600px" alt="GCP Console Top">
+</div>
+
+<ul>
+<li>コンソール上部の赤で囲んだマークを押すと、コマンドラインが現れます</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77560233-89c08480-6f00-11ea-9836-b8ac913ad85f.png" height="400px" width="600px" alt="GCP Console Top">
+</div>
+
+<ul>
+<li>コマンドラインが下部に出た状態<ul>
+<li>次に拡大ボタンを押下しましょう</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77560503-eae85800-6f00-11ea-80ea-147176a449d3.png" height="400px" width="600px" alt="GCP Console Top">
+</div>
+
+<ul>
+<li>全画面表示になります<ul>
+<li>次にペンのマークを押下しましょう</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77560762-36026b00-6f01-11ea-8f86-9b4cddea8c5b.png" height="400px" width="600px" alt="GCP Console Top">
+</div>
+
+<ul>
+<li>エディターが現れます<ul>
+<li>以上でVC Codeのような画面になったと思います</li>
+<li>このWEBページもGoogle Cloud Shellのエディターで編集して、CLIでhexoのコマンドを打って自動生成しています<ul>
+<li>画像の処理が楽なのでiPadでやると効率があがります</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77561852-9a71fa00-6f02-11ea-8176-1ad72277b6f4.png" height="150px" width="500px" alt="GCP Console Top">
+</div>
+
+<ul>
+<li>WEB APのlocalhostで実行してブラウザで確認したい時<ul>
+<li>上の左から二番目のアイコンをクリックすると、portを指定してブラウザを開くことができます<ul>
+<li>クラウドIDEで開発する際に嵌りがちなシーンですが、Cloud Shellなら楽に解決できます</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="ショートカット-x-siriでideを開くまでを自動化">ショートカット x SiriでIDEを開くまでを自動化</span></h3><ul>
+<li><p>『Hey Siri, GCP』と言ったらGoogle Cloud Shellが開くようにします</p>
+<ul>
+<li>ブラウザ型IDEの欠点として、ブラウザから開く手間があります。自動化して時短＆モチベーション向上を図りましょう</li>
+</ul>
+</li>
+<li><p>ショートカット</p>
+<ul>
+<li>iPhoneやiPadで使える手軽なRPAアプリ</li>
+<li>iPadで作業するメリットの一つだと思います</li>
+</ul>
+</li>
+</ul>
+<h4><span id="手順">手順</span></h4><ul>
+<li>GCPコンソールのURLを控える</li>
+<li>”ショートカット”アプリを開く</li>
+<li>”ショートカットの作成”</li>
+<li>ショートカット名を”GCP”に設定</li>
+<li>左上の検索欄で”Chrome”と入力</li>
+<li>候補に出る”Chromeで検索”を選択<ul>
+<li>“ChromeでURLを開く”を選択</li>
+</ul>
+</li>
+<li>URL欄に先ほどのURLをコピペ</li>
+</ul>
+<p>以上で完了です。”HEy Siri, GCP”といえば、自動でIDEが出てきます</p>
+<ul>
+<li>よく使うサービスは同じように表示までを自動化しておくと便利です<ul>
+<li>cloud9も同じようにURL指定で開けるようにしています</li>
+</ul>
+</li>
+</ul>
+<h3><span id="開発の周辺作業">開発の周辺作業</span></h3><p>PCじゃないと無理じゃない？と言われそうな作業の代替え案です</p>
+<ul>
+<li>パワポ<ul>
+<li>Googleスライドを使いましょう<ul>
+<li>クラウド上に保存すれば、どの端末からでも見れるので便利です</li>
+<li>アクセス制限を付けて所定の人にだけ見せることを可能です</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Excel<ul>
+<li>せめてGoogleスプレッドシートを使いましょう<ul>
+<li>IT界隈ではExcelを使うとディスられる風潮があるので気を付けてください</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="関連記事">関連記事</span></h2><ul>
+<li><a href="https://j-xaas.github.io/2020/03/07/cloud9%E3%81%AB%E3%82%88%E3%82%8B%E5%85%B1%E5%90%8C%E7%B7%A8%E9%9B%86%E3%83%BB%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%96%8B%E7%99%BA/">cloud9による共同編集・リモート開発</a></li>
+<li><a href="https://j-xaas.github.io/2020/03/05/Cloud9-x-Angular-x-Firebase%E3%81%A7AP%E9%96%8B%E7%99%BA%EF%BC%88%E5%B0%8E%E5%85%A5%E7%B7%A8%EF%BC%89/">Cloud9 x Firebase x AngularでAP開発</a></li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-03-06T16:47:37.000Z">2020-03-07</time>
                 
                 <div class="level-item">
@@ -504,7 +855,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            16
+                            17
                         </p>
                     </a>
                 </div>
@@ -516,7 +867,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            11
+                            12
                         </p>
                     </a>
                 </div>
@@ -528,7 +879,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            24
+                            29
                         </p>
                     </a>
                 </div>
@@ -684,7 +1035,7 @@
                 <span class="level-item">Tool Tips</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">3</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Tool-Tips/AWS/">
@@ -698,6 +1049,14 @@
         <a class="level is-marginless" href="/categories/Tool-Tips/Github/">
             <span class="level-start">
                 <span class="level-item">Github</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Tool-Tips/Google-Cloud-Shell/">
+            <span class="level-start">
+                <span class="level-item">Google Cloud Shell</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -729,7 +1088,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12.5px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 17.5px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/DTM/" style="font-size: 10px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 12.5px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 10px;">iPad Pro</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+        <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12.5px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 17.5px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/DTM/" style="font-size: 10px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/RPA/" style="font-size: 10px;">RPA</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 12.5px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 12.5px;">iPad Pro</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 10px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
     </div>
 </div>
     
@@ -741,6 +1100,25 @@
         <h3 class="menu-label">
             最近の記事
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/03/25/iPad-Pro%E3%81%A7WEB-AP%E9%96%8B%E7%99%BA/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="iPad ProでWEB AP開発 x RPA">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-25T13:07:15.000Z">2020-03-25</time></div>
+                    <a href="/2020/03/25/iPad-Pro%E3%81%A7WEB-AP%E9%96%8B%E7%99%BA/" class="title has-link-black-ter is-size-6 has-text-weight-normal">iPad ProでWEB AP開発 x RPA</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Google-Cloud-Shell/">Google Cloud Shell</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -818,25 +1196,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/17/Angular%E3%81%A7%E9%9A%8E%E5%B1%A4%E6%A7%8B%E9%80%A0%E3%81%AE%E8%A1%A8%E3%82%92%E9%96%8B%E7%99%BA-Treetable/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Angularで階層構造の表を開発(Treetable)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-17T12:49:37.000Z">2020-03-17</time></div>
-                    <a href="/2020/03/17/Angular%E3%81%A7%E9%9A%8E%E5%B1%A4%E6%A7%8B%E9%80%A0%E3%81%AE%E8%A1%A8%E3%82%92%E9%96%8B%E7%99%BA-Treetable/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Angularで階層構造の表を開発(Treetable)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -854,7 +1213,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">12</span>
+                    <span class="level-item tag">13</span>
                 </span>
             </a>
         </li>
@@ -926,6 +1285,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Cloud9/">
+                        <span class="tag">Cloud9</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/DTM/">
                         <span class="tag">DTM</span>
                         <span class="tag is-grey">1</span>
@@ -968,9 +1334,23 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Google-Cloud-Shell/">
+                        <span class="tag">Google Cloud Shell</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
                         <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RPA/">
+                        <span class="tag">RPA</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -1019,7 +1399,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/iPad-Pro/">
                         <span class="tag">iPad Pro</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1038,8 +1418,22 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/">
+                        <span class="tag">ショートカット</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/">
                         <span class="tag">テレワーク</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/">
+                        <span class="tag">ブラウザ型IDE</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1075,6 +1469,25 @@
         
         <article class="media">
             
+            <a href="/2020/03/25/iPad-Pro%E3%81%A7WEB-AP%E9%96%8B%E7%99%BA/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="iPad ProでWEB AP開発 x RPA">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-25T13:07:15.000Z">2020-03-25</time></div>
+                    <a href="/2020/03/25/iPad-Pro%E3%81%A7WEB-AP%E9%96%8B%E7%99%BA/" class="title has-link-black-ter is-size-6 has-text-weight-normal">iPad ProでWEB AP開発 x RPA</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Google-Cloud-Shell/">Google Cloud Shell</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/25/iPad-Pro%E3%81%A7DTM%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="iPad Pro (第4世代)でDTM環境を構築">
@@ -1149,25 +1562,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/17/Angular%E3%81%A7%E9%9A%8E%E5%B1%A4%E6%A7%8B%E9%80%A0%E3%81%AE%E8%A1%A8%E3%82%92%E9%96%8B%E7%99%BA-Treetable/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Angularで階層構造の表を開発(Treetable)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-17T12:49:37.000Z">2020-03-17</time></div>
-                    <a href="/2020/03/17/Angular%E3%81%A7%E9%9A%8E%E5%B1%A4%E6%A7%8B%E9%80%A0%E3%81%AE%E8%A1%A8%E3%82%92%E9%96%8B%E7%99%BA-Treetable/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Angularで階層構造の表を開発(Treetable)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1185,7 +1579,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">12</span>
+                    <span class="level-item tag">13</span>
                 </span>
             </a>
         </li>
@@ -1257,6 +1651,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Cloud9/">
+                        <span class="tag">Cloud9</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/DTM/">
                         <span class="tag">DTM</span>
                         <span class="tag is-grey">1</span>
@@ -1299,9 +1700,23 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Google-Cloud-Shell/">
+                        <span class="tag">Google Cloud Shell</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
                         <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RPA/">
+                        <span class="tag">RPA</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -1350,7 +1765,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/iPad-Pro/">
                         <span class="tag">iPad Pro</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1369,8 +1784,22 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/">
+                        <span class="tag">ショートカット</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/">
                         <span class="tag">テレワーク</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/">
+                        <span class="tag">ブラウザ型IDE</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
