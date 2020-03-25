@@ -11,7 +11,7 @@ tags:
 toc: true
 ---
 
-こんにちは。先日、新しい[iPad 2020(第４世代)](https://amzn.to/2WMiw3M)を購入しました。発売当日に受け取り、即DTM環境を作ってみました（たぶん世界最速）。Alexaにより、セッティングも自動化しました。シンプルな構成なので、入門者の方も良かったら参考にしてみてください。  
+こんにちは。先日、新しい[iPad 2020(第４世代)](https://amzn.to/2WMiw3M)を購入しました。発売当日に受け取り、即DTM環境を作ってみました（たぶん世界最速）Alexaにより、セッティングも自動化しました。シンプルな構成なので、入門者の方も良かったら参考にしてみてください。  
 結論から言うと、DTMをやるだけならMacBook無しでも大丈夫だと思います。
 
 <div style="text-align:center;">
@@ -50,6 +50,43 @@ toc: true
             - Apple StoreでinstallしてUSB-Cケーブルで繋げるだけ
             - 実は今回のハードもCubaseもSteinburg社が開発しているので相性が良い
     - ループバック機能により、動画配信も可能
+
+#### Cubaseのセットアップ手順
+
+- [Cubasis LE2](https://apps.apple.com/jp/app/cubasis-le-2/id989112953)をApp Storeからinstall
+
+- アプリを起動
+
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77536850-65ed4680-6ee0-11ea-8881-b3321e3be6f7.png" height="370px" width="500px" alt="Cubasis LE2">
+</div>
+
+
+- ”To unlock a Cubasis LE features...”と表示されます
+    - 解除方法は以下の二つです
+        - 料金を支払う
+        - 対象製品と接続する
+            - この対象製品が[Steinberg USB3.0 UR44C](https://amzn.to/2JdYsPS)です
+
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77538172-9fbf4c80-6ee2-11ea-9620-c80d0d4a2065.jpg" height="370px" width="500px" alt="Cubasis Locked">
+</div>
+
+
+
+- USB-Cケーブルで接続(iPadについていた純正品を使いました)
+
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77536906-80bfbb00-6ee0-11ea-9379-f4b4599b55ef.jpg" height="370px" width="500px" alt="Cubasis接続状態">
+</div>
+
+- unlock完了
+    - 以下のように表示されれば連携完了です
+
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77536766-39392f00-6ee0-11ea-80ca-5b3d533fb640.png" height="370px" width="500px" alt="Cubase_unlocked">
+</div>
+
 
 ### 1.2. iPad Pro 2020（第4世代）
 
@@ -155,7 +192,7 @@ toc: true
 - iPadはBluetoothによって画面をミラーリングすることもできます。プロジェクターには[Popin Aladdin](https://amzn.to/3aiqKVn)を使う予定です
 
 <div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/77458772-10625c80-6e42-11ea-9998-40235fa4a44c.png" height="370px" width="600px" alt="About Github Pages">
+<img src="https://user-images.githubusercontent.com/41946222/77458772-10625c80-6e42-11ea-9998-40235fa4a44c.png" height="370px" width="600px" alt="プロジェクターを入れた構成">
 </div>
 
 - 採用理由
