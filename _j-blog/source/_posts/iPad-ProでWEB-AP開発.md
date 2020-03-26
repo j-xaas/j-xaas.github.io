@@ -1,5 +1,5 @@
 ---
-title: iPad ProでWEB AP開発 x RPA
+title: iPad ProでWEB AP開発 & RPA
 date: 2020-03-25 22:07:15
 category: 
 - Tool Tips
@@ -16,6 +16,9 @@ toc: true
 
 こんにちは。先日[iPad 2020(第４世代)](https://amzn.to/2WMiw3M)を購入しました。発売日の今日受け取ってこの記事を書いています。最近はPCライクな作業の効率がUpしているので、WEB APの開発をできるようにしてみました。一言で開発環境が立ち上がるように自動化もしています。さっき[DTM環境](https://j-xaas.github.io/2020/03/25/iPad-Pro%E3%81%A7DTM%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89/)も構築しました。
   
+
+{% youtube miNQ61wB8Hg&feature=share %}
+
 
 <!-- toc -->
 
@@ -157,6 +160,7 @@ toc: true
 - 『Hey Siri, GCP』と言ったらGoogle Cloud Shellが開くようにします
   - ブラウザ型IDEの欠点として、ブラウザから開く手間があります。自動化して時短＆モチベーション向上を図りましょう
 
+
 - ショートカット
   - iPhoneやiPadで使える手軽なRPAアプリ
   - iPadで作業するメリットの一つだと思います
@@ -173,8 +177,12 @@ toc: true
 
 以上で完了です。"HEy Siri, GCP"といえば、自動でIDEが出てきます
 
+
+{% youtube PVPwo-PMOLI %}
+
 - よく使うサービスは同じように表示までを自動化しておくと便利です
-  - cloud9も同じようにURL指定で開けるようにしています
+  - 冒頭に動画を載せておきましたが、cloud9も同じようにURL指定で開けるようにしています
+
 
 ### 開発の周辺作業
 PCじゃないと無理じゃない？と言われそうな作業の代替え案です
