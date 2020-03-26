@@ -23,7 +23,8 @@ toc: true
 
 ## 1. 機材解説
 
-### 1.1. Audio Interface
+
+### Audio Interface
 - [Steinberg USB3.0 UR44C](https://amzn.to/2JdYsPS)を採用しました
 
     <a href="https://www.amazon.co.jp/%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%B3%E3%83%90%E3%83%BC%E3%82%B0-Steinberg-USB3-0-%E3%82%AA%E3%83%BC%E3%83%87%E3%82%A3%E3%82%AA%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%95%E3%82%A7%E3%82%A4%E3%82%B9-UR44C/dp/B07YLKRH58/ref=as_li_ss_il?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&keywords=Steinberg+ur44C&qid=1585065911&sr=8-1&swrs=3928F2E7A513E4BED97A4C3E596F00B9&linkCode=li3&tag=junjun10804-22&linkId=3bf102532686f968cd4c92202a2f4172&language=ja_JP" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B07YLKRH58&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun10804-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun10804-22&language=ja_JP&l=li3&o=9&a=B07YLKRH58" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
@@ -88,7 +89,7 @@ toc: true
 </div>
 
 
-### 1.2. iPad Pro 2020（第4世代）
+### iPad Pro 2020（第4世代）
 
 - [12.9インチモデル](https://amzn.to/2wCNvF1)を採用しました
 
@@ -108,7 +109,7 @@ toc: true
 - メモリの増強以外のポイントはiPad Pro（第三世代）でも満たしています
     - コスパ重視の方は[11インチ](https://amzn.to/2QJ0lbB)なら8万程度です
 
-### 1.3. Hub
+### Hub
 - [USB-C Hub](https://amzn.to/2vQU5ra)を付けました
 
 <a href="https://www.amazon.co.jp/gp/product/B084WPZ5NR/ref=as_li_ss_il?ie=UTF8&psc=1&linkCode=li3&tag=junjun10804-22&linkId=60b4dc5c8f9005bcc043c7540b3225f4&language=ja_JP" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B084WPZ5NR&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun10804-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun10804-22&language=ja_JP&l=li3&o=9&a=B084WPZ5NR" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
@@ -121,7 +122,7 @@ toc: true
         - イヤホンジャック
         - Bluetooth
 
-### 1.4. Bluetoothスピーカー＆イヤホン
+### Bluetoothスピーカー＆イヤホン
 - [WF1000XM-3](https://amzn.to/2UzfvRN)
     - 立って弾く際にコードが引っかかるのが面倒で、結局生音でしかやらない節があったため採用
     - 専用アプリから細かくイコライザーを弄れて楽しい
@@ -140,12 +141,18 @@ toc: true
 
     <a href="https://www.amazon.co.jp/dp/B07QZ67FTT/ref=as_li_ss_il?psc=1&pd_rd_i=B07QZ67FTT&pd_rd_w=euzvC&pf_rd_p=6413bd85-d494-49e7-9f81-0e63e79171a9&pd_rd_wg=rkZfv&pf_rd_r=2PVHVEWK3H7VKTF7S6G0&pd_rd_r=3c551492-f885-4d3f-8cde-d860532bf71f&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyRTFXRE8yR0VOODEmZW5jcnlwdGVkSWQ9QTA2NTAyMzYxSURGRTY1MUo3U0NZJmVuY3J5cHRlZEFkSWQ9QTE0NlVVNVZVTDE0TUcmd2lkZ2V0TmFtZT1zcF9kZXRhaWwmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl&linkCode=li3&tag=junjun10804-22&linkId=4855dc59c68bf65179fac7573adb0be9&language=ja_JP" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B07QZ67FTT&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun10804-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun10804-22&language=ja_JP&l=li3&o=9&a=B07QZ67FTT" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
-### 1.5. アンプ
+### アンプ
 - Fender信者なので、[Fenderのベースアンプ](https://amzn.to/3dt8j2o)を使っています
     - ”でかくてかっこいい”という理由で40Wを購入したものの、近所迷惑になるので音量最低でもそのまま音を出せない..
 
     <a href="https://www.amazon.co.jp/Fender-%E3%83%95%E3%82%A7%E3%83%B3%E3%83%80%E3%83%BC-%E3%83%99%E3%83%BC%E3%82%B9%E3%82%A2%E3%83%B3%E3%83%97-RUMBLE-100V/dp/B01D5R6O7M/ref=as_li_ss_il?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&keywords=Fender+%E3%83%99%E3%83%BC%E3%82%B9+%E3%82%A2%E3%83%B3%E3%83%97&qid=1585068032&s=diy&sr=8-1&linkCode=li3&tag=junjun10804-22&linkId=f2bb86e5a18a1cbed8ad9c7ae19161ba&language=ja_JP" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01D5R6O7M&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun10804-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun10804-22&language=ja_JP&l=li3&o=9&a=B01D5R6O7M" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
+### 全体像
+- 急いで組んだので後で綺麗に整理しようと思います
+
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77660576-d8cbef80-6fbc-11ea-9c6e-1374d2e58d04.jpg" height="400px" width="270px" alt="Cubase_unlocked">
+</div>
 
 ## 2. AlexaでAuto Setting
 - せっかくDTM環境を作っても、セッティングに時間がかかるとやる気が失せてしまうので、自動化しました。電気代にも優しくなります。
@@ -188,7 +195,7 @@ toc: true
 
 
 ## 3. 今後の展望
-### 3.1. モニター部分をプロジェクターに変更
+### モニター部分をプロジェクターに変更
 - iPadはBluetoothによって画面をミラーリングすることもできます。プロジェクターには[Popin Aladdin](https://amzn.to/3aiqKVn)を使う予定です
 
 <div style="text-align:center;">
@@ -205,7 +212,7 @@ toc: true
 
     <a href="https://www.amazon.co.jp/popIn-Aladdin-%E3%83%9D%E3%83%83%E3%83%97%E3%82%A4%E3%83%B3%E3%82%A2%E3%83%A9%E3%82%B8%E3%83%B3-%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%82%BF%E3%83%BC%E4%BB%98%E3%81%8D%E3%82%B7%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E3%83%A9%E3%82%A4%E3%83%88-%E9%AB%98%E9%9F%B3%E8%B3%AA%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC/dp/B07J5B3VD2/ref=as_li_ss_il?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=1LU6UOWAOS3OM&keywords=popin+aladdin&qid=1585071881&sprefix=popin,aps,263&sr=8-5&swrs=D7479C2CDBA3BA084A9A5627C81F989B&linkCode=li3&tag=junjun10804-22&linkId=01dac3ab47999be9201cb441db2a1e02&language=ja_JP" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B07J5B3VD2&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun10804-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun10804-22&language=ja_JP&l=li3&o=9&a=B07J5B3VD2" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
-### 3.2. AWS Componserの導入
+### AWS Componserの導入
 仕事柄AWS(クラウドサービス)の動向を常にチェックしているのですが、去年のSummitで機械学習用のキーボードが発表され、ずっと気になっています。
 
 - [AWS Composer](https://aws.amazon.com/jp/deepcomposer/)とは
@@ -219,11 +226,11 @@ toc: true
 
 エンジニア寄りの話になりますが、AWSでの開発もcloud9等のブラウザ型IDEを用いれば、iPadからやれてしまいます。趣味と仕事を結びつけたら楽しそうなので、時間を見つけて挑戦しようと思います。
 
-### 3.3. 電子ドラムを追加
+### 電子ドラムを追加
 - ここまで揃えれば家でセッションできますね
     - おすすめを教えて頂けると嬉しいです
 
-### 3.4. リモートセッション
+### リモートセッション
 - ネットを介してセッションできるサービスがあります
     - 現時点では遅延もあるらしいです
 
