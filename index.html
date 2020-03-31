@@ -158,6 +158,149 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-31T14:23:54.000Z">2020-03-31</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5分 read (About 676 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/31/Angular-%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%AE%E9%80%A3%E6%90%BA%E6%89%8B%E6%B3%95%E3%81%BE%E3%81%A8%E3%82%81-Service-%EF%BC%A0ViewChild%E3%81%A7%E8%A6%AA%E3%81%8B%E3%82%89%E5%AD%90%E3%81%AE%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%82%92%E5%91%BC%E5%87%BA%E3%81%97/">Angular コンポーネント間の連携手法まとめ(Service/＠ViewChildで親から子のメソッドを呼出し)</a>
+            
+        </h1>
+        <div class="content">
+            <p>初級者向けに説明した際の備忘録です。</p>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/78031914-28d0fa80-739f-11ea-83a7-ed40134c8aa0.png" height="300px" width="500px" alt="Component_Cooperation_image">
+</div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#概要">概要</a></li>
+<li><a href="#1-serviceを活用する場合の手順">① Serviceを活用する場合の手順</a><ul>
+<li><a href="#serviceを作成して機能を取り出す">Serviceを作成して機能を取り出す</a></li>
+<li><a href="#serviceをimport">Serviceをimport</a></li>
+<li><a href="#serviceを注入">Serviceを注入</a></li>
+<li><a href="#serviceのメソッドを実行">Serviceのメソッドを実行</a></li>
+</ul>
+</li>
+<li><a href="#2-viewchildを活用する場合の手順">② @ViewChildを活用する場合の手順</a><ul>
+<li><a href="#viewchildと対象の子componentをimport">@ViewChildと対象の子Componentをimport</a></li>
+<li><a href="#viewchildデコレータを設定">@ViewChildデコレータを設定</a></li>
+<li><a href="#子のメソッドを実行">子のメソッドを実行</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="概要">概要</span></h2><ul>
+<li><p>AngularにおけるComponent間連携</p>
+<ul>
+<li>別々のComponent間ではそのままデータを受け渡したり、メソッドを呼び出すことができません</li>
+<li>Material等を用いた画面の作り方を覚えて、機能開発を始めたレベルの初級者が最初にハマるポイントだと思います</li>
+</ul>
+</li>
+<li><p>連携手法</p>
+<ol>
+<li>Serviceとして機能を外に取り出し、複数のComponent側から参照<ul>
+<li>基本的にこちらが推奨</li>
+</ul>
+</li>
+<li>親子構造のコンポーネント間で直接参照する<ul>
+<li>@ViewChildデコレータというものを使えば手軽にできます</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p>上記の連携手法x2について解説します。</p>
+<h2><span id="1-serviceを活用する場合の手順">① Serviceを活用する場合の手順</span></h2><ul>
+<li>Serviceに機能を取り出して参照する場合の手順を以下に示します<ul>
+<li>親子間で連携させたい場合は飛ばしてください</li>
+</ul>
+</li>
+</ul>
+<h3><span id="serviceを作成して機能を取り出す">Serviceを作成して機能を取り出す</span></h3><ul>
+<li>作成<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng g service &#39;service-name&#39;</span><br></pre></td></tr></table></figure></li>
+<li>service-name.service.tsを編集<ul>
+<li>共有したい機能は基本的にここに書く</li>
+<li>Component側に書くのはUI関係に絞る</li>
+</ul>
+</li>
+</ul>
+<h3><span id="serviceをimport">Serviceをimport</span></h3><ul>
+<li>以降はServiceを取り込むComponentのtsファイルを編集します<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &#123; ServiceNameService &#125; from &#39;..&#x2F;service-name.service&#39;;</span><br></pre></td></tr></table></figure>
+<h3><span id="serviceを注入">Serviceを注入</span></h3></li>
+<li>constructorにserviceを注入することで、Service内のメソッドを参照可能になります<ul>
+<li>private “このComponent内でServiceを扱う名称”: “Serviceのクラス名”<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">export class TestComponent implements OnInit &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; Serviceを注入インスタンス化</span><br><span class="line">  constructor(private TestService: ServiceNameService) &#123;</span><br><span class="line">    console.log(&#39;サービスを注入&#39;);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="serviceのメソッドを実行">Serviceのメソッドを実行</span></h3><ul>
+<li>上記で定めたTestService.”メソッド名” で実行できます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.TestService.functionA();</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h2><span id="2-viewchildを活用する場合の手順">② @ViewChildを活用する場合の手順</span></h2><ul>
+<li>親子間でメソッドを呼ぶ際の手順を示します</li>
+</ul>
+<h3><span id="viewchildと対象の子componentをimport">@ViewChildと対象の子Componentをimport</span></h3><ul>
+<li>※対象が複数の場合はViewChildrenを用いる<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 親子間の連携にはViewChildが必要</span><br><span class="line">import &#123; Component, ViewChild &#125; from &#39;@angular&#x2F;core&#39;;</span><br><span class="line">&#x2F;&#x2F; 子のComponentをimport</span><br><span class="line">import &#123; ChildComponent &#125; from &#39;..&#x2F;child&#x2F;child.component&#39;;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3><span id="viewchildデコレータを設定">@ViewChildデコレータを設定</span></h3><ul>
+<li>※Angular8以上は@ViewChildの引数が二つ</li>
+<li>{static: false}を第二引数に指定すればOK  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export class ParentComponent &#123;</span><br><span class="line">    &#x2F;&#x2F; 子コンポーネントをプロパティ:childとして設定</span><br><span class="line">    @ViewChild( ChildComponent, &#123;static: false&#125; )</span><br><span class="line">    private child: ChildComponent;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3><span id="子のメソッドを実行">子のメソッドを実行</span></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">child.functionA();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>今回の解説は以上です<ul>
+<li>Angularを扱う際は、なるべく細かいComponentに分けて疎結合な設計にしましょう</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-03-25T13:07:15.000Z">2020-03-25</time>
                 
                 <div class="level-item">
@@ -2635,211 +2778,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-10T14:23:23.000Z">2020-03-10</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    7分 read (About 1017 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/">Hexoでサイトマップを自動生成 ~ Google Search Consoleへ登録</a>
-            
-        </h1>
-        <div class="content">
-            <!-- toc -->
-
-<ul>
-<li><a href="#概要">概要</a><ul>
-<li><a href="#想定読者">想定読者</a></li>
-<li><a href="#基礎知識">基礎知識</a></li>
-</ul>
-</li>
-<li><a href="#手順">手順</a><ul>
-<li><a href="#1-pluginの導入">1. Pluginの導入</a></li>
-<li><a href="#2-_configymlにpluginの設定を追加">2. _config.ymlにPluginの設定を追加</a></li>
-<li><a href="#3-sitemapxmlの生成">3. sitemap.xmlの生成</a></li>
-<li><a href="#4-本番環境へデプロイ">4. 本番環境へデプロイ</a></li>
-<li><a href="#5-google-search-consoleへ登録">5. Google Search Consoleへ登録</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-
-<h2><span id="概要">概要</span></h2><p>こんにちは。今回はHexoでサイトマップを自動生成してGoogleに登録するまでの手法を紹介します。<br>本サイトもHexoを用いて自動生成しています。  </p>
-<h3><span id="想定読者">想定読者</span></h3><ul>
-<li>静的サイトジェネレータhexoでWEBページを作成済み<ul>
-<li>Google検索でヒットしない状態</li>
-</ul>
-</li>
-<li>サイトマップ未登録</li>
-</ul>
-<h3><span id="基礎知識">基礎知識</span></h3><ul>
-<li><p>サイトマップとは</p>
-<ul>
-<li>サイトにどのようなページがあるのか表す為のもの</li>
-<li>以下の二種類があります<ul>
-<li>HTMLサイトマップ</li>
-<li>XMLサイトマップ<ul>
-<li>検索エンジンが情報収集する対象となるため、SEO対策において重要    </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>hexoではプラグインを利用することでサイトマップを自動生成できます</li>
-</ul>
-</li>
-<li><p><a href="https://support.google.com/webmasters/answer/9128668?hl=ja&ref_topic=9128571">Google Search Console</a></p>
-<ul>
-<li><a href="https://support.google.com/webmasters/answer/9128668?hl=ja&ref_topic=9128571">Serch Consoleの概要</a> （公式サイトより引用）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Google Search Console は、Google 検索結果でのサイトの掲載順位を監視、管理、改善するのに役立つ Google の無料サービスです。Search Console に登録しなくても Google 検索結果にサイトが表示されるようにすることはできますが、Search Console に登録することで、Google のサイトに対する認識を理解し、改善できるようになります。</span><br></pre></td></tr></table></figure></li>
-<li>生成したサイトマップをこちらに登録することで、Google検索結果に自分のWEBページが出るようになります<ul>
-<li>WEBページを公開したばかりの場合、登録しなければ検索結果に出ないと思われます</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2><span id="手順">手順</span></h2><ul>
-<li><ol>
-<li>Pluginの導入</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>_config.ymlにPluginの設定を追加</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>sitemap.xmlの生成</li>
-</ol>
-</li>
-<li><ol start="4">
-<li>本番環境へデプロイ</li>
-</ol>
-</li>
-<li><ol start="5">
-<li>Google Search Consoleへ登録</li>
-</ol>
-</li>
-</ul>
-<h3><span id="1-pluginの導入">1. Pluginの導入</span></h3><ul>
-<li><p>HEXOでサイトマップを生成できるプライグインは二種類あります</p>
-<ul>
-<li><a href="https://github.com/hexojs/hexo-generator-sitemap">hexo-generator-sitemap</a></li>
-<li><a href>hexo-generator-seo-friendly-sitemap</a><ul>
-<li>今回はこちらを採用</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>インストール</p>
-<ul>
-<li>HEXOディレクトリ直下で以下を実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-seo-friendly-sitemap --save</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="2-_configymlにpluginの設定を追加">2. _config.ymlにPluginの設定を追加</span></h3><ul>
-<li><p>HEXOの設定ファイルに先ほどのPluginを登録します</p>
-<ul>
-<li>ファイルはhexoディレクトリ直下にあります</li>
-</ul>
-</li>
-<li><p>_config.ymlに追記する内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## Plugins: https:&#x2F;&#x2F;hexo.io&#x2F;plugins&#x2F;</span><br><span class="line">sitemap:</span><br><span class="line">  path: sitemap.xml</span><br><span class="line">  tag: false</span><br><span class="line">  category: false</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3><span id="3-sitemapxmlの生成">3. sitemap.xmlの生成</span></h3><ul>
-<li><p>いつも通りにhexoコマンドでジェネレートする際に、sitemapが生成されます</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure></li>
-<li><p>sitemap.xmlの生成を確認</p>
-<ul>
-<li>index.htmlと<ul>
-<li>通常はpublic配下</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>開いてみると、以下のように書かれています</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;&lt;?xml-stylesheet type&#x3D;&quot;text&#x2F;xsl&quot; href&#x3D;&quot;sitemap.xsl&quot;?&gt;</span><br><span class="line">&lt;sitemapindex xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.sitemaps.org&#x2F;schemas&#x2F;sitemap&#x2F;0.9&quot;&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;sitemap&gt;</span><br><span class="line">        &lt;loc&gt;https:&#x2F;&#x2F;j-xaas.github.io&#x2F;post-sitemap.xml&lt;&#x2F;loc&gt;</span><br><span class="line">        &lt;lastmod&gt;2020-03-10T13:04:39.446Z&lt;&#x2F;lastmod&gt;</span><br><span class="line">    &lt;&#x2F;sitemap&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;sitemapindex&gt;</span><br><span class="line">&lt;!-- XML Sitemap generated by Hexo SEO Friendly Sitemap Generator --&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3><span id="4-本番環境へデプロイ">4. 本番環境へデプロイ</span></h3><ul>
-<li>WEBページをホスティングしている、サーバ等へsitemap.xmlファイルをおきましょう</li>
-<li>github pagesを用いている場合は、Gitへpushします</li>
-</ul>
-<h3><span id="5-google-search-consoleへ登録">5. Google Search Consoleへ登録</span></h3><ul>
-<li><p><a href="https://search.google.com/search-console">公式サイト</a>へアクセス</p>
-<ul>
-<li>未登録であれば、自分のWEBサイトのURLを登録しましょう</li>
-</ul>
-</li>
-<li><p>サイドメニュー内、インデックスのサイトマップを選択</p>
-</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/76317221-2d197300-631f-11ea-9b4c-4c7dbb3b3d75.PNG" height="50%" width="50%">
-</div>
-
-
-<ul>
-<li>新しいサイトマップの追加<ul>
-<li>入力欄に”sitemap.xml”を入力</li>
-<li>送信</li>
-</ul>
-</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/76317318-5df9a800-631f-11ea-8995-7722bd39ddc5.png" height="100%" width="100%">
-</div>
-
-
-<ul>
-<li>しばらく待って更新すると、以下のようにステータスが”成功しました”と表示されます<ul>
-<li>以上でサイトマップの登録は完了です<ul>
-<li>hexo g の度に更新されるので、事後作業は特にありません</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/76319276-5687ce00-6322-11ea-98de-c4837c6f1785.png" height="100%" width="100%">
-</div>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -2904,7 +2842,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            17
+                            18
                         </p>
                     </a>
                 </div>
@@ -2928,7 +2866,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            29
+                            31
                         </p>
                     </a>
                 </div>
@@ -3036,7 +2974,7 @@
                 <span class="level-item">Serverless Application Dev</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">5</span>
+                <span class="level-item tag">6</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Serverless-Application-Dev/AWS/">
@@ -3060,7 +2998,7 @@
                 <span class="level-item">SPA (Angular)</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/SmartHome/">
@@ -3137,7 +3075,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12.5px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 17.5px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/DTM/" style="font-size: 10px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/RPA/" style="font-size: 10px;">RPA</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 12.5px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 12.5px;">iPad Pro</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 10px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+        <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 13.33px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/DTM/" style="font-size: 10px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/RPA/" style="font-size: 10px;">RPA</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 13.33px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 13.33px;">iPad Pro</a> <a href="/tags/icarus/" style="font-size: 16.67px;">icarus</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 10px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
     </div>
 </div>
     
@@ -3149,6 +3087,25 @@
         <h3 class="menu-label">
             最近の記事
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/03/31/Angular-%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%AE%E9%80%A3%E6%90%BA%E6%89%8B%E6%B3%95%E3%81%BE%E3%81%A8%E3%82%81-Service-%EF%BC%A0ViewChild%E3%81%A7%E8%A6%AA%E3%81%8B%E3%82%89%E5%AD%90%E3%81%AE%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%82%92%E5%91%BC%E5%87%BA%E3%81%97/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Angular コンポーネント間の連携手法まとめ(Service/＠ViewChildで親から子のメソッドを呼出し)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-31T14:23:54.000Z">2020-03-31</time></div>
+                    <a href="/2020/03/31/Angular-%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%AE%E9%80%A3%E6%90%BA%E6%89%8B%E6%B3%95%E3%81%BE%E3%81%A8%E3%82%81-Service-%EF%BC%A0ViewChild%E3%81%A7%E8%A6%AA%E3%81%8B%E3%82%89%E5%AD%90%E3%81%AE%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%82%92%E5%91%BC%E5%87%BA%E3%81%97/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Angular コンポーネント間の連携手法まとめ(Service/＠ViewChildで親から子のメソッドを呼出し)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -3226,25 +3183,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/18/Privacy-Policy/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Privacy Policy">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-17T16:16:47.000Z">2020-03-18</time></div>
-                    <a href="/2020/03/18/Privacy-Policy/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Privacy Policy</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -3262,7 +3200,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">13</span>
+                    <span class="level-item tag">14</span>
                 </span>
             </a>
         </li>
@@ -3292,6 +3230,13 @@
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/ViewChild/">
+                        <span class="tag">@ViewChild</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/AMP/">
                         <span class="tag">AMP</span>
                         <span class="tag is-grey">1</span>
@@ -3315,7 +3260,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -3399,6 +3344,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/RPA/">
                         <span class="tag">RPA</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Service/">
+                        <span class="tag">Service</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -3518,6 +3470,25 @@
         
         <article class="media">
             
+            <a href="/2020/03/31/Angular-%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%AE%E9%80%A3%E6%90%BA%E6%89%8B%E6%B3%95%E3%81%BE%E3%81%A8%E3%82%81-Service-%EF%BC%A0ViewChild%E3%81%A7%E8%A6%AA%E3%81%8B%E3%82%89%E5%AD%90%E3%81%AE%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%82%92%E5%91%BC%E5%87%BA%E3%81%97/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Angular コンポーネント間の連携手法まとめ(Service/＠ViewChildで親から子のメソッドを呼出し)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-31T14:23:54.000Z">2020-03-31</time></div>
+                    <a href="/2020/03/31/Angular-%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%AE%E9%80%A3%E6%90%BA%E6%89%8B%E6%B3%95%E3%81%BE%E3%81%A8%E3%82%81-Service-%EF%BC%A0ViewChild%E3%81%A7%E8%A6%AA%E3%81%8B%E3%82%89%E5%AD%90%E3%81%AE%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%82%92%E5%91%BC%E5%87%BA%E3%81%97/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Angular コンポーネント間の連携手法まとめ(Service/＠ViewChildで親から子のメソッドを呼出し)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/25/iPad-Pro%E3%81%A7WEB-AP%E9%96%8B%E7%99%BA/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="iPad ProでWEB AP開発 &amp; RPA">
@@ -3592,25 +3563,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/18/Privacy-Policy/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Privacy Policy">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-17T16:16:47.000Z">2020-03-18</time></div>
-                    <a href="/2020/03/18/Privacy-Policy/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Privacy Policy</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -3628,7 +3580,7 @@
                     <span class="level-item">三月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">13</span>
+                    <span class="level-item tag">14</span>
                 </span>
             </a>
         </li>
@@ -3658,6 +3610,13 @@
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/ViewChild/">
+                        <span class="tag">@ViewChild</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/AMP/">
                         <span class="tag">AMP</span>
                         <span class="tag is-grey">1</span>
@@ -3681,7 +3640,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">6</span>
                     </a>
                 </div>
                 
@@ -3765,6 +3724,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/RPA/">
                         <span class="tag">RPA</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Service/">
+                        <span class="tag">Service</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
