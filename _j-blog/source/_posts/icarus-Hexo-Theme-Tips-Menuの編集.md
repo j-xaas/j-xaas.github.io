@@ -103,3 +103,42 @@ hexo server
 - icarusは柔軟にメニューを弄れるのでカスタマイズ性が高いですね
     - 自身のWEBページに合わせて自由に編集してみてください
     - 個人で勉強ついでに開発しているWEB APが増えたら一覧ページをメニューに足そうと思います
+
+## おまけ：ロゴの変更
+- オリジナルのロゴ
+    - 所在：\themes\icarus\source\images
+        - logo.svg 
+
+- 1. オリジナルのロゴを作成して同様のディレクトリに格納
+    - original_logo.pngを作成して配置
+- 2. _config.ymlを編集
+    - icarus側の設定ファイルを改修
+        - themes\icarus\_config.yml
+    - 旧
+    ```
+    favicon: /images/favicon.svg
+    
+    # Path or URL to the website's logo to be shown on the left of the navigation bar or footer
+    logo: /images/logo.svg
+    ```
+    - 新
+        - faviconをコメントアウトしないと上に被さって上手く表示できません
+    ```
+    #favicon: /images/favicon.svg
+
+    # Path or URL to the website's logo to be shown on the left of the navigation bar or footer
+    logo: /images/original_logo.png
+    ```
+- これだけです
+    - 画面への反映を確認
+    ```
+    hexo server
+    ```
+
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/78388593-3a730600-761c-11ea-936e-0cc0f4a9ce2e.png" height="60px" width="400px" alt="ロゴ変更後">
+</div>
+
+- pngをSVGファイルに変換しておくと見栄えも読み込みも良くなります
+    - ↓でぱっと変換できます
+    - [PNG SVG 変換 - 画像ファイルをオンラインで変換する](https://www.aconvert.com/jp/image/png-to-svg/)

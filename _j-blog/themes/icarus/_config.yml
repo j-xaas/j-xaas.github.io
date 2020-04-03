@@ -1,7 +1,7 @@
 # Version of the Icarus theme that is currently used
 version: 2.6.0
 # Path or URL to the website's icon
-favicon: /images/favicon.svg
+#favicon: /images/favicon.svg
 # Additional HTML meta tags in an array.
 meta: 
 # canonical_url of your site
@@ -9,7 +9,7 @@ canonical_url:
 # Path or URL to RSS atom.xml
 rss: 
 # Path or URL to the website's logo to be shown on the left of the navigation bar or footer
-logo: /images/logo.svg
+logo: /images/logo_original.svg
 # Open Graph metadata
 # https://hexo.io/docs/helpers.html#open-graph
 open_graph:

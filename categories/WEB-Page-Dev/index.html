@@ -39,8 +39,6 @@
 
 
 
-<link rel="icon" href="/images/favicon.svg">
-
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
@@ -98,7 +96,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="J&#39;s Tech Blog" height="28">
+                <img src="/images/logo_original.svg" alt="J&#39;s Tech Blog" height="28">
             
             </a>
         </div>
@@ -908,7 +906,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3分 read (About 507 words)
+                    5分 read (About 765 words)
                 </span>
                 
                 
@@ -931,6 +929,7 @@
 </ul>
 </li>
 <li><a href="#menuを追加">Menuを追加</a></li>
+<li><a href="#おまけロゴの変更">おまけ：ロゴの変更</a></li>
 </ul>
 <!-- tocstop -->
 
@@ -1010,6 +1009,56 @@
 <li>icarusは柔軟にメニューを弄れるのでカスタマイズ性が高いですね<ul>
 <li>自身のWEBページに合わせて自由に編集してみてください</li>
 <li>個人で勉強ついでに開発しているWEB APが増えたら一覧ページをメニューに足そうと思います</li>
+</ul>
+</li>
+</ul>
+<h2><span id="おまけロゴの変更">おまけ：ロゴの変更</span></h2><ul>
+<li><p>オリジナルのロゴ</p>
+<ul>
+<li>所在：\themes\icarus\source\images<ul>
+<li>logo.svg </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ol>
+<li>オリジナルのロゴを作成して同様のディレクトリに格納<ul>
+<li>original_logo.pngを作成して配置</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>_config.ymlを編集<ul>
+<li>icarus側の設定ファイルを改修<ul>
+<li>themes\icarus_config.yml</li>
+</ul>
+</li>
+<li>旧<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">favicon: &#x2F;images&#x2F;favicon.svg</span><br><span class="line"></span><br><span class="line"># Path or URL to the website&#39;s logo to be shown on the left of the navigation bar or footer</span><br><span class="line">logo: &#x2F;images&#x2F;logo.svg</span><br></pre></td></tr></table></figure></li>
+<li>新<ul>
+<li>faviconをコメントアウトしないと上に被さって上手く表示できません<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#favicon: &#x2F;images&#x2F;favicon.svg</span><br><span class="line"></span><br><span class="line"># Path or URL to the website&#39;s logo to be shown on the left of the navigation bar or footer</span><br><span class="line">logo: &#x2F;images&#x2F;original_logo.png</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>これだけです</p>
+<ul>
+<li>画面への反映を確認<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/78388593-3a730600-761c-11ea-936e-0cc0f4a9ce2e.png" height="60px" width="400px" alt="ロゴ変更後">
+</div>
+
+<ul>
+<li>pngをSVGファイルに変換しておくと見栄えも読み込みも良くなります<ul>
+<li>↓でぱっと変換できます</li>
+<li><a href="https://www.aconvert.com/jp/image/png-to-svg/">PNG SVG 変換 - 画像ファイルをオンラインで変換する</a></li>
 </ul>
 </li>
 </ul>
@@ -2864,7 +2913,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="J&#39;s Tech Blog" height="28">
+                    <img src="/images/logo_original.svg" alt="J&#39;s Tech Blog" height="28">
                 
                 </a>
                 <p class="is-size-7">
