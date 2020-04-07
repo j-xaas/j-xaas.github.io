@@ -169,6 +169,247 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-04-07T15:58:26.000Z">2020-04-08</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8分 read (About 1179 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/04/08/git-merge-%E3%82%B3%E3%83%B3%E3%83%95%E3%83%AA%E3%82%AF%E3%83%88%E3%81%AE%E8%A7%A3%E6%B6%88%EF%BC%88%E8%A4%87%E6%95%B0%E5%90%8D%E3%81%AE%E7%B7%A8%E9%9B%86%E5%86%85%E5%AE%B9%E3%82%92%E9%9B%86%E7%B4%84%EF%BC%89/">git merge &amp; コンフリクトの解消（複数名の編集内容を集約）</a>
+            
+        </h1>
+        <div class="content">
+            <p>Githubで初級者がハマりがちなポイントについてです。<br>複数メンバの編集内容をGitで効率的にまとめる手法を解説します。  </p>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/78698206-f1cd8c80-793c-11ea-8887-0d93b944b50d.png" height="170px" width="400px" alt="git merge image">
+</div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#基礎知識">基礎知識</a><ul>
+<li><a href="#githubの分散開発">githubの分散開発</a></li>
+<li><a href="#git-mergeとは">git mergeとは</a></li>
+</ul>
+</li>
+<li><a href="#手順">手順</a><ul>
+<li><a href="#merge">merge</a></li>
+<li><a href="#コンフリクトの解消">コンフリクトの解消</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="基礎知識">基礎知識</span></h2><h3><span id="githubの分散開発">githubの分散開発</span></h3><ul>
+<li>基本的な進め方<ol>
+<li>開発メンバ数のbranchを作成</li>
+<li>別々のbranchを各メンバが編集</li>
+<li>作業完了後にmerge<ul>
+<li>※本記事で解説する内容</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3><span id="git-mergeとは">git mergeとは</span></h3><ul>
+<li><p>githubのコマンド</p>
+</li>
+<li><p>機能</p>
+<ul>
+<li>複数branchのmerge</li>
+<li>つまり各メンバの編集内容を反映して合わせることができます</li>
+</ul>
+</li>
+<li><p>メリット</p>
+<ul>
+<li><ol>
+<li>差分の可視化</li>
+</ol>
+<ul>
+<li>githubであれば、編集箇所がマーカーで表示されます<ul>
+<li>編集日時・編集者も一目で判別可能</li>
+</ul>
+</li>
+<li>目視でソースの変化を比較するにはすさまじい労力を伴います</li>
+</ul>
+</li>
+<li><ol start="2">
+<li>変更の反映・集約の自動化</li>
+</ol>
+<ul>
+<li>わざわざコピペする手間を削減可能</li>
+<li>複数名が別々の編集をしたファイル<ul>
+<li>開くと各メンバの変更箇所が並んで表示されます</li>
+<li>ボタン一つでどれを採用するか決定可能です<ul>
+<li>※詳細は手順内で説明</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>mergeの楽さと過去の改修内容を時系列で遡れることが、gitを活用して分散開発を行う主な理由です</p>
+<h2><span id="手順">手順</span></h2><ul>
+<li><p>他人が編集していた別branchの変更内容を、自分のLocal端末上でmergeするまでを書きます</p>
+<h3><span id="merge">merge</span></h3></li>
+<li><ol>
+<li>リモートから別branchを取得</li>
+</ol>
+<ul>
+<li>Localに未登録であれば実行(git branch -aで別branchが出ない場合)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><ol start="2">
+<li>追加されていることを確認<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -a</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><ol start="3">
+<li>branchへ移動して内容を確認<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout &lt;branch-name&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><ol start="4">
+<li>元のbranchに戻る<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>※Commitが未実行のファイルが無いか確認</p>
+<ul>
+<li>そのままmergeすると変更の取り込みが漏れてしまうため</li>
+<li>以下のように出ればOK<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line"></span><br><span class="line">On branch master</span><br><span class="line">Your branch is up to date with &#39;origin&#x2F;master&#39;.</span><br><span class="line"></span><br><span class="line">nothing to commit, working tree clean</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><ol start="5">
+<li>merge<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge &lt;branch-name&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>別々のファイルを改修していた場合は、以上で完了です</p>
+<ul>
+<li>merge実行時に”CONFLICT”が出力されれば、次の処理も必要です</li>
+</ul>
+</li>
+</ul>
+<h3><span id="コンフリクトの解消">コンフリクトの解消</span></h3><ul>
+<li><p>コンフリクトとは</p>
+<ul>
+<li>編集内容の衝突のこと</li>
+<li>それぞれのbranchで同じファイルを編集していた際に発生する</li>
+<li>どちらの編集内容を採用するか決める必要がある<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CONFLICT (content): Merge conflict in &lt;conflict-file&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>コンフリクトの解消方法</p>
+<ul>
+<li><ol>
+<li>上記のコンフリクトが発生した各ファイルを開く</li>
+</ol>
+</li>
+<li><p>VS Codeの場合</p>
+<ul>
+<li><p>コンフリクト箇所をマーカー表示</p>
+<ul>
+<li><p>緑のマーカー</p>
+<ul>
+<li>以下から始まる箇所<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD (Current Change)</span><br></pre></td></tr></table></figure>
+　</li>
+<li>現在のbranch側の編集内容</li>
+</ul>
+</li>
+<li><p>青マーカー</p>
+<ul>
+<li><p>以下から始まる箇所</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; branch-name (Incoming Change)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>現在のbranchにmergeしようとしているbranch側の編集内容</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>マーカー上部に表示されるメニュー</p>
+<ul>
+<li>Accept Current Change</li>
+<li>Accept Incoming Change</li>
+<li>Accept Both Changes</li>
+<li>Comppare</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ol start="2">
+<li>マーカー表示箇所のどちらを採用するか決定</li>
+</ol>
+<ul>
+<li>方法は二つ<ul>
+<li>マーカー上部のメニューから選択<ul>
+<li>例：Accept Current Changeを選択<ul>
+<li>Current branchの内容(緑マーカー)が採用され、Incoming branch(青マーカー)の内容が消去されます</li>
+<li>つまり、差分を一目で確認して、一押しで取捨選択可能です</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>要らない方のマーキング箇所を手動で消去</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ファイルの編集後</p>
+<ul>
+<li>addまでしてコンフリクトが解消された状態になります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add &lt;conflict-file&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>確認</p>
+<ul>
+<li>赤字でコンフリクト中のファイルが表示されなければOK<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>Remoteに登録</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>　今回の解説は以上です。pull, commit, push等のgitの基礎と今回の内容を覚えれば、一先ずチームで分散開発を始めることができると思います。ここで手間取ると初動からPJが遅延するので、未修得のメンバがいれば放置せずに教えてあげましょう。細かい機能は使わないものも多いので、走りながら必要に応じて覚えていけば大丈夫です。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-02-09T13:52:47.000Z">2020-02-09</time>
                 
                 <div class="level-item">
@@ -347,7 +588,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            18
+                            19
                         </p>
                     </a>
                 </div>
@@ -527,7 +768,7 @@
                 <span class="level-item">Tool Tips</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Tool-Tips/AWS/">
@@ -543,7 +784,7 @@
                 <span class="level-item">Github</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Tool-Tips/Google-Cloud-Shell/">
@@ -580,7 +821,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 13.33px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/DTM/" style="font-size: 10px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 10px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/RPA/" style="font-size: 10px;">RPA</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 13.33px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 13.33px;">iPad Pro</a> <a href="/tags/icarus/" style="font-size: 16.67px;">icarus</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 10px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+        <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 13.33px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/DTM/" style="font-size: 10px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 13.33px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/RPA/" style="font-size: 10px;">RPA</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 13.33px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 13.33px;">iPad Pro</a> <a href="/tags/icarus/" style="font-size: 16.67px;">icarus</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 10px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
     </div>
 </div>
     
@@ -592,6 +833,25 @@
         <h3 class="menu-label">
             最近の記事
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/04/08/git-merge-%E3%82%B3%E3%83%B3%E3%83%95%E3%83%AA%E3%82%AF%E3%83%88%E3%81%AE%E8%A7%A3%E6%B6%88%EF%BC%88%E8%A4%87%E6%95%B0%E5%90%8D%E3%81%AE%E7%B7%A8%E9%9B%86%E5%86%85%E5%AE%B9%E3%82%92%E9%9B%86%E7%B4%84%EF%BC%89/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="git merge &amp; コンフリクトの解消（複数名の編集内容を集約）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-07T15:58:26.000Z">2020-04-08</time></div>
+                    <a href="/2020/04/08/git-merge-%E3%82%B3%E3%83%B3%E3%83%95%E3%83%AA%E3%82%AF%E3%83%88%E3%81%AE%E8%A7%A3%E6%B6%88%EF%BC%88%E8%A4%87%E6%95%B0%E5%90%8D%E3%81%AE%E7%B7%A8%E9%9B%86%E5%86%85%E5%AE%B9%E3%82%92%E9%9B%86%E7%B4%84%EF%BC%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">git merge &amp; コンフリクトの解消（複数名の編集内容を集約）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -669,25 +929,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/21/Hexo%E3%81%AB%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E6%AC%84%E3%82%92%E8%BF%BD%E5%8A%A0-Disqus/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hexoにコメント欄を追加(Disqus)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-20T17:42:04.000Z">2020-03-21</time></div>
-                    <a href="/2020/03/21/Hexo%E3%81%AB%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E6%AC%84%E3%82%92%E8%BF%BD%E5%8A%A0-Disqus/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hexoにコメント欄を追加(Disqus)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -698,6 +939,17 @@
             アーカイブ
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/03/">
@@ -814,7 +1066,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Github-com/">
                         <span class="tag">Github.com</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -975,6 +1227,25 @@
         
         <article class="media">
             
+            <a href="/2020/04/08/git-merge-%E3%82%B3%E3%83%B3%E3%83%95%E3%83%AA%E3%82%AF%E3%83%88%E3%81%AE%E8%A7%A3%E6%B6%88%EF%BC%88%E8%A4%87%E6%95%B0%E5%90%8D%E3%81%AE%E7%B7%A8%E9%9B%86%E5%86%85%E5%AE%B9%E3%82%92%E9%9B%86%E7%B4%84%EF%BC%89/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="git merge &amp; コンフリクトの解消（複数名の編集内容を集約）">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-07T15:58:26.000Z">2020-04-08</time></div>
+                    <a href="/2020/04/08/git-merge-%E3%82%B3%E3%83%B3%E3%83%95%E3%83%AA%E3%82%AF%E3%83%88%E3%81%AE%E8%A7%A3%E6%B6%88%EF%BC%88%E8%A4%87%E6%95%B0%E5%90%8D%E3%81%AE%E7%B7%A8%E9%9B%86%E5%86%85%E5%AE%B9%E3%82%92%E9%9B%86%E7%B4%84%EF%BC%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">git merge &amp; コンフリクトの解消（複数名の編集内容を集約）</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/03/31/Angular-%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%AE%E9%80%A3%E6%90%BA%E6%89%8B%E6%B3%95%E3%81%BE%E3%81%A8%E3%82%81-Service-%EF%BC%A0ViewChild%E3%81%A7%E8%A6%AA%E3%81%8B%E3%82%89%E5%AD%90%E3%81%AE%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%82%92%E5%91%BC%E5%87%BA%E3%81%97/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Angular コンポーネント間の連携手法まとめ(Service/＠ViewChildで親から子のメソッドを呼出し)">
@@ -1049,25 +1320,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/21/Hexo%E3%81%AB%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E6%AC%84%E3%82%92%E8%BF%BD%E5%8A%A0-Disqus/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hexoにコメント欄を追加(Disqus)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-20T17:42:04.000Z">2020-03-21</time></div>
-                    <a href="/2020/03/21/Hexo%E3%81%AB%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E6%AC%84%E3%82%92%E8%BF%BD%E5%8A%A0-Disqus/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hexoにコメント欄を追加(Disqus)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1078,6 +1330,17 @@
             アーカイブ
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/03/">
@@ -1194,7 +1457,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Github-com/">
                         <span class="tag">Github.com</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
