@@ -88,6 +88,9 @@ toc: true
 <img src="https://user-images.githubusercontent.com/41946222/77536766-39392f00-6ee0-11ea-80ca-5b3d533fb640.png" height="370px" width="500px" alt="Cubase_unlocked">
 </div>
 
+- Cubaseを初めてすぐに適当にパッドを使って打ち込んでみました（意外とそれっぽくなって楽しい）
+
+{% youtube 8_v6i2ZHF0A %}
 
 ### iPad Pro 2020（第4世代）
 

@@ -7,6 +7,7 @@ category:
 tags: 
 - iPad Pro
 - RPA
+- iPhone
 - ショートカット
 - Siri
 toc: true
@@ -17,7 +18,7 @@ toc: true
   
 - 海外版松岡修造として著名なシャイア・ラブーフさんに叱られます
 
-{% youtube v=mW6S8-mofXE %}
+{% youtube mW6S8-mofXE %}
 
 <!-- toc -->
 
@@ -83,8 +84,7 @@ toc: true
     - Twitterを開いてみましょう
     - 画面上部にオートメーションを実行と表示され、Do itおじさんの動画に強制的に飛ばされます
 
-{% youtube v=mW6S8-mofXE %}
-
+{% youtube mW6S8-mofXE %}
 
 - 解除方法
     - オートメーションを編集
@@ -104,7 +104,7 @@ toc: true
             - カーテンの開閉
             - 電気を点灯
 
-### IT界隈の人向けの応用例
+## IT界隈の方向けの応用例
 - 最近は手軽にAPI連携を確立できるサービスがいくらでもあるので簡単に応用できます
 
 - 例
