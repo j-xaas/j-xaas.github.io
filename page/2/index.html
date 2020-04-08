@@ -159,6 +159,194 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-16T15:54:02.000Z">2020-03-17</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5分 read (About 765 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/17/icarus-Hexo-Theme-Tips-Menu%E3%81%AE%E7%B7%A8%E9%9B%86/">icarus(Hexo Theme) Tips Menuの編集</a>
+            
+        </h1>
+        <div class="content">
+            <p>こんにちは。今回はHexoのthemeにicarusを採用した際のTipsを解説します。</p>
+<!-- toc -->
+
+<ul>
+<li><a href="#aboutページを追加">Aboutページを追加</a><ul>
+<li><a href="#1-hexoの通常の記事として生成">1. Hexoの通常の記事として生成</a></li>
+<li><a href="#2-_configymlを改修">2. _config/ymlを改修</a></li>
+</ul>
+</li>
+<li><a href="#menuを追加">Menuを追加</a></li>
+<li><a href="#おまけロゴの変更">おまけ：ロゴの変更</a></li>
+</ul>
+<!-- tocstop -->
+
+<ul>
+<li>icarusを適用すると以下のようなメニューがヘッダーに表示されます</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/76772659-9fd59300-67e4-11ea-96da-e010eb0ac211.png" height="80px" width="650px">
+</div>
+
+<ul>
+<li>ポイント<ul>
+<li>Aboutページは自分で作成する必要がある</li>
+<li>Menuは追加・削除可能</li>
+</ul>
+</li>
+</ul>
+<h2><span id="aboutページを追加">Aboutページを追加</span></h2><h3><span id="1-hexoの通常の記事として生成">1. Hexoの通常の記事として生成</span></h3><ul>
+<li>About-This-Blog.mdを生成<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng new &#39;About-This-Blog&#39;</span><br></pre></td></tr></table></figure></li>
+<li>source/_posts内に生成されたファイルを編集</li>
+</ul>
+<h3><span id="2-_configymlを改修">2. _config/ymlを改修</span></h3><ul>
+<li>path: your-blog\themes\icarus&gt;<ul>
+<li>About: 移行を生成した記事のパスに変更</li>
+<li>Hexoの記事のパスは “/YYYY/MM/DD/Article_name” です</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Navigation bar link settings</span><br><span class="line">navbar:</span><br><span class="line">    # Navigation bar menu links</span><br><span class="line">    menu:</span><br><span class="line">        Home: &#x2F;</span><br><span class="line">        Archives: &#x2F;archives</span><br><span class="line">        Categories: &#x2F;categories</span><br><span class="line">        Tags: &#x2F;tags</span><br><span class="line">        About: &#x2F;2020&#x2F;02&#x2F;04&#x2F;About-This-Blog&#x2F; # &#x2F;aboutから変更</span><br></pre></td></tr></table></figure>
+
+<h2><span id="menuを追加">Menuを追加</span></h2><ul>
+<li><p>メニューの追加も同様の箇所を改修するだけで簡単にできます</p>
+</li>
+<li><p>以下を追加します</p>
+<ul>
+<li>ポリシーページ</li>
+<li>自身のECサイトへのリンク</li>
+</ul>
+</li>
+<li><p>作業は二点です</p>
+<ul>
+<li>menuの項目を増やす</li>
+<li>pathを指定する<ul>
+<li>外部サイトはURLそのままでOKです</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>_config.yml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># Navigation bar link settings</span><br><span class="line">navbar:</span><br><span class="line">    # Navigation bar menu links</span><br><span class="line">    menu:</span><br><span class="line">        Home: &#x2F;</span><br><span class="line">        Archives: &#x2F;archives</span><br><span class="line">        Categories: &#x2F;categories</span><br><span class="line">        Tags: &#x2F;tags</span><br><span class="line">        About: &#x2F;2020&#x2F;02&#x2F;04&#x2F;About-This-Blog&#x2F; #&#x2F;about</span><br><span class="line">        Policy: &#x2F;2020&#x2F;03&#x2F;17&#x2F;Policy</span><br><span class="line">        EC: https:&#x2F;&#x2F;sheeps.official.ec&#x2F;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>確認</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure></li>
+<li><p>以下のように反映されます</p>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/76773559-00b19b00-67e6-11ea-993b-8d5ebdabd07b.png" height="60px" width="650px">
+</div>
+
+
+<ul>
+<li>外部サイトに飛べるか確認<ul>
+<li>メニューの”EC”を押下</li>
+<li>以下のように画面が切り替わりました<ul>
+<li>私が書いたマスコットキャラ：シープ君のグッズ一覧が出てきます</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/76774924-f42e4200-67e7-11ea-9f57-f9c5f28d1e20.png" height="600px" width="500px">
+</div>
+
+<ul>
+<li>icarusは柔軟にメニューを弄れるのでカスタマイズ性が高いですね<ul>
+<li>自身のWEBページに合わせて自由に編集してみてください</li>
+<li>個人で勉強ついでに開発しているWEB APが増えたら一覧ページをメニューに足そうと思います</li>
+</ul>
+</li>
+</ul>
+<h2><span id="おまけロゴの変更">おまけ：ロゴの変更</span></h2><ul>
+<li><p>オリジナルのロゴ</p>
+<ul>
+<li>所在：\themes\icarus\source\images<ul>
+<li>logo.svg </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ol>
+<li>オリジナルのロゴを作成して同様のディレクトリに格納<ul>
+<li>original_logo.pngを作成して配置</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>_config.ymlを編集<ul>
+<li>icarus側の設定ファイルを改修<ul>
+<li>themes\icarus_config.yml</li>
+</ul>
+</li>
+<li>旧<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">favicon: &#x2F;images&#x2F;favicon.svg</span><br><span class="line"></span><br><span class="line"># Path or URL to the website&#39;s logo to be shown on the left of the navigation bar or footer</span><br><span class="line">logo: &#x2F;images&#x2F;logo.svg</span><br></pre></td></tr></table></figure></li>
+<li>新<ul>
+<li>faviconをコメントアウトしないと上に被さって上手く表示できません<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#favicon: &#x2F;images&#x2F;favicon.svg</span><br><span class="line"></span><br><span class="line"># Path or URL to the website&#39;s logo to be shown on the left of the navigation bar or footer</span><br><span class="line">logo: &#x2F;images&#x2F;original_logo.png</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>これだけです</p>
+<ul>
+<li>画面への反映を確認<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/78388593-3a730600-761c-11ea-936e-0cc0f4a9ce2e.png" height="60px" width="400px" alt="ロゴ変更後">
+</div>
+
+<ul>
+<li>pngをSVGファイルに変換しておくと見栄えも読み込みも良くなります<ul>
+<li>↓でぱっと変換できます</li>
+<li><a href="https://www.aconvert.com/jp/image/png-to-svg/">PNG SVG 変換 - 画像ファイルをオンラインで変換する</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-03-15T09:00:22.000Z">2020-03-15</time>
                 
                 <div class="level-item">
@@ -1877,118 +2065,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-04T14:38:20.000Z">2020-02-04</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    5分 read (About 801 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/02/04/About-This-Blog/">About This Blog</a>
-            
-        </h1>
-        <div class="content">
-            <p>初めまして。本ページをご覧頂き有難うございます。  </p>
-<p>都内の大手IT企業で、先端技術検証や新規サービスの実証～事業化を担当している若手のJです。主にSaaS/Serverless/MultiCloud/IoT/DevOps関連のPoCに携わっています。  </p>
-<p>学生時代は早稲田大学の創造理工学部で3Dプリンターの研究をしていました。コンピューターサイエンスの基礎を学ばないまま、モダンな技術を扱うことになったので、日々悪戦苦闘しています。</p>
-<p>　アメリカ国立訓練研究所で提唱されている<a href="https://www.researchgate.net/figure/Learning-Pyramid-developed-by-National-Training-Laboratories-7_fig1_302480305">Learning Pyramid</a>によれば、学習定着率を高める最善手は “Teach Others” です。Outputする機会として、この場で個人的なTipsやハマった事の解決策をまとめていこうと考えております。また、チームの立ち上げ段階で質問されがちな基礎レベルの解説を用意しておき、初級者を見捨てないことも目的としています。マッチする記事があれば、PJのスタートダッシュにお使いください。  </p>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/73755094-dd3c0f00-47a8-11ea-9ec5-e1e537559054.png" height="600px" width="600px">
-</div>
-
-<p>　IT業界では、ベテランの優秀層に囲まれるとスキルのギャップで苦しむシーンが多いと思います。私も初期配属された頃、9ヵ月間毎月資格を取り続けた事がありましたが、それでも太刀打ちできませんでした。特にモダンな技術の文献は一定の暗黙知を有するものが多く、初級者に優しくありません。あえて専門用語を避けて稚拙な表現も多用しておりますが、公開した記事が当時の私と同じように困っている方の助けになれば嬉しいです。  </p>
-<p>　また、IoT案件に関わった影響で始めたSmart Homeの構築手法についても載せていく予定です。現在は以下のような構成を作っています。 ↓ 辺りを実現するだけでもだいぶQOLが向上するのでお勧めです。DIYの感覚で楽をする為にやってます。</p>
-<ul>
-<li><a href="https://amzn.to/33mE08M">Smart Mat</a>で消耗品の発注を自動化</li>
-<li><a href="https://amzn.to/2x2nLS8">Smartリモコン</a>で赤外線リモコンの機能を集約</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/75523195-e2f6de80-5a4e-11ea-94fd-862c110cd075.PNG" height="550px" width="900px">
-</div>
-
-<p>個人的に開発したいサービスが沢山あるので、手伝ってくれる方も募集してます。<br>Mail: <a href="mailto:junjunjunya108@gmail.com">junjunjunya108@gmail.com</a>  </p>
-<ul>
-<li><p>良く扱う技術</p>
-<ul>
-<li>Framework<ul>
-<li>Angular</li>
-<li>Ionic</li>
-<li>Flutter</li>
-</ul>
-</li>
-<li>Cloud<ul>
-<li>AWS<ul>
-<li>CloudFormation</li>
-<li>Cognito</li>
-<li>Lambda</li>
-<li>S3</li>
-</ul>
-</li>
-<li>Google Cloud<ul>
-<li>Authentication</li>
-<li>Firestore</li>
-<li>AutoML</li>
-<li>AdMob</li>
-<li>Hosting</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>BaaS<ul>
-<li>Firebase (Google)</li>
-<li>Amplify (AWS)</li>
-</ul>
-</li>
-<li>IoT<ul>
-<li>Rasberry Pi</li>
-<li>IFTTT</li>
-<li>AWS IoT</li>
-<li>Switch Bot</li>
-</ul>
-</li>
-<li>No Code<ul>
-<li>Arcadier</li>
-<li>Wix</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>資格</p>
-<ul>
-<li>ex.) AWS Solution Architect…</li>
-</ul>
-</li>
-</ul>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -1996,7 +2072,7 @@
         <div class="pagination-previous">
             <a class="is-flex-grow has-text-black-ter" href="/">前</a>
         </div>
-        <div class="pagination-next is-invisible is-hidden-mobile">
+        <div class="pagination-next">
             <a class="is-flex-grow has-text-black-ter" href="/page/3/">次</a>
         </div>
         <ul class="pagination-list is-hidden-mobile">
@@ -2004,6 +2080,8 @@
             <li><a class="pagination-link has-text-black-ter" href="/">1</a></li>
             
             <li><a class="pagination-link is-current" href="/page/2/">2</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/3/">3</a></li>
             
         </ul>
     </nav>
@@ -2053,7 +2131,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            20
+                            21
                         </p>
                     </a>
                 </div>
@@ -2065,7 +2143,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            12
+                            14
                         </p>
                     </a>
                 </div>
@@ -2077,7 +2155,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            33
+                            34
                         </p>
                     </a>
                 </div>
@@ -2233,12 +2311,20 @@
                 <span class="level-item">Tool Tips</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">5</span>
+                <span class="level-item tag">6</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Tool-Tips/AWS/">
             <span class="level-start">
                 <span class="level-item">AWS</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Tool-Tips/Chrome-%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/">
+            <span class="level-start">
+                <span class="level-item">Chrome 拡張機能</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -2255,6 +2341,14 @@
         <a class="level is-marginless" href="/categories/Tool-Tips/Google-Cloud-Shell/">
             <span class="level-start">
                 <span class="level-item">Google Cloud Shell</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Tool-Tips/RPA/">
+            <span class="level-start">
+                <span class="level-item">RPA</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -2286,7 +2380,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 13.33px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/DTM/" style="font-size: 10px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 13.33px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 10px;">RPA</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 13.33px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 13.33px;">iPad Pro</a> <a href="/tags/icarus/" style="font-size: 16.67px;">icarus</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 10px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+        <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 13.33px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/DTM/" style="font-size: 10px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 13.33px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 13.33px;">RPA</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 13.33px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 16.67px;">iPad Pro</a> <a href="/tags/icarus/" style="font-size: 16.67px;">icarus</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 13.33px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
     </div>
 </div>
     
@@ -2301,18 +2395,37 @@
         
         <article class="media">
             
+            <a href="/2020/04/09/iPhone-iPad%E3%81%AERPA%E3%83%84%E3%83%BC%E3%83%AB%E3%80%8E%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88%E3%80%8F%E3%81%A7%E3%82%B5%E3%83%9C%E3%82%8A%E3%82%92%E9%98%B2%E6%AD%A2%E3%81%99%E3%82%8B/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="iPhone/iPadのRPAツール『ショートカット』でサボりを防止する">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-08T15:28:09.000Z">2020-04-09</time></div>
+                    <a href="/2020/04/09/iPhone-iPad%E3%81%AERPA%E3%83%84%E3%83%BC%E3%83%AB%E3%80%8E%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88%E3%80%8F%E3%81%A7%E3%82%B5%E3%83%9C%E3%82%8A%E3%82%92%E9%98%B2%E6%AD%A2%E3%81%99%E3%82%8B/" class="title has-link-black-ter is-size-6 has-text-weight-normal">iPhone/iPadのRPAツール『ショートカット』でサボりを防止する</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/RPA/">RPA</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/04/08/%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E9%A3%B2%E3%81%BF%E5%90%91%E3%81%91-Netflix-Party%E3%81%A7%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%91%91%E8%B3%9E%E4%BC%9A%E3%82%92%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[オンライン飲み向け]　Netflix Partyでリモート鑑賞会をする方法">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[オンライン飲み会向け]　Netflix Partyでリモート鑑賞会をする方法">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-08T13:36:09.000Z">2020-04-08</time></div>
-                    <a href="/2020/04/08/%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E9%A3%B2%E3%81%BF%E5%90%91%E3%81%91-Netflix-Party%E3%81%A7%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%91%91%E8%B3%9E%E4%BC%9A%E3%82%92%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[オンライン飲み向け]　Netflix Partyでリモート鑑賞会をする方法</a>
+                    <a href="/2020/04/08/%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E9%A3%B2%E3%81%BF%E5%90%91%E3%81%91-Netflix-Party%E3%81%A7%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%91%91%E8%B3%9E%E4%BC%9A%E3%82%92%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[オンライン飲み会向け]　Netflix Partyでリモート鑑賞会をする方法</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a>
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Chrome-%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/">Chrome 拡張機能</a>
                     </p>
                 </div>
             </div>
@@ -2375,25 +2488,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/25/iPad-Pro%E3%81%A7DTM%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="iPad Pro (第4世代)でDTM環境を構築">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-24T15:04:42.000Z">2020-03-25</time></div>
-                    <a href="/2020/03/25/iPad-Pro%E3%81%A7DTM%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">iPad Pro (第4世代)でDTM環境を構築</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/SmartHome/">SmartHome</a> / <a class="has-link-grey -link" href="/categories/SmartHome/DTM/">DTM</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -2411,7 +2505,7 @@
                     <span class="level-item">四月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -2580,13 +2674,20 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/RPA/">
                         <span class="tag">RPA</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Service/">
                         <span class="tag">Service</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Siri/">
+                        <span class="tag">Siri</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -2636,7 +2737,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/iPad-Pro/">
                         <span class="tag">iPad Pro</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -2657,7 +2758,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/">
                         <span class="tag">ショートカット</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -2706,18 +2807,37 @@
         
         <article class="media">
             
+            <a href="/2020/04/09/iPhone-iPad%E3%81%AERPA%E3%83%84%E3%83%BC%E3%83%AB%E3%80%8E%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88%E3%80%8F%E3%81%A7%E3%82%B5%E3%83%9C%E3%82%8A%E3%82%92%E9%98%B2%E6%AD%A2%E3%81%99%E3%82%8B/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="iPhone/iPadのRPAツール『ショートカット』でサボりを防止する">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-08T15:28:09.000Z">2020-04-09</time></div>
+                    <a href="/2020/04/09/iPhone-iPad%E3%81%AERPA%E3%83%84%E3%83%BC%E3%83%AB%E3%80%8E%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88%E3%80%8F%E3%81%A7%E3%82%B5%E3%83%9C%E3%82%8A%E3%82%92%E9%98%B2%E6%AD%A2%E3%81%99%E3%82%8B/" class="title has-link-black-ter is-size-6 has-text-weight-normal">iPhone/iPadのRPAツール『ショートカット』でサボりを防止する</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/RPA/">RPA</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/04/08/%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E9%A3%B2%E3%81%BF%E5%90%91%E3%81%91-Netflix-Party%E3%81%A7%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%91%91%E8%B3%9E%E4%BC%9A%E3%82%92%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[オンライン飲み向け]　Netflix Partyでリモート鑑賞会をする方法">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[オンライン飲み会向け]　Netflix Partyでリモート鑑賞会をする方法">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-08T13:36:09.000Z">2020-04-08</time></div>
-                    <a href="/2020/04/08/%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E9%A3%B2%E3%81%BF%E5%90%91%E3%81%91-Netflix-Party%E3%81%A7%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%91%91%E8%B3%9E%E4%BC%9A%E3%82%92%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[オンライン飲み向け]　Netflix Partyでリモート鑑賞会をする方法</a>
+                    <a href="/2020/04/08/%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E9%A3%B2%E3%81%BF%E5%90%91%E3%81%91-Netflix-Party%E3%81%A7%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%91%91%E8%B3%9E%E4%BC%9A%E3%82%92%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[オンライン飲み会向け]　Netflix Partyでリモート鑑賞会をする方法</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a>
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Chrome-%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/">Chrome 拡張機能</a>
                     </p>
                 </div>
             </div>
@@ -2780,25 +2900,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/25/iPad-Pro%E3%81%A7DTM%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="iPad Pro (第4世代)でDTM環境を構築">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-24T15:04:42.000Z">2020-03-25</time></div>
-                    <a href="/2020/03/25/iPad-Pro%E3%81%A7DTM%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">iPad Pro (第4世代)でDTM環境を構築</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/SmartHome/">SmartHome</a> / <a class="has-link-grey -link" href="/categories/SmartHome/DTM/">DTM</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -2816,7 +2917,7 @@
                     <span class="level-item">四月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -2985,13 +3086,20 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/RPA/">
                         <span class="tag">RPA</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Service/">
                         <span class="tag">Service</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Siri/">
+                        <span class="tag">Siri</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -3041,7 +3149,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/iPad-Pro/">
                         <span class="tag">iPad Pro</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -3062,7 +3170,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/">
                         <span class="tag">ショートカット</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 

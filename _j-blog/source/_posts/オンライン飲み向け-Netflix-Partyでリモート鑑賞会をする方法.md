@@ -1,15 +1,16 @@
 ---
-title: '[オンライン飲み向け]　Netflix Partyでリモート鑑賞会をする方法'
+title: '[オンライン飲み会向け]　Netflix Partyでリモート鑑賞会をする方法'
 date: 2020-04-08 22:36:09
 category: 
 - Tool Tips
+- Chrome 拡張機能
 tag: 
 - Google Chrome
 - Netflix Party
 toc: true
 ---
 
-最近コロナウィルスの影響でオンライン飲みが流行っているので、映画好きにお勧めのNetflix Partyについて書きます。
+最近コロナウィルスの影響でオン飲みが流行っているので、映画好きにお勧めのNetflix Partyについて書きます。
 
 <!-- toc -->
 
@@ -81,17 +82,19 @@ toc: true
 <img src="https://user-images.githubusercontent.com/41946222/78471660-f1cb6200-776d-11ea-935d-c7400c356052.png" height="300px" width="400px">
 </div>
 
-以上で同時再生とチャットルームを使えます。
-こんな感じ↓でZOOMやLINEで通話しながら利用してます。
+以上で同時再生機能とチャットルームを使えます。  
+  
+こんな感じ↓でZOOMやLINEで皆と通話しながら利用してます。
 
 <div style="text-align:center;">
 <img src="https://user-images.githubusercontent.com/41946222/78789272-dff4f380-79e7-11ea-9b02-46cf4b40cb8e.png" height="300px" width="400px">
 </div>
 
-回線が弱いと偶に切れてしまう事もありますが、入り直してチャットルームにメンバが表示されていればOKです
+回線が弱いと偶に切れてしまう事もありますが、同じURLから入り直してチャットルームにメンバが表示されればOKです
 
-## おまけ：スマホやタブレットでリモート鑑賞する方法
-- 色々調査したところ、↓のアプリでできそうです
+## スマホやタブレットでリモート鑑賞する方法
+- Netflix Partyをモバイルで利用する手段はありません
+- 調査したところ、↓のアプリでできそうです
     - [Rave](https://rave.io/)
     - [Squad](https://squadapp.io/)
     - [Airtime](https://airtime.com/)
