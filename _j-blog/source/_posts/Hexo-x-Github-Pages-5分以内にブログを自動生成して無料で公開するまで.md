@@ -281,6 +281,25 @@ Mode                LastWriteTime         Length Name
 - abouto_mob.mdを編集
 - 編集内容がLocal内で反映されていることを確認
 
+### 2.5. 下書き記事を追加
+```
+hexo new draft "article-name"
+```
+- 下書きディレクトリ source/_drafts にmdファイルが生成される
+- 本番環境やhexo serverでは表示されない
+    - 表示したい時は以下で--draftsを付ける
+    ```
+    hexo server --drafts
+    ```
+
+### 2.6. 固定ページを追加
+
+```
+$ hexo new page "dir-name"
+```
+- source/"dir-name2/index.md が生成される
+
+
 ### まとめ
 - 以上で解説は終了です
 - 以下ができる状態になったと思います
