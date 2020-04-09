@@ -172,6 +172,241 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-04-09T16:22:31.000Z">2020-04-10</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7分 read (About 1012 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/04/10/Angular-%E8%A6%AA%E5%AD%90%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E5%85%B1%E6%9C%89-Input-Output-EventEmitter/">[Angular]親子コンポーネント間でデータを共有(@Input/@Output/EventEmitter)</a>
+            
+        </h1>
+        <div class="content">
+            <p><a href="https://angular.jp/">Angular</a>のコンポーネント間ではデータをそのまま共有することはできません。初級者が躓くポイントの一つだと思うので、解説をまとめておきます。</p>
+<!-- toc -->
+
+<ul>
+<li><a href="#基礎知識">基礎知識</a></li>
+<li><a href="#1-親子-inputを使用">1. 親⇒子 (@Inputを使用)</a><ul>
+<li><a href="#11-親側">1.1. 親側</a><ul>
+<li><a href="#parentcomponentts">parent.component.ts</a></li>
+<li><a href="#parentcomponenthtml">parent.component.html</a></li>
+</ul>
+</li>
+<li><a href="#12-子側">1.2. 子側</a><ul>
+<li><a href="#childcomponentts">child.component.ts</a></li>
+<li><a href="#childcomponenthtml">child.component.html</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-子親-outputeventemitterを使用">2. 子⇒親 (@Output/EventEmitterを使用)</a><ul>
+<li><a href="#21-子側">2.1. 子側</a><ul>
+<li><a href="#childcomponentts-1">child.component.ts</a></li>
+<li><a href="#childcomponenthtml-1">child.component.html</a></li>
+</ul>
+</li>
+<li><a href="#22-親側">2.2. 親側</a><ul>
+<li><a href="#parentcomponenthtml-1">parent.component.html</a></li>
+<li><a href="#parentcomponentts-1">parent.component.ts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="基礎知識">基礎知識</span></h2><ul>
+<li>Angularにおける親子間のデータ共有にはデコレーターを利用します</li>
+<li>デコレーター<ul>
+<li>構成情報を付与する仕組み<ul>
+<li>対象<ul>
+<li>クラス/プロパティ/メソッド/引数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>構文<ul>
+<li>@name</li>
+<li>ex.) @NgModule</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>データの流れ</th>
+<th>使用するデコレーター</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>親 ⇒ 子</td>
+<td>@Inputデコレーター</td>
+</tr>
+<tr>
+<td>子 ⇒ 親</td>
+<td>@Outputデコレーター</td>
+</tr>
+</tbody></table>
+<ul>
+<li>例えば、子A ⇒ 親 ⇒ 子B の順にデータを共有することも可能です<ul>
+<li>※関係性の遠いコンポーネント間のデータ共有にはServiceを介しましょう</li>
+</ul>
+</li>
+</ul>
+<p>それぞれ解説していきます。</p>
+<h2><span id="1-親子-inputを使用">1. 親⇒子 (@Inputを使用)</span></h2><ul>
+<li>Component構成は以下の入れ子構造を想定<ul>
+<li>親<ul>
+<li>parent.component</li>
+</ul>
+</li>
+<li>子<ul>
+<li>child.component</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="11-親側">1.1. 親側</span></h3><ul>
+<li>選択肢を表示<h4><span id="parentcomponentts">parent.component.ts</span></h4></li>
+<li>選択値を</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 選択値を保存する変数</span><br><span class="line">selected: string;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; データを定義</span><br><span class="line">data &#x3D; [</span><br><span class="line">    &#123;name &#x3D; &quot;選択肢A&quot;&#125;</span><br><span class="line">    &#123;name &#x3D; &quot;選択肢B&quot;&#125;</span><br><span class="line">    &#123;name &#x3D; &quot;選択肢C&quot;&#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; click時に選択値をselectedに格納</span><br><span class="line">&quot;onClick(select_name)&#123;</span><br><span class="line">    this.selected &#x3D; select_name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4><span id="parentcomponenthtml">parent.component.html</span></h4><ul>
+<li>定義したデータ型からbuttonを繰り返し表示<ul>
+<li>click時に選択値を引数としてonClick()を実行</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div *ngFor&#x3D;&quot;let d of data&quot;&gt;</span><br><span class="line">    &lt;button (click)&#x3D;&quot;onClick(d.name)&quot;&gt;&#123;&#123;d.name&#125;&#125;&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--childコンポ―ネントを入れ子で表示---&gt;</span><br><span class="line">&lt;app-child [item]&#x3D;&quot;selected&quot;&gt;&lt;&#x2F;app-child&gt;</span><br></pre></td></tr></table></figure>
+
+<h3><span id="12-子側">1.2. 子側</span></h3><h4><span id="childcomponentts">child.component.ts</span></h4><ul>
+<li>@Inputでitemを受け取ります<ul>
+<li>childから渡した選択値が入ります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Inputが必要</span><br><span class="line">import &#123;Component , Input&#125; form &#39;@angular&#x2F;core&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; @Inputで</span><br><span class="line">export class ChildComponent&#123;</span><br><span class="line">    @Input() item: string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="childcomponenthtml">child.component.html</span></h4><ul>
+<li>受け取った値を表示<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--ngIfでデータが空じゃなければ表示--&gt;</span><br><span class="line">&lt;div *ngIf&#x3D;&quot;item&quot;&gt; </span><br><span class="line">    &lt;li&gt;&#123;&#123;item&#125;&#125;を選択しました&lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2><span id="2-子親-outputeventemitterを使用">2. 子⇒親 (@Output/EventEmitterを使用)</span></h2><ul>
+<li><p>Component構成は以下の入れ子構造を想定</p>
+<ul>
+<li>子<ul>
+<li>child.component<ul>
+<li>選択肢をbuttonで表示</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>親<ul>
+<li>parent.component<ul>
+<li>選択値によって変化</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>@Outputでデコレーターを活用して、子コンポーネントで発生したイベントを親に通知</p>
+</li>
+</ul>
+<h3><span id="21-子側">2.1. 子側</span></h3><h4><span id="childcomponentts">child.component.ts</span></h4><ol>
+<li>import</li>
+<li>@Outputで受け渡すイベントを定義</li>
+<li>(click)でイベントを発生させるメソッドを定義<ul>
+<li>共有したいデータを引数として受け渡す</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>emitメソッド</p>
+<ul>
+<li>イベントをここで発生させる</li>
+<li>構文<ul>
+<li>event: イベント名</li>
+<li>data: $eventオブジェクトとして渡すデータ<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.event.emit(data)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>記載例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1. OutputとEventEmitterを利用するためにimport</span><br><span class="line"></span><br><span class="line">import &#123; Component, Output, EventEmitter &#125; from &#39;@angular&#x2F;core&#39;;</span><br><span class="line"></span><br><span class="line">export class ResourceTreeComponent &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 2. イベントを宣言 発生時に$eventオブジェクトとして&lt;&gt;で定義した型のデータを親へ受け渡す</span><br><span class="line"></span><br><span class="line">  @Output() selected &#x3D; new EventEmitter&lt;string&gt;();</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 3. (click)で共有したいデータを引数としてイベントを発生させる</span><br><span class="line"></span><br><span class="line">  onclick(data) &#123;</span><br><span class="line">    &#x2F;&#x2F; 選択したリソースタイプをselectedへ格納</span><br><span class="line">    this.selected.emit(data);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4><span id="childcomponenthtml">child.component.html</span></h4><ul>
+<li>想定する状況<ul>
+<li>事前に定義したデータ：nodeをtreeとbuttonで選択肢を表示</li>
+<li>選択値: node.nameを親に渡したい</li>
+<li>(click)でonclickを発火させる</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--mat-treeで階層型の選択肢を表示---&gt;</span><br><span class="line">&lt;mat-tree-node *matTreeNodeDef&#x3D;&quot;let node&quot; matTreeNodeToggle matTreeNodePadding&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!--click時にnode.nameを選択値として取得---&gt;</span><br><span class="line">  &lt;button mat-button (click)&#x3D;&quot;onclick(node.name)&quot;&gt;</span><br><span class="line">    &#123;&#123;node.name&#125;&#125;</span><br><span class="line">  &lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
+
+<h3><span id="22-親側">2.2. 親側</span></h3><h4><span id="parentcomponenthtml">parent.component.html</span></h4><ul>
+<li>子から受け取ったdataを変数selectに入れて表示<ul>
+<li>(selected)=”onSelect($event)”<ul>
+<li>childでselectedイベントが発生したタイミングでonSlect()メソッドを実行</li>
+<li>$eventオブジェクト<ul>
+<li>emitメソッド経由で渡されるdata<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;&#123;&#123;select&#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;!--子コンポーネントの要素にイベントバインディングを設定---&gt;</span><br><span class="line">&lt;app-child (selected)&#x3D;&quot;onSelect($event)&quot;&gt;&lt;&#x2F;app-child&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="parentcomponentts">parent.component.ts</span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">export class ParentComponent implements OnInit &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; データを受け取る変数を宣言</span><br><span class="line">  select: string;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; resourcce-treeからデータを受け取る</span><br><span class="line">  onSelect($event) &#123;</span><br><span class="line">    this.select &#x3D; $event;</span><br><span class="line">    return this.select;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>解説は以上です。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-03-31T14:23:54.000Z">2020-03-31</time>
                 
                 <div class="level-item">
@@ -790,7 +1025,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            21
+                            22
                         </p>
                     </a>
                 </div>
@@ -814,7 +1049,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            35
+                            38
                         </p>
                     </a>
                 </div>
@@ -922,7 +1157,7 @@
                 <span class="level-item">Serverless Application Dev</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">6</span>
+                <span class="level-item tag">7</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Serverless-Application-Dev/AWS/">
@@ -946,7 +1181,7 @@
                 <span class="level-item">SPA (Angular)</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">5</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/SmartHome/">
@@ -973,9 +1208,9 @@
                 <span class="level-item tag">6</span>
             </span>
         </a><ul><li>
-        <a class="level is-marginless" href="/categories/Tool-Tips/AWS/">
+        <a class="level is-marginless" href="/categories/Tool-Tips/AWS-Cloud9/">
             <span class="level-start">
-                <span class="level-item">AWS</span>
+                <span class="level-item">AWS Cloud9</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -1039,7 +1274,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 13.33px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/DTM/" style="font-size: 10px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 13.33px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 13.33px;">RPA</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 13.33px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 16.67px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 16.67px;">icarus</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 13.33px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12.5px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/DTM/" style="font-size: 10px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 12.5px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 17.5px;">Hexo</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 12.5px;">RPA</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 12.5px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 15px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 12.5px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
     </div>
 </div>
     
@@ -1051,6 +1286,25 @@
         <h3 class="menu-label">
             最近の記事
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/04/10/Angular-%E8%A6%AA%E5%AD%90%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E5%85%B1%E6%9C%89-Input-Output-EventEmitter/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Angular]親子コンポーネント間でデータを共有(@Input/@Output/EventEmitter)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-09T16:22:31.000Z">2020-04-10</time></div>
+                    <a href="/2020/04/10/Angular-%E8%A6%AA%E5%AD%90%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E5%85%B1%E6%9C%89-Input-Output-EventEmitter/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular]親子コンポーネント間でデータを共有(@Input/@Output/EventEmitter)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1128,25 +1382,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/25/iPad-Pro%E3%81%A7WEB-AP%E9%96%8B%E7%99%BA/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="iPad ProでWEB AP開発 &amp; RPA">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-25T13:07:15.000Z">2020-03-25</time></div>
-                    <a href="/2020/03/25/iPad-Pro%E3%81%A7WEB-AP%E9%96%8B%E7%99%BA/" class="title has-link-black-ter is-size-6 has-text-weight-normal">iPad ProでWEB AP開発 &amp; RPA</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Google-Cloud-Shell/">Google Cloud Shell</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -1164,7 +1399,7 @@
                     <span class="level-item">四月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -1205,6 +1440,27 @@
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/EventEmitter/">
+                        <span class="tag">@EventEmitter</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Input/">
+                        <span class="tag">@Input</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Output/">
+                        <span class="tag">@Output</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/ViewChild/">
                         <span class="tag">@ViewChild</span>
                         <span class="tag is-grey">1</span>
@@ -1235,7 +1491,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">6</span>
+                        <span class="tag is-grey">7</span>
                     </a>
                 </div>
                 
@@ -1473,6 +1729,25 @@
         
         <article class="media">
             
+            <a href="/2020/04/10/Angular-%E8%A6%AA%E5%AD%90%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E5%85%B1%E6%9C%89-Input-Output-EventEmitter/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Angular]親子コンポーネント間でデータを共有(@Input/@Output/EventEmitter)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-09T16:22:31.000Z">2020-04-10</time></div>
+                    <a href="/2020/04/10/Angular-%E8%A6%AA%E5%AD%90%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E5%85%B1%E6%9C%89-Input-Output-EventEmitter/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular]親子コンポーネント間でデータを共有(@Input/@Output/EventEmitter)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/04/09/iPhone-iPad%E3%81%AERPA%E3%83%84%E3%83%BC%E3%83%AB%E3%80%8E%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88%E3%80%8F%E3%81%A7%E3%82%B5%E3%83%9C%E3%82%8A%E3%82%92%E9%98%B2%E6%AD%A2%E3%81%99%E3%82%8B/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="iPhone/iPadのRPAツール『ショートカット』でサボりを防止する">
@@ -1547,25 +1822,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/03/25/iPad-Pro%E3%81%A7WEB-AP%E9%96%8B%E7%99%BA/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="iPad ProでWEB AP開発 &amp; RPA">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-25T13:07:15.000Z">2020-03-25</time></div>
-                    <a href="/2020/03/25/iPad-Pro%E3%81%A7WEB-AP%E9%96%8B%E7%99%BA/" class="title has-link-black-ter is-size-6 has-text-weight-normal">iPad ProでWEB AP開発 &amp; RPA</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Google-Cloud-Shell/">Google Cloud Shell</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1583,7 +1839,7 @@
                     <span class="level-item">四月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -1624,6 +1880,27 @@
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/EventEmitter/">
+                        <span class="tag">@EventEmitter</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Input/">
+                        <span class="tag">@Input</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Output/">
+                        <span class="tag">@Output</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/ViewChild/">
                         <span class="tag">@ViewChild</span>
                         <span class="tag is-grey">1</span>
@@ -1654,7 +1931,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">6</span>
+                        <span class="tag is-grey">7</span>
                     </a>
                 </div>
                 
@@ -2008,7 +2285,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 
-<a id="back-to-top" title="Back to Top" href="javascript:;">
+<a id="back-to-top" title="Zurück nach oben" href="javascript:;">
     <i class="fas fa-chevron-up"></i>
 </a>
 <script src="/js/back-to-top.js" defer></script>
