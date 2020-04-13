@@ -12,11 +12,13 @@ tags:
 - AngularFire
 ---
   
-こんにちは。今回は上記の３つを組み合わせてWEB AP開発を行う際の手順を解説していこうと思います。それぞれの使用経験があっても組み合わせると細かい所で沢山ハマってしまうので注意しましょう。（新設の開発チームの大半がこの段階で躓く印象です）  
+こんにちは。今回は上記の３つを組み合わせてWEB AP開発を行う際の手順を解説します。それぞれの使用経験があっても細かい所で沢山ハマったのでまとめておきました。初級者がこの記事だけで目標を達成できるように書いたつもりです。  
 
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79091968-4b451980-7d8a-11ea-9938-5c217d995d87.png" height="400px" width="500px">
+</div>
 
 <!-- toc-->
-
 
 ## 各技術についての基礎知識  
 
@@ -49,10 +51,11 @@ tags:
     - 認証機能やデータベースなどのバックエンドの機能を提供してくれるサービス
         - 開発工数を大幅削減可能
         - 本質的な機能の開発に集中可能
-    - APのHostingや顧客分析、収益管理まで可能  
+    - APのHostingや顧客分析、収益管理まで可能
   
 この３つを抑えれば開発環境の用意からAPの公開まで高速でできます。  
-    
+つまり、良いアイデアさえあれば、一人でもビジネスを始められます。  
+
 ## 前提条件
 - cloud9環境を作成済み
     - 指示に従って設定していくだけなので参考サイトを載せておきます
@@ -95,9 +98,13 @@ Angular: 8.2.14
 ```
 
 - ０から開発する場合
-    - 以下のコマンドでAngular PJを開始しましょう
+    - 以下のコマンドでAngular PJ(AngularにおけるAPの単位)を作成しましょう
     ```
     ng new <AP名>
+    ```
+    - 今回は以下の名称で作成
+    ```
+    $ ng new "firebase-sample"
     ```
 - Gitから開発途中のソースを持ってきた場合
     - APのディレクトリ直下にもnode_moduleを入れなければ動かないので注意です
@@ -105,22 +112,69 @@ Angular: 8.2.14
     npm install
     ```
 
-### 2. firebaseの登録～project作成
+### 2. firebase projectの作成
 - 初めは基本的にWEBのFirebaseコンソールで操作していきます
     - Googleアカウントを作成していればすぐに始められます
 
 - 2.1. [公式ページ](https://firebase.google.com/?hl=ja)から右上の”コンソールへ移動"を押下
 
-- 2.2. projectを作成します（APの単位です）
-  - AP名を設定
-- 2.3. アプリを登録
-    - ios/android/webからwebを選択
-    - ニックネームを設定
-- 2.4. Firebase SDKの追加
-    - 公式の説明は以下
-```
-これらのスクリプトをコピーして <body> タグの下部に貼り付けます。この作業は Firebase サービスを使用する前に行ってください。
-```
+- 2.2. projectを追加（APの単位です）
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79091762-8abf3600-7d89-11ea-8299-3fe69a9ff84a.png" height="400px" width="500px">
+</div>
+
+- 2.3. Project名を設定
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79091817-b9d5a780-7d89-11ea-86cf-69d608904466.png" height="400px" width="500px">
+</div>
+
+- 2.4. Googleアナリティクス(Firebaseプロジェクト向け)
+    - 特別な理由が無ければ有効のままでOK
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79091837-d1ad2b80-7d89-11ea-9f02-c218bfebd70f.png" height="400px" width="400px">
+</div>
+
+- 2.6. 以下が表示されたら完成
+    - 続行を押すとPJの画面に飛びます
+
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79091916-22bd1f80-7d8a-11ea-8c5c-f0db39638fc1.png" height="400px" width="500px">
+</div>
+
+- 2.7. Firebase Project画面
+    - 以下が表示されればOK
+    - 基本的にこの画面で設定を行います
+
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79091968-4b451980-7d8a-11ea-9938-5c217d995d87.png" height="450px" width="500px">
+</div>
+
+
+### 3. アプリの登録
+- 次にFirebase Projectにアプリを登録します
+    - Firebase PJには複数のアプリを登録可能です
+    - 例えばWEB版、ios版といった形で複数をAP間で認証機能やデータベースを共有するイメージです
+
+- 3.1. アプリを登録
+    - ios/android/webからwebのアイコンを選択
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79092138-e2aa6c80-7d8a-11ea-9440-8bf24e2a2219.png" height="300px" width="500px">
+</div>
+
+- 3.2. アプリの追加
+    - 以下のように入力
+    - アプリを登録
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79092234-3452f700-7d8b-11ea-996c-043db263989b.png" height="400px" width="500px">
+</div>
+
+- 3.3. Firebase SDK の追加
+    - 以下のようにスクリプトが表示されます
+
+    <div style="text-align:center;">
+    <img src="https://user-images.githubusercontent.com/41946222/79092282-61070e80-7d8b-11ea-9c67-d2c9a38e27fb.png" height="400px" width="400px">
+    </div>
+
 
 - Angularの場合はindex.htmlのbody配下に置きます
   - SPAなので、単一ページであるindex.htmlがJSで書き換わっていくのがAngularの特徴です
@@ -142,19 +196,21 @@ Angular: 8.2.14
 ```
 
 
-### 3. firebaseとAPの関連付け(Angular Fireの導入)
+### 4. firebaseとAPの関連付け(Angular Fireの導入)
 - Angular APとfirebaseを関連付けるまでに必要な作業の一覧は以下になります
+    - Firebase CLIのinstall
+        - 環境単位で必要な作業
     - angularfireのinstall
-    - Firebase CLIのinstal
+        - AP単位で毎回必要な作業
     - (firebase側でアプリを追加　 2で先に行った内容です)
         - Firebase SDKの追加
         - FirebaseのAPIキーを取得
-    - Angular環境設定ファイルにAPIキーを貼り付け
+    - Angularの環境設定ファイルにAPIキーを設定
         - ★二点に設定が必要。よくはまるポイントです
-        - 開発環境
-            - src/environments/environment.ts
-        - 本番環境
-            - src/environments/environment.prod.ts
+            - 開発環境
+                - src/environments/environment.ts
+            - 本番環境(prodは本番という意味)
+                - src/environments/environment.prod.ts
     - firebase login/init 
     - 環境設定ファイルをapp.module.tsに読み込む
         - @angular/fireからAngularFireModuleを呼び出して、
@@ -166,11 +222,21 @@ Angular: 8.2.14
   
 それぞれ詳しく解説していきます  
 
-#### 3.1. angular fireのinstall
+#### 4.1. [Firebase CLI](https://firebase.google.com/docs/cli?hl=ja#install-cli-mac-linux)の導入
+- この作業は環境に一度入れれば
+    - 
+- 以下を実行することでinstallできます
+    - firebase コマンドが有効になります
+```
+npm install -g firebase-tools
+```
+
+#### 4.2. angular fireのinstall
 - [angularfire](https://github.com/angular/angularfire)を入れます
     - AngularとFirebase連携用のLibraryです
+- 以下を実行
 ```
-npm install firebase @angular/fire
+firebase-sample (master) $ npm install @angular/fire firebase --save
 ```
 - 出力結果
 ```
@@ -179,24 +245,17 @@ npm install firebase @angular/fire
 added 140 packages from 98 contributors and audited 19218 packages in 17.919s
 found 5 vulnerabilities (3 moderate, 2 high)
 ```
-- ここまでではまだ、Firebaseコマンドが使えない状態です
 
-#### 3.2. [Firebase CLI](https://firebase.google.com/docs/cli?hl=ja#install-cli-mac-linux)の導入
-- 以下を実行することでinstallできます
-    - firebase コマンドが有効になります
-```
-npm install -g firebase-tools
-```
 
-### 3.3. Angular環境設定ファイルにAPIキーを貼り付け
+### 4.3. Angular環境設定ファイルにAPIキーを貼り付け
 - 開発環境向けと本番環境向けの２つの設定ファイルの改修が必要。よくはまるポイントです
     - 各値はfirebase consoleより確認
 
 - src/environments/environment.ts
-    - 開発環境用の設定ファイル
+    - 開発環境用の設定ファイルに以下の形式で設定します
 ```
 export const environment = {
-  production: false
+  production: false,
   // Firebaseの設定情報を登録
     firebase: {
       apiKey: '<your-key>',
@@ -209,12 +268,11 @@ export const environment = {
   };
 };
 ```
-
 - src/environments/environment.prod.ts
-    - 本番環境用の設定ファイル
+    - 本番環境用の設定ファイルも同様です
 ```
 export const environment = {
-  production: false
+  production: false,
   // Firebaseの設定情報を登録
     firebase: {
       apiKey: '<your-key>',
@@ -228,15 +286,58 @@ export const environment = {
 };
 ```
 
+- Firebaseの設定情報を確認
+    - FirebaseコンソールのSettingsから確認可能
 
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79093020-ccea7680-7d8d-11ea-916f-0b2a4108baa4.png" height="370px" width="500px">
+</div>
 
+- 上記のIDとAPIキーをenvironmentsの該当箇所にコピペ
 
+- 設定より、IDとAPIキー、送信者IDを確認する
+        - 各設定項目は以下のように一意に定まる
 
-#### 3.4. CLIとFirebaseの関連付け
-- 次にCloud9のCLIとfirebaseを関連付けます
+```
+export const environment = {
+    production: false,
+    firebase: {
+      apiKey: '<ウェブAPIキー>',
+      authDomain: "<プロジェクトID>.firebaseapp.com",
+      databaseURL: "https://<プロジェクトID>.firebaseio.com",
+      projectId: "<プロジェクトID>",
+      storageBucket: "<プロジェクトID>.appspot.com",
+      messagingSenderId: "<送信者ID>",
+    }
+  };
+```
+
+- 送信者IDはクラウドメッセージングTabより確認可能
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79093197-7f223e00-7d8e-11ea-82ef-90078b05c160.png" height="300px" width="500px">
+</div>
+
+- 両方のファイルに以下を設定
+```
+export const environment = {
+    production: false, // ,を忘れないよう注意
+    // Firebaseの設定情報を登録
+      firebase: {
+        apiKey: 'XXXXXXXXXXXXXXXXXXXXXXXXXXX',
+        authDomain: 'fir-sample-3a2dc.firebaseapp.com',
+        databaseURL: 'https://fir-sample-3a2dc.firebaseio.com',
+        projectId: 'fir-sample-3a2dc',
+        storageBucket: 'fir-sample-3a2dc.appspot.com',
+        messagingSenderId: '408620068768'
+      }
+  };
+```
+
+#### 4.4. CLIとFirebaseの関連付け
+- 次に開発環境(Cloud9)のCLIとfirebaseを関連付けます
   - c9の場合--nolocalhostが必須
     - ★社内Local環境でloginをやろうとするとFirebaseの認証がProxyに阻まれて突破できず詰むので気を付けましょう
-        - 調べた解決策を全て講じてもこれだけは解決できませんでした...
+        - あらゆる策を講じてもこれだけは解決できませんでした...
 
 ```
 firebase login --no-localhost --reauth
@@ -250,8 +351,8 @@ Visit this URL on any device to log in:
 <認証用のURL>
 
 ```
-- 上記のURLから、ブラウザで認Googleアカウント証を進めるとコードが表示される
-- 貼り付けてSuccessとでれば成功です
+- 上記のURLから、ブラウザでGoogleアカウント認証を進めるとコードが表示される
+- 貼り付けてSuccessと表示されれば成功です
 ```
 ? Paste authorization code here: <Code>
 
@@ -259,7 +360,7 @@ Visit this URL on any device to log in:
 ```
 - Cloud9のCLIからFirebase(=Google Cloud)上のリソースにアクセス可能になりました
 
-#### 3.5. APとfirebaseのpjの関連付け
+#### 4.5. APとfirebaseのpjの関連付け
 
 - Angular PJ直下で実行
 ```
@@ -289,21 +390,38 @@ You're about to initialize a Firebase project in this directory:
  ◯ Emulators: Set up local emulators for Firebase features
 ```
 
-## おまけ：cloud9でng serveを実行してAPの画面を確認する際の注意
+## おまけ：cloud9でng serveする際の注意
+- 詳細は以下の記事にまとめてあります
+    - [[Cloud9 x Angular] cloud9でng serveを実行してAPの画面を確認するまで](https://j-xaas.github.io/2020/04/14/Cloud9-x-Angular-cloud9%E3%81%A7ng-serve%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6AP%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/)
 - cloud9で必要なこと
     - portの指定(8080)
     - browserのURLの指定
     - disableHostCheck
-- 大抵の人が必ず一度はハマるポイントです
-- 上部タブから"Preview"を選択後"Preview Runnig Application"を選択するとCloud9上に表示できます
-    - Previewの中のURL欄をコピーして控えてください
 
+- 1. angular.jsonファイルを書き換えてポートを変更
+    - cloud9の場合はportを8080にする必要がある
 ```
-ng serve --public-host <cloud9のPreviewのURL> --disableHostCheck --port 8080
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "NgTororo:build",
+            "port": 8080 //ここを追加
+          }
 ```
+
+- 2. portの設定後であれば以下でOK
+```
+ng serve --disableHostCheck --public-host <cloud9のPreviewのURL> 
+```
+
+
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79135318-1d8fbd00-7dea-11ea-9e6d-31134f1ad284.png" height="500px" width="500px">
+</div>
+
 
 ## 後書き
-如何だったでしょうか？ここまでで本格的な実装に入る準備が整いました。Firebaseを使いこなせば、認証機能もデータのCRUD機能も１日で簡単に実装することができます。モダンな手法を使いこなして素早くAPを開発していきましょう。
+ここまでで本格的な実装に入る準備が整いました。Firebaseを使いこなせば、認証機能もデータのCRUD機能も1日で簡単に実装することができます。モダンな手法を使いこなして素早くサービスを開発していきましょう。
   
 - 最後に、この先の機能実装の際に参考になりそうなページを共有しておきます。
   - [AngularFireでFirestoreのCRUD処理を実装する【Angular + Firebase】](https://mae.chab.in/archives/60256)

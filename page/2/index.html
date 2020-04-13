@@ -159,6 +159,377 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-20T17:42:04.000Z">2020-03-21</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    10分 read (About 1532 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/21/Hexo%E3%81%AB%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E6%AC%84%E3%82%92%E8%BF%BD%E5%8A%A0-Disqus/">Hexoにコメント欄を追加(Disqus)</a>
+            
+        </h1>
+        <div class="content">
+            <p>こんにちは。今回はHexoで生成したWEBサイトにコメント欄を追加する手法について解説します。他の説明記事がどれも間違っていて（恐らくバージョンの問題）だいぶハマったのでまとめておきます。</p>
+<!--toc-->
+
+<h2><span id="1-disqusとは">1. Disqusとは</span></h2><ul>
+<li><a href="https://help.disqus.com/en/articles/1717053-what-is-disqus">Disqus</a><ul>
+<li>コメント機能を拡張するサービス</li>
+<li>様々なPlatformに対してプラグインを提供<ul>
+<li>Hexoの<a href="https://hexo.io/themes/index.html">theme</a>はDisqusの活用を前提としたものが多く、簡単に導入可能です</li>
+<li>※ themeに対して設定する為、選定後の対処をお勧めします<ul>
+<li>関連記事：<a href="https://j-xaas.github.io/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/">Hexoテーマ(theme)変更: icarus</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>無料で利用を開始可能です</li>
+</ul>
+</li>
+</ul>
+<h2><span id="2-導入手順">2. 導入手順</span></h2><h3><span id="21-disqusに登録">2.1. Disqusに登録</span></h3><div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77195868-adad5000-6b25-11ea-8c25-6a432ad7edb3.png" height="400px" width="500px">
+</div>
+
+<ul>
+<li><p><a href="https://disqus.com/profile/signup/">Disqus</a>のSignupを実施</p>
+<ul>
+<li>Twitter, FB, Googleアカウントの何れかを利用可能です</li>
+<li>私はGoogleアカウントを利用しました</li>
+<li>認証後にSignupを押下</li>
+</ul>
+</li>
+<li><p>“I want to install Disqus on my install”を選択</p>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77196716-3aa4d900-6b27-11ea-984d-5d60050732ee.png" height="300px" width="500px">
+</div>
+
+<ul>
+<li><p>Create a new Site</p>
+<ul>
+<li>以下の欄を入力<ul>
+<li>Website Name</li>
+<li>Category</li>
+</ul>
+</li>
+<li>CreateSiteを選択<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77197201-1e556c00-6b28-11ea-9f55-d0d1807250c7.png" height="400px" width="500px">
+</div>
+</li>
+</ul>
+</li>
+<li><p>以下の順に選択</p>
+<ul>
+<li>“Got it. Let’s get started!”</li>
+<li>“I don’t see my platform listed, install manually with Universal Code”</li>
+</ul>
+</li>
+<li><p>以上でDisqusのサイト用ページが作成されました</p>
+</li>
+</ul>
+<h3><span id="22-disqus設定">2.2. Disqus設定</span></h3><ul>
+<li>以下が設定ページです</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77198283-0a126e80-6b2a-11ea-9783-437f2ac38657.png" height="400px" width="600px">
+</div>
+
+<ul>
+<li><p>Installation</p>
+<ul>
+<li>Comment機能非対応のthemeの場合はこちらのスクリプトをサイトに貼り付けましょう<ul>
+<li>Hexoデフォルトのlandscapeであれば必要<ul>
+<li>該当のejsとプレフィックスにつくファイルを編集してください</li>
+<li>ファイル所在(landscapeの例)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Your-blog\theme\Your-Theme\layout\_partial</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>本サイトに採用しているicarusであれば、この工程はスルーしてOK</li>
+</ul>
+</li>
+<li><p>“Configure”を押下</p>
+</li>
+<li><p>URLを入力</p>
+</li>
+<li><p>“Complete Setup”を押下</p>
+</li>
+<li><p>上部のSettingタブを選択</p>
+</li>
+<li><p>左のリストのGeneralを選択</p>
+<ul>
+<li>“shortname”の値を控える<ul>
+<li>後でhexoに設定します</li>
+</ul>
+</li>
+<li>各項目に入力して”Save”を押下</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77200711-7db67a80-6b2e-11ea-9610-d8f568082bce.PNG" height="600px" width="600px">
+</div>
+
+<ul>
+<li>以上でDisqus側の設置は完了です<ul>
+<li>細かく設定可能なので</li>
+</ul>
+</li>
+</ul>
+<h3><span id="23-hexoに設定">2.3. Hexoに設定</span></h3><ul>
+<li><p>shortnameをtheme側の_config.ymlに記述</p>
+<ul>
+<li>元の状態<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">comment:</span><br><span class="line"># Name of the comment plugin</span><br><span class="line">type:</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>改修</p>
+<ul>
+<li>typeにdisqusを設定</li>
+<li>shortnameにdisqusで定義された値を設定<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">comment:</span><br><span class="line">    type: disqus</span><br><span class="line">    shortname: &lt;from_disqus&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Comment機能があるthemeの場合は以上でOK(icarus等)</p>
+<ul>
+<li>以下のディレクトリがあるかで判断してください<ul>
+<li>Your-Blog\themes\Your-Theme\layout\comment</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="trouble-shooting">Trouble Shooting</span></h4><ul>
+<li><p>※Comment機能がないthemeの場合(デフォルトのLandscape等)の対応も載せておきます</p>
+<ul>
+<li><ol>
+<li>Hexo側の設定ファイルの改修も必要です<ul>
+<li>Your-Blog/_config.yml <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># disqus</span><br><span class="line">disqus_shortname: https-j-xaas-github-io</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>Disqus/Setting/Installationで表示されるScriptを該当するejsファイルにコピペしてください<ul>
+<li>ejsファイルとは？<ul>
+<li>Tour-Blog/theme/Your-Theme/layoutの配下にあります</li>
+<li>例えばheader.ejsはHexoで各記事をgenerateする際に共通の設定を与えてくれるファイルです</li>
+<li>つまり、headerに共通して与えたいスクリプトがあれば、ここにコピペするだけでOKです</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>※旧バージョンの場合</p>
+<ul>
+<li>他の記事はどれも以下のように設定するよう書かれていましたがエラーになります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">comment:</span><br><span class="line">    disqus: [shortname]</span><br><span class="line">    duoshuo: [shortname]</span><br></pre></td></tr></table></figure></li>
+<li>comment機能の設定ファイルを探して確認<ul>
+<li>以下にありました<ul>
+<li>j-blog\themes\icarus\layout\comment\disqus.ejs</li>
+</ul>
+</li>
+<li>”comment.shortname”とあることから、設定ファイルのcommentのshortnameの値を参照していることが分かります<ul>
+<li>themeによって特殊な設定が必要なケースも予想されるため、同じように確認してみてください<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(function() &#123;</span><br><span class="line">    var d &#x3D; document, s &#x3D; d.createElement(&#39;script&#39;);  </span><br><span class="line">    s.src &#x3D; &#39;&#x2F;&#x2F;&#39; + &#39;&lt;%&#x3D; get_config(&#39;comment.shortname&#39;) %&gt;&#39; + &#39;.disqus.com&#x2F;embed.js&#39;;</span><br><span class="line">    s.setAttribute(&#39;data-timestamp&#39;, +new Date());</span><br><span class="line">    (d.head || d.body).appendChild(s);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="3-利用テスト">3. 利用テスト</span></h2><h3><span id="31-localでチェック">3.1. Localでチェック</span></h3><ul>
+<li>画面への反映をチェックしましょう<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure></li>
+<li>記事の下部にコメント欄を確認できます<ul>
+<li>仕様はDisqusのSettingで細かく変更可能です</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77222316-678fd500-6b95-11ea-8d26-318bd1970bc4.png" height="500px" width="600px" alt="comment_example">
+</div>
+
+<ul>
+<li><p>コメントの投稿は本番環境でないとエラーになります</p>
+</li>
+<li><p>generate</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure></li>
+<li><p>本番環境へデプロイ</p>
+</li>
+</ul>
+<h3><span id="32-投稿">3.2. 投稿</span></h3><ul>
+<li>WEBから実際にコメントを投稿してみましょう</li>
+<li>”ログイン”よりGoogleアカウントでログイン<ul>
+<li>Disqusのアカウント登録に利用したアカウントを用いれば、管理者のコメントとして認識されます</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77222434-64491900-6b96-11ea-966d-499ff3bfd4ac.png" height="200px" width="500px" alt="comment_example">
+</div>
+
+<ul>
+<li>コメントを投稿してみましょう<ul>
+<li>投稿者名の横に”管理者”が表示されます<ul>
+<li>Googleアカウントが実名なので、Twitterで登録しておけばよかったかも…</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77222841-6d3be980-6b9a-11ea-8863-11b3f7af74c8.png" height="200px" width="500px" alt="comment_example">
+</div>
+
+<h3><span id="33-アカウント登録">3.3. アカウント登録</span></h3><ul>
+<li>記事の訪問者をイメージして、Twitterアカウントで試してみます<ul>
+<li>事前に管理者アカウントから”ログアウト”しておきます</li>
+</ul>
+</li>
+<li>投稿欄の下のTwitterマークを選択<ul>
+<li>認証画面に飛びます</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>アカウント設定</p>
+<ul>
+<li>各入力項目を埋めて”Sign Up”を押下<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77223016-0d464280-6b9c-11ea-9eb7-8908b20b49a3.PNG" height="300px" width="400px" alt="Disqus_Twitter認証画面">
+</div>
+</li>
+</ul>
+</li>
+<li><p>すると、以下のように規約が表示されます</p>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77223009-f56ebe80-6b9b-11ea-8f60-c66a375029e2.PNG" height="300px" width="400px" alt="disqus_allert">
+</div>
+
+
+<ul>
+<li>設定したアドレスに以下のmailが届きます<ul>
+<li>青字を押下</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77223011-03244400-6b9c-11ea-8bf3-4676ca9b7960.PNG" height="300px" width="400px" alt="disqus_mail">
+</div>
+
+<ul>
+<li>認証が完了しました</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77223019-1cc58b80-6b9c-11ea-956d-ce5fe2f311bd.PNG" height="250px" width="400px" alt="email_verified">
+</div>
+
+<ul>
+<li>WEB上でログイン</li>
+<li>コメントを投稿<ul>
+<li>アイコン画像はTwitterのものがそのまま反映されるようです</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77223048-6a41f880-6b9c-11ea-9aae-38987fd1bf52.PNG" height="250px" width="500px" alt="twitter_comment">
+</div>
+
+
+<ul>
+<li>以上でDisqusの解説は終了です。手軽なので是非導入してみましょう。</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-17T16:16:47.000Z">2020-03-18</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6分 read (About 897 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/18/Privacy-Policy/">Privacy Policy</a>
+            
+        </h1>
+        <div class="content">
+            <h2><span id="個人情報の利用目的">個人情報の利用目的</span></h2><p>当ブログでは、メールでのお問い合わせの際に、メールアドレス等の個人情報をご登録頂く場合がございます。</p>
+<p>これらの個人情報は質問に対する回答や必要な情報を電子メール等でご連絡する場合に利用させていただくものであり、個人情報をご提供頂く際の目的以外では利用致しません。</p>
+<h2><span id="広告の配信について">広告の配信について</span></h2><p>当サイトでは、第三者配信の広告サービス「Google Adsense グーグルアドセンス」を利用しております。<br>このような広告配信事業者は、ユーザーの興味に応じた商品やサービスの広告を表示するため、当サイトや他サイトへのアクセスに関する情報 『Cookie』(氏名、住所、メール アドレス、電話番号は含まれません) を使用することがあります。<br>またGoogleアドセンスに関して、このプロセスの詳細やこのような情報が広告配信事業者に使用されないようにする方法については、<a href="http://www.google.co.jp/policies/technologies/ads/">こちら</a>をご確認ください。</p>
+<h2><span id="アクセス解析ツールについて">アクセス解析ツールについて</span></h2><p>当サイトでは、Googleによるアクセス解析ツール「Googleアナリティクス」を利用しております。</p>
+<p>このGoogleアナリティクスはトラフィックデータの収集のためにCookieを使用しています。このトラフィックデータは匿名で収集されており、個人を特定するものではありません。この機能はCookieを無効にすることで収集を拒否することが出来ますので、お使いのブラウザの設定をご確認ください。この規約に関して、詳しくは<a href="http://www.google.com/analytics/terms/jp.html">こちら</a>をご確認ください。</p>
+<h2><span id="免責事項">免責事項</span></h2><p>当サイトのコンテンツ・情報につきまして、可能な限り正確な情報を掲載するよう努めておりますが、必ずしも正確性・信頼性等を保証するものではありません。</p>
+<p>当サイトに掲載された内容によって生じた損害等の一切の責任を負いかねますのでご了承ください。</p>
+<p>当サイトで掲載している画像の著作権・肖像権等は各権利所有者に帰属致します。<br>権利を侵害する目的ではございません。記事の内容や掲載画像等に問題がございましたら、各権利所有者様本人が直接<a href="junjunjunya108@gmail.com">メール</a>でご連絡下さい。確認後、対応させて頂きます。</p>
+<p>当サイトからリンクやバナーなどによって他のサイトに移動された場合、移動先サイトで提供される情報、サービス等について一切の責任を負いません。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-03-17T12:49:37.000Z">2020-03-17</time>
                 
                 <div class="level-item">
@@ -1603,7 +1974,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    17分 read (About 2564 words)
+                    21分 read (About 3084 words)
                 </span>
                 
                 
@@ -1616,9 +1987,12 @@
             
         </h1>
         <div class="content">
-            <p>こんにちは。今回は上記の３つを組み合わせてWEB AP開発を行う際の手順を解説していこうと思います。それぞれの使用経験があっても組み合わせると細かい所で沢山ハマってしまうので注意しましょう。（新設の開発チームの大半がこの段階で躓く印象です）  </p>
-<!-- toc-->
+            <p>こんにちは。今回は上記の３つを組み合わせてWEB AP開発を行う際の手順を解説します。それぞれの使用経験があっても細かい所で沢山ハマったのでまとめておきました。初級者がこの記事だけで目標を達成できるように書いたつもりです。  </p>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79091968-4b451980-7d8a-11ea-9938-5c217d995d87.png" height="400px" width="500px">
+</div>
 
+<!-- toc-->
 
 <h2><span id="各技術についての基礎知識">各技術についての基礎知識</span></h2><p>簡単にポイントだけを解説します。分かっている方は飛ばしてください<br>手順を細かく書いているので分からない言葉があっても、一先ず触りなから理解していきましょう  </p>
 <ul>
@@ -1669,11 +2043,11 @@
 <li>本質的な機能の開発に集中可能</li>
 </ul>
 </li>
-<li>APのHostingや顧客分析、収益管理まで可能  </li>
+<li>APのHostingや顧客分析、収益管理まで可能</li>
 </ul>
 </li>
 </ul>
-<p>この３つを抑えれば開発環境の用意からAPの公開まで高速でできます。  </p>
+<p>この３つを抑えれば開発環境の用意からAPの公開まで高速でできます。<br>つまり、良いアイデアさえあれば、一人でもビジネスを始められます。  </p>
 <h2><span id="前提条件">前提条件</span></h2><ul>
 <li>cloud9環境を作成済み<ul>
 <li>指示に従って設定していくだけなので参考サイトを載せておきます<ul>
@@ -1709,7 +2083,8 @@
 </li>
 <li><p>０から開発する場合</p>
 <ul>
-<li>以下のコマンドでAngular PJを開始しましょう<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng new &lt;AP名&gt;</span><br></pre></td></tr></table></figure></li>
+<li>以下のコマンドでAngular PJ(AngularにおけるAPの単位)を作成しましょう<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng new &lt;AP名&gt;</span><br></pre></td></tr></table></figure></li>
+<li>今回は以下の名称で作成<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ng new &quot;firebase-sample&quot;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li><p>Gitから開発途中のソースを持ってきた場合</p>
@@ -1720,7 +2095,7 @@
 </ul>
 </li>
 </ul>
-<h3><span id="2-firebaseの登録~project作成">2. firebaseの登録～project作成</span></h3><ul>
+<h3><span id="2-firebase-projectの作成">2. firebase projectの作成</span></h3><ul>
 <li><p>初めは基本的にWEBのFirebaseコンソールで操作していきます</p>
 <ul>
 <li>Googleアカウントを作成していればすぐに始められます</li>
@@ -1728,25 +2103,84 @@
 </li>
 <li><p>2.1. <a href="https://firebase.google.com/?hl=ja">公式ページ</a>から右上の”コンソールへ移動”を押下</p>
 </li>
-<li><p>2.2. projectを作成します（APの単位です）</p>
+<li><p>2.2. projectを追加（APの単位です）</p>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79091762-8abf3600-7d89-11ea-8299-3fe69a9ff84a.png" height="400px" width="500px">
+</div>
+</li>
+<li><p>2.3. Project名を設定</p>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79091817-b9d5a780-7d89-11ea-86cf-69d608904466.png" height="400px" width="500px">
+</div>
+</li>
+<li><p>2.4. Googleアナリティクス(Firebaseプロジェクト向け)</p>
 <ul>
-<li>AP名を設定</li>
+<li>特別な理由が無ければ有効のままでOK<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79091837-d1ad2b80-7d89-11ea-9f02-c218bfebd70f.png" height="400px" width="400px">
+</div>
+</li>
 </ul>
 </li>
-<li><p>2.3. アプリを登録</p>
+<li><p>2.6. 以下が表示されたら完成</p>
 <ul>
-<li>ios/android/webからwebを選択</li>
-<li>ニックネームを設定</li>
+<li>続行を押すとPJの画面に飛びます</li>
 </ul>
 </li>
-<li><p>2.4. Firebase SDKの追加</p>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79091916-22bd1f80-7d8a-11ea-8c5c-f0db39638fc1.png" height="400px" width="500px">
+</div>
+
 <ul>
-<li>公式の説明は以下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">これらのスクリプトをコピーして &lt;body&gt; タグの下部に貼り付けます。この作業は Firebase サービスを使用する前に行ってください。</span><br></pre></td></tr></table></figure>
+<li>2.7. Firebase Project画面<ul>
+<li>以下が表示されればOK</li>
+<li>基本的にこの画面で設定を行います</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79091968-4b451980-7d8a-11ea-9938-5c217d995d87.png" height="450px" width="500px">
+</div>
+
+
+<h3><span id="3-アプリの登録">3. アプリの登録</span></h3><ul>
+<li><p>次にFirebase Projectにアプリを登録します</p>
+<ul>
+<li>Firebase PJには複数のアプリを登録可能です</li>
+<li>例えばWEB版、ios版といった形で複数をAP間で認証機能やデータベースを共有するイメージです</li>
+</ul>
+</li>
+<li><p>3.1. アプリを登録</p>
+<ul>
+<li>ios/android/webからwebのアイコンを選択<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79092138-e2aa6c80-7d8a-11ea-9440-8bf24e2a2219.png" height="300px" width="500px">
+</div>
 </li>
 </ul>
 </li>
-<li><p>Angularの場合はindex.htmlのbody配下に置きます</p>
+<li><p>3.2. アプリの追加</p>
 <ul>
+<li>以下のように入力</li>
+<li>アプリを登録<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79092234-3452f700-7d8b-11ea-996c-043db263989b.png" height="400px" width="500px">
+</div>
+</li>
+</ul>
+</li>
+<li><p>3.3. Firebase SDK の追加</p>
+<ul>
+<li><p>以下のようにスクリプトが表示されます</p>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79092282-61070e80-7d8b-11ea-9c67-d2c9a38e27fb.png" height="400px" width="400px">
+</div>
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Angularの場合はindex.htmlのbody配下に置きます<ul>
 <li>SPAなので、単一ページであるindex.htmlがJSで書き換わっていくのがAngularの特徴です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;app-root&gt;&lt;&#x2F;app-root&gt;</span><br><span class="line">&lt;!----firebaseSDKの追加--&gt;</span><br><span class="line">  &lt;!-- The core Firebase JS SDK is always required and must be listed first --&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;__&#x2F;firebase&#x2F;7.8.2&#x2F;firebase-app.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- TODO: Add SDKs for Firebase products that you want to use</span><br><span class="line">     https:&#x2F;&#x2F;firebase.google.com&#x2F;docs&#x2F;web&#x2F;setup#available-libraries --&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;__&#x2F;firebase&#x2F;7.8.2&#x2F;firebase-analytics.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- Initialize Firebase --&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;__&#x2F;firebase&#x2F;init.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
 
 
@@ -1754,23 +2188,31 @@
 </ul>
 </li>
 </ul>
-<h3><span id="3-firebaseとapの関連付けangular-fireの導入">3. firebaseとAPの関連付け(Angular Fireの導入)</span></h3><ul>
+<h3><span id="4-firebaseとapの関連付けangular-fireの導入">4. firebaseとAPの関連付け(Angular Fireの導入)</span></h3><ul>
 <li>Angular APとfirebaseを関連付けるまでに必要な作業の一覧は以下になります<ul>
-<li>angularfireのinstall</li>
-<li>Firebase CLIのinstal</li>
+<li>Firebase CLIのinstall<ul>
+<li>環境単位で必要な作業</li>
+</ul>
+</li>
+<li>angularfireのinstall<ul>
+<li>AP単位で毎回必要な作業</li>
+</ul>
+</li>
 <li>(firebase側でアプリを追加　 2で先に行った内容です)<ul>
 <li>Firebase SDKの追加</li>
 <li>FirebaseのAPIキーを取得</li>
 </ul>
 </li>
-<li>Angular環境設定ファイルにAPIキーを貼り付け<ul>
-<li>★二点に設定が必要。よくはまるポイントです</li>
+<li>Angularの環境設定ファイルにAPIキーを設定<ul>
+<li>★二点に設定が必要。よくはまるポイントです<ul>
 <li>開発環境<ul>
 <li>src/environments/environment.ts</li>
 </ul>
 </li>
-<li>本番環境<ul>
+<li>本番環境(prodは本番という意味)<ul>
 <li>src/environments/environment.prod.ts</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1792,15 +2234,8 @@
 </li>
 </ul>
 <p>それぞれ詳しく解説していきます  </p>
-<h4><span id="31-angular-fireのinstall">3.1. angular fireのinstall</span></h4><ul>
-<li><a href="https://github.com/angular/angularfire">angularfire</a>を入れます<ul>
-<li>AngularとFirebase連携用のLibraryです<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install firebase @angular&#x2F;fire</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>出力結果<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+ @angular&#x2F;fire@5.4.2</span><br><span class="line">+ firebase@7.9.3</span><br><span class="line">added 140 packages from 98 contributors and audited 19218 packages in 17.919s</span><br><span class="line">found 5 vulnerabilities (3 moderate, 2 high)</span><br></pre></td></tr></table></figure></li>
-<li>ここまでではまだ、Firebaseコマンドが使えない状態です</li>
-</ul>
-<h4><span id="32-firebase-cliの導入">3.2. の導入</span></h4><ul>
+<h4><span id="41-firebase-cliの導入">4.1. の導入</span></h4><ul>
+<li><h2><span id="この作業は環境に一度入れれば">この作業は環境に一度入れれば</span></h2></li>
 <li>以下を実行することでinstallできます<ul>
 <li>firebase コマンドが有効になります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g firebase-tools</span><br></pre></td></tr></table></figure>
 
@@ -1808,7 +2243,18 @@
 </ul>
 </li>
 </ul>
-<h3><span id="33-angular環境設定ファイルにapiキーを貼り付け">3.3. Angular環境設定ファイルにAPIキーを貼り付け</span></h3><ul>
+<h4><span id="42-angular-fireのinstall">4.2. angular fireのinstall</span></h4><ul>
+<li><a href="https://github.com/angular/angularfire">angularfire</a>を入れます<ul>
+<li>AngularとFirebase連携用のLibraryです</li>
+</ul>
+</li>
+<li>以下を実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firebase-sample (master) $ npm install @angular&#x2F;fire firebase --save</span><br></pre></td></tr></table></figure></li>
+<li>出力結果<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+ @angular&#x2F;fire@5.4.2</span><br><span class="line">+ firebase@7.9.3</span><br><span class="line">added 140 packages from 98 contributors and audited 19218 packages in 17.919s</span><br><span class="line">found 5 vulnerabilities (3 moderate, 2 high)</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h3><span id="43-angular環境設定ファイルにapiキーを貼り付け">4.3. Angular環境設定ファイルにAPIキーを貼り付け</span></h3><ul>
 <li><p>開発環境向けと本番環境向けの２つの設定ファイルの改修が必要。よくはまるポイントです</p>
 <ul>
 <li>各値はfirebase consoleより確認</li>
@@ -1816,27 +2262,49 @@
 </li>
 <li><p>src/environments/environment.ts</p>
 <ul>
-<li>開発環境用の設定ファイル<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">export const environment &#x3D; &#123;</span><br><span class="line">  production: false</span><br><span class="line">  &#x2F;&#x2F; Firebaseの設定情報を登録</span><br><span class="line">    firebase: &#123;</span><br><span class="line">      apiKey: &#39;&lt;your-key&gt;&#39;,</span><br><span class="line">      authDomain: &#39;&lt;your-project-authdomain&gt;&#39;,</span><br><span class="line">      databaseURL: &#39;&lt;your-database-URL&gt;&#39;,</span><br><span class="line">      projectId: &#39;&lt;your-project-id&gt;&#39;,</span><br><span class="line">      storageBucket: &#39;&lt;your-storage-bucket&gt;&#39;,</span><br><span class="line">      messagingSenderId: &#39;&lt;your-messaging-sender-id&gt;&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
+<li>開発環境用の設定ファイルに以下の形式で設定します<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">export const environment &#x3D; &#123;</span><br><span class="line">  production: false,</span><br><span class="line">  &#x2F;&#x2F; Firebaseの設定情報を登録</span><br><span class="line">    firebase: &#123;</span><br><span class="line">      apiKey: &#39;&lt;your-key&gt;&#39;,</span><br><span class="line">      authDomain: &#39;&lt;your-project-authdomain&gt;&#39;,</span><br><span class="line">      databaseURL: &#39;&lt;your-database-URL&gt;&#39;,</span><br><span class="line">      projectId: &#39;&lt;your-project-id&gt;&#39;,</span><br><span class="line">      storageBucket: &#39;&lt;your-storage-bucket&gt;&#39;,</span><br><span class="line">      messagingSenderId: &#39;&lt;your-messaging-sender-id&gt;&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li><p>src/environments/environment.prod.ts</p>
 <ul>
-<li>本番環境用の設定ファイル<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">export const environment &#x3D; &#123;</span><br><span class="line">  production: false</span><br><span class="line">  &#x2F;&#x2F; Firebaseの設定情報を登録</span><br><span class="line">    firebase: &#123;</span><br><span class="line">      apiKey: &#39;&lt;your-key&gt;&#39;,</span><br><span class="line">      authDomain: &#39;&lt;your-project-authdomain&gt;&#39;,</span><br><span class="line">      databaseURL: &#39;&lt;your-database-URL&gt;&#39;,</span><br><span class="line">      projectId: &#39;&lt;your-project-id&gt;&#39;,</span><br><span class="line">      storageBucket: &#39;&lt;your-storage-bucket&gt;&#39;,</span><br><span class="line">      messagingSenderId: &#39;&lt;your-messaging-sender-id&gt;&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
+<li>本番環境用の設定ファイルも同様です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">export const environment &#x3D; &#123;</span><br><span class="line">  production: false,</span><br><span class="line">  &#x2F;&#x2F; Firebaseの設定情報を登録</span><br><span class="line">    firebase: &#123;</span><br><span class="line">      apiKey: &#39;&lt;your-key&gt;&#39;,</span><br><span class="line">      authDomain: &#39;&lt;your-project-authdomain&gt;&#39;,</span><br><span class="line">      databaseURL: &#39;&lt;your-database-URL&gt;&#39;,</span><br><span class="line">      projectId: &#39;&lt;your-project-id&gt;&#39;,</span><br><span class="line">      storageBucket: &#39;&lt;your-storage-bucket&gt;&#39;,</span><br><span class="line">      messagingSenderId: &#39;&lt;your-messaging-sender-id&gt;&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
+<li><p>Firebaseの設定情報を確認</p>
+<ul>
+<li>FirebaseコンソールのSettingsから確認可能</li>
 </ul>
-<h4><span id="34-cliとfirebaseの関連付け">3.4. CLIとFirebaseの関連付け</span></h4><ul>
-<li>次にCloud9のCLIとfirebaseを関連付けます<ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79093020-ccea7680-7d8d-11ea-916f-0b2a4108baa4.png" height="370px" width="500px">
+</div>
+
+<ul>
+<li><p>上記のIDとAPIキーをenvironmentsの該当箇所にコピペ</p>
+</li>
+<li><p>設定より、IDとAPIキー、送信者IDを確認する</p>
+<pre><code>- 各設定項目は以下のように一意に定まる</code></pre></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">export const environment &#x3D; &#123;</span><br><span class="line">    production: false,</span><br><span class="line">    firebase: &#123;</span><br><span class="line">      apiKey: &#39;&lt;ウェブAPIキー&gt;&#39;,</span><br><span class="line">      authDomain: &quot;&lt;プロジェクトID&gt;.firebaseapp.com&quot;,</span><br><span class="line">      databaseURL: &quot;https:&#x2F;&#x2F;&lt;プロジェクトID&gt;.firebaseio.com&quot;,</span><br><span class="line">      projectId: &quot;&lt;プロジェクトID&gt;&quot;,</span><br><span class="line">      storageBucket: &quot;&lt;プロジェクトID&gt;.appspot.com&quot;,</span><br><span class="line">      messagingSenderId: &quot;&lt;送信者ID&gt;&quot;,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>送信者IDはクラウドメッセージングTabより確認可能</p>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79093197-7f223e00-7d8e-11ea-82ef-90078b05c160.png" height="300px" width="500px">
+</div>
+</li>
+<li><p>両方のファイルに以下を設定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">export const environment &#x3D; &#123;</span><br><span class="line">    production: false, &#x2F;&#x2F; ,を忘れないよう注意</span><br><span class="line">    &#x2F;&#x2F; Firebaseの設定情報を登録</span><br><span class="line">      firebase: &#123;</span><br><span class="line">        apiKey: &#39;XXXXXXXXXXXXXXXXXXXXXXXXXXX&#39;,</span><br><span class="line">        authDomain: &#39;fir-sample-3a2dc.firebaseapp.com&#39;,</span><br><span class="line">        databaseURL: &#39;https:&#x2F;&#x2F;fir-sample-3a2dc.firebaseio.com&#39;,</span><br><span class="line">        projectId: &#39;fir-sample-3a2dc&#39;,</span><br><span class="line">        storageBucket: &#39;fir-sample-3a2dc.appspot.com&#39;,</span><br><span class="line">        messagingSenderId: &#39;408620068768&#39;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4><span id="44-cliとfirebaseの関連付け">4.4. CLIとFirebaseの関連付け</span></h4><ul>
+<li>次に開発環境(Cloud9)のCLIとfirebaseを関連付けます<ul>
 <li>c9の場合–nolocalhostが必須<ul>
 <li>★社内Local環境でloginをやろうとするとFirebaseの認証がProxyに阻まれて突破できず詰むので気を付けましょう<ul>
-<li>調べた解決策を全て講じてもこれだけは解決できませんでした…</li>
+<li>あらゆる策を講じてもこれだけは解決できませんでした…</li>
 </ul>
 </li>
 </ul>
@@ -1846,11 +2314,11 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">firebase login --no-localhost --reauth</span><br><span class="line"></span><br><span class="line">i  Firebase optionally collects CLI usage and error reporting information to help improve our products. Data is collected in accordance with Google&#39;s privacy policy (https:&#x2F;&#x2F;policies.google.com&#x2F;privacy) and is not used to identify you.</span><br><span class="line"></span><br><span class="line">? Allow Firebase to collect CLI usage and error reporting information? Yes</span><br><span class="line">i  To change your data collection preference at any time, run &#96;firebase logout&#96; and log in again.</span><br><span class="line"></span><br><span class="line">Visit this URL on any device to log in:</span><br><span class="line">&lt;認証用のURL&gt;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>上記のURLから、ブラウザで認Googleアカウント証を進めるとコードが表示される</li>
-<li>貼り付けてSuccessとでれば成功です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">? Paste authorization code here: &lt;Code&gt;</span><br><span class="line"></span><br><span class="line">✔  Success! Logged in as &lt;googleアカウント名&gt;</span><br></pre></td></tr></table></figure></li>
+<li>上記のURLから、ブラウザでGoogleアカウント認証を進めるとコードが表示される</li>
+<li>貼り付けてSuccessと表示されれば成功です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">? Paste authorization code here: &lt;Code&gt;</span><br><span class="line"></span><br><span class="line">✔  Success! Logged in as &lt;googleアカウント名&gt;</span><br></pre></td></tr></table></figure></li>
 <li>Cloud9のCLIからFirebase(=Google Cloud)上のリソースにアクセス可能になりました</li>
 </ul>
-<h4><span id="35-apとfirebaseのpjの関連付け">3.5. APとfirebaseのpjの関連付け</span></h4><ul>
+<h4><span id="45-apとfirebaseのpjの関連付け">4.5. APとfirebaseのpjの関連付け</span></h4><ul>
 <li>Angular PJ直下で実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firebase init</span><br></pre></td></tr></table></figure></li>
 <li>以下のように出力されれば成功です<ul>
 <li>使いたいサービスを選択すると簡単にCloud側と連携できます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">     ######## #### ########  ######## ########     ###     ######  ########</span><br><span class="line">     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##</span><br><span class="line">     ######    ##  ########  ######   ########  #########  ######  ######</span><br><span class="line">     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##</span><br><span class="line">     ##       #### ##     ## ######## ########  ##     ##  ######  ########</span><br><span class="line"></span><br><span class="line">You&#39;re about to initialize a Firebase project in this directory:</span><br><span class="line"></span><br><span class="line">  &#x2F;home&#x2F;ec2-user&#x2F;environment&#x2F;test-app</span><br><span class="line"></span><br><span class="line">? Which Firebase CLI features do you want to set up for this folder? Press Space to select features, then Enter to confirm your choices. (Press</span><br><span class="line"> &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection)</span><br><span class="line">❯◯ Database: Deploy Firebase Realtime Database Rules</span><br><span class="line"> ◯ Firestore: Deploy rules and create indexes for Firestore</span><br><span class="line"> ◯ Functions: Configure and deploy Cloud Functions</span><br><span class="line"> ◯ Hosting: Configure and deploy Firebase Hosting sites</span><br><span class="line"> ◯ Storage: Deploy Cloud Storage security rules</span><br><span class="line"> ◯ Emulators: Set up local emulators for Firebase features</span><br></pre></td></tr></table></figure>
@@ -1859,265 +2327,45 @@
 </ul>
 </li>
 </ul>
-<h2><span id="おまけcloud9でng-serveを実行してapの画面を確認する際の注意">おまけ：cloud9でng serveを実行してAPの画面を確認する際の注意</span></h2><ul>
-<li>cloud9で必要なこと<ul>
+<h2><span id="おまけcloud9でng-serveする際の注意">おまけ：cloud9でng serveする際の注意</span></h2><ul>
+<li><p>詳細は以下の記事にまとめてあります</p>
+<ul>
+<li><a href="https://j-xaas.github.io/2020/04/14/Cloud9-x-Angular-cloud9%E3%81%A7ng-serve%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6AP%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/">[Cloud9 x Angular] cloud9でng serveを実行してAPの画面を確認するまで</a></li>
+</ul>
+</li>
+<li><p>cloud9で必要なこと</p>
+<ul>
 <li>portの指定(8080)</li>
 <li>browserのURLの指定</li>
 <li>disableHostCheck</li>
 </ul>
 </li>
-<li>大抵の人が必ず一度はハマるポイントです</li>
-<li>上部タブから”Preview”を選択後”Preview Runnig Application”を選択するとCloud9上に表示できます<ul>
-<li>Previewの中のURL欄をコピーして控えてください</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng serve --public-host &lt;cloud9のPreviewのURL&gt; --disableHostCheck --port 8080</span><br></pre></td></tr></table></figure>
-
-<h2><span id="後書き">後書き</span></h2><p>如何だったでしょうか？ここまでで本格的な実装に入る準備が整いました。Firebaseを使いこなせば、認証機能もデータのCRUD機能も１日で簡単に実装することができます。モダンな手法を使いこなして素早くAPを開発していきましょう。</p>
-<ul>
-<li>最後に、この先の機能実装の際に参考になりそうなページを共有しておきます。<ul>
-<li><a href="https://mae.chab.in/archives/60256">AngularFireでFirestoreのCRUD処理を実装する【Angular + Firebase】</a></li>
-<li><a href="https://satolabo.net/2019/11/30/angular8-fire-google-auth/">Angular8でFirebaseを使ってGoogleアカウント認証機能を実装する</a></li>
-</ul>
-</li>
-</ul>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-27T15:13:23.000Z">2020-02-28</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3分 read (About 443 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/02/28/Angular-x-AWS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/">Angular x AWS SDK for JavaScriptの始め方</a>
-            
-        </h1>
-        <div class="content">
-            <ul>
-<li>angularで開発していたアプリケーションにaws-sdkを導入する際の備忘録<ul>
-<li><a href="https://aws.amazon.com/jp/tools/">AWS SDK</a>を入れることで、アプリケーションからAWSのリソースを操作可能になります<ul>
-<li>ex.) S3やDynamoDBへのデータの格納、Cognitoによる認証、Lambdaの実行…</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Angularの場合、公式の開発者ガイド通りにやると鬼のようにエラーが出るので共有しておきます。ひと手間必要でした。</li>
-</ul>
-<!--toc-->
-
-<h2><span id="1-aws-sdk-for-javascriptのinstall">1. aws sdk for javascriptのinstall</span></h2><ul>
-<li>angular PJ直下で実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install aws-sdk --save-dev</span><br></pre></td></tr></table></figure></li>
-<li>この時点でAPを確認すると、以下のエラーが大量に出ます<ul>
-<li>APの画面もブラウザに表示されなくなります</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;ng serve --open</span><br><span class="line"></span><br><span class="line">ERROR in node_modules&#x2F;aws-sdk&#x2F;clients&#x2F;acm.d.ts:141:37 - error TS2591: Cannot find name &#39;Buffer&#39;. Do you need to install type definitions for node? Try &#96;npm i @types&#x2F;node&#96; and then add &#96;node&#96; to the types field in your tsconfig.</span><br></pre></td></tr></table></figure>
-
-<h2><span id="2-typesnodeをinstallする">2. @types/nodeをinstallする</span></h2><ul>
-<li>Angular PJ直下で以下を実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install --save @types&#x2F;node</span><br><span class="line"></span><br><span class="line">+ @types&#x2F;node@8.9.5</span><br><span class="line">updated 1 package and audited 19123 packages in 41.418s</span><br><span class="line">found 0 vulnerabilities</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2><span id="3-tsconfigjson-ファイルに以下を追記">3. tsconfig.json ファイルに以下を追記</span></h2><ul>
-<li><p>Angular PJ直下にあります</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;compilerOptions&quot;: &#123;</span><br><span class="line">  &quot;types&quot;: [&quot;node&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>場所は以下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; code .\tsconfig.json</span><br></pre></td></tr></table></figure>
-</li>
-<li><ol start="4">
-<li>tsconfig.app.json にも、同じく追記<ul>
-<li>Angular PJ直下にあります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;compilerOptions&quot;: &#123;</span><br><span class="line">   &quot;types&quot;: [&quot;node&quot;]</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<li><ol>
+<li>angular.jsonファイルを書き換えてポートを変更<ul>
+<li>cloud9の場合はportを8080にする必要がある<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;serve&quot;: &#123;</span><br><span class="line">  &quot;builder&quot;: &quot;@angular-devkit&#x2F;build-angular:dev-server&quot;,</span><br><span class="line">  &quot;options&quot;: &#123;</span><br><span class="line">    &quot;browserTarget&quot;: &quot;NgTororo:build&quot;,</span><br><span class="line">    &quot;port&quot;: 8080 &#x2F;&#x2F;ここを追加</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 </ol>
 </li>
-<li><p>エラーの解消を確認</p>
-<ul>
-<li>ng serve時に正しくAPの画面が表示される</li>
-</ul>
-</li>
-<li><p>ここまででAngular APからAWSのリソースとAPI連携する下準備が整いました</p>
-<ul>
-<li>以下についても後日UP予定です<ul>
-<li>AWSの各リソースの利用方法、実装方法</li>
-<li>Ampliyfy(BaaS)でAWSと連携させる手法</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-20T09:12:39.000Z">2020-02-20</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3分 read (About 453 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/02/20/Angular%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E9%96%8B%E7%99%BA%E6%94%AF%E6%8F%B4%E3%83%84%E3%83%BC%E3%83%ABAugury-Chrome%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/">Angularアプリの開発支援ツールAugury(Chrome拡張機能)</a>
-            
-        </h1>
-        <div class="content">
-            <ul>
-<li>今回はAngularでWEBアプリを開発する際に簡単に利用できるツールを紹介します</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/74917091-5030c100-540a-11ea-9060-2d05fc6c6c23.png" height="100%" width="100%">
-</div>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#auguryと-は">Auguryと は？</a></li>
-<li><a href="#できること">できること</a></li>
-<li><a href="#導入方法">導入方法</a></li>
-<li><a href="#利用方法">利用方法</a></li>
-<li><a href="#備考">備考</a></li>
-</ul>
-<!-- tocstop -->
-
-<h2><span id="auguryと-は">Auguryと は？</span></h2><ul>
-<li>Angularの開発支援ツール</li>
-<li>Google Chromeの拡張機能</li>
-<li>Chromeをメインブラウザとして利用しているデベロッパーには必須とも言えるツール</li>
-</ul>
-<h2><span id="できること">できること</span></h2><ul>
-<li>標準のデベロッパーツールに以下の機能を追加できます<ul>
-<li>Componentの階層構造やプロパティ値の図示</li>
-<li>ルーティング情報のグラフ化</li>
-<li>import済みモジュール構成のリスト表示</li>
-</ul>
-</li>
-</ul>
-<h2><span id="導入方法">導入方法</span></h2><ul>
-<li><p><a href="https://chrome.google.com/webstore/search/Augury">Chrome Webstore</a>にアクセス</p>
-</li>
-<li><p>“Chromeに追加”をClick</p>
-</li>
-<li><p>ブラウザの右上にAuguryの丸いアイコンが追加されます</p>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/74912170-74d46b00-5401-11ea-956d-93801c3cce13.png" height="100%" width="100%">
-</div>
+<li><ol start="2">
+<li>portの設定後であれば以下でOK<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng serve --disableHostCheck --public-host &lt;cloud9のPreviewのURL&gt;</span><br></pre></td></tr></table></figure>
 
 
 </li>
-</ul>
-<h2><span id="利用方法">利用方法</span></h2><ul>
-<li><p>Angular APの起動</p>
-<ul>
-<li>まずは以下のコマンドでAPの画面をChromeに表示しましょう<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng serve --open</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>F12キーで開発者ツールを起動</p>
-</li>
-<li><p>ブラウザの右側に表示される開発者ツールに追加されているAuguryタブを選択</p>
-</li>
-<li><p>“Component Tree”タブのInjection Graph</p>
-<ul>
-<li>コンポーネントとサービスの依存関係をグラフ表示<ul>
-<li>個人的に一番利用する機能です</li>
-</ul>
+</ol>
 </li>
 </ul>
 <div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/74917567-0b595a00-540b-11ea-8dc3-5a257af3bd45.png" height="100%" width="100%">
+<img src="https://user-images.githubusercontent.com/41946222/79135318-1d8fbd00-7dea-11ea-9e6d-31134f1ad284.png" height="500px" width="500px">
 </div>
-</li>
-<li><p>“Router Tree”タブ</p>
+
+
+<h2><span id="後書き">後書き</span></h2><p>ここまでで本格的な実装に入る準備が整いました。Firebaseを使いこなせば、認証機能もデータのCRUD機能も1日で簡単に実装することができます。モダンな手法を使いこなして素早くサービスを開発していきましょう。</p>
 <ul>
-<li>ルート構造をツリー表示</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/74918209-19f44100-540c-11ea-9953-c4734a0685ed.png" height="100%" width="100%">
-</div>
-
-
-</li>
-</ul>
-<ul>
-<li>“NgModule”タブ<ul>
-<li>import済みのモジュール構成を確認可能<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/74917975-c2ee6c00-540b-11ea-89d0-e1fbd9b7195c.png" height="100%" width="100%">
-</div>
-
-
-</li>
-</ul>
-</li>
-</ul>
-<h2><span id="備考">備考</span></h2><ul>
-<li>以下も便利そうでした。APの構成管理やドキュメント作成の手間は極力自動化していきましょう。<ul>
-<li><a href="https://one-it-thing.com/3254/">compodocでAngularプロジェクトのビジュアルなドキュメントを自動生成する</a></li>
+<li>最後に、この先の機能実装の際に参考になりそうなページを共有しておきます。<ul>
+<li><a href="https://mae.chab.in/archives/60256">AngularFireでFirestoreのCRUD処理を実装する【Angular + Firebase】</a></li>
+<li><a href="https://satolabo.net/2019/11/30/angular8-fire-google-auth/">Angular8でFirebaseを使ってGoogleアカウント認証機能を実装する</a></li>
 </ul>
 </li>
 </ul>
@@ -2202,7 +2450,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            22
+                            24
                         </p>
                     </a>
                 </div>
@@ -2226,7 +2474,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            38
+                            42
                         </p>
                     </a>
                 </div>
@@ -2334,7 +2582,7 @@
                 <span class="level-item">Serverless Application Dev</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">9</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Serverless-Application-Dev/AWS/">
@@ -2342,7 +2590,7 @@
                 <span class="level-item">AWS</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Serverless-Application-Dev/Firebase/">
@@ -2358,7 +2606,7 @@
                 <span class="level-item">SPA (Angular)</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">5</span>
+                <span class="level-item tag">6</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/SmartHome/">
@@ -2451,7 +2699,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12.5px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/DTM/" style="font-size: 10px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 12.5px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 17.5px;">Hexo</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 12.5px;">RPA</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 12.5px;">cloud9</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 15px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 12.5px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12.5px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/DTM/" style="font-size: 10px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 12.5px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 17.5px;">Hexo</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 12.5px;">RPA</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 15px;">cloud9</a> <a href="/tags/filter/" style="font-size: 10px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 15px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/map/" style="font-size: 10px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 10px;">mat-checkbox</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 12.5px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
     </div>
 </div>
     
@@ -2463,6 +2711,44 @@
         <h3 class="menu-label">
             最近の記事
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/04/14/Cloud9-x-Angular-cloud9%E3%81%A7ng-serve%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6AP%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Cloud9 x Angular] cloud9でng serveを実行してAPの画面を確認するまで">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-13T17:04:12.000Z">2020-04-14</time></div>
+                    <a href="/2020/04/14/Cloud9-x-Angular-cloud9%E3%81%A7ng-serve%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6AP%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Cloud9 x Angular] cloud9でng serveを実行してAPの画面を確認するまで</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/04/13/Angular-map-fileter-mat-checkbox%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%AB%E6%A0%BC%E7%B4%8D%E3%81%99%E3%82%8B%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Angular] map() &amp; filter() &amp; mat-checkboxを使って選択値を配列に格納するロジック">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-13T14:26:33.000Z">2020-04-13</time></div>
+                    <a href="/2020/04/13/Angular-map-fileter-mat-checkbox%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%AB%E6%A0%BC%E7%B4%8D%E3%81%99%E3%82%8B%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular] map() &amp; filter() &amp; mat-checkboxを使って選択値を配列に格納するロジック</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -2521,44 +2807,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/04/08/git-merge-%E3%82%B3%E3%83%B3%E3%83%95%E3%83%AA%E3%82%AF%E3%83%88%E3%81%AE%E8%A7%A3%E6%B6%88%EF%BC%88%E8%A4%87%E6%95%B0%E5%90%8D%E3%81%AE%E7%B7%A8%E9%9B%86%E5%86%85%E5%AE%B9%E3%82%92%E9%9B%86%E7%B4%84%EF%BC%89/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="git merge &amp; コンフリクトの解消（複数名の編集内容を集約）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-07T15:58:26.000Z">2020-04-08</time></div>
-                    <a href="/2020/04/08/git-merge-%E3%82%B3%E3%83%B3%E3%83%95%E3%83%AA%E3%82%AF%E3%83%88%E3%81%AE%E8%A7%A3%E6%B6%88%EF%BC%88%E8%A4%87%E6%95%B0%E5%90%8D%E3%81%AE%E7%B7%A8%E9%9B%86%E5%86%85%E5%AE%B9%E3%82%92%E9%9B%86%E7%B4%84%EF%BC%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">git merge &amp; コンフリクトの解消（複数名の編集内容を集約）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/03/31/Angular-%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%AE%E9%80%A3%E6%90%BA%E6%89%8B%E6%B3%95%E3%81%BE%E3%81%A8%E3%82%81-Service-%EF%BC%A0ViewChild%E3%81%A7%E8%A6%AA%E3%81%8B%E3%82%89%E5%AD%90%E3%81%AE%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%82%92%E5%91%BC%E5%87%BA%E3%81%97/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Angular コンポーネント間の連携手法まとめ(Service/＠ViewChildで親から子のメソッドを呼出し)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-31T14:23:54.000Z">2020-03-31</time></div>
-                    <a href="/2020/03/31/Angular-%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%AE%E9%80%A3%E6%90%BA%E6%89%8B%E6%B3%95%E3%81%BE%E3%81%A8%E3%82%81-Service-%EF%BC%A0ViewChild%E3%81%A7%E8%A6%AA%E3%81%8B%E3%82%89%E5%AD%90%E3%81%AE%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%82%92%E5%91%BC%E5%87%BA%E3%81%97/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Angular コンポーネント間の連携手法まとめ(Service/＠ViewChildで親から子のメソッドを呼出し)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -2576,7 +2824,7 @@
                     <span class="level-item">四月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -2652,6 +2900,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS/">
+                        <span class="tag">AWS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/AWS-SDK-for-JavaScript/">
                         <span class="tag">AWS SDK for JavaScript</span>
                         <span class="tag is-grey">2</span>
@@ -2668,7 +2923,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">9</span>
                     </a>
                 </div>
                 
@@ -2808,7 +3063,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/cloud9/">
                         <span class="tag">cloud9</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/filter/">
+                        <span class="tag">filter()</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -2844,6 +3106,20 @@
                     <a class="tags has-addons" href="/tags/icarus/">
                         <span class="tag">icarus</span>
                         <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/map/">
+                        <span class="tag">map()</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/mat-checkbox/">
+                        <span class="tag">mat-checkbox</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -2906,6 +3182,44 @@
         
         <article class="media">
             
+            <a href="/2020/04/14/Cloud9-x-Angular-cloud9%E3%81%A7ng-serve%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6AP%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Cloud9 x Angular] cloud9でng serveを実行してAPの画面を確認するまで">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-13T17:04:12.000Z">2020-04-14</time></div>
+                    <a href="/2020/04/14/Cloud9-x-Angular-cloud9%E3%81%A7ng-serve%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6AP%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Cloud9 x Angular] cloud9でng serveを実行してAPの画面を確認するまで</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/04/13/Angular-map-fileter-mat-checkbox%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%AB%E6%A0%BC%E7%B4%8D%E3%81%99%E3%82%8B%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Angular] map() &amp; filter() &amp; mat-checkboxを使って選択値を配列に格納するロジック">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-13T14:26:33.000Z">2020-04-13</time></div>
+                    <a href="/2020/04/13/Angular-map-fileter-mat-checkbox%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%AB%E6%A0%BC%E7%B4%8D%E3%81%99%E3%82%8B%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular] map() &amp; filter() &amp; mat-checkboxを使って選択値を配列に格納するロジック</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/04/10/Angular-%E8%A6%AA%E5%AD%90%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E5%85%B1%E6%9C%89-Input-Output-EventEmitter/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="[Angular]親子コンポーネント間でデータを共有(@Input/@Output/EventEmitter)">
@@ -2961,44 +3275,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/04/08/git-merge-%E3%82%B3%E3%83%B3%E3%83%95%E3%83%AA%E3%82%AF%E3%83%88%E3%81%AE%E8%A7%A3%E6%B6%88%EF%BC%88%E8%A4%87%E6%95%B0%E5%90%8D%E3%81%AE%E7%B7%A8%E9%9B%86%E5%86%85%E5%AE%B9%E3%82%92%E9%9B%86%E7%B4%84%EF%BC%89/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="git merge &amp; コンフリクトの解消（複数名の編集内容を集約）">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-07T15:58:26.000Z">2020-04-08</time></div>
-                    <a href="/2020/04/08/git-merge-%E3%82%B3%E3%83%B3%E3%83%95%E3%83%AA%E3%82%AF%E3%83%88%E3%81%AE%E8%A7%A3%E6%B6%88%EF%BC%88%E8%A4%87%E6%95%B0%E5%90%8D%E3%81%AE%E7%B7%A8%E9%9B%86%E5%86%85%E5%AE%B9%E3%82%92%E9%9B%86%E7%B4%84%EF%BC%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">git merge &amp; コンフリクトの解消（複数名の編集内容を集約）</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/03/31/Angular-%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%AE%E9%80%A3%E6%90%BA%E6%89%8B%E6%B3%95%E3%81%BE%E3%81%A8%E3%82%81-Service-%EF%BC%A0ViewChild%E3%81%A7%E8%A6%AA%E3%81%8B%E3%82%89%E5%AD%90%E3%81%AE%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%82%92%E5%91%BC%E5%87%BA%E3%81%97/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Angular コンポーネント間の連携手法まとめ(Service/＠ViewChildで親から子のメソッドを呼出し)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-31T14:23:54.000Z">2020-03-31</time></div>
-                    <a href="/2020/03/31/Angular-%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%AE%E9%80%A3%E6%90%BA%E6%89%8B%E6%B3%95%E3%81%BE%E3%81%A8%E3%82%81-Service-%EF%BC%A0ViewChild%E3%81%A7%E8%A6%AA%E3%81%8B%E3%82%89%E5%AD%90%E3%81%AE%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%82%92%E5%91%BC%E5%87%BA%E3%81%97/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Angular コンポーネント間の連携手法まとめ(Service/＠ViewChildで親から子のメソッドを呼出し)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -3016,7 +3292,7 @@
                     <span class="level-item">四月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -3092,6 +3368,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS/">
+                        <span class="tag">AWS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/AWS-SDK-for-JavaScript/">
                         <span class="tag">AWS SDK for JavaScript</span>
                         <span class="tag is-grey">2</span>
@@ -3108,7 +3391,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">7</span>
+                        <span class="tag is-grey">9</span>
                     </a>
                 </div>
                 
@@ -3248,7 +3531,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/cloud9/">
                         <span class="tag">cloud9</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/filter/">
+                        <span class="tag">filter()</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -3284,6 +3574,20 @@
                     <a class="tags has-addons" href="/tags/icarus/">
                         <span class="tag">icarus</span>
                         <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/map/">
+                        <span class="tag">map()</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/mat-checkbox/">
+                        <span class="tag">mat-checkbox</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 

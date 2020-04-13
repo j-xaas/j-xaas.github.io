@@ -1,0 +1,1856 @@
+<!DOCTYPE html>
+<html  lang="ja">
+<head>
+ 
+
+<script> data-ad-client="ca-pub-9328277883112913" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"</script>
+
+
+    
+
+<meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>タグ: filter() - J&#39;s Tech Blog</title>
+
+
+    <meta name="description" content="tech">
+<meta property="og:type" content="website">
+<meta property="og:title" content="J&#39;s Tech Blog">
+<meta property="og:url" content="https://j-xaas.github.io/tags/filter/index.html">
+<meta property="og:site_name" content="J&#39;s Tech Blog">
+<meta property="og:description" content="tech">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://j-xaas.github.io/images/og_image.png">
+<meta property="article:author" content="Junya">
+<meta property="article:tag" content="angular">
+<meta property="article:tag" content=" Firebase">
+<meta property="article:tag" content=" AWS">
+<meta property="article:tag" content=" Serverless">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://j-xaas.github.io/images/og_image.png">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-160034164-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-160034164-1');
+</script>
+
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo_original.svg" alt="J&#39;s Tech Blog" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/2020/02/04/About-This-Blog/">About</a>
+                
+                <a class="navbar-item"
+                href="https://sheeps.official.ec/">EC</a>
+                
+                <a class="navbar-item"
+                href="/2020/03/18/Privacy-Policy/">Policy</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    <a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">タグ</a></li>
+            <li class="is-active"><a href="#" aria-current="page">filter()</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-04-13T14:26:33.000Z">2020-04-13</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    11分 read (About 1614 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/04/13/Angular-map-fileter-mat-checkbox%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%AB%E6%A0%BC%E7%B4%8D%E3%81%99%E3%82%8B%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF/">[Angular] map() &amp; filter() &amp; mat-checkboxを使って選択値を配列に格納するロジック</a>
+            
+        </h1>
+        <div class="content">
+            <ul>
+<li>複数のチェックボックスの中で選択項目を判別して、それぞれの固有値を配列に格納するロジックの作り方を解説します。<ul>
+<li>以下のSample画面で言うと、チェックされたJapanの値を配列に格納します</li>
+</ul>
+</li>
+<li>使いどころ<ul>
+<li>checkした項目に応じて外部サービスに対するリクエストに含めるパラメータを変化させる</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79117116-346fe880-7dc5-11ea-9065-ded3d7d9e307.png" height="90px" width="300px" alt="画面イメージ">
+</div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#基礎知識">基礎知識</a><ul>
+<li><a href="#angularにおけるデータ加工ロジック">Angularにおけるデータ加工ロジック</a></li>
+<li><a href="#map">map</a></li>
+<li><a href="#filter">filter</a></li>
+</ul>
+</li>
+<li><a href="#実装">実装</a><ul>
+<li><a href="#データ構造の定義">データ構造の定義</a></li>
+<li><a href="#状態判別ロジック">状態判別ロジック</a></li>
+<li><a href="#配列データを引数としてリクエストを送る際の例">配列データを引数としてリクエストを送る際の例</a></li>
+<li><a href="#tsに定めたdataに応じてチェックボックスのリストを表示するhtml">tsに定めたdataに応じてチェックボックスのリストを表示するHTML</a><ul>
+<li><a href="#基礎知識-1">基礎知識</a></li>
+<li><a href="#記載例">記載例</a></li>
+</ul>
+</li>
+<li><a href="#画面で確認">画面で確認</a></li>
+<li><a href="#おまけ-for文で書く場合">おまけ: for文で書く場合</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="基礎知識">基礎知識</span></h2><ul>
+<li>すぐに実装に取り掛かりたい方は飛ばしてOK</li>
+</ul>
+<h3><span id="angularにおけるデータ加工ロジック">Angularにおけるデータ加工ロジック</span></h3><ul>
+<li>基本的にmapやfilterを利用する<ul>
+<li>アンチパターン<ul>
+<li>何でもfor,if文</li>
+</ul>
+</li>
+<li>何故か?<ul>
+<li>mapは並列処理<ul>
+<li>for文と比較して処理が高速</li>
+</ul>
+</li>
+<li>書式がシンプル<ul>
+<li>開発期間短縮</li>
+<li>可読性向上</li>
+<li>リファクタリングの簡略化</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="map">map</span></h3><ul>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/map">map()</a><ul>
+<li>処理<ul>
+<li>引数として与えられた配列の各要素に対して、一つづつ関数を実行</li>
+<li>カウンタが不要な配列向けのfor文というイメージでOKです</li>
+</ul>
+</li>
+<li>返り値<ul>
+<li>実行結果から新たな配列を生成</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="filter">filter</span></h3><ul>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">filter()</a><ul>
+<li>処理<ul>
+<li>引数として与えられたテスト関数を各配列要素に対して実行</li>
+<li>配列向けのif文というイメージでOKです</li>
+</ul>
+</li>
+<li>返り値<ul>
+<li>テスト関数の条件に合格した要素からなる新しい配列を生成</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>利用イメージ</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 配列を宣言</span><br><span class="line">const array &#x3D; [&#39;AA&#39;, &#39;BB&#39;, &#39;CC&#39;, &#39;DDD&#39;, &#39;EEEE&#39;, &#39;FFFFF&#39;];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 配列arrayを引数として、条件式3文字以上の要素を抽出して、配列として返す</span><br><span class="line">const result &#x3D; array.filter(array &#x3D;&gt; array.length &gt;&#x3D; 3);</span><br><span class="line"></span><br><span class="line">console.log(result);</span><br><span class="line">&#x2F;&#x2F; output: Array [&quot;DDD&quot;, &quot;EEEE&quot;, &quot;FFFFF&quot;]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>構文は以下</p>
+<ul>
+<li>value: 配列の要素</li>
+<li>index: インデックス</li>
+<li>array: 操作中の配列本体<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var newArray &#x3D; arr.filter(callback(element[, index[, array]])[, thisArg])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>他の利用例は以下を参考にどうぞ</p>
+<ul>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">MDN</a>をご覧ください</li>
+<li><a href="https://ginpen.com/2018/12/12/array-filter/">その名の通りのfilter()で絞り込み。（配列とかおれおれAdvent Calendar2018 – 12日目）</a></li>
+</ul>
+</li>
+</ul>
+<h2><span id="実装">実装</span></h2><p>ざっくりイメージは以下</p>
+<ul>
+<li>tsファイル<ul>
+<li>役割<ul>
+<li>データ構造の定義</li>
+<li>判別ロジック<ul>
+<li>(click)イベントで発火</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>html<ul>
+<li>役割<ul>
+<li>checkboxの表示</li>
+<li>tsファイルで指定したデータの参照</li>
+<li>(click)イベントの指定</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="データ構造の定義">データ構造の定義</span></h3><ul>
+<li>配列dataに以下のようにデータ構造を定義します<ul>
+<li>valueを読み替えて使用してください</li>
+</ul>
+</li>
+<li>sample.component.ts<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; dataにcheckboxの値とチェック状態の初期値：selectedを定義</span><br><span class="line">data &#x3D; [</span><br><span class="line">    &#123; value: &#39;Japan&#39;, selected: false&#125;, &#x2F;&#x2F; 初期値 true</span><br><span class="line">    &#123; value: &#39;America&#39;, selected: false&#125;,</span><br><span class="line">    &#123; value: &#39;China&#39;, selected: false&#125;,</span><br><span class="line">    &#123; value: &#39;England&#39;, selected: false&#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3><span id="状態判別ロジック">状態判別ロジック</span></h3><ul>
+<li>状態を判別するmethodを宣言します</li>
+<li>ざっくりイメージ<ul>
+<li>filter()<ul>
+<li>data全体からチェック済みのもの(Selected=true)に絞る</li>
+</ul>
+</li>
+<li>map()<ul>
+<li>残ったdataのvalueで配列を生成</li>
+</ul>
+</li>
+<li>Listに格納</li>
+</ul>
+</li>
+<li>sample.component.ts<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">makeList() &#123;</span><br><span class="line">    &#x2F;&#x2F; 格納先の配列を宣言</span><br><span class="line">    let countryList &#x3D; [];</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; selectedからチェック状態を確認して、配列にを格納していく</span><br><span class="line">    countryList &#x3D; this.data </span><br><span class="line">        .filter((d) &#x3D;&gt; d.selected) &#x2F;&#x2F; checkされているものに絞る</span><br><span class="line">        .map((d) &#x3D;&gt; d.value); &#x2F;&#x2F; valueを取得</span><br><span class="line">    return countryList; &#x2F;&#x2F;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3><span id="配列データを引数としてリクエストを送る際の例">配列データを引数としてリクエストを送る際の例</span></h3><ul>
+<li>選択値を使って外部サービスへリクエストを行うケースを想定<ul>
+<li>service側で受け取った変数に応じた分岐処理を用意しておくイメージです</li>
+</ul>
+</li>
+<li>sample.component.ts<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">submit()&#123;</span><br><span class="line">    &#x2F;&#x2F; 選択値を受け取る</span><br><span class="line">    const selectedCountries &#x3D; this.makeList();</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 任意のServiceのメソッドを実行</span><br><span class="line">    getService.requesrMethod(selectedCountries)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h3><span id="tsに定めたdataに応じてチェックボックスのリストを表示するhtml">tsに定めたdataに応じてチェックボックスのリストを表示するHTML</span></h3><h4><span id="基礎知識">基礎知識</span></h4><ul>
+<li><p><a href="https://angular.jp/api/common/NgForOf#ngforof">ngFor</a></p>
+<ul>
+<li>指定した配列をループ表示させる<a href="https://angular.jp/guide/structural-directives">構造ディレクティブ</a><ul>
+<li>べた書きするよりもすっきり書けます</li>
+<li>今回は以下のように配列:dataをループさせています<ul>
+<li>ngForのループの中でdataを変数itemとして使うという意味<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*ngFor&#x3D; &quot;let item of data; index as i&quot;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ng-container x *ngFor<ul>
+<li>組み合わせると、ng-containerの中の要素全てを一まとまりでループさせることが可能です</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="https://material.angular.io/components/checkbox/overview">mat-checkbox</a></p>
+<ul>
+<li>通常のcheckboxはイケてないので<a href="https://material.angular.io/">Angular Material</a>を使います<ul>
+<li>通常のcheckboxを使う場合は”mat-checkbox”を”input”に読み替えてください</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Angularのフォーム</p>
+<ul>
+<li>二種類あります<ul>
+<li>テンプレート駆動型<ul>
+<li>書式がシンプルで手軽に実装可能であるため採用</li>
+<li>#myForm=”ngForm” と設定することでこちらになる</li>
+</ul>
+</li>
+<li>モデル駆動型 (Reactive駆動型)<ul>
+<li>コードは冗長になりがち</li>
+<li>より柔軟に複雑な要件を満たせる<h4><span id="記載例">記載例</span></h4></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>sample.component.html</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;Choose Country&lt;&#x2F;div&gt;</span><br><span class="line">&lt;!---formで選択したリージョンの情報を纏めてからリクエスト------&gt;</span><br><span class="line">&lt;form #myForm&#x3D;&quot;ngForm&quot; (ngSubmit)&#x3D;&quot;submit()&quot;&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!---定義した配列dataをngForでループ表示 要素をiでカウント----&gt;</span><br><span class="line">  &lt;ng-container *ngFor&#x3D; &quot;let item of data; index as i&quot; &gt;</span><br><span class="line"></span><br><span class="line">    &lt;!---inputで通常のCheckboxに変えてもOK---&gt;</span><br><span class="line">    &lt;mat-checkbox type&#x3D;&quot;checkbox&quot; name &#x3D; &quot;country&#123;&#123;i&#125;&#125;&quot;</span><br><span class="line">    [(ngModel)]&#x3D;&quot;data[i].selected&quot;</span><br><span class="line">    [value]&#x3D;&quot;item.value&quot;</span><br><span class="line">    (change)&#x3D;&quot;checkCountry(i)&quot;</span><br><span class="line">    &gt;&#123;&#123;data[i].value&#125;&#125;&lt;&#x2F;mat-checkbox&gt; </span><br><span class="line"></span><br><span class="line">  &lt;&#x2F;ng-container&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!---チェックボックスから得たデータを纏めてリクエストするボタン---&gt;</span><br><span class="line">  &lt;button mat-raised-button color&#x3D;&quot;primary&quot;&gt;Get Data&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;!--(ngSubmit)&#x3D;で設定されたsubmit()が実行される--&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3><span id="画面で確認">画面で確認</span></h3><ul>
+<li>以下のように表示されます</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79117116-346fe880-7dc5-11ea-9065-ded3d7d9e307.png" height="90px" width="300px" alt="画面イメージ">
+</div>
+
+
+<h3><span id="おまけ-for文で書く場合">おまけ: for文で書く場合</span></h3><ul>
+<li>for文でも判別ロジック書いたので参考までにどうぞ<ul>
+<li>だいぶ冗長になってしまいます</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 格納先を宣言</span><br><span class="line">let regionList &#x3D; [];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; for文で書く場合</span><br><span class="line">var num&#x3D;0;</span><br><span class="line">for ( let c &#x3D; 0; c &lt;&#x3D; this.data.length - 1 ; c++) &#123;</span><br><span class="line">  if (this.data[c].selected) &#123; &#x2F;&#x2F; Checkされているか判定 trueなら実行</span><br><span class="line">      &#x2F;&#x2F; 配列に要素を追加 .push()</span><br><span class="line">      countryList.push(this.data[c].value); &#x2F;&#x2F; リージョン名を格納</span><br><span class="line">      console.log(countryList[num] + &#39; checked&#39;); &#x2F;&#x2F; デバッグ用</span><br><span class="line">      num++;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    console.log(&#39;Not Check&#39;); &#x2F;&#x2F; デバッグ用</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(countryList);</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="is-rounded" src="/images/oshushi.png" alt="J">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        J
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        IT Specialist
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Tokyo Japan</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        投稿
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            24
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        カテゴリ
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            14
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        タグ
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            42
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/ppoffice" target="_blank" rel="noopener">
+                フォローする</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/ppoffice">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Facebook" href="https://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            リンク
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                カテゴリ
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Serverless-Application-Dev/">
+            <span class="level-start">
+                <span class="level-item">Serverless Application Dev</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">9</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Serverless-Application-Dev/AWS/">
+            <span class="level-start">
+                <span class="level-item">AWS</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Serverless-Application-Dev/Firebase/">
+            <span class="level-start">
+                <span class="level-item">Firebase</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Serverless-Application-Dev/SPA-Angular/">
+            <span class="level-start">
+                <span class="level-item">SPA (Angular)</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/SmartHome/">
+            <span class="level-start">
+                <span class="level-item">SmartHome</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/SmartHome/DTM/">
+            <span class="level-start">
+                <span class="level-item">DTM</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/Tool-Tips/">
+            <span class="level-start">
+                <span class="level-item">Tool Tips</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/Tool-Tips/AWS-Cloud9/">
+            <span class="level-start">
+                <span class="level-item">AWS Cloud9</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Tool-Tips/Chrome-%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/">
+            <span class="level-start">
+                <span class="level-item">Chrome 拡張機能</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Tool-Tips/Github/">
+            <span class="level-start">
+                <span class="level-item">Github</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Tool-Tips/Google-Cloud-Shell/">
+            <span class="level-start">
+                <span class="level-item">Google Cloud Shell</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Tool-Tips/RPA/">
+            <span class="level-start">
+                <span class="level-item">RPA</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li></ul></li><li>
+        <a class="level is-marginless" href="/categories/WEB-Page-Dev/">
+            <span class="level-start">
+                <span class="level-item">WEB Page Dev</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a><ul><li>
+        <a class="level is-marginless" href="/categories/WEB-Page-Dev/Hexo/">
+            <span class="level-start">
+                <span class="level-item">Hexo</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li></ul></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            タグクラウド
+        </h3>
+        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12.5px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/DTM/" style="font-size: 10px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 12.5px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 17.5px;">Hexo</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 12.5px;">RPA</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 15px;">cloud9</a> <a href="/tags/filter/" style="font-size: 10px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 15px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/map/" style="font-size: 10px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 10px;">mat-checkbox</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 12.5px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen ">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最近の記事
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/04/14/Cloud9-x-Angular-cloud9%E3%81%A7ng-serve%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6AP%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Cloud9 x Angular] cloud9でng serveを実行してAPの画面を確認するまで">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-13T17:04:12.000Z">2020-04-14</time></div>
+                    <a href="/2020/04/14/Cloud9-x-Angular-cloud9%E3%81%A7ng-serve%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6AP%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Cloud9 x Angular] cloud9でng serveを実行してAPの画面を確認するまで</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/04/13/Angular-map-fileter-mat-checkbox%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%AB%E6%A0%BC%E7%B4%8D%E3%81%99%E3%82%8B%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Angular] map() &amp; filter() &amp; mat-checkboxを使って選択値を配列に格納するロジック">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-13T14:26:33.000Z">2020-04-13</time></div>
+                    <a href="/2020/04/13/Angular-map-fileter-mat-checkbox%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%AB%E6%A0%BC%E7%B4%8D%E3%81%99%E3%82%8B%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular] map() &amp; filter() &amp; mat-checkboxを使って選択値を配列に格納するロジック</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/04/10/Angular-%E8%A6%AA%E5%AD%90%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E5%85%B1%E6%9C%89-Input-Output-EventEmitter/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Angular]親子コンポーネント間でデータを共有(@Input/@Output/EventEmitter)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-09T16:22:31.000Z">2020-04-10</time></div>
+                    <a href="/2020/04/10/Angular-%E8%A6%AA%E5%AD%90%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E5%85%B1%E6%9C%89-Input-Output-EventEmitter/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular]親子コンポーネント間でデータを共有(@Input/@Output/EventEmitter)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/04/09/iPhone-iPad%E3%81%AERPA%E3%83%84%E3%83%BC%E3%83%AB%E3%80%8E%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88%E3%80%8F%E3%81%A7%E3%82%B5%E3%83%9C%E3%82%8A%E3%82%92%E9%98%B2%E6%AD%A2%E3%81%99%E3%82%8B/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="iPhone/iPadのRPAツール『ショートカット』でサボりを防止する">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-08T15:28:09.000Z">2020-04-09</time></div>
+                    <a href="/2020/04/09/iPhone-iPad%E3%81%AERPA%E3%83%84%E3%83%BC%E3%83%AB%E3%80%8E%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88%E3%80%8F%E3%81%A7%E3%82%B5%E3%83%9C%E3%82%8A%E3%82%92%E9%98%B2%E6%AD%A2%E3%81%99%E3%82%8B/" class="title has-link-black-ter is-size-6 has-text-weight-normal">iPhone/iPadのRPAツール『ショートカット』でサボりを防止する</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/RPA/">RPA</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/04/08/%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E9%A3%B2%E3%81%BF%E5%90%91%E3%81%91-Netflix-Party%E3%81%A7%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%91%91%E8%B3%9E%E4%BC%9A%E3%82%92%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[オンライン飲み会向け]　Netflix Partyでリモート鑑賞会をする方法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-08T13:36:09.000Z">2020-04-08</time></div>
+                    <a href="/2020/04/08/%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E9%A3%B2%E3%81%BF%E5%90%91%E3%81%91-Netflix-Party%E3%81%A7%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%91%91%E8%B3%9E%E4%BC%9A%E3%82%92%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[オンライン飲み会向け]　Netflix Partyでリモート鑑賞会をする方法</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Chrome-%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/">Chrome 拡張機能</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            アーカイブ
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">14</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                タグ
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EventEmitter/">
+                        <span class="tag">@EventEmitter</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Input/">
+                        <span class="tag">@Input</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Output/">
+                        <span class="tag">@Output</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ViewChild/">
+                        <span class="tag">@ViewChild</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AMP/">
+                        <span class="tag">AMP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS/">
+                        <span class="tag">AWS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS-SDK-for-JavaScript/">
+                        <span class="tag">AWS SDK for JavaScript</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Alexa/">
+                        <span class="tag">Alexa</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Angular/">
+                        <span class="tag">Angular</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AngularFire/">
+                        <span class="tag">AngularFire</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Augury/">
+                        <span class="tag">Augury</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Cloud9/">
+                        <span class="tag">Cloud9</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DTM/">
+                        <span class="tag">DTM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Disqus/">
+                        <span class="tag">Disqus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Firebase/">
+                        <span class="tag">Firebase</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Github-com/">
+                        <span class="tag">Github.com</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GithubEnterprise/">
+                        <span class="tag">GithubEnterprise</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GithubPages/">
+                        <span class="tag">GithubPages</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Google-Chrome/">
+                        <span class="tag">Google Chrome</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Google-Cloud-Shell/">
+                        <span class="tag">Google Cloud Shell</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Netflix-Party/">
+                        <span class="tag">Netflix Party</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RPA/">
+                        <span class="tag">RPA</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Service/">
+                        <span class="tag">Service</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Siri/">
+                        <span class="tag">Siri</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Sitemap/">
+                        <span class="tag">Sitemap</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Treetable/">
+                        <span class="tag">Treetable</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/WEB-Page-Dev/">
+                        <span class="tag">WEB Page Dev</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/cloud9/">
+                        <span class="tag">cloud9</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/filter/">
+                        <span class="tag">filter()</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/google-search-console/">
+                        <span class="tag">google search console</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/hexo-generator-amp/">
+                        <span class="tag">hexo-generator-amp</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/iPad-Pro/">
+                        <span class="tag">iPad Pro</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/iPhone/">
+                        <span class="tag">iPhone</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/icarus/">
+                        <span class="tag">icarus</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/map/">
+                        <span class="tag">map()</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/mat-checkbox/">
+                        <span class="tag">mat-checkbox</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/">
+                        <span class="tag">”global is not defined”</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/">
+                        <span class="tag">ショートカット</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/">
+                        <span class="tag">テレワーク</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/">
+                        <span class="tag">ブラウザ型IDE</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/">
+                        <span class="tag">共同開発</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right ">
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最近の記事
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/04/14/Cloud9-x-Angular-cloud9%E3%81%A7ng-serve%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6AP%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Cloud9 x Angular] cloud9でng serveを実行してAPの画面を確認するまで">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-13T17:04:12.000Z">2020-04-14</time></div>
+                    <a href="/2020/04/14/Cloud9-x-Angular-cloud9%E3%81%A7ng-serve%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6AP%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Cloud9 x Angular] cloud9でng serveを実行してAPの画面を確認するまで</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/04/13/Angular-map-fileter-mat-checkbox%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%AB%E6%A0%BC%E7%B4%8D%E3%81%99%E3%82%8B%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Angular] map() &amp; filter() &amp; mat-checkboxを使って選択値を配列に格納するロジック">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-13T14:26:33.000Z">2020-04-13</time></div>
+                    <a href="/2020/04/13/Angular-map-fileter-mat-checkbox%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%AB%E6%A0%BC%E7%B4%8D%E3%81%99%E3%82%8B%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular] map() &amp; filter() &amp; mat-checkboxを使って選択値を配列に格納するロジック</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/04/10/Angular-%E8%A6%AA%E5%AD%90%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E5%85%B1%E6%9C%89-Input-Output-EventEmitter/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Angular]親子コンポーネント間でデータを共有(@Input/@Output/EventEmitter)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-09T16:22:31.000Z">2020-04-10</time></div>
+                    <a href="/2020/04/10/Angular-%E8%A6%AA%E5%AD%90%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E5%85%B1%E6%9C%89-Input-Output-EventEmitter/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular]親子コンポーネント間でデータを共有(@Input/@Output/EventEmitter)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/04/09/iPhone-iPad%E3%81%AERPA%E3%83%84%E3%83%BC%E3%83%AB%E3%80%8E%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88%E3%80%8F%E3%81%A7%E3%82%B5%E3%83%9C%E3%82%8A%E3%82%92%E9%98%B2%E6%AD%A2%E3%81%99%E3%82%8B/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="iPhone/iPadのRPAツール『ショートカット』でサボりを防止する">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-08T15:28:09.000Z">2020-04-09</time></div>
+                    <a href="/2020/04/09/iPhone-iPad%E3%81%AERPA%E3%83%84%E3%83%BC%E3%83%AB%E3%80%8E%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88%E3%80%8F%E3%81%A7%E3%82%B5%E3%83%9C%E3%82%8A%E3%82%92%E9%98%B2%E6%AD%A2%E3%81%99%E3%82%8B/" class="title has-link-black-ter is-size-6 has-text-weight-normal">iPhone/iPadのRPAツール『ショートカット』でサボりを防止する</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/RPA/">RPA</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/04/08/%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E9%A3%B2%E3%81%BF%E5%90%91%E3%81%91-Netflix-Party%E3%81%A7%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%91%91%E8%B3%9E%E4%BC%9A%E3%82%92%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[オンライン飲み会向け]　Netflix Partyでリモート鑑賞会をする方法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-08T13:36:09.000Z">2020-04-08</time></div>
+                    <a href="/2020/04/08/%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E9%A3%B2%E3%81%BF%E5%90%91%E3%81%91-Netflix-Party%E3%81%A7%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%91%91%E8%B3%9E%E4%BC%9A%E3%82%92%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[オンライン飲み会向け]　Netflix Partyでリモート鑑賞会をする方法</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Chrome-%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/">Chrome 拡張機能</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            アーカイブ
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">四月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">6</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">14</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                タグ
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/EventEmitter/">
+                        <span class="tag">@EventEmitter</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Input/">
+                        <span class="tag">@Input</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Output/">
+                        <span class="tag">@Output</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ViewChild/">
+                        <span class="tag">@ViewChild</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AMP/">
+                        <span class="tag">AMP</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS/">
+                        <span class="tag">AWS</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AWS-SDK-for-JavaScript/">
+                        <span class="tag">AWS SDK for JavaScript</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Alexa/">
+                        <span class="tag">Alexa</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Angular/">
+                        <span class="tag">Angular</span>
+                        <span class="tag is-grey">9</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AngularFire/">
+                        <span class="tag">AngularFire</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Augury/">
+                        <span class="tag">Augury</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Cloud9/">
+                        <span class="tag">Cloud9</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/DTM/">
+                        <span class="tag">DTM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Disqus/">
+                        <span class="tag">Disqus</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Firebase/">
+                        <span class="tag">Firebase</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Github-com/">
+                        <span class="tag">Github.com</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GithubEnterprise/">
+                        <span class="tag">GithubEnterprise</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/GithubPages/">
+                        <span class="tag">GithubPages</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Google-Chrome/">
+                        <span class="tag">Google Chrome</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Google-Cloud-Shell/">
+                        <span class="tag">Google Cloud Shell</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hexo/">
+                        <span class="tag">Hexo</span>
+                        <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Netflix-Party/">
+                        <span class="tag">Netflix Party</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/RPA/">
+                        <span class="tag">RPA</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Service/">
+                        <span class="tag">Service</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Siri/">
+                        <span class="tag">Siri</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Sitemap/">
+                        <span class="tag">Sitemap</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Treetable/">
+                        <span class="tag">Treetable</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/WEB-Page-Dev/">
+                        <span class="tag">WEB Page Dev</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/cloud9/">
+                        <span class="tag">cloud9</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/filter/">
+                        <span class="tag">filter()</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/google-search-console/">
+                        <span class="tag">google search console</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/hexo-generator-amp/">
+                        <span class="tag">hexo-generator-amp</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/iPad-Pro/">
+                        <span class="tag">iPad Pro</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/iPhone/">
+                        <span class="tag">iPhone</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/icarus/">
+                        <span class="tag">icarus</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/map/">
+                        <span class="tag">map()</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/mat-checkbox/">
+                        <span class="tag">mat-checkbox</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/">
+                        <span class="tag">”global is not defined”</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/">
+                        <span class="tag">ショートカット</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/">
+                        <span class="tag">テレワーク</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/">
+                        <span class="tag">ブラウザ型IDE</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/">
+                        <span class="tag">共同開発</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo_original.svg" alt="J&#39;s Tech Blog" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Junya&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("ja");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'https://j-xaas.github.io',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Zurück nach oben" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '投稿',
+                PAGES: 'Pages',
+                CATEGORIES: 'カテゴリ',
+                TAGS: 'タグ',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

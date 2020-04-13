@@ -11,7 +11,7 @@ tags:
 ---
 
 <div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/74919073-64c28880-540d-11ea-8b40-15036b3fee05.png" height="100%" width="100%">
+<img src="https://user-images.githubusercontent.com/41946222/74919073-64c28880-540d-11ea-8b40-15036b3fee05.png" height="150px" width="400px">
 </div>
 
 

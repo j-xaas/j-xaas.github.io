@@ -17,7 +17,7 @@ toc: true
 <!-- toc -->
 
 ## 基礎知識
-- Angularにおける親子間のデータ共有にはデコレーターを利用します
+- Angularで親子間のデータを伝播させるにはデコレーターを利用します
 - デコレーター
     - 構成情報を付与する仕組み
         - 対象
@@ -63,7 +63,6 @@ data = [
 "onClick(select_name){
     this.selected = select_name;
 }
-
 ```
 
 #### parent.component.html
