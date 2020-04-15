@@ -28,7 +28,7 @@
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://j-xaas.github.io/images/og_image.png">
 <meta property="article:published_time" content="2020-03-05T13:28:41.000Z">
-<meta property="article:modified_time" content="2020-04-13T17:15:54.190Z">
+<meta property="article:modified_time" content="2020-04-15T17:35:47.414Z">
 <meta property="article:author" content="Junya">
 <meta property="article:tag" content="Angular">
 <meta property="article:tag" content="cloud9">
@@ -176,7 +176,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    21分 read (About 3084 words)
+                    26分 read (About 3857 words)
                 </span>
                 
                 
@@ -436,21 +436,28 @@
 </li>
 </ul>
 <p>それぞれ詳しく解説していきます  </p>
-<h4><span id="41-firebase-cliの導入">4.1. の導入</span></h4><ul>
-<li><h2><span id="この作業は環境に一度入れれば">この作業は環境に一度入れれば</span></h2></li>
+<h4><span id="41-firebase-cliの導入">4.1. Firebase CLIの導入</span></h4><ul>
+<li><a href="https://firebase.google.com/docs/cli?hl=ja#install-cli-mac-linux">Firebase CLI</a><ul>
+<li>環境に一度入れればOKです</li>
 <li>以下を実行することでinstallできます<ul>
-<li>firebase コマンドが有効になります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g firebase-tools</span><br></pre></td></tr></table></figure>
+<li>これでfirebase コマンドが有効になります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g firebase-tools</span><br></pre></td></tr></table></figure>
 
+</li>
+</ul>
 </li>
 </ul>
 </li>
 </ul>
 <h4><span id="42-angular-fireのinstall">4.2. angular fireのinstall</span></h4><ul>
 <li><a href="https://github.com/angular/angularfire">angularfire</a>を入れます<ul>
-<li>AngularとFirebase連携用のLibraryです</li>
+<li>AngularとFirebaseの連携用Libraryです</li>
+<li>こちらは環境単位ではなくAP単位で入れる必要があります</li>
 </ul>
 </li>
-<li>以下を実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firebase-sample (master) $ npm install @angular&#x2F;fire firebase --save</span><br></pre></td></tr></table></figure></li>
+<li>以下を実行<ul>
+<li>※最新版であればng addでもOK<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firebase-sample (master) $ npm install @angular&#x2F;fire firebase --save</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
 <li>出力結果<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+ @angular&#x2F;fire@5.4.2</span><br><span class="line">+ firebase@7.9.3</span><br><span class="line">added 140 packages from 98 contributors and audited 19218 packages in 17.919s</span><br><span class="line">found 5 vulnerabilities (3 moderate, 2 high)</span><br></pre></td></tr></table></figure>
 
 
@@ -502,11 +509,11 @@
 
 </li>
 </ul>
-<h4><span id="44-cliとfirebaseの関連付け">4.4. CLIとFirebaseの関連付け</span></h4><ul>
+<h4><span id="44-cliとfirebaseの関連付けfirebase-login">4.4. CLIとFirebaseの関連付け(firebase login)</span></h4><ul>
 <li>次に開発環境(Cloud9)のCLIとfirebaseを関連付けます<ul>
 <li>c9の場合–nolocalhostが必須<ul>
-<li>★社内Local環境でloginをやろうとするとFirebaseの認証がProxyに阻まれて突破できず詰むので気を付けましょう<ul>
-<li>あらゆる策を講じてもこれだけは解決できませんでした…</li>
+<li>★社内Local環境でloginをやろうとするとFirebase認証がProxyに阻まれて突破できず詰むので気を付けましょう<ul>
+<li>頑張っても解決できませんでした…</li>
 </ul>
 </li>
 </ul>
@@ -516,15 +523,97 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">firebase login --no-localhost --reauth</span><br><span class="line"></span><br><span class="line">i  Firebase optionally collects CLI usage and error reporting information to help improve our products. Data is collected in accordance with Google&#39;s privacy policy (https:&#x2F;&#x2F;policies.google.com&#x2F;privacy) and is not used to identify you.</span><br><span class="line"></span><br><span class="line">? Allow Firebase to collect CLI usage and error reporting information? Yes</span><br><span class="line">i  To change your data collection preference at any time, run &#96;firebase logout&#96; and log in again.</span><br><span class="line"></span><br><span class="line">Visit this URL on any device to log in:</span><br><span class="line">&lt;認証用のURL&gt;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>上記のURLから、ブラウザでGoogleアカウント認証を進めるとコードが表示される</li>
+<li>上記のURLから、ブラウザでGoogleアカウント認証を進めるとコードが表示されます</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79242034-c0aa0a80-7eae-11ea-8305-aef46bd36bed.png" height="200px" width="400px">
+</div>
+
+
+<ul>
 <li>貼り付けてSuccessと表示されれば成功です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">? Paste authorization code here: &lt;Code&gt;</span><br><span class="line"></span><br><span class="line">✔  Success! Logged in as &lt;googleアカウント名&gt;</span><br></pre></td></tr></table></figure></li>
 <li>Cloud9のCLIからFirebase(=Google Cloud)上のリソースにアクセス可能になりました</li>
 </ul>
-<h4><span id="45-apとfirebaseのpjの関連付け">4.5. APとfirebaseのpjの関連付け</span></h4><ul>
-<li>Angular PJ直下で実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firebase init</span><br></pre></td></tr></table></figure></li>
-<li>以下のように出力されれば成功です<ul>
-<li>使いたいサービスを選択すると簡単にCloud側と連携できます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">     ######## #### ########  ######## ########     ###     ######  ########</span><br><span class="line">     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##</span><br><span class="line">     ######    ##  ########  ######   ########  #########  ######  ######</span><br><span class="line">     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##</span><br><span class="line">     ##       #### ##     ## ######## ########  ##     ##  ######  ########</span><br><span class="line"></span><br><span class="line">You&#39;re about to initialize a Firebase project in this directory:</span><br><span class="line"></span><br><span class="line">  &#x2F;home&#x2F;ec2-user&#x2F;environment&#x2F;test-app</span><br><span class="line"></span><br><span class="line">? Which Firebase CLI features do you want to set up for this folder? Press Space to select features, then Enter to confirm your choices. (Press</span><br><span class="line"> &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection)</span><br><span class="line">❯◯ Database: Deploy Firebase Realtime Database Rules</span><br><span class="line"> ◯ Firestore: Deploy rules and create indexes for Firestore</span><br><span class="line"> ◯ Functions: Configure and deploy Cloud Functions</span><br><span class="line"> ◯ Hosting: Configure and deploy Firebase Hosting sites</span><br><span class="line"> ◯ Storage: Deploy Cloud Storage security rules</span><br><span class="line"> ◯ Emulators: Set up local emulators for Firebase features</span><br></pre></td></tr></table></figure>
+<h4><span id="45-apとfirebaseのpjの関連付けfirebase-init">4.5. APとfirebaseのPJの関連付け(firebase init)</span></h4><ul>
+<li><p>Angular PJ直下で実行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firebase init</span><br></pre></td></tr></table></figure></li>
+<li><p>以下のように出力されれば成功です</p>
+<ul>
+<li>使いたいサービスを選択すると簡単にCloud側と連携できます<ul>
+<li>スペースキーで各サービスを選択できます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">     ######## #### ########  ######## ########     ###     ######  ########</span><br><span class="line">     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##</span><br><span class="line">     ######    ##  ########  ######   ########  #########  ######  ######</span><br><span class="line">     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##</span><br><span class="line">     ##       #### ##     ## ######## ########  ##     ##  ######  ########</span><br><span class="line"></span><br><span class="line">You&#39;re about to initialize a Firebase project in this directory:</span><br><span class="line"></span><br><span class="line">  &#x2F;home&#x2F;ec2-user&#x2F;environment&#x2F;firebase-sample</span><br><span class="line"></span><br><span class="line">? Which Firebase CLI features do you want to set up for this folder? Press Space to select features, then Enter to confirm your choices. (Press</span><br><span class="line"> &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection)</span><br><span class="line">❯◯ Database: Deploy Firebase Realtime Database Rules</span><br><span class="line"> ◯ Firestore: Deploy rules and create indexes for Firestore</span><br><span class="line"> ◯ Functions: Configure and deploy Cloud Functions</span><br><span class="line"> ◯ Hosting: Configure and deploy Firebase Hosting sites</span><br><span class="line"> ◯ Storage: Deploy Cloud Storage security rules</span><br><span class="line"> ◯ Emulators: Set up local emulators for Firebase features</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Project Setup</p>
+<ul>
+<li>Enterを押すと以下が出力されます</li>
+<li>今回は事前にプロジェクトを作成しているので”use an exciting project”を選択</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x3D;&#x3D;&#x3D; Project Setup</span><br><span class="line"></span><br><span class="line">First, let&#39;s associate this project directory with a Firebase project.</span><br><span class="line">You can create multiple project aliases by running firebase use --add, </span><br><span class="line">but for now we&#39;ll just set up a default project.</span><br><span class="line"></span><br><span class="line">? Please select an option: </span><br><span class="line">❯ Use an existing project </span><br><span class="line">  Create a new project </span><br><span class="line">  Add Firebase to an existing Google Cloud Platform project </span><br><span class="line">  Don&#39;t set up a default project</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li><p>自身のアカウントで作成済みのFirebase Projectが選択肢としてでてきます</p>
+<ul>
+<li>事前に作った”fir-sample-3a2dc (firebase-sample)”を選択<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">? Select a default Firebase project for this directory: (Use arrow keys)</span><br><span class="line">❯ fir-sample-3a2dc (firebase-sample)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>以降は、先ほど選択したサービスのSetupが順に出てきます。いくつか例として書いておきます</p>
+</li>
+<li><p>Hosting Setup</p>
+<ul>
+<li>公開したいディレクトリを尋ねられます</li>
+<li>Angularであればビルドしたい際の生成物が格納されるを入力しましょう<ul>
+<li>dits/angular-pj-name</li>
+</ul>
+</li>
+<li>Hostingについての詳細は以下にまとめています<ul>
+<li><a href="https://j-xaas.github.io/2020/04/16/Firebase-Hosting完全版-Angularで開発したSPAを無料で公開～ダッシュボードで費用管理/">Firebase Hosting完全版(Angularで開発したSPAを無料で公開～ダッシュボードで費用管理)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Database Setup   </p>
+<ul>
+<li>ひとまずデフォルトでEnter<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x3D;&#x3D;&#x3D; Database Setup</span><br><span class="line"></span><br><span class="line">Firebase Realtime Database Rules allow you to define how your data should be</span><br><span class="line">structured and when your data can be read from and written to.</span><br><span class="line"></span><br><span class="line">? What file should be used for Database Rules? (database.rules.json)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Firestore Set up</p>
+<ul>
+<li>リソース(firestore)のlocationを設定していないとErrorが出ます<ul>
+<li>firebaseコンソール側で設定する必要があります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x3D;&#x3D;&#x3D; Firestore Setup</span><br><span class="line"></span><br><span class="line">Error: Cloud resource location is not set for this project but the operation you are attempting to perform in Cloud Firestore requires it. Please see this documentation for more details: https:&#x2F;&#x2F;firebase.google.com&#x2F;docs&#x2F;projects&#x2F;locations</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>以上で一先ずセットアップは完了です</p>
+</li>
+<li><p>次にのStepとしてFirebase HostingでAPを公開してみましょう（5分できます）</p>
+<ul>
+<li><a href="https://j-xaas.github.io/2020/04/16/Firebase-Hosting完全版-Angularで開発したSPAを無料で公開～ダッシュボードで費用管理/">Firebase Hosting完全版(Angularで開発したSPAを無料で公開～ダッシュボードで費用管理)</a></li>
+<li>実際にAuthentication(認証機能)やFirestore(ストレージ)を利用する手順は別記事に記載します</li>
+</ul>
+</li>
+</ul>
+<h2><span id="後書き">後書き</span></h2><p>ここまでで本格的な実装に入る準備が整いました。Firebaseを使いこなせば、認証機能もデータのCRUD機能も1日で簡単に実装することができます。モダンな手法を使いこなして素早くサービスを開発していきましょう。</p>
+<ul>
+<li>最後に、この先の機能実装の際に参考になりそうなページをまとめておきます。<ul>
+<li>APをFirebase Hostingで公開<ul>
+<li><a href="https://j-xaas.github.io/2020/04/16/Firebase-Hosting完全版-Angularで開発したSPAを無料で公開～ダッシュボードで費用管理/">Firebase Hosting完全版(Angularで開発したSPAを無料で公開～ダッシュボードで費用管理)</a></li>
+</ul>
+</li>
+<li>CRUD機能を実装<ul>
+<li><a href="https://mae.chab.in/archives/60256">AngularFireでFirestoreのCRUD処理を実装する【Angular + Firebase】</a></li>
+</ul>
+</li>
+<li>認証機能を実装<ul>
+<li><a href="https://satolabo.net/2019/11/30/angular8-fire-google-auth/">Angular8でFirebaseを使ってGoogleアカウント認証機能を実装する</a></li>
+</ul>
 </li>
 </ul>
 </li>
@@ -561,16 +650,6 @@
 <div style="text-align:center;">
 <img src="https://user-images.githubusercontent.com/41946222/79135318-1d8fbd00-7dea-11ea-9e6d-31134f1ad284.png" height="500px" width="500px">
 </div>
-
-
-<h2><span id="後書き">後書き</span></h2><p>ここまでで本格的な実装に入る準備が整いました。Firebaseを使いこなせば、認証機能もデータのCRUD機能も1日で簡単に実装することができます。モダンな手法を使いこなして素早くサービスを開発していきましょう。</p>
-<ul>
-<li>最後に、この先の機能実装の際に参考になりそうなページを共有しておきます。<ul>
-<li><a href="https://mae.chab.in/archives/60256">AngularFireでFirestoreのCRUD処理を実装する【Angular + Firebase】</a></li>
-<li><a href="https://satolabo.net/2019/11/30/angular8-fire-google-auth/">Angular8でFirebaseを使ってGoogleアカウント認証機能を実装する</a></li>
-</ul>
-</li>
-</ul>
 
         </div>
         
@@ -629,7 +708,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            24
+                            25
                         </p>
                     </a>
                 </div>
@@ -653,7 +732,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            42
+                            43
                         </p>
                     </a>
                 </div>
@@ -748,35 +827,31 @@
         </a><ul class="menu-list"><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">3.4.1</span>
-        <span>4.1. の導入</span>
-        </a></li></ul></li></ul></li><li>
+        <span>4.1. Firebase CLIの導入</span>
+        </a></li><li>
         <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">4</span>
-        <span>この作業は環境に一度入れれば</span>
-        </a><ul class="menu-list"><ul class="menu-list"><li>
-        <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">4.1.1</span>
+        <span class="has-mr-6">3.4.2</span>
         <span>4.2. angular fireのinstall</span>
-        </a></li></ul><li>
+        </a></li></ul></li><li>
         <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">4.2</span>
+        <span class="has-mr-6">3.5</span>
         <span>4.3. Angular環境設定ファイルにAPIキーを貼り付け</span>
         </a><ul class="menu-list"><li>
         <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">4.2.1</span>
-        <span>4.4. CLIとFirebaseの関連付け</span>
+        <span class="has-mr-6">3.5.1</span>
+        <span>4.4. CLIとFirebaseの関連付け(firebase login)</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">4.2.2</span>
-        <span>4.5. APとfirebaseのpjの関連付け</span>
+        <span class="has-mr-6">3.5.2</span>
+        <span>4.5. APとfirebaseのPJの関連付け(firebase init)</span>
         </a></li></ul></li></ul></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">4</span>
+        <span>後書き</span>
+        </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">5</span>
         <span>おまけ：cloud9でng serveする際の注意</span>
-        </a></li><li>
-        <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">6</span>
-        <span>後書き</span>
         </a></li></ul>
             </div>
         </div>
@@ -833,7 +908,7 @@
                 <span class="level-item">Serverless Application Dev</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">9</span>
+                <span class="level-item tag">10</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Serverless-Application-Dev/AWS/">
@@ -849,7 +924,7 @@
                 <span class="level-item">Firebase</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Serverless-Application-Dev/SPA-Angular/">
@@ -950,7 +1025,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12.5px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 10px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/DTM/" style="font-size: 10px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 10px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 12.5px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 17.5px;">Hexo</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 12.5px;">RPA</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 15px;">cloud9</a> <a href="/tags/filter/" style="font-size: 10px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 15px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/map/" style="font-size: 10px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 10px;">mat-checkbox</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 12.5px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12.5px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/AngularFire/" style="font-size: 12.5px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/DTM/" style="font-size: 10px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 12.5px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 12.5px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 17.5px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 12.5px;">RPA</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 15px;">cloud9</a> <a href="/tags/filter/" style="font-size: 10px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 15px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/map/" style="font-size: 10px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 10px;">mat-checkbox</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 12.5px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
     </div>
 </div>
     
@@ -962,6 +1037,25 @@
         <h3 class="menu-label">
             最近の記事
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/04/16/Firebase-Hosting%E5%AE%8C%E5%85%A8%E7%89%88-Angular%E3%81%A7%E9%96%8B%E7%99%BA%E3%81%97%E3%81%9FSPA%E3%82%92%E7%84%A1%E6%96%99%E3%81%A7%E5%85%AC%E9%96%8B%EF%BD%9E%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5%E3%83%9C%E3%83%BC%E3%83%89%E3%81%A7%E8%B2%BB%E7%94%A8%E7%AE%A1%E7%90%86/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Firebase Hosting完全版(Angularで開発したSPAを無料で公開～ダッシュボードで費用管理)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-15T17:09:36.000Z">2020-04-16</time></div>
+                    <a href="/2020/04/16/Firebase-Hosting%E5%AE%8C%E5%85%A8%E7%89%88-Angular%E3%81%A7%E9%96%8B%E7%99%BA%E3%81%97%E3%81%9FSPA%E3%82%92%E7%84%A1%E6%96%99%E3%81%A7%E5%85%AC%E9%96%8B%EF%BD%9E%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5%E3%83%9C%E3%83%BC%E3%83%89%E3%81%A7%E8%B2%BB%E7%94%A8%E7%AE%A1%E7%90%86/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Firebase Hosting完全版(Angularで開発したSPAを無料で公開～ダッシュボードで費用管理)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Firebase/">Firebase</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1039,25 +1133,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/04/08/%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E9%A3%B2%E3%81%BF%E5%90%91%E3%81%91-Netflix-Party%E3%81%A7%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%91%91%E8%B3%9E%E4%BC%9A%E3%82%92%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[オンライン飲み会向け]　Netflix Partyでリモート鑑賞会をする方法">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-08T13:36:09.000Z">2020-04-08</time></div>
-                    <a href="/2020/04/08/%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E9%A3%B2%E3%81%BF%E5%90%91%E3%81%91-Netflix-Party%E3%81%A7%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%91%91%E8%B3%9E%E4%BC%9A%E3%82%92%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[オンライン飲み会向け]　Netflix Partyでリモート鑑賞会をする方法</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Chrome-%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/">Chrome 拡張機能</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -1075,7 +1150,7 @@
                     <span class="level-item">四月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">6</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -1174,14 +1249,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">9</span>
+                        <span class="tag is-grey">10</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/AngularFire/">
                         <span class="tag">AngularFire</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1216,7 +1291,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Firebase/">
                         <span class="tag">Firebase</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1259,6 +1334,13 @@
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
                         <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hosting/">
+                        <span class="tag">Hosting</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -1433,6 +1515,25 @@
         
         <article class="media">
             
+            <a href="/2020/04/16/Firebase-Hosting%E5%AE%8C%E5%85%A8%E7%89%88-Angular%E3%81%A7%E9%96%8B%E7%99%BA%E3%81%97%E3%81%9FSPA%E3%82%92%E7%84%A1%E6%96%99%E3%81%A7%E5%85%AC%E9%96%8B%EF%BD%9E%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5%E3%83%9C%E3%83%BC%E3%83%89%E3%81%A7%E8%B2%BB%E7%94%A8%E7%AE%A1%E7%90%86/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Firebase Hosting完全版(Angularで開発したSPAを無料で公開～ダッシュボードで費用管理)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-15T17:09:36.000Z">2020-04-16</time></div>
+                    <a href="/2020/04/16/Firebase-Hosting%E5%AE%8C%E5%85%A8%E7%89%88-Angular%E3%81%A7%E9%96%8B%E7%99%BA%E3%81%97%E3%81%9FSPA%E3%82%92%E7%84%A1%E6%96%99%E3%81%A7%E5%85%AC%E9%96%8B%EF%BD%9E%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5%E3%83%9C%E3%83%BC%E3%83%89%E3%81%A7%E8%B2%BB%E7%94%A8%E7%AE%A1%E7%90%86/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Firebase Hosting完全版(Angularで開発したSPAを無料で公開～ダッシュボードで費用管理)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Firebase/">Firebase</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/04/14/Cloud9-x-Angular-cloud9%E3%81%A7ng-serve%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6AP%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="[Cloud9 x Angular] cloud9でng serveを実行してAPの画面を確認するまで">
@@ -1507,25 +1608,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/04/08/%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E9%A3%B2%E3%81%BF%E5%90%91%E3%81%91-Netflix-Party%E3%81%A7%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%91%91%E8%B3%9E%E4%BC%9A%E3%82%92%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[オンライン飲み会向け]　Netflix Partyでリモート鑑賞会をする方法">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-08T13:36:09.000Z">2020-04-08</time></div>
-                    <a href="/2020/04/08/%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E9%A3%B2%E3%81%BF%E5%90%91%E3%81%91-Netflix-Party%E3%81%A7%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%91%91%E8%B3%9E%E4%BC%9A%E3%82%92%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[オンライン飲み会向け]　Netflix Partyでリモート鑑賞会をする方法</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Chrome-%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/">Chrome 拡張機能</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1543,7 +1625,7 @@
                     <span class="level-item">四月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">6</span>
+                    <span class="level-item tag">7</span>
                 </span>
             </a>
         </li>
@@ -1642,14 +1724,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">9</span>
+                        <span class="tag is-grey">10</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/AngularFire/">
                         <span class="tag">AngularFire</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1684,7 +1766,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Firebase/">
                         <span class="tag">Firebase</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -1727,6 +1809,13 @@
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
                         <span class="tag is-grey">6</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Hosting/">
+                        <span class="tag">Hosting</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 

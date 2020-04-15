@@ -56,7 +56,7 @@
 			    "@id":"https://j-xaas.github.io/2020/03/05/Cloud9-x-Angular-x-FirebaseでAP開発（導入編）/"
 			},
 			"datePublished": "2020-03-05T13:28:41.000Z",
-			"dateModified": "2020-04-13T17:15:54.190Z",
+			"dateModified": "2020-04-15T17:35:47.414Z",
 			
 			"image": {
 				"@type": "ImageObject",
@@ -1738,7 +1738,7 @@ h6.categories {
     font-size: 0.5rem;
   }
 }
-#hexo-amp-id-1{text-align:center;}#hexo-amp-id-2{text-align:center;}#hexo-amp-id-3{text-align:center;}#hexo-amp-id-4{text-align:center;}#hexo-amp-id-5{text-align:center;}#hexo-amp-id-6{text-align:center;}#hexo-amp-id-7{text-align:center;}#hexo-amp-id-8{text-align:center;}#hexo-amp-id-9{text-align:center;}#hexo-amp-id-10{text-align:center;}#hexo-amp-id-11{text-align:center;}#hexo-amp-id-12{text-align:center;}
+#hexo-amp-id-1{text-align:center;}#hexo-amp-id-2{text-align:center;}#hexo-amp-id-3{text-align:center;}#hexo-amp-id-4{text-align:center;}#hexo-amp-id-5{text-align:center;}#hexo-amp-id-6{text-align:center;}#hexo-amp-id-7{text-align:center;}#hexo-amp-id-8{text-align:center;}#hexo-amp-id-9{text-align:center;}#hexo-amp-id-10{text-align:center;}#hexo-amp-id-11{text-align:center;}#hexo-amp-id-12{text-align:center;}#hexo-amp-id-13{text-align:center;}
 	</style>
 	
   </head>
@@ -2104,21 +2104,28 @@ h6.categories {
 </li>
 </ul>
 <p>&#x305D;&#x308C;&#x305E;&#x308C;&#x8A73;&#x3057;&#x304F;&#x89E3;&#x8AAC;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;  </p>
-<h4><span id="41-firebase-cli&#x306E;&#x5C0E;&#x5165;">4.1. &#x306E;&#x5C0E;&#x5165;</span></h4><ul>
-<li><h2><span id="&#x3053;&#x306E;&#x4F5C;&#x696D;&#x306F;&#x74B0;&#x5883;&#x306B;&#x4E00;&#x5EA6;&#x5165;&#x308C;&#x308C;&#x3070;">&#x3053;&#x306E;&#x4F5C;&#x696D;&#x306F;&#x74B0;&#x5883;&#x306B;&#x4E00;&#x5EA6;&#x5165;&#x308C;&#x308C;&#x3070;</span></h2></li>
+<h4><span id="41-firebase-cli&#x306E;&#x5C0E;&#x5165;">4.1. Firebase CLI&#x306E;&#x5C0E;&#x5165;</span></h4><ul>
+<li><a href="https://firebase.google.com/docs/cli?hl=ja#install-cli-mac-linux">Firebase CLI</a><ul>
+<li>&#x74B0;&#x5883;&#x306B;&#x4E00;&#x5EA6;&#x5165;&#x308C;&#x308C;&#x3070;OK&#x3067;&#x3059;</li>
 <li>&#x4EE5;&#x4E0B;&#x3092;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;install&#x3067;&#x304D;&#x307E;&#x3059;<ul>
-<li>firebase &#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x304C;&#x6709;&#x52B9;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g firebase-tools</span><br></pre></td></tr></tbody></table></figure>
+<li>&#x3053;&#x308C;&#x3067;firebase &#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x304C;&#x6709;&#x52B9;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g firebase-tools</span><br></pre></td></tr></tbody></table></figure>
 
+</li>
+</ul>
 </li>
 </ul>
 </li>
 </ul>
 <h4><span id="42-angular-fire&#x306E;install">4.2. angular fire&#x306E;install</span></h4><ul>
 <li><a href="https://github.com/angular/angularfire">angularfire</a>&#x3092;&#x5165;&#x308C;&#x307E;&#x3059;<ul>
-<li>Angular&#x3068;Firebase&#x9023;&#x643A;&#x7528;&#x306E;Library&#x3067;&#x3059;</li>
+<li>Angular&#x3068;Firebase&#x306E;&#x9023;&#x643A;&#x7528;Library&#x3067;&#x3059;</li>
+<li>&#x3053;&#x3061;&#x3089;&#x306F;&#x74B0;&#x5883;&#x5358;&#x4F4D;&#x3067;&#x306F;&#x306A;&#x304F;AP&#x5358;&#x4F4D;&#x3067;&#x5165;&#x308C;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;</li>
 </ul>
 </li>
-<li>&#x4EE5;&#x4E0B;&#x3092;&#x5B9F;&#x884C;<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firebase-sample (master) $ npm install @angular/fire firebase --save</span><br></pre></td></tr></tbody></table></figure></li>
+<li>&#x4EE5;&#x4E0B;&#x3092;&#x5B9F;&#x884C;<ul>
+<li>&#x203B;&#x6700;&#x65B0;&#x7248;&#x3067;&#x3042;&#x308C;&#x3070;ng add&#x3067;&#x3082;OK<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firebase-sample (master) $ npm install @angular/fire firebase --save</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+</li>
 <li>&#x51FA;&#x529B;&#x7D50;&#x679C;<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+ @angular/fire@5.4.2</span><br><span class="line">+ firebase@7.9.3</span><br><span class="line">added 140 packages from 98 contributors and audited 19218 packages in 17.919s</span><br><span class="line">found 5 vulnerabilities (3 moderate, 2 high)</span><br></pre></td></tr></tbody></table></figure>
 
 
@@ -2170,11 +2177,11 @@ h6.categories {
 
 </li>
 </ul>
-<h4><span id="44-cli&#x3068;firebase&#x306E;&#x95A2;&#x9023;&#x4ED8;&#x3051;">4.4. CLI&#x3068;Firebase&#x306E;&#x95A2;&#x9023;&#x4ED8;&#x3051;</span></h4><ul>
+<h4><span id="44-cli&#x3068;firebase&#x306E;&#x95A2;&#x9023;&#x4ED8;&#x3051;firebase-login">4.4. CLI&#x3068;Firebase&#x306E;&#x95A2;&#x9023;&#x4ED8;&#x3051;(firebase login)</span></h4><ul>
 <li>&#x6B21;&#x306B;&#x958B;&#x767A;&#x74B0;&#x5883;(Cloud9)&#x306E;CLI&#x3068;firebase&#x3092;&#x95A2;&#x9023;&#x4ED8;&#x3051;&#x307E;&#x3059;<ul>
 <li>c9&#x306E;&#x5834;&#x5408;&#x2013;nolocalhost&#x304C;&#x5FC5;&#x9808;<ul>
-<li>&#x2605;&#x793E;&#x5185;Local&#x74B0;&#x5883;&#x3067;login&#x3092;&#x3084;&#x308D;&#x3046;&#x3068;&#x3059;&#x308B;&#x3068;Firebase&#x306E;&#x8A8D;&#x8A3C;&#x304C;Proxy&#x306B;&#x963B;&#x307E;&#x308C;&#x3066;&#x7A81;&#x7834;&#x3067;&#x304D;&#x305A;&#x8A70;&#x3080;&#x306E;&#x3067;&#x6C17;&#x3092;&#x4ED8;&#x3051;&#x307E;&#x3057;&#x3087;&#x3046;<ul>
-<li>&#x3042;&#x3089;&#x3086;&#x308B;&#x7B56;&#x3092;&#x8B1B;&#x3058;&#x3066;&#x3082;&#x3053;&#x308C;&#x3060;&#x3051;&#x306F;&#x89E3;&#x6C7A;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3067;&#x3057;&#x305F;&#x2026;</li>
+<li>&#x2605;&#x793E;&#x5185;Local&#x74B0;&#x5883;&#x3067;login&#x3092;&#x3084;&#x308D;&#x3046;&#x3068;&#x3059;&#x308B;&#x3068;Firebase&#x8A8D;&#x8A3C;&#x304C;Proxy&#x306B;&#x963B;&#x307E;&#x308C;&#x3066;&#x7A81;&#x7834;&#x3067;&#x304D;&#x305A;&#x8A70;&#x3080;&#x306E;&#x3067;&#x6C17;&#x3092;&#x4ED8;&#x3051;&#x307E;&#x3057;&#x3087;&#x3046;<ul>
+<li>&#x9811;&#x5F35;&#x3063;&#x3066;&#x3082;&#x89E3;&#x6C7A;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3067;&#x3057;&#x305F;&#x2026;</li>
 </ul>
 </li>
 </ul>
@@ -2184,15 +2191,97 @@ h6.categories {
 </ul>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">firebase login --no-localhost --reauth</span><br><span class="line"></span><br><span class="line">i  Firebase optionally collects CLI usage and error reporting information to help improve our products. Data is collected in accordance with Google&apos;s privacy policy (https://policies.google.com/privacy) and is not used to identify you.</span><br><span class="line"></span><br><span class="line">? Allow Firebase to collect CLI usage and error reporting information? Yes</span><br><span class="line">i  To change your data collection preference at any time, run `firebase logout` and log in again.</span><br><span class="line"></span><br><span class="line">Visit this URL on any device to log in:</span><br><span class="line">&lt;&#x8A8D;&#x8A3C;&#x7528;&#x306E;URL&gt;</span><br></pre></td></tr></tbody></table></figure>
 <ul>
-<li>&#x4E0A;&#x8A18;&#x306E;URL&#x304B;&#x3089;&#x3001;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3067;Google&#x30A2;&#x30AB;&#x30A6;&#x30F3;&#x30C8;&#x8A8D;&#x8A3C;&#x3092;&#x9032;&#x3081;&#x308B;&#x3068;&#x30B3;&#x30FC;&#x30C9;&#x304C;&#x8868;&#x793A;&#x3055;&#x308C;&#x308B;</li>
+<li>&#x4E0A;&#x8A18;&#x306E;URL&#x304B;&#x3089;&#x3001;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3067;Google&#x30A2;&#x30AB;&#x30A6;&#x30F3;&#x30C8;&#x8A8D;&#x8A3C;&#x3092;&#x9032;&#x3081;&#x308B;&#x3068;&#x30B3;&#x30FC;&#x30C9;&#x304C;&#x8868;&#x793A;&#x3055;&#x308C;&#x307E;&#x3059;</li>
+</ul>
+<div id="hexo-amp-id-12">
+<div class="amp-img-wrapper"><amp-img src="https://user-images.githubusercontent.com/41946222/79242034-c0aa0a80-7eae-11ea-8305-aef46bd36bed.png" width="400px" height="200px" layout="responsive"></amp-img></div>
+</div>
+
+
+<ul>
 <li>&#x8CBC;&#x308A;&#x4ED8;&#x3051;&#x3066;Success&#x3068;&#x8868;&#x793A;&#x3055;&#x308C;&#x308C;&#x3070;&#x6210;&#x529F;&#x3067;&#x3059;<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">? Paste authorization code here: &lt;Code&gt;</span><br><span class="line"></span><br><span class="line">&#x2714;  Success! Logged in as &lt;google&#x30A2;&#x30AB;&#x30A6;&#x30F3;&#x30C8;&#x540D;&gt;</span><br></pre></td></tr></tbody></table></figure></li>
 <li>Cloud9&#x306E;CLI&#x304B;&#x3089;Firebase(=Google Cloud)&#x4E0A;&#x306E;&#x30EA;&#x30BD;&#x30FC;&#x30B9;&#x306B;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x53EF;&#x80FD;&#x306B;&#x306A;&#x308A;&#x307E;&#x3057;&#x305F;</li>
 </ul>
-<h4><span id="45-ap&#x3068;firebase&#x306E;pj&#x306E;&#x95A2;&#x9023;&#x4ED8;&#x3051;">4.5. AP&#x3068;firebase&#x306E;pj&#x306E;&#x95A2;&#x9023;&#x4ED8;&#x3051;</span></h4><ul>
-<li>Angular PJ&#x76F4;&#x4E0B;&#x3067;&#x5B9F;&#x884C;<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firebase init</span><br></pre></td></tr></tbody></table></figure></li>
-<li>&#x4EE5;&#x4E0B;&#x306E;&#x3088;&#x3046;&#x306B;&#x51FA;&#x529B;&#x3055;&#x308C;&#x308C;&#x3070;&#x6210;&#x529F;&#x3067;&#x3059;<ul>
-<li>&#x4F7F;&#x3044;&#x305F;&#x3044;&#x30B5;&#x30FC;&#x30D3;&#x30B9;&#x3092;&#x9078;&#x629E;&#x3059;&#x308B;&#x3068;&#x7C21;&#x5358;&#x306B;Cloud&#x5074;&#x3068;&#x9023;&#x643A;&#x3067;&#x304D;&#x307E;&#x3059;<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">     ######## #### ########  ######## ########     ###     ######  ########</span><br><span class="line">     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##</span><br><span class="line">     ######    ##  ########  ######   ########  #########  ######  ######</span><br><span class="line">     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##</span><br><span class="line">     ##       #### ##     ## ######## ########  ##     ##  ######  ########</span><br><span class="line"></span><br><span class="line">You&apos;re about to initialize a Firebase project in this directory:</span><br><span class="line"></span><br><span class="line">  /home/ec2-user/environment/test-app</span><br><span class="line"></span><br><span class="line">? Which Firebase CLI features do you want to set up for this folder? Press Space to select features, then Enter to confirm your choices. (Press</span><br><span class="line"> &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection)</span><br><span class="line">&#x276F;&#x25EF; Database: Deploy Firebase Realtime Database Rules</span><br><span class="line"> &#x25EF; Firestore: Deploy rules and create indexes for Firestore</span><br><span class="line"> &#x25EF; Functions: Configure and deploy Cloud Functions</span><br><span class="line"> &#x25EF; Hosting: Configure and deploy Firebase Hosting sites</span><br><span class="line"> &#x25EF; Storage: Deploy Cloud Storage security rules</span><br><span class="line"> &#x25EF; Emulators: Set up local emulators for Firebase features</span><br></pre></td></tr></tbody></table></figure>
+<h4><span id="45-ap&#x3068;firebase&#x306E;pj&#x306E;&#x95A2;&#x9023;&#x4ED8;&#x3051;firebase-init">4.5. AP&#x3068;firebase&#x306E;PJ&#x306E;&#x95A2;&#x9023;&#x4ED8;&#x3051;(firebase init)</span></h4><ul>
+<li><p>Angular PJ&#x76F4;&#x4E0B;&#x3067;&#x5B9F;&#x884C;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firebase init</span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>&#x4EE5;&#x4E0B;&#x306E;&#x3088;&#x3046;&#x306B;&#x51FA;&#x529B;&#x3055;&#x308C;&#x308C;&#x3070;&#x6210;&#x529F;&#x3067;&#x3059;</p>
+<ul>
+<li>&#x4F7F;&#x3044;&#x305F;&#x3044;&#x30B5;&#x30FC;&#x30D3;&#x30B9;&#x3092;&#x9078;&#x629E;&#x3059;&#x308B;&#x3068;&#x7C21;&#x5358;&#x306B;Cloud&#x5074;&#x3068;&#x9023;&#x643A;&#x3067;&#x304D;&#x307E;&#x3059;<ul>
+<li>&#x30B9;&#x30DA;&#x30FC;&#x30B9;&#x30AD;&#x30FC;&#x3067;&#x5404;&#x30B5;&#x30FC;&#x30D3;&#x30B9;&#x3092;&#x9078;&#x629E;&#x3067;&#x304D;&#x307E;&#x3059;<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">     ######## #### ########  ######## ########     ###     ######  ########</span><br><span class="line">     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##</span><br><span class="line">     ######    ##  ########  ######   ########  #########  ######  ######</span><br><span class="line">     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##</span><br><span class="line">     ##       #### ##     ## ######## ########  ##     ##  ######  ########</span><br><span class="line"></span><br><span class="line">You&apos;re about to initialize a Firebase project in this directory:</span><br><span class="line"></span><br><span class="line">  /home/ec2-user/environment/firebase-sample</span><br><span class="line"></span><br><span class="line">? Which Firebase CLI features do you want to set up for this folder? Press Space to select features, then Enter to confirm your choices. (Press</span><br><span class="line"> &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection)</span><br><span class="line">&#x276F;&#x25EF; Database: Deploy Firebase Realtime Database Rules</span><br><span class="line"> &#x25EF; Firestore: Deploy rules and create indexes for Firestore</span><br><span class="line"> &#x25EF; Functions: Configure and deploy Cloud Functions</span><br><span class="line"> &#x25EF; Hosting: Configure and deploy Firebase Hosting sites</span><br><span class="line"> &#x25EF; Storage: Deploy Cloud Storage security rules</span><br><span class="line"> &#x25EF; Emulators: Set up local emulators for Firebase features</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Project Setup</p>
+<ul>
+<li>Enter&#x3092;&#x62BC;&#x3059;&#x3068;&#x4EE5;&#x4E0B;&#x304C;&#x51FA;&#x529B;&#x3055;&#x308C;&#x307E;&#x3059;</li>
+<li>&#x4ECA;&#x56DE;&#x306F;&#x4E8B;&#x524D;&#x306B;&#x30D7;&#x30ED;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x3044;&#x308B;&#x306E;&#x3067;&#x201D;use an exciting project&#x201D;&#x3092;&#x9078;&#x629E;</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">=== Project Setup</span><br><span class="line"></span><br><span class="line">First, let&apos;s associate this project directory with a Firebase project.</span><br><span class="line">You can create multiple project aliases by running firebase use --add, </span><br><span class="line">but for now we&apos;ll just set up a default project.</span><br><span class="line"></span><br><span class="line">? Please select an option: </span><br><span class="line">&#x276F; Use an existing project </span><br><span class="line">  Create a new project </span><br><span class="line">  Add Firebase to an existing Google Cloud Platform project </span><br><span class="line">  Don&apos;t set up a default project</span><br></pre></td></tr></tbody></table></figure>
 
+<ul>
+<li><p>&#x81EA;&#x8EAB;&#x306E;&#x30A2;&#x30AB;&#x30A6;&#x30F3;&#x30C8;&#x3067;&#x4F5C;&#x6210;&#x6E08;&#x307F;&#x306E;Firebase Project&#x304C;&#x9078;&#x629E;&#x80A2;&#x3068;&#x3057;&#x3066;&#x3067;&#x3066;&#x304D;&#x307E;&#x3059;</p>
+<ul>
+<li>&#x4E8B;&#x524D;&#x306B;&#x4F5C;&#x3063;&#x305F;&#x201D;fir-sample-3a2dc (firebase-sample)&#x201D;&#x3092;&#x9078;&#x629E;<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">? Select a default Firebase project for this directory: (Use arrow keys)</span><br><span class="line">&#x276F; fir-sample-3a2dc (firebase-sample)</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+</li>
+<li><p>&#x4EE5;&#x964D;&#x306F;&#x3001;&#x5148;&#x307B;&#x3069;&#x9078;&#x629E;&#x3057;&#x305F;&#x30B5;&#x30FC;&#x30D3;&#x30B9;&#x306E;Setup&#x304C;&#x9806;&#x306B;&#x51FA;&#x3066;&#x304D;&#x307E;&#x3059;&#x3002;&#x3044;&#x304F;&#x3064;&#x304B;&#x4F8B;&#x3068;&#x3057;&#x3066;&#x66F8;&#x3044;&#x3066;&#x304A;&#x304D;&#x307E;&#x3059;</p>
+</li>
+<li><p>Hosting Setup</p>
+<ul>
+<li>&#x516C;&#x958B;&#x3057;&#x305F;&#x3044;&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x3092;&#x5C0B;&#x306D;&#x3089;&#x308C;&#x307E;&#x3059;</li>
+<li>Angular&#x3067;&#x3042;&#x308C;&#x3070;&#x30D3;&#x30EB;&#x30C9;&#x3057;&#x305F;&#x3044;&#x969B;&#x306E;&#x751F;&#x6210;&#x7269;&#x304C;&#x683C;&#x7D0D;&#x3055;&#x308C;&#x308B;&#x3092;&#x5165;&#x529B;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;<ul>
+<li>dits/angular-pj-name</li>
+</ul>
+</li>
+<li>Hosting&#x306B;&#x3064;&#x3044;&#x3066;&#x306E;&#x8A73;&#x7D30;&#x306F;&#x4EE5;&#x4E0B;&#x306B;&#x307E;&#x3068;&#x3081;&#x3066;&#x3044;&#x307E;&#x3059;<ul>
+<li><a href="https://j-xaas.github.io/2020/04/16/Firebase-Hosting&#x5B8C;&#x5168;&#x7248;-Angular&#x3067;&#x958B;&#x767A;&#x3057;&#x305F;SPA&#x3092;&#x7121;&#x6599;&#x3067;&#x516C;&#x958B;&#xFF5E;&#x30C0;&#x30C3;&#x30B7;&#x30E5;&#x30DC;&#x30FC;&#x30C9;&#x3067;&#x8CBB;&#x7528;&#x7BA1;&#x7406;/">Firebase Hosting&#x5B8C;&#x5168;&#x7248;(Angular&#x3067;&#x958B;&#x767A;&#x3057;&#x305F;SPA&#x3092;&#x7121;&#x6599;&#x3067;&#x516C;&#x958B;&#xFF5E;&#x30C0;&#x30C3;&#x30B7;&#x30E5;&#x30DC;&#x30FC;&#x30C9;&#x3067;&#x8CBB;&#x7528;&#x7BA1;&#x7406;)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Database Setup   </p>
+<ul>
+<li>&#x3072;&#x3068;&#x307E;&#x305A;&#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#x3067;Enter<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">=== Database Setup</span><br><span class="line"></span><br><span class="line">Firebase Realtime Database Rules allow you to define how your data should be</span><br><span class="line">structured and when your data can be read from and written to.</span><br><span class="line"></span><br><span class="line">? What file should be used for Database Rules? (database.rules.json)</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Firestore Set up</p>
+<ul>
+<li>&#x30EA;&#x30BD;&#x30FC;&#x30B9;(firestore)&#x306E;location&#x3092;&#x8A2D;&#x5B9A;&#x3057;&#x3066;&#x3044;&#x306A;&#x3044;&#x3068;Error&#x304C;&#x51FA;&#x307E;&#x3059;<ul>
+<li>firebase&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x5074;&#x3067;&#x8A2D;&#x5B9A;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">=== Firestore Setup</span><br><span class="line"></span><br><span class="line">Error: Cloud resource location is not set for this project but the operation you are attempting to perform in Cloud Firestore requires it. Please see this documentation for more details: https://firebase.google.com/docs/projects/locations</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>&#x4EE5;&#x4E0A;&#x3067;&#x4E00;&#x5148;&#x305A;&#x30BB;&#x30C3;&#x30C8;&#x30A2;&#x30C3;&#x30D7;&#x306F;&#x5B8C;&#x4E86;&#x3067;&#x3059;</p>
+</li>
+<li><p>&#x6B21;&#x306B;&#x306E;Step&#x3068;&#x3057;&#x3066;Firebase Hosting&#x3067;AP&#x3092;&#x516C;&#x958B;&#x3057;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#xFF08;5&#x5206;&#x3067;&#x304D;&#x307E;&#x3059;&#xFF09;</p>
+<ul>
+<li><a href="https://j-xaas.github.io/2020/04/16/Firebase-Hosting&#x5B8C;&#x5168;&#x7248;-Angular&#x3067;&#x958B;&#x767A;&#x3057;&#x305F;SPA&#x3092;&#x7121;&#x6599;&#x3067;&#x516C;&#x958B;&#xFF5E;&#x30C0;&#x30C3;&#x30B7;&#x30E5;&#x30DC;&#x30FC;&#x30C9;&#x3067;&#x8CBB;&#x7528;&#x7BA1;&#x7406;/">Firebase Hosting&#x5B8C;&#x5168;&#x7248;(Angular&#x3067;&#x958B;&#x767A;&#x3057;&#x305F;SPA&#x3092;&#x7121;&#x6599;&#x3067;&#x516C;&#x958B;&#xFF5E;&#x30C0;&#x30C3;&#x30B7;&#x30E5;&#x30DC;&#x30FC;&#x30C9;&#x3067;&#x8CBB;&#x7528;&#x7BA1;&#x7406;)</a></li>
+<li>&#x5B9F;&#x969B;&#x306B;Authentication(&#x8A8D;&#x8A3C;&#x6A5F;&#x80FD;)&#x3084;Firestore(&#x30B9;&#x30C8;&#x30EC;&#x30FC;&#x30B8;)&#x3092;&#x5229;&#x7528;&#x3059;&#x308B;&#x624B;&#x9806;&#x306F;&#x5225;&#x8A18;&#x4E8B;&#x306B;&#x8A18;&#x8F09;&#x3057;&#x307E;&#x3059;</li>
+</ul>
+</li>
+</ul>
+<h2><span id="&#x5F8C;&#x66F8;&#x304D;">&#x5F8C;&#x66F8;&#x304D;</span></h2><p>&#x3053;&#x3053;&#x307E;&#x3067;&#x3067;&#x672C;&#x683C;&#x7684;&#x306A;&#x5B9F;&#x88C5;&#x306B;&#x5165;&#x308B;&#x6E96;&#x5099;&#x304C;&#x6574;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;Firebase&#x3092;&#x4F7F;&#x3044;&#x3053;&#x306A;&#x305B;&#x3070;&#x3001;&#x8A8D;&#x8A3C;&#x6A5F;&#x80FD;&#x3082;&#x30C7;&#x30FC;&#x30BF;&#x306E;CRUD&#x6A5F;&#x80FD;&#x3082;1&#x65E5;&#x3067;&#x7C21;&#x5358;&#x306B;&#x5B9F;&#x88C5;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;&#x30E2;&#x30C0;&#x30F3;&#x306A;&#x624B;&#x6CD5;&#x3092;&#x4F7F;&#x3044;&#x3053;&#x306A;&#x3057;&#x3066;&#x7D20;&#x65E9;&#x304F;&#x30B5;&#x30FC;&#x30D3;&#x30B9;&#x3092;&#x958B;&#x767A;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
+<ul>
+<li>&#x6700;&#x5F8C;&#x306B;&#x3001;&#x3053;&#x306E;&#x5148;&#x306E;&#x6A5F;&#x80FD;&#x5B9F;&#x88C5;&#x306E;&#x969B;&#x306B;&#x53C2;&#x8003;&#x306B;&#x306A;&#x308A;&#x305D;&#x3046;&#x306A;&#x30DA;&#x30FC;&#x30B8;&#x3092;&#x307E;&#x3068;&#x3081;&#x3066;&#x304A;&#x304D;&#x307E;&#x3059;&#x3002;<ul>
+<li>AP&#x3092;Firebase Hosting&#x3067;&#x516C;&#x958B;<ul>
+<li><a href="https://j-xaas.github.io/2020/04/16/Firebase-Hosting&#x5B8C;&#x5168;&#x7248;-Angular&#x3067;&#x958B;&#x767A;&#x3057;&#x305F;SPA&#x3092;&#x7121;&#x6599;&#x3067;&#x516C;&#x958B;&#xFF5E;&#x30C0;&#x30C3;&#x30B7;&#x30E5;&#x30DC;&#x30FC;&#x30C9;&#x3067;&#x8CBB;&#x7528;&#x7BA1;&#x7406;/">Firebase Hosting&#x5B8C;&#x5168;&#x7248;(Angular&#x3067;&#x958B;&#x767A;&#x3057;&#x305F;SPA&#x3092;&#x7121;&#x6599;&#x3067;&#x516C;&#x958B;&#xFF5E;&#x30C0;&#x30C3;&#x30B7;&#x30E5;&#x30DC;&#x30FC;&#x30C9;&#x3067;&#x8CBB;&#x7528;&#x7BA1;&#x7406;)</a></li>
+</ul>
+</li>
+<li>CRUD&#x6A5F;&#x80FD;&#x3092;&#x5B9F;&#x88C5;<ul>
+<li><a href="https://mae.chab.in/archives/60256">AngularFire&#x3067;Firestore&#x306E;CRUD&#x51E6;&#x7406;&#x3092;&#x5B9F;&#x88C5;&#x3059;&#x308B;&#x3010;Angular + Firebase&#x3011;</a></li>
+</ul>
+</li>
+<li>&#x8A8D;&#x8A3C;&#x6A5F;&#x80FD;&#x3092;&#x5B9F;&#x88C5;<ul>
+<li><a href="https://satolabo.net/2019/11/30/angular8-fire-google-auth/">Angular8&#x3067;Firebase&#x3092;&#x4F7F;&#x3063;&#x3066;Google&#x30A2;&#x30AB;&#x30A6;&#x30F3;&#x30C8;&#x8A8D;&#x8A3C;&#x6A5F;&#x80FD;&#x3092;&#x5B9F;&#x88C5;&#x3059;&#x308B;</a></li>
+</ul>
 </li>
 </ul>
 </li>
@@ -2226,19 +2315,9 @@ h6.categories {
 </ol>
 </li>
 </ul>
-<div id="hexo-amp-id-12">
+<div id="hexo-amp-id-13">
 <div class="amp-img-wrapper"><amp-img src="https://user-images.githubusercontent.com/41946222/79135318-1d8fbd00-7dea-11ea-9e6d-31134f1ad284.png" width="500px" height="500px" layout="responsive"></amp-img></div>
 </div>
-
-
-<h2><span id="&#x5F8C;&#x66F8;&#x304D;">&#x5F8C;&#x66F8;&#x304D;</span></h2><p>&#x3053;&#x3053;&#x307E;&#x3067;&#x3067;&#x672C;&#x683C;&#x7684;&#x306A;&#x5B9F;&#x88C5;&#x306B;&#x5165;&#x308B;&#x6E96;&#x5099;&#x304C;&#x6574;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;Firebase&#x3092;&#x4F7F;&#x3044;&#x3053;&#x306A;&#x305B;&#x3070;&#x3001;&#x8A8D;&#x8A3C;&#x6A5F;&#x80FD;&#x3082;&#x30C7;&#x30FC;&#x30BF;&#x306E;CRUD&#x6A5F;&#x80FD;&#x3082;1&#x65E5;&#x3067;&#x7C21;&#x5358;&#x306B;&#x5B9F;&#x88C5;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;&#x30E2;&#x30C0;&#x30F3;&#x306A;&#x624B;&#x6CD5;&#x3092;&#x4F7F;&#x3044;&#x3053;&#x306A;&#x3057;&#x3066;&#x7D20;&#x65E9;&#x304F;&#x30B5;&#x30FC;&#x30D3;&#x30B9;&#x3092;&#x958B;&#x767A;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<ul>
-<li>&#x6700;&#x5F8C;&#x306B;&#x3001;&#x3053;&#x306E;&#x5148;&#x306E;&#x6A5F;&#x80FD;&#x5B9F;&#x88C5;&#x306E;&#x969B;&#x306B;&#x53C2;&#x8003;&#x306B;&#x306A;&#x308A;&#x305D;&#x3046;&#x306A;&#x30DA;&#x30FC;&#x30B8;&#x3092;&#x5171;&#x6709;&#x3057;&#x3066;&#x304A;&#x304D;&#x307E;&#x3059;&#x3002;<ul>
-<li><a href="https://mae.chab.in/archives/60256">AngularFire&#x3067;Firestore&#x306E;CRUD&#x51E6;&#x7406;&#x3092;&#x5B9F;&#x88C5;&#x3059;&#x308B;&#x3010;Angular + Firebase&#x3011;</a></li>
-<li><a href="https://satolabo.net/2019/11/30/angular8-fire-google-auth/">Angular8&#x3067;Firebase&#x3092;&#x4F7F;&#x3063;&#x3066;Google&#x30A2;&#x30AB;&#x30A6;&#x30F3;&#x30C8;&#x8A8D;&#x8A3C;&#x6A5F;&#x80FD;&#x3092;&#x5B9F;&#x88C5;&#x3059;&#x308B;</a></li>
-</ul>
-</li>
-</ul>
 
 			  		
 			  		<!-- google Adsense -->

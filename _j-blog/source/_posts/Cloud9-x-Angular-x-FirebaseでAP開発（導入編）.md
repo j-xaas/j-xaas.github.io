@@ -222,19 +222,21 @@ Angular: 8.2.14
   
 それぞれ詳しく解説していきます  
 
-#### 4.1. [Firebase CLI](https://firebase.google.com/docs/cli?hl=ja#install-cli-mac-linux)の導入
-- この作業は環境に一度入れれば
-    - 
-- 以下を実行することでinstallできます
-    - firebase コマンドが有効になります
-```
-npm install -g firebase-tools
-```
+#### 4.1. Firebase CLIの導入
+- [Firebase CLI](https://firebase.google.com/docs/cli?hl=ja#install-cli-mac-linux)
+    - 環境に一度入れればOKです
+    - 以下を実行することでinstallできます
+        - これでfirebase コマンドが有効になります
+    ```
+    npm install -g firebase-tools
+    ```
 
 #### 4.2. angular fireのinstall
 - [angularfire](https://github.com/angular/angularfire)を入れます
-    - AngularとFirebase連携用のLibraryです
+    - AngularとFirebaseの連携用Libraryです
+    - こちらは環境単位ではなくAP単位で入れる必要があります
 - 以下を実行
+    - ※最新版であればng addでもOK
 ```
 firebase-sample (master) $ npm install @angular/fire firebase --save
 ```
@@ -333,11 +335,11 @@ export const environment = {
   };
 ```
 
-#### 4.4. CLIとFirebaseの関連付け
+#### 4.4. CLIとFirebaseの関連付け(firebase login)
 - 次に開発環境(Cloud9)のCLIとfirebaseを関連付けます
   - c9の場合--nolocalhostが必須
-    - ★社内Local環境でloginをやろうとするとFirebaseの認証がProxyに阻まれて突破できず詰むので気を付けましょう
-        - あらゆる策を講じてもこれだけは解決できませんでした...
+    - ★社内Local環境でloginをやろうとするとFirebase認証がProxyに阻まれて突破できず詰むので気を付けましょう
+        - 頑張っても解決できませんでした...
 
 ```
 firebase login --no-localhost --reauth
@@ -351,7 +353,13 @@ Visit this URL on any device to log in:
 <認証用のURL>
 
 ```
-- 上記のURLから、ブラウザでGoogleアカウント認証を進めるとコードが表示される
+- 上記のURLから、ブラウザでGoogleアカウント認証を進めるとコードが表示されます
+
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79242034-c0aa0a80-7eae-11ea-8305-aef46bd36bed.png" height="200px" width="400px">
+</div>
+
+
 - 貼り付けてSuccessと表示されれば成功です
 ```
 ? Paste authorization code here: <Code>
@@ -360,7 +368,7 @@ Visit this URL on any device to log in:
 ```
 - Cloud9のCLIからFirebase(=Google Cloud)上のリソースにアクセス可能になりました
 
-#### 4.5. APとfirebaseのpjの関連付け
+#### 4.5. APとfirebaseのPJの関連付け(firebase init)
 
 - Angular PJ直下で実行
 ```
@@ -368,6 +376,7 @@ firebase init
 ```
 - 以下のように出力されれば成功です
     - 使いたいサービスを選択すると簡単にCloud側と連携できます
+        - スペースキーで各サービスを選択できます
 ```
 
      ######## #### ########  ######## ########     ###     ######  ########
@@ -378,7 +387,7 @@ firebase init
 
 You're about to initialize a Firebase project in this directory:
 
-  /home/ec2-user/environment/test-app
+  /home/ec2-user/environment/firebase-sample
 
 ? Which Firebase CLI features do you want to set up for this folder? Press Space to select features, then Enter to confirm your choices. (Press
  <space> to select, <a> to toggle all, <i> to invert selection)
@@ -389,6 +398,77 @@ You're about to initialize a Firebase project in this directory:
  ◯ Storage: Deploy Cloud Storage security rules
  ◯ Emulators: Set up local emulators for Firebase features
 ```
+
+- Project Setup
+    - Enterを押すと以下が出力されます
+    - 今回は事前にプロジェクトを作成しているので”use an exciting project”を選択
+
+```
+=== Project Setup
+
+First, let's associate this project directory with a Firebase project.
+You can create multiple project aliases by running firebase use --add, 
+but for now we'll just set up a default project.
+
+? Please select an option: 
+❯ Use an existing project 
+  Create a new project 
+  Add Firebase to an existing Google Cloud Platform project 
+  Don't set up a default project 
+```
+
+- 自身のアカウントで作成済みのFirebase Projectが選択肢としてでてきます
+    - 事前に作った”fir-sample-3a2dc (firebase-sample)”を選択
+```
+? Select a default Firebase project for this directory: (Use arrow keys)
+❯ fir-sample-3a2dc (firebase-sample) 
+```
+- 以降は、先ほど選択したサービスのSetupが順に出てきます。いくつか例として書いておきます
+
+- Hosting Setup
+    - 公開したいディレクトリを尋ねられます
+    - Angularであればビルドしたい際の生成物が格納されるを入力しましょう
+        - dits/angular-pj-name
+    - Hostingについての詳細は以下にまとめています
+        - [Firebase Hosting完全版(Angularで開発したSPAを無料で公開～ダッシュボードで費用管理)](https://j-xaas.github.io/2020/04/16/Firebase-Hosting完全版-Angularで開発したSPAを無料で公開～ダッシュボードで費用管理/)
+
+- Database Setup   
+    - ひとまずデフォルトでEnter
+```
+=== Database Setup
+
+Firebase Realtime Database Rules allow you to define how your data should be
+structured and when your data can be read from and written to.
+
+? What file should be used for Database Rules? (database.rules.json) 
+```
+
+- Firestore Set up
+    - リソース(firestore)のlocationを設定していないとErrorが出ます
+        - firebaseコンソール側で設定する必要があります
+```
+=== Firestore Setup
+
+Error: Cloud resource location is not set for this project but the operation you are attempting to perform in Cloud Firestore requires it. Please see this documentation for more details: https://firebase.google.com/docs/projects/locations
+```
+
+- 以上で一先ずセットアップは完了です
+
+- 次にのStepとしてFirebase HostingでAPを公開してみましょう（5分できます）
+    - [Firebase Hosting完全版(Angularで開発したSPAを無料で公開～ダッシュボードで費用管理)](https://j-xaas.github.io/2020/04/16/Firebase-Hosting完全版-Angularで開発したSPAを無料で公開～ダッシュボードで費用管理/)
+    - 実際にAuthentication(認証機能)やFirestore(ストレージ)を利用する手順は別記事に記載します
+
+## 後書き
+ここまでで本格的な実装に入る準備が整いました。Firebaseを使いこなせば、認証機能もデータのCRUD機能も1日で簡単に実装することができます。モダンな手法を使いこなして素早くサービスを開発していきましょう。
+  
+- 最後に、この先の機能実装の際に参考になりそうなページをまとめておきます。
+    - APをFirebase Hostingで公開
+        - [Firebase Hosting完全版(Angularで開発したSPAを無料で公開～ダッシュボードで費用管理)](https://j-xaas.github.io/2020/04/16/Firebase-Hosting完全版-Angularで開発したSPAを無料で公開～ダッシュボードで費用管理/)
+    - CRUD機能を実装
+        - [AngularFireでFirestoreのCRUD処理を実装する【Angular + Firebase】](https://mae.chab.in/archives/60256)
+    - 認証機能を実装
+        - [Angular8でFirebaseを使ってGoogleアカウント認証機能を実装する](https://satolabo.net/2019/11/30/angular8-fire-google-auth/)
+
 
 ## おまけ：cloud9でng serveする際の注意
 - 詳細は以下の記事にまとめてあります
@@ -418,12 +498,3 @@ ng serve --disableHostCheck --public-host <cloud9のPreviewのURL>
 <div style="text-align:center;">
 <img src="https://user-images.githubusercontent.com/41946222/79135318-1d8fbd00-7dea-11ea-9e6d-31134f1ad284.png" height="500px" width="500px">
 </div>
-
-
-## 後書き
-ここまでで本格的な実装に入る準備が整いました。Firebaseを使いこなせば、認証機能もデータのCRUD機能も1日で簡単に実装することができます。モダンな手法を使いこなして素早くサービスを開発していきましょう。
-  
-- 最後に、この先の機能実装の際に参考になりそうなページを共有しておきます。
-  - [AngularFireでFirestoreのCRUD処理を実装する【Angular + Firebase】](https://mae.chab.in/archives/60256)
-  - [Angular8でFirebaseを使ってGoogleアカウント認証機能を実装する](https://satolabo.net/2019/11/30/angular8-fire-google-auth/)
-
