@@ -16,7 +16,6 @@ toc: true
 先日4/6にYAMAHAより新しい遠隔合奏サービス「SYNCROOM」が発表されました。  
 6月～のリリースに備えて、既に公開中のβ版: NET DUETを使ってみます。（仕様はほぼそのままなので慣れとくといいかも）
 
-
 ## YAMAHAの遠隔セッションサービス（SYNCROOM/NETDUETTO）
 ![image](https://user-images.githubusercontent.com/41946222/79638131-f573d580-81be-11ea-8b4b-16d9d6b1f351.png)
 
@@ -25,67 +24,69 @@ toc: true
 - 無料
 - 超低遅延
     - 0.02秒（20msec）程度らしい
-    - ZOOM等のサービスでは0.5秒以上はズレが生じてしまうらしい
-- CD音質で通信可能（非圧縮もしくはロスレスの16bit/48kHz）
-
+    - ZOOM等のサービスでは0.5秒以上はズレが生じます
+- CD音質の通信
+    - 非圧縮もしくはロスレスの16bit/48kHz
 - 参考
     - [コロナ禍で苦しむミュージシャンの救世主となるか？ヤマハがネット越しのセッションツール、SYNCROOMをリリースする背景](https://www.dtmstation.com/archives/29387.html)
 
 ### NETDUETTO
-- 上記のβ版で公開中（※2020/01時点）
+- 上記のβ版で公開中（※2020/04時点）
 - 無料
-- 一つのルームに5人までの接続可能
-- 2つのルームを繋ぐことで最大10人まで接続可能
+- 接続可能な人数
+    - 一つのルームに5人まで
+    - 2つのルームを繋ぐことで最大10人まで
 - SYNCROOMとの差分
     - 予定されている追加機能
         - メトロノーム機能
         - レコーディング機能
     - ユーザ登録
-
 - 利用条件
     - デバイス
         - PC (iPad Proでは無理でした)
+            - SYNCROOMでタブレットにも対応してくれたら嬉しいですが、当分無理そう
     - OS
         - macOS 10.15 Catalina以降
         - Windows 10(64bit)
     - ネット回線
         - 基本的に光回線前提
-            - NURO光とか
+            - NURO光等
             - softbank光やDOCOMO光を利用している場合
                 - 料金変更無しで追加申請可能な回線強化の手段があるらしい（熟練者談）
-        - できれば有線
-            - LANケーブルを刺せるPCがあるとベター
+        - できれば有線LAN
+            - WiFiでもできますが、LANケーブルを刺せるPCがあるとベター
         - WiFi 6なら無線でも大丈夫かも？
             - モバイルの5Gのように、WiFiも最近6世代目になり高速化しました
-
-普段iPadでCubassis leを利用しているので、SYNCROOMでタブレットにも対応してくれたら嬉しい（当分無理そう）
 
 ## セッティング
 - ざっくりイメージ
 
-![image](https://user-images.githubusercontent.com/41946222/79774737-2cd4b480-836e-11ea-8d98-f7c34aa77473.png)
+![image](https://user-images.githubusercontent.com/41946222/79886594-2577de80-8434-11ea-8c7e-aae072ecea45.png)
 
 ### 機材
 - インターフェイス
-    - 楽器からのInputをPCに取り込むにはインターフェイスとPC側で読み込む為のドライバーのインストールが必要です
+    - 楽器からのライン音源をPCに取り込むにはインターフェイスとPC側で読み込む為のドライバーのインストールが必要です
     - 初級者はSteinbergの以下のどちらかでOKだと思います
         - [Steinberg UR22C](https://amzn.to/3auxhvH)：￥17000ぐらい
         - [Steinberg UR44C](https://amzn.to/3bp6fqt)：￥27000ぐらい
     - 使用しているSteinbergのURシリーズについては、別記事で初期設定の手順をまとめておきました
         - [PCでDTM環境を構築 [Steinberg UR44C/Cubase ai]](https://j-xaas.github.io/2020/04/19/PC%E3%81%A7DTM%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89-Steinberg-UR44C-Cubase-ai/)
-    - マルチエフェクターの中にはインターフェイスとしての機能がついているものもあります
+    - Outputの端子
+        - ステレオ標準プラグ(楽器のシールドを刺す穴)なので、ステレオミニプラグ（イヤホンの端子）はそのままでは刺せません
+        - 安めの変換アダプタ(2個で700円程度)を買いました
+            - [UGREEN ステレオミニプラグ（メス）⇒ステレオ標準プラグ（オス） 変換アダプタ 金メッキ 3.5mm ⇒ 6.35mm アンプヘッドホン変換 (2個)](https://amzn.to/2yweumk)
+    - マルチエフェクターの中にはインターフェイス機能が付随したものもあるので、そちらで代用してもOK
 
 - 有線LAN
-    - WiFiで代用可能ですが遅延します。1000円もしないので有線LANも準備しておきましょう
-        - 安かったやつ
-            - [UGREEN LANケーブル 10Gbps/600MHz](https://amzn.to/34NZMDh)
-            - [サンワサプライ CAT7ウルトラフラットLANケーブル (3m) 10Gbps/600MHz ](https://amzn.to/3bAEpbf)
-
+    - WiFiで代用可能ですが遅延します。1000円程度なので有線LANも準備しておきましょう
+        - 以下を使用しています
+            - [Linkinperk CAT8 LANケーブル 2m 40Gbps 2000MHz 超高速](https://amzn.to/3eDlCOd)
+                - 40Gbps 2000MHzでほぼ最速です
 - Portは有線LANを指す穴です
     - 家のコンセントのどれかに必ずあるので、探してみてください
-    - ここからネットワークに接続可能です
+    - ここからネットワークに接続できます
 
-機材が準備できたら、早速PCにNETDUETTOを入れてみましょう
+機材が準備できたら、早速PCにNETDUETTOを導入してみましょう
 
 ## NET DUET導入手順
 ### Download
@@ -131,25 +132,31 @@ C:\Program Files\Yamaha\NETDUETTO2\
 ![image](https://user-images.githubusercontent.com/41946222/79639967-e9414580-81c9-11ea-81f6-14b408acb2f4.png)
 
 - 入力の設定
+
 ![image](https://user-images.githubusercontent.com/41946222/79640090-a2a01b00-81ca-11ea-8a93-7ae5997e1c2b.png)
 
 
 - 遅延が無いかモニタリングできます
+
 ![image](https://user-images.githubusercontent.com/41946222/79640130-d2e7b980-81ca-11ea-9131-30179d08ff84.png)
 
 
 - バッファサイズの設定
+
 ![image](https://user-images.githubusercontent.com/41946222/79640174-16dabe80-81cb-11ea-91b3-7ec42f89fa50.png)
 
 - コントロールパネルを押すと自分が利用しているインターフェイスに応じたドライバの設定が出てきます
     - ”Input Latency”を見ながら遅延が低くなるよう設定してみました
+
 ![image](https://user-images.githubusercontent.com/41946222/79640221-586b6980-81cb-11ea-8229-003b912fc716.png)
 
 
 - ニックネームとアイコンを設定
 ![image](https://user-images.githubusercontent.com/41946222/79640334-06771380-81cc-11ea-8264-4eac336cf860.png)
 
+  
 - 以上で完了です
+
 ![image](https://user-images.githubusercontent.com/41946222/79640354-2575a580-81cc-11ea-85ba-24c906b2d3c2.png)
 
 

@@ -8,8 +8,16 @@
     </url>
 
     <url>
+        <loc>https://j-xaas.github.io/2020/02/04/About-This-Blog/</loc>
+        <lastmod>2020-04-21T17:01:19.574Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://j-xaas.github.io/2020/04/19/YAMAHA%E3%81%AE%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%84%E3%83%BC%E3%83%ABSYNCROOM%E3%81%AE%E3%83%99%E3%83%BC%E3%82%BF%E7%89%88%EF%BC%9ANETDUET%E3%82%92%E8%A9%A6%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F/</loc>
-        <lastmod>2020-04-20T16:46:43.132Z</lastmod>
+        <lastmod>2020-04-21T16:42:28.198Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -17,7 +25,7 @@
 
     <url>
         <loc>https://j-xaas.github.io/2020/04/19/PC%E3%81%A7DTM%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89-Steinberg-UR44C-Cubase-ai/</loc>
-        <lastmod>2020-04-18T18:24:29.757Z</lastmod>
+        <lastmod>2020-04-21T16:18:55.135Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -122,14 +130,6 @@
     <url>
         <loc>https://j-xaas.github.io/2020/03/17/icarus-Hexo-Theme-Tips-Menu%E3%81%AE%E7%B7%A8%E9%9B%86/</loc>
         <lastmod>2020-04-03T18:03:14.318Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://j-xaas.github.io/2020/02/04/About-This-Blog/</loc>
-        <lastmod>2020-04-03T14:15:30.704Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
