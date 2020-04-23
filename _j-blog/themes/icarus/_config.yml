@@ -28,9 +28,9 @@ navbar:
     # Navigation bar menu links
     menu:
         Home: /
-        Archives: /archives
-        Categories: /categories
-        Tags: /tags
+#        Archives: /archives
+#        Categories: /categories
+#        Tags: /tags
         About: /2020/02/04/About-This-Blog/ #/about
         EC: https://sheeps.official.ec/
         Policy: /2020/03/18/Privacy-Policy/
