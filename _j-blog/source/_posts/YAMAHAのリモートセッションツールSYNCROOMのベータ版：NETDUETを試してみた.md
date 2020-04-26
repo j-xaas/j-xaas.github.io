@@ -17,7 +17,10 @@ toc: true
 6月～のリリースに備えて、既に公開中のβ版: NET DUETを使ってみます。（仕様はほぼそのままなので慣れとくといいかも）
 
 ## YAMAHAの遠隔セッションサービス（SYNCROOM/NETDUETTO）
-![image](https://user-images.githubusercontent.com/41946222/79638131-f573d580-81be-11ea-8b4b-16d9d6b1f351.png)
+
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79638131-f573d580-81be-11ea-8b4b-16d9d6b1f351.png" height="400px" width="650px">
+</div>
 
 ### SYNCROOM
 - 6月頃より正式リリース
@@ -61,7 +64,10 @@ toc: true
 ## セッティング
 - ざっくりイメージ
 
-![image](https://user-images.githubusercontent.com/41946222/79886594-2577de80-8434-11ea-8c7e-aae072ecea45.png)
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79886594-2577de80-8434-11ea-8c7e-aae072ecea45.png" height="450px" width="600px">
+</div>
+
 
 ### 機材
 - インターフェイス
@@ -95,14 +101,18 @@ toc: true
 
 - ダウンロードしたzipファイルを開くとこんな感じ
 
-![image](https://user-images.githubusercontent.com/41946222/79574690-7bc6e380-80fb-11ea-8560-263877a2af18.png)
+
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79574690-7bc6e380-80fb-11ea-8560-263877a2af18.png" height="100px" width="500px">
+</div>
 
 ### インストール
 - インストーラーを起動
     - 次へを押していきます
 
-![image](https://user-images.githubusercontent.com/41946222/79574870-cc3e4100-80fb-11ea-9b91-98e120cdeb20.png)
-
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79574870-cc3e4100-80fb-11ea-9b91-98e120cdeb20.png" height="450px" width="500px">
+</div>
 
 - インストール先
 ```
@@ -111,16 +121,23 @@ C:\Program Files\Yamaha\NETDUETTO2\
 
 - 以下のようにインストールが始まります
 
-![image](https://user-images.githubusercontent.com/41946222/79575060-20492580-80fc-11ea-978b-98512afea090.png)
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79575060-20492580-80fc-11ea-978b-98512afea090.png" height="450px" width="500px">
+</div>
 
 - 数分でインストールできます
-![image](https://user-images.githubusercontent.com/41946222/79575151-4f5f9700-80fc-11ea-9a9e-ffdc2b2e82ca.png)
 
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79575151-4f5f9700-80fc-11ea-9a9e-ffdc2b2e82ca.png" height="450px" width="500px">
+</div>
 
 ## 初期設定
 - アイコンを開きます
     - チュートリアル画面が出てきます
-![image](https://user-images.githubusercontent.com/41946222/79575320-8df55180-80fc-11ea-8098-14f3c7194776.png)
+
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79575320-8df55180-80fc-11ea-8098-14f3c7194776.png" height="350px" width="500px">
+</div>
 
 
 - 次へを押すと、以下の画面がでます
@@ -129,36 +146,46 @@ C:\Program Files\Yamaha\NETDUETTO2\
             - 今回はsteinberg ur44cからUSBでPCに接続しています
             - 別記事で解説します
 
-![image](https://user-images.githubusercontent.com/41946222/79639967-e9414580-81c9-11ea-81f6-14b408acb2f4.png)
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79639967-e9414580-81c9-11ea-81f6-14b408acb2f4.png" height="350px" width="500px">
+</div>
 
 - 入力の設定
 
-![image](https://user-images.githubusercontent.com/41946222/79640090-a2a01b00-81ca-11ea-8a93-7ae5997e1c2b.png)
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79640090-a2a01b00-81ca-11ea-8a93-7ae5997e1c2b.png" height="350px" width="450px">
+</div>
 
 
 - 遅延が無いかモニタリングできます
 
-![image](https://user-images.githubusercontent.com/41946222/79640130-d2e7b980-81ca-11ea-9131-30179d08ff84.png)
-
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79640130-d2e7b980-81ca-11ea-9131-30179d08ff84.png" height="350px" width="450px">
+</div>
 
 - バッファサイズの設定
 
-![image](https://user-images.githubusercontent.com/41946222/79640174-16dabe80-81cb-11ea-91b3-7ec42f89fa50.png)
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79640174-16dabe80-81cb-11ea-91b3-7ec42f89fa50.png" height="350px" width="450px">
+</div>
 
 - コントロールパネルを押すと自分が利用しているインターフェイスに応じたドライバの設定が出てきます
     - ”Input Latency”を見ながら遅延が低くなるよう設定してみました
 
-![image](https://user-images.githubusercontent.com/41946222/79640221-586b6980-81cb-11ea-8229-003b912fc716.png)
-
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79640221-586b6980-81cb-11ea-8229-003b912fc716.png" height="370px" width="450px">
+</div>
 
 - ニックネームとアイコンを設定
-![image](https://user-images.githubusercontent.com/41946222/79640334-06771380-81cc-11ea-8264-4eac336cf860.png)
-
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79640334-06771380-81cc-11ea-8264-4eac336cf860.png" height="370px" width="450px">
+</div>
   
 - 以上で完了です
 
-![image](https://user-images.githubusercontent.com/41946222/79640354-2575a580-81cc-11ea-85ba-24c906b2d3c2.png)
-
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79640354-2575a580-81cc-11ea-85ba-24c906b2d3c2.png" height="370px" width="450px">
+</div>
 
 ## 使い方
 使い方はシンプルです
@@ -168,36 +195,50 @@ C:\Program Files\Yamaha\NETDUETTO2\
     - 適当に楽器を弾いて、”インプット”から出力を確認しましょう
         - ここに出てこない場合はインターフェイスのドライバーが入っていないかもしれません
 
-![image](https://user-images.githubusercontent.com/41946222/79640629-818cf980-81cd-11ea-9deb-f80988ee4175.png)
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79640629-818cf980-81cd-11ea-9deb-f80988ee4175.png" height="350px" width="500px">
+</div>
 
 
 2. ルームに集まる(↓のどちらか)
     - ルームを作る
     - 他人が作ったルームに入る
 
-![image](https://user-images.githubusercontent.com/41946222/79640397-666dba00-81cc-11ea-8515-c00653eb12b7.png)
-  
-- ルームは以下のように表示されます
-    - 
-![image](https://user-images.githubusercontent.com/41946222/79640717-0841d680-81ce-11ea-83b0-c0ea28e91862.png)
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79640397-666dba00-81cc-11ea-8515-c00653eb12b7.png" height="350px" width="500px">
+</div>
 
+- ルームは以下のように表示されます
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79640717-0841d680-81ce-11ea-83b0-c0ea28e91862.png" height="500px" width="400px">
+</div>
 
 - セッション画面
 
-![image](https://user-images.githubusercontent.com/41946222/79641519-f9115780-81d2-11ea-95a9-ed03d2f740fc.png)
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79641519-f9115780-81d2-11ea-95a9-ed03d2f740fc.png" height="350px" width="500px">
+</div>
 
 - 詳細表示を押すと、各メンバの通信状況や遅延状況を確認可能です
-![image](https://user-images.githubusercontent.com/41946222/79642425-53f97d80-81d8-11ea-871a-5a9469fe4e76.png)
 
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79642425-53f97d80-81d8-11ea-871a-5a9469fe4e76.png" height="350px" width="500px">
+</div>
 
 ## Twitter連携
 - "Twitter連携"を押すと以下のようにウィンドウが出ます
-![image](https://user-images.githubusercontent.com/41946222/79640867-0e848280-81cf-11ea-86be-80b98190e483.png)
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79640867-0e848280-81cf-11ea-86be-80b98190e483.png" height="350px" width="500px">
+</div>
 
 - 認証
-![image](https://user-images.githubusercontent.com/41946222/79640842-dda44d80-81ce-11ea-9e5e-00a4c34c647c.png)
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79640842-dda44d80-81ce-11ea-9e5e-00a4c34c647c.png" height="500px" width="400px">
+</div>
 
 - 出てきたPINコードを入力
     - アイコンとユーザ名が出ます
 
-![image](https://user-images.githubusercontent.com/41946222/79640967-b26e2e00-81cf-11ea-9028-16ceb10c7d95.png)
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79640967-b26e2e00-81cf-11ea-9028-16ceb10c7d95.png" height="400px" width="500px">
+</div>

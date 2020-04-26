@@ -82,15 +82,23 @@ toc: true
 <img src="https://user-images.githubusercontent.com/41946222/78471660-f1cb6200-776d-11ea-935d-c7400c356052.png" height="300px" width="400px">
 </div>
 
-以上で同時再生機能とチャットルームを使えます。  
-  
-こんな感じ↓でZOOMやLINEで皆と通話しながら利用してます。
+- 以上で同時再生機能とチャットルームを使えます。  
+    - ユーザが入るとチャット欄に”Join”と表示されます
 
+- 利用イメージ
+    - こんな感じでモニターに映してZOOMやLINEで皆と通話しながら利用しています
 <div style="text-align:center;">
 <img src="https://user-images.githubusercontent.com/41946222/78789272-dff4f380-79e7-11ea-9b02-46cf4b40cb8e.png" height="300px" width="400px">
 </div>
 
 回線が弱いと偶に切れてしまう事もありますが、同じURLから入り直してチャットルームにメンバが表示されればOKです
+
+- 大画面で鑑賞したい方向けにオススメを置いておきます
+    - [モニター 24in](https://amzn.to/3bF4XYy)
+        - 高さ調整可能で手頃
+    - [Z6 Polar Meets popIn Aladdin大画面ホームシアター](https://amzn.to/2yIArhY)
+        - Netflix等の動画配信サービスを鑑賞可能なプロジェクター
+        - HDMIでPCやゲームと繋いで、壁一面に映せます
 
 ## スマホやタブレットでリモート鑑賞する方法
 - Netflix Partyをモバイルで利用する手段はありません

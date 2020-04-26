@@ -125,7 +125,7 @@ toc: true
         - イヤホンジャック
         - Bluetooth
 
-### Bluetoothスピーカー＆イヤホン
+### Bluetoothスピーカー＆イヤホン＆カメラ
 - [WF1000XM-3](https://amzn.to/2UzfvRN)
     - 立って弾く際にコードが引っかかるのが面倒で、結局生音でしかやらない節があったため採用
     - 専用アプリから細かくイコライザーを弄れて楽しい
@@ -143,6 +143,14 @@ toc: true
     - 防水なのでお風呂でも聞ける
 
     <a href="https://www.amazon.co.jp/dp/B07QZ67FTT/ref=as_li_ss_il?psc=1&pd_rd_i=B07QZ67FTT&pd_rd_w=euzvC&pf_rd_p=6413bd85-d494-49e7-9f81-0e63e79171a9&pd_rd_wg=rkZfv&pf_rd_r=2PVHVEWK3H7VKTF7S6G0&pd_rd_r=3c551492-f885-4d3f-8cde-d860532bf71f&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyRTFXRE8yR0VOODEmZW5jcnlwdGVkSWQ9QTA2NTAyMzYxSURGRTY1MUo3U0NZJmVuY3J5cHRlZEFkSWQ9QTE0NlVVNVZVTDE0TUcmd2lkZ2V0TmFtZT1zcF9kZXRhaWwmYWN0aW9uPWNsaWNrUmVkaXJlY3QmZG9Ob3RMb2dDbGljaz10cnVl&linkCode=li3&tag=junjun10804-22&linkId=4855dc59c68bf65179fac7573adb0be9&language=ja_JP" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B07QZ67FTT&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun10804-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun10804-22&language=ja_JP&l=li3&o=9&a=B07QZ67FTT" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+
+- WEBカメラ
+    - 録画・配信用にクリップ型のカメラを繋げています
+    - オススメ
+        - [Webカメラ HD1080P 150](https://amzn.to/2x7plme)
+        - [Webカメラ 広角](https://amzn.to/2Y5Xb68)
+        - [Webカメラ 広角 高画質](https://amzn.to/3aEkPtg)
+        - [Changer webカメ](https://amzn.to/3azIoDn)
 
 ### アンプ
 - Fender信者なので、[Fenderのベースアンプ](https://amzn.to/3dt8j2o)を使っています

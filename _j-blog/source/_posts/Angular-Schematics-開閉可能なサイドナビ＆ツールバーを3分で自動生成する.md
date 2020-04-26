@@ -15,7 +15,9 @@ toc: true
 アプリの基本的な画面はこの手法を用いれば、コードを書くまでもなく高速で開発できます。サービスとしての独自性の無い単純作業は極力自動化しましょう。  
   
 
-![自動生成したナビゲーション](https://user-images.githubusercontent.com/41946222/80100008-4feba800-85aa-11ea-8bad-dc2ceb714f16.png)
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/80100008-4feba800-85aa-11ea-8bad-dc2ceb714f16.png" height="250px" width="600px" alt="自動生成したナビゲーション">
+</div>
 
 <!-- toc -->
 
@@ -173,7 +175,9 @@ ng serve --open
 - 以下のようにナビが表示されます
   - ツールバーには自動的にAngular-PJ名が入ります
 
-![image](https://user-images.githubusercontent.com/41946222/80067373-a9d37a00-8578-11ea-941e-514a54d91c9d.png)
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/80067373-a9d37a00-8578-11ea-941e-514a54d91c9d.png" height="250px" width="600px" alt="自動生成したナビゲーション">
+</div>
 
 - サイドナビの表示は画面サイズに応じて変化
   - 大
@@ -183,12 +187,16 @@ ng serve --open
 
 - Windowを狭めてみる
 
-![image](https://user-images.githubusercontent.com/41946222/80067621-2403fe80-8579-11ea-9b48-569c4f602ab5.png)
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/80067621-2403fe80-8579-11ea-9b48-569c4f602ab5.png" height="300px" width="500px">
+</div>
 
 - バーガーアイコンを押下
     - Menuが表示されます
 
-![image](https://user-images.githubusercontent.com/41946222/80066424-e2725400-8576-11ea-8782-72c40e3e21e4.png)
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/80066424-e2725400-8576-11ea-8782-72c40e3e21e4.png" height="400px" width="500px">
+</div>
 
 
 - あとは各画面を生成してサイドナビのMenuから飛べるようにすれば、アプリの雛形ができます
