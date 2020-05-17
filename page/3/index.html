@@ -157,6 +157,342 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-13T14:01:02.000Z">2020-03-13</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    13分 read (About 2007 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/">Hexoテーマ(theme)変更: icarus</a>
+            
+        </h1>
+        <div class="content">
+            <div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/76524916-3c7af680-64ae-11ea-9a71-81530f93167c.png" height="100%" width="100%">
+</div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#概要">概要</a></li>
+<li><a href="#変更手順">変更手順</a><ul>
+<li><a href="#1-テーマの選定">1. テーマの選定</a><ul>
+<li><a href="#今回採用したテーマ">今回採用したテーマ</a></li>
+</ul>
+</li>
+<li><a href="#2-githubからダウンロード">2. Githubからダウンロード</a></li>
+<li><a href="#3-設定_configymlを変更">3. 設定(_config.yml)を変更</a><ul>
+<li><a href="#trouble-shooting">Trouble Shooting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#icarus設定tips">icarus設定Tips</a><ul>
+<li><a href="#ウィジェットを変更">ウィジェットを変更</a><ul>
+<li><a href="#プロフィールを変更">プロフィールを変更</a></li>
+</ul>
+</li>
+<li><a href="#背景の変更">背景の変更</a></li>
+<li><a href="#目次を自動作成するプラグインの導入">目次を自動作成するプラグインの導入</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="概要">概要</span></h2><ul>
+<li>Hexoにはテーマのテンプレートが数百種類用意されており、簡単に変更することができます<ul>
+<li>デフォルトはlandscape<ul>
+<li>シンプルでいいのですが、デザインとして物足りなく、プロフィール欄も欲しいので変更します  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>&lt;div style=&quot;text-align:center;&quot;&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/41946222/76521887-038c5300-64a9-11ea-8dfd-8454b8ce0dd2.png&quot; height=&quot;100%&quot; width=&quot;100%&quot;&gt;
+&lt;/div&gt;</code></pre><h2><span id="変更手順">変更手順</span></h2><ul>
+<li><ol>
+<li>テーマの選定</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>Githubからダウンロード</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>設定(_config.yml)を変更</li>
+</ol>
+</li>
+</ul>
+<h3><span id="1-テーマの選定">1. テーマの選定</span></h3><ul>
+<li><p>まずは採用したいテーマを決めましょう</p>
+</li>
+<li><p>Hexoのテーマ一覧は以下より確認できます</p>
+<ul>
+<li><a href="https://hexo.io/themes/index.html">Themes | Hexo</a></li>
+<li>295種(2020/03/12時点)あります</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/search?o=desc&q=hexo-theme&s=stars&type=Repositories">Star数のランキング</a>はこちらです</p>
+<ul>
+<li>自身のWEBページの方向性に合わせて選定しましょう</li>
+</ul>
+</li>
+<li><p>個人的にイケてると感じたテーマを紹介します</p>
+<ul>
+<li><p>シンプル</p>
+<ul>
+<li><a href="https://ppoffice.github.io/hexo-theme-icarus">icarus</a><ul>
+<li>プロフィール欄がデフォルトである</li>
+<li>各記事がサムネで表示される<ul>
+<li>手間は少し増えてしまいそう</li>
+</ul>
+</li>
+<li>サイドのメニューと記事一覧を、画面サイズに応じて１～３列で表示</li>
+</ul>
+</li>
+<li><a href="https://theme-next.org/">NexT</a><ul>
+<li>プロフィール欄がデフォルトである</li>
+<li>モノトーン</li>
+<li>１～２列で表示</li>
+</ul>
+</li>
+<li><a href="https://github.com/viosey/hexo-theme-material">Material</a></li>
+<li><a href="https://github.com/yscoder/hexo-theme-indigo">indigo</a></li>
+<li><a href="http://louisbarranqueiro.github.io/hexo-theme-tranquilpeak">Tranquilpeak</a><ul>
+<li>最近見つけたので追加。そのうちこちらに変更するかも</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ダイナミック</p>
+<ul>
+<li><a href="https://github.com/NoahDragon/hexo-theme-react">React</a>       <ul>
+<li>会社サイト向け<ul>
+<li>デザインが作りこまれています</li>
+</ul>
+</li>
+<li>別の機会に利用してみようと考えています</li>
+</ul>
+</li>
+<li><a href="http://ochukai.me/">Ochuunn</a><ul>
+<li>サイトを開いた時の動作がおしゃれです</li>
+</ul>
+</li>
+<li>デザイナー向け<ul>
+<li><a href="http://miccall.tech/">MiccallTheme</a></li>
+<li><a href="https://www.izhaoo.com/">Zhaoo</a></li>
+</ul>
+</li>
+<li><a href="https://go.kieran.top/">TKL</a><ul>
+<li>一枚目から始まるタイプですが記事欄は質素です</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="今回採用したテーマ">今回採用したテーマ</span></h4><ul>
+<li><a href="https://github.com/ppoffice/hexo-theme-icarus">icarus</a><ul>
+<li>GitのStar数ランク5位で人気のテーマです</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/76520745-d8086900-64a6-11ea-9d0d-d10ef9bad261.png" height="100%" width="100%"">
+</div>
+
+
+<ul>
+<li>採用理由<ul>
+<li>tech記事らしいシンプルさ</li>
+<li>各記事がサムネで一覧表示される</li>
+<li>サイドメニューに以下が表示される<ul>
+<li>Profile</li>
+<li>Categories</li>
+<li>Tag</li>
+<li>RECENT</li>
+<li>ARCHIVES</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="2-githubからダウンロード">2. Githubからダウンロード</span></h3><ul>
+<li><p>2.1. Gitの<a href="https://github.com/ppoffice/hexo-theme-icarus">hexo-theme-icarus</a>のソースをhexo-pj-name/themes直下に配置します</p>
+</li>
+<li><p>以下のコマンド一発で入ります</p>
+<ul>
+<li>hexoディレクトリ直下で実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;ppoffice&#x2F;hexo-theme-icarus.git themes&#x2F;icarus</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>gitが入っていない方は<a href="https://github.com/ppoffice/hexo-theme-icarus">hexo-theme-icarus</a>の”clone or download”よりLocalにダウンロードしてthemes配下に展開してください</p>
+<ul>
+<li>その際にフォルダ名を”icarus”に変更することを忘れないでください</li>
+</ul>
+</li>
+</ul>
+<h3><span id="3-設定_configymlを変更">3. 設定(_config.yml)を変更</span></h3><ul>
+<li>_config.ymlをthemeにicarusを利用するように改修<ul>
+<li>HEXOディレクトリ直下にあります</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## Themes: https:&#x2F;&#x2F;hexo.io&#x2F;themes&#x2F;</span><br><span class="line">theme: icarus</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>icarusを適用</p>
+<ul>
+<li>以下を実行します<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure></li>
+<li>出力<ul>
+<li>icarusが出てきます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">j-blog&gt; hexo s</span><br><span class="line">INFO  &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line"> ██╗ ██████╗ █████╗ ██████╗ ██╗   ██╗███████╗</span><br><span class="line"> ██║██╔════╝██╔══██╗██╔══██╗██║   ██║██╔════╝</span><br><span class="line"> ██║██║     ███████║██████╔╝██║   ██║███████╗</span><br><span class="line"> ██║██║     ██╔══██║██╔══██╗██║   ██║╚════██║</span><br><span class="line"> ██║╚██████╗██║  ██║██║  ██║╚██████╔╝███████║</span><br><span class="line"> ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝</span><br><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">INFO  Checking dependencies</span><br><span class="line">INFO  Validating the configuration file</span><br><span class="line">WARN  themes\icarus\_config.yml is not found. We are creating one for you...</span><br><span class="line">INFO  themes\icarus\_config.yml is created. Please restart Hexo to apply changes.</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>画面を確認</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以下のようにテーマの変更を確認</p>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/76524367-4c460b00-64ad-11ea-876c-2c64cdaaf093.png" height="100%" width="100%"">
+</div>
+
+
+<ul>
+<li>後はいつも通りgenerateして本番環境へデプロイしましょう<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4><span id="trouble-shooting">Trouble Shooting</span></h4><ul>
+<li><p>本番環境で表示が崩れている場合</p>
+<ul>
+<li>前のテーマからgenerateされていたファイルが邪魔をしています（私もハマりました）<ul>
+<li>generateで生成されるファイル群を削除すれば、修正できます</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>cheerioがないというエラーが出た場合</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ERROR Package cheerio is not installed.</span><br><span class="line">ERROR Please install the missing dependencies from the root directory of your Hexo site.</span><br></pre></td></tr></table></figure>
+<ul>
+<li>以下を実行<ul>
+<li>Hexoディレクトリ直下で<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install cheerio --save</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>hexo sを実行できます</li>
+</ul>
+</li>
+</ul>
+<h2><span id="icarus設定tips">icarus設定Tips</span></h2><ul>
+<li>ハマる場面もあったので各種設定についても解説しておきます</li>
+</ul>
+<h3><span id="ウィジェットを変更">ウィジェットを変更</span></h3><ul>
+<li>icarus/layout/widget内のファイルを改修することで、左右の表示を変更できます</li>
+</ul>
+<h4><span id="プロフィールを変更">プロフィールを変更</span></h4><ul>
+<li><p><a href="https://github.com/ppoffice/hexo-theme-icarus/wiki/Theme">icarusのwiki</a>を参考に改修します</p>
+</li>
+<li><p>上記には書いてありませんでしたが、改修する設定ファイルは以下になります</p>
+<ul>
+<li>themes\icarus_cofig.yml</li>
+</ul>
+</li>
+<li><p>中を確認すると以下のようにprofileの初期設定がされていることが分かります</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># https:&#x2F;&#x2F;ppoffice.github.io&#x2F;hexo-theme-icarus&#x2F;categories&#x2F;Widgets&#x2F;</span><br><span class="line">widgets:</span><br><span class="line">    -</span><br><span class="line">        # Widget name</span><br><span class="line">        type: profile</span><br><span class="line">        # Where should the widget be placed, left or right</span><br><span class="line">        position: left</span><br><span class="line">        # Author name to be shown in the profile widget</span><br><span class="line">        author: Your name</span><br><span class="line">        # Title of the author to be shown in the profile widget</span><br><span class="line">        author_title: Your title</span><br><span class="line">        # Author&#39;s current location to be shown in the profile widget</span><br><span class="line">        location: Your location</span><br><span class="line">        # Path or URL to the avatar to be shown in the profile widget</span><br><span class="line">        avatar: </span><br><span class="line">        # Email address for the Gravatar to be shown in the profile widget</span><br><span class="line">        gravatar: </span><br><span class="line">        # Whether to show avatar image rounded or square</span><br><span class="line">        avatar_rounded: false</span><br><span class="line">        # Path or URL for the follow button</span><br><span class="line">        follow_link: &#39;https:&#x2F;&#x2F;github.com&#x2F;ppoffice&#39;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>変更</p>
+<ul>
+<li>profile画像は以下に格納しましょう<ul>
+<li>\themes\icarus\source\images<ul>
+<li><a href="https://kai-you.net/word/%E3%81%8A%E3%81%97%E3%82%85%E3%81%97%E3%81%A0%E3%82%88">おしゅし</a> のフリー素材として公開されている画像を用意しました</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>改修例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">widgets:</span><br><span class="line">    -</span><br><span class="line">        # Widget name</span><br><span class="line">        type: profile</span><br><span class="line">        # Where should the widget be placed, left or right</span><br><span class="line">        position: left</span><br><span class="line">        # Author name to be shown in the profile widget</span><br><span class="line">        author: J</span><br><span class="line">        # Title of the author to be shown in the profile widget</span><br><span class="line">        author_title: IT Specialist</span><br><span class="line">        # Author&#39;s current location to be shown in the profile widget</span><br><span class="line">        location: Tokyo Japan</span><br><span class="line">        # Path or URL to the avatar to be shown in the profile widget</span><br><span class="line">        avatar: images&#x2F;oshushi.png</span><br><span class="line">        # Email address for the Gravatar to be shown in the profile widget</span><br><span class="line">        gravatar: </span><br><span class="line">        # Whether to show avatar image rounded or square</span><br><span class="line">        avatar_rounded: true</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Profileの変更結果  </p>
+</li>
+</ul>
+<pre><code>&lt;div style=&quot;text-align:center;&quot;&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/41946222/76530468-1d349700-64b7-11ea-8cae-6ed0407cc359.png&quot; height=&quot;50%&quot; width=50%&quot;&gt;
+&lt;/div&gt;</code></pre><h3><span id="背景の変更">背景の変更</span></h3><ul>
+<li>以下からできます<br><a href="https://github.com/highlightjs/highlight.js/tree/master/src/styles">https://github.com/highlightjs/highlight.js/tree/master/src/styles</a></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Article display settings</span><br><span class="line">article:</span><br><span class="line">    # Code highlight settings</span><br><span class="line">    highlight:</span><br><span class="line">        # Code highlight themes</span><br><span class="line">        # https:&#x2F;&#x2F;github.com&#x2F;highlightjs&#x2F;highlight.js&#x2F;tree&#x2F;master&#x2F;src&#x2F;styles</span><br><span class="line">        theme: atom-one-light</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h3><span id="目次を自動作成するプラグインの導入">目次を自動作成するプラグインの導入</span></h3><ul>
+<li>hexo-tocをインストール<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-toc --save</span><br></pre></td></tr></table></figure></li>
+<li>目次を入れたい箇所に下記を追記すればOK。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- toc --&gt;</span><br></pre></td></tr></table></figure>
+
+<p>オプションとしてthemes/icarus/config.ymlに下記を追加します。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">toc:</span><br><span class="line">  maxdepth: 3</span><br><span class="line">  class: toc</span><br><span class="line">  slugify: transliteration</span><br><span class="line">  decodeEntities: false</span><br><span class="line">  anchor:</span><br><span class="line">    position: after</span><br><span class="line">    symbol: &#39;#&#39;</span><br><span class="line">    style: header-anchor</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>実際に記事に入れて見ましょう</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hexoでサイトマップを自動生成 ~ Google Search Consoleへ登録</span><br><span class="line">thumbnails: &#x2F;gallery&#x2F;sitemap_thumnail.png</span><br><span class="line">date: 2020-03-10 23:23:23</span><br><span class="line">toc: true</span><br><span class="line">tags:</span><br><span class="line">- Hexo</span><br><span class="line">- Sitemap</span><br><span class="line">- google search console</span><br><span class="line">---</span><br><span class="line">&lt;!-- toc --&gt;</span><br><span class="line">## 概要</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>画面を確認すると以下のように反映されていました。</p>
+  <div style="text-align:center;">
+  <img src="https://user-images.githubusercontent.com/41946222/76619886-46186300-656f-11ea-979d-878690e12d0c.png" height="100%" width="100%">
+  </div>
+</li>
+<li><p>関連記事</p>
+<ul>
+<li><a href="https://j-xaas.github.io/2020/03/17/icarus-Hexo-Theme-Tips-Menuの編集/">icarus(Hexo Theme) Tips Menuの編集</a><ul>
+<li>続いてメニューをカスタマイズしましょう</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-03-10T14:23:23.000Z">2020-03-10</time>
                 
                 <div class="level-item">
@@ -1498,7 +1834,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    6分 read (About 918 words)
+                    7分 read (About 993 words)
                 </span>
                 
                 
@@ -1513,12 +1849,12 @@
         <div class="content">
             <!--toc-->
 
-<h2><span id="著者について">著者について</span></h2><p>　初めまして。本ページをご覧頂き有難うございます。  </p>
-<p>都内の大手IT企業で、先端技術検証や新規サービスの実証～事業化を担当している若手社員です。主にSaaS/Serverless/MultiCloud/IoT/DevOps関連の<a href="https://www.keyence.co.jp/ss/general/iot-glossary/poc.jsp">PoC(Proof of Concept)</a>に携わっています。  </p>
+<h2><span id="著者について">著者について</span></h2><p>　初めまして。本ページをご覧頂き有難うございます。<br>都内の大手IT企業で、先端技術検証や新規サービスの実証～事業化を担当している若手社員です。主にSaaS/Serverless/MultiCloud/IoT/DevOps関連の<a href="https://www.keyence.co.jp/ss/general/iot-glossary/poc.jsp">PoC(Proof of Concept)</a>に携わっています。  </p>
 <p>学生時代は早稲田大学の創造理工学部で3Dプリンターの研究をしていました。コンピューターサイエンスの基礎を学ばないまま、モダンな技術を扱うことになったので、日々悪戦苦闘しています。</p>
 <ul>
 <li>ざっくりスキルマップ<ul>
-<li>プロマネやクラウドのIaCが専門のはずが、最近はフロントエンドエンジニアっぽいことをやりがち</li>
+<li>主にプロマネやアーキテクチャ設計を担当しているAWS Solution Architectです</li>
+<li>最近はフロントエンドエンジニアっぽいこともやってます</li>
 </ul>
 </li>
 </ul>
@@ -1526,13 +1862,17 @@
 <img src="https://user-images.githubusercontent.com/41946222/79894561-9b824280-8440-11ea-89ba-4267b6508103.png" height="750px" width="900px">
 </div>
 
-<h2><span id="本サイトの目的">本サイトの目的</span></h2><p>　アメリカ国立訓練研究所で提唱されている<a href="https://www.researchgate.net/figure/Learning-Pyramid-developed-by-National-Training-Laboratories-7_fig1_302480305">Learning Pyramid</a>によれば、学習定着率を高める最善手は “Teach Others” です。そのため、本サイトをOutputの場として、個人的なTipsやハマった事の解決策をまとめていこうと考えております。内容としては、チームの立ち上げ段階で初級者が躓きがちな基礎レベルの解説から順に書いていく予定です。マッチする記事があれば、PJのスタートダッシュにお使いください。  </p>
+<h2><span id="本サイトの目的">本サイトの目的</span></h2><ol>
+<li>新人/初級者のサポート</li>
+<li>自身の復習用のメモ</li>
+</ol>
+<p>　アメリカ国立訓練研究所で提唱されている<a href="https://www.researchgate.net/figure/Learning-Pyramid-developed-by-National-Training-Laboratories-7_fig1_302480305">Learning Pyramid</a>によれば、学習定着率を高める最善手は “Teach Others” です。そのため、本サイトをOutputの場として、個人的なTipsやハマった事の解決策をまとめていこうと考えております。内容としては、チームの立ち上げ段階で初級者が躓きがちな基礎レベルの解説から順に書いていく予定です。最近人に教える機会が増えてキリがないので、先回りしてWEBにまとめておくことにしました。マッチする記事があれば、新人教育やPJのスタートダッシュにお使いください。  </p>
 <div style="text-align:center;">
 <img src="https://user-images.githubusercontent.com/41946222/73755094-dd3c0f00-47a8-11ea-9ec5-e1e537559054.png" height="600px" width="600px">
 </div>
 
 <p>　IT業界では、ベテランの優秀層に囲まれるとスキルのギャップで苦しむシーンが多いと思います。私も初期配属された頃、9ヵ月間毎月資格を取り続けた事がありましたが、とても太刀打ちできませんでした。特にモダンな技術の文献は一定の暗黙知を有するものが多く、初級者に優しくありません。本サイトでは、専門用語を避けて初級者に合わせた表現をするよう心がけております。公開した記事が当時の私と同じように困っている方の助けになれば嬉しいです。  </p>
-<h2><span id="その他のテーマ">その他のテーマ</span></h2><h3><span id="smart-home">Smart Home</span></h3><p>IoT案件に関わった影響で始めたSmart Homeの構築手法についても載せていく予定です。現在は以下のような構成を作っています。 ↓ 辺りを実現するだけでもだいぶQOLが向上するのでお勧めです。DIYの感覚で時短の為にやってます。</p>
+<h2><span id="その他のテーマ">その他のテーマ</span></h2><h3><span id="smart-home">Smart Home</span></h3><p>IoT案件に関わった影響で始めたSmart Homeの構築手法について載せていく予定です。現在は以下のような構成を作っています。 ↓ 辺りを実現するだけでもだいぶQOLが向上するのでお勧めです。DIY感覚で時短の為にやってます。</p>
 <ul>
 <li><a href="https://amzn.to/33mE08M">Smart Mat</a>で消耗品の発注を自動化</li>
 <li><a href="https://amzn.to/2x2nLS8">Smartリモコン</a>で赤外線リモコンの機能を集約</li>
@@ -1554,8 +1894,7 @@
 </div>
 
 
-
-<p>個人的に開発したいサービスが沢山あるので、手伝ってくれる方を募集しています。<br>Mail: <a href="mailto:junjunjunya108@gmail.com">junjunjunya108@gmail.com</a></p>
+<p>個人的に開発したいサービス案が沢山あるので、手伝ってくれる方を募集しています。<br>Mail: <a href="mailto:junjunjunya108@gmail.com">junjunjunya108@gmail.com</a></p>
 
         </div>
         
@@ -1637,7 +1976,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            28
+                            29
                         </p>
                     </a>
                 </div>
@@ -1649,7 +1988,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            14
+                            15
                         </p>
                     </a>
                 </div>
@@ -1661,7 +2000,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            50
+                            54
                         </p>
                     </a>
                 </div>
@@ -1817,7 +2156,7 @@
                 <span class="level-item">Tool Tips</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">6</span>
+                <span class="level-item tag">7</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Tool-Tips/AWS-Cloud9/">
@@ -1831,6 +2170,14 @@
         <a class="level is-marginless" href="/categories/Tool-Tips/Chrome-%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD/">
             <span class="level-start">
                 <span class="level-item">Chrome 拡張機能</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Tool-Tips/Drawing/">
+            <span class="level-start">
+                <span class="level-item">Drawing</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -1886,7 +2233,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12.5px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 10px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 12.5px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/DTM/" style="font-size: 15px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 12.5px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 12.5px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 17.5px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/NETDUETTO/" style="font-size: 10px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 12.5px;">RPA</a> <a href="/tags/SYNCROOM/" style="font-size: 10px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 12.5px;">Steinberg UR44C</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 15px;">cloud9</a> <a href="/tags/filter/" style="font-size: 10px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 15px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/map/" style="font-size: 10px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 10px;">mat-checkbox</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 12.5px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12.5px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 10px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 12.5px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Cloud-Craft/" style="font-size: 10px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/DTM/" style="font-size: 15px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 12.5px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 12.5px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 17.5px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/Mind-Node/" style="font-size: 10px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 10px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 12.5px;">RPA</a> <a href="/tags/SYNCROOM/" style="font-size: 10px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 12.5px;">Steinberg UR44C</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 15px;">cloud9</a> <a href="/tags/draw-io/" style="font-size: 10px;">draw.io</a> <a href="/tags/filter/" style="font-size: 10px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 15px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/map/" style="font-size: 10px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 10px;">mat-checkbox</a> <a href="/tags/plantUML/" style="font-size: 10px;">plantUML</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 12.5px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
     </div>
 </div>
     
@@ -1898,6 +2245,25 @@
         <h3 class="menu-label">
             最近の記事
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/05/15/%E6%8F%8F%E7%94%BB%E3%83%84%E3%83%BC%E3%83%AB%E3%81%BE%E3%81%A8%E3%82%81-draw-io-Cloud-Craft-Mind-Node-plantUML-Excel%E5%A5%BD%E3%81%8D%E3%81%AE%E6%AE%8B%E5%BF%B5%E3%81%AASE-%E3%82%B3%E3%83%B3%E3%82%B5%E3%83%AB%E3%81%AB%E3%81%AA%E3%82%89%E3%81%AA%E3%81%84%E6%89%8B%E6%AE%B5/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="描画ツールまとめ [draw.io/Cloud Craft/Mind Node/plantUML]  Excel好きの残念なSE/コンサルにならない手段">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-14T18:02:12.000Z">2020-05-15</time></div>
+                    <a href="/2020/05/15/%E6%8F%8F%E7%94%BB%E3%83%84%E3%83%BC%E3%83%AB%E3%81%BE%E3%81%A8%E3%82%81-draw-io-Cloud-Craft-Mind-Node-plantUML-Excel%E5%A5%BD%E3%81%8D%E3%81%AE%E6%AE%8B%E5%BF%B5%E3%81%AASE-%E3%82%B3%E3%83%B3%E3%82%B5%E3%83%AB%E3%81%AB%E3%81%AA%E3%82%89%E3%81%AA%E3%81%84%E6%89%8B%E6%AE%B5/" class="title has-link-black-ter is-size-6 has-text-weight-normal">描画ツールまとめ [draw.io/Cloud Craft/Mind Node/plantUML]  Excel好きの残念なSE/コンサルにならない手段</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Drawing/">Drawing</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -1975,25 +2341,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/04/14/Cloud9-x-Angular-cloud9%E3%81%A7ng-serve%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6AP%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Cloud9 x Angular] cloud9でng serveを実行してAPの画面を確認するまで">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-13T17:04:12.000Z">2020-04-14</time></div>
-                    <a href="/2020/04/14/Cloud9-x-Angular-cloud9%E3%81%A7ng-serve%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6AP%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Cloud9 x Angular] cloud9でng serveを実行してAPの画面を確認するまで</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -2004,6 +2351,17 @@
             アーカイブ
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/04/">
@@ -2136,6 +2494,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Cloud-Craft/">
+                        <span class="tag">Cloud Craft</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Cloud9/">
                         <span class="tag">Cloud9</span>
                         <span class="tag is-grey">1</span>
@@ -2215,6 +2580,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hosting/">
                         <span class="tag">Hosting</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Mind-Node/">
+                        <span class="tag">Mind Node</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -2304,6 +2676,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/draw-io/">
+                        <span class="tag">draw.io</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/filter/">
                         <span class="tag">filter()</span>
                         <span class="tag is-grey">1</span>
@@ -2355,6 +2734,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/mat-checkbox/">
                         <span class="tag">mat-checkbox</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/plantUML/">
+                        <span class="tag">plantUML</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -2425,6 +2811,25 @@
         
         <article class="media">
             
+            <a href="/2020/05/15/%E6%8F%8F%E7%94%BB%E3%83%84%E3%83%BC%E3%83%AB%E3%81%BE%E3%81%A8%E3%82%81-draw-io-Cloud-Craft-Mind-Node-plantUML-Excel%E5%A5%BD%E3%81%8D%E3%81%AE%E6%AE%8B%E5%BF%B5%E3%81%AASE-%E3%82%B3%E3%83%B3%E3%82%B5%E3%83%AB%E3%81%AB%E3%81%AA%E3%82%89%E3%81%AA%E3%81%84%E6%89%8B%E6%AE%B5/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="描画ツールまとめ [draw.io/Cloud Craft/Mind Node/plantUML]  Excel好きの残念なSE/コンサルにならない手段">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-14T18:02:12.000Z">2020-05-15</time></div>
+                    <a href="/2020/05/15/%E6%8F%8F%E7%94%BB%E3%83%84%E3%83%BC%E3%83%AB%E3%81%BE%E3%81%A8%E3%82%81-draw-io-Cloud-Craft-Mind-Node-plantUML-Excel%E5%A5%BD%E3%81%8D%E3%81%AE%E6%AE%8B%E5%BF%B5%E3%81%AASE-%E3%82%B3%E3%83%B3%E3%82%B5%E3%83%AB%E3%81%AB%E3%81%AA%E3%82%89%E3%81%AA%E3%81%84%E6%89%8B%E6%AE%B5/" class="title has-link-black-ter is-size-6 has-text-weight-normal">描画ツールまとめ [draw.io/Cloud Craft/Mind Node/plantUML]  Excel好きの残念なSE/コンサルにならない手段</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Drawing/">Drawing</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/04/23/Angular-Schematics-%E9%96%8B%E9%96%89%E5%8F%AF%E8%83%BD%E3%81%AA%E3%82%B5%E3%82%A4%E3%83%89%E3%83%8A%E3%83%93%EF%BC%86%E3%83%84%E3%83%BC%E3%83%AB%E3%83%90%E3%83%BC%E3%82%923%E5%88%86%E3%81%A7%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90%E3%81%99%E3%82%8B/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="[Angular Schematics] 開閉可能なサイドナビ＆ツールバーを3分で自動生成する">
@@ -2499,25 +2904,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/04/14/Cloud9-x-Angular-cloud9%E3%81%A7ng-serve%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6AP%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Cloud9 x Angular] cloud9でng serveを実行してAPの画面を確認するまで">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-13T17:04:12.000Z">2020-04-14</time></div>
-                    <a href="/2020/04/14/Cloud9-x-Angular-cloud9%E3%81%A7ng-serve%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6AP%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Cloud9 x Angular] cloud9でng serveを実行してAPの画面を確認するまで</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -2528,6 +2914,17 @@
             アーカイブ
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/05/">
+                <span class="level-start">
+                    <span class="level-item">五月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/archives/2020/04/">
@@ -2660,6 +3057,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Cloud-Craft/">
+                        <span class="tag">Cloud Craft</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Cloud9/">
                         <span class="tag">Cloud9</span>
                         <span class="tag is-grey">1</span>
@@ -2739,6 +3143,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hosting/">
                         <span class="tag">Hosting</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Mind-Node/">
+                        <span class="tag">Mind Node</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -2828,6 +3239,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/draw-io/">
+                        <span class="tag">draw.io</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/filter/">
                         <span class="tag">filter()</span>
                         <span class="tag is-grey">1</span>
@@ -2879,6 +3297,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/mat-checkbox/">
                         <span class="tag">mat-checkbox</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/plantUML/">
+                        <span class="tag">plantUML</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
