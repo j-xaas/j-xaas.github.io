@@ -170,6 +170,273 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-05-18T15:33:17.000Z">2020-05-19</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    14分 read (About 2032 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/05/19/Github%E5%85%A5%E9%96%80-%E5%85%A5%E7%A4%BE%E5%88%9D%E6%97%A5%E3%81%AE%E5%AE%8C%E5%85%A8%E3%81%AA%E7%B4%A0%E4%BA%BA%E5%90%91%E3%81%91%E3%81%AE%E5%84%AA%E3%81%97%E3%81%84%E8%AA%AC%E6%98%8E/">Github入門 ～入社初日の完全な素人でも分かる優しい説明～</a>
+            
+        </h1>
+        <div class="content">
+            <p>今回はGithubというツールについて解説します。学生や新入社員等、これからアプリ開発を始める方が初めに覚えるツールなのですが、専門用語を並び立てた説明だらけで戸惑う方が多いため、極力丸めた言葉で優しく書きました。<br>　Githubはエンジニアに取っての読み書きのようなものです。当然の前提知識として暗黙知にされることが多く、アプリ開発を学ぶ中では必ず使うシーンがあります。あくまで作業を楽にするための便利なツールなので、食わず嫌いをせずに早めに覚えましょう。</p>
+<p><img src="https://user-images.githubusercontent.com/41946222/82224547-ea979680-995e-11ea-88fc-1274230cf1d0.png" alt="image"></p>
+<!-- toc -->
+
+<ul>
+<li><a href="#1-githubとは">1. Githubとは</a></li>
+<li><a href="#2-githubの利用に必要な準備">2. Githubの利用に必要な準備</a><ul>
+<li><a href="#21-アカウントの作成">2.1. アカウントの作成</a></li>
+<li><a href="#22-ideの準備">2.2. IDEの準備</a></li>
+<li><a href="#23-インストール">2.3. インストール</a></li>
+</ul>
+</li>
+<li><a href="#3-リポジトリ作成~クローン">3. リポジトリ作成～クローン</a><ul>
+<li><a href="#31-リモートリポジトリの作成">3.1. リモートリポジトリの作成</a></li>
+<li><a href="#32-リポジトリをlocal端末へのclone">3.2. リポジトリをLocal端末へのClone</a></li>
+<li><a href="#4-編集した内容をリモートに送るまで基本コマンド">4. 編集した内容をリモートに送るまで/基本コマンド</a></li>
+<li><a href="#4-githubを用いた分散開発">4. Githubを用いた分散開発</a></li>
+<li><a href="#cheat-sheat">Cheat Sheat</a></li>
+</ul>
+</li>
+<li><a href="#関連記事">関連記事</a></li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="1-githubとは">1. Githubとは</span></h2><ul>
+<li><p>猫のようなキャラはマスコットのOctocatです<br><img src="https://user-images.githubusercontent.com/41946222/82229837-e327bb80-9965-11ea-8879-c5d3f7ac7156.png" alt="image"></p>
+</li>
+<li><p>ソースコード(アプリを構成するファイル群の事)を保管/共有する場所</p>
+<ul>
+<li>アプリケーションはコードを書いたファイルの集まりで構成されます</li>
+<li>複数人で開発するには、各メンバが編集したソースコードを集めて合体(mergeと言います)させ、最新版を保管しておく共通の場所が必要</li>
+</ul>
+</li>
+<li><p>バージョン管理ツール</p>
+<ul>
+<li>時系列に沿ったソースコードの編集内容の変化を管理可能です<ul>
+<li>差分の視覚化<ul>
+<li>他メンバが開発した箇所がマーキングされて表示されます<ul>
+<li>ソースを1行づつ見比べる手間を省略できます</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>任意のタイミングに戻せる<ul>
+<li>例えば、誤ってアプリを壊してしまった際に、直前のタイミングに戻せます</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>コードレビュー（評価）</p>
+<ul>
+<li>Pull Requestという機能を利用すると、自身の編集内容と共にメンバーに確認依頼を飛ばせます</li>
+<li>差分が一目で分かるため、レビューが効率的です<ul>
+<li>指摘箇所のコードとコメントをセットで登録でき、対話形式で解決できます</li>
+</ul>
+</li>
+<li>昔はExcelにレビュー表を作って一つ一つチェックしていたようです<ul>
+<li>このファイルのXX行目の～～がと毎回書いて照らし合わせる作業は恐ろしく非効率的なのでやめましょう</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>連携機能</p>
+<ul>
+<li>WEBhook<ul>
+<li>Slack等のチャットツールに通知を飛ばす機能です</li>
+</ul>
+</li>
+<li>Github Actions<ul>
+<li>自動化機能<ul>
+<li>例えば、Gitに編集したコードをアップした際に本番環境（アプリが動くサーバー等）に自動的に送ってくれたりします（デプロイという作業） </li>
+</ul>
+</li>
+<li>ある程度開発に慣れたら使ってみましょう<ul>
+<li>CI/CDやDevOpsというワードと一緒に勉強してみてください</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="2-githubの利用に必要な準備">2. Githubの利用に必要な準備</span></h2><ul>
+<li>まずはアカウントを作成して、自分のPC上でGitのコマンドを実行できるようにインストールする必要があります</li>
+</ul>
+<h3><span id="21-アカウントの作成">2.1. アカウントの作成</span></h3><ul>
+<li><a href="https://github.com/">gitub</a>でアカウント登録を行いましょう<ul>
+<li>必要事項を入力してSign up</li>
+<li>通知メールから承認</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/82223880-33028480-995e-11ea-9889-630f1f88ec8f.png" alt="image"></p>
+<h3><span id="22-ideの準備">2.2. IDEの準備</span></h3><ul>
+<li><p>開発を行うにはIDEというものが必要です</p>
+</li>
+<li><p>IDEは以下の二つの要素でできています</p>
+<ul>
+<li>エディター<ul>
+<li>コードを編集する場所</li>
+</ul>
+</li>
+<li>CLI<ul>
+<li>コマンドを打つ場所<ul>
+<li>基本的にここでgithubを操作するコマンドを打つので、用意が必要です</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>以下をPCにインストールしましょう</p>
+<ul>
+<li><a href="https://azure.microsoft.com/ja-jp/products/visual-studio-code/">Visual Studio Code</a><ul>
+<li>この記事もVS Codeで書いています<br><img src="https://user-images.githubusercontent.com/41946222/82232629-d7d68f00-9969-11ea-9bb1-3977d2b9d25a.png" alt="image"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>以降は上記のIDEのCLI(VS Codeの画面下部)にコマンドを打つという前提で説明を書きます</p>
+</li>
+</ul>
+<h3><span id="23-インストール">2.3. インストール</span></h3><ul>
+<li>以下を参考にGithubをPCに入れましょう<ul>
+<li><a href="https://git-scm.com/book/ja/v2/%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B-Git%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB">Gitのインストール</a></li>
+</ul>
+</li>
+</ul>
+<h2><span id="3-リポジトリ作成~クローン">3. リポジトリ作成～クローン</span></h2><ul>
+<li>リポジトリとは<ul>
+<li>ソースコードを格納する一つの箱のようなもの</li>
+<li>基本的にアプリ単位で作成します</li>
+<li>これをGithub上と自分のPC上に対になる形で配置します(clone)<ul>
+<li>中身のファイルを編集して、コマンドで行き来させます<ul>
+<li>ざっくりイメージ<ol>
+<li>pullコマンドで自分のPCに持ってくる</li>
+<li>編集</li>
+<li>pushコマンドでGithubに返す</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="31-リモートリポジトリの作成">3.1. リモートリポジトリの作成</span></h3><ul>
+<li>githubにログインして”New Repository”から作成してみましょう</li>
+</ul>
+<h3><span id="32-リポジトリをlocal端末へのclone">3.2. リポジトリをLocal端末へのClone</span></h3><ul>
+<li><p>リポジトリ作成後の画面を開く</p>
+</li>
+<li><p>“Clone or download”を押下</p>
+<ul>
+<li>戻りのボタンです</li>
+<li>出てきたURLを保存します</li>
+</ul>
+</li>
+<li><p>以下のコマンドをCLIで実行</p>
+<ul>
+<li>Github上に作ったリポジトリが自分のローカル端末(PC)にコピーされます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone &lt;url&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>ここまででGit ⇔ PC間で、データを行き来させることが可能になりました</p>
+</li>
+</ul>
+<h3><span id="4-編集した内容をリモートに送るまで基本コマンド">4. 編集した内容をリモートに送るまで/基本コマンド</span></h3><p>基本的な流れを以下に示します</p>
+<ul>
+<li><p>Github上から最新のソースコードを取得</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>開発</p>
+<ul>
+<li>ファイルを開いて編集<ul>
+<li>リポジトリ生成時にReadme.mdというファイルができていると思います<ul>
+<li>リポジトリの説明を書くファイル</li>
+<li>ここに開発のルール等をメモしてメンバと共有するのが一般的です</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>VS Codeなら以下のコマンドで開けます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code &lt;ファイル名&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>add: リモートに送るファイルを指定</p>
+<ul>
+<li>厳密にはCommitに含めるファイルを指定<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add &lt;編集したファイル名&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>commit: 編集の完了を宣言</p>
+<ul>
+<li>commitのタイミング毎にバージョン管理がされます<ul>
+<li>好きなタイミングに戻れるようにこまめにcommitしましょう<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>リモートに編集内容を送る</p>
+<ul>
+<li>ここで送られるのはcommitに含まれるファイルのみ<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>ここまでで、個人開発はできます。次は複数人が関わるパターンを勉強しましょう。ブランチという概念の理解が必要です。</p>
+</li>
+</ul>
+<h3><span id="4-githubを用いた分散開発">4. Githubを用いた分散開発</span></h3><p>※続きは気が向いた時に書きます</p>
+<h3><span id="cheat-sheat">Cheat Sheat</span></h3><ul>
+<li><p><a href="https://www.softantenna.com/wp/software/git-cheat-sheet/">Git Cheat Sheat</a></p>
+</li>
+<li><p><img src="https://user-images.githubusercontent.com/41946222/69409586-94012500-0d4c-11ea-9ff0-f7fe87911596.png" alt="image"></p>
+</li>
+</ul>
+<h2><span id="関連記事">関連記事</span></h2><ul>
+<li><a href="https://j-xaas.github.io/2020/04/08/git-merge-%E3%82%B3%E3%83%B3%E3%83%95%E3%83%AA%E3%82%AF%E3%83%88%E3%81%AE%E8%A7%A3%E6%B6%88%EF%BC%88%E8%A4%87%E6%95%B0%E5%90%8D%E3%81%AE%E7%B7%A8%E9%9B%86%E5%86%85%E5%AE%B9%E3%82%92%E9%9B%86%E7%B4%84%EF%BC%89/">git merge &amp; コンフリクトの解消（複数名の編集内容を集約）</a></li>
+<li><a href="https://j-xaas.github.io/2020/02/09/Github%E3%81%8B%E3%82%89GithubEnterprise%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86/">Github.comからGithubEnterpriseへの移行手順</a></li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-04-07T15:58:26.000Z">2020-04-08</time>
                 
                 <div class="level-item">
@@ -589,7 +856,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            29
+                            30
                         </p>
                     </a>
                 </div>
@@ -769,7 +1036,7 @@
                 <span class="level-item">Tool Tips</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Tool-Tips/AWS-Cloud9/">
@@ -801,7 +1068,7 @@
                 <span class="level-item">Github</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">3</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Tool-Tips/Google-Cloud-Shell/">
@@ -846,7 +1113,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12.5px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 10px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 12.5px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Cloud-Craft/" style="font-size: 10px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/DTM/" style="font-size: 15px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 12.5px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 12.5px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 17.5px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/Mind-Node/" style="font-size: 10px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 10px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 12.5px;">RPA</a> <a href="/tags/SYNCROOM/" style="font-size: 10px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 12.5px;">Steinberg UR44C</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 15px;">cloud9</a> <a href="/tags/draw-io/" style="font-size: 10px;">draw.io</a> <a href="/tags/filter/" style="font-size: 10px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 15px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/map/" style="font-size: 10px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 10px;">mat-checkbox</a> <a href="/tags/plantUML/" style="font-size: 10px;">plantUML</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 12.5px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12.5px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 10px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 12.5px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Cloud-Craft/" style="font-size: 10px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/DTM/" style="font-size: 15px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 12.5px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 15px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 17.5px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/Mind-Node/" style="font-size: 10px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 10px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 12.5px;">RPA</a> <a href="/tags/SYNCROOM/" style="font-size: 10px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 12.5px;">Steinberg UR44C</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 15px;">cloud9</a> <a href="/tags/draw-io/" style="font-size: 10px;">draw.io</a> <a href="/tags/filter/" style="font-size: 10px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 15px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/map/" style="font-size: 10px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 10px;">mat-checkbox</a> <a href="/tags/plantUML/" style="font-size: 10px;">plantUML</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 12.5px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
     </div>
 </div>
     
@@ -858,6 +1125,25 @@
         <h3 class="menu-label">
             最近の記事
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/05/19/Github%E5%85%A5%E9%96%80-%E5%85%A5%E7%A4%BE%E5%88%9D%E6%97%A5%E3%81%AE%E5%AE%8C%E5%85%A8%E3%81%AA%E7%B4%A0%E4%BA%BA%E5%90%91%E3%81%91%E3%81%AE%E5%84%AA%E3%81%97%E3%81%84%E8%AA%AC%E6%98%8E/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Github入門 ～入社初日の完全な素人でも分かる優しい説明～">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-18T15:33:17.000Z">2020-05-19</time></div>
+                    <a href="/2020/05/19/Github%E5%85%A5%E9%96%80-%E5%85%A5%E7%A4%BE%E5%88%9D%E6%97%A5%E3%81%AE%E5%AE%8C%E5%85%A8%E3%81%AA%E7%B4%A0%E4%BA%BA%E5%90%91%E3%81%91%E3%81%AE%E5%84%AA%E3%81%97%E3%81%84%E8%AA%AC%E6%98%8E/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Github入門 ～入社初日の完全な素人でも分かる優しい説明～</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -935,25 +1221,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/04/16/Firebase-Hosting%E5%AE%8C%E5%85%A8%E7%89%88-Angular%E3%81%A7%E9%96%8B%E7%99%BA%E3%81%97%E3%81%9FSPA%E3%82%92%E7%84%A1%E6%96%99%E3%81%A7%E5%85%AC%E9%96%8B%EF%BD%9E%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5%E3%83%9C%E3%83%BC%E3%83%89%E3%81%A7%E8%B2%BB%E7%94%A8%E7%AE%A1%E7%90%86/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Firebase Hosting完全版(Angularで開発したSPAを無料で公開～ダッシュボードで費用管理)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-15T17:09:36.000Z">2020-04-16</time></div>
-                    <a href="/2020/04/16/Firebase-Hosting%E5%AE%8C%E5%85%A8%E7%89%88-Angular%E3%81%A7%E9%96%8B%E7%99%BA%E3%81%97%E3%81%9FSPA%E3%82%92%E7%84%A1%E6%96%99%E3%81%A7%E5%85%AC%E9%96%8B%EF%BD%9E%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5%E3%83%9C%E3%83%BC%E3%83%89%E3%81%A7%E8%B2%BB%E7%94%A8%E7%AE%A1%E7%90%86/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Firebase Hosting完全版(Angularで開発したSPAを無料で公開～ダッシュボードで費用管理)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Firebase/">Firebase</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -971,7 +1238,7 @@
                     <span class="level-item">五月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1151,7 +1418,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Github-com/">
                         <span class="tag">Github.com</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -1424,6 +1691,25 @@
         
         <article class="media">
             
+            <a href="/2020/05/19/Github%E5%85%A5%E9%96%80-%E5%85%A5%E7%A4%BE%E5%88%9D%E6%97%A5%E3%81%AE%E5%AE%8C%E5%85%A8%E3%81%AA%E7%B4%A0%E4%BA%BA%E5%90%91%E3%81%91%E3%81%AE%E5%84%AA%E3%81%97%E3%81%84%E8%AA%AC%E6%98%8E/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Github入門 ～入社初日の完全な素人でも分かる優しい説明～">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-18T15:33:17.000Z">2020-05-19</time></div>
+                    <a href="/2020/05/19/Github%E5%85%A5%E9%96%80-%E5%85%A5%E7%A4%BE%E5%88%9D%E6%97%A5%E3%81%AE%E5%AE%8C%E5%85%A8%E3%81%AA%E7%B4%A0%E4%BA%BA%E5%90%91%E3%81%91%E3%81%AE%E5%84%AA%E3%81%97%E3%81%84%E8%AA%AC%E6%98%8E/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Github入門 ～入社初日の完全な素人でも分かる優しい説明～</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/05/15/%E6%8F%8F%E7%94%BB%E3%83%84%E3%83%BC%E3%83%AB%E3%81%BE%E3%81%A8%E3%82%81-draw-io-Cloud-Craft-Mind-Node-plantUML-Excel%E5%A5%BD%E3%81%8D%E3%81%AE%E6%AE%8B%E5%BF%B5%E3%81%AASE-%E3%82%B3%E3%83%B3%E3%82%B5%E3%83%AB%E3%81%AB%E3%81%AA%E3%82%89%E3%81%AA%E3%81%84%E6%89%8B%E6%AE%B5/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="描画ツールまとめ [draw.io/Cloud Craft/Mind Node/plantUML]  Excel好きの残念なSE/コンサルにならない手段">
@@ -1498,25 +1784,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/04/16/Firebase-Hosting%E5%AE%8C%E5%85%A8%E7%89%88-Angular%E3%81%A7%E9%96%8B%E7%99%BA%E3%81%97%E3%81%9FSPA%E3%82%92%E7%84%A1%E6%96%99%E3%81%A7%E5%85%AC%E9%96%8B%EF%BD%9E%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5%E3%83%9C%E3%83%BC%E3%83%89%E3%81%A7%E8%B2%BB%E7%94%A8%E7%AE%A1%E7%90%86/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Firebase Hosting完全版(Angularで開発したSPAを無料で公開～ダッシュボードで費用管理)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-15T17:09:36.000Z">2020-04-16</time></div>
-                    <a href="/2020/04/16/Firebase-Hosting%E5%AE%8C%E5%85%A8%E7%89%88-Angular%E3%81%A7%E9%96%8B%E7%99%BA%E3%81%97%E3%81%9FSPA%E3%82%92%E7%84%A1%E6%96%99%E3%81%A7%E5%85%AC%E9%96%8B%EF%BD%9E%E3%83%80%E3%83%83%E3%82%B7%E3%83%A5%E3%83%9C%E3%83%BC%E3%83%89%E3%81%A7%E8%B2%BB%E7%94%A8%E7%AE%A1%E7%90%86/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Firebase Hosting完全版(Angularで開発したSPAを無料で公開～ダッシュボードで費用管理)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Firebase/">Firebase</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1534,7 +1801,7 @@
                     <span class="level-item">五月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1714,7 +1981,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Github-com/">
                         <span class="tag">Github.com</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
