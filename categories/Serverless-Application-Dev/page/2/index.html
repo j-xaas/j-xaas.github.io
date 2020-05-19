@@ -168,6 +168,107 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-27T15:13:23.000Z">2020-02-28</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3分 read (About 443 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/28/Angular-x-AWS-SDK-for-JavaScript%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9/">Angular x AWS SDK for JavaScriptの始め方</a>
+            
+        </h1>
+        <div class="content">
+            <ul>
+<li>angularで開発していたアプリケーションにaws-sdkを導入する際の備忘録<ul>
+<li><a href="https://aws.amazon.com/jp/tools/">AWS SDK</a>を入れることで、アプリケーションからAWSのリソースを操作可能になります<ul>
+<li>ex.) S3やDynamoDBへのデータの格納、Cognitoによる認証、Lambdaの実行…</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Angularの場合、公式の開発者ガイド通りにやると鬼のようにエラーが出るので共有しておきます。ひと手間必要でした。</li>
+</ul>
+<!--toc-->
+
+<h2><span id="1-aws-sdk-for-javascriptのinstall">1. aws sdk for javascriptのinstall</span></h2><ul>
+<li>angular PJ直下で実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install aws-sdk --save-dev</span><br></pre></td></tr></table></figure></li>
+<li>この時点でAPを確認すると、以下のエラーが大量に出ます<ul>
+<li>APの画面もブラウザに表示されなくなります</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;ng serve --open</span><br><span class="line"></span><br><span class="line">ERROR in node_modules&#x2F;aws-sdk&#x2F;clients&#x2F;acm.d.ts:141:37 - error TS2591: Cannot find name &#39;Buffer&#39;. Do you need to install type definitions for node? Try &#96;npm i @types&#x2F;node&#96; and then add &#96;node&#96; to the types field in your tsconfig.</span><br></pre></td></tr></table></figure>
+
+<h2><span id="2-typesnodeをinstallする">2. @types/nodeをinstallする</span></h2><ul>
+<li>Angular PJ直下で以下を実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install --save @types&#x2F;node</span><br><span class="line"></span><br><span class="line">+ @types&#x2F;node@8.9.5</span><br><span class="line">updated 1 package and audited 19123 packages in 41.418s</span><br><span class="line">found 0 vulnerabilities</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2><span id="3-tsconfigjson-ファイルに以下を追記">3. tsconfig.json ファイルに以下を追記</span></h2><ul>
+<li><p>Angular PJ直下にあります</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;compilerOptions&quot;: &#123;</span><br><span class="line">  &quot;types&quot;: [&quot;node&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>場所は以下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; code .\tsconfig.json</span><br></pre></td></tr></table></figure>
+</li>
+<li><ol start="4">
+<li>tsconfig.app.json にも、同じく追記<ul>
+<li>Angular PJ直下にあります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;compilerOptions&quot;: &#123;</span><br><span class="line">   &quot;types&quot;: [&quot;node&quot;]</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>エラーの解消を確認</p>
+<ul>
+<li>ng serve時に正しくAPの画面が表示される</li>
+</ul>
+</li>
+<li><p>ここまででAngular APからAWSのリソースとAPI連携する下準備が整いました</p>
+<ul>
+<li>以下についても後日UP予定です<ul>
+<li>AWSの各リソースの利用方法、実装方法</li>
+<li>Ampliyfy(BaaS)でAWSと連携させる手法</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-02-20T09:12:39.000Z">2020-02-20</time>
                 
                 <div class="level-item">
@@ -363,7 +464,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            30
+                            31
                         </p>
                     </a>
                 </div>
@@ -495,7 +596,7 @@
                 <span class="level-item">Serverless Application Dev</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">11</span>
+                <span class="level-item tag">12</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Serverless-Application-Dev/AWS/">
@@ -519,7 +620,7 @@
                 <span class="level-item">SPA (Angular)</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">7</span>
+                <span class="level-item tag">8</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/SmartHome/">
@@ -635,6 +736,25 @@
         
         <article class="media">
             
+            <a href="/2020/05/20/Angular%E5%85%A5%E9%96%80-%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%EF%BD%9EPJ%E3%81%AE%E9%96%8B%E5%A7%8B-%E5%9F%BA%E6%9C%AC%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Angular入門] 環境構築～PJの開始/基本コマンド">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-19T15:07:59.000Z">2020-05-20</time></div>
+                    <a href="/2020/05/20/Angular%E5%85%A5%E9%96%80-%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%EF%BD%9EPJ%E3%81%AE%E9%96%8B%E5%A7%8B-%E5%9F%BA%E6%9C%AC%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular入門] 環境構築～PJの開始/基本コマンド</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/05/19/Github%E5%85%A5%E9%96%80-%E5%85%A5%E7%A4%BE%E5%88%9D%E6%97%A5%E3%81%AE%E5%AE%8C%E5%85%A8%E3%81%AA%E7%B4%A0%E4%BA%BA%E5%90%91%E3%81%91%E3%81%AE%E5%84%AA%E3%81%97%E3%81%84%E8%AA%AC%E6%98%8E/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Github入門 ～入社初日の完全な素人でも分かる優しい説明～">
@@ -709,25 +829,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/04/19/PC%E3%81%A7DTM%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89-Steinberg-UR44C-Cubase-ai/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="PCでDTM環境を構築 [Steinberg UR44C/Cubase ai]">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-18T17:50:33.000Z">2020-04-19</time></div>
-                    <a href="/2020/04/19/PC%E3%81%A7DTM%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89-Steinberg-UR44C-Cubase-ai/" class="title has-link-black-ter is-size-6 has-text-weight-normal">PCでDTM環境を構築 [Steinberg UR44C/Cubase ai]</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/SmartHome/">SmartHome</a> / <a class="has-link-grey -link" href="/categories/SmartHome/DTM/">DTM</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -745,7 +846,7 @@
                     <span class="level-item">五月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -855,7 +956,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">11</span>
+                        <span class="tag is-grey">12</span>
                     </a>
                 </div>
                 
@@ -1198,6 +1299,25 @@
         
         <article class="media">
             
+            <a href="/2020/05/20/Angular%E5%85%A5%E9%96%80-%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%EF%BD%9EPJ%E3%81%AE%E9%96%8B%E5%A7%8B-%E5%9F%BA%E6%9C%AC%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Angular入門] 環境構築～PJの開始/基本コマンド">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-19T15:07:59.000Z">2020-05-20</time></div>
+                    <a href="/2020/05/20/Angular%E5%85%A5%E9%96%80-%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%EF%BD%9EPJ%E3%81%AE%E9%96%8B%E5%A7%8B-%E5%9F%BA%E6%9C%AC%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular入門] 環境構築～PJの開始/基本コマンド</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/05/19/Github%E5%85%A5%E9%96%80-%E5%85%A5%E7%A4%BE%E5%88%9D%E6%97%A5%E3%81%AE%E5%AE%8C%E5%85%A8%E3%81%AA%E7%B4%A0%E4%BA%BA%E5%90%91%E3%81%91%E3%81%AE%E5%84%AA%E3%81%97%E3%81%84%E8%AA%AC%E6%98%8E/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Github入門 ～入社初日の完全な素人でも分かる優しい説明～">
@@ -1272,25 +1392,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/04/19/PC%E3%81%A7DTM%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89-Steinberg-UR44C-Cubase-ai/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="PCでDTM環境を構築 [Steinberg UR44C/Cubase ai]">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-18T17:50:33.000Z">2020-04-19</time></div>
-                    <a href="/2020/04/19/PC%E3%81%A7DTM%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89-Steinberg-UR44C-Cubase-ai/" class="title has-link-black-ter is-size-6 has-text-weight-normal">PCでDTM環境を構築 [Steinberg UR44C/Cubase ai]</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/SmartHome/">SmartHome</a> / <a class="has-link-grey -link" href="/categories/SmartHome/DTM/">DTM</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1308,7 +1409,7 @@
                     <span class="level-item">五月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -1418,7 +1519,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">11</span>
+                        <span class="tag is-grey">12</span>
                     </a>
                 </div>
                 
