@@ -18,7 +18,7 @@ Angularを使えば、[Single Page Application](https://digitalidentity.co.jp/bl
 
 <!-- toc -->
 
-## 1. Angular動作環境準備手順
+## 1. Angular動作環境の構築手順
 
 ### 1.1. Node.jsのインストール
 - インストール済みであれば飛ばしてください
