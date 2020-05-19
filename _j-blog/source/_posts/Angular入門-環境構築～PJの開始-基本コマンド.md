@@ -18,18 +18,20 @@ Angularを使えば、[Single Page Application](https://digitalidentity.co.jp/bl
 
 <!-- toc -->
 
-## 1. Angular動作環境の構築手順
+## 1. Angular動作環境の準備手順
 
 ### 1.1. Node.jsのインストール
 - インストール済みであれば飛ばしてください
+- Node.jsとは
+    - JavaScriptが動くために必要な土台のようなものです
+    - Angularで開発する際には、TypeScriptというJavaScriptの拡張版の言語でコードを書きます
+        - TypeScriptは最終的にJavaScriptに変換されて動くので、Node.jsが必須となります
 
-- ダウンロードサイト(https://nodejs.org/download/release/v8.16.0/)から [node-v8.16.0-x64.msi] をクリックします。
+- [Node.js Download](https://nodejs.org/en/download/)
+    - こちらから自身のOSに合ったものをダウンロードしてください
 
-![nodejs_install](https://user-images.githubusercontent.com/41946222/68363873-94f05f00-016f-11ea-99d9-f55f07c0cdbd.PNG)
-
-- ダウンロードした [node-v8.16.0-x64.msi] をダブルクリックして、インストールを開始します。
+- ダウンロードしたnode-vX.XX.X-xXX.msiをダブルクリックして、インストールを開始します。
 下記画面が表示されるので、表示される内容に従いインストールを進めてください。
-（インストール先などは、変更せずに行います。
 
 ![nodejs_install2](https://user-images.githubusercontent.com/41946222/68363881-a174b780-016f-11ea-9d15-039b92ae05fb.PNG)
 
@@ -38,7 +40,10 @@ Angularを使えば、[Single Page Application](https://digitalidentity.co.jp/bl
 ```
 npm i -g @angular/cli
 ```
-- 正常にインストールされれば、ngコマンドを使用可能になります(ngはAngularの略称)
+
+- 正常にインストールされれば、ngコマンドを使用可能になります(ngはAngularの略称) 
+    - ngコマンドを使うことで、一からコードを書かずにAPの一部を自動生成できます
+    - このように開発工数を短縮する為に使う便利な道具がフレームワークだと思ってください
 
 ## 2. Angularプロジェクトの作成~実行手順
 ### 2.1. Angularプロジェクトの作成

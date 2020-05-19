@@ -177,7 +177,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5分 read (About 691 words)
+                    5分 read (About 819 words)
                 </span>
                 
                 
@@ -195,7 +195,7 @@
 <!-- toc -->
 
 <ul>
-<li><a href="#1-angular動作環境の構築手順">1. Angular動作環境の構築手順</a><ul>
+<li><a href="#1-angular動作環境の準備手順">1. Angular動作環境の準備手順</a><ul>
 <li><a href="#11-nodejsのインストール">1.1. Node.jsのインストール</a></li>
 <li><a href="#12-angular-cliのインストール">1.2. Angular CLIのインストール</a></li>
 </ul>
@@ -209,20 +209,37 @@
 </ul>
 <!-- tocstop -->
 
-<h2><span id="1-angular動作環境の構築手順">1. Angular動作環境の構築手順</span></h2><h3><span id="11-nodejsのインストール">1.1. Node.jsのインストール</span></h3><ul>
+<h2><span id="1-angular動作環境の準備手順">1. Angular動作環境の準備手順</span></h2><h3><span id="11-nodejsのインストール">1.1. Node.jsのインストール</span></h3><ul>
 <li><p>インストール済みであれば飛ばしてください</p>
 </li>
-<li><p>ダウンロードサイト(<a href="https://nodejs.org/download/release/v8.16.0/)から">https://nodejs.org/download/release/v8.16.0/)から</a> [node-v8.16.0-x64.msi] をクリックします。</p>
+<li><p>Node.jsとは</p>
+<ul>
+<li>JavaScriptが動くために必要な土台のようなものです</li>
+<li>Angularで開発する際には、TypeScriptというJavaScriptの拡張版の言語でコードを書きます<ul>
+<li>TypeScriptは最終的にJavaScriptに変換されて動くので、Node.jsが必須となります</li>
+</ul>
 </li>
 </ul>
-<p><img src="https://user-images.githubusercontent.com/41946222/68363873-94f05f00-016f-11ea-99d9-f55f07c0cdbd.PNG" alt="nodejs_install"></p>
+</li>
+<li><p><a href="https://nodejs.org/en/download/">Node.js Download</a></p>
 <ul>
-<li>ダウンロードした [node-v8.16.0-x64.msi] をダブルクリックして、インストールを開始します。<br>下記画面が表示されるので、表示される内容に従いインストールを進めてください。<br>（インストール先などは、変更せずに行います。</li>
+<li>こちらから自身のOSに合ったものをダウンロードしてください</li>
+</ul>
+</li>
+<li><p>ダウンロードしたnode-vX.XX.X-xXX.msiをダブルクリックして、インストールを開始します。<br>下記画面が表示されるので、表示される内容に従いインストールを進めてください。</p>
+</li>
 </ul>
 <p><img src="https://user-images.githubusercontent.com/41946222/68363881-a174b780-016f-11ea-9d15-039b92ae05fb.PNG" alt="nodejs_install2"></p>
 <h3><span id="12-angular-cliのインストール">1.2. Angular CLIのインストール</span></h3><ul>
-<li>インストール<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g @angular&#x2F;cli</span><br></pre></td></tr></table></figure></li>
-<li>正常にインストールされれば、ngコマンドを使用可能になります(ngはAngularの略称)</li>
+<li><p>インストール</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g @angular&#x2F;cli</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>正常にインストールされれば、ngコマンドを使用可能になります(ngはAngularの略称) </p>
+<ul>
+<li>ngコマンドを使うことで、一からコードを書かずにAPの一部を自動生成できます</li>
+<li>このように開発工数を短縮する為に使う便利な道具がフレームワークだと思ってください</li>
+</ul>
+</li>
 </ul>
 <h2><span id="2-angularプロジェクトの作成~実行手順">2. Angularプロジェクトの作成~実行手順</span></h2><h3><span id="21-angularプロジェクトの作成">2.1. Angularプロジェクトの作成</span></h3><ul>
 <li>以下のコマンドでアプリの雛形が生成されます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ng new &lt;sample-ap-name&gt;</span><br><span class="line">cd &lt;sample-ap-name&gt;</span><br></pre></td></tr></table></figure></li>

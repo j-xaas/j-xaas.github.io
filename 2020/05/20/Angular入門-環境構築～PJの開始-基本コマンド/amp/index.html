@@ -56,7 +56,7 @@
 			    "@id":"https://j-xaas.github.io/2020/05/20/Angular入門-環境構築～PJの開始-基本コマンド/"
 			},
 			"datePublished": "2020-05-19T15:07:59.000Z",
-			"dateModified": "2020-05-19T16:10:30.814Z",
+			"dateModified": "2020-05-19T16:47:20.385Z",
 			
 			"image": {
 				"@type": "ImageObject",
@@ -1862,7 +1862,7 @@ h6.categories {
 <!-- toc -->
 
 <ul>
-<li><a href="#1-angular&#x52D5;&#x4F5C;&#x74B0;&#x5883;&#x306E;&#x69CB;&#x7BC9;&#x624B;&#x9806;">1. Angular&#x52D5;&#x4F5C;&#x74B0;&#x5883;&#x306E;&#x69CB;&#x7BC9;&#x624B;&#x9806;</a><ul>
+<li><a href="#1-angular&#x52D5;&#x4F5C;&#x74B0;&#x5883;&#x306E;&#x6E96;&#x5099;&#x624B;&#x9806;">1. Angular&#x52D5;&#x4F5C;&#x74B0;&#x5883;&#x306E;&#x6E96;&#x5099;&#x624B;&#x9806;</a><ul>
 <li><a href="#11-nodejs&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;">1.1. Node.js&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;</a></li>
 <li><a href="#12-angular-cli&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;">1.2. Angular CLI&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;</a></li>
 </ul>
@@ -1876,20 +1876,37 @@ h6.categories {
 </ul>
 <!-- tocstop -->
 
-<h2><span id="1-angular&#x52D5;&#x4F5C;&#x74B0;&#x5883;&#x306E;&#x69CB;&#x7BC9;&#x624B;&#x9806;">1. Angular&#x52D5;&#x4F5C;&#x74B0;&#x5883;&#x306E;&#x69CB;&#x7BC9;&#x624B;&#x9806;</span></h2><h3><span id="11-nodejs&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;">1.1. Node.js&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;</span></h3><ul>
+<h2><span id="1-angular&#x52D5;&#x4F5C;&#x74B0;&#x5883;&#x306E;&#x6E96;&#x5099;&#x624B;&#x9806;">1. Angular&#x52D5;&#x4F5C;&#x74B0;&#x5883;&#x306E;&#x6E96;&#x5099;&#x624B;&#x9806;</span></h2><h3><span id="11-nodejs&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;">1.1. Node.js&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;</span></h3><ul>
 <li><p>&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x6E08;&#x307F;&#x3067;&#x3042;&#x308C;&#x3070;&#x98DB;&#x3070;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;</p>
 </li>
-<li><p>&#x30C0;&#x30A6;&#x30F3;&#x30ED;&#x30FC;&#x30C9;&#x30B5;&#x30A4;&#x30C8;(<a href="https://nodejs.org/download/release/v8.16.0/)&#x304B;&#x3089;">https://nodejs.org/download/release/v8.16.0/)&#x304B;&#x3089;</a> [node-v8.16.0-x64.msi] &#x3092;&#x30AF;&#x30EA;&#x30C3;&#x30AF;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<li><p>Node.js&#x3068;&#x306F;</p>
+<ul>
+<li>JavaScript&#x304C;&#x52D5;&#x304F;&#x305F;&#x3081;&#x306B;&#x5FC5;&#x8981;&#x306A;&#x571F;&#x53F0;&#x306E;&#x3088;&#x3046;&#x306A;&#x3082;&#x306E;&#x3067;&#x3059;</li>
+<li>Angular&#x3067;&#x958B;&#x767A;&#x3059;&#x308B;&#x969B;&#x306B;&#x306F;&#x3001;TypeScript&#x3068;&#x3044;&#x3046;JavaScript&#x306E;&#x62E1;&#x5F35;&#x7248;&#x306E;&#x8A00;&#x8A9E;&#x3067;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x66F8;&#x304D;&#x307E;&#x3059;<ul>
+<li>TypeScript&#x306F;&#x6700;&#x7D42;&#x7684;&#x306B;JavaScript&#x306B;&#x5909;&#x63DB;&#x3055;&#x308C;&#x3066;&#x52D5;&#x304F;&#x306E;&#x3067;&#x3001;Node.js&#x304C;&#x5FC5;&#x9808;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;</li>
+</ul>
 </li>
 </ul>
-<p><!-- This img tag couldn't replace. src: <img src="https://user-images.githubusercontent.com/41946222/68363873-94f05f00-016f-11ea-99d9-f55f07c0cdbd.PNG" alt="nodejs_install">--></p>
+</li>
+<li><p><a href="https://nodejs.org/en/download/">Node.js Download</a></p>
 <ul>
-<li>&#x30C0;&#x30A6;&#x30F3;&#x30ED;&#x30FC;&#x30C9;&#x3057;&#x305F; [node-v8.16.0-x64.msi] &#x3092;&#x30C0;&#x30D6;&#x30EB;&#x30AF;&#x30EA;&#x30C3;&#x30AF;&#x3057;&#x3066;&#x3001;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3092;&#x958B;&#x59CB;&#x3057;&#x307E;&#x3059;&#x3002;<br>&#x4E0B;&#x8A18;&#x753B;&#x9762;&#x304C;&#x8868;&#x793A;&#x3055;&#x308C;&#x308B;&#x306E;&#x3067;&#x3001;&#x8868;&#x793A;&#x3055;&#x308C;&#x308B;&#x5185;&#x5BB9;&#x306B;&#x5F93;&#x3044;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3092;&#x9032;&#x3081;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;<br>&#xFF08;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x5148;&#x306A;&#x3069;&#x306F;&#x3001;&#x5909;&#x66F4;&#x305B;&#x305A;&#x306B;&#x884C;&#x3044;&#x307E;&#x3059;&#x3002;</li>
+<li>&#x3053;&#x3061;&#x3089;&#x304B;&#x3089;&#x81EA;&#x8EAB;&#x306E;OS&#x306B;&#x5408;&#x3063;&#x305F;&#x3082;&#x306E;&#x3092;&#x30C0;&#x30A6;&#x30F3;&#x30ED;&#x30FC;&#x30C9;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;</li>
+</ul>
+</li>
+<li><p>&#x30C0;&#x30A6;&#x30F3;&#x30ED;&#x30FC;&#x30C9;&#x3057;&#x305F;node-vX.XX.X-xXX.msi&#x3092;&#x30C0;&#x30D6;&#x30EB;&#x30AF;&#x30EA;&#x30C3;&#x30AF;&#x3057;&#x3066;&#x3001;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3092;&#x958B;&#x59CB;&#x3057;&#x307E;&#x3059;&#x3002;<br>&#x4E0B;&#x8A18;&#x753B;&#x9762;&#x304C;&#x8868;&#x793A;&#x3055;&#x308C;&#x308B;&#x306E;&#x3067;&#x3001;&#x8868;&#x793A;&#x3055;&#x308C;&#x308B;&#x5185;&#x5BB9;&#x306B;&#x5F93;&#x3044;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3092;&#x9032;&#x3081;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p>
+</li>
 </ul>
 <p><!-- This img tag couldn't replace. src: <img src="https://user-images.githubusercontent.com/41946222/68363881-a174b780-016f-11ea-9d15-039b92ae05fb.PNG" alt="nodejs_install2">--></p>
 <h3><span id="12-angular-cli&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;">1.2. Angular CLI&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;</span></h3><ul>
-<li>&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g @angular/cli</span><br></pre></td></tr></tbody></table></figure></li>
-<li>&#x6B63;&#x5E38;&#x306B;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3055;&#x308C;&#x308C;&#x3070;&#x3001;ng&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3092;&#x4F7F;&#x7528;&#x53EF;&#x80FD;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;(ng&#x306F;Angular&#x306E;&#x7565;&#x79F0;)</li>
+<li><p>&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g @angular/cli</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>&#x6B63;&#x5E38;&#x306B;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3055;&#x308C;&#x308C;&#x3070;&#x3001;ng&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3092;&#x4F7F;&#x7528;&#x53EF;&#x80FD;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;(ng&#x306F;Angular&#x306E;&#x7565;&#x79F0;) </p>
+<ul>
+<li>ng&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;&#x3001;&#x4E00;&#x304B;&#x3089;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x66F8;&#x304B;&#x305A;&#x306B;AP&#x306E;&#x4E00;&#x90E8;&#x3092;&#x81EA;&#x52D5;&#x751F;&#x6210;&#x3067;&#x304D;&#x307E;&#x3059;</li>
+<li>&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x958B;&#x767A;&#x5DE5;&#x6570;&#x3092;&#x77ED;&#x7E2E;&#x3059;&#x308B;&#x70BA;&#x306B;&#x4F7F;&#x3046;&#x4FBF;&#x5229;&#x306A;&#x9053;&#x5177;&#x304C;&#x30D5;&#x30EC;&#x30FC;&#x30E0;&#x30EF;&#x30FC;&#x30AF;&#x3060;&#x3068;&#x601D;&#x3063;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;</li>
+</ul>
+</li>
 </ul>
 <h2><span id="2-angular&#x30D7;&#x30ED;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x4F5C;&#x6210;~&#x5B9F;&#x884C;&#x624B;&#x9806;">2. Angular&#x30D7;&#x30ED;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x4F5C;&#x6210;~&#x5B9F;&#x884C;&#x624B;&#x9806;</span></h2><h3><span id="21-angular&#x30D7;&#x30ED;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x4F5C;&#x6210;">2.1. Angular&#x30D7;&#x30ED;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x4F5C;&#x6210;</span></h3><ul>
 <li>&#x4EE5;&#x4E0B;&#x306E;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3067;&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x96DB;&#x5F62;&#x304C;&#x751F;&#x6210;&#x3055;&#x308C;&#x307E;&#x3059;<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ng new &lt;sample-ap-name&gt;</span><br><span class="line">cd &lt;sample-ap-name&gt;</span><br></pre></td></tr></tbody></table></figure></li>
