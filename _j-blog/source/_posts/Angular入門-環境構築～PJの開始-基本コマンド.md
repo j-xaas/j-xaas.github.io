@@ -8,10 +8,10 @@ tags:
 - Angular
 toc: true
 ---
-
-WEBアプリケーションの開発に用いる[フレームワーク](https://sp.otsuka-shokai.co.jp/words/framework.html)である、Angularの環境構築～アプリの雛形の生成までを解説します。
-Angularは[Single Page Application](https://digitalidentity.co.jp/blog/creative/about-single-page-application.html)と呼ばれるモダンなアプリの開発に用いるものです。例えば、GoogleやTwitter等のWEBアプリはこれで作られています。
   
+WEBアプリケーション開発に用いる[フレームワーク](https://sp.otsuka-shokai.co.jp/words/framework.html)である、Angularの環境構築～アプリの雛形の生成までを解説します。
+Angularを使えば、[Single Page Application](https://digitalidentity.co.jp/blog/creative/about-single-page-application.html)と呼ばれるモダンなアプリを高速で開発することができます。例えば、GoogleやTwitter等のWEBアプリはこれで作られています。
+
 
 ![image](https://user-images.githubusercontent.com/41946222/82344822-7da00180-9a2f-11ea-868c-265520c3f38f.png)
 
