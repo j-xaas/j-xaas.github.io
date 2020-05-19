@@ -68,6 +68,12 @@ ng serve --open
     - ソースコードが変更される度に、ブラウザを更新
     - --openはブラウザも同時に起動するオプション
 
+- 以下のようにAngular PJの初期画面がブラウザに表示されれば成功です
+    
+![image](https://user-images.githubusercontent.com/41946222/82355091-b98d9380-9a3c-11ea-8f54-cd5358e6b441.png)
+
+- ここまででWEB AP開発のスタートラインに立てました。続いて生成されたファイルを弄ってUI(画面のこと)や簡単な機能を開発してみましょう。
+
 ## 3. Angular関連のTips
 - VSCode拡張機能 
     - [おすすめ](https://marketplace.visualstudio.com/items?itemName=johnpapa.angular-essentials)
