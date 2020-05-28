@@ -167,6 +167,326 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-05-28T12:25:40.000Z">2020-05-28</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    13分 read (About 1927 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/05/28/Angular-mat-selection-list%E3%81%A7checkbox%E3%82%92%E8%A1%A8%E7%A4%BA%EF%BD%9E%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E5%BE%97/">[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得</a>
+            
+        </h1>
+        <div class="content">
+            <ul>
+<li><a href="https://material.angular.io/components/select/overview">Angular Material</a>を用いたUIの実装について、初級者向けに以下を解説します<ul>
+<li>チェックボックス型の選択項目をリスト表示</li>
+<li>選択値を配列にまとめて格納するロジック</li>
+</ul>
+</li>
+<li>使いどころ<ul>
+<li>外部サービスやDBに対するリクエストに含めるパラメータを選択値に応じて変化させる</li>
+<li>設定ページに良く使います</li>
+</ul>
+</li>
+</ul>
+<!--画像--->
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/83153404-e1b27c00-a139-11ea-846c-3df957ebc188.png" height="400px" width="300px" alt="画面イメージ">
+</div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#1-基礎知識">1. 基礎知識</a><ul>
+<li><a href="#11-angular-material">1.1. Angular Material</a></li>
+</ul>
+</li>
+<li><a href="#2-実装">2. 実装</a><ul>
+<li><a href="#21-sample-componenthtml">2.1. sample-component.html</a><ul>
+<li><a href="#211-mat-selection-listとmat-list-optionについて">2.1.1. mat-selection-listとmat-list-optionについて</a></li>
+<li><a href="#212-ngforlet-item-of-regionsdata-index-as-i">2.1.2. *ngFor=”let item of regionsData; index as i”</a></li>
+<li><a href="#213-index-as-i">2.1.3. index as i</a></li>
+</ul>
+</li>
+<li><a href="#22-sample-componentts">2.2. sample-component.ts</a><ul>
+<li><a href="#221-データソースの準備">2.2.1. データソースの準備</a></li>
+<li><a href="#222-双方向バインドによる状態値selectedの変更">2.2.2. 双方向バインドによる状態値(selected)の変更</a></li>
+<li><a href="#223-選択値の取得">2.2.3. 選択値の取得</a></li>
+<li><a href="#224-選択値を用いた外部へのリクエスト">2.2.4. 選択値を用いた外部へのリクエスト</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#後書き">後書き</a><ul>
+<li><a href="#関連記事">関連記事</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="1-基礎知識">1. 基礎知識</span></h2><h3><span id="11-angular-material">1.1. Angular Material</span></h3><ul>
+<li><p><a href="https://material.angular.io/">Angular Material</a></p>
+<ul>
+<li>メニューやツールバー、ボタン、チェックボックスなどの良く使う部品を提供してくれるAngular公式のUIフレームワーク</li>
+<li>基本的に画面は0から作らずにMaterialを組み合わせて作ります</li>
+<li>まだ導入していなれけば以下を実行すると使えるようになります<ul>
+<li>聞かれることは全部Yesで問題ないです<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng add @angular&#x2F;material</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="https://material.angular.io/components/list/api">mat-selection-list</a></p>
+<ul>
+<li>checkbox付きのリストを表示するMaterial</li>
+<li>今回はこれを使います (詳細は後述)</li>
+</ul>
+</li>
+</ul>
+<h2><span id="2-実装">2. 実装</span></h2><ul>
+<li>コンポーネント(sample-component)を例に解説します<ul>
+<li>sample-component.html<ul>
+<li>Angular Materialを活用したUI</li>
+</ul>
+</li>
+<li>sample-component.ts<ul>
+<li>データの宣言、データ加工機能</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="21-sample-componenthtml">2.1. sample-component.html</span></h3><ul>
+<li><p>まずAngular Materialを使って画面を作ります</p>
+</li>
+<li><p>実装例</p>
+<ul>
+<li>mat-selection-list要素の中にmat-list-option要素を並べます</li>
+<li>後でそれぞれ丁寧に解説します<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--選択リスト--&gt;</span><br><span class="line">&lt;mat-selection-list *ngFor&#x3D;&quot;let item of Data; index as i&quot;&gt;</span><br><span class="line">    &lt;ng-container&gt;</span><br><span class="line">        &lt;mat-list-option</span><br><span class="line">          [(selected)]&#x3D;&quot;item.selected&quot;</span><br><span class="line">          [value]&#x3D;&quot;item.value&quot;&gt;&lt;!--こっちに書いても発火しない(selectionChange)&#x3D;&quot;checkRegion(i)&quot;---&gt;</span><br><span class="line">            &#123;&#123;item.value&#125;&#125;&lt;!--&#123;&#123;item[i].value&#125;&#125;---&gt;</span><br><span class="line">        &lt;&#x2F;mat-list-option&gt;</span><br><span class="line">    &lt;&#x2F;ng-container&gt;</span><br><span class="line">&lt;&#x2F;mat-selection-list&gt;</span><br><span class="line"></span><br><span class="line">&lt;br&gt;</span><br><span class="line">&lt;!--外へリクエストを送るボタン--&gt;</span><br><span class="line">&lt;button mat-raised-button (click)&#x3D;&quot;submit()&quot;&gt;Submit&lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="211-mat-selection-listとmat-list-optionについて">2.1.1. mat-selection-listとmat-list-optionについて</span></h4><ul>
+<li><p>書式</p>
+<ul>
+<li>mat-list-optionが選択肢の単位<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;mat-selection-list&gt;</span><br><span class="line"></span><br><span class="line">    &lt;mat-list-option</span><br><span class="line">        [(selected)]&#x3D;&quot;item.selected&quot;</span><br><span class="line">        [value]&#x3D;&quot;item.value&quot;&gt;&lt;!--こっちに書いても発火しない(selectionChange)&#x3D;&quot;checkRegion(i)&quot;---&gt;</span><br><span class="line">        &#123;&#123;item.value&#125;&#125;&lt;!--&#123;&#123;item[i].value&#125;&#125;---&gt;</span><br><span class="line">    &lt;&#x2F;mat-list-option&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;mat-selection-list&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>mat-list-optionの属性値</p>
+<ul>
+<li>selected<ul>
+<li>checkboxの状態を示す<ul>
+<li>true or false</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>value<ul>
+<li>要素が持つ値<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;mat-list-option [(selected)]&#x3D;&quot;item.selected&quot; [value]&#x3D;&quot;item.value&quot;&gt;</span><br><span class="line">    &#123;&#123;item.value&#125;&#125;</span><br><span class="line">&lt;&#x2F;mat-list-option&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>mat-selection-listの属性値</p>
+<ul>
+<li>(selectionChange)イベント<ul>
+<li>checkされた際に発火するイベント</li>
+<li>以下の例では何かが選択される度に”checkRegion()”というメソッドが実行される<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;mat-selection-list (selectionChange)&#x3D;&quot;checkRegion()&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>mat-list-option側に書いても動かないので注意</li>
+</ul>
+</li>
+</ul>
+<h4><span id="212-ngforlet-item-of-regionsdata-index-as-i">2.1.2. *ngFor=”let item of regionsData; index as i”</span></h4><ul>
+<li><p>ngFor</p>
+<ul>
+<li><a href="https://angular.jp/guide/structural-directives">構造型ディレクティブ</a>と呼ばれるもの</li>
+<li>ある配列型のデータを元に、ngForを属性値として設定した要素で挟まれた部分をループ表示する</li>
+<li>以下をイメージしてください<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div *ngFor&#x3D;&quot;..&lt;参照するデータを定義(ループの中で使用する)&gt;..&quot;&gt;</span><br><span class="line">    &lt;!--ここに書かれた内容をループ表示---&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure></li>
+<li>HTMLで何行も大量にべた書きする必要がある様な項目を</li>
+<li>参照したデータ配列を元に、取り出した変数を変えながら楽に表示できる。すっきりかけるというのがポイント</li>
+</ul>
+</li>
+<li><p>let item of Data;</p>
+<ul>
+<li><p>書式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let &lt;ループ内での変数名&gt; of &lt;参照するデータ配列&gt;;</span><br></pre></td></tr></table></figure></li>
+<li><p>意味</p>
+<ul>
+<li>Data配列をループの中ではitemという名称で扱います</li>
+<li>配列から一要素づつ抜き出して、ループ内での変数itemとして使います</li>
+</ul>
+</li>
+<li><p>使用イメージ</p>
+<ul>
+<li>tsでデータを定義<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Data &#x3D;[Apple, Orange, Pinapple]</span><br></pre></td></tr></table></figure></li>
+<li>html<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div *ngFor&#x3D;&quot;let item of Data&quot;&gt;</span><br><span class="line">    &#123;&#123;item&#125;&#125; &lt;!--Dataの中身(Apple, Orange, Pinapple)を順に表示--&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>参照するデータ</p>
+<ul>
+<li>上の例で分かるようにts側(sample-component.ts)で配列を定義する必要があります<ul>
+<li>後で解説します</li>
+</ul>
+</li>
+<li>ts側で定義するので外部から取得した動的なデータを元にすることも可能</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>*ngFor=”let item of Data; index as i”</p>
+<ul>
+<li>Dataに含まれる配列を変数itemとして一つづつ取り出しながらループで表示する</li>
+<li>配列のカウントをiで行う</li>
+</ul>
+</li>
+<li><p>ng-container</p>
+<ul>
+<li>これで囲んだ要素はセットでngForでループする対象にできる<ul>
+<li>複数の要素を纏めてループする場合にはよく使います<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div *ngFor&#x3D;&quot;..&lt;参照するデータを定義(ループの中で使用する)&gt;..&quot;&gt;</span><br><span class="line">    &lt;ng-container&gt;</span><br><span class="line">        &lt;div&gt; XXXX &lt;&#x2F;div&gt;</span><br><span class="line">        &lt;div&gt; XXXX &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;&#x2F;ng-container&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="213-index-as-i">2.1.3. index as i</span></h4><ul>
+<li>ループが何週目か？をiで定義可能</li>
+<li>”0から始まる”ので注意</li>
+<li>使用イメージ<ul>
+<li>実装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div *ngFor&#x3D;&quot;let item of Data&quot;&gt;</span><br><span class="line">    &#123;&#123;i+1&#125;&#125;番目: &#123;&#123;item&#125;&#125; </span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure></li>
+<li>表示<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1番目: Apple</span><br><span class="line">2番目: Orange</span><br><span class="line">3番目: Pinapple</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="22-sample-componentts">2.2. sample-component.ts</span></h3><ul>
+<li>ts側には以下を書きます<ul>
+<li>ngForで使うデータソース</li>
+<li>選択値を取得するロジック</li>
+</ul>
+</li>
+</ul>
+<h4><span id="221-データソースの準備">2.2.1. データソースの準備</span></h4><ul>
+<li>ngForで参照するデータを以下のように定義します</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 選択肢として表示するregionデータをハッシュで管理</span><br><span class="line">  Data &#x3D; [ &#x2F;&#x2F; 個々のselectedプロパティでチェック状態を保持</span><br><span class="line">    &#123; value: &#39;us-east-1&#39;, selected: false&#125;,</span><br><span class="line">    &#123; value: &#39;us-east-2&#39;, selected: false&#125;,</span><br><span class="line">    &#123; value: &#39;us-west-1&#39;, selected: false&#125;,</span><br><span class="line">    &#123; value: &#39;us-west-2&#39;, selected: false&#125;,</span><br><span class="line">    &#123; value: &#39;ca-central-1&#39;, selected: false&#125;,</span><br><span class="line">    &#123; value: &#39;eu-central-1&#39;, selected: false&#125;,</span><br><span class="line">    &#123; value: &#39;eu-west-1&#39;, selected: false&#125;,</span><br><span class="line">    &#123; value: &#39;eu-west-2&#39;, selected: false&#125;,</span><br><span class="line">    &#123; value: &#39;eu-west-3&#39;, selected: false&#125;,</span><br><span class="line">    &#123; value: &#39;eu-north-1&#39;, selected: false&#125;,</span><br><span class="line">    &#123; value: &#39;ap-northeast-1&#39;, selected: true&#125;, &#x2F;&#x2F; 初めからcheck&#x3D;true</span><br><span class="line">    &#123; value: &#39;ap-northeast-2&#39;, selected: false&#125;,</span><br><span class="line">    &#123; value: &#39;ap-northeast-3&#39;, selected: false&#125;,</span><br><span class="line">    &#123; value: &#39;ap-southeast-1&#39;, selected: false&#125;,</span><br><span class="line">    &#123; value: &#39;ap-southeast-2&#39;, selected: false&#125;,</span><br><span class="line">    &#123; value: &#39;ap-south-1&#39;, selected: false&#125;,</span><br><span class="line">    &#123; value: &#39;me-south-1&#39;, selected: false&#125;,</span><br><span class="line">    &#123; value: &#39;sa-east-1&#39;, selected: false&#125;,</span><br><span class="line">  ];</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使い方<ul>
+<li>ngForでこの配列から一つづつ呼び出す単位は以下です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; value: &#39;us-east-1&#39;, selected: false&#125;</span><br></pre></td></tr></table></figure></li>
+<li>つまりそのループの中で us-east-1 を示すには以下のように書きます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div *ngFor&#x3D;&quot;let item of Data&quot;&gt;</span><br><span class="line">    &#123;&#123;item.value&#125;&#125;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="222-双方向バインドによる状態値selectedの変更">2.2.2. 双方向バインドによる状態値(selected)の変更</span></h4><ul>
+<li>これを用いるとパラメータの変化を伝えることができます</li>
+<li>Angularにおける双方向バインド<ul>
+<li>片方の変数の変化を<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[(変数)]&#x3D;変数</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>今回の使い方<ul>
+<li>ユーザがcheckした際にselectedの値が変わります</li>
+<li>item.selected＝tsで定義したハッシュの該当箇所の選択値が変更されます<ul>
+<li>後はts側でitem.selectedの値を使って機能を書けます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;mat-list-option</span><br><span class="line">    [(selected)]&#x3D;&quot;item.selected&quot;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="223-選択値の取得">2.2.3. 選択値の取得</span></h4><ul>
+<li>メソッドを用意して任意のタイミングで呼び出します<ul>
+<li>ハッシュ値全体からfilter()とmap()を使って選択値を取り出します<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; チェックされたリージョンを判別して配列を作成して返す</span><br><span class="line">makeCheckList() &#123;</span><br><span class="line"></span><br><span class="line">  let checkList &#x3D; [];</span><br><span class="line">  &#x2F;&#x2F; selectedからチェック状態を確認→配列に選択値を格納</span><br><span class="line">  return checkList &#x3D; this.Data &#x2F;&#x2F; Data＝ハッシュ値</span><br><span class="line">    .filter((d) &#x3D;&gt; d.selected) &#x2F;&#x2F; checkされているものに絞る</span><br><span class="line">    .map((d) &#x3D;&gt; d.value); &#x2F;&#x2F; checkされているリージョン名を取得</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="224-選択値を用いた外部へのリクエスト">2.2.4. 選択値を用いた外部へのリクエスト</span></h4><ul>
+<li><p>外部と通信する機能はServiceに書きましょう</p>
+<ul>
+<li>Serviceを呼び出す際に、</li>
+</ul>
+</li>
+<li><p>機能連携イメージ</p>
+<ul>
+<li><p>ボタンの(click)イベント</p>
+</li>
+<li><p>(click)=”submit()”と定めていた、submit()メソッドが発火</p>
+</li>
+<li><p>選択値を取得</p>
+</li>
+<li><p>外部連携Serviceを呼び出す</p>
+<ul>
+<li>この際に引数として、取得した選択値を渡す</li>
+</ul>
+</li>
+<li><p>Service内での外部リクエスト</p>
+<ul>
+<li>この際に引数として渡した選択値を使う</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">submit() &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; チェックされたリージョンリストを取得</span><br><span class="line">    const REGIONS &#x3D; this.makeCheckList();</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 外部へリクエストするサービスの呼び出し</span><br><span class="line">    let responseData &#x3D; this.getService(REGIONS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="後書き">後書き</span></h2><p>今回は以上です。このようなロジックを作るシーンは結構あると思います。<br>短時間でぱっと作って機能面にかける時間を増やしましょう。</p>
+<h3><span id="関連記事">関連記事</span></h3><ul>
+<li><a href="https://j-xaas.github.io/2020/04/13/Angular-map-fileter-mat-checkbox%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%AB%E6%A0%BC%E7%B4%8D%E3%81%99%E3%82%8B%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF/">[Angular] map() &amp; filter() &amp; mat-checkboxを使って選択値を配列に格納するロジック</a><ul>
+<li>普通のcheckboxを使う場合はこっち</li>
+</ul>
+</li>
+<li><a href="https://ja.coder.work/so/angular/1130210">angular - Angular Material mat-selectで値とテキストを取得する方法</a></li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-05-19T15:07:59.000Z">2020-05-20</time>
                 
                 <div class="level-item">
@@ -2010,512 +2330,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-05T13:28:41.000Z">2020-03-05</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Firebase/">Firebase</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    26分 read (About 3857 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/03/05/Cloud9-x-Angular-x-Firebase%E3%81%A7AP%E9%96%8B%E7%99%BA%EF%BC%88%E5%B0%8E%E5%85%A5%E7%B7%A8%EF%BC%89/">Cloud9 x Angular x FirebaseでAP開発（導入編）</a>
-            
-        </h1>
-        <div class="content">
-            <p>こんにちは。今回は上記の３つを組み合わせてWEB AP開発を行う際の手順を解説します。それぞれの使用経験があっても細かい所で沢山ハマったのでまとめておきました。初級者がこの記事だけで目標を達成できるように書いたつもりです。  </p>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/79091968-4b451980-7d8a-11ea-9938-5c217d995d87.png" height="400px" width="500px">
-</div>
-
-<!-- toc-->
-
-<h2><span id="各技術についての基礎知識">各技術についての基礎知識</span></h2><p>簡単にポイントだけを解説します。分かっている方は飛ばしてください<br>手順を細かく書いているので分からない言葉があっても、一先ず触りなから理解していきましょう  </p>
-<ul>
-<li><p><a href="https://aws.amazon.com/jp/cloud9/">cloud9</a></p>
-<ul>
-<li>AWSのブラウザ型IDE</li>
-<li>自端末のOSに依存せず開発可能<ul>
-<li>iPadでも開発可能（よく使ってます）</li>
-</ul>
-</li>
-<li>社内プロキシ問題に悩まされない<ul>
-<li>個人的には最重要ポイント</li>
-</ul>
-</li>
-<li>環境構築を省略可能<ul>
-<li>node_module, Git, AWS CLI等の便利なものが元から入っている</li>
-</ul>
-</li>
-<li>複数ユーザーで同時編集可能<ul>
-<li>リモートワークやレビューに便利です</li>
-<li>対抗の<a href="https://cloud.google.com/shell/docs?hl=ja">Google Cloud Shell</a>との差分<ul>
-<li>後に同様の機能が付きそうではあります</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><a href="https://angular.jp/">Angular</a></p>
-<ul>
-<li>Googleが出しているWEB APのフレームワーク<ul>
-<li>言語はHTML, TypeScript, scss</li>
-</ul>
-</li>
-<li><a href="https://digitalidentity.co.jp/blog/creative/about-single-page-application.html">SPA (Single Page Application)</a>を開発可能</li>
-<li>APの画面はAngular Materialでほぼ自動構築可能</li>
-<li><a href="https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/dev/WebsiteHosting.html">静的WEBサイトホスティング</a>サービスを用いれば、<a href="https://qiita.com/y-some/items/e9b78468428d1c481fac">サーバレス</a>を実現可能<ul>
-<li>代表例として<a href="https://firebase.google.com/docs/hosting?hl=ja">Firebase Hosting</a>や<a href="https://aws.amazon.com/jp/s3/">Amazon S3</a>等が挙げられます</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><a href="https://firebase.google.com/">Firebase</a></p>
-<ul>
-<li>Googleの<a href="https://boxil.jp/mag/a3651/#3651-2">BaaS(Backend as a Service)</a></li>
-<li>認証機能やデータベースなどのバックエンドの機能を提供してくれるサービス<ul>
-<li>開発工数を大幅削減可能</li>
-<li>本質的な機能の開発に集中可能</li>
-</ul>
-</li>
-<li>APのHostingや顧客分析、収益管理まで可能</li>
-</ul>
-</li>
-</ul>
-<p>この３つを抑えれば開発環境の用意からAPの公開まで高速でできます。<br>つまり、良いアイデアさえあれば、一人でもビジネスを始められます。  </p>
-<h2><span id="前提条件">前提条件</span></h2><ul>
-<li>cloud9環境を作成済み<ul>
-<li>指示に従って設定していくだけなので参考サイトを載せておきます<ul>
-<li><a href="https://qiita.com/tu-kun/items/d7b4f1fa19cc93bc5b75">初めてのAWS Cloud9導入</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Googleアカウントを作成済み<ul>
-<li><a href="https://support.google.com/accounts/answer/27441?hl=ja">Googelアカウントの作成</a></li>
-</ul>
-</li>
-</ul>
-<h2><span id="手順">手順</span></h2><h3><span id="1-angular開発環境の準備">1. Angular開発環境の準備</span></h3><ul>
-<li>Angularが動くために必要なもの<ul>
-<li>node_module</li>
-<li>Angular CLI</li>
-</ul>
-</li>
-</ul>
-<p>cloud9には初めからnode_moduleが入っている為、Angular CLIを入れるだけでOKです。（Windowsにnode_moduleを入れようとすると、それだけでだいぶ工数をロスします）  </p>
-<ul>
-<li><p>1.1. Angular CLIのinstall</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @angular cli</span><br></pre></td></tr></table></figure></li>
-<li><p>確認</p>
-<ul>
-<li>以下のようにngコマンドを使えるようになればOKです<ul>
-<li>ngはangularの略です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ng --version</span><br><span class="line"></span><br><span class="line">     _                      _                 ____ _     ___</span><br><span class="line">    &#x2F; \   _ __   __ _ _   _| | __ _ _ __     &#x2F; ___| |   |_ _|</span><br><span class="line">   &#x2F; △ \ | &#39;_ \ &#x2F; _&#96; | | | | |&#x2F; _&#96; | &#39;__|   | |   | |    | |</span><br><span class="line">  &#x2F; ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |</span><br><span class="line"> &#x2F;_&#x2F;   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|</span><br><span class="line">                |___&#x2F;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">Angular CLI: 8.3.20</span><br><span class="line">Node: 10.16.2</span><br><span class="line">OS: linux x64</span><br><span class="line">Angular: 8.2.14</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>０から開発する場合</p>
-<ul>
-<li>以下のコマンドでAngular PJ(AngularにおけるAPの単位)を作成しましょう<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng new &lt;AP名&gt;</span><br></pre></td></tr></table></figure></li>
-<li>今回は以下の名称で作成<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ng new &quot;firebase-sample&quot;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>Gitから開発途中のソースを持ってきた場合</p>
-<ul>
-<li>APのディレクトリ直下にもnode_moduleを入れなければ動かないので注意です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="2-firebase-projectの作成">2. firebase projectの作成</span></h3><ul>
-<li><p>初めは基本的にWEBのFirebaseコンソールで操作していきます</p>
-<ul>
-<li>Googleアカウントを作成していればすぐに始められます</li>
-</ul>
-</li>
-<li><p>2.1. <a href="https://firebase.google.com/?hl=ja">公式ページ</a>から右上の”コンソールへ移動”を押下</p>
-</li>
-<li><p>2.2. projectを追加（APの単位です）</p>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/79091762-8abf3600-7d89-11ea-8299-3fe69a9ff84a.png" height="400px" width="500px">
-</div>
-</li>
-<li><p>2.3. Project名を設定</p>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/79091817-b9d5a780-7d89-11ea-86cf-69d608904466.png" height="400px" width="500px">
-</div>
-</li>
-<li><p>2.4. Googleアナリティクス(Firebaseプロジェクト向け)</p>
-<ul>
-<li>特別な理由が無ければ有効のままでOK<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/79091837-d1ad2b80-7d89-11ea-9f02-c218bfebd70f.png" height="400px" width="400px">
-</div>
-</li>
-</ul>
-</li>
-<li><p>2.6. 以下が表示されたら完成</p>
-<ul>
-<li>続行を押すとPJの画面に飛びます</li>
-</ul>
-</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/79091916-22bd1f80-7d8a-11ea-8c5c-f0db39638fc1.png" height="400px" width="500px">
-</div>
-
-<ul>
-<li>2.7. Firebase Project画面<ul>
-<li>以下が表示されればOK</li>
-<li>基本的にこの画面で設定を行います</li>
-</ul>
-</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/79091968-4b451980-7d8a-11ea-9938-5c217d995d87.png" height="450px" width="500px">
-</div>
-
-
-<h3><span id="3-アプリの登録">3. アプリの登録</span></h3><ul>
-<li><p>次にFirebase Projectにアプリを登録します</p>
-<ul>
-<li>Firebase PJには複数のアプリを登録可能です</li>
-<li>例えばWEB版、ios版といった形で複数をAP間で認証機能やデータベースを共有するイメージです</li>
-</ul>
-</li>
-<li><p>3.1. アプリを登録</p>
-<ul>
-<li>ios/android/webからwebのアイコンを選択<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/79092138-e2aa6c80-7d8a-11ea-9440-8bf24e2a2219.png" height="300px" width="500px">
-</div>
-</li>
-</ul>
-</li>
-<li><p>3.2. アプリの追加</p>
-<ul>
-<li>以下のように入力</li>
-<li>アプリを登録<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/79092234-3452f700-7d8b-11ea-996c-043db263989b.png" height="400px" width="500px">
-</div>
-</li>
-</ul>
-</li>
-<li><p>3.3. Firebase SDK の追加</p>
-<ul>
-<li><p>以下のようにスクリプトが表示されます</p>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/79092282-61070e80-7d8b-11ea-9c67-d2c9a38e27fb.png" height="400px" width="400px">
-</div>
-
-
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>Angularの場合はindex.htmlのbody配下に置きます<ul>
-<li>SPAなので、単一ページであるindex.htmlがJSで書き換わっていくのがAngularの特徴です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  &lt;body&gt;</span><br><span class="line">  &lt;app-root&gt;&lt;&#x2F;app-root&gt;</span><br><span class="line">&lt;!----firebaseSDKの追加--&gt;</span><br><span class="line">  &lt;!-- The core Firebase JS SDK is always required and must be listed first --&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;__&#x2F;firebase&#x2F;7.8.2&#x2F;firebase-app.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- TODO: Add SDKs for Firebase products that you want to use</span><br><span class="line">     https:&#x2F;&#x2F;firebase.google.com&#x2F;docs&#x2F;web&#x2F;setup#available-libraries --&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;__&#x2F;firebase&#x2F;7.8.2&#x2F;firebase-analytics.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- Initialize Firebase --&gt;</span><br><span class="line">  &lt;script src&#x3D;&quot;&#x2F;__&#x2F;firebase&#x2F;init.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="4-firebaseとapの関連付けangular-fireの導入">4. firebaseとAPの関連付け(Angular Fireの導入)</span></h3><ul>
-<li>Angular APとfirebaseを関連付けるまでに必要な作業の一覧は以下になります<ul>
-<li>Firebase CLIのinstall<ul>
-<li>環境単位で必要な作業</li>
-</ul>
-</li>
-<li>angularfireのinstall<ul>
-<li>AP単位で毎回必要な作業</li>
-</ul>
-</li>
-<li>(firebase側でアプリを追加　 2で先に行った内容です)<ul>
-<li>Firebase SDKの追加</li>
-<li>FirebaseのAPIキーを取得</li>
-</ul>
-</li>
-<li>Angularの環境設定ファイルにAPIキーを設定<ul>
-<li>★二点に設定が必要。よくはまるポイントです<ul>
-<li>開発環境<ul>
-<li>src/environments/environment.ts</li>
-</ul>
-</li>
-<li>本番環境(prodは本番という意味)<ul>
-<li>src/environments/environment.prod.ts</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>firebase login/init </li>
-<li>環境設定ファイルをapp.module.tsに読み込む<ul>
-<li>@angular/fireからAngularFireModuleを呼び出して、<br>上記のenvironmentオブジェクトを使ってAPIキーをインストール</li>
-</ul>
-</li>
-<li>（特定の機能を利用する場合の作業：認証機能を利用する際の例）<ul>
-<li>@angular/fire/authからAngularFireModuleを呼び出して、NgModuleに登録<ul>
-<li>Firebase Authenticationを利用するために必要な工程</li>
-<li>@angular/fireは全機能をinstallすると重くなる為、上記の様に必要なものだけを登録する仕様になっているらしい</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>それぞれ詳しく解説していきます  </p>
-<h4><span id="41-firebase-cliの導入">4.1. Firebase CLIの導入</span></h4><ul>
-<li><a href="https://firebase.google.com/docs/cli?hl=ja#install-cli-mac-linux">Firebase CLI</a><ul>
-<li>環境に一度入れればOKです</li>
-<li>以下を実行することでinstallできます<ul>
-<li>これでfirebase コマンドが有効になります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g firebase-tools</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4><span id="42-angular-fireのinstall">4.2. angular fireのinstall</span></h4><ul>
-<li><a href="https://github.com/angular/angularfire">angularfire</a>を入れます<ul>
-<li>AngularとFirebaseの連携用Libraryです</li>
-<li>こちらは環境単位ではなくAP単位で入れる必要があります</li>
-</ul>
-</li>
-<li>以下を実行<ul>
-<li>※最新版であればng addでもOK<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firebase-sample (master) $ npm install @angular&#x2F;fire firebase --save</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>出力結果<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">+ @angular&#x2F;fire@5.4.2</span><br><span class="line">+ firebase@7.9.3</span><br><span class="line">added 140 packages from 98 contributors and audited 19218 packages in 17.919s</span><br><span class="line">found 5 vulnerabilities (3 moderate, 2 high)</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<h3><span id="43-angular環境設定ファイルにapiキーを貼り付け">4.3. Angular環境設定ファイルにAPIキーを貼り付け</span></h3><ul>
-<li><p>開発環境向けと本番環境向けの２つの設定ファイルの改修が必要。よくはまるポイントです</p>
-<ul>
-<li>各値はfirebase consoleより確認</li>
-</ul>
-</li>
-<li><p>src/environments/environment.ts</p>
-<ul>
-<li>開発環境用の設定ファイルに以下の形式で設定します<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">export const environment &#x3D; &#123;</span><br><span class="line">  production: false,</span><br><span class="line">  &#x2F;&#x2F; Firebaseの設定情報を登録</span><br><span class="line">    firebase: &#123;</span><br><span class="line">      apiKey: &#39;&lt;your-key&gt;&#39;,</span><br><span class="line">      authDomain: &#39;&lt;your-project-authdomain&gt;&#39;,</span><br><span class="line">      databaseURL: &#39;&lt;your-database-URL&gt;&#39;,</span><br><span class="line">      projectId: &#39;&lt;your-project-id&gt;&#39;,</span><br><span class="line">      storageBucket: &#39;&lt;your-storage-bucket&gt;&#39;,</span><br><span class="line">      messagingSenderId: &#39;&lt;your-messaging-sender-id&gt;&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>src/environments/environment.prod.ts</p>
-<ul>
-<li>本番環境用の設定ファイルも同様です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">export const environment &#x3D; &#123;</span><br><span class="line">  production: false,</span><br><span class="line">  &#x2F;&#x2F; Firebaseの設定情報を登録</span><br><span class="line">    firebase: &#123;</span><br><span class="line">      apiKey: &#39;&lt;your-key&gt;&#39;,</span><br><span class="line">      authDomain: &#39;&lt;your-project-authdomain&gt;&#39;,</span><br><span class="line">      databaseURL: &#39;&lt;your-database-URL&gt;&#39;,</span><br><span class="line">      projectId: &#39;&lt;your-project-id&gt;&#39;,</span><br><span class="line">      storageBucket: &#39;&lt;your-storage-bucket&gt;&#39;,</span><br><span class="line">      messagingSenderId: &#39;&lt;your-messaging-sender-id&gt;&#39;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>Firebaseの設定情報を確認</p>
-<ul>
-<li>FirebaseコンソールのSettingsから確認可能</li>
-</ul>
-</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/79093020-ccea7680-7d8d-11ea-916f-0b2a4108baa4.png" height="370px" width="500px">
-</div>
-
-<ul>
-<li><p>上記のIDとAPIキーをenvironmentsの該当箇所にコピペ</p>
-</li>
-<li><p>設定より、IDとAPIキー、送信者IDを確認する</p>
-<pre><code>- 各設定項目は以下のように一意に定まる</code></pre></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">export const environment &#x3D; &#123;</span><br><span class="line">    production: false,</span><br><span class="line">    firebase: &#123;</span><br><span class="line">      apiKey: &#39;&lt;ウェブAPIキー&gt;&#39;,</span><br><span class="line">      authDomain: &quot;&lt;プロジェクトID&gt;.firebaseapp.com&quot;,</span><br><span class="line">      databaseURL: &quot;https:&#x2F;&#x2F;&lt;プロジェクトID&gt;.firebaseio.com&quot;,</span><br><span class="line">      projectId: &quot;&lt;プロジェクトID&gt;&quot;,</span><br><span class="line">      storageBucket: &quot;&lt;プロジェクトID&gt;.appspot.com&quot;,</span><br><span class="line">      messagingSenderId: &quot;&lt;送信者ID&gt;&quot;,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>送信者IDはクラウドメッセージングTabより確認可能</p>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/79093197-7f223e00-7d8e-11ea-82ef-90078b05c160.png" height="300px" width="500px">
-</div>
-</li>
-<li><p>両方のファイルに以下を設定</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">export const environment &#x3D; &#123;</span><br><span class="line">    production: false, &#x2F;&#x2F; ,を忘れないよう注意</span><br><span class="line">    &#x2F;&#x2F; Firebaseの設定情報を登録</span><br><span class="line">      firebase: &#123;</span><br><span class="line">        apiKey: &#39;XXXXXXXXXXXXXXXXXXXXXXXXXXX&#39;,</span><br><span class="line">        authDomain: &#39;fir-sample-3a2dc.firebaseapp.com&#39;,</span><br><span class="line">        databaseURL: &#39;https:&#x2F;&#x2F;fir-sample-3a2dc.firebaseio.com&#39;,</span><br><span class="line">        projectId: &#39;fir-sample-3a2dc&#39;,</span><br><span class="line">        storageBucket: &#39;fir-sample-3a2dc.appspot.com&#39;,</span><br><span class="line">        messagingSenderId: &#39;408620068768&#39;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4><span id="44-cliとfirebaseの関連付けfirebase-login">4.4. CLIとFirebaseの関連付け(firebase login)</span></h4><ul>
-<li>次に開発環境(Cloud9)のCLIとfirebaseを関連付けます<ul>
-<li>c9の場合–nolocalhostが必須<ul>
-<li>★社内Local環境でloginをやろうとするとFirebase認証がProxyに阻まれて突破できず詰むので気を付けましょう<ul>
-<li>頑張っても解決できませんでした…</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">firebase login --no-localhost --reauth</span><br><span class="line"></span><br><span class="line">i  Firebase optionally collects CLI usage and error reporting information to help improve our products. Data is collected in accordance with Google&#39;s privacy policy (https:&#x2F;&#x2F;policies.google.com&#x2F;privacy) and is not used to identify you.</span><br><span class="line"></span><br><span class="line">? Allow Firebase to collect CLI usage and error reporting information? Yes</span><br><span class="line">i  To change your data collection preference at any time, run &#96;firebase logout&#96; and log in again.</span><br><span class="line"></span><br><span class="line">Visit this URL on any device to log in:</span><br><span class="line">&lt;認証用のURL&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>上記のURLから、ブラウザでGoogleアカウント認証を進めるとコードが表示されます</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/79242034-c0aa0a80-7eae-11ea-8305-aef46bd36bed.png" height="200px" width="400px">
-</div>
-
-
-<ul>
-<li>貼り付けてSuccessと表示されれば成功です<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">? Paste authorization code here: &lt;Code&gt;</span><br><span class="line"></span><br><span class="line">✔  Success! Logged in as &lt;googleアカウント名&gt;</span><br></pre></td></tr></table></figure></li>
-<li>Cloud9のCLIからFirebase(=Google Cloud)上のリソースにアクセス可能になりました</li>
-</ul>
-<h4><span id="45-apとfirebaseのpjの関連付けfirebase-init">4.5. APとfirebaseのPJの関連付け(firebase init)</span></h4><ul>
-<li><p>Angular PJ直下で実行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firebase init</span><br></pre></td></tr></table></figure></li>
-<li><p>以下のように出力されれば成功です</p>
-<ul>
-<li>使いたいサービスを選択すると簡単にCloud側と連携できます<ul>
-<li>スペースキーで各サービスを選択できます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">     ######## #### ########  ######## ########     ###     ######  ########</span><br><span class="line">     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##</span><br><span class="line">     ######    ##  ########  ######   ########  #########  ######  ######</span><br><span class="line">     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##</span><br><span class="line">     ##       #### ##     ## ######## ########  ##     ##  ######  ########</span><br><span class="line"></span><br><span class="line">You&#39;re about to initialize a Firebase project in this directory:</span><br><span class="line"></span><br><span class="line">  &#x2F;home&#x2F;ec2-user&#x2F;environment&#x2F;firebase-sample</span><br><span class="line"></span><br><span class="line">? Which Firebase CLI features do you want to set up for this folder? Press Space to select features, then Enter to confirm your choices. (Press</span><br><span class="line"> &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection)</span><br><span class="line">❯◯ Database: Deploy Firebase Realtime Database Rules</span><br><span class="line"> ◯ Firestore: Deploy rules and create indexes for Firestore</span><br><span class="line"> ◯ Functions: Configure and deploy Cloud Functions</span><br><span class="line"> ◯ Hosting: Configure and deploy Firebase Hosting sites</span><br><span class="line"> ◯ Storage: Deploy Cloud Storage security rules</span><br><span class="line"> ◯ Emulators: Set up local emulators for Firebase features</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Project Setup</p>
-<ul>
-<li>Enterを押すと以下が出力されます</li>
-<li>今回は事前にプロジェクトを作成しているので”use an exciting project”を選択</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x3D;&#x3D;&#x3D; Project Setup</span><br><span class="line"></span><br><span class="line">First, let&#39;s associate this project directory with a Firebase project.</span><br><span class="line">You can create multiple project aliases by running firebase use --add, </span><br><span class="line">but for now we&#39;ll just set up a default project.</span><br><span class="line"></span><br><span class="line">? Please select an option: </span><br><span class="line">❯ Use an existing project </span><br><span class="line">  Create a new project </span><br><span class="line">  Add Firebase to an existing Google Cloud Platform project </span><br><span class="line">  Don&#39;t set up a default project</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>自身のアカウントで作成済みのFirebase Projectが選択肢としてでてきます</p>
-<ul>
-<li>事前に作った”fir-sample-3a2dc (firebase-sample)”を選択<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">? Select a default Firebase project for this directory: (Use arrow keys)</span><br><span class="line">❯ fir-sample-3a2dc (firebase-sample)</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>以降は、先ほど選択したサービスのSetupが順に出てきます。いくつか例として書いておきます</p>
-</li>
-<li><p>Hosting Setup</p>
-<ul>
-<li>公開したいディレクトリを尋ねられます</li>
-<li>Angularであればビルドしたい際の生成物が格納されるを入力しましょう<ul>
-<li>dits/angular-pj-name</li>
-</ul>
-</li>
-<li>Hostingについての詳細は以下にまとめています<ul>
-<li><a href="https://j-xaas.github.io/2020/04/16/Firebase-Hosting完全版-Angularで開発したSPAを無料で公開～ダッシュボードで費用管理/">Firebase Hosting完全版(Angularで開発したSPAを無料で公開～ダッシュボードで費用管理)</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Database Setup   </p>
-<ul>
-<li>ひとまずデフォルトでEnter<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x3D;&#x3D;&#x3D; Database Setup</span><br><span class="line"></span><br><span class="line">Firebase Realtime Database Rules allow you to define how your data should be</span><br><span class="line">structured and when your data can be read from and written to.</span><br><span class="line"></span><br><span class="line">? What file should be used for Database Rules? (database.rules.json)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>Firestore Set up</p>
-<ul>
-<li>リソース(firestore)のlocationを設定していないとErrorが出ます<ul>
-<li>firebaseコンソール側で設定する必要があります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x3D;&#x3D;&#x3D; Firestore Setup</span><br><span class="line"></span><br><span class="line">Error: Cloud resource location is not set for this project but the operation you are attempting to perform in Cloud Firestore requires it. Please see this documentation for more details: https:&#x2F;&#x2F;firebase.google.com&#x2F;docs&#x2F;projects&#x2F;locations</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>以上で一先ずセットアップは完了です</p>
-</li>
-<li><p>次にのStepとしてFirebase HostingでAPを公開してみましょう（5分できます）</p>
-<ul>
-<li><a href="https://j-xaas.github.io/2020/04/16/Firebase-Hosting完全版-Angularで開発したSPAを無料で公開～ダッシュボードで費用管理/">Firebase Hosting完全版(Angularで開発したSPAを無料で公開～ダッシュボードで費用管理)</a></li>
-<li>実際にAuthentication(認証機能)やFirestore(ストレージ)を利用する手順は別記事に記載します</li>
-</ul>
-</li>
-</ul>
-<h2><span id="後書き">後書き</span></h2><p>ここまでで本格的な実装に入る準備が整いました。Firebaseを使いこなせば、認証機能もデータのCRUD機能も1日で簡単に実装することができます。モダンな手法を使いこなして素早くサービスを開発していきましょう。</p>
-<ul>
-<li>最後に、この先の機能実装の際に参考になりそうなページをまとめておきます。<ul>
-<li>APをFirebase Hostingで公開<ul>
-<li><a href="https://j-xaas.github.io/2020/04/16/Firebase-Hosting完全版-Angularで開発したSPAを無料で公開～ダッシュボードで費用管理/">Firebase Hosting完全版(Angularで開発したSPAを無料で公開～ダッシュボードで費用管理)</a></li>
-</ul>
-</li>
-<li>CRUD機能を実装<ul>
-<li><a href="https://mae.chab.in/archives/60256">AngularFireでFirestoreのCRUD処理を実装する【Angular + Firebase】</a></li>
-</ul>
-</li>
-<li>認証機能を実装<ul>
-<li><a href="https://satolabo.net/2019/11/30/angular8-fire-google-auth/">Angular8でFirebaseを使ってGoogleアカウント認証機能を実装する</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2><span id="おまけcloud9でng-serveする際の注意">おまけ：cloud9でng serveする際の注意</span></h2><ul>
-<li><p>詳細は以下の記事にまとめてあります</p>
-<ul>
-<li><a href="https://j-xaas.github.io/2020/04/14/Cloud9-x-Angular-cloud9%E3%81%A7ng-serve%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6AP%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/">[Cloud9 x Angular] cloud9でng serveを実行してAPの画面を確認するまで</a></li>
-</ul>
-</li>
-<li><p>cloud9で必要なこと</p>
-<ul>
-<li>portの指定(8080)</li>
-<li>browserのURLの指定</li>
-<li>disableHostCheck</li>
-</ul>
-</li>
-<li><ol>
-<li>angular.jsonファイルを書き換えてポートを変更<ul>
-<li>cloud9の場合はportを8080にする必要がある<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;serve&quot;: &#123;</span><br><span class="line">  &quot;builder&quot;: &quot;@angular-devkit&#x2F;build-angular:dev-server&quot;,</span><br><span class="line">  &quot;options&quot;: &#123;</span><br><span class="line">    &quot;browserTarget&quot;: &quot;NgTororo:build&quot;,</span><br><span class="line">    &quot;port&quot;: 8080 &#x2F;&#x2F;ここを追加</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>portの設定後であれば以下でOK<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng serve --disableHostCheck --public-host &lt;cloud9のPreviewのURL&gt;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/79135318-1d8fbd00-7dea-11ea-9e6d-31134f1ad284.png" height="500px" width="500px">
-</div>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -2580,7 +2394,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            31
+                            32
                         </p>
                     </a>
                 </div>
@@ -2604,7 +2418,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            54
+                            56
                         </p>
                     </a>
                 </div>
@@ -2712,7 +2526,7 @@
                 <span class="level-item">Serverless Application Dev</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">12</span>
+                <span class="level-item tag">13</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Serverless-Application-Dev/AWS/">
@@ -2736,7 +2550,7 @@
                 <span class="level-item">SPA (Angular)</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/SmartHome/">
@@ -2837,7 +2651,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12.5px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 10px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 12.5px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Cloud-Craft/" style="font-size: 10px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/DTM/" style="font-size: 15px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 12.5px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 15px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 17.5px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/Mind-Node/" style="font-size: 10px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 10px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 12.5px;">RPA</a> <a href="/tags/SYNCROOM/" style="font-size: 10px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 12.5px;">Steinberg UR44C</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 15px;">cloud9</a> <a href="/tags/draw-io/" style="font-size: 10px;">draw.io</a> <a href="/tags/filter/" style="font-size: 10px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 15px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/map/" style="font-size: 10px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 10px;">mat-checkbox</a> <a href="/tags/plantUML/" style="font-size: 10px;">plantUML</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 12.5px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12.5px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 12.5px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 12.5px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Cloud-Craft/" style="font-size: 10px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/DTM/" style="font-size: 15px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 12.5px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 15px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 17.5px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/Mind-Node/" style="font-size: 10px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 10px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 12.5px;">RPA</a> <a href="/tags/SYNCROOM/" style="font-size: 10px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 12.5px;">Steinberg UR44C</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 15px;">cloud9</a> <a href="/tags/draw-io/" style="font-size: 10px;">draw.io</a> <a href="/tags/filter/" style="font-size: 12.5px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 15px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/map/" style="font-size: 12.5px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 12.5px;">mat-checkbox</a> <a href="/tags/mat-selection-list/" style="font-size: 10px;">mat-selection-list</a> <a href="/tags/ngFor/" style="font-size: 10px;">ngFor</a> <a href="/tags/plantUML/" style="font-size: 10px;">plantUML</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 12.5px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
     </div>
 </div>
     
@@ -2849,6 +2663,25 @@
         <h3 class="menu-label">
             最近の記事
         </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/05/28/Angular-mat-selection-list%E3%81%A7checkbox%E3%82%92%E8%A1%A8%E7%A4%BA%EF%BD%9E%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E5%BE%97/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-28T12:25:40.000Z">2020-05-28</time></div>
+                    <a href="/2020/05/28/Angular-mat-selection-list%E3%81%A7checkbox%E3%82%92%E8%A1%A8%E7%A4%BA%EF%BD%9E%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E5%BE%97/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -2926,25 +2759,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/04/19/YAMAHA%E3%81%AE%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%84%E3%83%BC%E3%83%ABSYNCROOM%E3%81%AE%E3%83%99%E3%83%BC%E3%82%BF%E7%89%88%EF%BC%9ANETDUET%E3%82%92%E8%A9%A6%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[SYNCROOM/NETDUETTO] YAMAHAのリモートセッションツールを試してみた">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-18T17:53:21.000Z">2020-04-19</time></div>
-                    <a href="/2020/04/19/YAMAHA%E3%81%AE%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%84%E3%83%BC%E3%83%ABSYNCROOM%E3%81%AE%E3%83%99%E3%83%BC%E3%82%BF%E7%89%88%EF%BC%9ANETDUET%E3%82%92%E8%A9%A6%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[SYNCROOM/NETDUETTO] YAMAHAのリモートセッションツールを試してみた</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/SmartHome/">SmartHome</a> / <a class="has-link-grey -link" href="/categories/SmartHome/DTM/">DTM</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -2962,7 +2776,7 @@
                     <span class="level-item">五月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -3072,14 +2886,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular-Material/">
                         <span class="tag">Angular Material</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -3289,7 +3103,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/filter/">
                         <span class="tag">filter()</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -3331,13 +3145,27 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/map/">
                         <span class="tag">map()</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/mat-checkbox/">
                         <span class="tag">mat-checkbox</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/mat-selection-list/">
+                        <span class="tag">mat-selection-list</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ngFor/">
+                        <span class="tag">ngFor</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -3415,6 +3243,25 @@
         
         <article class="media">
             
+            <a href="/2020/05/28/Angular-mat-selection-list%E3%81%A7checkbox%E3%82%92%E8%A1%A8%E7%A4%BA%EF%BD%9E%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E5%BE%97/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-28T12:25:40.000Z">2020-05-28</time></div>
+                    <a href="/2020/05/28/Angular-mat-selection-list%E3%81%A7checkbox%E3%82%92%E8%A1%A8%E7%A4%BA%EF%BD%9E%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E5%BE%97/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2020/05/20/Angular%E5%85%A5%E9%96%80-%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%EF%BD%9EPJ%E3%81%AE%E9%96%8B%E5%A7%8B-%E5%9F%BA%E6%9C%AC%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="[Angular入門] 環境構築～PJの開始/基本コマンド">
@@ -3489,25 +3336,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2020/04/19/YAMAHA%E3%81%AE%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%84%E3%83%BC%E3%83%ABSYNCROOM%E3%81%AE%E3%83%99%E3%83%BC%E3%82%BF%E7%89%88%EF%BC%9ANETDUET%E3%82%92%E8%A9%A6%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[SYNCROOM/NETDUETTO] YAMAHAのリモートセッションツールを試してみた">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-18T17:53:21.000Z">2020-04-19</time></div>
-                    <a href="/2020/04/19/YAMAHA%E3%81%AE%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%84%E3%83%BC%E3%83%ABSYNCROOM%E3%81%AE%E3%83%99%E3%83%BC%E3%82%BF%E7%89%88%EF%BC%9ANETDUET%E3%82%92%E8%A9%A6%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[SYNCROOM/NETDUETTO] YAMAHAのリモートセッションツールを試してみた</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/SmartHome/">SmartHome</a> / <a class="has-link-grey -link" href="/categories/SmartHome/DTM/">DTM</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -3525,7 +3353,7 @@
                     <span class="level-item">五月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -3635,14 +3463,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular-Material/">
                         <span class="tag">Angular Material</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -3852,7 +3680,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/filter/">
                         <span class="tag">filter()</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -3894,13 +3722,27 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/map/">
                         <span class="tag">map()</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/mat-checkbox/">
                         <span class="tag">mat-checkbox</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/mat-selection-list/">
+                        <span class="tag">mat-selection-list</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ngFor/">
+                        <span class="tag">ngFor</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
