@@ -72,6 +72,7 @@ article:
 search:
     # Name of the search plugin
     type: insight
+# 検索付け方 https://keijirotanabe.github.io/blog/2017/02/15/hexo-search-add-170216/
 
 # Comment plugin settings
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment

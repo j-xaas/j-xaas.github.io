@@ -7,6 +7,8 @@ categories:
 tags: 
 - Github.com
 toc: true
+thumbnail: https://user-images.githubusercontent.com/41946222/83426237-d200a380-a469-11ea-8dd5-6fe92939fc8c.png
+
 ---
   
 　今回はGithubというツールについて解説します。学生や新入社員等、これからアプリ開発を始める方が初めに覚えるツールなのですが、専門用語を並び立てた説明だらけで戸惑う方が多いため、極力丸めた言葉で優しく書きました。  

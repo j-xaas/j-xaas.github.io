@@ -7,6 +7,7 @@ category:
 tags:
 - Angular
 toc: true
+thumbnail: https://user-images.githubusercontent.com/41946222/83424662-abda0400-a467-11ea-831a-2b146d29a1c5.png
 ---
   
 WEBアプリケーション開発に用いる[フレームワーク](https://sp.otsuka-shokai.co.jp/words/framework.html)である、Angularの環境構築～アプリの雛形の生成までを解説します。

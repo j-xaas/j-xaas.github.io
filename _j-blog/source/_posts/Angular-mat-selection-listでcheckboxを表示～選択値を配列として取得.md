@@ -12,6 +12,7 @@ tags:
 - 'filter()'
 - 'mat-checkbox'
 - 'Angular Material'
+thumbnail: https://user-images.githubusercontent.com/41946222/83426603-5bb07100-a46a-11ea-8093-bd0d6e517706.png
 toc: true
 ---
 

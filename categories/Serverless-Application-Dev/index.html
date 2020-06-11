@@ -164,6 +164,499 @@
     
 <div class="card">
     
+    <div class="card-image">
+        <a href="/2020/05/31/Angular-JavaScript-JSON%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF/" class="image is-7by1">
+            <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/83424662-abda0400-a467-11ea-831a-2b146d29a1c5.png" alt="[Angular JavaScript] JSONファイル(複数)の読み込み">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-05-31T14:16:54.000Z">2020-05-31</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    14分 read (About 2057 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/05/31/Angular-JavaScript-JSON%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF/">[Angular JavaScript] JSONファイル(複数)の読み込み</a>
+            
+        </h1>
+        <div class="content">
+            <ul>
+<li>Angular APにFile APIでローカル端末からファイルを読み込む機能を実装する手法を解説します</li>
+<li>WEB APはセキュリティの関係で制約が多いので、やり方が限られます</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://miro.medium.com/max/480/1*VKY-Ldkt-iHobItql7G_5w.png" height="90px" width="300px" alt>
+</div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#1-基礎知識">1. 基礎知識</a><ul>
+<li><a href="#11-file-api">1.1. File API</a></li>
+<li><a href="#12-native-file-system-api">1.2. Native File System API</a></li>
+</ul>
+</li>
+<li><a href="#2-実装手順">2. 実装手順</a><ul>
+<li><a href="#21-html-fileのinputを用意">2.1. HTML Fileのinputを用意</a></li>
+<li><a href="#22-fileのデータの取得">2.2. Fileのデータの取得</a></li>
+<li><a href="#23-fileのmetadataの取得">2.3. FileのMetaDataの取得</a></li>
+<li><a href="#参考">参考</a></li>
+<li><a href="#mdnドキュメント">MDNドキュメント</a></li>
+<li><a href="#file-apiを使用">File APIを使用</a></li>
+<li><a href="#jquery-or-pythonを使用">jQuery or Pythonを使用</a></li>
+<li><a href="#その他">その他</a></li>
+<li><a href="#json-javascriptでの扱い">JSON JavaScriptでの扱い</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="1-基礎知識">1. 基礎知識</span></h2><h3><span id="11-file-api">1.1. File API</span></h3><ul>
+<li><p><a href="https://developer.mozilla.org/ja/docs/Web/API/File">File API</a></p>
+<ul>
+<li>HTML5で定義された、ファイル操作のためのAPI</li>
+<li>MDN説明<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">File インターフェイスは、ファイルについての情報を提供したり、ウェブページ内の JavaScript でその内容にアクセスできるようにしたりします。</span><br><span class="line">File オブジェクトは一般的に &lt;input&gt; 要素を使用してユーザがファイルを選択した結果として返された FileList オブジェクトや、ドラッグアンドドロップ操作の DataTransfer オブジェクト、 HTMLCanvasElement の mozGetAsFile() API から情報を取得します。</span><br></pre></td></tr></table></figure></li>
+<li>参考<ul>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/API/File/Using_files_from_web_applications">MDN ウェブアプリケーションからのファイルの使用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>できないこと</p>
+<ul>
+<li>ディレクトリの読み込み<ul>
+<li>ファイル単位の読み込みしかできません</li>
+</ul>
+</li>
+<li>ユーザーの許可無しの読み込み<ul>
+<li>自動的にローカルのファイル一覧をWEB AP上に表示するような仕様は実現できませんでした</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="12-native-file-system-api">1.2. Native File System API</span></h3><ul>
+<li>Native File System API<ul>
+<li>こちらを導入することで、ディレクトリの読み込みを実現できそうです</li>
+<li>今回は採用しませんでした<ul>
+<li>ブラウザによっては動かず、APの利用に前提条件ができてしまう為です</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>こちらを利用する場合は以下を参考にどうぞ<ul>
+<li><a href="https://www.mitsue.co.jp/knowledge/blog/frontend/201909/30_1002.html">ブラウザからドライブにファイルの書き込みができるNative File System APIとは？</a></li>
+</ul>
+</li>
+</ul>
+<h2><span id="2-実装手順">2. 実装手順</span></h2><ul>
+<li>以下を構成を想定<ul>
+<li>sample.component.html</li>
+<li>sample.component.ts</li>
+</ul>
+</li>
+</ul>
+<h3><span id="21-html-fileのinputを用意">2.1. HTML Fileのinputを用意</span></h3><p>htmlにinputボタンを用意します</p>
+<ul>
+<li><p>sample.component.html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type &#x3D; &quot;file&quot; [accept]&#x3D;&quot;&#39;.json&#39;&quot; (change)&#x3D;&quot;selectFile($event)&quot; #fl multiple id &#x3D;&#39;file&#39;&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>ファイルタイプを限定</p>
+<ul>
+<li>acceptで定義<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[accept]&#x3D;&quot;&quot;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>複数ファイルを取得</p>
+<ul>
+<li>multiple</li>
+</ul>
+</li>
+<li><p>(change)でファイル読み込み時に実行するメソッドを定義</p>
+<ul>
+<li>$eventに読み込んだファイルのデータが入ります</li>
+</ul>
+</li>
+<li><p>読み込んだファイルを一覧表示</p>
+<ul>
+<li>読み込んだファイル名をfileNamesに格納してngForで表示する<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;ng-container *ngFor&#x3D;&quot;let fileName of fileNames; let i &#x3D; index&quot; &gt;</span><br><span class="line">    &lt;li&gt; No. &#123;&#123;i+1&#125;&#125;　|　Name &#123;&#123; fileName &#125;&#125; &lt;&#x2F;li&gt;</span><br><span class="line">  &lt;&#x2F;ng-container&gt; </span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="22-fileのデータの取得">2.2. Fileのデータの取得</span></h3><ul>
+<li><p>ロジック</p>
+<ul>
+<li>ファイル読み込み時に(change)イベントでメソッドが発火</li>
+<li>引数$eventとしてファイルのデータをメソッドに渡す</li>
+<li>.target.filesでFileListオブジェクトを取得</li>
+<li>ファイル数回のループを実行<ul>
+<li>ファイルを読み込むためにFileReaderオブジェクトを生成</li>
+<li>.readAsText()でFileオブジェクトの読み込みを実行<ul>
+<li>.onloadで読み込み成功時の処理を定義<ul>
+<li>読み込んだデータ(.result)を配列に格納</li>
+</ul>
+</li>
+<li>..onerrorで読み込み失敗時の処理を定義<ul>
+<li>Errorメッセージを表示</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>sample.component.ts</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">export class SampleComponent implements OnInit &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 選択したファイルの中身のデータを受け取る変数を宣言</span><br><span class="line">  public filesData &#x3D; [];</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; File読み込み時に発火するメソッド</span><br><span class="line">  selectFile(evt) &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 変数データの初期化</span><br><span class="line">    this.filesData &#x3D; []; &#x2F;&#x2F; ファイルの中身のデータ</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; inputしたファイルをFilelistオブジェクトとして取得</span><br><span class="line">    &#x2F;&#x2F; 複数のfileオブジェクトがselectfilesに入る</span><br><span class="line">    let selectFiles &#x3D; evt.target.files;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; --------------fileを読み込む------------------------</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; ファイル数 &#x3D; selectFiles.length回 ループさせる</span><br><span class="line">    for (let i &#x3D; 0, num &#x3D; selectFiles.length; i &lt; num; i++) &#123;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 1. ファイルを読み込むためにFileReaderオブジェクトを生成</span><br><span class="line">      &#x2F;&#x2F; １ファイルしか読み込めない為、ここもループが必要</span><br><span class="line">      const rdr &#x3D; new FileReader();</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 2. ファイルをテキストとして読み込む</span><br><span class="line">      rdr.readAsText(selectFiles[i]);</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 3. 読み込みが成功した際のイベントを定義 loadイベントのハンドラー</span><br><span class="line">      &#x2F;&#x2F; TSの場合アロー関数でないと動かない</span><br><span class="line">      rdr.onload &#x3D; (e) &#x3D;&gt; &#123;</span><br><span class="line">        &#x2F;&#x2F; reader JSONファイルの中身のデータ</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 4. 読み込んだデータを配列に格納</span><br><span class="line">        this.filesData &#x3D; this.filesData.concat(rdr.result);</span><br><span class="line">        &#x2F;&#x2F; console.log(this.filesData); &#x2F;&#x2F; 配列にファイルの中身が追加されている</span><br><span class="line"></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; ファイルの読みこみエラー時の処理 errorイベントのハンドラー</span><br><span class="line">      rdr.onerror &#x3D; (e) &#x3D;&gt; &#123;</span><br><span class="line">        &#x2F;&#x2F; console.log(&#39;ファイルを読み込めません&#39;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3><span id="23-fileのmetadataの取得">2.3. FileのMetaDataの取得</span></h3><ul>
+<li>仮定<ul>
+<li>ファイル名を取得して、選択ファイル一覧を表示したい</li>
+<li>ファイル名はprefixに時刻データがついたものを想定<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">202051820143_XXXXXXX.json</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>sample.component.ts<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">export class SampleComponent implements OnInit &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; MeataDataを受け取る変数を宣言</span><br><span class="line">  public time &#x3D; []; &#x2F;&#x2F; 取得データのタイムスタンプ</span><br><span class="line">  public filesNames &#x3D; []; &#x2F;&#x2F; 選択したファイルの情報表示用に名前を格納する</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 選択したファイルの中身のデータを受け取る変数を宣言</span><br><span class="line">  public filesData &#x3D; [];</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; File読み込み時に発火するメソッド</span><br><span class="line">  selectFile(evt) &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 変数データの初期化</span><br><span class="line">    this.time &#x3D; []; &#x2F;&#x2F; 取得データのタイムスタンプ</span><br><span class="line">    this.filesName &#x3D; []; &#x2F;&#x2F; ファイル名</span><br><span class="line">    this.filesData &#x3D; []; &#x2F;&#x2F; ファイルの中身のデータ</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; inputしたファイルをFilelistオブジェクトとして取得</span><br><span class="line">    &#x2F;&#x2F; FileListオブジェクトの中に複数のfileオブジェクトが含まれる</span><br><span class="line">    let selectFiles &#x3D; evt.target.files;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; データ取得ロジック</span><br><span class="line">    &#x2F;&#x2F; -----略-------</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; MetaDataを取得するロジック</span><br><span class="line">    for (let i &#x3D; 0, numFiles &#x3D; selectFiles.length; i &lt; numFiles; i++) &#123;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 1. FileListから単一のfileオブジェクトを抽出</span><br><span class="line">      const f &#x3D; selectFiles[i]; &#x2F;&#x2F; fileオブジェクトを格納</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 2. ファイル名から拡張子を除いた値を取得</span><br><span class="line">      const filename &#x3D; f.name.match(&#x2F;(.*)\.json$&#x2F;)[1];</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 3. ファイル名を分解して要素情報を取得</span><br><span class="line">      const tmp &#x3D; filename.split(&#39;_&#39;);</span><br><span class="line">      &#x2F;&#x2F; console.log(tmp); &#x2F;&#x2F; [&quot;202051816143&quot;, &quot;XXXXXXX&quot;]</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 4. 各要素の値を抽出</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 4.1. タイムスタンプを配列として複数取得</span><br><span class="line"></span><br><span class="line">      if (this.time !&#x3D;&#x3D; tmp[0]) &#123;</span><br><span class="line">        this.time &#x3D; this.time.concat(tmp[0]);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; 4.2. XXXXX部分</span><br><span class="line">      this.filesName &#x3D; this.selectedRegions.concat(tmp[1]);</span><br><span class="line">    &#125;</span><br><span class="line">    console.log(this.filesName);</span><br><span class="line">    &#x2F;&#x2F; HTMLにfilesNameを双方向バインディング指定していれば、画面に表示される</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3><span id="参考">参考</span></h3><h3><span id="mdnドキュメント">MDNドキュメント</span></h3><ul>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/API/File">MDN File</a></li>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/API/File">MDN FileList</a></li>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/API/FileReader">MDN FileReader</a></li>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/API/Blob">MDN Blob</a></li>
+</ul>
+<h3><span id="file-apiを使用">File APIを使用</span></h3><ul>
+<li><p><a href="https://www.e-loop.jp/knowledges/35/">JavaScriptでFile APIをファイル操作方法ついて解説</a></p>
+</li>
+<li><p><a href="https://web.dev/read-files/">web.dev JavaScriptでファイルを読み込む</a></p>
+</li>
+<li><p><a href="https://developer.mozilla.org/ja/docs/Web/API/File/Using_files_from_web_applications">MDN ウェブアプリケーションからのファイルの使用</a></p>
+</li>
+<li><p><a href="https://slash-mochi.net/?p=3073">JavaScriptでJSONファイルを保存する/開く方法</a></p>
+</li>
+<li><p><a href="https://mi12cp.hatenablog.com/entry/2018/08/10/002344">Angular FileAPIのonloadではアロー関数を使う</a></p>
+</li>
+</ul>
+<h3><span id="jquery-or-pythonを使用">jQuery or Pythonを使用</span></h3><ul>
+<li><p><a href="https://qiita.com/yoshida3/items/36083f7959771b62e9af">jsonファイルの読み込み纏め</a></p>
+</li>
+<li><p><a href="https://www.angularjswiki.com/angular/how-to-read-local-json-files-in-angular/">How To Read Local JSON Files In Angular</a></p>
+<ul>
+<li>Angular 4,5 <ul>
+<li>@angular/common/httpのHttpClientとrxjs/ObservableのObservableを使う</li>
+<li>angularのassetsにファイルを置く前提であり今回とは異なった</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="その他">その他</span></h3><ul>
+<li><a href="https://www.mitsue.co.jp/knowledge/blog/frontend/201909/30_1002.html">ブラウザからドライブにファイルの書き込みができるNative File System APIとは？</a></li>
+</ul>
+<h3><span id="json-javascriptでの扱い">JSON JavaScriptでの扱い</span></h3><ul>
+<li><p><a href="https://agency-star.co.jp/column/json-parse/">JSONの扱い方を解説！PythonやJavaScript・Swiftでの基本的な使用法とは。配列取得や出力方法も紹介</a></p>
+</li>
+<li><p><a href="https://blog.goo.ne.jp/xmldtp/e/20ee95b2f8c620be2b3a211cc8dd7358">Javascript|JSONでの、レコードの表現方法（配列、連想配列）→{}と[]の違い</a></p>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/05/31/Angular-JSON%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%8C%96%E3%81%A8%E5%87%BA%E5%8A%9B-%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%8B%E3%82%89%E5%8F%96%E5%BE%97%E3%81%97%E3%81%9F%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E4%BB%BB%E6%84%8F%E3%81%AE%E5%90%8D%E7%A7%B0%E3%81%A7%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B/" class="image is-7by1">
+            <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/83424662-abda0400-a467-11ea-831a-2b146d29a1c5.png" alt="[Angular JavaScript] JSONデータのファイル化と出力 ~クラウドから取得したデータを任意の名称で保存するロジック~ (TypeScript)">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-05-31T13:55:36.000Z">2020-05-31</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    20分 read (About 2975 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/05/31/Angular-JSON%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%8C%96%E3%81%A8%E5%87%BA%E5%8A%9B-%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%8B%E3%82%89%E5%8F%96%E5%BE%97%E3%81%97%E3%81%9F%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E4%BB%BB%E6%84%8F%E3%81%AE%E5%90%8D%E7%A7%B0%E3%81%A7%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B/">[Angular JavaScript] JSONデータのファイル化と出力 ~クラウドから取得したデータを任意の名称で保存するロジック~ (TypeScript)</a>
+            
+        </h1>
+        <div class="content">
+            <p>Angular APでローカル端末にファイルを出力する機能をWEB APに実装する手順を解説します。外部API(ex. AWS)からService経由でGETしたデータをLocal端末に保存するケースを想定しています。色々試したものの、WEB APはセキュリティ制約が多いので、やり方が限られました。</p>
+<!-- toc -->
+
+<ul>
+<li><a href="#1-基礎知識">1. 基礎知識</a><ul>
+<li><a href="#11-今回の手法jacascriptのdownloadを使用">1.1. 今回の手法(JacaScriptのdownloadを使用)</a></li>
+<li><a href="#12-その他の手法">1.2. その他の手法</a></li>
+</ul>
+</li>
+<li><a href="#2-単一ファイルを取得">2. 単一ファイルを取得</a><ul>
+<li><a href="#21-get-filecomponenthtml">2.1. get-file.component.html</a></li>
+<li><a href="#22-get-filecomponentts">2.2. get-file.component.ts</a></li>
+<li><a href="#23-実装例">2.3. 実装例</a></li>
+</ul>
+</li>
+<li><a href="#3-複数ファイルをダウンロード">3. 複数ファイルをダウンロード</a></li>
+<li><a href="#4-参考">4. 参考</a><ul>
+<li><a href="#ファイルのダウンロード">ファイルのダウンロード</a></li>
+<li><a href="#その他">その他</a></li>
+<li><a href="#jquery-or-pythonを使用">jQuery or Pythonを使用</a></li>
+<li><a href="#json-javascriptでの扱い">JSON JavaScriptでの扱い</a></li>
+<li><a href="#mdnドキュメント">MDNドキュメント</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="1-基礎知識">1. 基礎知識</span></h2><h3><span id="11-今回の手法jacascriptのdownloadを使用">1.1. 今回の手法(JacaScriptのdownloadを使用)</span></h3><p>詳しくは手順を参考にしてください</p>
+<ul>
+<li><p>リンクタグのDOMを取得してそこからdownload</p>
+<ul>
+<li>保存するJSONファイルの名前を一意に定義</li>
+<li>レスポンスデータをJSON形式に変換<ul>
+<li>JSON.stringify()を使用</li>
+</ul>
+</li>
+<li>HTMLのリンク要素を生成<ul>
+<li>link = document.createElement()</li>
+</ul>
+</li>
+<li>リンク先にJSON形式の文字列データを置いておく<ul>
+<li>link.hrel = ‘data:text/plain,’ + encodeURIComponent(data);</li>
+</ul>
+</li>
+<li>保存するJSONファイルの名前をリンクに設定<ul>
+<li>link.download = fileName</li>
+</ul>
+</li>
+<li>ファイルを保存<ul>
+<li>link.click()で自動で疑似的にリンクをクリックさせる</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ポイント</p>
+<ul>
+<li>プラグインの導入や、ブラウザの制約無しという条件であれば、これ以外の手法は現状ありませんでした</li>
+<li>ファイルの保存先は指定不可<ul>
+<li>端末の”ダウンロード”に入ります</li>
+</ul>
+</li>
+<li>セキュリティの都合上、ブラウザから直接端末のドライブに読み書きできないようになっているようです</li>
+</ul>
+</li>
+</ul>
+<h3><span id="12-その他の手法">1.2. その他の手法</span></h3><ul>
+<li>Device Storage API</li>
+<li>Native File System API<ul>
+<li>保存先の指定が可能<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">このAPIはユーザーのデバイス上にあるファイルを読み込んだり、任意のディレクトリにファイルを書き込むことができるAPIです。途中段階のAPIですが、このAPIが提供されることでスマホアプリやデスクトップアプリのような機能をWebアプリでも提供できるようになります。</span><br></pre></td></tr></table></figure></li>
+<li>今回は採用しません<ul>
+<li>ブラウザによっては動かず、APの利用に前提条件ができてしまう為</li>
+</ul>
+</li>
+<li>採用する場合は以下を参考にどうぞ<ul>
+<li><a href="https://www.mitsue.co.jp/knowledge/blog/frontend/201909/30_1002.html">ブラウザからドライブにファイルの書き込みができるNative File System APIとは？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="2-単一ファイルを取得">2. 単一ファイルを取得</span></h2><p>以下の構成を想定</p>
+<ul>
+<li>get-file.component<ul>
+<li>get-file.component.html</li>
+<li>get-file.component.ts</li>
+</ul>
+</li>
+<li>service<ul>
+<li>sample.service</li>
+</ul>
+</li>
+</ul>
+<h3><span id="21-get-filecomponenthtml">2.1. get-file.component.html</span></h3><ul>
+<li><p>(click)イベントでメソッドを起動するボタンを作成</p>
+<ul>
+<li>TS側に外部からデータを取得して、ファイルとして保存するロジックを書きます</li>
+</ul>
+</li>
+<li><p>get-data.component.html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button mat-raised-button (click)&#x3D;&quot;submit()&quot;&gt;Get Data&lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>その他：フォームやチェックリスト等を作成</p>
+<ul>
+<li>問い合わせ用のパラメータ設定をユーザが自由に弄れるようにするため</li>
+<li>別記事で解説 ＆ 今回の趣旨と異なるため省略</li>
+</ul>
+</li>
+</ul>
+<h3><span id="22-get-filecomponentts">2.2. get-file.component.ts</span></h3><p>(click)イベントで発火するメソッドをこちらで作りこみます</p>
+<ul>
+<li>submit()<ul>
+<li>機能<ul>
+<li>外部からJSONデータを取得<ul>
+<li>外部APIへの問い合わせを実行するServiceを呼び出す</li>
+</ul>
+</li>
+<li>ファイル名を自動生成<ul>
+<li>時刻を自動取得＆フォームの入力値と合わせる</li>
+</ul>
+</li>
+<li>取得データを加工してJSONファイル化</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="23-実装例">2.3. 実装例</span></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">submit() &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 1. 各種パラメータの取得</span><br><span class="line">  &#x2F;&#x2F; ----1.1. ファイル名のprefixに付ける日時データを取得---</span><br><span class="line">  &#x2F;&#x2F; Dateオブジェクトの作成</span><br><span class="line">  const now &#x3D; new Date();</span><br><span class="line">  &#x2F;&#x2F; 各日時要素を取得</span><br><span class="line">  const year &#x3D; String(now.getFullYear()); &#x2F;&#x2F; 年</span><br><span class="line">  &#x2F;&#x2F; 1月&#x3D;0と出るため+</span><br><span class="line">  const month &#x3D; String(now.getMonth() + 1); &#x2F;&#x2F; 月</span><br><span class="line">  const date &#x3D; String(now.getDate()); &#x2F;&#x2F; 日</span><br><span class="line">  const hour &#x3D; String(now.getHours()); &#x2F;&#x2F; 時</span><br><span class="line">  const min &#x3D; String(now.getMinutes()); &#x2F;&#x2F; 分</span><br><span class="line">  const sec &#x3D; String(now.getSeconds()); &#x2F;&#x2F; 秒</span><br><span class="line">  &#x2F;&#x2F; YYYYMMDDHHMMSの形式で変数timeにまとめる </span><br><span class="line">  const time &#x3D;  year + month + date + hour + min + sec;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 1.2. AWSへの問い合わせ用のパラメータを取得</span><br><span class="line">  &#x2F;&#x2F; 今回はAWSから情報を取得するパターンを想定</span><br><span class="line">  &#x2F;&#x2F; （認証とregionの指定、その他パラメータが必要）</span><br><span class="line">  &#x2F;&#x2F; 1.2.1. Credential認証</span><br><span class="line">  AWS.config.credentials &#x3D; new AWS.Credentials(AWS_CONFIG.accessKeyId, AWS_CONFIG.secretAccessKey);</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 1.2.2. チェックされたリージョンリストを取得</span><br><span class="line">  const REGION &#x3D; this.makeRegionList();</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 1.2.3. 問い合わせ用のパラメータ(ex. sampleParameter)の取得</span><br><span class="line">  const parameter &#x3D; this.makeSampleParameterList();</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 2. 外部APIへの問い合わせとファイル化----    </span><br><span class="line">  &#x2F;&#x2F; Service経由でデータを取得</span><br><span class="line">  &#x2F;&#x2F; forkjoinを利用する為に返り値をobservablesに格納</span><br><span class="line">  let observables &#x3D; REGION.map(region &#x3D;&gt; &#123; &#x2F;&#x2F; 引数としてRegion情報を渡す</span><br><span class="line">    return this.sampleService.getData(region, resourceType).pipe(catchError(e &#x3D;&gt; observableOf(&#123;&quot;error&quot;: e&#125;)))</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 3. ファイル化</span><br><span class="line">  &#x2F;&#x2F; リクエストの終了を待って返り値に処理を加える</span><br><span class="line">  &#x2F;&#x2F; 非同期処理の待ち合わせの為にforkJoinを利用</span><br><span class="line">  forkJoin(observables).subscribe( response &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; Observableをsubscribeして、中の値を取り出し、ファイルとして出力</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; レスポンスを加工してjsonファイルとURLを作る</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 3.1. 保存するJSONファイルの名前: yyyymmddhhmmss-region_name.json とする</span><br><span class="line">    &#x2F;&#x2F; 拡張子をfiletypeで指定</span><br><span class="line">    const filetype &#x3D; &#39;.json&#39;;</span><br><span class="line">    &#x2F;&#x2F; file名を設定　</span><br><span class="line">    const fileName &#x3D; time + &#39;_&#39; + REGION + filetype;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 3.2. データをJSON形式の文字列に変換する。</span><br><span class="line">    const data &#x3D; JSON.stringify(response);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 出力:リンクタグのDOMを取得してそこから行う</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 3.3. HTMLのリンク要素を生成する</span><br><span class="line">    const link &#x3D; document.createElement(&#39;a&#39;);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 3.4. リンク先にJSON形式の文字列データを置いておく。</span><br><span class="line">    link.href &#x3D; &#39;data:text&#x2F;plain,&#39; + encodeURIComponent(data);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 3.5. 保存するJSONファイルの名前をリンクに設定</span><br><span class="line">    link.download &#x3D; fileName;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 3.6. ファイルを保存</span><br><span class="line">    link.click();</span><br><span class="line"></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<h2><span id="3-複数ファイルをダウンロード">3. 複数ファイルをダウンロード</span></h2><p>処理を複数回実行する必要があります。問い合わせ処理とファイル化処理を特定のパラメータに応じてfor文でループさせます。</p>
+<ul>
+<li>想定するシチュエーション<ul>
+<li>AWSからデータを取得<ul>
+<li>指定した各region毎の情報をファイル化します</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>機能連携イメージ<ul>
+<li>ボタンを押下<ul>
+<li>submit()メソッドが発火</li>
+</ul>
+</li>
+<li>各種パラメータを取得<ul>
+<li>ファイルの命名と問い合わせに必要な情報を集める</li>
+</ul>
+</li>
+<li>問い合わせを実行（データを持ってくる）<ul>
+<li>特定のパラメータ数回、外部からデータを取得 ⇒ 配列に格納<ul>
+<li>外部APIに問い合わせを実行するサービス(sampleService)を呼び出して処理はそちらに任せる</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ファイル化処理<ul>
+<li>ファイルを分けたい単位（特定のパラメータより規定）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; データを取得 ⇒ ローカルにJSONファイルを保存するメソッド</span><br><span class="line">submit() &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 1. 各種パラメータの取得</span><br><span class="line">  &#x2F;&#x2F; ----1.1. ファイル名のprefixに付ける日時データを取得---</span><br><span class="line">  &#x2F;&#x2F; Dateオブジェクトの作成</span><br><span class="line">  const now &#x3D; new Date();</span><br><span class="line">  &#x2F;&#x2F; 各日時要素を取得</span><br><span class="line">  const year &#x3D; String(now.getFullYear()); &#x2F;&#x2F; 年</span><br><span class="line">  &#x2F;&#x2F; 1月&#x3D;0と出るため+</span><br><span class="line">  const month &#x3D; String(now.getMonth() + 1); &#x2F;&#x2F; 月</span><br><span class="line">  const date &#x3D; String(now.getDate()); &#x2F;&#x2F; 日</span><br><span class="line">  const hour &#x3D; String(now.getHours()); &#x2F;&#x2F; 時</span><br><span class="line">  const min &#x3D; String(now.getMinutes()); &#x2F;&#x2F; 分</span><br><span class="line">  const sec &#x3D; String(now.getSeconds()); &#x2F;&#x2F; 秒</span><br><span class="line">  &#x2F;&#x2F; YYYYMMDDHHMMSの形式で変数timeにまとめる </span><br><span class="line">  const time &#x3D;  year + month + date + hour + min + sec;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 1.2. AWSへの問い合わせ用のパラメータを取得</span><br><span class="line">  &#x2F;&#x2F; 今回はAWSから情報を取得するパターンを想定</span><br><span class="line">  &#x2F;&#x2F; （認証とregionの指定、その他パラメータが必要）</span><br><span class="line">  &#x2F;&#x2F; 1.2.1. Credential認証</span><br><span class="line">  AWS.config.credentials &#x3D; new AWS.Credentials(AWS_CONFIG.accessKeyId, AWS_CONFIG.secretAccessKey);</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 1.2.2. チェックされたリージョンリストを取得</span><br><span class="line">  const REGIONS &#x3D; this.makeRegionList();</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 1.2.3. 問い合わせ用のパラメータ(ex. sampleParameter)の取得</span><br><span class="line">  const parameter &#x3D; this.makeSampleParameterList();</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 2. 外部APIへの問い合わせとファイル化----</span><br><span class="line">  &#x2F;&#x2F; 以降の処理をsampleParameter毎にループさせる</span><br><span class="line"></span><br><span class="line">  for (let a &#x3D; 0, numSampleParameter &#x3D; sampleParameter.length ; a &lt; numSampleParameter; a++) &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; ------2.1. region数回　AWSへの問い合わせを実行---------</span><br><span class="line">    &#x2F;&#x2F; forkjoinを利用する為に返り値をobservablesに格納</span><br><span class="line"></span><br><span class="line">    const observables &#x3D; REGIONS.map(region &#x3D;&gt; &#123; &#x2F;&#x2F; 引数としてRegionを渡す</span><br><span class="line">      return this.sampleService.getData(region).pipe(catchError(e &#x3D;&gt; observableOf(&#123;&quot;error&quot;: e&#125;)))</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; ------2.2. ファイル化処理をregion数回ループさせる-------</span><br><span class="line"></span><br><span class="line">    for (let i &#x3D; 0, numRegions &#x3D; REGIONS.length ; i &lt; numRegions; i++) &#123;</span><br><span class="line">      &#x2F;&#x2F; リクエスト(非同期処理)の終了をforkjoinで待ち合わせる</span><br><span class="line">      forkJoin(observables[i]).subscribe( response &#x3D;&gt; &#123; </span><br><span class="line">        &#x2F;&#x2F; Observableをsubscribeして、中の値を取り出し、変数データの内容を変数responseとして扱う</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 2.2.1. レスポンスを加工してjsonファイルとURLを作る</span><br><span class="line">        &#x2F;&#x2F; 保存するJSONファイルの名前: yyyymmddhhmmss-region_name.json とする</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 拡張子をfiletypeに指定</span><br><span class="line">        const filetype &#x3D; &#39;.json&#39;;</span><br><span class="line">        &#x2F;&#x2F; file名を設定　</span><br><span class="line">        const fileName &#x3D; time + &#39;_&#39; + REGIONS[i] + filetype;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 2.2.2. データをJSON形式の文字列に変換</span><br><span class="line">        const data &#x3D; JSON.stringify(response);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 出力:リンクタグのDOMを取得してそこから行う</span><br><span class="line">        &#x2F;&#x2F; 2.2.3. HTMLのリンク要素を生成する。</span><br><span class="line">        const link &#x3D; document.createElement(&#39;a&#39;);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 2.2.4. リンク先にJSON形式の文字列データを置いておく</span><br><span class="line">        link.href &#x3D; &#39;data:text&#x2F;plain,&#39; + encodeURIComponent(data);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 2.2.5. 保存するJSONファイルの名前をリンクに設定</span><br><span class="line">        link.download &#x3D; fileName;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 2.2.6. ファイルを保存</span><br><span class="line">        link.click();</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;  &#x2F;&#x2F; -------ファイル生成ループ終了--------</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>service側の処理や受け渡す変数、ファイル名はシチュエーションに合わせて補完してください</li>
+</ul>
+<h2><span id="4-参考">4. 参考</span></h2><h3><span id="ファイルのダウンロード">ファイルのダウンロード</span></h3><ul>
+<li><p><a href="https://qiita.com/Ohtak/items/b7fb05c4e3dee13c0d1f">JSでダウンロードを実装した話</a></p>
+</li>
+<li><p><a href="JavaScriptでローカルにファイルを保存する方法（その1）">JavaScriptでローカルにファイルを保存する方法（その1）</a></p>
+</li>
+<li><p><a href="https://ja.stackoverflow.com/questions/14530/javascript%E3%81%A7%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89%E3%81%95%E3%82%8C%E3%82%8B%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E4%BF%9D%E5%AD%98%E5%A0%B4%E6%89%80%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B">JavaScriptでダウンロードされるファイルの保存場所を指定する</a></p>
+</li>
+<li><p><a href="https://qiita.com/ksh-fthr/items/29db7c5c7268ee1802c5">[Angular] CSV ファイルを出力したときにやったこと</a></p>
+</li>
+<li><p><a href="https://slash-mochi.net/?p=3073">JavaScriptでJSONファイルを保存する/開く方法</a></p>
+</li>
+<li><p><a href="https://www.e-loop.jp/knowledges/35/">JavaScriptでFile APIをファイル操作方法ついて解説</a></p>
+</li>
+<li><p><a href="https://web.dev/read-files/">web.dev JavaScriptでファイルを読み込む</a></p>
+</li>
+<li><p><a href="https://developer.mozilla.org/ja/docs/Web/API/File/Using_files_from_web_applications">MDN ウェブアプリケーションからのファイルの使用</a></p>
+</li>
+</ul>
+<h3><span id="その他">その他</span></h3><ul>
+<li><a href="https://www.ipentec.com/document/javascript-get-current-datetime">JavaScriptで現在の日付、時刻を取得する - JavaScript プログラミング</a></li>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date">Dateオブジェクト</a></li>
+<li><a href="https://www.mitsue.co.jp/knowledge/blog/frontend/201909/30_1002.html">ブラウザからドライブにファイルの書き込みができるNative File System APIとは？</a></li>
+</ul>
+<h3><span id="jquery-or-pythonを使用">jQuery or Pythonを使用</span></h3><ul>
+<li><p><a href="https://qiita.com/yoshida3/items/36083f7959771b62e9af">jsonファイルの読み込み纏め</a></p>
+</li>
+<li><p><a href="https://www.angularjswiki.com/angular/how-to-read-local-json-files-in-angular/">How To Read Local JSON Files In Angular</a></p>
+</li>
+</ul>
+<h3><span id="json-javascriptでの扱い">JSON JavaScriptでの扱い</span></h3><ul>
+<li><a href="https://agency-star.co.jp/column/json-parse/">JSONの扱い方を解説！PythonやJavaScript・Swiftでの基本的な使用法とは。配列取得や出力方法も紹介</a></li>
+</ul>
+<h3><span id="mdnドキュメント">MDNドキュメント</span></h3><ul>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/API/File">MDN File</a></li>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/API/File">MDN FileList</a></li>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/API/FileReader">MDN FileReader</a></li>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/API/Blob">MDN Blob</a></li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/05/28/Angular-mat-selection-list%E3%81%A7checkbox%E3%82%92%E8%A1%A8%E7%A4%BA%EF%BD%9E%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E5%BE%97/" class="image is-7by1">
+            <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/83426603-5bb07100-a46a-11ea-8093-bd0d6e517706.png" alt="[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得">
+        </a>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
@@ -483,6 +976,12 @@
 
     
 <div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/05/20/Angular%E5%85%A5%E9%96%80-%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%EF%BD%9EPJ%E3%81%AE%E9%96%8B%E5%A7%8B-%E5%9F%BA%E6%9C%AC%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/" class="image is-7by1">
+            <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/83424662-abda0400-a467-11ea-831a-2b146d29a1c5.png" alt="[Angular入門] 環境構築～PJの開始/基本コマンド">
+        </a>
+    </div>
     
     <div class="card-content article ">
         
@@ -2032,305 +2531,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-17T12:49:37.000Z">2020-03-17</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    10分 read (About 1536 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/03/17/Angular%E3%81%A7%E9%9A%8E%E5%B1%A4%E6%A7%8B%E9%80%A0%E3%81%AE%E8%A1%A8%E3%82%92%E9%96%8B%E7%99%BA-Treetable/">Angularで階層構造の表を開発(Treetable)</a>
-            
-        </h1>
-        <div class="content">
-            <p>こんにちは。今回は表題の内容を解説します。<br><a href="https://material.angular.io/">Angular Material</a>の<a href="https://material.angular.io/components/table/overview">Mat-table</a>と<a href="https://material.angular.io/components/tree/overview">Mat-tree</a>を組み合わせれば実現可能ですが、初級者には難しく、コードが複雑になります。そこで、簡単に階層型の表を生成可能なOSS:<a href="https://github.com/supamax/ng-material-treetable">Treetable</a>を利用します。</p>
-<div style="text-align:center;">
-<img alt="Treetable" src="https://user-images.githubusercontent.com/41946222/76859307-64969b00-689c-11ea-94de-3b1dac94ed56.png" height="150px" width="400px">
-</div>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#treetableの導入手順">Treetableの導入手順</a><ul>
-<li><a href="#1-install">1. install</a></li>
-<li><a href="#2-appmoduletsでmoduleをimport">2. app.module.tsでModuleをimport</a></li>
-<li><a href="#3-component側で使用">3. Component側で使用</a><ul>
-<li><a href="#31-html">3.1. HTML</a></li>
-<li><a href="#32-ts">3.2. TS</a></li>
-</ul>
-</li>
-<li><a href="#4-optionを設定">4. Optionを設定</a></li>
-<li><a href="#eventの設定">Eventの設定</a></li>
-</ul>
-</li>
-<li><a href="#サンプルソースの解説">サンプルソースの解説</a></li>
-<li><a href="#自分でサンプルを開発した際のメモ">自分でサンプルを開発した際のメモ</a><ul>
-<li><a href="#サンプルデータで表を出す">サンプルデータで表を出す</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-
-<h2><span id="treetableの導入手順">Treetableの導入手順</span></h2><h3><span id="1-install">1. install</span></h3><ul>
-<li><p>以下を実行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i ng-material-treetable --save</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Angular Materialパッケージがinstallされていることを確認</p>
-<ul>
-<li>既に入れていればスルー<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i @angular&#x2F;material @angular&#x2F;cdk @angular&#x2F;animations --save</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="2-appmoduletsでmoduleをimport">2. app.module.tsでModuleをimport</span></h3><ul>
-<li>src/app/app.module.tsを改修<ul>
-<li>TreetableModuleをimport<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import &#123; TreetableModule &#125; from &#39;ng-material-treetable&#39;;</span><br><span class="line"> </span><br><span class="line">@NgModule(&#123;</span><br><span class="line">    ...</span><br><span class="line">  imports: [</span><br><span class="line">    ...</span><br><span class="line">    TreetableModule</span><br><span class="line">  ],</span><br><span class="line">  ...</span><br><span class="line">&#125;)</span><br><span class="line">export class AppModule &#123; &#125;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="3-component側で使用">3. Component側で使用</span></h3><h4><span id="31-html">3.1. HTML</span></h4><ul>
-<li>sample.component.htmlを改修<ul>
-<li>treetable要素を加えるだけでOKです<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;treetable [tree]&#x3D;&quot;yourTreeDataStructure&quot;&gt;&lt;&#x2F;treetable&gt;</span><br></pre></td></tr></table></figure>
-<h4><span id="32-ts">3.2. TS</span></h4></li>
-</ul>
-</li>
-<li>sample.component.ts<ul>
-<li>データソースとinterface（データの型）を規定します<ul>
-<li>GET等で外部APIからデータを持ってくる場合は、べた書きしているデータ部分を返り値に差し替えてください</li>
-<li>データ構造は自由です。無くてもOK</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Component, OnInit &#125; from &#39;@angular&#x2F;core&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 追加</span><br><span class="line">import &#123; Node, Options &#125; from &#39;ng-material-treetable&#39;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@Component(&#123;</span><br><span class="line">  selector: &#39;app-tree-table&#39;,</span><br><span class="line">  templateUrl: &#39;.&#x2F;tree-table.component.html&#39;,</span><br><span class="line">  styleUrls: [&#39;.&#x2F;tree-table.component.scss&#39;]</span><br><span class="line">&#125;)</span><br><span class="line">export class TreeTableComponent implements OnInit &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; データソースを定義</span><br><span class="line">  &#x2F;&#x2F; 省略部分はJSONデータ　表２のデータソース　class内の先頭に必要であった</span><br><span class="line">  arrayOfNodesTree: Node&lt;Task&gt;[] &#x3D; [</span><br><span class="line">    &#123;</span><br><span class="line">      value: &#123;</span><br><span class="line">        name: &#39;Tasks for Sprint 1&#39;,</span><br><span class="line">        completed: true,</span><br><span class="line">        owner: &#39;Marco&#39;</span><br><span class="line">      &#125;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Complete feature #123&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;Marco&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Update documentation&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;Jane&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: [</span><br><span class="line">            &#123;</span><br><span class="line">              value: &#123;</span><br><span class="line">                name: &#39;Proofread documentation&#39;,</span><br><span class="line">                completed: true,</span><br><span class="line">                owner: &#39;Bob&#39;</span><br><span class="line">              &#125;,</span><br><span class="line">              children: []</span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      value: &#123;</span><br><span class="line">        name: &#39;Tasks for Sprint 2&#39;,</span><br><span class="line">        completed: false,</span><br><span class="line">        owner: &#39;Erika&#39;,</span><br><span class="line">      &#125;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Fix bug #567&#39;,</span><br><span class="line">            completed: false,</span><br><span class="line">            owner: &#39;Marco&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Speak with clients&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;James&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ];</span><br><span class="line"></span><br><span class="line">  constructor() &#123; &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 表のデータ構造の定義</span><br><span class="line">export interface Task &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  completed: boolean;</span><br><span class="line">  owner: string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3><span id="4-optionを設定">4. Optionを設定</span></h3><ul>
-<li>sample.component.tsの改修<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 追加の必要有</span><br><span class="line">import &#123; Node, Options &#125; from &#39;ng-material-treetable&#39;;</span><br></pre></td></tr></table></figure></li>
-<li>sample.component.htmlの改修<ul>
-<li>[options]による指定で適用できます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;treetable</span><br><span class="line">  [tree]&#x3D;&quot;yourTreeDataStructure&quot;</span><br><span class="line">  [options]&#x3D;&quot;yourOptions&quot;&gt;</span><br><span class="line">&lt;&#x2F;treetable&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="eventの設定">Eventの設定</span></h3><ul>
-<li>sample.component.html<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;treetable</span><br><span class="line">  [tree]&#x3D;&quot;yourTreeDataStructure&quot;</span><br><span class="line">  (nodeClicked)&#x3D;&quot;logToggledNode($event)&quot;&gt;</span><br><span class="line">  &lt;!--Clickで開閉--&gt;</span><br><span class="line">&lt;&#x2F;treetable&gt;</span><br></pre></td></tr></table></figure></li>
-<li>sample.component.ts<ul>
-<li>nodeClickedで動くメソッドを定義<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">logToggledNode(node: Node&lt;SomeNodeType&gt;): void &#123;</span><br><span class="line">  console.log(node);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<p>　以上で階層型の表が完成しました。後は、データソースを直接編集するか、外部から取得したデータに差し替えるだけです。手順の解説は以上です。WEB AP開発の初級者は台帳APでも試しに作ってみると良いかもしれません。(Excelはやめましょう)<br>おまけとして、StackBlitzに挙がっていたサンプルソースの解説も置いておきます。</p>
-<h2><span id="サンプルソースの解説">サンプルソースの解説</span></h2><ul>
-<li><p><a href="https://stackblitz.com/edit/angular-qnlruj">StackBlitz</a></p>
-</li>
-<li><ul>
-<li>以下の書き方で今回の要件は満たせそう<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arrayOfNodesTree: Node&lt;Task&gt;[] &#x3D; 外部からGETしてきたデータ</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>app.component.ts</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Component &#125; from &#39;@angular&#x2F;core&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 追加の必要有</span><br><span class="line">import &#123; Node, Options &#125; from &#39;ng-material-treetable&#39;;</span><br><span class="line"></span><br><span class="line">@Component(&#123;</span><br><span class="line">  selector: &#39;my-app&#39;,</span><br><span class="line">  templateUrl: &#39;.&#x2F;app.component.html&#39;,</span><br><span class="line">  styleUrls: [&#39;.&#x2F;app.component.css&#39;]</span><br><span class="line">&#125;)</span><br><span class="line">export class AppComponent &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 表１のOption</span><br><span class="line">  treeOptions: Options&lt;Report&gt; &#x3D; &#123;</span><br><span class="line">    capitalisedHeader: true,</span><br><span class="line">    customColumnOrder: [&#x2F;&#x2F; 列名を定義？</span><br><span class="line">      &#39;owner&#39;, &#39;name&#39;, &#39;backup&#39;, &#39;protected&#39;</span><br><span class="line">    ]</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 省略部分はJSONデータ　表１のデータソース</span><br><span class="line">  singleRootTree: Node&lt;Report&gt; &#x3D; &#123;</span><br><span class="line">    value: &#123;</span><br><span class="line">      name: &#39;Reports&#39;,</span><br><span class="line">      owner: &#39;Eric&#39;,</span><br><span class="line">      protected: true,</span><br><span class="line">      backup: true</span><br><span class="line">    &#125;,</span><br><span class="line">    children: [</span><br><span class="line">      &#123;</span><br><span class="line">          中略</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 省略部分はJSONデータ　表２のデータソース</span><br><span class="line">  arrayOfNodesTree: Node&lt;Task&gt;[] &#x3D; [</span><br><span class="line">    &#123;中略</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line"></span><br><span class="line">  logNode(node: Node&lt;Report&gt;) &#123;</span><br><span class="line">    console.log(node);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 表のデータ型　列の要素を定義</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 表1</span><br><span class="line">export interface Report &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  owner: string;</span><br><span class="line">  protected: boolean;</span><br><span class="line">  backup: boolean;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 表２</span><br><span class="line">export interface Task &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  completed: boolean;</span><br><span class="line">  owner: string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>次にHTML側を確認</p>
-<ul>
-<li>かなりシンプルに書ける<ul>
-<li>treetable要素の中にデータソースとして定義したものを指定するだけ<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;treetable</span><br><span class="line">  [tree]&#x3D;&quot;TS側で定めたデータソース名&quot;</span><br><span class="line">  (nodeClicked)&#x3D;&quot;logNode($event)&quot;&gt; &#x2F;&#x2F; Clickで開閉</span><br><span class="line">&gt;</span><br><span class="line">&lt;&#x2F;treetable&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 表１</span><br><span class="line">&lt;h2&gt;Tree as Single Root Node&lt;&#x2F;h2&gt;</span><br><span class="line">&lt;treetable</span><br><span class="line">  [tree]&#x3D;&quot;singleRootTree&quot;</span><br><span class="line">  [options]&#x3D;&quot;treeOptions&quot;</span><br><span class="line">  (nodeClicked)&#x3D;&quot;logNode($event)&quot;&gt;</span><br><span class="line">&lt;&#x2F;treetable&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 表２</span><br><span class="line">&lt;h2&gt;Tree as Array of Nodes&lt;&#x2F;h2&gt;</span><br><span class="line">&lt;treetable</span><br><span class="line">  [tree]&#x3D;&quot;arrayOfNodesTree&quot; &#x2F;&#x2F; tsでデータソースを定めたやつ</span><br><span class="line">  (nodeClicked)&#x3D;&quot;logNode($event)&quot;&gt; </span><br><span class="line">&lt;&#x2F;treetable&gt;</span><br></pre></td></tr></table></figure>
-
-<h2><span id="自分でサンプルを開発した際のメモ">自分でサンプルを開発した際のメモ</span></h2><ul>
-<li><p>tree-table Componentを新たに生成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\src\app&gt; ng g component tree-table</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>上の階層のComponentでtree-tableを参照するように変更</p>
-<ul>
-<li>serveで画面への反映を確認。問題無し<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;mat-card-header&gt;</span><br><span class="line">&lt;mat-card-content&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;app-tree-table&gt;&lt;&#x2F;app-tree-table&gt;</span><br><span class="line">    &lt;!--tree tableコンポーネントを挿入----&gt;</span><br><span class="line"></span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;mat-card-content&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="サンプルデータで表を出す">サンプルデータで表を出す</span></h3><ul>
-<li><p>tree-tableコンポーネントを改修</p>
-</li>
-<li><p>HTMLの改修</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;treetable</span><br><span class="line">  [tree]&#x3D;&quot;arrayOfNodesTree&quot;</span><br><span class="line">  (nodeClicked)&#x3D;&quot;logNode($event)&quot;&gt;</span><br><span class="line">&lt;&#x2F;treetable&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>tsの改修</p>
-<ul>
-<li>import, データソース, interfaceを定義</li>
-<li>列を減らしてみる</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Node, Options &#125; from &#39;ng-material-treetable&#39;;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 省略部分はJSONデータ　表２のデータソース</span><br><span class="line">  arrayOfNodesTree: Node&lt;Task&gt;[] &#x3D; [</span><br><span class="line">    &#123;</span><br><span class="line">      value: &#123;</span><br><span class="line">        name: &#39;Tasks for Sprint 1&#39;,</span><br><span class="line">        completed: true,</span><br><span class="line">        owner: &#39;Marco&#39;</span><br><span class="line">      &#125;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Complete feature #123&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;Marco&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Update documentation&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;Jane&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: [</span><br><span class="line">            &#123;</span><br><span class="line">              value: &#123;</span><br><span class="line">                name: &#39;Proofread documentation&#39;,</span><br><span class="line">                completed: true,</span><br><span class="line">                owner: &#39;Bob&#39;</span><br><span class="line">              &#125;,</span><br><span class="line">              children: []</span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      value: &#123;</span><br><span class="line">        name: &#39;Tasks for Sprint 2&#39;,</span><br><span class="line">        completed: false,</span><br><span class="line">        owner: &#39;Erika&#39;,</span><br><span class="line">      &#125;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Fix bug #567&#39;,</span><br><span class="line">            completed: false,</span><br><span class="line">            owner: &#39;Marco&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Speak with clients&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;James&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line"></span><br><span class="line">  logNode(node: Node&lt;Report&gt;) &#123;</span><br><span class="line">    console.log(node);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 表のデータ構造を決定</span><br><span class="line">export interface Task &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  completed: boolean;</span><br><span class="line">  owner: string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<ul>
-<li>AP画面への反映を確認<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng serve --open</span><br></pre></td></tr></table></figure></li>
-<li>以下のように表示された</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/76863288-9ca0dc80-68a2-11ea-88a6-e7bb1c46a3c0.png" height="100px" width="400px">
-</div>
-
-<ul>
-<li><p>エラーが発生</p>
-<ul>
-<li>class内で初めにデータの定義が必要</li>
-<li>順番を入れ替えればOK</li>
-</ul>
-</li>
-<li><p>最終的なtsファイル</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Component, OnInit &#125; from &#39;@angular&#x2F;core&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 追加</span><br><span class="line">import &#123; Node, Options &#125; from &#39;ng-material-treetable&#39;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@Component(&#123;</span><br><span class="line">  selector: &#39;app-tree-table&#39;,</span><br><span class="line">  templateUrl: &#39;.&#x2F;tree-table.component.html&#39;,</span><br><span class="line">  styleUrls: [&#39;.&#x2F;tree-table.component.scss&#39;]</span><br><span class="line">&#125;)</span><br><span class="line">export class TreeTableComponent implements OnInit &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; データソースを定義</span><br><span class="line">  &#x2F;&#x2F; 省略部分はJSONデータ　表２のデータソース　class内の先頭に必要であった</span><br><span class="line">  arrayOfNodesTree: Node&lt;Task&gt;[] &#x3D; [ </span><br><span class="line">    &#123;</span><br><span class="line">      value: &#123;</span><br><span class="line">        name: &#39;Tasks for Sprint 1&#39;,</span><br><span class="line">        completed: true,</span><br><span class="line">        owner: &#39;Marco&#39;</span><br><span class="line">      &#125;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Complete feature #123&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;Marco&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Update documentation&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;Jane&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: [</span><br><span class="line">            &#123;</span><br><span class="line">              value: &#123;</span><br><span class="line">                name: &#39;Proofread documentation&#39;,</span><br><span class="line">                completed: true,</span><br><span class="line">                owner: &#39;Bob&#39;</span><br><span class="line">              &#125;,</span><br><span class="line">              children: []</span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      value: &#123;</span><br><span class="line">        name: &#39;Tasks for Sprint 2&#39;,</span><br><span class="line">        completed: false,</span><br><span class="line">        owner: &#39;Erika&#39;,</span><br><span class="line">      &#125;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Fix bug #567&#39;,</span><br><span class="line">            completed: false,</span><br><span class="line">            owner: &#39;Marco&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Speak with clients&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;James&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ];</span><br><span class="line"></span><br><span class="line">  constructor() &#123; &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 表のデータ構造の定義</span><br><span class="line">export interface Task &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  completed: boolean;</span><br><span class="line">  owner: string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>参考ページ</p>
-<ul>
-<li><a href="https://www.npmjs.com/package/ng-material-treetable">Angular Material TreeTable Component</a></li>
-<li><a href="http://ng-material-treetable.surge.sh/">TreeTable Component画面</a></li>
-</ul>
-</li>
-<li><p>Mat-treeとMat-tableを組み合わせて開発する場合の参考</p>
-<ul>
-<li><a href="https://stackblitz.com/edit/mat-tree-with-drag-and-drop?file=app%2Ftree-flat-overview-example.html">任意のネスト、キー名をTreeで表示するコードサンプル</a></li>
-</ul>
-</li>
-</ul>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-09T14:38:20.000Z">2020-03-09</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2分 read (About 332 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/">Angular8:”global is not defined”の回避策</a>
-            
-        </h1>
-        <div class="content">
-            <!--toc-->
-
-<h2><span id="概要">概要</span></h2><ul>
-<li><p>Angular8で以下のエラーにハマった際の解消法を解説します</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">”global is not defined”</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>上記のエラーについて</p>
-<ul>
-<li>Angularでグローバルオブジェクトを参照する外部ライブラリを利用している環境で発生する事象</li>
-<li>今回はAngularとAWS間のAPI連携機能を実装した際に発生</li>
-</ul>
-</li>
-<li><p>環境の詳細</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Angular CLI: 8.3.24</span><br><span class="line">Node: 10.16.3</span><br><span class="line">OS: win32 x64</span><br><span class="line">Angular: 8.2.14</span><br><span class="line">... animations, common, compiler, compiler-cli, core, forms</span><br><span class="line">... language-service, platform-browser, platform-browser-dynamic</span><br><span class="line">... router</span><br><span class="line"></span><br><span class="line">Package                           Version</span><br><span class="line">-----------------------------------------------------------</span><br><span class="line">@angular-devkit&#x2F;architect         0.803.24</span><br><span class="line">@angular-devkit&#x2F;build-angular     0.803.24</span><br><span class="line">@angular-devkit&#x2F;build-optimizer   0.803.24</span><br><span class="line">@angular-devkit&#x2F;build-webpack     0.803.24</span><br><span class="line">@angular-devkit&#x2F;core              8.3.24</span><br><span class="line">@angular-devkit&#x2F;schematics        8.3.24</span><br><span class="line">@angular&#x2F;cdk                      8.2.3</span><br><span class="line">@angular&#x2F;cli                      8.3.24</span><br><span class="line">@angular&#x2F;material                 8.2.3</span><br><span class="line">@ngtools&#x2F;webpack                  8.3.24</span><br><span class="line">@schematics&#x2F;angular               8.3.24</span><br><span class="line">@schematics&#x2F;update                0.803.24</span><br><span class="line">rxjs                              6.4.0</span><br><span class="line">typescript                        3.5.3</span><br><span class="line">webpack                           4.39.2</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2><span id="解決策">解決策</span></h2><ul>
-<li>pollyfills.tsに設定が必要<ul>
-<li>所在<ul>
-<li>“pj-name”\srcの配下</li>
-</ul>
-</li>
-<li>以下を追記すると解決します<pre><code>// &quot;global is not defined&quot;の対応
-(window as any).global = window;</code></pre></li>
-</ul>
-</li>
-</ul>
-<h3><span id="解説">解説</span></h3><ul>
-<li>polyfillとは<ul>
-<li>JavaScriptのversion間の互換性を補うもの</li>
-<li>利用したい機能に未対応のブラウザでも使えるように、同等の機能をJavaScriptで供給できる</li>
-</ul>
-</li>
-<li>pollyfills.ts<ul>
-<li>Angularにおけるpolyfillの設定ファイル</li>
-<li>例えば、Angularで開発したAPをIEでも動かしたい時には設定が必要<ul>
-<li>Angularは”デフォルトではIEに未対応”です</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -2395,7 +2595,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            32
+                            36
                         </p>
                     </a>
                 </div>
@@ -2419,7 +2619,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            56
+                            63
                         </p>
                     </a>
                 </div>
@@ -2527,7 +2727,7 @@
                 <span class="level-item">Serverless Application Dev</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">13</span>
+                <span class="level-item tag">15</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Serverless-Application-Dev/AWS/">
@@ -2551,7 +2751,7 @@
                 <span class="level-item">SPA (Angular)</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">9</span>
+                <span class="level-item tag">11</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/SmartHome/">
@@ -2575,7 +2775,7 @@
                 <span class="level-item">Tool Tips</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">10</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Tool-Tips/AWS-Cloud9/">
@@ -2607,7 +2807,7 @@
                 <span class="level-item">Github</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">5</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Tool-Tips/Google-Cloud-Shell/">
@@ -2652,7 +2852,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12.5px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 12.5px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 12.5px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/Cloud-Craft/" style="font-size: 10px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/DTM/" style="font-size: 15px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 12.5px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 15px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 17.5px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/Mind-Node/" style="font-size: 10px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 10px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 12.5px;">RPA</a> <a href="/tags/SYNCROOM/" style="font-size: 10px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 12.5px;">Steinberg UR44C</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/cloud9/" style="font-size: 15px;">cloud9</a> <a href="/tags/draw-io/" style="font-size: 10px;">draw.io</a> <a href="/tags/filter/" style="font-size: 12.5px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 15px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/map/" style="font-size: 12.5px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 12.5px;">mat-checkbox</a> <a href="/tags/mat-selection-list/" style="font-size: 10px;">mat-selection-list</a> <a href="/tags/ngFor/" style="font-size: 10px;">ngFor</a> <a href="/tags/plantUML/" style="font-size: 10px;">plantUML</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 12.5px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 12px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 12px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/CI-CD/" style="font-size: 10px;">CI/CD</a> <a href="/tags/Cloud-Craft/" style="font-size: 10px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/DTM/" style="font-size: 14px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 12px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 16px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 18px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/JSON/" style="font-size: 12px;">JSON</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/Mind-Node/" style="font-size: 10px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 10px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 12px;">RPA</a> <a href="/tags/SYNCROOM/" style="font-size: 10px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 12px;">Steinberg UR44C</a> <a href="/tags/Teams/" style="font-size: 10px;">Teams</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/TypeScript/" style="font-size: 12px;">TypeScript</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="/tags/cloud9/" style="font-size: 14px;">cloud9</a> <a href="/tags/draw-io/" style="font-size: 10px;">draw.io</a> <a href="/tags/filter/" style="font-size: 12px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 14px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 14px;">icarus</a> <a href="/tags/map/" style="font-size: 12px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 12px;">mat-checkbox</a> <a href="/tags/mat-selection-list/" style="font-size: 10px;">mat-selection-list</a> <a href="/tags/ngFor/" style="font-size: 10px;">ngFor</a> <a href="/tags/plantUML/" style="font-size: 10px;">plantUML</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 12px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C/" style="font-size: 12px;">ファイル操作</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
     </div>
 </div>
     
@@ -2667,54 +2867,16 @@
         
         <article class="media">
             
-            <a href="/2020/05/28/Angular-mat-selection-list%E3%81%A7checkbox%E3%82%92%E8%A1%A8%E7%A4%BA%EF%BD%9E%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E5%BE%97/" class="media-left">
+            <a href="/2020/06/10/github-branch%E3%82%92Local%E3%81%A7%E7%94%9F%E6%88%90%EF%BD%9ERemote%E3%81%AB%E5%8F%8D%E6%98%A0/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84248013-d00ea280-ab43-11ea-8ce0-6a161632c3ea.png" alt="[Github入門] branchをLocalで生成～Remoteに反映">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-28T12:25:40.000Z">2020-05-28</time></div>
-                    <a href="/2020/05/28/Angular-mat-selection-list%E3%81%A7checkbox%E3%82%92%E8%A1%A8%E7%A4%BA%EF%BD%9E%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E5%BE%97/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/05/20/Angular%E5%85%A5%E9%96%80-%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%EF%BD%9EPJ%E3%81%AE%E9%96%8B%E5%A7%8B-%E5%9F%BA%E6%9C%AC%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Angular入門] 環境構築～PJの開始/基本コマンド">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-19T15:07:59.000Z">2020-05-20</time></div>
-                    <a href="/2020/05/20/Angular%E5%85%A5%E9%96%80-%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%EF%BD%9EPJ%E3%81%AE%E9%96%8B%E5%A7%8B-%E5%9F%BA%E6%9C%AC%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular入門] 環境構築～PJの開始/基本コマンド</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/05/19/Github%E5%85%A5%E9%96%80-%E5%85%A5%E7%A4%BE%E5%88%9D%E6%97%A5%E3%81%AE%E5%AE%8C%E5%85%A8%E3%81%AA%E7%B4%A0%E4%BA%BA%E5%90%91%E3%81%91%E3%81%AE%E5%84%AA%E3%81%97%E3%81%84%E8%AA%AC%E6%98%8E/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Github入門 ～入社初日の完全な素人でも分かる優しい説明～">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-18T15:33:17.000Z">2020-05-19</time></div>
-                    <a href="/2020/05/19/Github%E5%85%A5%E9%96%80-%E5%85%A5%E7%A4%BE%E5%88%9D%E6%97%A5%E3%81%AE%E5%AE%8C%E5%85%A8%E3%81%AA%E7%B4%A0%E4%BA%BA%E5%90%91%E3%81%91%E3%81%AE%E5%84%AA%E3%81%97%E3%81%84%E8%AA%AC%E6%98%8E/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Github入門 ～入社初日の完全な素人でも分かる優しい説明～</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-10T08:29:34.000Z">2020-06-10</time></div>
+                    <a href="/2020/06/10/github-branch%E3%82%92Local%E3%81%A7%E7%94%9F%E6%88%90%EF%BD%9ERemote%E3%81%AB%E5%8F%8D%E6%98%A0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Github入門] branchをLocalで生成～Remoteに反映</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
                     </p>
@@ -2724,18 +2886,18 @@
         
         <article class="media">
             
-            <a href="/2020/05/15/%E6%8F%8F%E7%94%BB%E3%83%84%E3%83%BC%E3%83%AB%E3%81%BE%E3%81%A8%E3%82%81-draw-io-Cloud-Craft-Mind-Node-plantUML-Excel%E5%A5%BD%E3%81%8D%E3%81%AE%E6%AE%8B%E5%BF%B5%E3%81%AASE-%E3%82%B3%E3%83%B3%E3%82%B5%E3%83%AB%E3%81%AB%E3%81%AA%E3%82%89%E3%81%AA%E3%81%84%E6%89%8B%E6%AE%B5/" class="media-left">
+            <a href="/2020/06/10/Github-x-Teams-Webhook-Notification%E3%81%AB%E3%82%88%E3%82%8B%E9%80%A3%E6%90%BA%E6%96%B9%E6%B3%95/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="描画ツールまとめ [draw.io/Cloud Craft/Mind Node/plantUML]  Excel好きの残念なSE/コンサルにならない手段">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84231133-6b921a00-ab28-11ea-8c0e-a47fb924b2c2.png" alt="Github x Teams Webhook/Notificationによる連携方法">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-14T18:02:12.000Z">2020-05-15</time></div>
-                    <a href="/2020/05/15/%E6%8F%8F%E7%94%BB%E3%83%84%E3%83%BC%E3%83%AB%E3%81%BE%E3%81%A8%E3%82%81-draw-io-Cloud-Craft-Mind-Node-plantUML-Excel%E5%A5%BD%E3%81%8D%E3%81%AE%E6%AE%8B%E5%BF%B5%E3%81%AASE-%E3%82%B3%E3%83%B3%E3%82%B5%E3%83%AB%E3%81%AB%E3%81%AA%E3%82%89%E3%81%AA%E3%81%84%E6%89%8B%E6%AE%B5/" class="title has-link-black-ter is-size-6 has-text-weight-normal">描画ツールまとめ [draw.io/Cloud Craft/Mind Node/plantUML]  Excel好きの残念なSE/コンサルにならない手段</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-10T04:31:51.000Z">2020-06-10</time></div>
+                    <a href="/2020/06/10/Github-x-Teams-Webhook-Notification%E3%81%AB%E3%82%88%E3%82%8B%E9%80%A3%E6%90%BA%E6%96%B9%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Github x Teams Webhook/Notificationによる連携方法</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Drawing/">Drawing</a>
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
                     </p>
                 </div>
             </div>
@@ -2743,16 +2905,54 @@
         
         <article class="media">
             
-            <a href="/2020/04/23/Angular-Schematics-%E9%96%8B%E9%96%89%E5%8F%AF%E8%83%BD%E3%81%AA%E3%82%B5%E3%82%A4%E3%83%89%E3%83%8A%E3%83%93%EF%BC%86%E3%83%84%E3%83%BC%E3%83%AB%E3%83%90%E3%83%BC%E3%82%923%E5%88%86%E3%81%A7%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90%E3%81%99%E3%82%8B/" class="media-left">
+            <a href="/2020/05/31/Angular-JavaScript-JSON%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Angular Schematics] 開閉可能なサイドナビ＆ツールバーを3分で自動生成する">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/83424662-abda0400-a467-11ea-831a-2b146d29a1c5.png" alt="[Angular JavaScript] JSONファイル(複数)の読み込み">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-23T13:15:13.000Z">2020-04-23</time></div>
-                    <a href="/2020/04/23/Angular-Schematics-%E9%96%8B%E9%96%89%E5%8F%AF%E8%83%BD%E3%81%AA%E3%82%B5%E3%82%A4%E3%83%89%E3%83%8A%E3%83%93%EF%BC%86%E3%83%84%E3%83%BC%E3%83%AB%E3%83%90%E3%83%BC%E3%82%923%E5%88%86%E3%81%A7%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90%E3%81%99%E3%82%8B/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular Schematics] 開閉可能なサイドナビ＆ツールバーを3分で自動生成する</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-31T14:16:54.000Z">2020-05-31</time></div>
+                    <a href="/2020/05/31/Angular-JavaScript-JSON%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular JavaScript] JSONファイル(複数)の読み込み</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/05/31/Angular-JSON%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%8C%96%E3%81%A8%E5%87%BA%E5%8A%9B-%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%8B%E3%82%89%E5%8F%96%E5%BE%97%E3%81%97%E3%81%9F%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E4%BB%BB%E6%84%8F%E3%81%AE%E5%90%8D%E7%A7%B0%E3%81%A7%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/83424662-abda0400-a467-11ea-831a-2b146d29a1c5.png" alt="[Angular JavaScript] JSONデータのファイル化と出力 ~クラウドから取得したデータを任意の名称で保存するロジック~ (TypeScript)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-31T13:55:36.000Z">2020-05-31</time></div>
+                    <a href="/2020/05/31/Angular-JSON%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%8C%96%E3%81%A8%E5%87%BA%E5%8A%9B-%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%8B%E3%82%89%E5%8F%96%E5%BE%97%E3%81%97%E3%81%9F%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E4%BB%BB%E6%84%8F%E3%81%AE%E5%90%8D%E7%A7%B0%E3%81%A7%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular JavaScript] JSONデータのファイル化と出力 ~クラウドから取得したデータを任意の名称で保存するロジック~ (TypeScript)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/05/28/Angular-mat-selection-list%E3%81%A7checkbox%E3%82%92%E8%A1%A8%E7%A4%BA%EF%BD%9E%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E5%BE%97/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/83426603-5bb07100-a46a-11ea-8093-bd0d6e517706.png" alt="[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-28T12:25:40.000Z">2020-05-28</time></div>
+                    <a href="/2020/05/28/Angular-mat-selection-list%E3%81%A7checkbox%E3%82%92%E8%A1%A8%E7%A4%BA%EF%BD%9E%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E5%BE%97/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
                     </p>
@@ -2772,12 +2972,23 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2020/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/05/">
                 <span class="level-start">
                     <span class="level-item">五月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -2887,7 +3098,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">13</span>
+                        <span class="tag is-grey">15</span>
                     </a>
                 </div>
                 
@@ -2908,6 +3119,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Augury/">
                         <span class="tag">Augury</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CI-CD/">
+                        <span class="tag">CI/CD</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -2957,7 +3175,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Github-com/">
                         <span class="tag">Github.com</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -3000,6 +3218,20 @@
                     <a class="tags has-addons" href="/tags/Hosting/">
                         <span class="tag">Hosting</span>
                         <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JSON/">
+                        <span class="tag">JSON</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -3074,6 +3306,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Teams/">
+                        <span class="tag">Teams</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Treetable/">
                         <span class="tag">Treetable</span>
                         <span class="tag is-grey">1</span>
@@ -3081,8 +3320,22 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/TypeScript/">
+                        <span class="tag">TypeScript</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/WEB-Page-Dev/">
                         <span class="tag">WEB Page Dev</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Webhook/">
+                        <span class="tag">Webhook</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -3196,6 +3449,13 @@
                     <a class="tags has-addons" href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/">
                         <span class="tag">テレワーク</span>
                         <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C/">
+                        <span class="tag">ファイル操作</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -3244,54 +3504,16 @@
         
         <article class="media">
             
-            <a href="/2020/05/28/Angular-mat-selection-list%E3%81%A7checkbox%E3%82%92%E8%A1%A8%E7%A4%BA%EF%BD%9E%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E5%BE%97/" class="media-left">
+            <a href="/2020/06/10/github-branch%E3%82%92Local%E3%81%A7%E7%94%9F%E6%88%90%EF%BD%9ERemote%E3%81%AB%E5%8F%8D%E6%98%A0/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84248013-d00ea280-ab43-11ea-8ce0-6a161632c3ea.png" alt="[Github入門] branchをLocalで生成～Remoteに反映">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-28T12:25:40.000Z">2020-05-28</time></div>
-                    <a href="/2020/05/28/Angular-mat-selection-list%E3%81%A7checkbox%E3%82%92%E8%A1%A8%E7%A4%BA%EF%BD%9E%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E5%BE%97/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/05/20/Angular%E5%85%A5%E9%96%80-%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%EF%BD%9EPJ%E3%81%AE%E9%96%8B%E5%A7%8B-%E5%9F%BA%E6%9C%AC%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Angular入門] 環境構築～PJの開始/基本コマンド">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-19T15:07:59.000Z">2020-05-20</time></div>
-                    <a href="/2020/05/20/Angular%E5%85%A5%E9%96%80-%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%EF%BD%9EPJ%E3%81%AE%E9%96%8B%E5%A7%8B-%E5%9F%BA%E6%9C%AC%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular入門] 環境構築～PJの開始/基本コマンド</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/05/19/Github%E5%85%A5%E9%96%80-%E5%85%A5%E7%A4%BE%E5%88%9D%E6%97%A5%E3%81%AE%E5%AE%8C%E5%85%A8%E3%81%AA%E7%B4%A0%E4%BA%BA%E5%90%91%E3%81%91%E3%81%AE%E5%84%AA%E3%81%97%E3%81%84%E8%AA%AC%E6%98%8E/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Github入門 ～入社初日の完全な素人でも分かる優しい説明～">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-18T15:33:17.000Z">2020-05-19</time></div>
-                    <a href="/2020/05/19/Github%E5%85%A5%E9%96%80-%E5%85%A5%E7%A4%BE%E5%88%9D%E6%97%A5%E3%81%AE%E5%AE%8C%E5%85%A8%E3%81%AA%E7%B4%A0%E4%BA%BA%E5%90%91%E3%81%91%E3%81%AE%E5%84%AA%E3%81%97%E3%81%84%E8%AA%AC%E6%98%8E/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Github入門 ～入社初日の完全な素人でも分かる優しい説明～</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-10T08:29:34.000Z">2020-06-10</time></div>
+                    <a href="/2020/06/10/github-branch%E3%82%92Local%E3%81%A7%E7%94%9F%E6%88%90%EF%BD%9ERemote%E3%81%AB%E5%8F%8D%E6%98%A0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Github入門] branchをLocalで生成～Remoteに反映</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
                     </p>
@@ -3301,18 +3523,18 @@
         
         <article class="media">
             
-            <a href="/2020/05/15/%E6%8F%8F%E7%94%BB%E3%83%84%E3%83%BC%E3%83%AB%E3%81%BE%E3%81%A8%E3%82%81-draw-io-Cloud-Craft-Mind-Node-plantUML-Excel%E5%A5%BD%E3%81%8D%E3%81%AE%E6%AE%8B%E5%BF%B5%E3%81%AASE-%E3%82%B3%E3%83%B3%E3%82%B5%E3%83%AB%E3%81%AB%E3%81%AA%E3%82%89%E3%81%AA%E3%81%84%E6%89%8B%E6%AE%B5/" class="media-left">
+            <a href="/2020/06/10/Github-x-Teams-Webhook-Notification%E3%81%AB%E3%82%88%E3%82%8B%E9%80%A3%E6%90%BA%E6%96%B9%E6%B3%95/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="描画ツールまとめ [draw.io/Cloud Craft/Mind Node/plantUML]  Excel好きの残念なSE/コンサルにならない手段">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84231133-6b921a00-ab28-11ea-8c0e-a47fb924b2c2.png" alt="Github x Teams Webhook/Notificationによる連携方法">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-14T18:02:12.000Z">2020-05-15</time></div>
-                    <a href="/2020/05/15/%E6%8F%8F%E7%94%BB%E3%83%84%E3%83%BC%E3%83%AB%E3%81%BE%E3%81%A8%E3%82%81-draw-io-Cloud-Craft-Mind-Node-plantUML-Excel%E5%A5%BD%E3%81%8D%E3%81%AE%E6%AE%8B%E5%BF%B5%E3%81%AASE-%E3%82%B3%E3%83%B3%E3%82%B5%E3%83%AB%E3%81%AB%E3%81%AA%E3%82%89%E3%81%AA%E3%81%84%E6%89%8B%E6%AE%B5/" class="title has-link-black-ter is-size-6 has-text-weight-normal">描画ツールまとめ [draw.io/Cloud Craft/Mind Node/plantUML]  Excel好きの残念なSE/コンサルにならない手段</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-10T04:31:51.000Z">2020-06-10</time></div>
+                    <a href="/2020/06/10/Github-x-Teams-Webhook-Notification%E3%81%AB%E3%82%88%E3%82%8B%E9%80%A3%E6%90%BA%E6%96%B9%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Github x Teams Webhook/Notificationによる連携方法</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Drawing/">Drawing</a>
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
                     </p>
                 </div>
             </div>
@@ -3320,16 +3542,54 @@
         
         <article class="media">
             
-            <a href="/2020/04/23/Angular-Schematics-%E9%96%8B%E9%96%89%E5%8F%AF%E8%83%BD%E3%81%AA%E3%82%B5%E3%82%A4%E3%83%89%E3%83%8A%E3%83%93%EF%BC%86%E3%83%84%E3%83%BC%E3%83%AB%E3%83%90%E3%83%BC%E3%82%923%E5%88%86%E3%81%A7%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90%E3%81%99%E3%82%8B/" class="media-left">
+            <a href="/2020/05/31/Angular-JavaScript-JSON%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[Angular Schematics] 開閉可能なサイドナビ＆ツールバーを3分で自動生成する">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/83424662-abda0400-a467-11ea-831a-2b146d29a1c5.png" alt="[Angular JavaScript] JSONファイル(複数)の読み込み">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-23T13:15:13.000Z">2020-04-23</time></div>
-                    <a href="/2020/04/23/Angular-Schematics-%E9%96%8B%E9%96%89%E5%8F%AF%E8%83%BD%E3%81%AA%E3%82%B5%E3%82%A4%E3%83%89%E3%83%8A%E3%83%93%EF%BC%86%E3%83%84%E3%83%BC%E3%83%AB%E3%83%90%E3%83%BC%E3%82%923%E5%88%86%E3%81%A7%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90%E3%81%99%E3%82%8B/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular Schematics] 開閉可能なサイドナビ＆ツールバーを3分で自動生成する</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-31T14:16:54.000Z">2020-05-31</time></div>
+                    <a href="/2020/05/31/Angular-JavaScript-JSON%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular JavaScript] JSONファイル(複数)の読み込み</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/05/31/Angular-JSON%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%8C%96%E3%81%A8%E5%87%BA%E5%8A%9B-%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%8B%E3%82%89%E5%8F%96%E5%BE%97%E3%81%97%E3%81%9F%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E4%BB%BB%E6%84%8F%E3%81%AE%E5%90%8D%E7%A7%B0%E3%81%A7%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/83424662-abda0400-a467-11ea-831a-2b146d29a1c5.png" alt="[Angular JavaScript] JSONデータのファイル化と出力 ~クラウドから取得したデータを任意の名称で保存するロジック~ (TypeScript)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-31T13:55:36.000Z">2020-05-31</time></div>
+                    <a href="/2020/05/31/Angular-JSON%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%8C%96%E3%81%A8%E5%87%BA%E5%8A%9B-%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%8B%E3%82%89%E5%8F%96%E5%BE%97%E3%81%97%E3%81%9F%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E4%BB%BB%E6%84%8F%E3%81%AE%E5%90%8D%E7%A7%B0%E3%81%A7%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular JavaScript] JSONデータのファイル化と出力 ~クラウドから取得したデータを任意の名称で保存するロジック~ (TypeScript)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/05/28/Angular-mat-selection-list%E3%81%A7checkbox%E3%82%92%E8%A1%A8%E7%A4%BA%EF%BD%9E%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E5%BE%97/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/83426603-5bb07100-a46a-11ea-8093-bd0d6e517706.png" alt="[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-28T12:25:40.000Z">2020-05-28</time></div>
+                    <a href="/2020/05/28/Angular-mat-selection-list%E3%81%A7checkbox%E3%82%92%E8%A1%A8%E7%A4%BA%EF%BD%9E%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E5%BE%97/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
                     </p>
@@ -3349,12 +3609,23 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2020/06/">
+                <span class="level-start">
+                    <span class="level-item">六月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/05/">
                 <span class="level-start">
                     <span class="level-item">五月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -3464,7 +3735,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">13</span>
+                        <span class="tag is-grey">15</span>
                     </a>
                 </div>
                 
@@ -3485,6 +3756,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Augury/">
                         <span class="tag">Augury</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CI-CD/">
+                        <span class="tag">CI/CD</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -3534,7 +3812,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Github-com/">
                         <span class="tag">Github.com</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -3577,6 +3855,20 @@
                     <a class="tags has-addons" href="/tags/Hosting/">
                         <span class="tag">Hosting</span>
                         <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JSON/">
+                        <span class="tag">JSON</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/JavaScript/">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -3651,6 +3943,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Teams/">
+                        <span class="tag">Teams</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Treetable/">
                         <span class="tag">Treetable</span>
                         <span class="tag is-grey">1</span>
@@ -3658,8 +3957,22 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/TypeScript/">
+                        <span class="tag">TypeScript</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/WEB-Page-Dev/">
                         <span class="tag">WEB Page Dev</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Webhook/">
+                        <span class="tag">Webhook</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -3773,6 +4086,13 @@
                     <a class="tags has-addons" href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/">
                         <span class="tag">テレワーク</span>
                         <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C/">
+                        <span class="tag">ファイル操作</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
