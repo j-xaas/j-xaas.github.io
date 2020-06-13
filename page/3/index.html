@@ -157,6 +157,504 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-31T14:23:54.000Z">2020-03-31</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5分 read (About 676 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/Serverless-Application-Dev/SPA-Angular/Angular-%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%AE%E9%80%A3%E6%90%BA%E6%89%8B%E6%B3%95%E3%81%BE%E3%81%A8%E3%82%81-Service-%EF%BC%A0ViewChild%E3%81%A7%E8%A6%AA%E3%81%8B%E3%82%89%E5%AD%90%E3%81%AE%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%82%92%E5%91%BC%E5%87%BA%E3%81%97/">Angular コンポーネント間の連携手法まとめ(Service/＠ViewChildで親から子のメソッドを呼出し)</a>
+            
+        </h1>
+        <div class="content">
+            <p>初級者向けに説明した際の備忘録です。</p>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/78031914-28d0fa80-739f-11ea-83a7-ed40134c8aa0.png" height="300px" width="500px" alt="Component_Cooperation_image">
+</div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#概要">概要</a></li>
+<li><a href="#1-serviceを活用する場合の手順">① Serviceを活用する場合の手順</a><ul>
+<li><a href="#serviceを作成して機能を取り出す">Serviceを作成して機能を取り出す</a></li>
+<li><a href="#serviceをimport">Serviceをimport</a></li>
+<li><a href="#serviceを注入">Serviceを注入</a></li>
+<li><a href="#serviceのメソッドを実行">Serviceのメソッドを実行</a></li>
+</ul>
+</li>
+<li><a href="#2-viewchildを活用する場合の手順">② @ViewChildを活用する場合の手順</a><ul>
+<li><a href="#viewchildと対象の子componentをimport">@ViewChildと対象の子Componentをimport</a></li>
+<li><a href="#viewchildデコレータを設定">@ViewChildデコレータを設定</a></li>
+<li><a href="#子のメソッドを実行">子のメソッドを実行</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="概要">概要</span></h2><ul>
+<li><p>AngularにおけるComponent間連携</p>
+<ul>
+<li>別々のComponent間ではそのままデータを受け渡したり、メソッドを呼び出すことができません</li>
+<li>Material等を用いた画面の作り方を覚えて、機能開発を始めたレベルの初級者が最初にハマるポイントだと思います</li>
+</ul>
+</li>
+<li><p>連携手法</p>
+<ol>
+<li>Serviceとして機能を外に取り出し、複数のComponent側から参照<ul>
+<li>基本的にこちらが推奨</li>
+</ul>
+</li>
+<li>親子構造のコンポーネント間で直接参照する<ul>
+<li>@ViewChildデコレータというものを使えば手軽にできます</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p>上記の連携手法x2について解説します。</p>
+<h2><span id="1-serviceを活用する場合の手順">① Serviceを活用する場合の手順</span></h2><ul>
+<li>Serviceに機能を取り出して参照する場合の手順を以下に示します<ul>
+<li>親子間で連携させたい場合は飛ばしてください</li>
+</ul>
+</li>
+</ul>
+<h3><span id="serviceを作成して機能を取り出す">Serviceを作成して機能を取り出す</span></h3><ul>
+<li>作成<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng g service &#39;service-name&#39;</span><br></pre></td></tr></table></figure></li>
+<li>service-name.service.tsを編集<ul>
+<li>共有したい機能は基本的にここに書く</li>
+<li>Component側に書くのはUI関係に絞る</li>
+</ul>
+</li>
+</ul>
+<h3><span id="serviceをimport">Serviceをimport</span></h3><ul>
+<li>以降はServiceを取り込むComponentのtsファイルを編集します<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &#123; ServiceNameService &#125; from &#39;..&#x2F;service-name.service&#39;;</span><br></pre></td></tr></table></figure>
+<h3><span id="serviceを注入">Serviceを注入</span></h3></li>
+<li>constructorにserviceを注入することで、Service内のメソッドを参照可能になります<ul>
+<li>private “このComponent内でServiceを扱う名称”: “Serviceのクラス名”<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">export class TestComponent implements OnInit &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; Serviceを注入インスタンス化</span><br><span class="line">  constructor(private TestService: ServiceNameService) &#123;</span><br><span class="line">    console.log(&#39;サービスを注入&#39;);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="serviceのメソッドを実行">Serviceのメソッドを実行</span></h3><ul>
+<li>上記で定めたTestService.”メソッド名” で実行できます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.TestService.functionA();</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h2><span id="2-viewchildを活用する場合の手順">② @ViewChildを活用する場合の手順</span></h2><ul>
+<li>親子間でメソッドを呼ぶ際の手順を示します</li>
+</ul>
+<h3><span id="viewchildと対象の子componentをimport">@ViewChildと対象の子Componentをimport</span></h3><ul>
+<li>※対象が複数の場合はViewChildrenを用いる<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 親子間の連携にはViewChildが必要</span><br><span class="line">import &#123; Component, ViewChild &#125; from &#39;@angular&#x2F;core&#39;;</span><br><span class="line">&#x2F;&#x2F; 子のComponentをimport</span><br><span class="line">import &#123; ChildComponent &#125; from &#39;..&#x2F;child&#x2F;child.component&#39;;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3><span id="viewchildデコレータを設定">@ViewChildデコレータを設定</span></h3><ul>
+<li>※Angular8以上は@ViewChildの引数が二つ</li>
+<li>{static: false}を第二引数に指定すればOK  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export class ParentComponent &#123;</span><br><span class="line">    &#x2F;&#x2F; 子コンポーネントをプロパティ:childとして設定</span><br><span class="line">    @ViewChild( ChildComponent, &#123;static: false&#125; )</span><br><span class="line">    private child: ChildComponent;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3><span id="子のメソッドを実行">子のメソッドを実行</span></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">child.functionA();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>今回の解説は以上です<ul>
+<li>Angularを扱う際は、なるべく細かいComponentに分けて疎結合な設計にしましょう</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-03-25T13:07:15.000Z">2020-03-25</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Tool-Tips/Google-Cloud-Shell/">Google Cloud Shell</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    15分 read (About 2230 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/Tool-Tips/Google-Cloud-Shell/iPad-Pro%E3%81%A7WEB-AP%E9%96%8B%E7%99%BA/">iPad ProでWEB AP開発 &amp; RPA</a>
+            
+        </h1>
+        <div class="content">
+            <p>こんにちは。先日<a href="https://amzn.to/2WMiw3M">iPad 2020(第４世代)</a>を購入しました。発売日の今日受け取ってこの記事を書いています。最近はPCライクな作業の効率がUpしているので、WEB APの開発をできるようにしてみました。一言で開発環境が立ち上がるように自動化もしています。さっき<a href="https://j-xaas.github.io/2020/03/25/iPad-Pro%E3%81%A7DTM%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89/">DTM環境</a>も構築しました。</p>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/miNQ61wB8Hg" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#概要">概要</a><ul>
+<li><a href="#基礎知識">基礎知識</a></li>
+<li><a href="#選定基準">選定基準</a></li>
+</ul>
+</li>
+<li><a href="#周辺機器">周辺機器</a><ul>
+<li><a href="#マウス">マウス</a></li>
+<li><a href="#keyboard">Keyboard</a></li>
+<li><a href="#イヤホン">イヤホン</a></li>
+</ul>
+</li>
+<li><a href="#google-cloud-shellの設定手順">Google Cloud Shellの設定手順</a><ul>
+<li><a href="#ショートカット-x-siriでideを開くまでを自動化">ショートカット x SiriでIDEを開くまでを自動化</a><ul>
+<li><a href="#手順">手順</a></li>
+</ul>
+</li>
+<li><a href="#開発の周辺作業">開発の周辺作業</a></li>
+</ul>
+</li>
+<li><a href="#関連記事">関連記事</a></li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="概要">概要</span></h2><ul>
+<li>ざっくりのイメージ図を書きました</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77545699-2c233c80-6eee-11ea-9e2c-fad4fd8dd3f3.png" height="300px" width="500px" alt="iPad Dev ">
+</div>
+
+<ul>
+<li>流行りのブラウザ型IDEを利用して、iPadでの開発を可能にします</li>
+<li>また、iPadのRPAツールで一言でIDEが立ち上がるようにします</li>
+</ul>
+<h3><span id="基礎知識">基礎知識</span></h3><ul>
+<li><p>ブラウザ型IDEとは？</p>
+<ul>
+<li>URLで即アクセスして、ブラウザで利用可能なIDE<ul>
+<li>RDPをするより手軽<ul>
+<li>そもそもiPadからのRDPはできなくもないがまだ厳しい</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>裏側で動いているのはクラウド上の仮想サーバ<ul>
+<li>Cloud9ならEC2、Cloud ShellならGCEのリソースを利用<ul>
+<li>意識せずに使えるので安心してください</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>自端末のOSに依存せず開発可能<ul>
+<li>つまりiPadでも開発可能<ul>
+<li>普通のWinows PCでも効果が大きいです</li>
+</ul>
+</li>
+<li>社内プロキシ問題に悩まされない<ul>
+<li>個人的には最重要ポイント</li>
+</ul>
+</li>
+<li>環境構築を省略可能<ul>
+<li>node_module, Git, AWSやGCPのCLI等の便利なものが元から入っている<ul>
+<li>新設チームや初級者への効果は計り知れないと思います</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>お勧めできるブラウザ型IDEは以下の二つです</p>
+<ul>
+<li><a href="https://cloud.google.com/shell/docs?hl=ja">Google Cloud Shell</a><ul>
+<li>Googleのブラウザ型IDE</li>
+<li>Googleアカウントで利用</li>
+<li>環境構築を省略可能<ul>
+<li>Firebase CLI等のGCP向けのものが入っている</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://aws.amazon.com/jp/cloud9/">AWS Cloud9</a><ul>
+<li>AWSのブラウザ型IDE</li>
+<li>AWSアカウントで利用</li>
+<li>環境構築を省略可能<ul>
+<li>AWS CLI等の便利なものが入っている</li>
+</ul>
+</li>
+<li>★複数ユーザーで同時編集可能<ul>
+<li>リモートワークやレビューに便利です</li>
+<li>やり方は以下にまとめてあります<ul>
+<li><a href="https://j-xaas.github.io/2020/03/07/cloud9%E3%81%AB%E3%82%88%E3%82%8B%E5%85%B1%E5%90%8C%E7%B7%A8%E9%9B%86%E3%83%BB%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%96%8B%E7%99%BA/">cloud9による共同編集・リモート開発</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="選定基準">選定基準</span></h3><ul>
+<li><p>用途から</p>
+<ul>
+<li>手軽さ優先・今すぐ使いたい<ul>
+<li>Google Cloud Shell<ul>
+<li>Googleアカウントさえあれば、5分以内に使い始められます</li>
+<li>Cloud9はAWSのアカウントが必要なので、権限周りがシビアです<ul>
+<li>組織で共有している場合、少し面倒なことになります</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>複数人で同時編集したい<ul>
+<li>AWS Cloud9<ul>
+<li>そのうち、Google Cloud Shellにも同じ機能がつきそうではあります</li>
+<li>以下を参考にどうぞ<ul>
+<li><a href="https://j-xaas.github.io/2020/03/07/cloud9%E3%81%AB%E3%82%88%E3%82%8B%E5%85%B1%E5%90%8C%E7%B7%A8%E9%9B%86%E3%83%BB%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%96%8B%E7%99%BA/">cloud9による共同編集・リモート開発</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>開発するサービスから</p>
+<ul>
+<li>バックエンドに利用するクラウドが決まっていれば、環境構築の手間を削減できるので、合わせましょう<ul>
+<li>Firebase, GCPを利用する<ul>
+<li>Google Cloud Shell</li>
+</ul>
+</li>
+<li>AWS, Amplify, Lambdaを利用する<ul>
+<li>AWS Cloud9</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="周辺機器">周辺機器</span></h2><h3><span id="マウス">マウス</span></h3><ul>
+<li>iPadとマウスはBluetoothで繋げられます<ul>
+<li>iPad対応で”発信機が不要”なモノにしましょう<ul>
+<li>安めで、USB充電が可能な<a href="https://amzn.to/33L13KB">Fenifox</a>を使っています<ul>
+<li>amazonで探していたら、ipadに対応していないにも関わらず、”対応”と書かれているものがあったので、よく確認してください<ul>
+<li>fenifoxの説明には全くないのですが、接続時にパスワードを求められたら”0000”,”1234”,”1111”の何れかを入力すればOKです</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>拘る人には<a href="https://amzn.to/3dwoL1A">Apple純正</a>のマウスもあります</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="keyboard">Keyboard</span></h3><ul>
+<li><p>ひとまず<a href="https://amzn.to/2ybfNXL">Magic Keyboard</a>を使用しています</p>
+<ul>
+<li>非常に軽く、登録後は叩くだけでipadと繋がります</li>
+<li>打鍵感に拘る人はこれが良いと思います</li>
+</ul>
+</li>
+<li><p>話題のiPadが浮くキーボードは2020/05発売なので待機中です</p>
+<ul>
+<li><p><a href="https://amzn.to/2JeoFxV">Apple Magic Keyboard</a></p>
+<ul>
+<li>イケてるけど、エントリーモデルのipadより高い…</li>
+</ul>
+<p><a href="https://www.amazon.co.jp/Apple-Magic-Keyboard-12-9%E3%82%A4%E3%83%B3%E3%83%81iPad-Pro-%E7%AC%AC3%E4%B8%96%E4%BB%A3%E3%81%A8%E7%AC%AC4%E4%B8%96%E4%BB%A3/dp/B0863JB6GL/ref=as_li_ss_il?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&keywords=keyboard&qid=1585148574&s=computers&sr=1-8&linkCode=li3&tag=junjun10804-22&linkId=db9e7a94a54397fd62458a97a42bf10a&language=ja_JP" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B0863JB6GL&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun10804-22&language=ja_JP"></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun10804-22&language=ja_JP&l=li3&o=9&a=B0863JB6GL" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="イヤホン">イヤホン</span></h3><ul>
+<li>会議用に用意しておくと便利です</li>
+<li>Sony製品が好きなので<a href="https://amzn.to/2UzfvRN">WF1000XM-3</a>を使っています</li>
+</ul>
+<h2><span id="google-cloud-shellの設定手順">Google Cloud Shellの設定手順</span></h2><ul>
+<li>Google アカウントを作成</li>
+<li>ログインした状態でGCPを開く<ul>
+<li><a href="https://console.cloud.google.com/?hl=ja">Google Cloud Platform</a></li>
+</ul>
+</li>
+<li>Googleアカウントでそのままログイン<ul>
+<li>GCPコンソールが開きます</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77556836-54199c80-6efc-11ea-8c6c-46d5084b2f69.png" height="400px" width="600px" alt="GCP Console Top">
+</div>
+
+<ul>
+<li>コンソール上部の赤で囲んだマークを押すと、コマンドラインが現れます</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77560233-89c08480-6f00-11ea-9836-b8ac913ad85f.png" height="400px" width="600px" alt="GCP Console Top">
+</div>
+
+<ul>
+<li>コマンドラインが下部に出た状態<ul>
+<li>次に拡大ボタンを押下しましょう</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77560503-eae85800-6f00-11ea-80ea-147176a449d3.png" height="400px" width="600px" alt="GCP Console Top">
+</div>
+
+<ul>
+<li>全画面表示になります<ul>
+<li>次にペンのマークを押下しましょう</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77560762-36026b00-6f01-11ea-8f86-9b4cddea8c5b.png" height="400px" width="600px" alt="GCP Console Top">
+</div>
+
+<ul>
+<li>エディターが現れます<ul>
+<li>以上でVC Codeのような画面になったと思います</li>
+<li>このWEBページもGoogle Cloud Shellのエディターで編集して、CLIでhexoのコマンドを打って自動生成しています<ul>
+<li>画像の処理が楽なのでiPadでやると効率があがります</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/77561852-9a71fa00-6f02-11ea-8176-1ad72277b6f4.png" height="150px" width="500px" alt="GCP Console Top">
+</div>
+
+<ul>
+<li>WEB APのlocalhostで実行してブラウザで確認したい時<ul>
+<li>上の左から二番目のアイコンをクリックすると、portを指定してブラウザを開くことができます<ul>
+<li>クラウドIDEで開発する際に嵌りがちなシーンですが、Cloud Shellなら楽に解決できます</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="ショートカット-x-siriでideを開くまでを自動化">ショートカット x SiriでIDEを開くまでを自動化</span></h3><ul>
+<li>『Hey Siri, GCP』と言ったらGoogle Cloud Shellが開くようにします<ul>
+<li>ブラウザ型IDEの欠点として、ブラウザから開く手間があります。自動化して時短＆モチベーション向上を図りましょう</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>ショートカット<ul>
+<li>iPhoneやiPadで使える手軽なRPAアプリ</li>
+<li>iPadで作業するメリットの一つだと思います</li>
+</ul>
+</li>
+</ul>
+<h4><span id="手順">手順</span></h4><ul>
+<li>GCPコンソールのURLを控える</li>
+<li>”ショートカット”アプリを開く</li>
+<li>”ショートカットの作成”</li>
+<li>ショートカット名を”GCP”に設定</li>
+<li>左上の検索欄で”Chrome”と入力</li>
+<li>候補に出る”Chromeで検索”を選択<ul>
+<li>“ChromeでURLを開く”を選択</li>
+</ul>
+</li>
+<li>URL欄に先ほどのURLをコピペ</li>
+</ul>
+<p>以上で完了です。”HEy Siri, GCP”といえば、自動でIDEが出てきます</p>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/PVPwo-PMOLI" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+
+<ul>
+<li>よく使うサービスは同じように表示までを自動化しておくと便利です<ul>
+<li>冒頭に動画を載せておきましたが、cloud9も同じようにURL指定で開けるようにしています</li>
+</ul>
+</li>
+</ul>
+<h3><span id="開発の周辺作業">開発の周辺作業</span></h3><p>PCじゃないと無理じゃない？と言われそうな作業の代替え案です</p>
+<ul>
+<li>パワポ<ul>
+<li>Googleスライドを使いましょう<ul>
+<li>クラウド上に保存すれば、どの端末からでも見れるので便利です</li>
+<li>アクセス制限を付けて所定の人にだけ見せることを可能です</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Excel<ul>
+<li>せめてGoogleスプレッドシートを使いましょう<ul>
+<li>IT界隈ではExcelを使うとディスられる風潮があるので気を付けてください</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="関連記事">関連記事</span></h2><ul>
+<li><a href="https://j-xaas.github.io/2020/03/07/cloud9%E3%81%AB%E3%82%88%E3%82%8B%E5%85%B1%E5%90%8C%E7%B7%A8%E9%9B%86%E3%83%BB%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%96%8B%E7%99%BA/">cloud9による共同編集・リモート開発</a></li>
+<li><a href="https://j-xaas.github.io/2020/03/05/Cloud9-x-Angular-x-Firebase%E3%81%A7AP%E9%96%8B%E7%99%BA%EF%BC%88%E5%B0%8E%E5%85%A5%E7%B7%A8%EF%BC%89/">Cloud9 x Firebase x AngularでAP開発</a></li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2020-03-24T15:04:42.000Z">2020-03-25</time>
                 
                 <div class="level-item">
@@ -176,7 +674,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/25/iPad-Pro%E3%81%A7DTM%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89/">iPad Pro (第4世代)でDTM環境を構築</a>
+                <a class="has-link-black-ter" href="/SmartHome/DTM/iPad-Pro%E3%81%A7DTM%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89/">iPad Pro (第4世代)でDTM環境を構築</a>
             
         </h1>
         <div class="content">
@@ -612,7 +1110,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/23/Hexo-x-Github-Pages-5%E5%88%86%E4%BB%A5%E5%86%85%E3%81%AB%E3%83%96%E3%83%AD%E3%82%B0%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90%E3%81%97%E3%81%A6%E7%84%A1%E6%96%99%E3%81%A7%E5%85%AC%E9%96%8B%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/">[Hexo x Github Pages] 5分以内にブログを自動生成して無料で公開するまで【完全版】</a>
+                <a class="has-link-black-ter" href="/WEB-Page-Dev/Hexo/Hexo-x-Github-Pages-5%E5%88%86%E4%BB%A5%E5%86%85%E3%81%AB%E3%83%96%E3%83%AD%E3%82%B0%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90%E3%81%97%E3%81%A6%E7%84%A1%E6%96%99%E3%81%A7%E5%85%AC%E9%96%8B%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/">[Hexo x Github Pages] 5分以内にブログを自動生成して無料で公開するまで【完全版】</a>
             
         </h1>
         <div class="content">
@@ -1031,7 +1529,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/21/Hexo%E3%81%AB%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E6%AC%84%E3%82%92%E8%BF%BD%E5%8A%A0-Disqus/">Hexoにコメント欄を追加(Disqus)</a>
+                <a class="has-link-black-ter" href="/WEB-Page-Dev/Hexo/Hexo%E3%81%AB%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E6%AC%84%E3%82%92%E8%BF%BD%E5%8A%A0-Disqus/">Hexoにコメント欄を追加(Disqus)</a>
             
         </h1>
         <div class="content">
@@ -1348,7 +1846,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/18/Privacy-Policy/">Privacy Policy</a>
+                <a class="has-link-black-ter" href="/uncategorized/Privacy-Policy/">Privacy Policy</a>
             
         </h1>
         <div class="content">
@@ -1402,7 +1900,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/17/Angular%E3%81%A7%E9%9A%8E%E5%B1%A4%E6%A7%8B%E9%80%A0%E3%81%AE%E8%A1%A8%E3%82%92%E9%96%8B%E7%99%BA-Treetable/">Angularで階層構造の表を開発(Treetable)</a>
+                <a class="has-link-black-ter" href="/Serverless-Application-Dev/SPA-Angular/Angular%E3%81%A7%E9%9A%8E%E5%B1%A4%E6%A7%8B%E9%80%A0%E3%81%AE%E8%A1%A8%E3%82%92%E9%96%8B%E7%99%BA-Treetable/">Angularで階層構造の表を開発(Treetable)</a>
             
         </h1>
         <div class="content">
@@ -1613,7 +2111,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/17/icarus-Hexo-Theme-Tips-Menu%E3%81%AE%E7%B7%A8%E9%9B%86/">icarus(Hexo Theme) Tips Menuの編集</a>
+                <a class="has-link-black-ter" href="/WEB-Page-Dev/Hexo/icarus-Hexo-Theme-Tips-Menu%E3%81%AE%E7%B7%A8%E9%9B%86/">icarus(Hexo Theme) Tips Menuの編集</a>
             
         </h1>
         <div class="content">
@@ -1801,7 +2299,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/15/Hexo%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AEAMP%E5%8C%96/">HexoブログのAMP化【完全版】</a>
+                <a class="has-link-black-ter" href="/WEB-Page-Dev/Hexo/Hexo%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AEAMP%E5%8C%96/">HexoブログのAMP化【完全版】</a>
             
         </h1>
         <div class="content">
@@ -2050,7 +2548,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/">Hexoテーマ(theme)変更: icarus</a>
+                <a class="has-link-black-ter" href="/WEB-Page-Dev/Hexo/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/">Hexoテーマ(theme)変更: icarus</a>
             
         </h1>
         <div class="content">
@@ -2360,299 +2858,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-10T14:23:23.000Z">2020-03-10</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    7分 read (About 1017 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/03/10/Hexo%E3%81%A7%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97%E3%82%92%E8%87%AA%E5%8B%95%E7%94%9F%E6%88%90-Google-Search-Console%E3%81%B8%E7%99%BB%E9%8C%B2/">Hexoでサイトマップを自動生成 ~ Google Search Consoleへ登録</a>
-            
-        </h1>
-        <div class="content">
-            <!-- toc -->
-
-<ul>
-<li><a href="#概要">概要</a><ul>
-<li><a href="#想定読者">想定読者</a></li>
-<li><a href="#基礎知識">基礎知識</a></li>
-</ul>
-</li>
-<li><a href="#手順">手順</a><ul>
-<li><a href="#1-pluginの導入">1. Pluginの導入</a></li>
-<li><a href="#2-_configymlにpluginの設定を追加">2. _config.ymlにPluginの設定を追加</a></li>
-<li><a href="#3-sitemapxmlの生成">3. sitemap.xmlの生成</a></li>
-<li><a href="#4-本番環境へデプロイ">4. 本番環境へデプロイ</a></li>
-<li><a href="#5-google-search-consoleへ登録">5. Google Search Consoleへ登録</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-
-<h2><span id="概要">概要</span></h2><p>こんにちは。今回はHexoでサイトマップを自動生成してGoogleに登録するまでの手法を紹介します。<br>本サイトもHexoを用いて自動生成しています。  </p>
-<h3><span id="想定読者">想定読者</span></h3><ul>
-<li>静的サイトジェネレータhexoでWEBページを作成済み<ul>
-<li>Google検索でヒットしない状態</li>
-</ul>
-</li>
-<li>サイトマップ未登録</li>
-</ul>
-<h3><span id="基礎知識">基礎知識</span></h3><ul>
-<li><p>サイトマップとは</p>
-<ul>
-<li>サイトにどのようなページがあるのか表す為のもの</li>
-<li>以下の二種類があります<ul>
-<li>HTMLサイトマップ</li>
-<li>XMLサイトマップ<ul>
-<li>検索エンジンが情報収集する対象となるため、SEO対策において重要    </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>hexoではプラグインを利用することでサイトマップを自動生成できます</li>
-</ul>
-</li>
-<li><p><a href="https://support.google.com/webmasters/answer/9128668?hl=ja&ref_topic=9128571">Google Search Console</a></p>
-<ul>
-<li><a href="https://support.google.com/webmasters/answer/9128668?hl=ja&ref_topic=9128571">Serch Consoleの概要</a> （公式サイトより引用）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Google Search Console は、Google 検索結果でのサイトの掲載順位を監視、管理、改善するのに役立つ Google の無料サービスです。Search Console に登録しなくても Google 検索結果にサイトが表示されるようにすることはできますが、Search Console に登録することで、Google のサイトに対する認識を理解し、改善できるようになります。</span><br></pre></td></tr></table></figure></li>
-<li>生成したサイトマップをこちらに登録することで、Google検索結果に自分のWEBページが出るようになります<ul>
-<li>WEBページを公開したばかりの場合、登録しなければ検索結果に出ないと思われます</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2><span id="手順">手順</span></h2><ul>
-<li><ol>
-<li>Pluginの導入</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>_config.ymlにPluginの設定を追加</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>sitemap.xmlの生成</li>
-</ol>
-</li>
-<li><ol start="4">
-<li>本番環境へデプロイ</li>
-</ol>
-</li>
-<li><ol start="5">
-<li>Google Search Consoleへ登録</li>
-</ol>
-</li>
-</ul>
-<h3><span id="1-pluginの導入">1. Pluginの導入</span></h3><ul>
-<li><p>HEXOでサイトマップを生成できるプライグインは二種類あります</p>
-<ul>
-<li><a href="https://github.com/hexojs/hexo-generator-sitemap">hexo-generator-sitemap</a></li>
-<li><a href>hexo-generator-seo-friendly-sitemap</a><ul>
-<li>今回はこちらを採用</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>インストール</p>
-<ul>
-<li>HEXOディレクトリ直下で以下を実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-seo-friendly-sitemap --save</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="2-_configymlにpluginの設定を追加">2. _config.ymlにPluginの設定を追加</span></h3><ul>
-<li><p>HEXOの設定ファイルに先ほどのPluginを登録します</p>
-<ul>
-<li>ファイルはhexoディレクトリ直下にあります</li>
-</ul>
-</li>
-<li><p>_config.ymlに追記する内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## Plugins: https:&#x2F;&#x2F;hexo.io&#x2F;plugins&#x2F;</span><br><span class="line">sitemap:</span><br><span class="line">  path: sitemap.xml</span><br><span class="line">  tag: false</span><br><span class="line">  category: false</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3><span id="3-sitemapxmlの生成">3. sitemap.xmlの生成</span></h3><ul>
-<li><p>いつも通りにhexoコマンドでジェネレートする際に、sitemapが生成されます</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure></li>
-<li><p>sitemap.xmlの生成を確認</p>
-<ul>
-<li>index.htmlと<ul>
-<li>通常はpublic配下</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>開いてみると、以下のように書かれています</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot;?&gt;&lt;?xml-stylesheet type&#x3D;&quot;text&#x2F;xsl&quot; href&#x3D;&quot;sitemap.xsl&quot;?&gt;</span><br><span class="line">&lt;sitemapindex xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.sitemaps.org&#x2F;schemas&#x2F;sitemap&#x2F;0.9&quot;&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;sitemap&gt;</span><br><span class="line">        &lt;loc&gt;https:&#x2F;&#x2F;j-xaas.github.io&#x2F;post-sitemap.xml&lt;&#x2F;loc&gt;</span><br><span class="line">        &lt;lastmod&gt;2020-03-10T13:04:39.446Z&lt;&#x2F;lastmod&gt;</span><br><span class="line">    &lt;&#x2F;sitemap&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;sitemapindex&gt;</span><br><span class="line">&lt;!-- XML Sitemap generated by Hexo SEO Friendly Sitemap Generator --&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3><span id="4-本番環境へデプロイ">4. 本番環境へデプロイ</span></h3><ul>
-<li>WEBページをホスティングしている、サーバ等へsitemap.xmlファイルをおきましょう</li>
-<li>github pagesを用いている場合は、Gitへpushします</li>
-</ul>
-<h3><span id="5-google-search-consoleへ登録">5. Google Search Consoleへ登録</span></h3><ul>
-<li><p><a href="https://search.google.com/search-console">公式サイト</a>へアクセス</p>
-<ul>
-<li>未登録であれば、自分のWEBサイトのURLを登録しましょう</li>
-</ul>
-</li>
-<li><p>サイドメニュー内、インデックスのサイトマップを選択</p>
-</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/76317221-2d197300-631f-11ea-9b4c-4c7dbb3b3d75.PNG" height="50%" width="50%">
-</div>
-
-
-<ul>
-<li>新しいサイトマップの追加<ul>
-<li>入力欄に”sitemap.xml”を入力</li>
-<li>送信</li>
-</ul>
-</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/76317318-5df9a800-631f-11ea-8995-7722bd39ddc5.png" height="100%" width="100%">
-</div>
-
-
-<ul>
-<li>しばらく待って更新すると、以下のようにステータスが”成功しました”と表示されます<ul>
-<li>以上でサイトマップの登録は完了です<ul>
-<li>hexo g の度に更新されるので、事後作業は特にありません</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/76319276-5687ce00-6322-11ea-98de-c4837c6f1785.png" height="100%" width="100%">
-</div>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-09T14:38:20.000Z">2020-03-09</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2分 read (About 332 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2020/03/09/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/">Angular8:”global is not defined”の回避策</a>
-            
-        </h1>
-        <div class="content">
-            <!--toc-->
-
-<h2><span id="概要">概要</span></h2><ul>
-<li><p>Angular8で以下のエラーにハマった際の解消法を解説します</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">”global is not defined”</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>上記のエラーについて</p>
-<ul>
-<li>Angularでグローバルオブジェクトを参照する外部ライブラリを利用している環境で発生する事象</li>
-<li>今回はAngularとAWS間のAPI連携機能を実装した際に発生</li>
-</ul>
-</li>
-<li><p>環境の詳細</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Angular CLI: 8.3.24</span><br><span class="line">Node: 10.16.3</span><br><span class="line">OS: win32 x64</span><br><span class="line">Angular: 8.2.14</span><br><span class="line">... animations, common, compiler, compiler-cli, core, forms</span><br><span class="line">... language-service, platform-browser, platform-browser-dynamic</span><br><span class="line">... router</span><br><span class="line"></span><br><span class="line">Package                           Version</span><br><span class="line">-----------------------------------------------------------</span><br><span class="line">@angular-devkit&#x2F;architect         0.803.24</span><br><span class="line">@angular-devkit&#x2F;build-angular     0.803.24</span><br><span class="line">@angular-devkit&#x2F;build-optimizer   0.803.24</span><br><span class="line">@angular-devkit&#x2F;build-webpack     0.803.24</span><br><span class="line">@angular-devkit&#x2F;core              8.3.24</span><br><span class="line">@angular-devkit&#x2F;schematics        8.3.24</span><br><span class="line">@angular&#x2F;cdk                      8.2.3</span><br><span class="line">@angular&#x2F;cli                      8.3.24</span><br><span class="line">@angular&#x2F;material                 8.2.3</span><br><span class="line">@ngtools&#x2F;webpack                  8.3.24</span><br><span class="line">@schematics&#x2F;angular               8.3.24</span><br><span class="line">@schematics&#x2F;update                0.803.24</span><br><span class="line">rxjs                              6.4.0</span><br><span class="line">typescript                        3.5.3</span><br><span class="line">webpack                           4.39.2</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2><span id="解決策">解決策</span></h2><ul>
-<li>pollyfills.tsに設定が必要<ul>
-<li>所在<ul>
-<li>“pj-name”\srcの配下</li>
-</ul>
-</li>
-<li>以下を追記すると解決します<pre><code>// &quot;global is not defined&quot;の対応
-(window as any).global = window;</code></pre></li>
-</ul>
-</li>
-</ul>
-<h3><span id="解説">解説</span></h3><ul>
-<li>polyfillとは<ul>
-<li>JavaScriptのversion間の互換性を補うもの</li>
-<li>利用したい機能に未対応のブラウザでも使えるように、同等の機能をJavaScriptで供給できる</li>
-</ul>
-</li>
-<li>pollyfills.ts<ul>
-<li>Angularにおけるpolyfillの設定ファイル</li>
-<li>例えば、Angularで開発したAPをIEでも動かしたい時には設定が必要<ul>
-<li>Angularは”デフォルトではIEに未対応”です</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -2721,7 +2926,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            36
+                            38
                         </p>
                     </a>
                 </div>
@@ -2733,7 +2938,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            15
+                            16
                         </p>
                     </a>
                 </div>
@@ -2745,7 +2950,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            63
+                            64
                         </p>
                     </a>
                 </div>
@@ -2885,7 +3090,7 @@
                 <span class="level-item">SmartHome</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/SmartHome/DTM/">
@@ -2894,6 +3099,14 @@
             </span>
             <span class="level-end">
                 <span class="level-item tag">3</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/SmartHome/Gadget/">
+            <span class="level-start">
+                <span class="level-item">Gadget</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Tool-Tips/">
@@ -2957,7 +3170,7 @@
                 <span class="level-item">WEB Page Dev</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">6</span>
+                <span class="level-item tag">7</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/WEB-Page-Dev/Hexo/">
@@ -2965,7 +3178,7 @@
                 <span class="level-item">Hexo</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">6</span>
+                <span class="level-item tag">7</span>
             </span>
         </a></li></ul></li>
             </ul>
@@ -2978,7 +3191,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 12px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 12px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/CI-CD/" style="font-size: 10px;">CI/CD</a> <a href="/tags/Cloud-Craft/" style="font-size: 10px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/DTM/" style="font-size: 14px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 12px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 16px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 18px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/JSON/" style="font-size: 12px;">JSON</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/Mind-Node/" style="font-size: 10px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 10px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 12px;">RPA</a> <a href="/tags/SYNCROOM/" style="font-size: 10px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 12px;">Steinberg UR44C</a> <a href="/tags/Teams/" style="font-size: 10px;">Teams</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/TypeScript/" style="font-size: 12px;">TypeScript</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="/tags/cloud9/" style="font-size: 14px;">cloud9</a> <a href="/tags/draw-io/" style="font-size: 10px;">draw.io</a> <a href="/tags/filter/" style="font-size: 12px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 14px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 14px;">icarus</a> <a href="/tags/map/" style="font-size: 12px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 12px;">mat-checkbox</a> <a href="/tags/mat-selection-list/" style="font-size: 10px;">mat-selection-list</a> <a href="/tags/ngFor/" style="font-size: 10px;">ngFor</a> <a href="/tags/plantUML/" style="font-size: 10px;">plantUML</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 12px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C/" style="font-size: 12px;">ファイル操作</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 12px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 12px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/CI-CD/" style="font-size: 10px;">CI/CD</a> <a href="/tags/Cloud-Craft/" style="font-size: 10px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/DTM/" style="font-size: 14px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 12px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 16px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 18px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/JSON/" style="font-size: 12px;">JSON</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/Mind-Node/" style="font-size: 10px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 10px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 12px;">RPA</a> <a href="/tags/SYNCROOM/" style="font-size: 10px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 12px;">Steinberg UR44C</a> <a href="/tags/Teams/" style="font-size: 10px;">Teams</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/TypeScript/" style="font-size: 12px;">TypeScript</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="/tags/cloud9/" style="font-size: 14px;">cloud9</a> <a href="/tags/draw-io/" style="font-size: 10px;">draw.io</a> <a href="/tags/filter/" style="font-size: 12px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 14px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 14px;">icarus</a> <a href="/tags/map/" style="font-size: 12px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 12px;">mat-checkbox</a> <a href="/tags/mat-selection-list/" style="font-size: 10px;">mat-selection-list</a> <a href="/tags/ngFor/" style="font-size: 10px;">ngFor</a> <a href="/tags/plantUML/" style="font-size: 10px;">plantUML</a> <a href="/tags/popIn-Aladdin2/" style="font-size: 10px;">popIn Aladdin2</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 12px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C/" style="font-size: 12px;">ファイル操作</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
     </div>
 </div>
     
@@ -2993,7 +3206,26 @@
         
         <article class="media">
             
-            <a href="/2020/06/10/github-branch%E3%82%92Local%E3%81%A7%E7%94%9F%E6%88%90%EF%BD%9ERemote%E3%81%AB%E5%8F%8D%E6%98%A0/" class="media-left">
+            <a href="/WEB-Page-Dev/Hexo/Hexo-%E8%A8%98%E4%BA%8B%E3%81%AEURL%E3%82%92%E5%A4%89%E6%9B%B4/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://media.github-enterprise-9911a.paas1.nec-cloud.com/user/11/files/dd1dd280-ad8b-11ea-8807-e89852f3b1cc" alt="[Hexo] 記事のURLを変更">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-13T06:36:17.000Z">2020-06-13</time></div>
+                    <a href="/WEB-Page-Dev/Hexo/Hexo-%E8%A8%98%E4%BA%8B%E3%81%AEURL%E3%82%92%E5%A4%89%E6%9B%B4/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Hexo] 記事のURLを変更</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/Tool-Tips/Github/github-branch%E3%82%92Local%E3%81%A7%E7%94%9F%E6%88%90%EF%BD%9ERemote%E3%81%AB%E5%8F%8D%E6%98%A0/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84248013-d00ea280-ab43-11ea-8ce0-6a161632c3ea.png" alt="[Github入門] branchをLocalで生成～Remoteに反映">
                 </p>
@@ -3002,7 +3234,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-10T08:29:34.000Z">2020-06-10</time></div>
-                    <a href="/2020/06/10/github-branch%E3%82%92Local%E3%81%A7%E7%94%9F%E6%88%90%EF%BD%9ERemote%E3%81%AB%E5%8F%8D%E6%98%A0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Github入門] branchをLocalで生成～Remoteに反映</a>
+                    <a href="/Tool-Tips/Github/github-branch%E3%82%92Local%E3%81%A7%E7%94%9F%E6%88%90%EF%BD%9ERemote%E3%81%AB%E5%8F%8D%E6%98%A0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Github入門] branchをLocalで生成～Remoteに反映</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
                     </p>
@@ -3012,7 +3244,7 @@
         
         <article class="media">
             
-            <a href="/2020/06/10/Github-x-Teams-Webhook-Notification%E3%81%AB%E3%82%88%E3%82%8B%E9%80%A3%E6%90%BA%E6%96%B9%E6%B3%95/" class="media-left">
+            <a href="/Tool-Tips/Github/Github-x-Teams-Webhook-Notification%E3%81%AB%E3%82%88%E3%82%8B%E9%80%A3%E6%90%BA%E6%96%B9%E6%B3%95/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84231133-6b921a00-ab28-11ea-8c0e-a47fb924b2c2.png" alt="Github x Teams Webhook/Notificationによる連携方法">
                 </p>
@@ -3021,7 +3253,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-10T04:31:51.000Z">2020-06-10</time></div>
-                    <a href="/2020/06/10/Github-x-Teams-Webhook-Notification%E3%81%AB%E3%82%88%E3%82%8B%E9%80%A3%E6%90%BA%E6%96%B9%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Github x Teams Webhook/Notificationによる連携方法</a>
+                    <a href="/Tool-Tips/Github/Github-x-Teams-Webhook-Notification%E3%81%AB%E3%82%88%E3%82%8B%E9%80%A3%E6%90%BA%E6%96%B9%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Github x Teams Webhook/Notificationによる連携方法</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
                     </p>
@@ -3031,7 +3263,26 @@
         
         <article class="media">
             
-            <a href="/2020/05/31/Angular-JavaScript-JSON%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF/" class="media-left">
+            <a href="/SmartHome/Gadget/popInAladdin-review/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84525352-73afac80-ad16-11ea-8a02-d5aa7fd846da.png" alt="popIn Aladdin2 レビュー 照明型プロジェクター　使用感/専用アプリ/投影サイズ/Alexa連携/設置方法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-06T08:36:02.000Z">2020-06-06</time></div>
+                    <a href="/SmartHome/Gadget/popInAladdin-review/" class="title has-link-black-ter is-size-6 has-text-weight-normal">popIn Aladdin2 レビュー 照明型プロジェクター　使用感/専用アプリ/投影サイズ/Alexa連携/設置方法</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SmartHome/">SmartHome</a> / <a class="has-link-grey -link" href="/categories/SmartHome/Gadget/">Gadget</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/Serverless-Application-Dev/SPA-Angular/Angular-JavaScript-JSON%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/83424662-abda0400-a467-11ea-831a-2b146d29a1c5.png" alt="[Angular JavaScript] JSONファイル(複数)の読み込み">
                 </p>
@@ -3040,45 +3291,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-31T14:16:54.000Z">2020-05-31</time></div>
-                    <a href="/2020/05/31/Angular-JavaScript-JSON%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular JavaScript] JSONファイル(複数)の読み込み</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/05/31/Angular-JSON%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%8C%96%E3%81%A8%E5%87%BA%E5%8A%9B-%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%8B%E3%82%89%E5%8F%96%E5%BE%97%E3%81%97%E3%81%9F%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E4%BB%BB%E6%84%8F%E3%81%AE%E5%90%8D%E7%A7%B0%E3%81%A7%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/83424662-abda0400-a467-11ea-831a-2b146d29a1c5.png" alt="[Angular JavaScript] JSONデータのファイル化と出力 ~クラウドから取得したデータを任意の名称で保存するロジック~ (TypeScript)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-31T13:55:36.000Z">2020-05-31</time></div>
-                    <a href="/2020/05/31/Angular-JSON%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%8C%96%E3%81%A8%E5%87%BA%E5%8A%9B-%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%8B%E3%82%89%E5%8F%96%E5%BE%97%E3%81%97%E3%81%9F%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E4%BB%BB%E6%84%8F%E3%81%AE%E5%90%8D%E7%A7%B0%E3%81%A7%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular JavaScript] JSONデータのファイル化と出力 ~クラウドから取得したデータを任意の名称で保存するロジック~ (TypeScript)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/05/28/Angular-mat-selection-list%E3%81%A7checkbox%E3%82%92%E8%A1%A8%E7%A4%BA%EF%BD%9E%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E5%BE%97/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/83426603-5bb07100-a46a-11ea-8093-bd0d6e517706.png" alt="[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-28T12:25:40.000Z">2020-05-28</time></div>
-                    <a href="/2020/05/28/Angular-mat-selection-list%E3%81%A7checkbox%E3%82%92%E8%A1%A8%E7%A4%BA%EF%BD%9E%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E5%BE%97/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得</a>
+                    <a href="/Serverless-Application-Dev/SPA-Angular/Angular-JavaScript-JSON%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular JavaScript] JSONファイル(複数)の読み込み</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
                     </p>
@@ -3103,7 +3316,7 @@
                     <span class="level-item">六月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -3336,7 +3549,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
-                        <span class="tag is-grey">6</span>
+                        <span class="tag is-grey">7</span>
                     </a>
                 </div>
                 
@@ -3553,6 +3766,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/plantUML/">
                         <span class="tag">plantUML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/popIn-Aladdin2/">
+                        <span class="tag">popIn Aladdin2</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -3630,7 +3850,26 @@
         
         <article class="media">
             
-            <a href="/2020/06/10/github-branch%E3%82%92Local%E3%81%A7%E7%94%9F%E6%88%90%EF%BD%9ERemote%E3%81%AB%E5%8F%8D%E6%98%A0/" class="media-left">
+            <a href="/WEB-Page-Dev/Hexo/Hexo-%E8%A8%98%E4%BA%8B%E3%81%AEURL%E3%82%92%E5%A4%89%E6%9B%B4/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://media.github-enterprise-9911a.paas1.nec-cloud.com/user/11/files/dd1dd280-ad8b-11ea-8807-e89852f3b1cc" alt="[Hexo] 記事のURLを変更">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-13T06:36:17.000Z">2020-06-13</time></div>
+                    <a href="/WEB-Page-Dev/Hexo/Hexo-%E8%A8%98%E4%BA%8B%E3%81%AEURL%E3%82%92%E5%A4%89%E6%9B%B4/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Hexo] 記事のURLを変更</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/Tool-Tips/Github/github-branch%E3%82%92Local%E3%81%A7%E7%94%9F%E6%88%90%EF%BD%9ERemote%E3%81%AB%E5%8F%8D%E6%98%A0/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84248013-d00ea280-ab43-11ea-8ce0-6a161632c3ea.png" alt="[Github入門] branchをLocalで生成～Remoteに反映">
                 </p>
@@ -3639,7 +3878,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-10T08:29:34.000Z">2020-06-10</time></div>
-                    <a href="/2020/06/10/github-branch%E3%82%92Local%E3%81%A7%E7%94%9F%E6%88%90%EF%BD%9ERemote%E3%81%AB%E5%8F%8D%E6%98%A0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Github入門] branchをLocalで生成～Remoteに反映</a>
+                    <a href="/Tool-Tips/Github/github-branch%E3%82%92Local%E3%81%A7%E7%94%9F%E6%88%90%EF%BD%9ERemote%E3%81%AB%E5%8F%8D%E6%98%A0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Github入門] branchをLocalで生成～Remoteに反映</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
                     </p>
@@ -3649,7 +3888,7 @@
         
         <article class="media">
             
-            <a href="/2020/06/10/Github-x-Teams-Webhook-Notification%E3%81%AB%E3%82%88%E3%82%8B%E9%80%A3%E6%90%BA%E6%96%B9%E6%B3%95/" class="media-left">
+            <a href="/Tool-Tips/Github/Github-x-Teams-Webhook-Notification%E3%81%AB%E3%82%88%E3%82%8B%E9%80%A3%E6%90%BA%E6%96%B9%E6%B3%95/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84231133-6b921a00-ab28-11ea-8c0e-a47fb924b2c2.png" alt="Github x Teams Webhook/Notificationによる連携方法">
                 </p>
@@ -3658,7 +3897,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-10T04:31:51.000Z">2020-06-10</time></div>
-                    <a href="/2020/06/10/Github-x-Teams-Webhook-Notification%E3%81%AB%E3%82%88%E3%82%8B%E9%80%A3%E6%90%BA%E6%96%B9%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Github x Teams Webhook/Notificationによる連携方法</a>
+                    <a href="/Tool-Tips/Github/Github-x-Teams-Webhook-Notification%E3%81%AB%E3%82%88%E3%82%8B%E9%80%A3%E6%90%BA%E6%96%B9%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Github x Teams Webhook/Notificationによる連携方法</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
                     </p>
@@ -3668,7 +3907,26 @@
         
         <article class="media">
             
-            <a href="/2020/05/31/Angular-JavaScript-JSON%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF/" class="media-left">
+            <a href="/SmartHome/Gadget/popInAladdin-review/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84525352-73afac80-ad16-11ea-8a02-d5aa7fd846da.png" alt="popIn Aladdin2 レビュー 照明型プロジェクター　使用感/専用アプリ/投影サイズ/Alexa連携/設置方法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-06T08:36:02.000Z">2020-06-06</time></div>
+                    <a href="/SmartHome/Gadget/popInAladdin-review/" class="title has-link-black-ter is-size-6 has-text-weight-normal">popIn Aladdin2 レビュー 照明型プロジェクター　使用感/専用アプリ/投影サイズ/Alexa連携/設置方法</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/SmartHome/">SmartHome</a> / <a class="has-link-grey -link" href="/categories/SmartHome/Gadget/">Gadget</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/Serverless-Application-Dev/SPA-Angular/Angular-JavaScript-JSON%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/83424662-abda0400-a467-11ea-831a-2b146d29a1c5.png" alt="[Angular JavaScript] JSONファイル(複数)の読み込み">
                 </p>
@@ -3677,45 +3935,7 @@
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-31T14:16:54.000Z">2020-05-31</time></div>
-                    <a href="/2020/05/31/Angular-JavaScript-JSON%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular JavaScript] JSONファイル(複数)の読み込み</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/05/31/Angular-JSON%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%8C%96%E3%81%A8%E5%87%BA%E5%8A%9B-%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%8B%E3%82%89%E5%8F%96%E5%BE%97%E3%81%97%E3%81%9F%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E4%BB%BB%E6%84%8F%E3%81%AE%E5%90%8D%E7%A7%B0%E3%81%A7%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/83424662-abda0400-a467-11ea-831a-2b146d29a1c5.png" alt="[Angular JavaScript] JSONデータのファイル化と出力 ~クラウドから取得したデータを任意の名称で保存するロジック~ (TypeScript)">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-31T13:55:36.000Z">2020-05-31</time></div>
-                    <a href="/2020/05/31/Angular-JSON%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%8C%96%E3%81%A8%E5%87%BA%E5%8A%9B-%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%8B%E3%82%89%E5%8F%96%E5%BE%97%E3%81%97%E3%81%9F%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E4%BB%BB%E6%84%8F%E3%81%AE%E5%90%8D%E7%A7%B0%E3%81%A7%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular JavaScript] JSONデータのファイル化と出力 ~クラウドから取得したデータを任意の名称で保存するロジック~ (TypeScript)</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2020/05/28/Angular-mat-selection-list%E3%81%A7checkbox%E3%82%92%E8%A1%A8%E7%A4%BA%EF%BD%9E%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E5%BE%97/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/83426603-5bb07100-a46a-11ea-8093-bd0d6e517706.png" alt="[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-05-28T12:25:40.000Z">2020-05-28</time></div>
-                    <a href="/2020/05/28/Angular-mat-selection-list%E3%81%A7checkbox%E3%82%92%E8%A1%A8%E7%A4%BA%EF%BD%9E%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E5%BE%97/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得</a>
+                    <a href="/Serverless-Application-Dev/SPA-Angular/Angular-JavaScript-JSON%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Angular JavaScript] JSONファイル(複数)の読み込み</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
                     </p>
@@ -3740,7 +3960,7 @@
                     <span class="level-item">六月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -3973,7 +4193,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
-                        <span class="tag is-grey">6</span>
+                        <span class="tag is-grey">7</span>
                     </a>
                 </div>
                 
@@ -4190,6 +4410,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/plantUML/">
                         <span class="tag">plantUML</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/popIn-Aladdin2/">
+                        <span class="tag">popIn Aladdin2</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -4383,7 +4610,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 
-<a id="back-to-top" title="Zurück nach oben" href="javascript:;">
+<a id="back-to-top" title="Back to Top" href="javascript:;">
     <i class="fas fa-chevron-up"></i>
 </a>
 <script src="/js/back-to-top.js" defer></script>
