@@ -15,7 +15,7 @@ timezone: 'Asia/Tokyo'
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://j-xaas.github.io
 root: /
-permalink: :category/:title/ # permalink もデフォルトだと年月日が入って長ったらしいので :title や posts/:title に変えていい
+permalink: :title/ # permalink もデフォルトだと年月日が入って長ったらしいので :title や posts/:title に変えていい
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing index.html from permalinks
@@ -153,3 +153,9 @@ feed:
   content_limit_delim: ' '
   order_by: -date
 #  icon: icon.png
+
+
+#リダイレクト設定 alias?
+alias:
+  api/index.html: api/classes/Hexo.html
+  plugins/index.html: https://github.com/tommy351/hexo/wiki/Plugins
