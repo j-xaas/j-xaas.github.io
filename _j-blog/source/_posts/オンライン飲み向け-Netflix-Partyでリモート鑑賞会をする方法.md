@@ -8,7 +8,7 @@ tag:
 - Google Chrome
 - Netflix Party
 toc: true
-alias: /2020/04/08/オンライン飲み向け-Netflix-Partyでリモート鑑賞会をする方法
+alias: /2020/04/08/オンライン飲み向け-Netflix-Partyでリモート鑑賞会をする方法/
 ## redirect_from:
 ## - /2020/04/08/オンライン飲み向け-Netflix-Partyでリモート鑑賞会をする方法
 ---
