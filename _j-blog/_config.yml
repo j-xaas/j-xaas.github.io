@@ -98,7 +98,7 @@ sitemap:
 robotstxt:
   useragent: "*"
   disallow:
-    - /2020/02/04/About-This-Blog/
+    - /About-This-Blog/
     - /archives/
     - /categories/
     - /css/

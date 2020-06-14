@@ -31,9 +31,9 @@ navbar:
         Archives: /archives
         Categories: /categories
         Tags: /tags
-        About: /2020/02/04/About-This-Blog/ #/about
+        About: /About-This-Blog/ #/about
         EC: https://sheeps.official.ec/
-        Policy: /2020/03/18/Privacy-Policy/
+        Policy: /Privacy-Policy/
     # Navigation bar links to be shown on the right ここ消す？
     links:
         Download on GitHub:
