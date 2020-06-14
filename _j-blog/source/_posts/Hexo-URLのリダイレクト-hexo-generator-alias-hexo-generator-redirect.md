@@ -10,19 +10,19 @@ toc: true
 thumbnail: https://media.github-enterprise-9911a.paas1.nec-cloud.com/user/11/files/dd1dd280-ad8b-11ea-8807-e89852f3b1cc
 ---
 
+Hexoで生成したWEBページのURLリダイレクトの設定方法とプラグインについて解説します。
+
 <!-- toc -->
 
 ## リダイレクトが必要となる理由
-Hexoで生成したWEBページのURLはファイル名や設定を変更するだけで簡単に弄れますが、
-以下の理由でケアが必要になります
+Hexoで生成したWEBページのURLはファイル名や設定を弄るだけで簡単に変更できますが、以下の問題が発生します
 
 - Googleから重複記事とみなされる
-    - せっかく以前のURLでSEO一位でもそのままでは引き継げません
+    - 以前のURLでSEO一位でもそのままでは引き継げません
 - 古いURLのリンク元から辿ると404 Not Foundになってしまう
-![image](https://user-images.githubusercontent.com/41946222/84590736-116cbe00-ae74-11ea-88e8-ced291e619c8.png)
+![Github pages Not Found](https://user-images.githubusercontent.com/41946222/84601382-a2668800-aeba-11ea-9fc6-1573c593ecea.png)
 
-
-そこで、Googleに元のページのURLを変更したことを伝える（リダイレクト設定をする）必要があります
+上記の対策として、Google等の検索エンジンにURLの変更を伝え、ページへ誘導する仕組みを作る(リダイレクト設定をする）必要があります
 
 ## リダイレクト設定方法
 
@@ -32,10 +32,9 @@ Hexoで生成したWEBページのURLはファイル名や設定を変更する�
     - [hexo-generator-alias](https://github.com/hexojs/hexo-generator-alias)
         - 直接リダイレクト
     - [hexo-generator-redirect](https://www.npmjs.com/package/hexo-generator-redirect)
-        - リダイレクトページを独自に用意
+        - リダイレクトページを独自に用意。1秒程度でリダイレクト
 
-両方試したので解説します。
-
+両方試したので、それぞれ解説します。
 
 ## リダイレクト設定手順 hexo-generator-alias
 ### プラグインをinstall
@@ -48,13 +47,12 @@ npm install hexo-generator-alias --save-dev
 - 設定ファイル(_config.yml)に宣言
 
 ### 各記事のファイルでリダイレクトを宣言
-- Hexoの各記事のymlファイルの頭についている---で囲まれたFront-matterに alias: を足します
+- Hexoの各記事のymlファイルの頭についている---で囲まれた設定欄(Front-matter)に alias: を足します
 ```
 ---
 alias: 旧url/
 ---
 ```
-
 
 ### 設定例
 - 以下の記事が前URLでSEO一位になっていたので、リダイレクトしてみます

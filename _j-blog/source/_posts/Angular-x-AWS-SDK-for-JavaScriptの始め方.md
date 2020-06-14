@@ -8,11 +8,15 @@ tags:
 - Angular
 - AWS SDK for JavaScript
 toc: true
+alias: /2020/02/28/Angular-x-AWS-SDK-for-JavaScriptの始め方/
+thumbnail: https://user-images.githubusercontent.com/41946222/84601524-bf4f8b00-aebb-11ea-9bf6-33f5f99da852.png
 ---
 
-- angularで開発していたアプリケーションにaws-sdkを導入する際の備忘録
+- Angularで開発していたアプリケーションにaws-sdkを導入する際の備忘録
     - [AWS SDK](https://aws.amazon.com/jp/tools/)を入れることで、アプリケーションからAWSのリソースを操作可能になります
         - ex.) S3やDynamoDBへのデータの格納、Cognitoによる認証、Lambdaの実行...
+        - SDK: Software Development Kit
+          - 特定のソフトウェアを開発する際に必要なツールのセット
 - Angularの場合、公式の開発者ガイド通りにやると鬼のようにエラーが出るので共有しておきます。ひと手間必要でした。
 
 <!--toc-->
