@@ -8,6 +8,8 @@ tags:
 - Hexo
 - icarus
 toc: true
+thumbnail: https://user-images.githubusercontent.com/41946222/76524916-3c7af680-64ae-11ea-9a71-81530f93167c.png
+alias: /2020/03/13/Hexoテーマ-theme-変更-icarus/
 ---
 
 <div style="text-align:center;">

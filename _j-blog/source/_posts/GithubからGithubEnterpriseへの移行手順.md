@@ -8,6 +8,8 @@ tags:
 - Github.com
 - GithubEnterprise
 - GithubPages
+alias: /2020/02/09/GithubからGithubEnterpriseへの移行手順/
+thumbnail: https://user-images.githubusercontent.com/41946222/74919073-64c28880-540d-11ea-8b40-15036b3fee05.png
 ---
 
 <div style="text-align:center;">

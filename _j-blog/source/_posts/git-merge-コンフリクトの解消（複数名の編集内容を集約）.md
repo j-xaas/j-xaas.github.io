@@ -7,6 +7,8 @@ category:
 tags:
 - Github.com
 toc: true
+thumbnail: https://user-images.githubusercontent.com/41946222/78698206-f1cd8c80-793c-11ea-8887-0d93b944b50d.png
+alias: /2020/04/08/git-merge-コンフリクトの解消（複数名の編集内容を集約）/
 ---
 
 Githubで初級者がハマりがちなポイントについてです。  

@@ -8,6 +8,8 @@ tags:
 - WEB Page Dev
 - Hexo
 toc: true
+thumbnail: https://user-images.githubusercontent.com/41946222/77337436-3ae1e600-6d6c-11ea-919a-51893f317e71.png
+alias: /2020/03/23/Hexo-x-Github-Pages-5分以内にブログを自動生成して無料で公開するまで/
 ---
 
 こんにちは。今回は静的WEBサイトジェネレータの[Hexo](https://hexo.io/)を用いたWEBページの自動生成手法と、[Github Pages](https://help.github.com/ja/github/working-with-github-pages/about-github-pages)を用いた公開手法について解説します。”３分でできる”等という触れ込みを見て始めたのですが、当時素人だった私は相当ハマり諦めました...。初級者向けに説明が欠けている所を重点的にまとめようと思います。  
