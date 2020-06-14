@@ -8,8 +8,16 @@
     </url>
 
     <url>
+        <loc>https://j-xaas.github.io/About-This-Blog/</loc>
+        <lastmod>2020-06-14T14:34:25.938Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://j-xaas.github.io/%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E9%A3%B2%E3%81%BF%E5%90%91%E3%81%91-Netflix-Party%E3%81%A7%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%91%91%E8%B3%9E%E4%BC%9A%E3%82%92%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/</loc>
-        <lastmod>2020-06-14T14:16:18.393Z</lastmod>
+        <lastmod>2020-06-14T14:16:54.366Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -210,14 +218,6 @@
     <url>
         <loc>https://j-xaas.github.io/Angular%E5%85%A5%E9%96%80-%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%EF%BD%9EPJ%E3%81%AE%E9%96%8B%E5%A7%8B-%E5%9F%BA%E6%9C%AC%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/</loc>
         <lastmod>2020-06-01T15:40:14.826Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://j-xaas.github.io/About-This-Blog/</loc>
-        <lastmod>2020-05-17T14:18:12.266Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
