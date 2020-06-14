@@ -38,3 +38,6 @@ thumbnail: https://media.github-enterprise-9911a.paas1.nec-cloud.com/user/11/fil
     ![image](https://media.github-enterprise-9911a.paas1.nec-cloud.com/user/11/files/d8f0b580-ad89-11ea-9383-719c966598e3)
 
 - URLはWEBページのSEOに影響するので余計な箇所は削りましょう
+
+- URLを変更したらリダイレクトの設定も一緒に行いましょう。Google検索でも古い方のURLが出てしまうためです。
+    - [Hexo URLのリダイレクト (hexo-generator-alias/hexo-generator-redirect](/Hexo-URLのリダイレクト-hexo-generator-alias-hexo-generator-redirect/)

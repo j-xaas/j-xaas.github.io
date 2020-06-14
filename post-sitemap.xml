@@ -8,6 +8,22 @@
     </url>
 
     <url>
+        <loc>https://j-xaas.github.io/Hexo-%E8%A8%98%E4%BA%8B%E3%81%AEURL%E3%82%92%E5%A4%89%E6%9B%B4/</loc>
+        <lastmod>2020-06-14T12:59:18.480Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://j-xaas.github.io/Hexo-URL%E3%81%AE%E3%83%AA%E3%83%80%E3%82%A4%E3%83%AC%E3%82%AF%E3%83%88-hexo-generator-alias-hexo-generator-redirect/</loc>
+        <lastmod>2020-06-14T12:55:34.743Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://j-xaas.github.io/%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E9%A3%B2%E3%81%BF%E5%90%91%E3%81%91-Netflix-Party%E3%81%A7%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%91%91%E8%B3%9E%E4%BC%9A%E3%82%92%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/</loc>
         <lastmod>2020-06-14T12:28:49.193Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -18,14 +34,6 @@
     <url>
         <loc>https://j-xaas.github.io/popInAladdin-review/</loc>
         <lastmod>2020-06-13T07:50:15.230Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://j-xaas.github.io/Hexo-%E8%A8%98%E4%BA%8B%E3%81%AEURL%E3%82%92%E5%A4%89%E6%9B%B4/</loc>
-        <lastmod>2020-06-13T06:46:02.402Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
