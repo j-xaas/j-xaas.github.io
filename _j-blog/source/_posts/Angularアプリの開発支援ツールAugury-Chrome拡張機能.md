@@ -8,6 +8,8 @@ tags:
 - Angular
 - Augury
 toc: true
+thumbnail: https://user-images.githubusercontent.com/41946222/74917091-5030c100-540a-11ea-9060-2d05fc6c6c23.png
+alias: /2020/02/20/Angularアプリの開発支援ツールAugury-Chrome拡張機能/
 ---
 
 - 今回はAngularでWEBアプリを開発する際に簡単に利用できるツールを紹介します

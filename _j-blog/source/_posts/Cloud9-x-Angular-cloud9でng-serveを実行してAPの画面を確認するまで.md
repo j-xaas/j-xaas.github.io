@@ -9,6 +9,7 @@ tags:
 - AWS
 - cloud9
 toc: true
+thumbnail: https://user-images.githubusercontent.com/41946222/84594934-3bcc7480-ae90-11ea-925a-580c62ac983d.png
 ---
 
 Angularの開発であれば、小まめにWEB APの画面を確認しながら進めるのが一般的だと思います。ただ、開発環境にcloud9を採用する場合は、ng serveを実行する際に一手間必要になります。初級者が必ずと言っていいほどハマるポイントなので解説をおいておきます

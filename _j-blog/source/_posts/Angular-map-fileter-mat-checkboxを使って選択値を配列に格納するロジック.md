@@ -10,6 +10,7 @@ tags:
 - 'filter()'
 - 'mat-checkbox'
 toc: true
+thumbnail: https://user-images.githubusercontent.com/41946222/84595025-b72e2600-ae90-11ea-8eb7-9e1a14a34a36.png
 ---
 
 - 複数のチェックボックスの中で選択項目を判別して、それぞれの固有値を配列に格納するロジックの作り方を解説します。

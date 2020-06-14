@@ -10,6 +10,7 @@ tags:
 - Firebase
 - Hosting
 - AngularFire
+thumbnail: https://user-images.githubusercontent.com/41946222/84594849-cbbdee80-ae8f-11ea-932b-d2636902fdc3.png
 ---
 
 こんにちは。今回はFirebase Hostingについての解説です。

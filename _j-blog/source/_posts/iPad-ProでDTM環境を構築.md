@@ -9,6 +9,8 @@ tags:
 - DTM
 - Alexa
 toc: true
+thumnail: https://user-images.githubusercontent.com/41946222/77458671-eb6de980-6e41-11ea-96b1-b60dd63aef66.png
+alias: /2020/03/25/iPad-ProでDTM環境を構築/
 ---
 
 こんにちは。先日、新しい[iPad 2020(第４世代)](https://amzn.to/2WMiw3M)を購入しました。発売当日に受け取り、即DTM環境を作ってみました（たぶん世界最速）Alexaにより、セッティングも自動化しました。シンプルな構成なので、入門者の方も良かったら参考にしてみてください。  

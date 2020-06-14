@@ -9,6 +9,7 @@ tags:
 - Schematics
 - Angular Material
 toc: true
+thumbnail: https://user-images.githubusercontent.com/41946222/84594690-0410fd00-ae8f-11ea-8ad2-efb9a4477226.png
 ---
 
 今回はAngular開発におけるComponentの自動生成手法について解説します。  

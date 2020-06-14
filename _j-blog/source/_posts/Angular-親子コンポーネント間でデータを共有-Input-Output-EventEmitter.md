@@ -10,6 +10,8 @@ tags:
 - '@Output'
 - '@EventEmitter'
 toc: true
+thumbnail: https://user-images.githubusercontent.com/41946222/84595070-f52b4a00-ae90-11ea-809e-92333129b46f.png
+alias: /2020/04/10/Angular-親子コンポーネント間でデータを共有-Input-Output-EventEmitter/
 ---
 
 [Angular](https://angular.jp/)のコンポーネント間ではデータをそのまま共有することはできません。初級者が躓くポイントの一つだと思うので、解説をまとめておきます。  

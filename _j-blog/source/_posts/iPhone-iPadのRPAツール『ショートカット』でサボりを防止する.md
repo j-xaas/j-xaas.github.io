@@ -11,6 +11,8 @@ tags:
 - ショートカット
 - Siri
 toc: true
+thumbnail: https://user-images.githubusercontent.com/41946222/84595264-d083a200-ae91-11ea-9d57-a9b0a6e0ac4b.png
+alias: /2020/04/09/iPhone-iPadのRPAツール『ショートカット』でサボりを防止する/
 ---
   
 　サボりを防止するために、勉強と関係の無いアプリを開いたら自動的に叱られるようにしてみました。  

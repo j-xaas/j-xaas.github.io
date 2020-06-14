@@ -11,6 +11,7 @@ tags:
 - DTM
 - リモートセッション
 toc: true
+thumbnail: https://user-images.githubusercontent.com/41946222/79638131-f573d580-81be-11ea-8b4b-16d9d6b1f351.png 
 ---
 
 先日4/6にYAMAHAより新しい遠隔合奏サービス「SYNCROOM」が発表されました。  

@@ -9,6 +9,7 @@ tags:
 - DTM
 - Cubase ai
 toc: true
+thumbnail: https://user-images.githubusercontent.com/41946222/79885198-61f60b00-8431-11ea-97cc-6298ae1c92a3.png
 ---
 
 PCでDTM環境を構築するまでを解説します。InterfaceにはSteinberg UR44Cを採用しています。  
