@@ -9,7 +9,7 @@ tags:
 - Github
 - CI/CD
 toc: true
-thumbnails: https://user-images.githubusercontent.com/41946222/84237105-bb2a1300-ab33-11ea-8919-3648fce00556.png
+thumbnail: https://user-images.githubusercontent.com/41946222/84656875-59f8aa00-af4e-11ea-8cab-1639fd85a51c.png
 ---
 
 <!-- toc -->
@@ -100,7 +100,7 @@ thumbnails: https://user-images.githubusercontent.com/41946222/84237105-bb2a1300
 - 環境変数は共有できない。
   - jobs.<job_id>.envで定義した環境変数は全Step で利用できる
 
-## ワークフローの検討
+## 開発フローの検討
 分散開発におけるGit flowを検討しました
 
 ### 例：S3(AWS)でAPをHostngしているケースの作業
