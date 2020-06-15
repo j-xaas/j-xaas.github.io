@@ -164,6 +164,398 @@
     
 <div class="card">
     
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-06-15T08:35:02.000Z">2020-06-15</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Tool-Tips/CI-CD-Github-Actions/">CI/CD(Github Actions)</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    19分 read (About 2853 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/CI-CD%E5%85%A5%E9%96%80-Github-Actions%E3%81%A7%E3%83%93%E3%83%AB%E3%83%89-%E3%83%86%E3%82%B9%E3%83%88-%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%82%92%E8%87%AA%E5%8B%95%E5%8C%96/">[CI/CD入門] Github Actionsでビルド/テスト/デプロイを自動化</a>
+            
+        </h1>
+        <div class="content">
+            <!-- toc -->
+
+<ul>
+<li><a href="#cicdとは">CI/CDとは</a></li>
+<li><a href="#github-actions解説">Github Actions解説</a><ul>
+<li><a href="#概要">概要</a></li>
+<li><a href="#料金">料金</a></li>
+<li><a href="#注意点">注意点</a></li>
+<li><a href="#ワークフローの定義">ワークフローの定義</a></li>
+<li><a href="#ワークフローyamlファイルの構造">ワークフロー(YAMLファイル)の構造</a></li>
+<li><a href="#job">Job</a></li>
+<li><a href="#step">Step</a></li>
+</ul>
+</li>
+<li><a href="#ワークフローの検討">ワークフローの検討</a><ul>
+<li><a href="#例s3awsでapをhostngしているケースの作業">例：S3(AWS)でAPをHostngしているケースの作業</a></li>
+<li><a href="#github-actionsを利用した開発フロー">Github Actionsを利用した開発フロー</a></li>
+</ul>
+</li>
+<li><a href="#実装">実装</a><ul>
+<li><a href="#使い方">使い方</a></li>
+<li><a href="#githubブラウザ側で設定">Githubブラウザ側で設定</a></li>
+<li><a href="#loacalリポジトリで作業する場合">Loacalリポジトリで作業する場合</a></li>
+<li><a href="#workflowテンプレートの開発">Workflowテンプレートの開発</a><ul>
+<li><a href="#triggerを指定">Triggerを指定</a></li>
+<li><a href="#実行環境を設定">実行環境を設定</a></li>
+<li><a href="#actionの設定">actionの設定</a></li>
+<li><a href="#checkout">checkout</a></li>
+<li><a href="#環境設定">環境設定</a></li>
+<li><a href="#build">build</a></li>
+<li><a href="#処理実行後にpush">処理実行後にpush</a></li>
+</ul>
+</li>
+<li><a href="#github-actionsのステータス">Github Actionsのステータス</a></li>
+</ul>
+</li>
+<li><a href="#参考">参考</a><ul>
+<li><a href="#github-actions">Github Actions</a></li>
+<li><a href="#s3">S3</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="cicdとは">CI/CDとは</span></h2><p>開発の効率化を目的とした、以下の思想を指します。</p>
+<ul>
+<li>CI (継続的インテグレーション)<ul>
+<li>テスト, ビルド等を自動化して小まめに行う</li>
+</ul>
+</li>
+<li>CD (継続的デリバリー)<ul>
+<li>本番環境へのデプロイを自動化して小まめに行う</li>
+</ul>
+</li>
+</ul>
+<p>上記を実現するために様々なツール(ex. jenkins, Circle CI…)があり、Githubと連携させて利用するのが一般的です。2020にGithubが自ら打ち出した新たなサービスがGithub Actionsです。</p>
+<h2><span id="github-actions解説">Github Actions解説</span></h2><h3><span id="概要">概要</span></h3><ul>
+<li><a href="https://github.co.jp/features/actions">Github Actions</a><ul>
+<li>Githubが提供している機能の一つ</li>
+<li>機能：ワークフローの自動化<ul>
+<li>pushやmergeを起点に自動で何らかのアクションを実行</li>
+<li>ex. テストの自動化、Buildの自動化、本番環境へのデプロイの自動化</li>
+</ul>
+</li>
+<li>ymlファイル形式でワークフローを定義して使う</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/84237526-75ba1580-ab34-11ea-8a58-0c710ef8bf93.png" alt="workflow"></p>
+<ul>
+<li><p>魅力</p>
+<ul>
+<li>工数削減<ul>
+<li>従来のようにGitと他のツールを連携させる手間が無くなる。設定/学習コストの削減を期待できる</li>
+</ul>
+</li>
+<li>再利用性<ul>
+<li>作成したWrokflowをGitでそのまま管理して、使いまわせる</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Marketplaceから他のユーザが作成済みのActionを利用可能</p>
+<ul>
+<li>試しにAngularで検索してみると以下が表示された</li>
+<li><a href="https://github.com/marketplace?type=actions&query=Angular">Github Actions Marketplace Angular</a></li>
+</ul>
+</li>
+<li><p>S3/Firebase/Github Pages等のHostingサービスへの自動デプロイやテストを実行するActionを一般ユーザが作って公開してくれている</p>
+<ul>
+<li>ソースを更新して、GitにPushしただけで瞬時に本番環境も更新できるスピーディーな運用をパッと実現できそうです</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/84236499-aef18600-ab32-11ea-85ad-1c1320084897.png" alt="Actions"></p>
+<h3><span id="料金">料金</span></h3><ul>
+<li><p>Publicリポジトリ</p>
+<ul>
+<li>無料</li>
+</ul>
+</li>
+<li><p>Privateリポジトリ</p>
+<ul>
+<li>従量課金性<br><img src="https://user-images.githubusercontent.com/41946222/84237765-e4976e80-ab34-11ea-9cbe-e51ab8749faf.png" alt="料金"></li>
+</ul>
+</li>
+<li><p>大規模開発でなければ、無料で使えそう</p>
+</li>
+</ul>
+<h3><span id="注意点">注意点</span></h3><ul>
+<li>レガシープランユーザの場合は利用できないらしいので、GHE(Github Enterprise)を会社で利用している方は確認してください。リポジトリにActionタブが無い場合はレガシープランかもしれません。<ul>
+<li>公式説明<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Github Actionsはレガシープランユーザはご利用できません。</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="ワークフローの定義">ワークフローの定義</span></h3><ul>
+<li>定義方法<ul>
+<li>リポジトリにworkflowディレクトリを作成<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.github&#x2F;workflows&#x2F;</span><br></pre></td></tr></table></figure></li>
+<li>YAMLファイルを配置<ul>
+<li>ここにワークフローを定義</li>
+<li>ファイルがワークフローの単位となる</li>
+<li>ファイルは複数可、並列で実行される</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="ワークフローyamlファイルの構造">ワークフロー(YAMLファイル)の構造</span></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ワークフロー（YAMLファイル）</span><br><span class="line">  └ jobs:</span><br><span class="line">    └ ジョブ(名前は任意)</span><br><span class="line">       └ steps:</span><br><span class="line">         └ アクション</span><br></pre></td></tr></table></figure>
+
+<h3><span id="job">Job</span></h3><ul>
+<li>各ジョブは仮想環境の新しいインスタンスで実行される。</li>
+<li>ジョブ間で環境変数やファイル、セットアップ処理の結果などは共有されない。</li>
+<li>ジョブ間の依存を定義して待ち合わせることができる。</li>
+<li>データの受け渡しが必要ならアーティファクト経由</li>
+</ul>
+<h3><span id="step">Step</span></h3><ul>
+<li>Jobが実行する処理の集合。</li>
+<li>同じJobのStepは同じ仮想環境で実行されるのでファイルやセットアップ処理は共有できる。しかし各ステップは別プロセスなのでステップ内で定義した</li>
+<li>環境変数は共有できない。<ul>
+<li>jobs.<job_id>.envで定義した環境変数は全Step で利用できる</job_id></li>
+</ul>
+</li>
+</ul>
+<h2><span id="ワークフローの検討">ワークフローの検討</span></h2><p>分散開発におけるGit flowを検討しました</p>
+<h3><span id="例s3awsでapをhostngしているケースの作業">例：S3(AWS)でAPをHostngしているケースの作業</span></h3><ul>
+<li><p>APを改修して、本番環境に変更を反映するまでに必要な作業</p>
+<ol>
+<li>開発</li>
+<li>gitへpush</li>
+<li>PullRequest レビュー ⇒ Master Merge</li>
+<li>Build</li>
+<li>本番環境へデプロイ</li>
+</ol>
+</li>
+<li><p>Masterが更新される度に、Buildしてデプロイする単純作業(4 &amp; 5)を自動化したい</p>
+</li>
+<li><p>やり方は２通りありそう</p>
+<ul>
+<li>Github Actionsでbuildとdeployを実行</li>
+<li>GithubからはWebhookのみ、AWS上でCode Builderを起動させてBuild、Code Deployでdeployを実行</li>
+</ul>
+</li>
+</ul>
+<h3><span id="github-actionsを利用した開発フロー">Github Actionsを利用した開発フロー</span></h3><ol>
+<li>個人で担当箇所を開発</li>
+<li>Gitの個人Branchにpush</li>
+<li>Pull Request レビューを実施</li>
+<li>Masterへmerge</li>
+<li>Github Actionsが起動<ul>
+<li>Buildを実行</li>
+<li>(KarmaによるE2Eテストを実行)</li>
+<li>本番環境(etc. S3/Firebase…)へデプロイ</li>
+<li>Slack or Teamsに通知(ここはWebhookやNotificationを使ってもOK)</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2><span id="実装">実装</span></h2><h3><span id="使い方">使い方</span></h3><ul>
+<li>workflowを定義したymlファイルを作ります<ul>
+<li>以下の例のように配置したymlファイルが読み込まれます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">your-repository\.github\workflows\sample.yml</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>workflowの生成方法（以下のどちらか）<ul>
+<li>Githubのブラウザ(Actionタブ)から設定</li>
+<li>Local Repositoryで生成してpush</li>
+</ul>
+</li>
+</ul>
+<h3><span id="githubブラウザ側で設定">Githubブラウザ側で設定</span></h3><ul>
+<li>Githubの任意のリポジトリのActionタブで設定を行う<ul>
+<li>Github Enterpriseを利用中でActionタブが無い場合<ul>
+<li>レガシープランユーザーの可能性があるので、契約の確認が必要<ul>
+<li>公式説明<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GitHub Actionsはレガシープランユーザーではご利用できません。</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/84634978-88b25880-af2d-11ea-915f-78e5029a5d52.png" alt="Github Actions"></p>
+<ul>
+<li>ブラウザでそのままディレクトリとwrokflowファイルを生成できます<ul>
+<li>set up a workflow yourselfを押下すると以下の様画面に飛びます</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/84640899-47be4200-af35-11ea-9203-4ff973598067.png" alt="Workflow編集画面"></p>
+<ul>
+<li>Actionsタブを確認<ul>
+<li>先ほど生成されたworkflowが実行されていることが分かります</li>
+<li>New workflowを押下してworkflowを追加していけます</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/84642036-e13a2380-af36-11ea-8214-5048fa7e82a8.png" alt="Actionsタブ"></p>
+<h3><span id="loacalリポジトリで作業する場合">Loacalリポジトリで作業する場合</span></h3><ul>
+<li><p>ディレクトリを作成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">your-repository&gt; mkdir .github&#x2F;workflows&#x2F;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>YAMLファイルを作成</p>
+<ul>
+<li>名称の規則は無し<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">your-repository.github&#x2F;workflows&#x2F;&gt; touch sample.yml</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>そのままymlファイルを編集してGitにpushすれば、Github Actionsが動くようになります</p>
+</li>
+</ul>
+<h3><span id="workflowテンプレートの開発">Workflowテンプレートの開発</span></h3><ul>
+<li>Buildを実行する設定例<ul>
+<li>解説を後述します<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">name: Angular CI&#x2F;CD ## workflow名を設定</span><br><span class="line">on:  ## workflowのTriggerを定義</span><br><span class="line">  push: ## push時に発火 他例) pull request</span><br><span class="line">    branches: ## 条件でmaster branchへのpushに限定</span><br><span class="line">      - master</span><br><span class="line"></span><br><span class="line">jobs: ## ここで実行するジョブを指定</span><br><span class="line">  build: ## buildという名目のジョブを定義</span><br><span class="line">    ## 実行環境 Github Actions提供の仮想サーバー</span><br><span class="line">    runs-on: ubuntu-latest ## Ubuntsの最新版環境を指定</span><br><span class="line">    strategy:</span><br><span class="line">      matrix:</span><br><span class="line">        node-version: [12.x]</span><br><span class="line"></span><br><span class="line">    steps: ## ここで実行する処理&#x2F;コマンドを定義</span><br><span class="line"></span><br><span class="line">    ## github actionsの環境にリポジトリのソースを持ってくる</span><br><span class="line">    - uses: actions&#x2F;checkout@v2</span><br><span class="line"></span><br><span class="line">    ## 環境構築が必要</span><br><span class="line">    - name: install</span><br><span class="line">      run: npm install -g @angular&#x2F;cli</span><br><span class="line"></span><br><span class="line">    ## -----CI(継続的インテグレーション)----</span><br><span class="line">    ## Buildするアクション</span><br><span class="line">    - name: Build ## アクション名</span><br><span class="line">      ## 実行するコマンド</span><br><span class="line">      run: ng build --prod ## npm run build:prod?</span><br><span class="line"></span><br><span class="line">    ## Github Actions環境(仮想サーバー)で処理実行後にpushする必要がある</span><br><span class="line">    - name: Push Build to Releases</span><br><span class="line">      uses: ncipollo&#x2F;release-action@v1</span><br><span class="line">      with:</span><br><span class="line">        artifacts: &quot;dist&#x2F;angular-githubaction&#x2F;*&quot;</span><br><span class="line">        token: $&#123;&#123; secrets.TOKEN &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="triggerを指定">Triggerを指定</span></h4><ul>
+<li>on: でworkflowが発火するタイミングを指定できます<ul>
+<li>以下はmaster mergeの実行時を指定<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">on:  ## workflowのTriggerを定義</span><br><span class="line">  push: ## push時に発火 他例) pull request</span><br><span class="line">    branches: ## 条件でmaster branchへのpushに限定</span><br><span class="line">      - master</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="実行環境を設定">実行環境を設定</span></h4><ul>
+<li>Github Actionsは裏側で仮想サーバーが動きます<ul>
+<li>今回はLinux (Ubunts)を設定</li>
+<li>WindowsやMacOS等、一通り揃っています</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## 実行環境 Github Actions提供の仮想サーバー</span><br><span class="line">runs-on: ubuntu-latest ## Ubuntsの最新版環境を指定</span><br><span class="line">strategy:</span><br><span class="line">  matrix:</span><br><span class="line">    node-version: [12.x]</span><br></pre></td></tr></table></figure>
+
+<h4><span id="actionの設定">actionの設定</span></h4><ul>
+<li><p>ワークフローの最小単位</p>
+</li>
+<li><p>２種類ある</p>
+<ul>
+<li>run<ul>
+<li>コマンドを実行</li>
+</ul>
+</li>
+<li>use<ul>
+<li>Githubやサードパーティの公開actionを利用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>設定の流れ</p>
+<ul>
+<li>まず公開のアクションがないか探してみる</li>
+<li>なければ実行したいコマンドをrunで設定</li>
+</ul>
+</li>
+</ul>
+<h4><span id="checkout">checkout</span></h4><ul>
+<li>まずはgithub actionsで利用する仮想サーバーにリポジトリのソースコードを持ってくる必要があります<ul>
+<li>Githubが事前に公開アクション（actions/checkout@v2）を用紙してくれているので、そちらを使います</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## github actionsの環境にリポジトリのソースを持ってくる</span><br><span class="line">- uses: actions&#x2F;checkout@v2</span><br></pre></td></tr></table></figure>
+
+
+<h4><span id="環境設定">環境設定</span></h4><ul>
+<li><p>今回はAngularのコマンドを実行するためにNode.jsをinstallする必要があります</p>
+</li>
+<li><p>参考</p>
+<ul>
+<li><a href="https://help.github.com/en/actions/language-and-framework-guides/using-nodejs-with-github-actions">Using Node.js with GitHub Actions</a></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">steps:</span><br><span class="line">- uses: actions&#x2F;checkout@v2</span><br><span class="line">- name: Use Node.js $&#123;&#123; matrix.node-version &#125;&#125;</span><br><span class="line">  uses: actions&#x2F;setup-node@v1</span><br><span class="line">  with:</span><br><span class="line">    node-version: $&#123;&#123; matrix.node-version &#125;&#125;</span><br><span class="line">- run: npm install</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>runでinstallコマンドを実行させます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## 環境構築が必要</span><br><span class="line">- name: install</span><br><span class="line">  run: npm install -g @angular&#x2F;cli</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h4><span id="build">build</span></h4><ul>
+<li>runでbuilのコマンドを実行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## -----CI(継続的インテグレーション)----</span><br><span class="line">## Buildするアクション</span><br><span class="line">- name: Build ## アクション名</span><br><span class="line">  ## 実行するコマンド</span><br><span class="line">  run: ng build --prod</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4><span id="処理実行後にpush">処理実行後にpush</span></h4><ul>
+<li>Github Actions環境(仮想サーバー)で処理実行したため、リポジトリへpushして反映する必要がある<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- name: Push Build to Releases</span><br><span class="line">  uses: ncipollo&#x2F;release-action@v1</span><br><span class="line">  with:</span><br><span class="line">    artifacts: &quot;dist&#x2F;angular-githubaction&#x2F;*&quot;</span><br><span class="line">    token: $&#123;&#123; secrets.TOKEN &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h3><span id="github-actionsのステータス">Github Actionsのステータス</span></h3><ul>
+<li>実行時<br><img src="https://user-images.githubusercontent.com/41946222/84649987-6971f600-af42-11ea-9ce4-5fa4cc1a037f.png" alt="In progress"></li>
+</ul>
+<h2><span id="参考">参考</span></h2><h3><span id="github-actions">Github Actions</span></h3><ul>
+<li><a href="https://help.github.com/en/actions">Github Actions Document</a></li>
+<li><a href="https://help.github.com/ja/actions/reference/context-and-expression-syntax-for-github-actions">GitHub Actions のコンテキストおよび式の構文</a></li>
+</ul>
+<ul>
+<li><p><a href="https://knowledge.sakura.ad.jp/23478/">GitHubの新機能「GitHub Actions」で試すCI/CD</a></p>
+</li>
+<li><p><a href="https://qiita.com/HeRo/items/935d5e268208d411ab5a">Github Actionsの使い方メモ</a></p>
+</li>
+<li><p><a href="https://qiita.com/HeRo/items/e2d5e3bc3dbe810f0482">Github Action の作り方メモ</a></p>
+</li>
+<li><p><a href="https://github.com/sdras/awesome-actions">AWESOME ACTIONS　お勧めアクションやツール</a></p>
+</li>
+<li><p><a href="https://medium.com/better-programming/building-angular-apps-using-github-actions-bf916b56ed0c">Building Angular Apps Using GitHub Actions</a></p>
+<ul>
+<li>buildの記載例</li>
+</ul>
+</li>
+</ul>
+<h3><span id="s3">S3</span></h3><ul>
+<li><a href="https://qiita.com/BBA/items/4de0132e63a371da4626">AWS S3にAngularアプリをデプロイする手順</a></li>
+<li><a href="https://s8a.jp/angular-github-aws-s3-auto-deploy#%E5%8B%95%E4%BD%9C%E7%A2%BA%E8%AA%8D">Angularで作ったWebアプリをGitHubで管理してS3に自動デプロイする</a></li>
+<li><a href="https://blog.web.nifty.com/engineer/2401">AWS初心者の私がAmazon S3のStatic website hostingを利用して静的Webページをホスティングしてみました</a></li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
     <div class="card-image">
         <a href="/github-branch%E3%82%92Local%E3%81%A7%E7%94%9F%E6%88%90%EF%BD%9ERemote%E3%81%AB%E5%8F%8D%E6%98%A0/" class="image is-7by1">
             <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84248013-d00ea280-ab43-11ea-8ce0-6a161632c3ea.png" alt="[Github入門] branchをLocalで生成～Remoteに反映">
@@ -2205,152 +2597,25 @@
 
 
 
+
     
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/Github%E3%81%8B%E3%82%89GithubEnterprise%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86/" class="image is-7by1">
-            <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/74919073-64c28880-540d-11ea-8b40-15036b3fee05.png" alt="Github.comからGithubEnterpriseへの移行手順">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-09T13:52:47.000Z">2020-02-09</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4分 read (About 668 words)
-                </span>
-                
-                
-            </div>
+<div class="card card-transparent">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous is-invisible is-hidden-mobile">
+            <a class="is-flex-grow has-text-black-ter" href="/categories/Tool-Tips/page/0/">前</a>
         </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/Github%E3%81%8B%E3%82%89GithubEnterprise%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86/">Github.comからGithubEnterpriseへの移行手順</a>
-            
-        </h1>
-        <div class="content">
-            <div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/74919073-64c28880-540d-11ea-8b40-15036b3fee05.png" height="150px" width="400px">
-</div>
-
-
-<h2><span id="概要">概要</span></h2><ul>
-<li>リポジトリ移行(Github⇒GHE)の備忘録です</li>
-<li>想定する状況<ul>
-<li>Organizationごと中身をまるまる移行したいパターン</li>
-<li>Commitログ等は特に移行する必要無く、シンプルな手法で手早く終わらせたい</li>
-</ul>
-</li>
-<li>事前調査 <ul>
-<li>organization単位の以降はできない</li>
-<li>リポジトリ単位の移行は可能</li>
-<li>GHE内に同じ名称のOrganizationやリポジトリを作成可能<ul>
-<li>★一意性のチェックがGithub側とは隔絶されている</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2><span id="手順">手順</span></h2><h3><span id="1-gheでorganizationを作成">1. GHEでOrganizationを作成</span></h3><ul>
-<li>Githubと同様の名称で問題無し<ul>
-<li>URLは前半が企業ごとのものに変わる</li>
-<li>SiteAdmin権限が必要<ul>
-<li>GUIで操作</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="2-gheでリポジトリを作成">2. GHEでリポジトリを作成</span></h3><ul>
-<li>Github.com側と同様の名称で問題無し<ul>
-<li>空のリポジトリを一通り作成<ul>
-<li>GUIで操作</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="3-local端末で移行対象のリポジトリのデータを退避">3. Local端末で移行対象のリポジトリのデータを退避</span></h3><ul>
-<li>各リポジトリの中身をデスクトップ等へコピー</li>
-<li>Gitリポジトリの管理場所:Dドライブから削除<ul>
-<li>この後、GHEから同様の名称のリポジトリをCloneするため</li>
-<li>Dドライブでlsコマンドを打って削除されたことを確認</li>
-</ul>
-</li>
-</ul>
-<h3><span id="4-gheからlocalへclone">4. GHEからLocalへClone</span></h3><ul>
-<li>各リポジトリ（空）を端末へClone<ul>
-<li>URLはリポジトリのページの”Clone or download”タブより確認<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone &lt;リポジトリのURL&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="5-cloneした空リポジトリに退避データをコピー">5. Cloneした空リポジトリに退避データをコピー</span></h3><ul>
-<li>GHEからCloneした空リポジトリへ、退避場所からコピー</li>
-</ul>
-<h3><span id="6-gheのremoteにデータを登録">6. GHEのRemoteにデータを登録</span></h3><ul>
-<li>各リポジトリで以下の作業を実施する</li>
-<li>変更内容を保存<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add *</span><br><span class="line">git commit &quot;Repository Migration&quot;</span><br></pre></td></tr></table></figure></li>
-<li>Remoteへ送信<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br></pre></td></tr></table></figure>
-<h4><span id="github-pagesが含まれている場合">Github Pagesが含まれている場合</span></h4></li>
-<li>_config.ymlに設定する公開URLを変更する必要がある</li>
-<li>GHEにおけるGithub PagesのURLは以下のようになる<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;pages.&lt;gheのURL&gt;&#x2F;&lt;Organization名 or ユーザ名&gt;&#x2F;&lt;リポジトリ名&gt;.io</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3><span id="7-gheで確認">7. GHEで確認</span></h3><ul>
-<li><p>GHEの問題無くデータが移行できていることを確認</p>
-</li>
-<li><p>Github pagesが含まれていたため、ブラウザで表示されるようにする</p>
-</li>
-<li><p>リポジトリのSettingsより、以下のようにGithub pagesを有効にしてSave</p>
-</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://media.github-enterprise-16ae0.paas1.nec-cloud.com/user/16/files/e0a2e680-49b2-11ea-802c-f247b17a1e04" height="100%" width="100%">
-</div>
-
-
-<ul>
-<li>GHEにおけるGithub PagesのURLは以下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;pages.&lt;gheのURL&gt;&#x2F;&lt;Organization名 or ユーザ名&gt;&#x2F;&lt;リポジトリ名&gt;.io</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3><span id="8-githubcomより移行元を削除">8. Github.comより移行元を削除</span></h3><ul>
-<li>リポジトリを削除</li>
-<li>Organizationを削除<ul>
-<li>管理者権限が必要</li>
-</ul>
-</li>
-</ul>
-
+        <div class="pagination-next">
+            <a class="is-flex-grow has-text-black-ter" href="/categories/Tool-Tips/page/2/">次</a>
         </div>
-        
-        
-        
-    </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link is-current" href="/categories/Tool-Tips/">1</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/categories/Tool-Tips/page/2/">2</a></li>
+            
+        </ul>
+    </nav>
 </div>
-
-
-
-
-
-
-
-
 </div>
                 
 
@@ -2396,7 +2661,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            39
+                            40
                         </p>
                     </a>
                 </div>
@@ -2408,7 +2673,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            16
+                            17
                         </p>
                     </a>
                 </div>
@@ -2420,7 +2685,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            64
+                            66
                         </p>
                     </a>
                 </div>
@@ -2584,12 +2849,20 @@
                 <span class="level-item">Tool Tips</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">10</span>
+                <span class="level-item tag">11</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Tool-Tips/AWS-Cloud9/">
             <span class="level-start">
                 <span class="level-item">AWS Cloud9</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Tool-Tips/CI-CD-Github-Actions/">
+            <span class="level-start">
+                <span class="level-item">CI/CD(Github Actions)</span>
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
@@ -2661,7 +2934,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 12px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 12px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/CI-CD/" style="font-size: 10px;">CI/CD</a> <a href="/tags/Cloud-Craft/" style="font-size: 10px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/DTM/" style="font-size: 14px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 12px;">Firebase</a> <a href="/tags/Github-com/" style="font-size: 16px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 18px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/JSON/" style="font-size: 12px;">JSON</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/Mind-Node/" style="font-size: 10px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 10px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 12px;">RPA</a> <a href="/tags/SYNCROOM/" style="font-size: 10px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 12px;">Steinberg UR44C</a> <a href="/tags/Teams/" style="font-size: 10px;">Teams</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/TypeScript/" style="font-size: 12px;">TypeScript</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="/tags/cloud9/" style="font-size: 14px;">cloud9</a> <a href="/tags/draw-io/" style="font-size: 10px;">draw.io</a> <a href="/tags/filter/" style="font-size: 12px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 14px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 14px;">icarus</a> <a href="/tags/map/" style="font-size: 12px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 12px;">mat-checkbox</a> <a href="/tags/mat-selection-list/" style="font-size: 10px;">mat-selection-list</a> <a href="/tags/ngFor/" style="font-size: 10px;">ngFor</a> <a href="/tags/plantUML/" style="font-size: 10px;">plantUML</a> <a href="/tags/popIn-Aladdin2/" style="font-size: 10px;">popIn Aladdin2</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 12px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C/" style="font-size: 12px;">ファイル操作</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 12px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 12px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/CI-CD/" style="font-size: 12px;">CI/CD</a> <a href="/tags/Cloud-Craft/" style="font-size: 10px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/DTM/" style="font-size: 14px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 12px;">Firebase</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Github-Actions/" style="font-size: 10px;">Github Actions</a> <a href="/tags/Github-com/" style="font-size: 16px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 18px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/JSON/" style="font-size: 12px;">JSON</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/Mind-Node/" style="font-size: 10px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 10px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 12px;">RPA</a> <a href="/tags/SYNCROOM/" style="font-size: 10px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 12px;">Steinberg UR44C</a> <a href="/tags/Teams/" style="font-size: 10px;">Teams</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/TypeScript/" style="font-size: 12px;">TypeScript</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="/tags/cloud9/" style="font-size: 14px;">cloud9</a> <a href="/tags/draw-io/" style="font-size: 10px;">draw.io</a> <a href="/tags/filter/" style="font-size: 12px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 14px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 14px;">icarus</a> <a href="/tags/map/" style="font-size: 12px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 12px;">mat-checkbox</a> <a href="/tags/mat-selection-list/" style="font-size: 10px;">mat-selection-list</a> <a href="/tags/ngFor/" style="font-size: 10px;">ngFor</a> <a href="/tags/plantUML/" style="font-size: 10px;">plantUML</a> <a href="/tags/popIn-Aladdin2/" style="font-size: 10px;">popIn Aladdin2</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 12px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C/" style="font-size: 12px;">ファイル操作</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
     </div>
 </div>
     
@@ -2673,6 +2946,25 @@
         <h3 class="menu-label">
             最近の記事
         </h3>
+        
+        <article class="media">
+            
+            <a href="/CI-CD%E5%85%A5%E9%96%80-Github-Actions%E3%81%A7%E3%83%93%E3%83%AB%E3%83%89-%E3%83%86%E3%82%B9%E3%83%88-%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%82%92%E8%87%AA%E5%8B%95%E5%8C%96/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[CI/CD入門] Github Actionsでビルド/テスト/デプロイを自動化">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-15T08:35:02.000Z">2020-06-15</time></div>
+                    <a href="/CI-CD%E5%85%A5%E9%96%80-Github-Actions%E3%81%A7%E3%83%93%E3%83%AB%E3%83%89-%E3%83%86%E3%82%B9%E3%83%88-%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%82%92%E8%87%AA%E5%8B%95%E5%8C%96/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[CI/CD入門] Github Actionsでビルド/テスト/デプロイを自動化</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/CI-CD-Github-Actions/">CI/CD(Github Actions)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -2750,25 +3042,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/popInAladdin-review/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84525352-73afac80-ad16-11ea-8a02-d5aa7fd846da.png" alt="popIn Aladdin2 レビュー 照明型プロジェクター　使用感/専用アプリ/投影サイズ/Alexa連携/設置方法">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-06T08:36:02.000Z">2020-06-06</time></div>
-                    <a href="/popInAladdin-review/" class="title has-link-black-ter is-size-6 has-text-weight-normal">popIn Aladdin2 レビュー 照明型プロジェクター　使用感/専用アプリ/投影サイズ/Alexa連携/設置方法</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/SmartHome/">SmartHome</a> / <a class="has-link-grey -link" href="/categories/SmartHome/Gadget/">Gadget</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -2786,7 +3059,7 @@
                     <span class="level-item">六月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -2935,7 +3208,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/CI-CD/">
                         <span class="tag">CI/CD</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -2978,6 +3251,20 @@
                     <a class="tags has-addons" href="/tags/Firebase/">
                         <span class="tag">Firebase</span>
                         <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Github/">
+                        <span class="tag">Github</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Github-Actions/">
+                        <span class="tag">Github Actions</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -3320,6 +3607,25 @@
         
         <article class="media">
             
+            <a href="/CI-CD%E5%85%A5%E9%96%80-Github-Actions%E3%81%A7%E3%83%93%E3%83%AB%E3%83%89-%E3%83%86%E3%82%B9%E3%83%88-%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%82%92%E8%87%AA%E5%8B%95%E5%8C%96/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="[CI/CD入門] Github Actionsでビルド/テスト/デプロイを自動化">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-15T08:35:02.000Z">2020-06-15</time></div>
+                    <a href="/CI-CD%E5%85%A5%E9%96%80-Github-Actions%E3%81%A7%E3%83%93%E3%83%AB%E3%83%89-%E3%83%86%E3%82%B9%E3%83%88-%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%82%92%E8%87%AA%E5%8B%95%E5%8C%96/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[CI/CD入門] Github Actionsでビルド/テスト/デプロイを自動化</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/CI-CD-Github-Actions/">CI/CD(Github Actions)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/Hexo-URL%E3%81%AE%E3%83%AA%E3%83%80%E3%82%A4%E3%83%AC%E3%82%AF%E3%83%88-hexo-generator-alias-hexo-generator-redirect/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://media.github-enterprise-9911a.paas1.nec-cloud.com/user/11/files/dd1dd280-ad8b-11ea-8807-e89852f3b1cc" alt="[Hexo] URLのリダイレクト (hexo-generator-alias/hexo-generator-redirect])">
@@ -3394,25 +3700,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/popInAladdin-review/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84525352-73afac80-ad16-11ea-8a02-d5aa7fd846da.png" alt="popIn Aladdin2 レビュー 照明型プロジェクター　使用感/専用アプリ/投影サイズ/Alexa連携/設置方法">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-06T08:36:02.000Z">2020-06-06</time></div>
-                    <a href="/popInAladdin-review/" class="title has-link-black-ter is-size-6 has-text-weight-normal">popIn Aladdin2 レビュー 照明型プロジェクター　使用感/専用アプリ/投影サイズ/Alexa連携/設置方法</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/SmartHome/">SmartHome</a> / <a class="has-link-grey -link" href="/categories/SmartHome/Gadget/">Gadget</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -3430,7 +3717,7 @@
                     <span class="level-item">六月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">6</span>
                 </span>
             </a>
         </li>
@@ -3579,7 +3866,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/CI-CD/">
                         <span class="tag">CI/CD</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -3622,6 +3909,20 @@
                     <a class="tags has-addons" href="/tags/Firebase/">
                         <span class="tag">Firebase</span>
                         <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Github/">
+                        <span class="tag">Github</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Github-Actions/">
+                        <span class="tag">Github Actions</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
