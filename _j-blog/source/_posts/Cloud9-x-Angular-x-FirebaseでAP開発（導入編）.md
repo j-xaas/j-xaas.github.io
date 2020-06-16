@@ -10,6 +10,8 @@ tags:
 - Angular
 - Firebase
 - AngularFire
+alias: /2020/03/05/Cloud9-x-Angular-x-FirebaseでAP開発（導入編）/
+thumbnail: https://user-images.githubusercontent.com/41946222/79091968-4b451980-7d8a-11ea-9938-5c217d995d87.png
 ---
   
 こんにちは。今回は上記の３つを組み合わせてWEB AP開発を行う際の手順を解説します。それぞれの使用経験があっても細かい所で沢山ハマったのでまとめておきました。初級者がこの記事だけで目標を達成できるように書いたつもりです。  

@@ -9,6 +9,8 @@ tags:
 - 共同開発
 - テレワーク
 toc: true
+thumbnail: https://user-images.githubusercontent.com/41946222/84779625-96e0a180-b01f-11ea-9cd1-4b651ffe7675.png
+alias: /2020/03/07/cloud9による共同編集・リモート開発/
 ---
 
 <div style="text-align:center;">

@@ -9,6 +9,8 @@ tags:
 - Hexo 
 - AMP
 - hexo-generator-amp
+alias: /2020/3/15/HexoブログのAMP化/
+thumbnail: https://user-images.githubusercontent.com/41946222/84779139-fe4a2180-b01e-11ea-8a05-d10dfd35891f.png
 ---
 
 　こんにちは。今回はHexoで生成したWEBページのAMP化の手法について解説します。簡単にいうとWEBページを高速表示可能な形式にします。同様の記事も数件見つけたのですが、所々でハマったので、完全版としてまとめました。

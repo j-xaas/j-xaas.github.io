@@ -9,7 +9,8 @@ tags:
 - Service
 - '@ViewChild'
 toc: true
-ad: true
+thumbnail: https://user-images.githubusercontent.com/41946222/78031914-28d0fa80-739f-11ea-83a7-ed40134c8aa0.png
+alias: /2020/03/11/Angular-コンポーネント間の連携手法まとめ-Service-＠ViewChildで親から子のメソッドを呼出し/
 ---
 
 初級者向けに説明した際の備忘録です。

@@ -9,6 +9,8 @@ tags:
 - ”global is not defined”
 - AWS SDK for JavaScript
 toc: true
+alias: /2020/03/09/Angular8-global-is-not-definedの解消法/
+thumbnail: https://user-images.githubusercontent.com/41946222/84780204-4584e200-b020-11ea-81bb-6aab337e8d8e.png
 ---
 
 <!--toc-->

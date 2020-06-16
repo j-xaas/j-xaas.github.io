@@ -11,6 +11,8 @@ tags:
 - Hexo
 - Sitemap
 - google search console
+thumbnail: https://user-images.githubusercontent.com/41946222/76317318-5df9a800-631f-11ea-8995-7722bd39ddc5.png
+alias: /2020/03/10/Hexoでサイトマップを自動生成-Google-Search-Consoleへ登録/
 ---
 
 <!-- toc -->

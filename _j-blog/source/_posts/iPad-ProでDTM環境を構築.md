@@ -9,7 +9,7 @@ tags:
 - DTM
 - Alexa
 toc: true
-thumnail: https://user-images.githubusercontent.com/41946222/77458671-eb6de980-6e41-11ea-96b1-b60dd63aef66.png
+thumbnail: https://user-images.githubusercontent.com/41946222/77458671-eb6de980-6e41-11ea-96b1-b60dd63aef66.png
 alias: /2020/03/25/iPad-ProでDTM環境を構築/
 ---
 

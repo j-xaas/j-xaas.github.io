@@ -9,6 +9,8 @@ tags:
 - Disqus
 - icarus
 toc: true
+thumbnail: https://user-images.githubusercontent.com/41946222/77198283-0a126e80-6b2a-11ea-9783-437f2ac38657.png
+alias: /2020/03/21/Hexoにコメント欄を追加-Disqus/
 ---
 
 こんにちは。今回はHexoで生成したWEBサイトにコメント欄を追加する手法について解説します。他の説明記事がどれも間違っていて（恐らくバージョンの問題）だいぶハマったのでまとめておきます。

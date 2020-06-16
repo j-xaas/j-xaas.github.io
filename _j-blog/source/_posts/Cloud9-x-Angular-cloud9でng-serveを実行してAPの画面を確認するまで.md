@@ -9,6 +9,7 @@ tags:
 - AWS
 - cloud9
 toc: true
+alias: /2020/04/14/Cloud9-x-Angular-cloud9でng-serveを実行してAPの画面を確認するまで/
 thumbnail: https://user-images.githubusercontent.com/41946222/84594934-3bcc7480-ae90-11ea-925a-580c62ac983d.png
 ---
 
