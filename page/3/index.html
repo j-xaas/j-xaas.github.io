@@ -154,6 +154,478 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/Angular-%E8%A6%AA%E5%AD%90%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E5%85%B1%E6%9C%89-Input-Output-EventEmitter/" class="image is-7by1">
+            <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84595070-f52b4a00-ae90-11ea-809e-92333129b46f.png" alt="[Angular]親子コンポーネント間でデータを共有(@Input/@Output/EventEmitter)">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-04-09T16:22:31.000Z">2020-04-10</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7分 read (About 1013 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/Angular-%E8%A6%AA%E5%AD%90%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E5%85%B1%E6%9C%89-Input-Output-EventEmitter/">[Angular]親子コンポーネント間でデータを共有(@Input/@Output/EventEmitter)</a>
+            
+        </h1>
+        <div class="content">
+            <p><a href="https://angular.jp/">Angular</a>のコンポーネント間ではデータをそのまま共有することはできません。初級者が躓くポイントの一つだと思うので、解説をまとめておきます。</p>
+<!-- toc -->
+
+<ul>
+<li><a href="#基礎知識">基礎知識</a></li>
+<li><a href="#1-親子-inputを使用">1. 親⇒子 (@Inputを使用)</a><ul>
+<li><a href="#11-親側">1.1. 親側</a><ul>
+<li><a href="#parentcomponentts">parent.component.ts</a></li>
+<li><a href="#parentcomponenthtml">parent.component.html</a></li>
+</ul>
+</li>
+<li><a href="#12-子側">1.2. 子側</a><ul>
+<li><a href="#childcomponentts">child.component.ts</a></li>
+<li><a href="#childcomponenthtml">child.component.html</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-子親-outputeventemitterを使用">2. 子⇒親 (@Output/EventEmitterを使用)</a><ul>
+<li><a href="#21-子側">2.1. 子側</a><ul>
+<li><a href="#childcomponentts-1">child.component.ts</a></li>
+<li><a href="#childcomponenthtml-1">child.component.html</a></li>
+</ul>
+</li>
+<li><a href="#22-親側">2.2. 親側</a><ul>
+<li><a href="#parentcomponenthtml-1">parent.component.html</a></li>
+<li><a href="#parentcomponentts-1">parent.component.ts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="基礎知識">基礎知識</span></h2><ul>
+<li>Angularで親子間のデータを伝播させるにはデコレーターを利用します</li>
+<li>デコレーター<ul>
+<li>構成情報を付与する仕組み<ul>
+<li>対象<ul>
+<li>クラス/プロパティ/メソッド/引数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>構文<ul>
+<li>@name</li>
+<li>ex.) @NgModule</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>データの流れ</th>
+<th>使用するデコレーター</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>親 ⇒ 子</td>
+<td>@Inputデコレーター</td>
+</tr>
+<tr>
+<td>子 ⇒ 親</td>
+<td>@Outputデコレーター</td>
+</tr>
+</tbody></table>
+<ul>
+<li>例えば、子A ⇒ 親 ⇒ 子B の順にデータを共有することも可能です<ul>
+<li>※関係性の遠いコンポーネント間のデータ共有にはServiceを介しましょう</li>
+</ul>
+</li>
+</ul>
+<p>それぞれ解説していきます。</p>
+<h2><span id="1-親子-inputを使用">1. 親⇒子 (@Inputを使用)</span></h2><ul>
+<li>Component構成は以下の入れ子構造を想定<ul>
+<li>親<ul>
+<li>parent.component</li>
+</ul>
+</li>
+<li>子<ul>
+<li>child.component</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="11-親側">1.1. 親側</span></h3><ul>
+<li>選択肢を表示<h4><span id="parentcomponentts">parent.component.ts</span></h4></li>
+<li>選択値を</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 選択値を保存する変数</span><br><span class="line">selected: string;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; データを定義</span><br><span class="line">data &#x3D; [</span><br><span class="line">    &#123;name &#x3D; &quot;選択肢A&quot;&#125;</span><br><span class="line">    &#123;name &#x3D; &quot;選択肢B&quot;&#125;</span><br><span class="line">    &#123;name &#x3D; &quot;選択肢C&quot;&#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; click時に選択値をselectedに格納</span><br><span class="line">&quot;onClick(select_name)&#123;</span><br><span class="line">    this.selected &#x3D; select_name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4><span id="parentcomponenthtml">parent.component.html</span></h4><ul>
+<li>定義したデータ型からbuttonを繰り返し表示<ul>
+<li>click時に選択値を引数としてonClick()を実行</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div *ngFor&#x3D;&quot;let d of data&quot;&gt;</span><br><span class="line">    &lt;button (click)&#x3D;&quot;onClick(d.name)&quot;&gt;&#123;&#123;d.name&#125;&#125;&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--childコンポ―ネントを入れ子で表示---&gt;</span><br><span class="line">&lt;app-child [item]&#x3D;&quot;selected&quot;&gt;&lt;&#x2F;app-child&gt;</span><br></pre></td></tr></table></figure>
+
+<h3><span id="12-子側">1.2. 子側</span></h3><h4><span id="childcomponentts">child.component.ts</span></h4><ul>
+<li>@Inputでitemを受け取ります<ul>
+<li>childから渡した選択値が入ります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Inputが必要</span><br><span class="line">import &#123;Component , Input&#125; form &#39;@angular&#x2F;core&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; @Inputで</span><br><span class="line">export class ChildComponent&#123;</span><br><span class="line">    @Input() item: string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="childcomponenthtml">child.component.html</span></h4><ul>
+<li>受け取った値を表示<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--ngIfでデータが空じゃなければ表示--&gt;</span><br><span class="line">&lt;div *ngIf&#x3D;&quot;item&quot;&gt; </span><br><span class="line">    &lt;li&gt;&#123;&#123;item&#125;&#125;を選択しました&lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2><span id="2-子親-outputeventemitterを使用">2. 子⇒親 (@Output/EventEmitterを使用)</span></h2><ul>
+<li><p>Component構成は以下の入れ子構造を想定</p>
+<ul>
+<li>子<ul>
+<li>child.component<ul>
+<li>選択肢をbuttonで表示</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>親<ul>
+<li>parent.component<ul>
+<li>選択値によって変化</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>@Outputでデコレーターを活用して、子コンポーネントで発生したイベントを親に通知</p>
+</li>
+</ul>
+<h3><span id="21-子側">2.1. 子側</span></h3><h4><span id="childcomponentts">child.component.ts</span></h4><ol>
+<li>import</li>
+<li>@Outputで受け渡すイベントを定義</li>
+<li>(click)でイベントを発生させるメソッドを定義<ul>
+<li>共有したいデータを引数として受け渡す</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>emitメソッド</p>
+<ul>
+<li>イベントをここで発生させる</li>
+<li>構文<ul>
+<li>event: イベント名</li>
+<li>data: $eventオブジェクトとして渡すデータ<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.event.emit(data)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>記載例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1. OutputとEventEmitterを利用するためにimport</span><br><span class="line"></span><br><span class="line">import &#123; Component, Output, EventEmitter &#125; from &#39;@angular&#x2F;core&#39;;</span><br><span class="line"></span><br><span class="line">export class ResourceTreeComponent &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 2. イベントを宣言 発生時に$eventオブジェクトとして&lt;&gt;で定義した型のデータを親へ受け渡す</span><br><span class="line"></span><br><span class="line">  @Output() selected &#x3D; new EventEmitter&lt;string&gt;();</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 3. (click)で共有したいデータを引数としてイベントを発生させる</span><br><span class="line"></span><br><span class="line">  onclick(data) &#123;</span><br><span class="line">    &#x2F;&#x2F; 選択したリソースタイプをselectedへ格納</span><br><span class="line">    this.selected.emit(data);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4><span id="childcomponenthtml">child.component.html</span></h4><ul>
+<li>想定する状況<ul>
+<li>事前に定義したデータ：nodeをtreeとbuttonで選択肢を表示</li>
+<li>選択値: node.nameを親に渡したい</li>
+<li>(click)でonclickを発火させる</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--mat-treeで階層型の選択肢を表示---&gt;</span><br><span class="line">&lt;mat-tree-node *matTreeNodeDef&#x3D;&quot;let node&quot; matTreeNodeToggle matTreeNodePadding&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!--click時にnode.nameを選択値として取得---&gt;</span><br><span class="line">  &lt;button mat-button (click)&#x3D;&quot;onclick(node.name)&quot;&gt;</span><br><span class="line">    &#123;&#123;node.name&#125;&#125;</span><br><span class="line">  &lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
+
+<h3><span id="22-親側">2.2. 親側</span></h3><h4><span id="parentcomponenthtml">parent.component.html</span></h4><ul>
+<li>子から受け取ったdataを変数selectに入れて表示<ul>
+<li>(selected)=”onSelect($event)”<ul>
+<li>childでselectedイベントが発生したタイミングでonSlect()メソッドを実行</li>
+<li>$eventオブジェクト<ul>
+<li>emitメソッド経由で渡されるdata<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;&#123;&#123;select&#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;!--子コンポーネントの要素にイベントバインディングを設定---&gt;</span><br><span class="line">&lt;app-child (selected)&#x3D;&quot;onSelect($event)&quot;&gt;&lt;&#x2F;app-child&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="parentcomponentts">parent.component.ts</span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">export class ParentComponent implements OnInit &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; データを受け取る変数を宣言</span><br><span class="line">  select: string;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; resourcce-treeからデータを受け取る</span><br><span class="line">  onSelect($event) &#123;</span><br><span class="line">    this.select &#x3D; $event;</span><br><span class="line">    return this.select;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>解説は以上です。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/iPhone-iPad%E3%81%AERPA%E3%83%84%E3%83%BC%E3%83%AB%E3%80%8E%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88%E3%80%8F%E3%81%A7%E3%82%B5%E3%83%9C%E3%82%8A%E3%82%92%E9%98%B2%E6%AD%A2%E3%81%99%E3%82%8B/" class="image is-7by1">
+            <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84595264-d083a200-ae91-11ea-9d57-a9b0a6e0ac4b.png" alt="iPhone/iPadのRPAツール『ショートカット』でサボりを防止する">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-04-08T15:28:09.000Z">2020-04-09</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Tool-Tips/RPA/">RPA</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8分 read (About 1217 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/iPhone-iPad%E3%81%AERPA%E3%83%84%E3%83%BC%E3%83%AB%E3%80%8E%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88%E3%80%8F%E3%81%A7%E3%82%B5%E3%83%9C%E3%82%8A%E3%82%92%E9%98%B2%E6%AD%A2%E3%81%99%E3%82%8B/">iPhone/iPadのRPAツール『ショートカット』でサボりを防止する</a>
+            
+        </h1>
+        <div class="content">
+            <p>サボりを防止するために、勉強と関係の無いアプリを開いたら自動的に叱られるようにしてみました。<br>ネタ記事ですが、Appleのショートカットアプリはかなり応用が効く便利ツールなので覚えておいて損はないです。  </p>
+<ul>
+<li>海外版松岡修造として著名なシャイア・ラブーフさんに叱られます</li>
+</ul>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/mW6S8-mofXE" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#基礎知識">基礎知識</a></li>
+<li><a href="#手順">手順</a></li>
+<li><a href="#まとめ応用例">まとめ/応用例</a></li>
+<li><a href="#it界隈の方向けの応用例">IT界隈の方向けの応用例</a></li>
+<li><a href="#関連記事">関連記事</a></li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="基礎知識">基礎知識</span></h2><ul>
+<li><p>RPA (Robotic Process Automation)</p>
+<ul>
+<li>定型的な事務作業をSoftware型のロボットが自動化する概念<ul>
+<li>昨今の働き方改革ブームの文脈でバズワードになりがち</li>
+</ul>
+</li>
+<li>直感的に利用可能なサービスが沢山出ているので、使えないとまずいです</li>
+</ul>
+</li>
+<li><p>ショートカット</p>
+<ul>
+<li><p>Apple純正のRPAアプリ</p>
+<ul>
+<li><p>このアイコンのAppです</p>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/78804246-e0e35080-79fa-11ea-82a5-5621aaefd7a5.png" height="180px" width="200px">
+</div>
+</li>
+</ul>
+</li>
+<li><p>導入の手間が無い</p>
+<ul>
+<li>iPhoneやiPadなら元から入っているため</li>
+<li>特に課金要素は無いので利用しないのはもったいないです</li>
+</ul>
+</li>
+<li><p>RPA入門者向け</p>
+<ul>
+<li>これを使えない人が仕事でPC用のRPAツールを使うのは無理です<ul>
+<li>直感的に使えるショートカットで慣れておきましょう</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Siriからも実行可能</p>
+<ul>
+<li>できる幅が広いので、使いこなせば大抵の作業を一言で完了できます</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="手順">手順</span></h2><ol>
+<li><p>ショートカットアプリを開く</p>
+</li>
+<li><p>画面下部の”オートメーション”を選択</p>
+</li>
+<li><p>画面右上の＋マークを選択</p>
+<ul>
+<li>”個人用オートメーションを作成”を戦t買う</li>
+</ul>
+</li>
+<li><p>”ショートカットを作成”を選択</p>
+<ul>
+<li>ここから以下のように設定します<ul>
+<li>トリガー<ul>
+<li>”Appを開く”</li>
+</ul>
+</li>
+<li>アクション<ul>
+<li>URLを開く</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>下にスワイプして”Appを開く”を選択</p>
+</li>
+<li><p>“Appを選択”画面で作業を邪魔するアプリを選択</p>
+<ul>
+<li>今回はTwitterを登録してみます</li>
+</ul>
+</li>
+<li><p>次へ</p>
+<ul>
+<li>アクションの設定画面に飛びます</li>
+<li>”アクションを追加”を選択</li>
+</ul>
+</li>
+<li><p>”WEB” ⇒ ”URLを開く” を選択</p>
+</li>
+<li><p>青字の”URL”にyoutubeのURLを指定</p>
+<ul>
+<li>Do itおじさん動画のURL<ul>
+<li><a href="https://www.youtube.com/watch?v=nwW4CDGucVs">https://www.youtube.com/watch?v=nwW4CDGucVs</a></li>
+</ul>
+</li>
+<li>別の動画にも応用可能です</li>
+</ul>
+</li>
+<li><p>”実行前に尋ねる”を無効化</p>
+<ul>
+<li>完了</li>
+<li>以上で適用されます</li>
+</ul>
+</li>
+<li><p>テスト</p>
+<ul>
+<li>Twitterを開いてみましょう</li>
+<li>画面上部にオートメーションを実行と表示され、Do itおじさんの動画に強制的に飛ばされます</li>
+</ul>
+</li>
+</ol>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/mW6S8-mofXE" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+
+<ul>
+<li>解除方法<ul>
+<li>オートメーションを編集</li>
+<li>“このオートメーションを有効”の横のタブを無効化すればOK</li>
+<li>試験前にアプリをわざわざ消すより手軽に対策できます</li>
+</ul>
+</li>
+</ul>
+<h2><span id="まとめ応用例">まとめ/応用例</span></h2><ul>
+<li><p>今回は”指定したURLを開く”という最も基本的な機能を利用しました</p>
+</li>
+<li><p>ショートカットはもっと複雑なことも沢山出来るので是非試してみてください</p>
+</li>
+<li><p>例</p>
+<ul>
+<li>位置情報をTriggerとした操作<ul>
+<li>外出時に自動で予定表に入れた目的地への経路案内を表示</li>
+</ul>
+</li>
+<li>時間をTriggerとした操作<ul>
+<li>タイマーを設定した時間に、IoT家電を操作<ul>
+<li>カーテンの開閉</li>
+<li>電気を点灯</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="it界隈の方向けの応用例">IT界隈の方向けの応用例</span></h2><ul>
+<li><p>最近は手軽にAPI連携を確立できるサービスがいくらでもあるので簡単に応用できます</p>
+</li>
+<li><p>例</p>
+<ul>
+<li><a href="https://ifttt.com/my_applets">IFTTT</a>との連携<ul>
+<li>This(Trigger)とThat(Action)を定めることで簡単に400種類以上のサービスとの連携を可能にするクラウドサービス<ul>
+<li>TriggerにWebhookを定めると所定のURLに対するリクエストだけで動く仕組みを作れます</li>
+</ul>
+</li>
+<li>つまり、ショートカットからIFTTTのURL宛にリクエストを送るだけで様々なサービスを動かせます</li>
+</ul>
+</li>
+<li><a href="https://knowledge.sakura.ad.jp/15940/">FaaS (Function as a Service)</a>と連携<ul>
+<li><a href="https://aws.amazon.com/jp/lambda/">AWS Lambda</a>や<a href="https://cloud.google.com/functions?hl=ja">Google Functions</a>辺りをキックして動かせば大抵のシステムと連携可能です</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="関連記事">関連記事</span></h2><ul>
+<li><a href="https://j-xaas.github.io/2020/03/25/iPad-Pro%E3%81%A7WEB-AP%E9%96%8B%E7%99%BA/">iPad ProでWEB AP開発 &amp; RPA</a><ul>
+<li>同じ要領で開発にも応用しています</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E9%A3%B2%E3%81%BF%E5%90%91%E3%81%91-Netflix-Party%E3%81%A7%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%91%91%E8%B3%9E%E4%BC%9A%E3%82%92%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/" class="image is-7by1">
             <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/78471347-9c8e5100-776b-11ea-9d38-d498b762a3b3.png" alt="[オンライン飲み会向け]　Netflix Partyでリモート鑑賞会をする方法">
         </a>
@@ -2330,405 +2802,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-17T12:49:37.000Z">2020-03-17</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    10分 read (About 1536 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/Angular%E3%81%A7%E9%9A%8E%E5%B1%A4%E6%A7%8B%E9%80%A0%E3%81%AE%E8%A1%A8%E3%82%92%E9%96%8B%E7%99%BA-Treetable/">Angularで階層構造の表を開発(Treetable)</a>
-            
-        </h1>
-        <div class="content">
-            <p>こんにちは。今回は表題の内容を解説します。<br><a href="https://material.angular.io/">Angular Material</a>の<a href="https://material.angular.io/components/table/overview">Mat-table</a>と<a href="https://material.angular.io/components/tree/overview">Mat-tree</a>を組み合わせれば実現可能ですが、初級者には難しく、コードが複雑になります。そこで、簡単に階層型の表を生成可能なOSS:<a href="https://github.com/supamax/ng-material-treetable">Treetable</a>を利用します。</p>
-<div style="text-align:center;">
-<img alt="Treetable" src="https://user-images.githubusercontent.com/41946222/76859307-64969b00-689c-11ea-94de-3b1dac94ed56.png" height="150px" width="400px">
-</div>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#treetableの導入手順">Treetableの導入手順</a><ul>
-<li><a href="#1-install">1. install</a></li>
-<li><a href="#2-appmoduletsでmoduleをimport">2. app.module.tsでModuleをimport</a></li>
-<li><a href="#3-component側で使用">3. Component側で使用</a><ul>
-<li><a href="#31-html">3.1. HTML</a></li>
-<li><a href="#32-ts">3.2. TS</a></li>
-</ul>
-</li>
-<li><a href="#4-optionを設定">4. Optionを設定</a></li>
-<li><a href="#eventの設定">Eventの設定</a></li>
-</ul>
-</li>
-<li><a href="#サンプルソースの解説">サンプルソースの解説</a></li>
-<li><a href="#自分でサンプルを開発した際のメモ">自分でサンプルを開発した際のメモ</a><ul>
-<li><a href="#サンプルデータで表を出す">サンプルデータで表を出す</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-
-<h2><span id="treetableの導入手順">Treetableの導入手順</span></h2><h3><span id="1-install">1. install</span></h3><ul>
-<li><p>以下を実行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i ng-material-treetable --save</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Angular Materialパッケージがinstallされていることを確認</p>
-<ul>
-<li>既に入れていればスルー<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i @angular&#x2F;material @angular&#x2F;cdk @angular&#x2F;animations --save</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="2-appmoduletsでmoduleをimport">2. app.module.tsでModuleをimport</span></h3><ul>
-<li>src/app/app.module.tsを改修<ul>
-<li>TreetableModuleをimport<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import &#123; TreetableModule &#125; from &#39;ng-material-treetable&#39;;</span><br><span class="line"> </span><br><span class="line">@NgModule(&#123;</span><br><span class="line">    ...</span><br><span class="line">  imports: [</span><br><span class="line">    ...</span><br><span class="line">    TreetableModule</span><br><span class="line">  ],</span><br><span class="line">  ...</span><br><span class="line">&#125;)</span><br><span class="line">export class AppModule &#123; &#125;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="3-component側で使用">3. Component側で使用</span></h3><h4><span id="31-html">3.1. HTML</span></h4><ul>
-<li>sample.component.htmlを改修<ul>
-<li>treetable要素を加えるだけでOKです<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;treetable [tree]&#x3D;&quot;yourTreeDataStructure&quot;&gt;&lt;&#x2F;treetable&gt;</span><br></pre></td></tr></table></figure>
-<h4><span id="32-ts">3.2. TS</span></h4></li>
-</ul>
-</li>
-<li>sample.component.ts<ul>
-<li>データソースとinterface（データの型）を規定します<ul>
-<li>GET等で外部APIからデータを持ってくる場合は、べた書きしているデータ部分を返り値に差し替えてください</li>
-<li>データ構造は自由です。無くてもOK</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Component, OnInit &#125; from &#39;@angular&#x2F;core&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 追加</span><br><span class="line">import &#123; Node, Options &#125; from &#39;ng-material-treetable&#39;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@Component(&#123;</span><br><span class="line">  selector: &#39;app-tree-table&#39;,</span><br><span class="line">  templateUrl: &#39;.&#x2F;tree-table.component.html&#39;,</span><br><span class="line">  styleUrls: [&#39;.&#x2F;tree-table.component.scss&#39;]</span><br><span class="line">&#125;)</span><br><span class="line">export class TreeTableComponent implements OnInit &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; データソースを定義</span><br><span class="line">  &#x2F;&#x2F; 省略部分はJSONデータ　表２のデータソース　class内の先頭に必要であった</span><br><span class="line">  arrayOfNodesTree: Node&lt;Task&gt;[] &#x3D; [</span><br><span class="line">    &#123;</span><br><span class="line">      value: &#123;</span><br><span class="line">        name: &#39;Tasks for Sprint 1&#39;,</span><br><span class="line">        completed: true,</span><br><span class="line">        owner: &#39;Marco&#39;</span><br><span class="line">      &#125;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Complete feature #123&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;Marco&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Update documentation&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;Jane&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: [</span><br><span class="line">            &#123;</span><br><span class="line">              value: &#123;</span><br><span class="line">                name: &#39;Proofread documentation&#39;,</span><br><span class="line">                completed: true,</span><br><span class="line">                owner: &#39;Bob&#39;</span><br><span class="line">              &#125;,</span><br><span class="line">              children: []</span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      value: &#123;</span><br><span class="line">        name: &#39;Tasks for Sprint 2&#39;,</span><br><span class="line">        completed: false,</span><br><span class="line">        owner: &#39;Erika&#39;,</span><br><span class="line">      &#125;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Fix bug #567&#39;,</span><br><span class="line">            completed: false,</span><br><span class="line">            owner: &#39;Marco&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Speak with clients&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;James&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ];</span><br><span class="line"></span><br><span class="line">  constructor() &#123; &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 表のデータ構造の定義</span><br><span class="line">export interface Task &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  completed: boolean;</span><br><span class="line">  owner: string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3><span id="4-optionを設定">4. Optionを設定</span></h3><ul>
-<li>sample.component.tsの改修<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 追加の必要有</span><br><span class="line">import &#123; Node, Options &#125; from &#39;ng-material-treetable&#39;;</span><br></pre></td></tr></table></figure></li>
-<li>sample.component.htmlの改修<ul>
-<li>[options]による指定で適用できます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;treetable</span><br><span class="line">  [tree]&#x3D;&quot;yourTreeDataStructure&quot;</span><br><span class="line">  [options]&#x3D;&quot;yourOptions&quot;&gt;</span><br><span class="line">&lt;&#x2F;treetable&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="eventの設定">Eventの設定</span></h3><ul>
-<li>sample.component.html<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;treetable</span><br><span class="line">  [tree]&#x3D;&quot;yourTreeDataStructure&quot;</span><br><span class="line">  (nodeClicked)&#x3D;&quot;logToggledNode($event)&quot;&gt;</span><br><span class="line">  &lt;!--Clickで開閉--&gt;</span><br><span class="line">&lt;&#x2F;treetable&gt;</span><br></pre></td></tr></table></figure></li>
-<li>sample.component.ts<ul>
-<li>nodeClickedで動くメソッドを定義<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">logToggledNode(node: Node&lt;SomeNodeType&gt;): void &#123;</span><br><span class="line">  console.log(node);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<p>　以上で階層型の表が完成しました。後は、データソースを直接編集するか、外部から取得したデータに差し替えるだけです。手順の解説は以上です。WEB AP開発の初級者は台帳APでも試しに作ってみると良いかもしれません。(Excelはやめましょう)<br>おまけとして、StackBlitzに挙がっていたサンプルソースの解説も置いておきます。</p>
-<h2><span id="サンプルソースの解説">サンプルソースの解説</span></h2><ul>
-<li><p><a href="https://stackblitz.com/edit/angular-qnlruj">StackBlitz</a></p>
-</li>
-<li><ul>
-<li>以下の書き方で今回の要件は満たせそう<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arrayOfNodesTree: Node&lt;Task&gt;[] &#x3D; 外部からGETしてきたデータ</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>app.component.ts</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Component &#125; from &#39;@angular&#x2F;core&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 追加の必要有</span><br><span class="line">import &#123; Node, Options &#125; from &#39;ng-material-treetable&#39;;</span><br><span class="line"></span><br><span class="line">@Component(&#123;</span><br><span class="line">  selector: &#39;my-app&#39;,</span><br><span class="line">  templateUrl: &#39;.&#x2F;app.component.html&#39;,</span><br><span class="line">  styleUrls: [&#39;.&#x2F;app.component.css&#39;]</span><br><span class="line">&#125;)</span><br><span class="line">export class AppComponent &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 表１のOption</span><br><span class="line">  treeOptions: Options&lt;Report&gt; &#x3D; &#123;</span><br><span class="line">    capitalisedHeader: true,</span><br><span class="line">    customColumnOrder: [&#x2F;&#x2F; 列名を定義？</span><br><span class="line">      &#39;owner&#39;, &#39;name&#39;, &#39;backup&#39;, &#39;protected&#39;</span><br><span class="line">    ]</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 省略部分はJSONデータ　表１のデータソース</span><br><span class="line">  singleRootTree: Node&lt;Report&gt; &#x3D; &#123;</span><br><span class="line">    value: &#123;</span><br><span class="line">      name: &#39;Reports&#39;,</span><br><span class="line">      owner: &#39;Eric&#39;,</span><br><span class="line">      protected: true,</span><br><span class="line">      backup: true</span><br><span class="line">    &#125;,</span><br><span class="line">    children: [</span><br><span class="line">      &#123;</span><br><span class="line">          中略</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 省略部分はJSONデータ　表２のデータソース</span><br><span class="line">  arrayOfNodesTree: Node&lt;Task&gt;[] &#x3D; [</span><br><span class="line">    &#123;中略</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line"></span><br><span class="line">  logNode(node: Node&lt;Report&gt;) &#123;</span><br><span class="line">    console.log(node);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 表のデータ型　列の要素を定義</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 表1</span><br><span class="line">export interface Report &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  owner: string;</span><br><span class="line">  protected: boolean;</span><br><span class="line">  backup: boolean;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 表２</span><br><span class="line">export interface Task &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  completed: boolean;</span><br><span class="line">  owner: string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>次にHTML側を確認</p>
-<ul>
-<li>かなりシンプルに書ける<ul>
-<li>treetable要素の中にデータソースとして定義したものを指定するだけ<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;treetable</span><br><span class="line">  [tree]&#x3D;&quot;TS側で定めたデータソース名&quot;</span><br><span class="line">  (nodeClicked)&#x3D;&quot;logNode($event)&quot;&gt; &#x2F;&#x2F; Clickで開閉</span><br><span class="line">&gt;</span><br><span class="line">&lt;&#x2F;treetable&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 表１</span><br><span class="line">&lt;h2&gt;Tree as Single Root Node&lt;&#x2F;h2&gt;</span><br><span class="line">&lt;treetable</span><br><span class="line">  [tree]&#x3D;&quot;singleRootTree&quot;</span><br><span class="line">  [options]&#x3D;&quot;treeOptions&quot;</span><br><span class="line">  (nodeClicked)&#x3D;&quot;logNode($event)&quot;&gt;</span><br><span class="line">&lt;&#x2F;treetable&gt;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 表２</span><br><span class="line">&lt;h2&gt;Tree as Array of Nodes&lt;&#x2F;h2&gt;</span><br><span class="line">&lt;treetable</span><br><span class="line">  [tree]&#x3D;&quot;arrayOfNodesTree&quot; &#x2F;&#x2F; tsでデータソースを定めたやつ</span><br><span class="line">  (nodeClicked)&#x3D;&quot;logNode($event)&quot;&gt; </span><br><span class="line">&lt;&#x2F;treetable&gt;</span><br></pre></td></tr></table></figure>
-
-<h2><span id="自分でサンプルを開発した際のメモ">自分でサンプルを開発した際のメモ</span></h2><ul>
-<li><p>tree-table Componentを新たに生成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\src\app&gt; ng g component tree-table</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>上の階層のComponentでtree-tableを参照するように変更</p>
-<ul>
-<li>serveで画面への反映を確認。問題無し<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;mat-card-header&gt;</span><br><span class="line">&lt;mat-card-content&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;app-tree-table&gt;&lt;&#x2F;app-tree-table&gt;</span><br><span class="line">    &lt;!--tree tableコンポーネントを挿入----&gt;</span><br><span class="line"></span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;mat-card-content&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="サンプルデータで表を出す">サンプルデータで表を出す</span></h3><ul>
-<li><p>tree-tableコンポーネントを改修</p>
-</li>
-<li><p>HTMLの改修</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;treetable</span><br><span class="line">  [tree]&#x3D;&quot;arrayOfNodesTree&quot;</span><br><span class="line">  (nodeClicked)&#x3D;&quot;logNode($event)&quot;&gt;</span><br><span class="line">&lt;&#x2F;treetable&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>tsの改修</p>
-<ul>
-<li>import, データソース, interfaceを定義</li>
-<li>列を減らしてみる</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Node, Options &#125; from &#39;ng-material-treetable&#39;;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 省略部分はJSONデータ　表２のデータソース</span><br><span class="line">  arrayOfNodesTree: Node&lt;Task&gt;[] &#x3D; [</span><br><span class="line">    &#123;</span><br><span class="line">      value: &#123;</span><br><span class="line">        name: &#39;Tasks for Sprint 1&#39;,</span><br><span class="line">        completed: true,</span><br><span class="line">        owner: &#39;Marco&#39;</span><br><span class="line">      &#125;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Complete feature #123&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;Marco&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Update documentation&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;Jane&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: [</span><br><span class="line">            &#123;</span><br><span class="line">              value: &#123;</span><br><span class="line">                name: &#39;Proofread documentation&#39;,</span><br><span class="line">                completed: true,</span><br><span class="line">                owner: &#39;Bob&#39;</span><br><span class="line">              &#125;,</span><br><span class="line">              children: []</span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      value: &#123;</span><br><span class="line">        name: &#39;Tasks for Sprint 2&#39;,</span><br><span class="line">        completed: false,</span><br><span class="line">        owner: &#39;Erika&#39;,</span><br><span class="line">      &#125;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Fix bug #567&#39;,</span><br><span class="line">            completed: false,</span><br><span class="line">            owner: &#39;Marco&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Speak with clients&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;James&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line"></span><br><span class="line">  logNode(node: Node&lt;Report&gt;) &#123;</span><br><span class="line">    console.log(node);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 表のデータ構造を決定</span><br><span class="line">export interface Task &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  completed: boolean;</span><br><span class="line">  owner: string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<ul>
-<li>AP画面への反映を確認<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng serve --open</span><br></pre></td></tr></table></figure></li>
-<li>以下のように表示された</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/76863288-9ca0dc80-68a2-11ea-88a6-e7bb1c46a3c0.png" height="100px" width="400px">
-</div>
-
-<ul>
-<li><p>エラーが発生</p>
-<ul>
-<li>class内で初めにデータの定義が必要</li>
-<li>順番を入れ替えればOK</li>
-</ul>
-</li>
-<li><p>最終的なtsファイル</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Component, OnInit &#125; from &#39;@angular&#x2F;core&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 追加</span><br><span class="line">import &#123; Node, Options &#125; from &#39;ng-material-treetable&#39;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@Component(&#123;</span><br><span class="line">  selector: &#39;app-tree-table&#39;,</span><br><span class="line">  templateUrl: &#39;.&#x2F;tree-table.component.html&#39;,</span><br><span class="line">  styleUrls: [&#39;.&#x2F;tree-table.component.scss&#39;]</span><br><span class="line">&#125;)</span><br><span class="line">export class TreeTableComponent implements OnInit &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; データソースを定義</span><br><span class="line">  &#x2F;&#x2F; 省略部分はJSONデータ　表２のデータソース　class内の先頭に必要であった</span><br><span class="line">  arrayOfNodesTree: Node&lt;Task&gt;[] &#x3D; [ </span><br><span class="line">    &#123;</span><br><span class="line">      value: &#123;</span><br><span class="line">        name: &#39;Tasks for Sprint 1&#39;,</span><br><span class="line">        completed: true,</span><br><span class="line">        owner: &#39;Marco&#39;</span><br><span class="line">      &#125;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Complete feature #123&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;Marco&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Update documentation&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;Jane&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: [</span><br><span class="line">            &#123;</span><br><span class="line">              value: &#123;</span><br><span class="line">                name: &#39;Proofread documentation&#39;,</span><br><span class="line">                completed: true,</span><br><span class="line">                owner: &#39;Bob&#39;</span><br><span class="line">              &#125;,</span><br><span class="line">              children: []</span><br><span class="line">            &#125;</span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      value: &#123;</span><br><span class="line">        name: &#39;Tasks for Sprint 2&#39;,</span><br><span class="line">        completed: false,</span><br><span class="line">        owner: &#39;Erika&#39;,</span><br><span class="line">      &#125;,</span><br><span class="line">      children: [</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Fix bug #567&#39;,</span><br><span class="line">            completed: false,</span><br><span class="line">            owner: &#39;Marco&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">          value: &#123;</span><br><span class="line">            name: &#39;Speak with clients&#39;,</span><br><span class="line">            completed: true,</span><br><span class="line">            owner: &#39;James&#39;</span><br><span class="line">          &#125;,</span><br><span class="line">          children: []</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  ];</span><br><span class="line"></span><br><span class="line">  constructor() &#123; &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 表のデータ構造の定義</span><br><span class="line">export interface Task &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  completed: boolean;</span><br><span class="line">  owner: string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>参考ページ</p>
-<ul>
-<li><a href="https://www.npmjs.com/package/ng-material-treetable">Angular Material TreeTable Component</a></li>
-<li><a href="http://ng-material-treetable.surge.sh/">TreeTable Component画面</a></li>
-</ul>
-</li>
-<li><p>Mat-treeとMat-tableを組み合わせて開発する場合の参考</p>
-<ul>
-<li><a href="https://stackblitz.com/edit/mat-tree-with-drag-and-drop?file=app%2Ftree-flat-overview-example.html">任意のネスト、キー名をTreeで表示するコードサンプル</a></li>
-</ul>
-</li>
-</ul>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-03-16T15:54:02.000Z">2020-03-17</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    5分 read (About 765 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/icarus-Hexo-Theme-Tips-Menu%E3%81%AE%E7%B7%A8%E9%9B%86/">icarus(Hexo Theme) Tips Menuの編集</a>
-            
-        </h1>
-        <div class="content">
-            <p>こんにちは。今回はHexoのthemeにicarusを採用した際のTipsを解説します。</p>
-<!-- toc -->
-
-<ul>
-<li><a href="#aboutページを追加">Aboutページを追加</a><ul>
-<li><a href="#1-hexoの通常の記事として生成">1. Hexoの通常の記事として生成</a></li>
-<li><a href="#2-_configymlを改修">2. _config/ymlを改修</a></li>
-</ul>
-</li>
-<li><a href="#menuを追加">Menuを追加</a></li>
-<li><a href="#おまけロゴの変更">おまけ：ロゴの変更</a></li>
-</ul>
-<!-- tocstop -->
-
-<ul>
-<li>icarusを適用すると以下のようなメニューがヘッダーに表示されます</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/76772659-9fd59300-67e4-11ea-96da-e010eb0ac211.png" height="80px" width="650px">
-</div>
-
-<ul>
-<li>ポイント<ul>
-<li>Aboutページは自分で作成する必要がある</li>
-<li>Menuは追加・削除可能</li>
-</ul>
-</li>
-</ul>
-<h2><span id="aboutページを追加">Aboutページを追加</span></h2><h3><span id="1-hexoの通常の記事として生成">1. Hexoの通常の記事として生成</span></h3><ul>
-<li>About-This-Blog.mdを生成<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng new &#39;About-This-Blog&#39;</span><br></pre></td></tr></table></figure></li>
-<li>source/_posts内に生成されたファイルを編集</li>
-</ul>
-<h3><span id="2-_configymlを改修">2. _config/ymlを改修</span></h3><ul>
-<li>path: your-blog\themes\icarus&gt;<ul>
-<li>About: 移行を生成した記事のパスに変更</li>
-<li>Hexoの記事のパスは “/YYYY/MM/DD/Article_name” です</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Navigation bar link settings</span><br><span class="line">navbar:</span><br><span class="line">    # Navigation bar menu links</span><br><span class="line">    menu:</span><br><span class="line">        Home: &#x2F;</span><br><span class="line">        Archives: &#x2F;archives</span><br><span class="line">        Categories: &#x2F;categories</span><br><span class="line">        Tags: &#x2F;tags</span><br><span class="line">        About: &#x2F;2020&#x2F;02&#x2F;04&#x2F;About-This-Blog&#x2F; # &#x2F;aboutから変更</span><br></pre></td></tr></table></figure>
-
-<h2><span id="menuを追加">Menuを追加</span></h2><ul>
-<li><p>メニューの追加も同様の箇所を改修するだけで簡単にできます</p>
-</li>
-<li><p>以下を追加します</p>
-<ul>
-<li>ポリシーページ</li>
-<li>自身のECサイトへのリンク</li>
-</ul>
-</li>
-<li><p>作業は二点です</p>
-<ul>
-<li>menuの項目を増やす</li>
-<li>pathを指定する<ul>
-<li>外部サイトはURLそのままでOKです</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>_config.yml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># Navigation bar link settings</span><br><span class="line">navbar:</span><br><span class="line">    # Navigation bar menu links</span><br><span class="line">    menu:</span><br><span class="line">        Home: &#x2F;</span><br><span class="line">        Archives: &#x2F;archives</span><br><span class="line">        Categories: &#x2F;categories</span><br><span class="line">        Tags: &#x2F;tags</span><br><span class="line">        About: &#x2F;2020&#x2F;02&#x2F;04&#x2F;About-This-Blog&#x2F; #&#x2F;about</span><br><span class="line">        Policy: &#x2F;2020&#x2F;03&#x2F;17&#x2F;Policy</span><br><span class="line">        EC: https:&#x2F;&#x2F;sheeps.official.ec&#x2F;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>確認</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure></li>
-<li><p>以下のように反映されます</p>
-</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/76773559-00b19b00-67e6-11ea-993b-8d5ebdabd07b.png" height="60px" width="650px">
-</div>
-
-
-<ul>
-<li>外部サイトに飛べるか確認<ul>
-<li>メニューの”EC”を押下</li>
-<li>以下のように画面が切り替わりました<ul>
-<li>私が書いたマスコットキャラ：シープ君のグッズ一覧が出てきます</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/76774924-f42e4200-67e7-11ea-9f57-f9c5f28d1e20.png" height="600px" width="500px">
-</div>
-
-<ul>
-<li>icarusは柔軟にメニューを弄れるのでカスタマイズ性が高いですね<ul>
-<li>自身のWEBページに合わせて自由に編集してみてください</li>
-<li>個人で勉強ついでに開発しているWEB APが増えたら一覧ページをメニューに足そうと思います</li>
-</ul>
-</li>
-</ul>
-<h2><span id="おまけロゴの変更">おまけ：ロゴの変更</span></h2><ul>
-<li><p>オリジナルのロゴ</p>
-<ul>
-<li>所在：\themes\icarus\source\images<ul>
-<li>logo.svg </li>
-</ul>
-</li>
-</ul>
-</li>
-<li><ol>
-<li>オリジナルのロゴを作成して同様のディレクトリに格納<ul>
-<li>original_logo.pngを作成して配置</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>_config.ymlを編集<ul>
-<li>icarus側の設定ファイルを改修<ul>
-<li>themes\icarus_config.yml</li>
-</ul>
-</li>
-<li>旧<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">favicon: &#x2F;images&#x2F;favicon.svg</span><br><span class="line"></span><br><span class="line"># Path or URL to the website&#39;s logo to be shown on the left of the navigation bar or footer</span><br><span class="line">logo: &#x2F;images&#x2F;logo.svg</span><br></pre></td></tr></table></figure></li>
-<li>新<ul>
-<li>faviconをコメントアウトしないと上に被さって上手く表示できません<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#favicon: &#x2F;images&#x2F;favicon.svg</span><br><span class="line"></span><br><span class="line"># Path or URL to the website&#39;s logo to be shown on the left of the navigation bar or footer</span><br><span class="line">logo: &#x2F;images&#x2F;original_logo.png</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><p>これだけです</p>
-<ul>
-<li>画面への反映を確認<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/78388593-3a730600-761c-11ea-936e-0cc0f4a9ce2e.png" height="60px" width="400px" alt="ロゴ変更後">
-</div>
-
-<ul>
-<li>pngをSVGファイルに変換しておくと見栄えも読み込みも良くなります<ul>
-<li>↓でぱっと変換できます</li>
-<li><a href="https://www.aconvert.com/jp/image/png-to-svg/">PNG SVG 変換 - 画像ファイルをオンラインで変換する</a></li>
-</ul>
-</li>
-</ul>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -2748,6 +2821,8 @@
             <li><a class="pagination-link is-current" href="/page/3/">3</a></li>
             
             <li><a class="pagination-link has-text-black-ter" href="/page/4/">4</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/5/">5</a></li>
             
         </ul>
     </nav>
@@ -2797,7 +2872,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            40
+                            42
                         </p>
                     </a>
                 </div>
@@ -2821,7 +2896,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            66
+                            72
                         </p>
                     </a>
                 </div>
@@ -2929,7 +3004,7 @@
                 <span class="level-item">Serverless Application Dev</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">15</span>
+                <span class="level-item tag">17</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Serverless-Application-Dev/AWS/">
@@ -2937,7 +3012,7 @@
                 <span class="level-item">AWS</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Serverless-Application-Dev/Firebase/">
@@ -3070,7 +3145,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 10px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 12px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 12px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/CI-CD/" style="font-size: 12px;">CI/CD</a> <a href="/tags/Cloud-Craft/" style="font-size: 10px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/DTM/" style="font-size: 14px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 12px;">Firebase</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Github-Actions/" style="font-size: 10px;">Github Actions</a> <a href="/tags/Github-com/" style="font-size: 16px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 18px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/JSON/" style="font-size: 12px;">JSON</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/Mind-Node/" style="font-size: 10px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 10px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 12px;">RPA</a> <a href="/tags/SYNCROOM/" style="font-size: 10px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 12px;">Steinberg UR44C</a> <a href="/tags/Teams/" style="font-size: 10px;">Teams</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/TypeScript/" style="font-size: 12px;">TypeScript</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="/tags/cloud9/" style="font-size: 14px;">cloud9</a> <a href="/tags/draw-io/" style="font-size: 10px;">draw.io</a> <a href="/tags/filter/" style="font-size: 12px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 14px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 14px;">icarus</a> <a href="/tags/map/" style="font-size: 12px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 12px;">mat-checkbox</a> <a href="/tags/mat-selection-list/" style="font-size: 10px;">mat-selection-list</a> <a href="/tags/ngFor/" style="font-size: 10px;">ngFor</a> <a href="/tags/plantUML/" style="font-size: 10px;">plantUML</a> <a href="/tags/popIn-Aladdin2/" style="font-size: 10px;">popIn Aladdin2</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 12px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C/" style="font-size: 12px;">ファイル操作</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a>
+        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 14px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 12px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 12px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/CI-CD/" style="font-size: 14px;">CI/CD</a> <a href="/tags/Cloud-Craft/" style="font-size: 10px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/DTM/" style="font-size: 14px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 12px;">Firebase</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Github-Actions/" style="font-size: 10px;">Github Actions</a> <a href="/tags/Github-com/" style="font-size: 16px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 18px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/IAM/" style="font-size: 10px;">IAM</a> <a href="/tags/JSON/" style="font-size: 12px;">JSON</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/MFA/" style="font-size: 10px;">MFA</a> <a href="/tags/MS-Authentication/" style="font-size: 10px;">MS Authentication</a> <a href="/tags/Mind-Node/" style="font-size: 10px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 10px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 12px;">RPA</a> <a href="/tags/S3/" style="font-size: 10px;">S3</a> <a href="/tags/SYNCROOM/" style="font-size: 10px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 12px;">Steinberg UR44C</a> <a href="/tags/Teams/" style="font-size: 10px;">Teams</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/TypeScript/" style="font-size: 12px;">TypeScript</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="/tags/cloud9/" style="font-size: 14px;">cloud9</a> <a href="/tags/draw-io/" style="font-size: 10px;">draw.io</a> <a href="/tags/filter/" style="font-size: 12px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 14px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 14px;">icarus</a> <a href="/tags/map/" style="font-size: 12px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 12px;">mat-checkbox</a> <a href="/tags/mat-selection-list/" style="font-size: 10px;">mat-selection-list</a> <a href="/tags/ngFor/" style="font-size: 10px;">ngFor</a> <a href="/tags/plantUML/" style="font-size: 10px;">plantUML</a> <a href="/tags/popIn-Aladdin2/" style="font-size: 10px;">popIn Aladdin2</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 12px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C/" style="font-size: 12px;">ファイル操作</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a> <a href="/tags/%E9%9D%99%E7%9A%84WEB-Hosting/" style="font-size: 10px;">静的WEB Hosting</a> <a href="/tags/%E9%9D%99%E7%9A%84WEB%E3%82%B5%E3%82%A4%E3%83%88Hosting/" style="font-size: 10px;">静的WEBサイトHosting</a>
     </div>
 </div>
     
@@ -3082,6 +3157,44 @@
         <h3 class="menu-label">
             最近の記事
         </h3>
+        
+        <article class="media">
+            
+            <a href="/AWS-S3-x-Angular-%E9%9D%99%E7%9A%84WEB%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9B%E3%82%B9%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%A7SPA%E3%82%92%E5%85%AC%E9%96%8B-%E5%85%AC%E9%96%8B%E7%AF%84%E5%9B%B2%E3%81%AE%E9%99%90%E5%AE%9A/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84747475-4272fd00-aff2-11ea-9060-07136ed71892.png" alt="[AWS S3 x Angular] 静的WEBサイトホスティングでSPAを公開/ng build/公開範囲の限定/CI/CD化">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-16T07:34:06.000Z">2020-06-16</time></div>
+                    <a href="/AWS-S3-x-Angular-%E9%9D%99%E7%9A%84WEB%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9B%E3%82%B9%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%A7SPA%E3%82%92%E5%85%AC%E9%96%8B-%E5%85%AC%E9%96%8B%E7%AF%84%E5%9B%B2%E3%81%AE%E9%99%90%E5%AE%9A/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[AWS S3 x Angular] 静的WEBサイトホスティングでSPAを公開/ng build/公開範囲の限定/CI/CD化</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/AWS-MFA-%E5%A4%9A%E8%A6%81%E7%B4%A0%E8%AA%8D%E8%A8%BC-%E3%81%AE%E6%9C%89%E5%8A%B9%E5%8C%96-IAM%E9%81%8B%E7%94%A8%E3%81%AE%E5%9F%BA%E6%9C%AC/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84744456-413fd100-afee-11ea-9c64-4fa09212375a.png" alt="[AWS] MFA(多要素認証)の有効化/IAM運用の基本">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-16T07:24:28.000Z">2020-06-16</time></div>
+                    <a href="/AWS-MFA-%E5%A4%9A%E8%A6%81%E7%B4%A0%E8%AA%8D%E8%A8%BC-%E3%81%AE%E6%9C%89%E5%8A%B9%E5%8C%96-IAM%E9%81%8B%E7%94%A8%E3%81%AE%E5%9F%BA%E6%9C%AC/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[AWS] MFA(多要素認証)の有効化/IAM運用の基本</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -3140,44 +3253,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/github-branch%E3%82%92Local%E3%81%A7%E7%94%9F%E6%88%90%EF%BD%9ERemote%E3%81%AB%E5%8F%8D%E6%98%A0/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84248013-d00ea280-ab43-11ea-8ce0-6a161632c3ea.png" alt="[Github入門] branchをLocalで生成～Remoteに反映">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-10T08:29:34.000Z">2020-06-10</time></div>
-                    <a href="/github-branch%E3%82%92Local%E3%81%A7%E7%94%9F%E6%88%90%EF%BD%9ERemote%E3%81%AB%E5%8F%8D%E6%98%A0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Github入門] branchをLocalで生成～Remoteに反映</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/Github-x-Teams-Webhook-Notification%E3%81%AB%E3%82%88%E3%82%8B%E9%80%A3%E6%90%BA%E6%96%B9%E6%B3%95/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84231133-6b921a00-ab28-11ea-8c0e-a47fb924b2c2.png" alt="Github x Teams Webhook/Notificationによる連携方法">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-10T04:31:51.000Z">2020-06-10</time></div>
-                    <a href="/Github-x-Teams-Webhook-Notification%E3%81%AB%E3%82%88%E3%82%8B%E9%80%A3%E6%90%BA%E6%96%B9%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Github x Teams Webhook/Notificationによる連携方法</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -3195,7 +3270,7 @@
                     <span class="level-item">六月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">6</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -3295,7 +3370,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/AWS/">
                         <span class="tag">AWS</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -3316,7 +3391,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">15</span>
+                        <span class="tag is-grey">16</span>
                     </a>
                 </div>
                 
@@ -3344,7 +3419,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/CI-CD/">
                         <span class="tag">CI/CD</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -3454,6 +3529,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/IAM/">
+                        <span class="tag">IAM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/JSON/">
                         <span class="tag">JSON</span>
                         <span class="tag is-grey">2</span>
@@ -3464,6 +3546,20 @@
                     <a class="tags has-addons" href="/tags/JavaScript/">
                         <span class="tag">JavaScript</span>
                         <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MFA/">
+                        <span class="tag">MFA</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MS-Authentication/">
+                        <span class="tag">MS Authentication</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -3492,6 +3588,13 @@
                     <a class="tags has-addons" href="/tags/RPA/">
                         <span class="tag">RPA</span>
                         <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/S3/">
+                        <span class="tag">S3</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -3715,6 +3818,20 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/">
                         <span class="tag">共同開発</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%9D%99%E7%9A%84WEB-Hosting/">
+                        <span class="tag">静的WEB Hosting</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%9D%99%E7%9A%84WEB%E3%82%B5%E3%82%A4%E3%83%88Hosting/">
+                        <span class="tag">静的WEBサイトHosting</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -3743,6 +3860,44 @@
         
         <article class="media">
             
+            <a href="/AWS-S3-x-Angular-%E9%9D%99%E7%9A%84WEB%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9B%E3%82%B9%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%A7SPA%E3%82%92%E5%85%AC%E9%96%8B-%E5%85%AC%E9%96%8B%E7%AF%84%E5%9B%B2%E3%81%AE%E9%99%90%E5%AE%9A/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84747475-4272fd00-aff2-11ea-9060-07136ed71892.png" alt="[AWS S3 x Angular] 静的WEBサイトホスティングでSPAを公開/ng build/公開範囲の限定/CI/CD化">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-16T07:34:06.000Z">2020-06-16</time></div>
+                    <a href="/AWS-S3-x-Angular-%E9%9D%99%E7%9A%84WEB%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9B%E3%82%B9%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%A7SPA%E3%82%92%E5%85%AC%E9%96%8B-%E5%85%AC%E9%96%8B%E7%AF%84%E5%9B%B2%E3%81%AE%E9%99%90%E5%AE%9A/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[AWS S3 x Angular] 静的WEBサイトホスティングでSPAを公開/ng build/公開範囲の限定/CI/CD化</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/AWS-MFA-%E5%A4%9A%E8%A6%81%E7%B4%A0%E8%AA%8D%E8%A8%BC-%E3%81%AE%E6%9C%89%E5%8A%B9%E5%8C%96-IAM%E9%81%8B%E7%94%A8%E3%81%AE%E5%9F%BA%E6%9C%AC/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84744456-413fd100-afee-11ea-9c64-4fa09212375a.png" alt="[AWS] MFA(多要素認証)の有効化/IAM運用の基本">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-16T07:24:28.000Z">2020-06-16</time></div>
+                    <a href="/AWS-MFA-%E5%A4%9A%E8%A6%81%E7%B4%A0%E8%AA%8D%E8%A8%BC-%E3%81%AE%E6%9C%89%E5%8A%B9%E5%8C%96-IAM%E9%81%8B%E7%94%A8%E3%81%AE%E5%9F%BA%E6%9C%AC/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[AWS] MFA(多要素認証)の有効化/IAM運用の基本</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/CI-CD%E5%85%A5%E9%96%80-Github-Actions%E3%81%A7%E3%83%93%E3%83%AB%E3%83%89-%E3%83%86%E3%82%B9%E3%83%88-%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%82%92%E8%87%AA%E5%8B%95%E5%8C%96/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84656875-59f8aa00-af4e-11ea-8cab-1639fd85a51c.png" alt="[CI/CD入門] Github Actionsでビルド/テスト/デプロイを自動化">
@@ -3798,44 +3953,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/github-branch%E3%82%92Local%E3%81%A7%E7%94%9F%E6%88%90%EF%BD%9ERemote%E3%81%AB%E5%8F%8D%E6%98%A0/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84248013-d00ea280-ab43-11ea-8ce0-6a161632c3ea.png" alt="[Github入門] branchをLocalで生成～Remoteに反映">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-10T08:29:34.000Z">2020-06-10</time></div>
-                    <a href="/github-branch%E3%82%92Local%E3%81%A7%E7%94%9F%E6%88%90%EF%BD%9ERemote%E3%81%AB%E5%8F%8D%E6%98%A0/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Github入門] branchをLocalで生成～Remoteに反映</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/Github-x-Teams-Webhook-Notification%E3%81%AB%E3%82%88%E3%82%8B%E9%80%A3%E6%90%BA%E6%96%B9%E6%B3%95/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84231133-6b921a00-ab28-11ea-8c0e-a47fb924b2c2.png" alt="Github x Teams Webhook/Notificationによる連携方法">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-10T04:31:51.000Z">2020-06-10</time></div>
-                    <a href="/Github-x-Teams-Webhook-Notification%E3%81%AB%E3%82%88%E3%82%8B%E9%80%A3%E6%90%BA%E6%96%B9%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Github x Teams Webhook/Notificationによる連携方法</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -3853,7 +3970,7 @@
                     <span class="level-item">六月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">6</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -3953,7 +4070,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/AWS/">
                         <span class="tag">AWS</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -3974,7 +4091,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">15</span>
+                        <span class="tag is-grey">16</span>
                     </a>
                 </div>
                 
@@ -4002,7 +4119,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/CI-CD/">
                         <span class="tag">CI/CD</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -4112,6 +4229,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/IAM/">
+                        <span class="tag">IAM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/JSON/">
                         <span class="tag">JSON</span>
                         <span class="tag is-grey">2</span>
@@ -4122,6 +4246,20 @@
                     <a class="tags has-addons" href="/tags/JavaScript/">
                         <span class="tag">JavaScript</span>
                         <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MFA/">
+                        <span class="tag">MFA</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/MS-Authentication/">
+                        <span class="tag">MS Authentication</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -4150,6 +4288,13 @@
                     <a class="tags has-addons" href="/tags/RPA/">
                         <span class="tag">RPA</span>
                         <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/S3/">
+                        <span class="tag">S3</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -4373,6 +4518,20 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/">
                         <span class="tag">共同開発</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%9D%99%E7%9A%84WEB-Hosting/">
+                        <span class="tag">静的WEB Hosting</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E9%9D%99%E7%9A%84WEB%E3%82%B5%E3%82%A4%E3%83%88Hosting/">
+                        <span class="tag">静的WEBサイトHosting</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

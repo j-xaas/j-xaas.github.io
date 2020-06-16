@@ -46,7 +46,11 @@ thumbnail: https://user-images.githubusercontent.com/41946222/84656875-59f8aa00-
   - [Github Actions Marketplace Angular](https://github.com/marketplace?type=actions&query=Angular)
 
 - S3/Firebase/Github Pages等のHostingサービスへの自動デプロイやテストを実行するActionを一般ユーザが作って公開してくれている
-  - ソースを更新して、GitにPushしただけで瞬時に本番環境も更新できるスピーディーな運用をパッと実現できそうです
+  - ソースを更新してGitにPushしただけで、瞬時に本番環境も更新できるスピーディーな運用をパッと実現できそうです
+  - 本番環境(Hostingサービス)への初回のデプロイまでは以下の記事で解説しています
+    - [[AWS S3 x Angular] 静的WEBサイトホスティングでSPAを公開/ng build/公開範囲の限定/CI/CD化](/AWS-S3-x-Angular-静的WEBサイトホスティングでSPAを公開-公開範囲の限定/)
+    - [Firebase Hosting完全版(Angularで開発したSPAを無料で公開～ダッシュボードで費用管理)](/Firebase-Hosting完全版-Angularで開発したSPAを無料で公開～ダッシュボードで費用管理/)
+    - [[Hexo x Github Pages] 5分以内にブログを自動生成して無料で公開するまで【完全版】](/Hexo-x-Github-Pages-5分以内にブログを自動生成して無料で公開するまで/)
 
 ![Actions](https://user-images.githubusercontent.com/41946222/84236499-aef18600-ab32-11ea-85ad-1c1320084897.png)
 
@@ -325,10 +329,12 @@ on:  ## workflowのTriggerを定義
 
 
 
-
-
-
 ## 参考
+### 関連記事 (本番環境へのデプロイまで)
+- [[AWS S3 x Angular] 静的WEBサイトホスティングでSPAを公開/ng build/公開範囲の限定/CI/CD化](/AWS-S3-x-Angular-静的WEBサイトホスティングでSPAを公開-公開範囲の限定/)
+- [Firebase Hosting完全版(Angularで開発したSPAを無料で公開～ダッシュボードで費用管理)](/Firebase-Hosting完全版-Angularで開発したSPAを無料で公開～ダッシュボードで費用管理/)
+- [[Hexo x Github Pages] 5分以内にブログを自動生成して無料で公開するまで【完全版】](/Hexo-x-Github-Pages-5分以内にブログを自動生成して無料で公開するまで/)
+
 
 ### Github Actions
 - [Github Actions Document](https://help.github.com/en/actions)

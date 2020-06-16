@@ -7,6 +7,7 @@ category:
 tags:
 - WEB Page Dev
 - Hexo
+- 静的WEBサイトHosting
 toc: true
 thumbnail: https://user-images.githubusercontent.com/41946222/77337436-3ae1e600-6d6c-11ea-919a-51893f317e71.png
 alias: /2020/03/23/Hexo-x-Github-Pages-5分以内にブログを自動生成して無料で公開するまで/
