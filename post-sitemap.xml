@@ -8,6 +8,22 @@
     </url>
 
     <url>
+        <loc>https://j-xaas.github.io/Hexo-share%E6%A9%9F%E8%83%BD%E3%81%AE%E8%BF%BD%E5%8A%A0-Add-This/</loc>
+        <lastmod>2020-06-16T15:26:31.915Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://j-xaas.github.io/%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E9%A3%B2%E3%81%BF%E5%90%91%E3%81%91-Netflix-Party%E3%81%A7%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%91%91%E8%B3%9E%E4%BC%9A%E3%82%92%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/</loc>
+        <lastmod>2020-06-16T13:30:11.182Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://j-xaas.github.io/Angular8-global-is-not-defined%E3%81%AE%E8%A7%A3%E6%B6%88%E6%B3%95/</loc>
         <lastmod>2020-06-16T13:25:32.689Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -154,14 +170,6 @@
     <url>
         <loc>https://j-xaas.github.io/About-This-Blog/</loc>
         <lastmod>2020-06-14T14:34:25.938Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://j-xaas.github.io/%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E9%A3%B2%E3%81%BF%E5%90%91%E3%81%91-Netflix-Party%E3%81%A7%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%91%91%E8%B3%9E%E4%BC%9A%E3%82%92%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/</loc>
-        <lastmod>2020-06-14T14:16:54.366Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

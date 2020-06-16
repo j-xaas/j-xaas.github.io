@@ -154,6 +154,260 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/Angular-JSON%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%8C%96%E3%81%A8%E5%87%BA%E5%8A%9B-%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%8B%E3%82%89%E5%8F%96%E5%BE%97%E3%81%97%E3%81%9F%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E4%BB%BB%E6%84%8F%E3%81%AE%E5%90%8D%E7%A7%B0%E3%81%A7%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B/" class="image is-7by1">
+            <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/83424662-abda0400-a467-11ea-831a-2b146d29a1c5.png" alt="[Angular JavaScript] JSONデータのファイル化と出力 ~クラウドから取得したデータを任意の名称で保存するロジック~ (TypeScript)">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-05-31T13:55:36.000Z">2020-05-31</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    20分 read (About 2975 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/Angular-JSON%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%8C%96%E3%81%A8%E5%87%BA%E5%8A%9B-%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%8B%E3%82%89%E5%8F%96%E5%BE%97%E3%81%97%E3%81%9F%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E4%BB%BB%E6%84%8F%E3%81%AE%E5%90%8D%E7%A7%B0%E3%81%A7%E4%BF%9D%E5%AD%98%E3%81%99%E3%82%8B/">[Angular JavaScript] JSONデータのファイル化と出力 ~クラウドから取得したデータを任意の名称で保存するロジック~ (TypeScript)</a>
+            
+        </h1>
+        <div class="content">
+            <p>Angular APでローカル端末にファイルを出力する機能をWEB APに実装する手順を解説します。外部API(ex. AWS)からService経由でGETしたデータをLocal端末に保存するケースを想定しています。色々試したものの、WEB APはセキュリティ制約が多いので、やり方が限られました。</p>
+<!-- toc -->
+
+<ul>
+<li><a href="#1-基礎知識">1. 基礎知識</a><ul>
+<li><a href="#11-今回の手法jacascriptのdownloadを使用">1.1. 今回の手法(JacaScriptのdownloadを使用)</a></li>
+<li><a href="#12-その他の手法">1.2. その他の手法</a></li>
+</ul>
+</li>
+<li><a href="#2-単一ファイルを取得">2. 単一ファイルを取得</a><ul>
+<li><a href="#21-get-filecomponenthtml">2.1. get-file.component.html</a></li>
+<li><a href="#22-get-filecomponentts">2.2. get-file.component.ts</a></li>
+<li><a href="#23-実装例">2.3. 実装例</a></li>
+</ul>
+</li>
+<li><a href="#3-複数ファイルをダウンロード">3. 複数ファイルをダウンロード</a></li>
+<li><a href="#4-参考">4. 参考</a><ul>
+<li><a href="#ファイルのダウンロード">ファイルのダウンロード</a></li>
+<li><a href="#その他">その他</a></li>
+<li><a href="#jquery-or-pythonを使用">jQuery or Pythonを使用</a></li>
+<li><a href="#json-javascriptでの扱い">JSON JavaScriptでの扱い</a></li>
+<li><a href="#mdnドキュメント">MDNドキュメント</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="1-基礎知識">1. 基礎知識</span></h2><h3><span id="11-今回の手法jacascriptのdownloadを使用">1.1. 今回の手法(JacaScriptのdownloadを使用)</span></h3><p>詳しくは手順を参考にしてください</p>
+<ul>
+<li><p>リンクタグのDOMを取得してそこからdownload</p>
+<ul>
+<li>保存するJSONファイルの名前を一意に定義</li>
+<li>レスポンスデータをJSON形式に変換<ul>
+<li>JSON.stringify()を使用</li>
+</ul>
+</li>
+<li>HTMLのリンク要素を生成<ul>
+<li>link = document.createElement()</li>
+</ul>
+</li>
+<li>リンク先にJSON形式の文字列データを置いておく<ul>
+<li>link.hrel = ‘data:text/plain,’ + encodeURIComponent(data);</li>
+</ul>
+</li>
+<li>保存するJSONファイルの名前をリンクに設定<ul>
+<li>link.download = fileName</li>
+</ul>
+</li>
+<li>ファイルを保存<ul>
+<li>link.click()で自動で疑似的にリンクをクリックさせる</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ポイント</p>
+<ul>
+<li>プラグインの導入や、ブラウザの制約無しという条件であれば、これ以外の手法は現状ありませんでした</li>
+<li>ファイルの保存先は指定不可<ul>
+<li>端末の”ダウンロード”に入ります</li>
+</ul>
+</li>
+<li>セキュリティの都合上、ブラウザから直接端末のドライブに読み書きできないようになっているようです</li>
+</ul>
+</li>
+</ul>
+<h3><span id="12-その他の手法">1.2. その他の手法</span></h3><ul>
+<li>Device Storage API</li>
+<li>Native File System API<ul>
+<li>保存先の指定が可能<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">このAPIはユーザーのデバイス上にあるファイルを読み込んだり、任意のディレクトリにファイルを書き込むことができるAPIです。途中段階のAPIですが、このAPIが提供されることでスマホアプリやデスクトップアプリのような機能をWebアプリでも提供できるようになります。</span><br></pre></td></tr></table></figure></li>
+<li>今回は採用しません<ul>
+<li>ブラウザによっては動かず、APの利用に前提条件ができてしまう為</li>
+</ul>
+</li>
+<li>採用する場合は以下を参考にどうぞ<ul>
+<li><a href="https://www.mitsue.co.jp/knowledge/blog/frontend/201909/30_1002.html">ブラウザからドライブにファイルの書き込みができるNative File System APIとは？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="2-単一ファイルを取得">2. 単一ファイルを取得</span></h2><p>以下の構成を想定</p>
+<ul>
+<li>get-file.component<ul>
+<li>get-file.component.html</li>
+<li>get-file.component.ts</li>
+</ul>
+</li>
+<li>service<ul>
+<li>sample.service</li>
+</ul>
+</li>
+</ul>
+<h3><span id="21-get-filecomponenthtml">2.1. get-file.component.html</span></h3><ul>
+<li><p>(click)イベントでメソッドを起動するボタンを作成</p>
+<ul>
+<li>TS側に外部からデータを取得して、ファイルとして保存するロジックを書きます</li>
+</ul>
+</li>
+<li><p>get-data.component.html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button mat-raised-button (click)&#x3D;&quot;submit()&quot;&gt;Get Data&lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>その他：フォームやチェックリスト等を作成</p>
+<ul>
+<li>問い合わせ用のパラメータ設定をユーザが自由に弄れるようにするため</li>
+<li>別記事で解説 ＆ 今回の趣旨と異なるため省略</li>
+</ul>
+</li>
+</ul>
+<h3><span id="22-get-filecomponentts">2.2. get-file.component.ts</span></h3><p>(click)イベントで発火するメソッドをこちらで作りこみます</p>
+<ul>
+<li>submit()<ul>
+<li>機能<ul>
+<li>外部からJSONデータを取得<ul>
+<li>外部APIへの問い合わせを実行するServiceを呼び出す</li>
+</ul>
+</li>
+<li>ファイル名を自動生成<ul>
+<li>時刻を自動取得＆フォームの入力値と合わせる</li>
+</ul>
+</li>
+<li>取得データを加工してJSONファイル化</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="23-実装例">2.3. 実装例</span></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">submit() &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 1. 各種パラメータの取得</span><br><span class="line">  &#x2F;&#x2F; ----1.1. ファイル名のprefixに付ける日時データを取得---</span><br><span class="line">  &#x2F;&#x2F; Dateオブジェクトの作成</span><br><span class="line">  const now &#x3D; new Date();</span><br><span class="line">  &#x2F;&#x2F; 各日時要素を取得</span><br><span class="line">  const year &#x3D; String(now.getFullYear()); &#x2F;&#x2F; 年</span><br><span class="line">  &#x2F;&#x2F; 1月&#x3D;0と出るため+</span><br><span class="line">  const month &#x3D; String(now.getMonth() + 1); &#x2F;&#x2F; 月</span><br><span class="line">  const date &#x3D; String(now.getDate()); &#x2F;&#x2F; 日</span><br><span class="line">  const hour &#x3D; String(now.getHours()); &#x2F;&#x2F; 時</span><br><span class="line">  const min &#x3D; String(now.getMinutes()); &#x2F;&#x2F; 分</span><br><span class="line">  const sec &#x3D; String(now.getSeconds()); &#x2F;&#x2F; 秒</span><br><span class="line">  &#x2F;&#x2F; YYYYMMDDHHMMSの形式で変数timeにまとめる </span><br><span class="line">  const time &#x3D;  year + month + date + hour + min + sec;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 1.2. AWSへの問い合わせ用のパラメータを取得</span><br><span class="line">  &#x2F;&#x2F; 今回はAWSから情報を取得するパターンを想定</span><br><span class="line">  &#x2F;&#x2F; （認証とregionの指定、その他パラメータが必要）</span><br><span class="line">  &#x2F;&#x2F; 1.2.1. Credential認証</span><br><span class="line">  AWS.config.credentials &#x3D; new AWS.Credentials(AWS_CONFIG.accessKeyId, AWS_CONFIG.secretAccessKey);</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 1.2.2. チェックされたリージョンリストを取得</span><br><span class="line">  const REGION &#x3D; this.makeRegionList();</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 1.2.3. 問い合わせ用のパラメータ(ex. sampleParameter)の取得</span><br><span class="line">  const parameter &#x3D; this.makeSampleParameterList();</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 2. 外部APIへの問い合わせとファイル化----    </span><br><span class="line">  &#x2F;&#x2F; Service経由でデータを取得</span><br><span class="line">  &#x2F;&#x2F; forkjoinを利用する為に返り値をobservablesに格納</span><br><span class="line">  let observables &#x3D; REGION.map(region &#x3D;&gt; &#123; &#x2F;&#x2F; 引数としてRegion情報を渡す</span><br><span class="line">    return this.sampleService.getData(region, resourceType).pipe(catchError(e &#x3D;&gt; observableOf(&#123;&quot;error&quot;: e&#125;)))</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 3. ファイル化</span><br><span class="line">  &#x2F;&#x2F; リクエストの終了を待って返り値に処理を加える</span><br><span class="line">  &#x2F;&#x2F; 非同期処理の待ち合わせの為にforkJoinを利用</span><br><span class="line">  forkJoin(observables).subscribe( response &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; Observableをsubscribeして、中の値を取り出し、ファイルとして出力</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; レスポンスを加工してjsonファイルとURLを作る</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 3.1. 保存するJSONファイルの名前: yyyymmddhhmmss-region_name.json とする</span><br><span class="line">    &#x2F;&#x2F; 拡張子をfiletypeで指定</span><br><span class="line">    const filetype &#x3D; &#39;.json&#39;;</span><br><span class="line">    &#x2F;&#x2F; file名を設定　</span><br><span class="line">    const fileName &#x3D; time + &#39;_&#39; + REGION + filetype;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 3.2. データをJSON形式の文字列に変換する。</span><br><span class="line">    const data &#x3D; JSON.stringify(response);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 出力:リンクタグのDOMを取得してそこから行う</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 3.3. HTMLのリンク要素を生成する</span><br><span class="line">    const link &#x3D; document.createElement(&#39;a&#39;);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 3.4. リンク先にJSON形式の文字列データを置いておく。</span><br><span class="line">    link.href &#x3D; &#39;data:text&#x2F;plain,&#39; + encodeURIComponent(data);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 3.5. 保存するJSONファイルの名前をリンクに設定</span><br><span class="line">    link.download &#x3D; fileName;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 3.6. ファイルを保存</span><br><span class="line">    link.click();</span><br><span class="line"></span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<h2><span id="3-複数ファイルをダウンロード">3. 複数ファイルをダウンロード</span></h2><p>処理を複数回実行する必要があります。問い合わせ処理とファイル化処理を特定のパラメータに応じてfor文でループさせます。</p>
+<ul>
+<li>想定するシチュエーション<ul>
+<li>AWSからデータを取得<ul>
+<li>指定した各region毎の情報をファイル化します</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>機能連携イメージ<ul>
+<li>ボタンを押下<ul>
+<li>submit()メソッドが発火</li>
+</ul>
+</li>
+<li>各種パラメータを取得<ul>
+<li>ファイルの命名と問い合わせに必要な情報を集める</li>
+</ul>
+</li>
+<li>問い合わせを実行（データを持ってくる）<ul>
+<li>特定のパラメータ数回、外部からデータを取得 ⇒ 配列に格納<ul>
+<li>外部APIに問い合わせを実行するサービス(sampleService)を呼び出して処理はそちらに任せる</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ファイル化処理<ul>
+<li>ファイルを分けたい単位（特定のパラメータより規定）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; データを取得 ⇒ ローカルにJSONファイルを保存するメソッド</span><br><span class="line">submit() &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 1. 各種パラメータの取得</span><br><span class="line">  &#x2F;&#x2F; ----1.1. ファイル名のprefixに付ける日時データを取得---</span><br><span class="line">  &#x2F;&#x2F; Dateオブジェクトの作成</span><br><span class="line">  const now &#x3D; new Date();</span><br><span class="line">  &#x2F;&#x2F; 各日時要素を取得</span><br><span class="line">  const year &#x3D; String(now.getFullYear()); &#x2F;&#x2F; 年</span><br><span class="line">  &#x2F;&#x2F; 1月&#x3D;0と出るため+</span><br><span class="line">  const month &#x3D; String(now.getMonth() + 1); &#x2F;&#x2F; 月</span><br><span class="line">  const date &#x3D; String(now.getDate()); &#x2F;&#x2F; 日</span><br><span class="line">  const hour &#x3D; String(now.getHours()); &#x2F;&#x2F; 時</span><br><span class="line">  const min &#x3D; String(now.getMinutes()); &#x2F;&#x2F; 分</span><br><span class="line">  const sec &#x3D; String(now.getSeconds()); &#x2F;&#x2F; 秒</span><br><span class="line">  &#x2F;&#x2F; YYYYMMDDHHMMSの形式で変数timeにまとめる </span><br><span class="line">  const time &#x3D;  year + month + date + hour + min + sec;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 1.2. AWSへの問い合わせ用のパラメータを取得</span><br><span class="line">  &#x2F;&#x2F; 今回はAWSから情報を取得するパターンを想定</span><br><span class="line">  &#x2F;&#x2F; （認証とregionの指定、その他パラメータが必要）</span><br><span class="line">  &#x2F;&#x2F; 1.2.1. Credential認証</span><br><span class="line">  AWS.config.credentials &#x3D; new AWS.Credentials(AWS_CONFIG.accessKeyId, AWS_CONFIG.secretAccessKey);</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 1.2.2. チェックされたリージョンリストを取得</span><br><span class="line">  const REGIONS &#x3D; this.makeRegionList();</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 1.2.3. 問い合わせ用のパラメータ(ex. sampleParameter)の取得</span><br><span class="line">  const parameter &#x3D; this.makeSampleParameterList();</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 2. 外部APIへの問い合わせとファイル化----</span><br><span class="line">  &#x2F;&#x2F; 以降の処理をsampleParameter毎にループさせる</span><br><span class="line"></span><br><span class="line">  for (let a &#x3D; 0, numSampleParameter &#x3D; sampleParameter.length ; a &lt; numSampleParameter; a++) &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; ------2.1. region数回　AWSへの問い合わせを実行---------</span><br><span class="line">    &#x2F;&#x2F; forkjoinを利用する為に返り値をobservablesに格納</span><br><span class="line"></span><br><span class="line">    const observables &#x3D; REGIONS.map(region &#x3D;&gt; &#123; &#x2F;&#x2F; 引数としてRegionを渡す</span><br><span class="line">      return this.sampleService.getData(region).pipe(catchError(e &#x3D;&gt; observableOf(&#123;&quot;error&quot;: e&#125;)))</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; ------2.2. ファイル化処理をregion数回ループさせる-------</span><br><span class="line"></span><br><span class="line">    for (let i &#x3D; 0, numRegions &#x3D; REGIONS.length ; i &lt; numRegions; i++) &#123;</span><br><span class="line">      &#x2F;&#x2F; リクエスト(非同期処理)の終了をforkjoinで待ち合わせる</span><br><span class="line">      forkJoin(observables[i]).subscribe( response &#x3D;&gt; &#123; </span><br><span class="line">        &#x2F;&#x2F; Observableをsubscribeして、中の値を取り出し、変数データの内容を変数responseとして扱う</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 2.2.1. レスポンスを加工してjsonファイルとURLを作る</span><br><span class="line">        &#x2F;&#x2F; 保存するJSONファイルの名前: yyyymmddhhmmss-region_name.json とする</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 拡張子をfiletypeに指定</span><br><span class="line">        const filetype &#x3D; &#39;.json&#39;;</span><br><span class="line">        &#x2F;&#x2F; file名を設定　</span><br><span class="line">        const fileName &#x3D; time + &#39;_&#39; + REGIONS[i] + filetype;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 2.2.2. データをJSON形式の文字列に変換</span><br><span class="line">        const data &#x3D; JSON.stringify(response);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 出力:リンクタグのDOMを取得してそこから行う</span><br><span class="line">        &#x2F;&#x2F; 2.2.3. HTMLのリンク要素を生成する。</span><br><span class="line">        const link &#x3D; document.createElement(&#39;a&#39;);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 2.2.4. リンク先にJSON形式の文字列データを置いておく</span><br><span class="line">        link.href &#x3D; &#39;data:text&#x2F;plain,&#39; + encodeURIComponent(data);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 2.2.5. 保存するJSONファイルの名前をリンクに設定</span><br><span class="line">        link.download &#x3D; fileName;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 2.2.6. ファイルを保存</span><br><span class="line">        link.click();</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;  &#x2F;&#x2F; -------ファイル生成ループ終了--------</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>service側の処理や受け渡す変数、ファイル名はシチュエーションに合わせて補完してください</li>
+</ul>
+<h2><span id="4-参考">4. 参考</span></h2><h3><span id="ファイルのダウンロード">ファイルのダウンロード</span></h3><ul>
+<li><p><a href="https://qiita.com/Ohtak/items/b7fb05c4e3dee13c0d1f">JSでダウンロードを実装した話</a></p>
+</li>
+<li><p><a href="JavaScriptでローカルにファイルを保存する方法（その1）">JavaScriptでローカルにファイルを保存する方法（その1）</a></p>
+</li>
+<li><p><a href="https://ja.stackoverflow.com/questions/14530/javascript%E3%81%A7%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89%E3%81%95%E3%82%8C%E3%82%8B%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E4%BF%9D%E5%AD%98%E5%A0%B4%E6%89%80%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B">JavaScriptでダウンロードされるファイルの保存場所を指定する</a></p>
+</li>
+<li><p><a href="https://qiita.com/ksh-fthr/items/29db7c5c7268ee1802c5">[Angular] CSV ファイルを出力したときにやったこと</a></p>
+</li>
+<li><p><a href="https://slash-mochi.net/?p=3073">JavaScriptでJSONファイルを保存する/開く方法</a></p>
+</li>
+<li><p><a href="https://www.e-loop.jp/knowledges/35/">JavaScriptでFile APIをファイル操作方法ついて解説</a></p>
+</li>
+<li><p><a href="https://web.dev/read-files/">web.dev JavaScriptでファイルを読み込む</a></p>
+</li>
+<li><p><a href="https://developer.mozilla.org/ja/docs/Web/API/File/Using_files_from_web_applications">MDN ウェブアプリケーションからのファイルの使用</a></p>
+</li>
+</ul>
+<h3><span id="その他">その他</span></h3><ul>
+<li><a href="https://www.ipentec.com/document/javascript-get-current-datetime">JavaScriptで現在の日付、時刻を取得する - JavaScript プログラミング</a></li>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date">Dateオブジェクト</a></li>
+<li><a href="https://www.mitsue.co.jp/knowledge/blog/frontend/201909/30_1002.html">ブラウザからドライブにファイルの書き込みができるNative File System APIとは？</a></li>
+</ul>
+<h3><span id="jquery-or-pythonを使用">jQuery or Pythonを使用</span></h3><ul>
+<li><p><a href="https://qiita.com/yoshida3/items/36083f7959771b62e9af">jsonファイルの読み込み纏め</a></p>
+</li>
+<li><p><a href="https://www.angularjswiki.com/angular/how-to-read-local-json-files-in-angular/">How To Read Local JSON Files In Angular</a></p>
+</li>
+</ul>
+<h3><span id="json-javascriptでの扱い">JSON JavaScriptでの扱い</span></h3><ul>
+<li><a href="https://agency-star.co.jp/column/json-parse/">JSONの扱い方を解説！PythonやJavaScript・Swiftでの基本的な使用法とは。配列取得や出力方法も紹介</a></li>
+</ul>
+<h3><span id="mdnドキュメント">MDNドキュメント</span></h3><ul>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/API/File">MDN File</a></li>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/API/File">MDN FileList</a></li>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/API/FileReader">MDN FileReader</a></li>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/API/Blob">MDN Blob</a></li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/Angular-mat-selection-list%E3%81%A7checkbox%E3%82%92%E8%A1%A8%E7%A4%BA%EF%BD%9E%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%A8%E3%81%97%E3%81%A6%E5%8F%96%E5%BE%97/" class="image is-7by1">
             <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/83426603-5bb07100-a46a-11ea-8093-bd0d6e517706.png" alt="[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得">
         </a>
@@ -2511,290 +2765,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/Angular-map-fileter-mat-checkbox%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%AB%E6%A0%BC%E7%B4%8D%E3%81%99%E3%82%8B%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF/" class="image is-7by1">
-            <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84595025-b72e2600-ae90-11ea-8eb7-9e1a14a34a36.png" alt="[Angular] map() &amp; filter() &amp; mat-checkboxを使って選択値を配列に格納するロジック">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-04-13T14:26:33.000Z">2020-04-13</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    11分 read (About 1614 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/Angular-map-fileter-mat-checkbox%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%AB%E6%A0%BC%E7%B4%8D%E3%81%99%E3%82%8B%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF/">[Angular] map() &amp; filter() &amp; mat-checkboxを使って選択値を配列に格納するロジック</a>
-            
-        </h1>
-        <div class="content">
-            <ul>
-<li>複数のチェックボックスの中で選択項目を判別して、それぞれの固有値を配列に格納するロジックの作り方を解説します。<ul>
-<li>以下のSample画面で言うと、チェックされたJapanの値を配列に格納します</li>
-</ul>
-</li>
-<li>使いどころ<ul>
-<li>checkした項目に応じて外部サービスに対するリクエストに含めるパラメータを変化させる</li>
-</ul>
-</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/79117116-346fe880-7dc5-11ea-9065-ded3d7d9e307.png" height="90px" width="300px" alt="画面イメージ">
-</div>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#基礎知識">基礎知識</a><ul>
-<li><a href="#angularにおけるデータ加工ロジック">Angularにおけるデータ加工ロジック</a></li>
-<li><a href="#map">map</a></li>
-<li><a href="#filter">filter</a></li>
-</ul>
-</li>
-<li><a href="#実装">実装</a><ul>
-<li><a href="#データ構造の定義">データ構造の定義</a></li>
-<li><a href="#状態判別ロジック">状態判別ロジック</a></li>
-<li><a href="#配列データを引数としてリクエストを送る際の例">配列データを引数としてリクエストを送る際の例</a></li>
-<li><a href="#tsに定めたdataに応じてチェックボックスのリストを表示するhtml">tsに定めたdataに応じてチェックボックスのリストを表示するHTML</a><ul>
-<li><a href="#基礎知識-1">基礎知識</a></li>
-<li><a href="#記載例">記載例</a></li>
-</ul>
-</li>
-<li><a href="#画面で確認">画面で確認</a></li>
-<li><a href="#おまけ-for文で書く場合">おまけ: for文で書く場合</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-
-<h2><span id="基礎知識">基礎知識</span></h2><ul>
-<li>すぐに実装に取り掛かりたい方は飛ばしてOK</li>
-</ul>
-<h3><span id="angularにおけるデータ加工ロジック">Angularにおけるデータ加工ロジック</span></h3><ul>
-<li>基本的にmapやfilterを利用する<ul>
-<li>アンチパターン<ul>
-<li>何でもfor,if文</li>
-</ul>
-</li>
-<li>何故か?<ul>
-<li>mapは並列処理<ul>
-<li>for文と比較して処理が高速</li>
-</ul>
-</li>
-<li>書式がシンプル<ul>
-<li>開発期間短縮</li>
-<li>可読性向上</li>
-<li>リファクタリングの簡略化</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="map">map</span></h3><ul>
-<li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/map">map()</a><ul>
-<li>処理<ul>
-<li>引数として与えられた配列の各要素に対して、一つづつ関数を実行</li>
-<li>カウンタが不要な配列向けのfor文というイメージでOKです</li>
-</ul>
-</li>
-<li>返り値<ul>
-<li>実行結果から新たな配列を生成</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="filter">filter</span></h3><ul>
-<li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">filter()</a><ul>
-<li>処理<ul>
-<li>引数として与えられたテスト関数を各配列要素に対して実行</li>
-<li>配列向けのif文というイメージでOKです</li>
-</ul>
-</li>
-<li>返り値<ul>
-<li>テスト関数の条件に合格した要素からなる新しい配列を生成</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>利用イメージ</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 配列を宣言</span><br><span class="line">const array &#x3D; [&#39;AA&#39;, &#39;BB&#39;, &#39;CC&#39;, &#39;DDD&#39;, &#39;EEEE&#39;, &#39;FFFFF&#39;];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 配列arrayを引数として、条件式3文字以上の要素を抽出して、配列として返す</span><br><span class="line">const result &#x3D; array.filter(array &#x3D;&gt; array.length &gt;&#x3D; 3);</span><br><span class="line"></span><br><span class="line">console.log(result);</span><br><span class="line">&#x2F;&#x2F; output: Array [&quot;DDD&quot;, &quot;EEEE&quot;, &quot;FFFFF&quot;]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>構文は以下</p>
-<ul>
-<li>value: 配列の要素</li>
-<li>index: インデックス</li>
-<li>array: 操作中の配列本体<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var newArray &#x3D; arr.filter(callback(element[, index[, array]])[, thisArg])</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>他の利用例は以下を参考にどうぞ</p>
-<ul>
-<li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">MDN</a>をご覧ください</li>
-<li><a href="https://ginpen.com/2018/12/12/array-filter/">その名の通りのfilter()で絞り込み。（配列とかおれおれAdvent Calendar2018 – 12日目）</a></li>
-</ul>
-</li>
-</ul>
-<h2><span id="実装">実装</span></h2><p>ざっくりイメージは以下</p>
-<ul>
-<li>tsファイル<ul>
-<li>役割<ul>
-<li>データ構造の定義</li>
-<li>判別ロジック<ul>
-<li>(click)イベントで発火</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>html<ul>
-<li>役割<ul>
-<li>checkboxの表示</li>
-<li>tsファイルで指定したデータの参照</li>
-<li>(click)イベントの指定</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="データ構造の定義">データ構造の定義</span></h3><ul>
-<li>配列dataに以下のようにデータ構造を定義します<ul>
-<li>valueを読み替えて使用してください</li>
-</ul>
-</li>
-<li>sample.component.ts<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; dataにcheckboxの値とチェック状態の初期値：selectedを定義</span><br><span class="line">data &#x3D; [</span><br><span class="line">    &#123; value: &#39;Japan&#39;, selected: false&#125;, &#x2F;&#x2F; 初期値 true</span><br><span class="line">    &#123; value: &#39;America&#39;, selected: false&#125;,</span><br><span class="line">    &#123; value: &#39;China&#39;, selected: false&#125;,</span><br><span class="line">    &#123; value: &#39;England&#39;, selected: false&#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3><span id="状態判別ロジック">状態判別ロジック</span></h3><ul>
-<li>状態を判別するmethodを宣言します</li>
-<li>ざっくりイメージ<ul>
-<li>filter()<ul>
-<li>data全体からチェック済みのもの(Selected=true)に絞る</li>
-</ul>
-</li>
-<li>map()<ul>
-<li>残ったdataのvalueで配列を生成</li>
-</ul>
-</li>
-<li>Listに格納</li>
-</ul>
-</li>
-<li>sample.component.ts<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">makeList() &#123;</span><br><span class="line">    &#x2F;&#x2F; 格納先の配列を宣言</span><br><span class="line">    let countryList &#x3D; [];</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; selectedからチェック状態を確認して、配列にを格納していく</span><br><span class="line">    countryList &#x3D; this.data </span><br><span class="line">        .filter((d) &#x3D;&gt; d.selected) &#x2F;&#x2F; checkされているものに絞る</span><br><span class="line">        .map((d) &#x3D;&gt; d.value); &#x2F;&#x2F; valueを取得</span><br><span class="line">    return countryList; &#x2F;&#x2F;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3><span id="配列データを引数としてリクエストを送る際の例">配列データを引数としてリクエストを送る際の例</span></h3><ul>
-<li>選択値を使って外部サービスへリクエストを行うケースを想定<ul>
-<li>service側で受け取った変数に応じた分岐処理を用意しておくイメージです</li>
-</ul>
-</li>
-<li>sample.component.ts<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">submit()&#123;</span><br><span class="line">    &#x2F;&#x2F; 選択値を受け取る</span><br><span class="line">    const selectedCountries &#x3D; this.makeList();</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 任意のServiceのメソッドを実行</span><br><span class="line">    getService.requesrMethod(selectedCountries)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<h3><span id="tsに定めたdataに応じてチェックボックスのリストを表示するhtml">tsに定めたdataに応じてチェックボックスのリストを表示するHTML</span></h3><h4><span id="基礎知識">基礎知識</span></h4><ul>
-<li><p><a href="https://angular.jp/api/common/NgForOf#ngforof">ngFor</a></p>
-<ul>
-<li>指定した配列をループ表示させる<a href="https://angular.jp/guide/structural-directives">構造ディレクティブ</a><ul>
-<li>べた書きするよりもすっきり書けます</li>
-<li>今回は以下のように配列:dataをループさせています<ul>
-<li>ngForのループの中でdataを変数itemとして使うという意味<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*ngFor&#x3D; &quot;let item of data; index as i&quot;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>ng-container x *ngFor<ul>
-<li>組み合わせると、ng-containerの中の要素全てを一まとまりでループさせることが可能です</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><a href="https://material.angular.io/components/checkbox/overview">mat-checkbox</a></p>
-<ul>
-<li>通常のcheckboxはイケてないので<a href="https://material.angular.io/">Angular Material</a>を使います<ul>
-<li>通常のcheckboxを使う場合は”mat-checkbox”を”input”に読み替えてください</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Angularのフォーム</p>
-<ul>
-<li>二種類あります<ul>
-<li>テンプレート駆動型<ul>
-<li>書式がシンプルで手軽に実装可能であるため採用</li>
-<li>#myForm=”ngForm” と設定することでこちらになる</li>
-</ul>
-</li>
-<li>モデル駆動型 (Reactive駆動型)<ul>
-<li>コードは冗長になりがち</li>
-<li>より柔軟に複雑な要件を満たせる<h4><span id="記載例">記載例</span></h4></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>sample.component.html</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;Choose Country&lt;&#x2F;div&gt;</span><br><span class="line">&lt;!---formで選択したリージョンの情報を纏めてからリクエスト------&gt;</span><br><span class="line">&lt;form #myForm&#x3D;&quot;ngForm&quot; (ngSubmit)&#x3D;&quot;submit()&quot;&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!---定義した配列dataをngForでループ表示 要素をiでカウント----&gt;</span><br><span class="line">  &lt;ng-container *ngFor&#x3D; &quot;let item of data; index as i&quot; &gt;</span><br><span class="line"></span><br><span class="line">    &lt;!---inputで通常のCheckboxに変えてもOK---&gt;</span><br><span class="line">    &lt;mat-checkbox type&#x3D;&quot;checkbox&quot; name &#x3D; &quot;country&#123;&#123;i&#125;&#125;&quot;</span><br><span class="line">    [(ngModel)]&#x3D;&quot;data[i].selected&quot;</span><br><span class="line">    [value]&#x3D;&quot;item.value&quot;</span><br><span class="line">    (change)&#x3D;&quot;checkCountry(i)&quot;</span><br><span class="line">    &gt;&#123;&#123;data[i].value&#125;&#125;&lt;&#x2F;mat-checkbox&gt; </span><br><span class="line"></span><br><span class="line">  &lt;&#x2F;ng-container&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!---チェックボックスから得たデータを纏めてリクエストするボタン---&gt;</span><br><span class="line">  &lt;button mat-raised-button color&#x3D;&quot;primary&quot;&gt;Get Data&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;!--(ngSubmit)&#x3D;で設定されたsubmit()が実行される--&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3><span id="画面で確認">画面で確認</span></h3><ul>
-<li>以下のように表示されます</li>
-</ul>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/79117116-346fe880-7dc5-11ea-9065-ded3d7d9e307.png" height="90px" width="300px" alt="画面イメージ">
-</div>
-
-
-<h3><span id="おまけ-for文で書く場合">おまけ: for文で書く場合</span></h3><ul>
-<li>for文でも判別ロジック書いたので参考までにどうぞ<ul>
-<li>だいぶ冗長になってしまいます</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 格納先を宣言</span><br><span class="line">let regionList &#x3D; [];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; for文で書く場合</span><br><span class="line">var num&#x3D;0;</span><br><span class="line">for ( let c &#x3D; 0; c &lt;&#x3D; this.data.length - 1 ; c++) &#123;</span><br><span class="line">  if (this.data[c].selected) &#123; &#x2F;&#x2F; Checkされているか判定 trueなら実行</span><br><span class="line">      &#x2F;&#x2F; 配列に要素を追加 .push()</span><br><span class="line">      countryList.push(this.data[c].value); &#x2F;&#x2F; リージョン名を格納</span><br><span class="line">      console.log(countryList[num] + &#39; checked&#39;); &#x2F;&#x2F; デバッグ用</span><br><span class="line">      num++;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    console.log(&#39;Not Check&#39;); &#x2F;&#x2F; デバッグ用</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(countryList);</span><br></pre></td></tr></table></figure>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -2865,7 +2835,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            42
+                            43
                         </p>
                     </a>
                 </div>
@@ -2889,7 +2859,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            72
+                            74
                         </p>
                     </a>
                 </div>
@@ -3117,7 +3087,7 @@
                 <span class="level-item">WEB Page Dev</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/WEB-Page-Dev/Hexo/">
@@ -3125,7 +3095,7 @@
                 <span class="level-item">Hexo</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">8</span>
+                <span class="level-item tag">9</span>
             </span>
         </a></li></ul></li>
             </ul>
@@ -3138,7 +3108,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 14px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 12px;">AWS SDK for JavaScript</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 12px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 12px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/CI-CD/" style="font-size: 14px;">CI/CD</a> <a href="/tags/Cloud-Craft/" style="font-size: 10px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/DTM/" style="font-size: 14px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 12px;">Firebase</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Github-Actions/" style="font-size: 10px;">Github Actions</a> <a href="/tags/Github-com/" style="font-size: 16px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 18px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/IAM/" style="font-size: 10px;">IAM</a> <a href="/tags/JSON/" style="font-size: 12px;">JSON</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/MFA/" style="font-size: 10px;">MFA</a> <a href="/tags/MS-Authentication/" style="font-size: 10px;">MS Authentication</a> <a href="/tags/Mind-Node/" style="font-size: 10px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 10px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/RPA/" style="font-size: 12px;">RPA</a> <a href="/tags/S3/" style="font-size: 10px;">S3</a> <a href="/tags/SYNCROOM/" style="font-size: 10px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 12px;">Steinberg UR44C</a> <a href="/tags/Teams/" style="font-size: 10px;">Teams</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/TypeScript/" style="font-size: 12px;">TypeScript</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="/tags/cloud9/" style="font-size: 14px;">cloud9</a> <a href="/tags/draw-io/" style="font-size: 10px;">draw.io</a> <a href="/tags/filter/" style="font-size: 12px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 14px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 14px;">icarus</a> <a href="/tags/map/" style="font-size: 12px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 12px;">mat-checkbox</a> <a href="/tags/mat-selection-list/" style="font-size: 10px;">mat-selection-list</a> <a href="/tags/ngFor/" style="font-size: 10px;">ngFor</a> <a href="/tags/plantUML/" style="font-size: 10px;">plantUML</a> <a href="/tags/popIn-Aladdin2/" style="font-size: 10px;">popIn Aladdin2</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 12px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C/" style="font-size: 12px;">ファイル操作</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a> <a href="/tags/%E9%9D%99%E7%9A%84WEB-Hosting/" style="font-size: 10px;">静的WEB Hosting</a> <a href="/tags/%E9%9D%99%E7%9A%84WEB%E3%82%B5%E3%82%A4%E3%83%88Hosting/" style="font-size: 10px;">静的WEBサイトHosting</a>
+        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 13.33px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 11.67px;">AWS SDK for JavaScript</a> <a href="/tags/AddThis/" style="font-size: 10px;">AddThis</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 11.67px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 11.67px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/CI-CD/" style="font-size: 13.33px;">CI/CD</a> <a href="/tags/Cloud-Craft/" style="font-size: 10px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/DTM/" style="font-size: 13.33px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 11.67px;">Firebase</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Github-Actions/" style="font-size: 10px;">Github Actions</a> <a href="/tags/Github-com/" style="font-size: 16.67px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 18.33px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/IAM/" style="font-size: 10px;">IAM</a> <a href="/tags/JSON/" style="font-size: 11.67px;">JSON</a> <a href="/tags/JavaScript/" style="font-size: 11.67px;">JavaScript</a> <a href="/tags/MFA/" style="font-size: 10px;">MFA</a> <a href="/tags/MS-Authentication/" style="font-size: 10px;">MS Authentication</a> <a href="/tags/Mind-Node/" style="font-size: 10px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 10px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/NoCode/" style="font-size: 10px;">NoCode</a> <a href="/tags/RPA/" style="font-size: 11.67px;">RPA</a> <a href="/tags/S3/" style="font-size: 10px;">S3</a> <a href="/tags/SYNCROOM/" style="font-size: 10px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 11.67px;">Steinberg UR44C</a> <a href="/tags/Teams/" style="font-size: 10px;">Teams</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/TypeScript/" style="font-size: 11.67px;">TypeScript</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="/tags/cloud9/" style="font-size: 13.33px;">cloud9</a> <a href="/tags/draw-io/" style="font-size: 10px;">draw.io</a> <a href="/tags/filter/" style="font-size: 11.67px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 13.33px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/map/" style="font-size: 11.67px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 11.67px;">mat-checkbox</a> <a href="/tags/mat-selection-list/" style="font-size: 10px;">mat-selection-list</a> <a href="/tags/ngFor/" style="font-size: 10px;">ngFor</a> <a href="/tags/plantUML/" style="font-size: 10px;">plantUML</a> <a href="/tags/popIn-Aladdin2/" style="font-size: 10px;">popIn Aladdin2</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 11.67px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C/" style="font-size: 11.67px;">ファイル操作</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a> <a href="/tags/%E9%9D%99%E7%9A%84WEB-Hosting/" style="font-size: 10px;">静的WEB Hosting</a> <a href="/tags/%E9%9D%99%E7%9A%84WEB%E3%82%B5%E3%82%A4%E3%83%88Hosting/" style="font-size: 10px;">静的WEBサイトHosting</a>
     </div>
 </div>
     
@@ -3150,6 +3120,25 @@
         <h3 class="menu-label">
             最近の記事
         </h3>
+        
+        <article class="media">
+            
+            <a href="/Hexo-share%E6%A9%9F%E8%83%BD%E3%81%AE%E8%BF%BD%E5%8A%A0-Add-This/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84784157-f55c4e80-b024-11ea-98c8-b4500d84cf91.png" alt="Hexo 共有機能のPlugin Add Thisで動的なシェアボタンを追加">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-16T13:49:53.000Z">2020-06-16</time></div>
+                    <a href="/Hexo-share%E6%A9%9F%E8%83%BD%E3%81%AE%E8%BF%BD%E5%8A%A0-Add-This/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hexo 共有機能のPlugin Add Thisで動的なシェアボタンを追加</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -3227,25 +3216,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/Hexo-%E8%A8%98%E4%BA%8B%E3%81%AEURL%E3%82%92%E5%A4%89%E6%9B%B4/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://media.github-enterprise-9911a.paas1.nec-cloud.com/user/11/files/dd1dd280-ad8b-11ea-8807-e89852f3b1cc" alt="[Hexo] 記事のURLを変更">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-13T06:36:17.000Z">2020-06-13</time></div>
-                    <a href="/Hexo-%E8%A8%98%E4%BA%8B%E3%81%AEURL%E3%82%92%E5%A4%89%E6%9B%B4/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Hexo] 記事のURLを変更</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -3263,7 +3233,7 @@
                     <span class="level-item">六月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>
@@ -3371,6 +3341,13 @@
                     <a class="tags has-addons" href="/tags/AWS-SDK-for-JavaScript/">
                         <span class="tag">AWS SDK for JavaScript</span>
                         <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AddThis/">
+                        <span class="tag">AddThis</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -3510,7 +3487,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
-                        <span class="tag is-grey">8</span>
+                        <span class="tag is-grey">9</span>
                     </a>
                 </div>
                 
@@ -3573,6 +3550,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Netflix-Party/">
                         <span class="tag">Netflix Party</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NoCode/">
+                        <span class="tag">NoCode</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -3720,7 +3704,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/icarus/">
                         <span class="tag">icarus</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -3853,6 +3837,25 @@
         
         <article class="media">
             
+            <a href="/Hexo-share%E6%A9%9F%E8%83%BD%E3%81%AE%E8%BF%BD%E5%8A%A0-Add-This/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84784157-f55c4e80-b024-11ea-98c8-b4500d84cf91.png" alt="Hexo 共有機能のPlugin Add Thisで動的なシェアボタンを追加">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-16T13:49:53.000Z">2020-06-16</time></div>
+                    <a href="/Hexo-share%E6%A9%9F%E8%83%BD%E3%81%AE%E8%BF%BD%E5%8A%A0-Add-This/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hexo 共有機能のPlugin Add Thisで動的なシェアボタンを追加</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/AWS-S3-x-Angular-%E9%9D%99%E7%9A%84WEB%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9B%E3%82%B9%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%A7SPA%E3%82%92%E5%85%AC%E9%96%8B-%E5%85%AC%E9%96%8B%E7%AF%84%E5%9B%B2%E3%81%AE%E9%99%90%E5%AE%9A/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84747475-4272fd00-aff2-11ea-9060-07136ed71892.png" alt="[AWS S3 x Angular] 静的WEBサイトホスティングでSPAを公開/ng build/公開範囲の限定/CI/CD化">
@@ -3927,25 +3930,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/Hexo-%E8%A8%98%E4%BA%8B%E3%81%AEURL%E3%82%92%E5%A4%89%E6%9B%B4/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://media.github-enterprise-9911a.paas1.nec-cloud.com/user/11/files/dd1dd280-ad8b-11ea-8807-e89852f3b1cc" alt="[Hexo] 記事のURLを変更">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-13T06:36:17.000Z">2020-06-13</time></div>
-                    <a href="/Hexo-%E8%A8%98%E4%BA%8B%E3%81%AEURL%E3%82%92%E5%A4%89%E6%9B%B4/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Hexo] 記事のURLを変更</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -3963,7 +3947,7 @@
                     <span class="level-item">六月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">9</span>
                 </span>
             </a>
         </li>
@@ -4071,6 +4055,13 @@
                     <a class="tags has-addons" href="/tags/AWS-SDK-for-JavaScript/">
                         <span class="tag">AWS SDK for JavaScript</span>
                         <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/AddThis/">
+                        <span class="tag">AddThis</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -4210,7 +4201,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
-                        <span class="tag is-grey">8</span>
+                        <span class="tag is-grey">9</span>
                     </a>
                 </div>
                 
@@ -4273,6 +4264,13 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Netflix-Party/">
                         <span class="tag">Netflix Party</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/NoCode/">
+                        <span class="tag">NoCode</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -4420,7 +4418,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/icarus/">
                         <span class="tag">icarus</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 

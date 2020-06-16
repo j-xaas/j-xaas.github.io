@@ -1,5 +1,5 @@
 ---
-title: '[オンライン飲み会向け]　Netflix Partyでリモート鑑賞会をする方法'
+title: '[オンライン飲み会向け] Netflix Partyでリモート鑑賞会をする方法'
 date: 2020-04-08 22:36:09
 category: 
 - Tool Tips
@@ -10,8 +10,6 @@ tag:
 toc: true
 alias: /2020/04/08/オンライン飲み向け-Netflix-Partyでリモート鑑賞会をする方法/
 thumbnail: https://user-images.githubusercontent.com/41946222/78471347-9c8e5100-776b-11ea-9d38-d498b762a3b3.png
-## redirect_from:
-## - /2020/04/08/オンライン飲み向け-Netflix-Partyでリモート鑑賞会をする方法
 ---
 
 最近コロナウィルスの影響でオン飲みが流行っているので、映画好きにお勧めのNetflix Partyについて書きます。
