@@ -164,6 +164,260 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/s3-ssl%E5%8C%96-https%E5%8C%96/" class="image is-7by1">
+            <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84855780-ebc3fc80-b09f-11ea-921c-d413fa17627b.png" alt="s3 ssl化 https化(CloudFront/ACM/Route53)">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-06-17T04:15:02.000Z">2020-06-17</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    11分 read (About 1608 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/s3-ssl%E5%8C%96-https%E5%8C%96/">s3 ssl化 https化(CloudFront/ACM/Route53)</a>
+            
+        </h1>
+        <div class="content">
+            <p>S3の静的WEBホスティングで公開中のアプリのURLはデフォルトではhttp<del>になります。Cloud Frontを用いてhttps</del>にしてセキュリティを向上させます。</p>
+<ul>
+<li>静的WEBホスティングで公開するまでは以下の記事をご参照ください<ul>
+<li><a href="/AWS-S3-x-Angular-静的WEBサイトホスティングでSPAを公開-公開範囲の限定/">[AWS S3 x Angular] 静的WEBサイトホスティングでSPAを公開/ng build/公開範囲の限定/CI/CD化</a></li>
+</ul>
+</li>
+</ul>
+<h2><span id="基礎知識">基礎知識</span></h2><h3><span id="静的コンテンツ配信を行うawsアーキテクチャのベストプラクティス">静的コンテンツ配信を行うAWSアーキテクチャのベストプラクティス</span></h3><p><img src="https://user-images.githubusercontent.com/41946222/84855780-ebc3fc80-b09f-11ea-921c-d413fa17627b.png" alt="architecture"></p>
+<ul>
+<li>S3でコンテンツをHostingして、ユーザーとの間にCloud FrontとRoute53を挟むのが基本です<ul>
+<li>それぞれの説明は後述します</li>
+</ul>
+</li>
+</ul>
+<h3><span id="ssl">SSL</span></h3><ul>
+<li><a href="https://jp.globalsign.com/ssl-pki-info/ssl_beginner/aboutssl.html">SSL(Secure Sockets Layer)</a>とは<ul>
+<li>データ通信を暗号化し、盗聴や改ざんを防ぐプロトコル</li>
+<li>httpsから始まるWEBサイトはSSLを導入しています</li>
+<li>非SSL(http)の場合、Googleがデフォルトで警告マークを出すので、サイトやWEB APの信頼度が大幅に下がります</li>
+</ul>
+</li>
+</ul>
+<h3><span id="cloud-front">Cloud Front</span></h3><ul>
+<li>CDN<ul>
+<li>配信パフォーマンスの向上</li>
+<li>コスト削減</li>
+</ul>
+</li>
+<li>セキュリティの向上</li>
+</ul>
+<h3><span id="route53">Route53</span></h3><h2><span id="手順">手順</span></h2><ul>
+<li>想定する状況<ul>
+<li>AWS Consoleで設定</li>
+<li>CloudFormationやSAMで作るケースもあると思います</li>
+</ul>
+</li>
+</ul>
+<h3><span id="cloud-frontとs3を連携">Cloud FrontとS3を連携</span></h3><ul>
+<li>まずは以下の構成を作ります<br><img src="https://user-images.githubusercontent.com/41946222/84862620-714ea900-b0ae-11ea-9900-40c1bbc7b7c3.png" alt="CloudFront x s3"></li>
+</ul>
+<ul>
+<li><p>AWS Console/サービス/CloudFront</p>
+</li>
+<li><p>Create Distributionを押下<br><img src="https://user-images.githubusercontent.com/41946222/84858364-f97c8080-b0a5-11ea-92a5-2cc13d7be57b.png" alt="Cloud Front Menu"></p>
+</li>
+</ul>
+<ul>
+<li>配信方法はWEBを選択<br><img src="https://user-images.githubusercontent.com/41946222/84858521-537d4600-b0a6-11ea-9caf-83774afab46b.png" alt="Delivery Method"></li>
+</ul>
+<h4><span id="ディストリビューションの作成">ディストリビューションの作成</span></h4><ul>
+<li><p>Origin Settings</p>
+<ul>
+<li>Origin Domain Name<ul>
+<li>Hosting中のs3バケットを選択</li>
+</ul>
+</li>
+<li>Restrict Bucket Access<ul>
+<li>YesにするとCloudFront経由でのみ閲覧可能になる</li>
+<li>Grant Read Permissions on Bucket<ul>
+<li>これを設定しておくとS3のバケット側の設定を自動でやってくれる</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Default Cache Behavior Settings</p>
+<ul>
+<li>そのままでもOK</li>
+<li>Viewer Protocol Policy<ul>
+<li>Redirect HTTP to HTTPS<ul>
+<li>これにしておくとhttpからhttpsへリダイレクトさせてくれる</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Distribution Settings</p>
+<ul>
+<li>Alternate Domain Name(CNAMEs)<ul>
+<li>証明書を取得したドメイン名を設定<ul>
+<li>複数のドメイン名を使用する場合は、改行区切り</li>
+</ul>
+</li>
+<li>ドメインを取得していなければスルー</li>
+</ul>
+</li>
+<li>SSL Certificate<ul>
+<li>Defaultの証明書でOK</li>
+<li>独自SSLを使用する場合<ul>
+<li>事前にIAMに証明書をアップロードしておく</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Default Root Object<ul>
+<li>S3の静的Hostingの設定で指定した、インデックスドキュメント(Angularであればindex.html)を入力</li>
+</ul>
+</li>
+<li>Create Distributionを押下            </li>
+</ul>
+</li>
+<li><p>20分程度でStatusがDeployedになるので、完了後にアクセスしてみる</p>
+</li>
+<li><p>URL</p>
+<ul>
+<li>XXXX以降はディストリビューションのGeneralタブのDamain Nameに表示されているものを確認<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;xxxxx.cloudfront.net</span><br></pre></td></tr></table></figure>
+<img src="https://user-images.githubusercontent.com/41946222/84861034-2d0dd980-b0ab-11ea-8042-0688711d2207.png" alt="image"></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Route53や独自ドメインを利用しないのであれば以上で完了</li>
+</ul>
+<h4><span id="cloudfrontの注意点キャッシュコントロール">CloudFrontの注意点：キャッシュコントロール</span></h4><ul>
+<li>デフォルト<ul>
+<li>オリジンサーバのコンテンツを 24 時間キャッシュ</li>
+<li>検証中など頻繁にS3のオブジェクト内容を更新する際にはキャッシュがききすぎて辛い。</li>
+</ul>
+</li>
+<li>Cache-Controlヘッダーを設定してCloudFrontのキャッシュ時間を制御する等、キャッシュコントロールを適切に行う必要がある。<ul>
+<li><a href="https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/Expiration.html#expiration-individual-objects">ヘッダーを使用した個々のオブジェクトのキャッシュ保持期間の制御</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2><span id="独自ドメインを活用する場合">独自ドメインを活用する場合</span></h2><ul>
+<li>前提<ul>
+<li>独自ドメインを取得してRoute53に登録済み</li>
+<li>これから取得する人はお名前.com等を使ってみてください</li>
+</ul>
+</li>
+</ul>
+<h3><span id="acmaws-certificate-managerで証明書を作成">ACM(AWS Certificate Manager)で証明書を作成</span></h3><ul>
+<li><p>AWS Console/AWS Certificate Manager/証明書のリクエスト</p>
+</li>
+<li><p>ドメイン名を入力</p>
+<ul>
+<li>”この証明書に別の名前を追加”よりドメインの別名を設定</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/84869260-c2639a80-b0b8-11ea-825b-fe0b932fb7d1.png" alt="ACM"></p>
+<ul>
+<li>対象ドメインに登録されているメールアドレス宛に検証確認メールが送付される</li>
+<li>検証確認メールに記載されている<a href="https://us-east-1.certificates.amazon.com/approvals...にアクセス">https://us-east-1.certificates.amazon.com/approvals...にアクセス</a></li>
+<li>表示された画面で” I Approve”を押下<ul>
+<li>以上で証明書のリクエストが完了します</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/84869629-4027a600-b0b9-11ea-9241-6a2253ed448e.png" alt="requst"></p>
+<ul>
+<li>CloudFrontにACMで作成した証明書を設定</li>
+<li>Ditribution/Generalタブ/Edit</li>
+<li>SSL Certificate<ul>
+<li>Custom SSL Certificateを選択</li>
+<li>プルダウンから先ほどACMに登録した証明書を選択</li>
+</ul>
+</li>
+<li>保存</li>
+</ul>
+<h3><span id="route53の独自ドメインのエイリアスの向き先を変更する">Route53の独自ドメインのエイリアスの向き先を変更する</span></h3><ul>
+<li><p>AWS Console/サービス/Route53</p>
+</li>
+<li><p>ホストゾーンから登録済みのドメインを選択</p>
+</li>
+<li><p>対象の行を選択</p>
+<ul>
+<li>タイプ：Aのもの</li>
+</ul>
+</li>
+<li><p>レコードセットの編集</p>
+<ul>
+<li>エイリアス先を変更<ul>
+<li>[CloudFront ディストリビューション] - 対象のドメイン名 を選択</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>レコードセットを保存</p>
+</li>
+</ul>
+<ul>
+<li>確認<ul>
+<li>以下にアクセスしてみる<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;&#123;独自ドメイン&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="参考">参考</span></h2><ul>
+<li><p><a href="https://dev.classmethod.jp/articles/static-contents-delivery-patterns/">AWSにおける静的コンテンツ配信パターンカタログ（アンチパターン含む）</a></p>
+</li>
+<li><p><a href="https://qiita.com/horiuchie/items/fa47ae921f9aac237689">S3を最速でhttps化する手順と全設定項目</a></p>
+</li>
+<li><p><a href="https://qiita.com/jasbulilit/items/73d70a01a5d3b520450f">CloudFrontでS3のウェブサイトをSSL化する</a></p>
+</li>
+<li><p><a href="https://recipe.kc-cloud.jp/archives/11489">AWSでWebサイトをHTTPS化 その9：S3のみ編</a></p>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/AWS-S3-x-Angular-%E9%9D%99%E7%9A%84WEB%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9B%E3%82%B9%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%A7SPA%E3%82%92%E5%85%AC%E9%96%8B-%E5%85%AC%E9%96%8B%E7%AF%84%E5%9B%B2%E3%81%AE%E9%99%90%E5%AE%9A/" class="image is-7by1">
             <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84747475-4272fd00-aff2-11ea-9060-07136ed71892.png" alt="[AWS S3 x Angular] 静的WEBサイトホスティングでSPAを公開/ng build/公開範囲の限定/CI/CD化">
         </a>
@@ -2570,247 +2824,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/Angular-%E8%A6%AA%E5%AD%90%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E5%85%B1%E6%9C%89-Input-Output-EventEmitter/" class="image is-7by1">
-            <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84595070-f52b4a00-ae90-11ea-809e-92333129b46f.png" alt="[Angular]親子コンポーネント間でデータを共有(@Input/@Output/EventEmitter)">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-04-09T16:22:31.000Z">2020-04-10</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    7分 read (About 1013 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/Angular-%E8%A6%AA%E5%AD%90%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E5%85%B1%E6%9C%89-Input-Output-EventEmitter/">[Angular]親子コンポーネント間でデータを共有(@Input/@Output/EventEmitter)</a>
-            
-        </h1>
-        <div class="content">
-            <p><a href="https://angular.jp/">Angular</a>のコンポーネント間ではデータをそのまま共有することはできません。初級者が躓くポイントの一つだと思うので、解説をまとめておきます。</p>
-<!-- toc -->
-
-<ul>
-<li><a href="#基礎知識">基礎知識</a></li>
-<li><a href="#1-親子-inputを使用">1. 親⇒子 (@Inputを使用)</a><ul>
-<li><a href="#11-親側">1.1. 親側</a><ul>
-<li><a href="#parentcomponentts">parent.component.ts</a></li>
-<li><a href="#parentcomponenthtml">parent.component.html</a></li>
-</ul>
-</li>
-<li><a href="#12-子側">1.2. 子側</a><ul>
-<li><a href="#childcomponentts">child.component.ts</a></li>
-<li><a href="#childcomponenthtml">child.component.html</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#2-子親-outputeventemitterを使用">2. 子⇒親 (@Output/EventEmitterを使用)</a><ul>
-<li><a href="#21-子側">2.1. 子側</a><ul>
-<li><a href="#childcomponentts-1">child.component.ts</a></li>
-<li><a href="#childcomponenthtml-1">child.component.html</a></li>
-</ul>
-</li>
-<li><a href="#22-親側">2.2. 親側</a><ul>
-<li><a href="#parentcomponenthtml-1">parent.component.html</a></li>
-<li><a href="#parentcomponentts-1">parent.component.ts</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-
-<h2><span id="基礎知識">基礎知識</span></h2><ul>
-<li>Angularで親子間のデータを伝播させるにはデコレーターを利用します</li>
-<li>デコレーター<ul>
-<li>構成情報を付与する仕組み<ul>
-<li>対象<ul>
-<li>クラス/プロパティ/メソッド/引数</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>構文<ul>
-<li>@name</li>
-<li>ex.) @NgModule</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>データの流れ</th>
-<th>使用するデコレーター</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>親 ⇒ 子</td>
-<td>@Inputデコレーター</td>
-</tr>
-<tr>
-<td>子 ⇒ 親</td>
-<td>@Outputデコレーター</td>
-</tr>
-</tbody></table>
-<ul>
-<li>例えば、子A ⇒ 親 ⇒ 子B の順にデータを共有することも可能です<ul>
-<li>※関係性の遠いコンポーネント間のデータ共有にはServiceを介しましょう</li>
-</ul>
-</li>
-</ul>
-<p>それぞれ解説していきます。</p>
-<h2><span id="1-親子-inputを使用">1. 親⇒子 (@Inputを使用)</span></h2><ul>
-<li>Component構成は以下の入れ子構造を想定<ul>
-<li>親<ul>
-<li>parent.component</li>
-</ul>
-</li>
-<li>子<ul>
-<li>child.component</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="11-親側">1.1. 親側</span></h3><ul>
-<li>選択肢を表示<h4><span id="parentcomponentts">parent.component.ts</span></h4></li>
-<li>選択値を</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 選択値を保存する変数</span><br><span class="line">selected: string;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; データを定義</span><br><span class="line">data &#x3D; [</span><br><span class="line">    &#123;name &#x3D; &quot;選択肢A&quot;&#125;</span><br><span class="line">    &#123;name &#x3D; &quot;選択肢B&quot;&#125;</span><br><span class="line">    &#123;name &#x3D; &quot;選択肢C&quot;&#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; click時に選択値をselectedに格納</span><br><span class="line">&quot;onClick(select_name)&#123;</span><br><span class="line">    this.selected &#x3D; select_name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4><span id="parentcomponenthtml">parent.component.html</span></h4><ul>
-<li>定義したデータ型からbuttonを繰り返し表示<ul>
-<li>click時に選択値を引数としてonClick()を実行</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div *ngFor&#x3D;&quot;let d of data&quot;&gt;</span><br><span class="line">    &lt;button (click)&#x3D;&quot;onClick(d.name)&quot;&gt;&#123;&#123;d.name&#125;&#125;&lt;&#x2F;button&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--childコンポ―ネントを入れ子で表示---&gt;</span><br><span class="line">&lt;app-child [item]&#x3D;&quot;selected&quot;&gt;&lt;&#x2F;app-child&gt;</span><br></pre></td></tr></table></figure>
-
-<h3><span id="12-子側">1.2. 子側</span></h3><h4><span id="childcomponentts">child.component.ts</span></h4><ul>
-<li>@Inputでitemを受け取ります<ul>
-<li>childから渡した選択値が入ります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Inputが必要</span><br><span class="line">import &#123;Component , Input&#125; form &#39;@angular&#x2F;core&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; @Inputで</span><br><span class="line">export class ChildComponent&#123;</span><br><span class="line">    @Input() item: string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h4><span id="childcomponenthtml">child.component.html</span></h4><ul>
-<li>受け取った値を表示<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--ngIfでデータが空じゃなければ表示--&gt;</span><br><span class="line">&lt;div *ngIf&#x3D;&quot;item&quot;&gt; </span><br><span class="line">    &lt;li&gt;&#123;&#123;item&#125;&#125;を選択しました&lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2><span id="2-子親-outputeventemitterを使用">2. 子⇒親 (@Output/EventEmitterを使用)</span></h2><ul>
-<li><p>Component構成は以下の入れ子構造を想定</p>
-<ul>
-<li>子<ul>
-<li>child.component<ul>
-<li>選択肢をbuttonで表示</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>親<ul>
-<li>parent.component<ul>
-<li>選択値によって変化</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>@Outputでデコレーターを活用して、子コンポーネントで発生したイベントを親に通知</p>
-</li>
-</ul>
-<h3><span id="21-子側">2.1. 子側</span></h3><h4><span id="childcomponentts">child.component.ts</span></h4><ol>
-<li>import</li>
-<li>@Outputで受け渡すイベントを定義</li>
-<li>(click)でイベントを発生させるメソッドを定義<ul>
-<li>共有したいデータを引数として受け渡す</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><p>emitメソッド</p>
-<ul>
-<li>イベントをここで発生させる</li>
-<li>構文<ul>
-<li>event: イベント名</li>
-<li>data: $eventオブジェクトとして渡すデータ<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.event.emit(data)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>記載例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1. OutputとEventEmitterを利用するためにimport</span><br><span class="line"></span><br><span class="line">import &#123; Component, Output, EventEmitter &#125; from &#39;@angular&#x2F;core&#39;;</span><br><span class="line"></span><br><span class="line">export class ResourceTreeComponent &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 2. イベントを宣言 発生時に$eventオブジェクトとして&lt;&gt;で定義した型のデータを親へ受け渡す</span><br><span class="line"></span><br><span class="line">  @Output() selected &#x3D; new EventEmitter&lt;string&gt;();</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 3. (click)で共有したいデータを引数としてイベントを発生させる</span><br><span class="line"></span><br><span class="line">  onclick(data) &#123;</span><br><span class="line">    &#x2F;&#x2F; 選択したリソースタイプをselectedへ格納</span><br><span class="line">    this.selected.emit(data);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4><span id="childcomponenthtml">child.component.html</span></h4><ul>
-<li>想定する状況<ul>
-<li>事前に定義したデータ：nodeをtreeとbuttonで選択肢を表示</li>
-<li>選択値: node.nameを親に渡したい</li>
-<li>(click)でonclickを発火させる</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--mat-treeで階層型の選択肢を表示---&gt;</span><br><span class="line">&lt;mat-tree-node *matTreeNodeDef&#x3D;&quot;let node&quot; matTreeNodeToggle matTreeNodePadding&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!--click時にnode.nameを選択値として取得---&gt;</span><br><span class="line">  &lt;button mat-button (click)&#x3D;&quot;onclick(node.name)&quot;&gt;</span><br><span class="line">    &#123;&#123;node.name&#125;&#125;</span><br><span class="line">  &lt;&#x2F;button&gt;</span><br></pre></td></tr></table></figure>
-
-<h3><span id="22-親側">2.2. 親側</span></h3><h4><span id="parentcomponenthtml">parent.component.html</span></h4><ul>
-<li>子から受け取ったdataを変数selectに入れて表示<ul>
-<li>(selected)=”onSelect($event)”<ul>
-<li>childでselectedイベントが発生したタイミングでonSlect()メソッドを実行</li>
-<li>$eventオブジェクト<ul>
-<li>emitメソッド経由で渡されるdata<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;&#123;&#123;select&#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;!--子コンポーネントの要素にイベントバインディングを設定---&gt;</span><br><span class="line">&lt;app-child (selected)&#x3D;&quot;onSelect($event)&quot;&gt;&lt;&#x2F;app-child&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4><span id="parentcomponentts">parent.component.ts</span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">export class ParentComponent implements OnInit &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; データを受け取る変数を宣言</span><br><span class="line">  select: string;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; resourcce-treeからデータを受け取る</span><br><span class="line">  onSelect($event) &#123;</span><br><span class="line">    this.select &#x3D; $event;</span><br><span class="line">    return this.select;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>解説は以上です。</p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -2875,7 +2888,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            43
+                            45
                         </p>
                     </a>
                 </div>
@@ -2899,7 +2912,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            74
+                            80
                         </p>
                     </a>
                 </div>
@@ -3007,7 +3020,7 @@
                 <span class="level-item">Serverless Application Dev</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">17</span>
+                <span class="level-item tag">19</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Serverless-Application-Dev/AWS/">
@@ -3015,7 +3028,7 @@
                 <span class="level-item">AWS</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">6</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Serverless-Application-Dev/Firebase/">
@@ -3148,7 +3161,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 13.33px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 11.67px;">AWS SDK for JavaScript</a> <a href="/tags/AddThis/" style="font-size: 10px;">AddThis</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 11.67px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 11.67px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/CI-CD/" style="font-size: 13.33px;">CI/CD</a> <a href="/tags/Cloud-Craft/" style="font-size: 10px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/DTM/" style="font-size: 13.33px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 11.67px;">Firebase</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Github-Actions/" style="font-size: 10px;">Github Actions</a> <a href="/tags/Github-com/" style="font-size: 16.67px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 18.33px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/IAM/" style="font-size: 10px;">IAM</a> <a href="/tags/JSON/" style="font-size: 11.67px;">JSON</a> <a href="/tags/JavaScript/" style="font-size: 11.67px;">JavaScript</a> <a href="/tags/MFA/" style="font-size: 10px;">MFA</a> <a href="/tags/MS-Authentication/" style="font-size: 10px;">MS Authentication</a> <a href="/tags/Mind-Node/" style="font-size: 10px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 10px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/NoCode/" style="font-size: 10px;">NoCode</a> <a href="/tags/RPA/" style="font-size: 11.67px;">RPA</a> <a href="/tags/S3/" style="font-size: 10px;">S3</a> <a href="/tags/SYNCROOM/" style="font-size: 10px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 11.67px;">Steinberg UR44C</a> <a href="/tags/Teams/" style="font-size: 10px;">Teams</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/TypeScript/" style="font-size: 11.67px;">TypeScript</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="/tags/cloud9/" style="font-size: 13.33px;">cloud9</a> <a href="/tags/draw-io/" style="font-size: 10px;">draw.io</a> <a href="/tags/filter/" style="font-size: 11.67px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 13.33px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/map/" style="font-size: 11.67px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 11.67px;">mat-checkbox</a> <a href="/tags/mat-selection-list/" style="font-size: 10px;">mat-selection-list</a> <a href="/tags/ngFor/" style="font-size: 10px;">ngFor</a> <a href="/tags/plantUML/" style="font-size: 10px;">plantUML</a> <a href="/tags/popIn-Aladdin2/" style="font-size: 10px;">popIn Aladdin2</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 11.67px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C/" style="font-size: 11.67px;">ファイル操作</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a> <a href="/tags/%E9%9D%99%E7%9A%84WEB-Hosting/" style="font-size: 10px;">静的WEB Hosting</a> <a href="/tags/%E9%9D%99%E7%9A%84WEB%E3%82%B5%E3%82%A4%E3%83%88Hosting/" style="font-size: 10px;">静的WEBサイトHosting</a>
+        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 16.67px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 11.67px;">AWS SDK for JavaScript</a> <a href="/tags/AddThis/" style="font-size: 10px;">AddThis</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 11.67px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 11.67px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/CDN/" style="font-size: 10px;">CDN</a> <a href="/tags/CI-CD/" style="font-size: 13.33px;">CI/CD</a> <a href="/tags/Cloud-Craft/" style="font-size: 10px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/CloudFront/" style="font-size: 10px;">CloudFront</a> <a href="/tags/CroudFront/" style="font-size: 10px;">CroudFront</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/DTM/" style="font-size: 13.33px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 11.67px;">Firebase</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Github-Actions/" style="font-size: 10px;">Github Actions</a> <a href="/tags/Github-com/" style="font-size: 16.67px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 18.33px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/IAM/" style="font-size: 10px;">IAM</a> <a href="/tags/JSON/" style="font-size: 11.67px;">JSON</a> <a href="/tags/JavaScript/" style="font-size: 11.67px;">JavaScript</a> <a href="/tags/MFA/" style="font-size: 10px;">MFA</a> <a href="/tags/MS-Authentication/" style="font-size: 10px;">MS Authentication</a> <a href="/tags/Mind-Node/" style="font-size: 10px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 10px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/NoCode/" style="font-size: 10px;">NoCode</a> <a href="/tags/RPA/" style="font-size: 11.67px;">RPA</a> <a href="/tags/Route53/" style="font-size: 10px;">Route53</a> <a href="/tags/S3/" style="font-size: 13.33px;">S3</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/SYNCROOM/" style="font-size: 10px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 11.67px;">Steinberg UR44C</a> <a href="/tags/Teams/" style="font-size: 10px;">Teams</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/TypeScript/" style="font-size: 11.67px;">TypeScript</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="/tags/cloud9/" style="font-size: 13.33px;">cloud9</a> <a href="/tags/draw-io/" style="font-size: 10px;">draw.io</a> <a href="/tags/filter/" style="font-size: 11.67px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 13.33px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/map/" style="font-size: 11.67px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 11.67px;">mat-checkbox</a> <a href="/tags/mat-selection-list/" style="font-size: 10px;">mat-selection-list</a> <a href="/tags/ngFor/" style="font-size: 10px;">ngFor</a> <a href="/tags/plantUML/" style="font-size: 10px;">plantUML</a> <a href="/tags/popIn-Aladdin2/" style="font-size: 10px;">popIn Aladdin2</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 11.67px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C/" style="font-size: 11.67px;">ファイル操作</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a> <a href="/tags/%E9%9D%99%E7%9A%84WEB-Hosting/" style="font-size: 11.67px;">静的WEB Hosting</a> <a href="/tags/%E9%9D%99%E7%9A%84WEB%E3%82%B5%E3%82%A4%E3%83%88Hosting/" style="font-size: 10px;">静的WEBサイトHosting</a>
     </div>
 </div>
     
@@ -3160,6 +3173,44 @@
         <h3 class="menu-label">
             最近の記事
         </h3>
+        
+        <article class="media">
+            
+            <a href="/AWS-CroudFront%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E5%BE%A1%E3%81%BE%E3%81%A8%E3%82%81-%E7%BD%B2%E5%90%8D%E4%BB%98%E3%81%8DURL/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84862620-714ea900-b0ae-11ea-9900-40c1bbc7b7c3.png" alt="AWS CroudFront~S3のアクセス制御まとめ/署名付きURL">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-17T07:51:29.000Z">2020-06-17</time></div>
+                    <a href="/AWS-CroudFront%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E5%BE%A1%E3%81%BE%E3%81%A8%E3%82%81-%E7%BD%B2%E5%90%8D%E4%BB%98%E3%81%8DURL/" class="title has-link-black-ter is-size-6 has-text-weight-normal">AWS CroudFront~S3のアクセス制御まとめ/署名付きURL</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/s3-ssl%E5%8C%96-https%E5%8C%96/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84855780-ebc3fc80-b09f-11ea-921c-d413fa17627b.png" alt="s3 ssl化 https化(CloudFront/ACM/Route53)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-17T04:15:02.000Z">2020-06-17</time></div>
+                    <a href="/s3-ssl%E5%8C%96-https%E5%8C%96/" class="title has-link-black-ter is-size-6 has-text-weight-normal">s3 ssl化 https化(CloudFront/ACM/Route53)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -3203,7 +3254,7 @@
             
             <a href="/AWS-MFA-%E5%A4%9A%E8%A6%81%E7%B4%A0%E8%AA%8D%E8%A8%BC-%E3%81%AE%E6%9C%89%E5%8A%B9%E5%8C%96-IAM%E9%81%8B%E7%94%A8%E3%81%AE%E5%9F%BA%E6%9C%AC/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84744456-413fd100-afee-11ea-9c64-4fa09212375a.png" alt="[AWS] MFA(多要素認証)の有効化/IAM運用の基本">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84862620-714ea900-b0ae-11ea-9900-40c1bbc7b7c3.png" alt="[AWS] MFA(多要素認証)の有効化/IAM運用の基本">
                 </p>
             </a>
             
@@ -3213,44 +3264,6 @@
                     <a href="/AWS-MFA-%E5%A4%9A%E8%A6%81%E7%B4%A0%E8%AA%8D%E8%A8%BC-%E3%81%AE%E6%9C%89%E5%8A%B9%E5%8C%96-IAM%E9%81%8B%E7%94%A8%E3%81%AE%E5%9F%BA%E6%9C%AC/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[AWS] MFA(多要素認証)の有効化/IAM運用の基本</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/CI-CD%E5%85%A5%E9%96%80-Github-Actions%E3%81%A7%E3%83%93%E3%83%AB%E3%83%89-%E3%83%86%E3%82%B9%E3%83%88-%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%82%92%E8%87%AA%E5%8B%95%E5%8C%96/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84656875-59f8aa00-af4e-11ea-8cab-1639fd85a51c.png" alt="[CI/CD入門] Github Actionsでビルド/テスト/デプロイを自動化">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-15T08:35:02.000Z">2020-06-15</time></div>
-                    <a href="/CI-CD%E5%85%A5%E9%96%80-Github-Actions%E3%81%A7%E3%83%93%E3%83%AB%E3%83%89-%E3%83%86%E3%82%B9%E3%83%88-%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%82%92%E8%87%AA%E5%8B%95%E5%8C%96/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[CI/CD入門] Github Actionsでビルド/テスト/デプロイを自動化</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/CI-CD-Github-Actions/">CI/CD(Github Actions)</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/Hexo-URL%E3%81%AE%E3%83%AA%E3%83%80%E3%82%A4%E3%83%AC%E3%82%AF%E3%83%88-hexo-generator-alias-hexo-generator-redirect/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://media.github-enterprise-9911a.paas1.nec-cloud.com/user/11/files/dd1dd280-ad8b-11ea-8807-e89852f3b1cc" alt="[Hexo] URLのリダイレクト (hexo-generator-alias/hexo-generator-redirect])">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-14T12:50:01.000Z">2020-06-14</time></div>
-                    <a href="/Hexo-URL%E3%81%AE%E3%83%AA%E3%83%80%E3%82%A4%E3%83%AC%E3%82%AF%E3%83%88-hexo-generator-alias-hexo-generator-redirect/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Hexo] URLのリダイレクト (hexo-generator-alias/hexo-generator-redirect])</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
                     </p>
                 </div>
             </div>
@@ -3273,7 +3286,7 @@
                     <span class="level-item">六月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">9</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -3364,6 +3377,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/ACM/">
+                        <span class="tag">ACM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/AMP/">
                         <span class="tag">AMP</span>
                         <span class="tag is-grey">1</span>
@@ -3373,7 +3393,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/AWS/">
                         <span class="tag">AWS</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -3401,7 +3421,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">16</span>
+                        <span class="tag is-grey">17</span>
                     </a>
                 </div>
                 
@@ -3427,6 +3447,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/CDN/">
+                        <span class="tag">CDN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/CI-CD/">
                         <span class="tag">CI/CD</span>
                         <span class="tag is-grey">3</span>
@@ -3443,6 +3470,20 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Cloud9/">
                         <span class="tag">Cloud9</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CloudFront/">
+                        <span class="tag">CloudFront</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CroudFront/">
+                        <span class="tag">CroudFront</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -3609,8 +3650,22 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Route53/">
+                        <span class="tag">Route53</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/S3/">
                         <span class="tag">S3</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SSL/">
+                        <span class="tag">SSL</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -3842,7 +3897,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E9%9D%99%E7%9A%84WEB-Hosting/">
                         <span class="tag">静的WEB Hosting</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -3877,6 +3932,44 @@
         
         <article class="media">
             
+            <a href="/AWS-CroudFront%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E5%BE%A1%E3%81%BE%E3%81%A8%E3%82%81-%E7%BD%B2%E5%90%8D%E4%BB%98%E3%81%8DURL/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84862620-714ea900-b0ae-11ea-9900-40c1bbc7b7c3.png" alt="AWS CroudFront~S3のアクセス制御まとめ/署名付きURL">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-17T07:51:29.000Z">2020-06-17</time></div>
+                    <a href="/AWS-CroudFront%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E5%BE%A1%E3%81%BE%E3%81%A8%E3%82%81-%E7%BD%B2%E5%90%8D%E4%BB%98%E3%81%8DURL/" class="title has-link-black-ter is-size-6 has-text-weight-normal">AWS CroudFront~S3のアクセス制御まとめ/署名付きURL</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/s3-ssl%E5%8C%96-https%E5%8C%96/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84855780-ebc3fc80-b09f-11ea-921c-d413fa17627b.png" alt="s3 ssl化 https化(CloudFront/ACM/Route53)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-17T04:15:02.000Z">2020-06-17</time></div>
+                    <a href="/s3-ssl%E5%8C%96-https%E5%8C%96/" class="title has-link-black-ter is-size-6 has-text-weight-normal">s3 ssl化 https化(CloudFront/ACM/Route53)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/Hexo-share%E6%A9%9F%E8%83%BD%E3%81%AE%E8%BF%BD%E5%8A%A0-Add-This/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84784157-f55c4e80-b024-11ea-98c8-b4500d84cf91.png" alt="Hexo 共有機能のPlugin Add Thisで動的なシェアボタンを追加">
@@ -3917,7 +4010,7 @@
             
             <a href="/AWS-MFA-%E5%A4%9A%E8%A6%81%E7%B4%A0%E8%AA%8D%E8%A8%BC-%E3%81%AE%E6%9C%89%E5%8A%B9%E5%8C%96-IAM%E9%81%8B%E7%94%A8%E3%81%AE%E5%9F%BA%E6%9C%AC/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84744456-413fd100-afee-11ea-9c64-4fa09212375a.png" alt="[AWS] MFA(多要素認証)の有効化/IAM運用の基本">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84862620-714ea900-b0ae-11ea-9900-40c1bbc7b7c3.png" alt="[AWS] MFA(多要素認証)の有効化/IAM運用の基本">
                 </p>
             </a>
             
@@ -3927,44 +4020,6 @@
                     <a href="/AWS-MFA-%E5%A4%9A%E8%A6%81%E7%B4%A0%E8%AA%8D%E8%A8%BC-%E3%81%AE%E6%9C%89%E5%8A%B9%E5%8C%96-IAM%E9%81%8B%E7%94%A8%E3%81%AE%E5%9F%BA%E6%9C%AC/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[AWS] MFA(多要素認証)の有効化/IAM運用の基本</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/CI-CD%E5%85%A5%E9%96%80-Github-Actions%E3%81%A7%E3%83%93%E3%83%AB%E3%83%89-%E3%83%86%E3%82%B9%E3%83%88-%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%82%92%E8%87%AA%E5%8B%95%E5%8C%96/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84656875-59f8aa00-af4e-11ea-8cab-1639fd85a51c.png" alt="[CI/CD入門] Github Actionsでビルド/テスト/デプロイを自動化">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-15T08:35:02.000Z">2020-06-15</time></div>
-                    <a href="/CI-CD%E5%85%A5%E9%96%80-Github-Actions%E3%81%A7%E3%83%93%E3%83%AB%E3%83%89-%E3%83%86%E3%82%B9%E3%83%88-%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%82%92%E8%87%AA%E5%8B%95%E5%8C%96/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[CI/CD入門] Github Actionsでビルド/テスト/デプロイを自動化</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/CI-CD-Github-Actions/">CI/CD(Github Actions)</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/Hexo-URL%E3%81%AE%E3%83%AA%E3%83%80%E3%82%A4%E3%83%AC%E3%82%AF%E3%83%88-hexo-generator-alias-hexo-generator-redirect/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://media.github-enterprise-9911a.paas1.nec-cloud.com/user/11/files/dd1dd280-ad8b-11ea-8807-e89852f3b1cc" alt="[Hexo] URLのリダイレクト (hexo-generator-alias/hexo-generator-redirect])">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-14T12:50:01.000Z">2020-06-14</time></div>
-                    <a href="/Hexo-URL%E3%81%AE%E3%83%AA%E3%83%80%E3%82%A4%E3%83%AC%E3%82%AF%E3%83%88-hexo-generator-alias-hexo-generator-redirect/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Hexo] URLのリダイレクト (hexo-generator-alias/hexo-generator-redirect])</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
                     </p>
                 </div>
             </div>
@@ -3987,7 +4042,7 @@
                     <span class="level-item">六月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">9</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -4078,6 +4133,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/ACM/">
+                        <span class="tag">ACM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/AMP/">
                         <span class="tag">AMP</span>
                         <span class="tag is-grey">1</span>
@@ -4087,7 +4149,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/AWS/">
                         <span class="tag">AWS</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -4115,7 +4177,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">16</span>
+                        <span class="tag is-grey">17</span>
                     </a>
                 </div>
                 
@@ -4141,6 +4203,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/CDN/">
+                        <span class="tag">CDN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/CI-CD/">
                         <span class="tag">CI/CD</span>
                         <span class="tag is-grey">3</span>
@@ -4157,6 +4226,20 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Cloud9/">
                         <span class="tag">Cloud9</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CloudFront/">
+                        <span class="tag">CloudFront</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CroudFront/">
+                        <span class="tag">CroudFront</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -4323,8 +4406,22 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Route53/">
+                        <span class="tag">Route53</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/S3/">
                         <span class="tag">S3</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SSL/">
+                        <span class="tag">SSL</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -4556,7 +4653,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E9%9D%99%E7%9A%84WEB-Hosting/">
                         <span class="tag">静的WEB Hosting</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 

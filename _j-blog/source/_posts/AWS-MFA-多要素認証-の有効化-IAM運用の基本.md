@@ -10,7 +10,7 @@ tags:
 - MFA
 - MS Authentication
 toc: true
-thumbnail: https://user-images.githubusercontent.com/41946222/84744456-413fd100-afee-11ea-9c64-4fa09212375a.png
+thumbnail: https://user-images.githubusercontent.com/41946222/84862620-714ea900-b0ae-11ea-9900-40c1bbc7b7c3.png
 ---
 
 　AWS運用における基本的なセキュリティ対策として、強い権限をもつIAMユーザにはMFAの設定が必須です。

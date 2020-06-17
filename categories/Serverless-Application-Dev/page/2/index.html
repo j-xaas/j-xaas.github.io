@@ -165,6 +165,427 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/Cloud9-x-Angular-cloud9%E3%81%A7ng-serve%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6AP%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="image is-7by1">
+            <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84594934-3bcc7480-ae90-11ea-925a-580c62ac983d.png" alt="[Cloud9 x Angular] cloud9でng serveを実行してAPの画面を確認するまで">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-04-13T17:04:12.000Z">2020-04-14</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4分 read (About 531 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/Cloud9-x-Angular-cloud9%E3%81%A7ng-serve%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%A6AP%E3%81%AE%E7%94%BB%E9%9D%A2%E3%82%92%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/">[Cloud9 x Angular] cloud9でng serveを実行してAPの画面を確認するまで</a>
+            
+        </h1>
+        <div class="content">
+            <p>Angularの開発であれば、小まめにWEB APの画面を確認しながら進めるのが一般的だと思います。ただ、開発環境にcloud9を採用する場合は、ng serveを実行する際に一手間必要になります。初級者が必ずと言っていいほどハマるポイントなので解説をおいておきます</p>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79135318-1d8fbd00-7dea-11ea-9e6d-31134f1ad284.png" height="500px" width="500px">
+</div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#cloud9上でのserve">cloud9上でのserve</a></li>
+<li><a href="#1-previewの表示">1. previewの表示</a></li>
+<li><a href="#2-angularjsonファイルを書き換えてポートを変更">2. angular.jsonファイルを書き換えてポートを変更</a></li>
+<li><a href="#3-ng-serveの実行オプション指定">3. ng serveの実行（オプション指定）</a></li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="cloud9上でのserve">cloud9上でのserve</span></h2><ul>
+<li><p>Localとcloud9の比較</p>
+<table>
+<thead>
+<tr>
+<th>開発環境</th>
+<th>ng serveでAPが動作する場所</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Local端末</td>
+<td>localhost(ローカルの端末上)</td>
+</tr>
+<tr>
+<td>cloud9</td>
+<td>実態はAWSのEC2インスタンス(仮想サーバー)</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>cloud9上でserveを実行しても、EC2インスタンス上でAPが動きます</p>
+<ul>
+<li>いつものようにlocalhostを見ても、WEB APを確認できるはずが無いわけです</li>
+<li>そこでCloud9のAPの画面を見るにはPreviewという機能を使用します</li>
+</ul>
+</li>
+<li><p>Preview</p>
+<ul>
+<li>トップの画像の様にcloud9の画面の一枠にweb APの画面を表示できます</li>
+</ul>
+</li>
+<li><p>cloud9でpreviewにAPの画面を表示する為に必要なこと</p>
+<ul>
+<li>portの指定(8080)</li>
+<li>ホストの指定<ul>
+<li>PreviewのURLを指定します</li>
+</ul>
+</li>
+<li>disableHostCheck</li>
+</ul>
+</li>
+</ul>
+<h2><span id="1-previewの表示">1. previewの表示</span></h2><ul>
+<li>上部タブから”Preview”を選択後”Preview Runnig Application”を選択するとCloud9上に表示できます</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79140551-246efd80-7df3-11ea-96fb-53cf6c52fb14.png" height="120px" width="500px">
+</div>
+
+<ul>
+<li>PreviewのURL欄を控えてください<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79140788-7dd72c80-7df3-11ea-95dc-1b8aa05ae4ff.png" height="90px" width="500px">
+</div>
+
+
+</li>
+</ul>
+<h2><span id="2-angularjsonファイルを書き換えてポートを変更">2. angular.jsonファイルを書き換えてポートを変更</span></h2><ul>
+<li>cloud9の場合はportを8080に設定する必要があります<ul>
+<li>設定せずとも”–port 8080”を毎回オプションとして付ける手もあります<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;serve&quot;: &#123;</span><br><span class="line">  &quot;builder&quot;: &quot;@angular-devkit&#x2F;build-angular:dev-server&quot;,</span><br><span class="line">  &quot;options&quot;: &#123;</span><br><span class="line">    &quot;browserTarget&quot;: &quot;NgTororo:build&quot;,</span><br><span class="line">    &quot;port&quot;: 8080 &#x2F;&#x2F;ここを追加</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="3-ng-serveの実行オプション指定">3. ng serveの実行（オプション指定）</span></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng serve --disableHostCheck  --public-host &lt;cloud9のPreviewのURL&gt;</span><br></pre></td></tr></table></figure>
+
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79135318-1d8fbd00-7dea-11ea-9e6d-31134f1ad284.png" height="500px" width="500px">
+</div>
+
+<p>以上です。このようなつまらないポイントで”半日失いました”は可哀そうなので、cloud9のビギナーを見かけたら教えてあげてください。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/Angular-map-fileter-mat-checkbox%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%AB%E6%A0%BC%E7%B4%8D%E3%81%99%E3%82%8B%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF/" class="image is-7by1">
+            <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84595025-b72e2600-ae90-11ea-8eb7-9e1a14a34a36.png" alt="[Angular] map() &amp; filter() &amp; mat-checkboxを使って選択値を配列に格納するロジック">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-04-13T14:26:33.000Z">2020-04-13</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    11分 read (About 1614 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/Angular-map-fileter-mat-checkbox%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%AB%E6%A0%BC%E7%B4%8D%E3%81%99%E3%82%8B%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF/">[Angular] map() &amp; filter() &amp; mat-checkboxを使って選択値を配列に格納するロジック</a>
+            
+        </h1>
+        <div class="content">
+            <ul>
+<li>複数のチェックボックスの中で選択項目を判別して、それぞれの固有値を配列に格納するロジックの作り方を解説します。<ul>
+<li>以下のSample画面で言うと、チェックされたJapanの値を配列に格納します</li>
+</ul>
+</li>
+<li>使いどころ<ul>
+<li>checkした項目に応じて外部サービスに対するリクエストに含めるパラメータを変化させる</li>
+</ul>
+</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79117116-346fe880-7dc5-11ea-9065-ded3d7d9e307.png" height="90px" width="300px" alt="画面イメージ">
+</div>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#基礎知識">基礎知識</a><ul>
+<li><a href="#angularにおけるデータ加工ロジック">Angularにおけるデータ加工ロジック</a></li>
+<li><a href="#map">map</a></li>
+<li><a href="#filter">filter</a></li>
+</ul>
+</li>
+<li><a href="#実装">実装</a><ul>
+<li><a href="#データ構造の定義">データ構造の定義</a></li>
+<li><a href="#状態判別ロジック">状態判別ロジック</a></li>
+<li><a href="#配列データを引数としてリクエストを送る際の例">配列データを引数としてリクエストを送る際の例</a></li>
+<li><a href="#tsに定めたdataに応じてチェックボックスのリストを表示するhtml">tsに定めたdataに応じてチェックボックスのリストを表示するHTML</a><ul>
+<li><a href="#基礎知識-1">基礎知識</a></li>
+<li><a href="#記載例">記載例</a></li>
+</ul>
+</li>
+<li><a href="#画面で確認">画面で確認</a></li>
+<li><a href="#おまけ-for文で書く場合">おまけ: for文で書く場合</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="基礎知識">基礎知識</span></h2><ul>
+<li>すぐに実装に取り掛かりたい方は飛ばしてOK</li>
+</ul>
+<h3><span id="angularにおけるデータ加工ロジック">Angularにおけるデータ加工ロジック</span></h3><ul>
+<li>基本的にmapやfilterを利用する<ul>
+<li>アンチパターン<ul>
+<li>何でもfor,if文</li>
+</ul>
+</li>
+<li>何故か?<ul>
+<li>mapは並列処理<ul>
+<li>for文と比較して処理が高速</li>
+</ul>
+</li>
+<li>書式がシンプル<ul>
+<li>開発期間短縮</li>
+<li>可読性向上</li>
+<li>リファクタリングの簡略化</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="map">map</span></h3><ul>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/map">map()</a><ul>
+<li>処理<ul>
+<li>引数として与えられた配列の各要素に対して、一つづつ関数を実行</li>
+<li>カウンタが不要な配列向けのfor文というイメージでOKです</li>
+</ul>
+</li>
+<li>返り値<ul>
+<li>実行結果から新たな配列を生成</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="filter">filter</span></h3><ul>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">filter()</a><ul>
+<li>処理<ul>
+<li>引数として与えられたテスト関数を各配列要素に対して実行</li>
+<li>配列向けのif文というイメージでOKです</li>
+</ul>
+</li>
+<li>返り値<ul>
+<li>テスト関数の条件に合格した要素からなる新しい配列を生成</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>利用イメージ</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 配列を宣言</span><br><span class="line">const array &#x3D; [&#39;AA&#39;, &#39;BB&#39;, &#39;CC&#39;, &#39;DDD&#39;, &#39;EEEE&#39;, &#39;FFFFF&#39;];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 配列arrayを引数として、条件式3文字以上の要素を抽出して、配列として返す</span><br><span class="line">const result &#x3D; array.filter(array &#x3D;&gt; array.length &gt;&#x3D; 3);</span><br><span class="line"></span><br><span class="line">console.log(result);</span><br><span class="line">&#x2F;&#x2F; output: Array [&quot;DDD&quot;, &quot;EEEE&quot;, &quot;FFFFF&quot;]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>構文は以下</p>
+<ul>
+<li>value: 配列の要素</li>
+<li>index: インデックス</li>
+<li>array: 操作中の配列本体<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var newArray &#x3D; arr.filter(callback(element[, index[, array]])[, thisArg])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>他の利用例は以下を参考にどうぞ</p>
+<ul>
+<li><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">MDN</a>をご覧ください</li>
+<li><a href="https://ginpen.com/2018/12/12/array-filter/">その名の通りのfilter()で絞り込み。（配列とかおれおれAdvent Calendar2018 – 12日目）</a></li>
+</ul>
+</li>
+</ul>
+<h2><span id="実装">実装</span></h2><p>ざっくりイメージは以下</p>
+<ul>
+<li>tsファイル<ul>
+<li>役割<ul>
+<li>データ構造の定義</li>
+<li>判別ロジック<ul>
+<li>(click)イベントで発火</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>html<ul>
+<li>役割<ul>
+<li>checkboxの表示</li>
+<li>tsファイルで指定したデータの参照</li>
+<li>(click)イベントの指定</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="データ構造の定義">データ構造の定義</span></h3><ul>
+<li>配列dataに以下のようにデータ構造を定義します<ul>
+<li>valueを読み替えて使用してください</li>
+</ul>
+</li>
+<li>sample.component.ts<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; dataにcheckboxの値とチェック状態の初期値：selectedを定義</span><br><span class="line">data &#x3D; [</span><br><span class="line">    &#123; value: &#39;Japan&#39;, selected: false&#125;, &#x2F;&#x2F; 初期値 true</span><br><span class="line">    &#123; value: &#39;America&#39;, selected: false&#125;,</span><br><span class="line">    &#123; value: &#39;China&#39;, selected: false&#125;,</span><br><span class="line">    &#123; value: &#39;England&#39;, selected: false&#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3><span id="状態判別ロジック">状態判別ロジック</span></h3><ul>
+<li>状態を判別するmethodを宣言します</li>
+<li>ざっくりイメージ<ul>
+<li>filter()<ul>
+<li>data全体からチェック済みのもの(Selected=true)に絞る</li>
+</ul>
+</li>
+<li>map()<ul>
+<li>残ったdataのvalueで配列を生成</li>
+</ul>
+</li>
+<li>Listに格納</li>
+</ul>
+</li>
+<li>sample.component.ts<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">makeList() &#123;</span><br><span class="line">    &#x2F;&#x2F; 格納先の配列を宣言</span><br><span class="line">    let countryList &#x3D; [];</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; selectedからチェック状態を確認して、配列にを格納していく</span><br><span class="line">    countryList &#x3D; this.data </span><br><span class="line">        .filter((d) &#x3D;&gt; d.selected) &#x2F;&#x2F; checkされているものに絞る</span><br><span class="line">        .map((d) &#x3D;&gt; d.value); &#x2F;&#x2F; valueを取得</span><br><span class="line">    return countryList; &#x2F;&#x2F;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3><span id="配列データを引数としてリクエストを送る際の例">配列データを引数としてリクエストを送る際の例</span></h3><ul>
+<li>選択値を使って外部サービスへリクエストを行うケースを想定<ul>
+<li>service側で受け取った変数に応じた分岐処理を用意しておくイメージです</li>
+</ul>
+</li>
+<li>sample.component.ts<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">submit()&#123;</span><br><span class="line">    &#x2F;&#x2F; 選択値を受け取る</span><br><span class="line">    const selectedCountries &#x3D; this.makeList();</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 任意のServiceのメソッドを実行</span><br><span class="line">    getService.requesrMethod(selectedCountries)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h3><span id="tsに定めたdataに応じてチェックボックスのリストを表示するhtml">tsに定めたdataに応じてチェックボックスのリストを表示するHTML</span></h3><h4><span id="基礎知識">基礎知識</span></h4><ul>
+<li><p><a href="https://angular.jp/api/common/NgForOf#ngforof">ngFor</a></p>
+<ul>
+<li>指定した配列をループ表示させる<a href="https://angular.jp/guide/structural-directives">構造ディレクティブ</a><ul>
+<li>べた書きするよりもすっきり書けます</li>
+<li>今回は以下のように配列:dataをループさせています<ul>
+<li>ngForのループの中でdataを変数itemとして使うという意味<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*ngFor&#x3D; &quot;let item of data; index as i&quot;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ng-container x *ngFor<ul>
+<li>組み合わせると、ng-containerの中の要素全てを一まとまりでループさせることが可能です</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="https://material.angular.io/components/checkbox/overview">mat-checkbox</a></p>
+<ul>
+<li>通常のcheckboxはイケてないので<a href="https://material.angular.io/">Angular Material</a>を使います<ul>
+<li>通常のcheckboxを使う場合は”mat-checkbox”を”input”に読み替えてください</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Angularのフォーム</p>
+<ul>
+<li>二種類あります<ul>
+<li>テンプレート駆動型<ul>
+<li>書式がシンプルで手軽に実装可能であるため採用</li>
+<li>#myForm=”ngForm” と設定することでこちらになる</li>
+</ul>
+</li>
+<li>モデル駆動型 (Reactive駆動型)<ul>
+<li>コードは冗長になりがち</li>
+<li>より柔軟に複雑な要件を満たせる<h4><span id="記載例">記載例</span></h4></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>sample.component.html</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;Choose Country&lt;&#x2F;div&gt;</span><br><span class="line">&lt;!---formで選択したリージョンの情報を纏めてからリクエスト------&gt;</span><br><span class="line">&lt;form #myForm&#x3D;&quot;ngForm&quot; (ngSubmit)&#x3D;&quot;submit()&quot;&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!---定義した配列dataをngForでループ表示 要素をiでカウント----&gt;</span><br><span class="line">  &lt;ng-container *ngFor&#x3D; &quot;let item of data; index as i&quot; &gt;</span><br><span class="line"></span><br><span class="line">    &lt;!---inputで通常のCheckboxに変えてもOK---&gt;</span><br><span class="line">    &lt;mat-checkbox type&#x3D;&quot;checkbox&quot; name &#x3D; &quot;country&#123;&#123;i&#125;&#125;&quot;</span><br><span class="line">    [(ngModel)]&#x3D;&quot;data[i].selected&quot;</span><br><span class="line">    [value]&#x3D;&quot;item.value&quot;</span><br><span class="line">    (change)&#x3D;&quot;checkCountry(i)&quot;</span><br><span class="line">    &gt;&#123;&#123;data[i].value&#125;&#125;&lt;&#x2F;mat-checkbox&gt; </span><br><span class="line"></span><br><span class="line">  &lt;&#x2F;ng-container&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!---チェックボックスから得たデータを纏めてリクエストするボタン---&gt;</span><br><span class="line">  &lt;button mat-raised-button color&#x3D;&quot;primary&quot;&gt;Get Data&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;!--(ngSubmit)&#x3D;で設定されたsubmit()が実行される--&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3><span id="画面で確認">画面で確認</span></h3><ul>
+<li>以下のように表示されます</li>
+</ul>
+<div style="text-align:center;">
+<img src="https://user-images.githubusercontent.com/41946222/79117116-346fe880-7dc5-11ea-9065-ded3d7d9e307.png" height="90px" width="300px" alt="画面イメージ">
+</div>
+
+
+<h3><span id="おまけ-for文で書く場合">おまけ: for文で書く場合</span></h3><ul>
+<li>for文でも判別ロジック書いたので参考までにどうぞ<ul>
+<li>だいぶ冗長になってしまいます</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 格納先を宣言</span><br><span class="line">let regionList &#x3D; [];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; for文で書く場合</span><br><span class="line">var num&#x3D;0;</span><br><span class="line">for ( let c &#x3D; 0; c &lt;&#x3D; this.data.length - 1 ; c++) &#123;</span><br><span class="line">  if (this.data[c].selected) &#123; &#x2F;&#x2F; Checkされているか判定 trueなら実行</span><br><span class="line">      &#x2F;&#x2F; 配列に要素を追加 .push()</span><br><span class="line">      countryList.push(this.data[c].value); &#x2F;&#x2F; リージョン名を格納</span><br><span class="line">      console.log(countryList[num] + &#39; checked&#39;); &#x2F;&#x2F; デバッグ用</span><br><span class="line">      num++;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    console.log(&#39;Not Check&#39;); &#x2F;&#x2F; デバッグ用</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(countryList);</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/Angular-%E8%A6%AA%E5%AD%90%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E9%96%93%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E5%85%B1%E6%9C%89-Input-Output-EventEmitter/" class="image is-7by1">
             <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84595070-f52b4a00-ae90-11ea-809e-92333129b46f.png" alt="[Angular]親子コンポーネント間でデータを共有(@Input/@Output/EventEmitter)">
         </a>
@@ -1693,7 +2114,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            43
+                            45
                         </p>
                     </a>
                 </div>
@@ -1717,7 +2138,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            74
+                            80
                         </p>
                     </a>
                 </div>
@@ -1825,7 +2246,7 @@
                 <span class="level-item">Serverless Application Dev</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">17</span>
+                <span class="level-item tag">19</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Serverless-Application-Dev/AWS/">
@@ -1833,7 +2254,7 @@
                 <span class="level-item">AWS</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">4</span>
+                <span class="level-item tag">6</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Serverless-Application-Dev/Firebase/">
@@ -1966,7 +2387,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 13.33px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 11.67px;">AWS SDK for JavaScript</a> <a href="/tags/AddThis/" style="font-size: 10px;">AddThis</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 11.67px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 11.67px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/CI-CD/" style="font-size: 13.33px;">CI/CD</a> <a href="/tags/Cloud-Craft/" style="font-size: 10px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/DTM/" style="font-size: 13.33px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 11.67px;">Firebase</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Github-Actions/" style="font-size: 10px;">Github Actions</a> <a href="/tags/Github-com/" style="font-size: 16.67px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 18.33px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/IAM/" style="font-size: 10px;">IAM</a> <a href="/tags/JSON/" style="font-size: 11.67px;">JSON</a> <a href="/tags/JavaScript/" style="font-size: 11.67px;">JavaScript</a> <a href="/tags/MFA/" style="font-size: 10px;">MFA</a> <a href="/tags/MS-Authentication/" style="font-size: 10px;">MS Authentication</a> <a href="/tags/Mind-Node/" style="font-size: 10px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 10px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/NoCode/" style="font-size: 10px;">NoCode</a> <a href="/tags/RPA/" style="font-size: 11.67px;">RPA</a> <a href="/tags/S3/" style="font-size: 10px;">S3</a> <a href="/tags/SYNCROOM/" style="font-size: 10px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 11.67px;">Steinberg UR44C</a> <a href="/tags/Teams/" style="font-size: 10px;">Teams</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/TypeScript/" style="font-size: 11.67px;">TypeScript</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="/tags/cloud9/" style="font-size: 13.33px;">cloud9</a> <a href="/tags/draw-io/" style="font-size: 10px;">draw.io</a> <a href="/tags/filter/" style="font-size: 11.67px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 13.33px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/map/" style="font-size: 11.67px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 11.67px;">mat-checkbox</a> <a href="/tags/mat-selection-list/" style="font-size: 10px;">mat-selection-list</a> <a href="/tags/ngFor/" style="font-size: 10px;">ngFor</a> <a href="/tags/plantUML/" style="font-size: 10px;">plantUML</a> <a href="/tags/popIn-Aladdin2/" style="font-size: 10px;">popIn Aladdin2</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 11.67px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C/" style="font-size: 11.67px;">ファイル操作</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a> <a href="/tags/%E9%9D%99%E7%9A%84WEB-Hosting/" style="font-size: 10px;">静的WEB Hosting</a> <a href="/tags/%E9%9D%99%E7%9A%84WEB%E3%82%B5%E3%82%A4%E3%83%88Hosting/" style="font-size: 10px;">静的WEBサイトHosting</a>
+        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 16.67px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 11.67px;">AWS SDK for JavaScript</a> <a href="/tags/AddThis/" style="font-size: 10px;">AddThis</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 11.67px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 11.67px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/CDN/" style="font-size: 10px;">CDN</a> <a href="/tags/CI-CD/" style="font-size: 13.33px;">CI/CD</a> <a href="/tags/Cloud-Craft/" style="font-size: 10px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/CloudFront/" style="font-size: 10px;">CloudFront</a> <a href="/tags/CroudFront/" style="font-size: 10px;">CroudFront</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/DTM/" style="font-size: 13.33px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 11.67px;">Firebase</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Github-Actions/" style="font-size: 10px;">Github Actions</a> <a href="/tags/Github-com/" style="font-size: 16.67px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 18.33px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/IAM/" style="font-size: 10px;">IAM</a> <a href="/tags/JSON/" style="font-size: 11.67px;">JSON</a> <a href="/tags/JavaScript/" style="font-size: 11.67px;">JavaScript</a> <a href="/tags/MFA/" style="font-size: 10px;">MFA</a> <a href="/tags/MS-Authentication/" style="font-size: 10px;">MS Authentication</a> <a href="/tags/Mind-Node/" style="font-size: 10px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 10px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/NoCode/" style="font-size: 10px;">NoCode</a> <a href="/tags/RPA/" style="font-size: 11.67px;">RPA</a> <a href="/tags/Route53/" style="font-size: 10px;">Route53</a> <a href="/tags/S3/" style="font-size: 13.33px;">S3</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/SYNCROOM/" style="font-size: 10px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 11.67px;">Steinberg UR44C</a> <a href="/tags/Teams/" style="font-size: 10px;">Teams</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/TypeScript/" style="font-size: 11.67px;">TypeScript</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="/tags/cloud9/" style="font-size: 13.33px;">cloud9</a> <a href="/tags/draw-io/" style="font-size: 10px;">draw.io</a> <a href="/tags/filter/" style="font-size: 11.67px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 13.33px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/map/" style="font-size: 11.67px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 11.67px;">mat-checkbox</a> <a href="/tags/mat-selection-list/" style="font-size: 10px;">mat-selection-list</a> <a href="/tags/ngFor/" style="font-size: 10px;">ngFor</a> <a href="/tags/plantUML/" style="font-size: 10px;">plantUML</a> <a href="/tags/popIn-Aladdin2/" style="font-size: 10px;">popIn Aladdin2</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 11.67px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C/" style="font-size: 11.67px;">ファイル操作</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a> <a href="/tags/%E9%9D%99%E7%9A%84WEB-Hosting/" style="font-size: 11.67px;">静的WEB Hosting</a> <a href="/tags/%E9%9D%99%E7%9A%84WEB%E3%82%B5%E3%82%A4%E3%83%88Hosting/" style="font-size: 10px;">静的WEBサイトHosting</a>
     </div>
 </div>
     
@@ -1978,6 +2399,44 @@
         <h3 class="menu-label">
             最近の記事
         </h3>
+        
+        <article class="media">
+            
+            <a href="/AWS-CroudFront%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E5%BE%A1%E3%81%BE%E3%81%A8%E3%82%81-%E7%BD%B2%E5%90%8D%E4%BB%98%E3%81%8DURL/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84862620-714ea900-b0ae-11ea-9900-40c1bbc7b7c3.png" alt="AWS CroudFront~S3のアクセス制御まとめ/署名付きURL">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-17T07:51:29.000Z">2020-06-17</time></div>
+                    <a href="/AWS-CroudFront%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E5%BE%A1%E3%81%BE%E3%81%A8%E3%82%81-%E7%BD%B2%E5%90%8D%E4%BB%98%E3%81%8DURL/" class="title has-link-black-ter is-size-6 has-text-weight-normal">AWS CroudFront~S3のアクセス制御まとめ/署名付きURL</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/s3-ssl%E5%8C%96-https%E5%8C%96/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84855780-ebc3fc80-b09f-11ea-921c-d413fa17627b.png" alt="s3 ssl化 https化(CloudFront/ACM/Route53)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-17T04:15:02.000Z">2020-06-17</time></div>
+                    <a href="/s3-ssl%E5%8C%96-https%E5%8C%96/" class="title has-link-black-ter is-size-6 has-text-weight-normal">s3 ssl化 https化(CloudFront/ACM/Route53)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -2021,7 +2480,7 @@
             
             <a href="/AWS-MFA-%E5%A4%9A%E8%A6%81%E7%B4%A0%E8%AA%8D%E8%A8%BC-%E3%81%AE%E6%9C%89%E5%8A%B9%E5%8C%96-IAM%E9%81%8B%E7%94%A8%E3%81%AE%E5%9F%BA%E6%9C%AC/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84744456-413fd100-afee-11ea-9c64-4fa09212375a.png" alt="[AWS] MFA(多要素認証)の有効化/IAM運用の基本">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84862620-714ea900-b0ae-11ea-9900-40c1bbc7b7c3.png" alt="[AWS] MFA(多要素認証)の有効化/IAM運用の基本">
                 </p>
             </a>
             
@@ -2031,44 +2490,6 @@
                     <a href="/AWS-MFA-%E5%A4%9A%E8%A6%81%E7%B4%A0%E8%AA%8D%E8%A8%BC-%E3%81%AE%E6%9C%89%E5%8A%B9%E5%8C%96-IAM%E9%81%8B%E7%94%A8%E3%81%AE%E5%9F%BA%E6%9C%AC/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[AWS] MFA(多要素認証)の有効化/IAM運用の基本</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/CI-CD%E5%85%A5%E9%96%80-Github-Actions%E3%81%A7%E3%83%93%E3%83%AB%E3%83%89-%E3%83%86%E3%82%B9%E3%83%88-%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%82%92%E8%87%AA%E5%8B%95%E5%8C%96/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84656875-59f8aa00-af4e-11ea-8cab-1639fd85a51c.png" alt="[CI/CD入門] Github Actionsでビルド/テスト/デプロイを自動化">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-15T08:35:02.000Z">2020-06-15</time></div>
-                    <a href="/CI-CD%E5%85%A5%E9%96%80-Github-Actions%E3%81%A7%E3%83%93%E3%83%AB%E3%83%89-%E3%83%86%E3%82%B9%E3%83%88-%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%82%92%E8%87%AA%E5%8B%95%E5%8C%96/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[CI/CD入門] Github Actionsでビルド/テスト/デプロイを自動化</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/CI-CD-Github-Actions/">CI/CD(Github Actions)</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/Hexo-URL%E3%81%AE%E3%83%AA%E3%83%80%E3%82%A4%E3%83%AC%E3%82%AF%E3%83%88-hexo-generator-alias-hexo-generator-redirect/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://media.github-enterprise-9911a.paas1.nec-cloud.com/user/11/files/dd1dd280-ad8b-11ea-8807-e89852f3b1cc" alt="[Hexo] URLのリダイレクト (hexo-generator-alias/hexo-generator-redirect])">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-14T12:50:01.000Z">2020-06-14</time></div>
-                    <a href="/Hexo-URL%E3%81%AE%E3%83%AA%E3%83%80%E3%82%A4%E3%83%AC%E3%82%AF%E3%83%88-hexo-generator-alias-hexo-generator-redirect/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Hexo] URLのリダイレクト (hexo-generator-alias/hexo-generator-redirect])</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
                     </p>
                 </div>
             </div>
@@ -2091,7 +2512,7 @@
                     <span class="level-item">六月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">9</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -2182,6 +2603,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/ACM/">
+                        <span class="tag">ACM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/AMP/">
                         <span class="tag">AMP</span>
                         <span class="tag is-grey">1</span>
@@ -2191,7 +2619,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/AWS/">
                         <span class="tag">AWS</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -2219,7 +2647,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">16</span>
+                        <span class="tag is-grey">17</span>
                     </a>
                 </div>
                 
@@ -2245,6 +2673,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/CDN/">
+                        <span class="tag">CDN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/CI-CD/">
                         <span class="tag">CI/CD</span>
                         <span class="tag is-grey">3</span>
@@ -2261,6 +2696,20 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Cloud9/">
                         <span class="tag">Cloud9</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CloudFront/">
+                        <span class="tag">CloudFront</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CroudFront/">
+                        <span class="tag">CroudFront</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -2427,8 +2876,22 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Route53/">
+                        <span class="tag">Route53</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/S3/">
                         <span class="tag">S3</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SSL/">
+                        <span class="tag">SSL</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -2660,7 +3123,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E9%9D%99%E7%9A%84WEB-Hosting/">
                         <span class="tag">静的WEB Hosting</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -2695,6 +3158,44 @@
         
         <article class="media">
             
+            <a href="/AWS-CroudFront%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E5%BE%A1%E3%81%BE%E3%81%A8%E3%82%81-%E7%BD%B2%E5%90%8D%E4%BB%98%E3%81%8DURL/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84862620-714ea900-b0ae-11ea-9900-40c1bbc7b7c3.png" alt="AWS CroudFront~S3のアクセス制御まとめ/署名付きURL">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-17T07:51:29.000Z">2020-06-17</time></div>
+                    <a href="/AWS-CroudFront%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E5%BE%A1%E3%81%BE%E3%81%A8%E3%82%81-%E7%BD%B2%E5%90%8D%E4%BB%98%E3%81%8DURL/" class="title has-link-black-ter is-size-6 has-text-weight-normal">AWS CroudFront~S3のアクセス制御まとめ/署名付きURL</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/s3-ssl%E5%8C%96-https%E5%8C%96/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84855780-ebc3fc80-b09f-11ea-921c-d413fa17627b.png" alt="s3 ssl化 https化(CloudFront/ACM/Route53)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-17T04:15:02.000Z">2020-06-17</time></div>
+                    <a href="/s3-ssl%E5%8C%96-https%E5%8C%96/" class="title has-link-black-ter is-size-6 has-text-weight-normal">s3 ssl化 https化(CloudFront/ACM/Route53)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/Hexo-share%E6%A9%9F%E8%83%BD%E3%81%AE%E8%BF%BD%E5%8A%A0-Add-This/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84784157-f55c4e80-b024-11ea-98c8-b4500d84cf91.png" alt="Hexo 共有機能のPlugin Add Thisで動的なシェアボタンを追加">
@@ -2735,7 +3236,7 @@
             
             <a href="/AWS-MFA-%E5%A4%9A%E8%A6%81%E7%B4%A0%E8%AA%8D%E8%A8%BC-%E3%81%AE%E6%9C%89%E5%8A%B9%E5%8C%96-IAM%E9%81%8B%E7%94%A8%E3%81%AE%E5%9F%BA%E6%9C%AC/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84744456-413fd100-afee-11ea-9c64-4fa09212375a.png" alt="[AWS] MFA(多要素認証)の有効化/IAM運用の基本">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84862620-714ea900-b0ae-11ea-9900-40c1bbc7b7c3.png" alt="[AWS] MFA(多要素認証)の有効化/IAM運用の基本">
                 </p>
             </a>
             
@@ -2745,44 +3246,6 @@
                     <a href="/AWS-MFA-%E5%A4%9A%E8%A6%81%E7%B4%A0%E8%AA%8D%E8%A8%BC-%E3%81%AE%E6%9C%89%E5%8A%B9%E5%8C%96-IAM%E9%81%8B%E7%94%A8%E3%81%AE%E5%9F%BA%E6%9C%AC/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[AWS] MFA(多要素認証)の有効化/IAM運用の基本</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/CI-CD%E5%85%A5%E9%96%80-Github-Actions%E3%81%A7%E3%83%93%E3%83%AB%E3%83%89-%E3%83%86%E3%82%B9%E3%83%88-%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%82%92%E8%87%AA%E5%8B%95%E5%8C%96/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84656875-59f8aa00-af4e-11ea-8cab-1639fd85a51c.png" alt="[CI/CD入門] Github Actionsでビルド/テスト/デプロイを自動化">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-15T08:35:02.000Z">2020-06-15</time></div>
-                    <a href="/CI-CD%E5%85%A5%E9%96%80-Github-Actions%E3%81%A7%E3%83%93%E3%83%AB%E3%83%89-%E3%83%86%E3%82%B9%E3%83%88-%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%82%92%E8%87%AA%E5%8B%95%E5%8C%96/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[CI/CD入門] Github Actionsでビルド/テスト/デプロイを自動化</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/CI-CD-Github-Actions/">CI/CD(Github Actions)</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/Hexo-URL%E3%81%AE%E3%83%AA%E3%83%80%E3%82%A4%E3%83%AC%E3%82%AF%E3%83%88-hexo-generator-alias-hexo-generator-redirect/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://media.github-enterprise-9911a.paas1.nec-cloud.com/user/11/files/dd1dd280-ad8b-11ea-8807-e89852f3b1cc" alt="[Hexo] URLのリダイレクト (hexo-generator-alias/hexo-generator-redirect])">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-14T12:50:01.000Z">2020-06-14</time></div>
-                    <a href="/Hexo-URL%E3%81%AE%E3%83%AA%E3%83%80%E3%82%A4%E3%83%AC%E3%82%AF%E3%83%88-hexo-generator-alias-hexo-generator-redirect/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Hexo] URLのリダイレクト (hexo-generator-alias/hexo-generator-redirect])</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/">WEB Page Dev</a> / <a class="has-link-grey -link" href="/categories/WEB-Page-Dev/Hexo/">Hexo</a>
                     </p>
                 </div>
             </div>
@@ -2805,7 +3268,7 @@
                     <span class="level-item">六月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">9</span>
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -2896,6 +3359,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/ACM/">
+                        <span class="tag">ACM</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/AMP/">
                         <span class="tag">AMP</span>
                         <span class="tag is-grey">1</span>
@@ -2905,7 +3375,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/AWS/">
                         <span class="tag">AWS</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">5</span>
                     </a>
                 </div>
                 
@@ -2933,7 +3403,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">16</span>
+                        <span class="tag is-grey">17</span>
                     </a>
                 </div>
                 
@@ -2959,6 +3429,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/CDN/">
+                        <span class="tag">CDN</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/CI-CD/">
                         <span class="tag">CI/CD</span>
                         <span class="tag is-grey">3</span>
@@ -2975,6 +3452,20 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Cloud9/">
                         <span class="tag">Cloud9</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CloudFront/">
+                        <span class="tag">CloudFront</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/CroudFront/">
+                        <span class="tag">CroudFront</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -3141,8 +3632,22 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Route53/">
+                        <span class="tag">Route53</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/S3/">
                         <span class="tag">S3</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/SSL/">
+                        <span class="tag">SSL</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -3374,7 +3879,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/%E9%9D%99%E7%9A%84WEB-Hosting/">
                         <span class="tag">静的WEB Hosting</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
