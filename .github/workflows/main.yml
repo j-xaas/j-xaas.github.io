@@ -20,5 +20,11 @@ jobs:
     # Runs a single command using the runners shell
     - name: Change hexo directory name
       run: mv j-blog _j-blog
+    - name: return for git
+      run: |
+        git add *
+        git commit -m "Change directory name"
+        git push origin master
+
 
     # Runs a set of commands using the runners shell
