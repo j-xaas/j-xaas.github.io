@@ -154,6 +154,222 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/Github-x-Teams-Webhook-Notification%E3%81%AB%E3%82%88%E3%82%8B%E9%80%A3%E6%90%BA%E6%96%B9%E6%B3%95/" class="image is-7by1">
+            <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84231133-6b921a00-ab28-11ea-8c0e-a47fb924b2c2.png" alt="Github x Teams Webhook/Notificationによる連携方法">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-06-10T04:31:51.000Z">2020-06-10</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Tool-Tips/Github/">Github</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8分 read (About 1172 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/Github-x-Teams-Webhook-Notification%E3%81%AB%E3%82%88%E3%82%8B%E9%80%A3%E6%90%BA%E6%96%B9%E6%B3%95/">Github x Teams Webhook/Notificationによる連携方法</a>
+            
+        </h1>
+        <div class="content">
+            <p>TeamsとGithubの連携方法について解説します。GitにpushやPull Requestdを出す度にメンバにメッセージを送る手間を自動化しましょう。<br>Slackとの連携方法は沢山出てくるのですが、Teamsは古いものしか無かったので纏めておきます。</p>
+<!-- toc -->
+
+<ul>
+<li><a href="#1-teamsとgithubの連携方法">1. TeamsとGithubの連携方法</a><ul>
+<li><a href="#11-webhooks">1.1. Webhooks</a></li>
+<li><a href="#12-notification">1.2. Notification</a></li>
+<li><a href="#13-どちらを使うべきか">1.3. どちらを使うべきか？</a></li>
+</ul>
+</li>
+<li><a href="#2-webhookでteams-x-githubを連携">2. WebhookでTeams x Githubを連携</a><ul>
+<li><a href="#21-teamsにコネクタを追加">2.1. Teamsにコネクタを追加</a></li>
+<li><a href="#22-githubのwebhook設定">2.2. GithubのWebhook設定</a></li>
+</ul>
+</li>
+<li><a href="#3-notificationでteams-x-githubを連携">3. NotificationでTeams x Githubを連携</a><ul>
+<li><a href="#31-メールアドレスを取得">3.1. メールアドレスを取得</a></li>
+<li><a href="#32-gitのnotificationに設定">3.2. GitのNotificationに設定</a></li>
+</ul>
+</li>
+<li><a href="#4-その他">4. その他</a><ul>
+<li><a href="#microsoft-flowやautomationによる自動化">Microsoft FlowやAutomationによる自動化</a></li>
+<li><a href="#参考">参考</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h1><span id="1-teamsとgithubの連携方法">1. TeamsとGithubの連携方法</span></h1><ul>
+<li>2種類あります<br><img src="https://user-images.githubusercontent.com/41946222/84231004-371e5e00-ab28-11ea-9da6-9ae5cea49718.png" alt="連携イメージ"></li>
+</ul>
+<h2><span id="11-webhooks">1.1. Webhooks</span></h2><ul>
+<li>Githubの機能</li>
+<li>任意のEventを起点に発火<ul>
+<li>ex.) masterへのpush, PullRequest…</li>
+</ul>
+</li>
+<li>特定のURLに対して通知を飛ばす<ul>
+<li>Teamsの特定チャンネルのコネクタ宛            </li>
+</ul>
+</li>
+<li>Teams側ではコネクタでリクエストを受け取る<ul>
+<li>ex.) Incoming Webhook or Githubアプリ</li>
+</ul>
+</li>
+</ul>
+<h2><span id="12-notification">1.2. Notification</span></h2><ul>
+<li>Githubの機能</li>
+<li>Eventを起点に発火<ul>
+<li>自分でEventを絞ることはできない</li>
+</ul>
+</li>
+<li>特定のメールアドレスに対して通知を飛ばす<ul>
+<li>Teamsの特定チャンネルのメールアドレス宛</li>
+<li>Teamsのチャンネルにはそれぞれ一意なメールアドレスが与えられている</li>
+</ul>
+</li>
+</ul>
+<h2><span id="13-どちらを使うべきか">1.3. どちらを使うべきか？</span></h2><ul>
+<li>社内セキュリティや機能制限でWebhookを使えない or メーリングリスト等にも通知を飛ばしたい<ul>
+<li>Notification</li>
+</ul>
+</li>
+<li>特に制限無し<ul>
+<li>Webhook</li>
+</ul>
+</li>
+</ul>
+<h1><span id="2-webhookでteams-x-githubを連携">2. WebhookでTeams x Githubを連携</span></h1><ul>
+<li>Gituhubアプリは社内の機能制限で入れられなかったのでIncoming Webhookを利用します<ul>
+<li>TeamsのGithubアプリ<ul>
+<li>Teams App Storeか<a href="https://appsource.microsoft.com/ja-jp/product/office/WA104381552?src=wnblogmar2018&tab=Overview">ここ</a>で入手可能</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="21-teamsにコネクタを追加">2.1. Teamsにコネクタを追加</span></h2><ul>
+<li><p>チャンネル名の右にある・・・からコネクタを選択<br><img src="https://user-images.githubusercontent.com/41946222/84217745-f0b90700-ab07-11ea-869b-703f331471d2.png" alt="コネクタ"></p>
+</li>
+<li><p>Incoming Webhookの構成を選択<br><img src="https://user-images.githubusercontent.com/41946222/84217852-31188500-ab08-11ea-876d-d7873338bcc2.png" alt="Incoming Webhook"></p>
+</li>
+<li><p>接続名</p>
+<ul>
+<li>Github等判別可能な名前を指定</li>
+</ul>
+</li>
+<li><p>イメージを設定</p>
+<ul>
+<li>Botがメッセージを投稿する際のアイコンになる</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/84218283-1266be00-ab09-11ea-923e-77c477b9e962.png" alt="Incoming Webhook"></p>
+<ul>
+<li><p>作成を押下</p>
+</li>
+<li><p>出てきたURLを控えて完了<br><img src="https://user-images.githubusercontent.com/41946222/84218434-58238680-ab09-11ea-824d-faa67bdc9b5f.png" alt="URL"></p>
+</li>
+<li><p>チャンネルにメッセージが投稿される<br><img src="https://user-images.githubusercontent.com/41946222/84218566-aafd3e00-ab09-11ea-8e27-9ecbb4bb194a.png" alt="Message"></p>
+</li>
+</ul>
+<h2><span id="22-githubのwebhook設定">2.2. GithubのWebhook設定</span></h2><ul>
+<li>設定画面<ul>
+<li>任意のリポジトリのページに移動</li>
+<li>Settings</li>
+<li>Hooks</li>
+<li>Add webhook</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/84218862-4393be00-ab0a-11ea-9508-4bda344bac08.png" alt="Github Webhooks"></p>
+<ul>
+<li>Payload URL<ul>
+<li>送信先のURLを指定</li>
+<li>控えておいたTeamsのコネクタのURLをコピペ</li>
+</ul>
+</li>
+<li>Secret<ul>
+<li>パスワードが必要であれば設定</li>
+</ul>
+</li>
+<li>Which events would you like to trigger this webhook?<ul>
+<li>通知を飛ばすイベントを絞りたい場合は ”Let me select individual events”を選択</li>
+<li>出てきた選択肢から必要なものをチェック</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/84219238-067bfb80-ab0b-11ea-81ec-f4945dba38ae.png" alt="Events"></p>
+<ul>
+<li>設定が完了したらAdd webhook</li>
+<li>以上でpush時にTeamsに通知が投稿されるようになります</li>
+</ul>
+<h1><span id="3-notificationでteams-x-githubを連携">3. NotificationでTeams x Githubを連携</span></h1><h2><span id="31-メールアドレスを取得">3.1. メールアドレスを取得</span></h2><ul>
+<li><p>チャンネル名の右にある・・・から”メールアドレスを取得”を選択<br><img src="https://user-images.githubusercontent.com/41946222/84225711-d5a3c280-ab1a-11ea-827b-640736955a92.png" alt="Teams channnel mail address"></p>
+</li>
+<li><p>出てきたアドレスをコピー</p>
+<ul>
+<li>&lt;&gt;で囲まれている箇所がメールアドレス</li>
+<li>通常のメールからここに対してメールを送ればTeamsに内容が投稿される</li>
+</ul>
+</li>
+</ul>
+<h2><span id="32-gitのnotificationに設定">3.2. GitのNotificationに設定</span></h2><ul>
+<li>任意のリポジトリのSettings/Notificationsへ移動<ul>
+<li>Addressに先ほど控えたTeamsチャンネルのURLをコピペ<br><img src="https://user-images.githubusercontent.com/41946222/84225908-5236a100-ab1b-11ea-8ddf-a68f779997e5.png" alt="image"></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>以下のようになれば設定完了<br><img src="https://user-images.githubusercontent.com/41946222/84226090-cec97f80-ab1b-11ea-9162-58ef2d795acd.png" alt="image"></p>
+</li>
+<li><p>試しにpushをすると、Teamsに投稿されます<br><img src="https://user-images.githubusercontent.com/41946222/84226892-fcafc380-ab1d-11ea-97f5-5455456895cc.png" alt="image"></p>
+</li>
+</ul>
+<h1><span id="4-その他">4. その他</span></h1><h2><span id="microsoft-flowやautomationによる自動化">Microsoft FlowやAutomationによる自動化</span></h2><ul>
+<li>通知が来たタイミングでワークフローを実行させることもできるようです<ul>
+<li>Slackのワークフロー機能のようなもの</li>
+</ul>
+</li>
+<li>社内の機能制限により試せなかったので、変えさせられたら追記します</li>
+</ul>
+<h2><span id="参考">参考</span></h2><ul>
+<li><a href="https://shunsukekawai.hatenablog.com/entry/2018/07/19/230909">GitHubの組織へのメンバー変更をMicrosoft Teamsに通知する（by Microsoft Flow）</a></li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/popInAladdin-review/" class="image is-7by1">
             <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84525352-73afac80-ad16-11ea-8a02-d5aa7fd846da.png" alt="popIn Aladdin2 レビュー 照明型プロジェクター　使用感/専用アプリ/投影サイズ/Alexa連携/設置方法">
         </a>
@@ -2552,252 +2768,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/PC%E3%81%A7DTM%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89-Steinberg-UR44C-Cubase-ai/" class="image is-7by1">
-            <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/79885198-61f60b00-8431-11ea-97cc-6298ae1c92a3.png" alt="PCでDTM環境を構築 [Steinberg UR44C/Cubase ai]">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-04-18T17:50:33.000Z">2020-04-19</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/SmartHome/">SmartHome</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/SmartHome/DTM/">DTM</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    11分 read (About 1674 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/PC%E3%81%A7DTM%E7%92%B0%E5%A2%83%E3%82%92%E6%A7%8B%E7%AF%89-Steinberg-UR44C-Cubase-ai/">PCでDTM環境を構築 [Steinberg UR44C/Cubase ai]</a>
-            
-        </h1>
-        <div class="content">
-            <p>PCでDTM環境を構築するまでを解説します。InterfaceにはSteinberg UR44Cを採用しています。<br>基本的にモバイル向けのCubasis leをiPadで使用していますが、<a href="syncroom.yamaha.com">リモートセッションサービス</a>がPC対応のみであったため、備忘録的にまとめておきます。</p>
-<p><img src="https://user-images.githubusercontent.com/41946222/79885198-61f60b00-8431-11ea-97cc-6298ae1c92a3.png" alt="構成"></p>
-<!-- toc -->
-
-<ul>
-<li><a href="#1-interfaceについて">1. Interfaceについて</a><ul>
-<li><a href="#steinberg-ur-c">Steinberg UR-C</a></li>
-<li><a href="#マルチエフェクターで代用">マルチエフェクターで代用</a></li>
-</ul>
-</li>
-<li><a href="#2-導入手順">2. 導入手順</a><ul>
-<li><a href="#tools-for-ur-c">TOOLS for UR-C</a><ul>
-<li><a href="#インストール後の確認">インストール後の確認</a></li>
-</ul>
-</li>
-<li><a href="#basic-fx-suiteのアクティベーション">Basic FX Suiteのアクティベーション</a></li>
-<li><a href="#cubase-aiのダウンロード">Cubase AIのダウンロード</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-
-<h2><span id="1-interfaceについて">1. Interfaceについて</span></h2><ul>
-<li><p>PCにラインで音を取り込むにはインターフェイスが必要になります</p>
-<h3><span id="steinberg-ur-c">Steinberg UR-C</span></h3></li>
-<li><p><a href="https://amzn.to/2JdYsPS">Steinberg UR44C</a>を採用しました<br>  <a href="https://www.amazon.co.jp/%E3%82%B9%E3%82%BF%E3%82%A4%E3%83%B3%E3%83%90%E3%83%BC%E3%82%B0-Steinberg-USB3-0-%E3%82%AA%E3%83%BC%E3%83%87%E3%82%A3%E3%82%AA%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%95%E3%82%A7%E3%82%A4%E3%82%B9-UR44C/dp/B07YLKRH58/ref=as_li_ss_il?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&keywords=Steinberg+ur44C&qid=1585065911&sr=8-1&swrs=3928F2E7A513E4BED97A4C3E596F00B9&linkCode=li3&tag=junjun10804-22&linkId=3bf102532686f968cd4c92202a2f4172&language=ja_JP" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B07YLKRH58&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun10804-22&language=ja_JP"></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun10804-22&language=ja_JP&l=li3&o=9&a=B07YLKRH58" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;"></p>
-</li>
-<li><p>採用ポイント</p>
-<ul>
-<li>Input×4 ＆ マイクプリアンプx4<ul>
-<li>複数の楽器とマイクを繋ぎ、人数分のヘッドホンに出力すれば、屋内でサイレントセッションが可能</li>
-<li>元々↑をやりたくて買いました</li>
-</ul>
-</li>
-<li>価格<ul>
-<li>3万円ちょっとで手頃<ul>
-<li>今回の条件に当てはまる中で最安（他は5万以上）</li>
-<li>更にInputを増やしたければ、予算を上げるかミキサーを買うしかないと思います</li>
-</ul>
-</li>
-<li>もう少し節約したい場合<ul>
-<li><a href="https://amzn.to/3bw7rZm">UR22C</a> （17000円程度）<ul>
-<li>InputとOutputが減りますが基本的にはほぼ同じ機器</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>USB 3.0（USB Type-C）対応<ul>
-<li>PCとiPad Proの両方で読み込めます</li>
-</ul>
-</li>
-<li>Cubase le(モバイル用)とcaubase ai(PC用)のコードがついてくる<ul>
-<li><a href="https://new.steinberg.net/ja/cubase/">Cubase</a><ul>
-<li>音楽制作ソフト</li>
-<li>扱いやすく機能が一通り揃っているので初級者におすすめらしい</li>
-</ul>
-</li>
-<li>本来は購入する必要があります(6000円程度)</li>
-</ul>
-</li>
-<li>ループバック機能により、動画配信も可能</li>
-</ul>
-</li>
-<li><p>周辺機器について</p>
-<ul>
-<li>インターフェイス ⇔ PC間の接続ケーブル<ul>
-<li>製品にUSB-C ⇔ USB3.0のケーブルがついてきます</li>
-<li>USB-C ⇔ USB-Cケーブルはついてきません<ul>
-<li>なので、USB-CポートのみのMacBookやiPadの場合は以下の何れかの対処が必要です<ul>
-<li>ハブで変換する<ul>
-<li><a href="https://amzn.to/2VqhARF">USB Type C ハブ USB C ハブ USB3.0 ハブ 6in1 Type-c hub</a>を使ってます</li>
-</ul>
-</li>
-<li><a href="https://amzn.to/2VNnGKT">USB-Cケーブル</a>を購入</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Outputの端子用のアダプタ<ul>
-<li>ステレオ標準プラグ(楽器のシールドを刺す穴)なので、ステレオミニプラグ（イヤホンの端子）はそのままでは刺せません</li>
-<li>わざわざ対応した端子の機器を買わなくても、変換アダプタ(2つで700円程度)を使えばOKです<ul>
-<li><a href="https://amzn.to/2yweumk">UGREEN ステレオミニプラグ（メス）⇒ステレオ標準プラグ（オス） 変換アダプタ 金メッキ 3.5mm ⇒ 6.35mm アンプヘッドホン変換 (2個)</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="マルチエフェクターで代用">マルチエフェクターで代用</span></h3><ul>
-<li>マルチエフェクターの中にはインターフェイスとしての機能がついているものもあります<ul>
-<li>ZOOMのG3やB3等</li>
-</ul>
-</li>
-<li>ポイント<ul>
-<li>CubaseのようなDAWソフトはついてこないので別途購入が必要</li>
-<li>Inputが少ない</li>
-</ul>
-</li>
-<li>なので、以下に当てはまる方はインターフェイスを買った方が良いです<ul>
-<li>複数の楽器やマイクを繋げたい</li>
-<li>DAWソフトを利用したい</li>
-</ul>
-</li>
-</ul>
-<h2><span id="2-導入手順">2. 導入手順</span></h2><ul>
-<li>PCとSteinberg UR-CでDTM環境を構築する為に必要な作業は以下の三点です</li>
-</ul>
-<ol>
-<li>TOOLS for UR-Cのインストール</li>
-<li>Basic FX Suiteのアクティベーション<ul>
-<li>ここまででPCで扱うDAWツールは基本使えます</li>
-</ul>
-</li>
-<li>Cubase AI (DAW)のダウンロード</li>
-</ol>
-<h3><span id="tools-for-ur-c">TOOLS for UR-C</span></h3><ul>
-<li><a href="https://japan.steinberg.net/jp/support/downloads/ur44.html">公式サイトから</a>から入れます<ul>
-<li>TOOLS for UR44 V2.2.1 - 278 MBを選択</li>
-<li>zipファイルがインストールされます</li>
-</ul>
-</li>
-<li>USBを全部外す</li>
-<li>zipファイルを開いてsetup.exeを実行</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/41946222/79579880-24c50c80-8103-11ea-8f1e-840e06207758.png" alt="image"></p>
-<ul>
-<li>指示にしたがって次へを押していけばOK</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/41946222/79580134-884f3a00-8103-11ea-9420-0ab5cce0a5f3.png" alt="image"></p>
-<ul>
-<li>以下が出たら完了</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/41946222/79580496-057aaf00-8104-11ea-905c-2bcd2abac4a6.png" alt="image"></p>
-<h4><span id="インストール後の確認">インストール後の確認</span></h4><ul>
-<li><p>steinbergと付属のUSBで接続</p>
-<ul>
-<li>電源はUSBCからではなく、アダプターに設定してください</li>
-</ul>
-</li>
-<li><p>デバイスマネージャーを開く</p>
-<ul>
-<li>オーディオの入力及び出力にsteinbergが表示されてればOK</li>
-<li>PCがインターフェイスからの接続を読み込めるようになりました</li>
-</ul>
-</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/41946222/79581133-f5170400-8104-11ea-925c-09d994424d74.png" alt="image"></p>
-<h3><span id="basic-fx-suiteのアクティベーション">Basic FX Suiteのアクティベーション</span></h3><ul>
-<li><p>先ほど一緒にインストールした上記にアクティベーションコードを入れて、ライセンスを入れる必要があります</p>
-</li>
-<li><p>eLicencer Control Centerを開く</p>
-</li>
-<li><p>アクティベーションコードを入力を選択</p>
-</li>
-<li><p>Steinbergを購入した際の説明書に以下の紙が入っています</p>
-<ul>
-<li>ESSENTIAL PRODUCT LICENSE INFORMATION<ul>
-<li>ここに書いてあるコードを入力</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>以下の画面が表示されます</p>
-<ul>
-<li>ライセンスをダウンロード<br><img src="https://user-images.githubusercontent.com/41946222/79582273-833fba00-8106-11ea-955f-f6b2e259e133.png" alt="image"></li>
-</ul>
-</li>
-<li><p>以上で完了です</p>
-<ul>
-<li>ここまででPCへのライン音源の取り込みは可能です</li>
-<li>DAW以外にもリモートセッションツール等で遊べるようになります<ul>
-<li><a href="https://j-xaas.github.io/2020/04/19/YAMAHA%E3%81%AE%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E3%83%84%E3%83%BC%E3%83%ABSYNCROOM%E3%81%AE%E3%83%99%E3%83%BC%E3%82%BF%E7%89%88%EF%BC%9ANETDUET%E3%82%92%E8%A9%A6%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F/">[SYNCROOM/NETDUETTO] YAMAHAのリモートセッションツールを試してみた</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3><span id="cubase-aiのダウンロード">Cubase AIのダウンロード</span></h3><ul>
-<li><a href="http://www.steinberg.net/getcabaseai/">SteinbergのWEBサイト</a>でアカウント登録する必要があります<ul>
-<li>詳細はサイト内に詳しくまとまっています</li>
-</ul>
-</li>
-<li>ダウンロードの際にコードが必要になります<ul>
-<li>steinbergの説明書についている以下の紙に記載されています<ul>
-<li>CUBASIS AI DOWNLOAD INFORMATION</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -2868,7 +2838,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            45
+                            46
                         </p>
                     </a>
                 </div>
@@ -3141,7 +3111,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 16.67px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 11.67px;">AWS SDK for JavaScript</a> <a href="/tags/AddThis/" style="font-size: 10px;">AddThis</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 11.67px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 11.67px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/CDN/" style="font-size: 10px;">CDN</a> <a href="/tags/CI-CD/" style="font-size: 13.33px;">CI/CD</a> <a href="/tags/Cloud-Craft/" style="font-size: 10px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/CloudFront/" style="font-size: 10px;">CloudFront</a> <a href="/tags/CroudFront/" style="font-size: 10px;">CroudFront</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/DTM/" style="font-size: 13.33px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 11.67px;">Firebase</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Github-Actions/" style="font-size: 10px;">Github Actions</a> <a href="/tags/Github-com/" style="font-size: 16.67px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 18.33px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/IAM/" style="font-size: 10px;">IAM</a> <a href="/tags/JSON/" style="font-size: 11.67px;">JSON</a> <a href="/tags/JavaScript/" style="font-size: 11.67px;">JavaScript</a> <a href="/tags/MFA/" style="font-size: 10px;">MFA</a> <a href="/tags/MS-Authentication/" style="font-size: 10px;">MS Authentication</a> <a href="/tags/Mind-Node/" style="font-size: 10px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 10px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/NoCode/" style="font-size: 10px;">NoCode</a> <a href="/tags/RPA/" style="font-size: 11.67px;">RPA</a> <a href="/tags/Route53/" style="font-size: 10px;">Route53</a> <a href="/tags/S3/" style="font-size: 13.33px;">S3</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/SYNCROOM/" style="font-size: 10px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 11.67px;">Steinberg UR44C</a> <a href="/tags/Teams/" style="font-size: 10px;">Teams</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/TypeScript/" style="font-size: 11.67px;">TypeScript</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="/tags/cloud9/" style="font-size: 13.33px;">cloud9</a> <a href="/tags/draw-io/" style="font-size: 10px;">draw.io</a> <a href="/tags/filter/" style="font-size: 11.67px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 13.33px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/map/" style="font-size: 11.67px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 11.67px;">mat-checkbox</a> <a href="/tags/mat-selection-list/" style="font-size: 10px;">mat-selection-list</a> <a href="/tags/ngFor/" style="font-size: 10px;">ngFor</a> <a href="/tags/plantUML/" style="font-size: 10px;">plantUML</a> <a href="/tags/popIn-Aladdin2/" style="font-size: 10px;">popIn Aladdin2</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 11.67px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C/" style="font-size: 11.67px;">ファイル操作</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a> <a href="/tags/%E9%9D%99%E7%9A%84WEB-Hosting/" style="font-size: 11.67px;">静的WEB Hosting</a> <a href="/tags/%E9%9D%99%E7%9A%84WEB%E3%82%B5%E3%82%A4%E3%83%88Hosting/" style="font-size: 10px;">静的WEBサイトHosting</a>
+        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AWS/" style="font-size: 16.67px;">AWS</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 11.67px;">AWS SDK for JavaScript</a> <a href="/tags/AddThis/" style="font-size: 10px;">AddThis</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 11.67px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 11.67px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/CDN/" style="font-size: 10px;">CDN</a> <a href="/tags/CI-CD/" style="font-size: 15px;">CI/CD</a> <a href="/tags/Cloud-Craft/" style="font-size: 10px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/CloudFront/" style="font-size: 10px;">CloudFront</a> <a href="/tags/CroudFront/" style="font-size: 10px;">CroudFront</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/DTM/" style="font-size: 13.33px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Firebase/" style="font-size: 11.67px;">Firebase</a> <a href="/tags/Github/" style="font-size: 11.67px;">Github</a> <a href="/tags/Github-Actions/" style="font-size: 11.67px;">Github Actions</a> <a href="/tags/Github-com/" style="font-size: 16.67px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 10px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 10px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 18.33px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/IAM/" style="font-size: 10px;">IAM</a> <a href="/tags/JSON/" style="font-size: 11.67px;">JSON</a> <a href="/tags/JavaScript/" style="font-size: 11.67px;">JavaScript</a> <a href="/tags/MFA/" style="font-size: 10px;">MFA</a> <a href="/tags/MS-Authentication/" style="font-size: 10px;">MS Authentication</a> <a href="/tags/Mind-Node/" style="font-size: 10px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 10px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/NoCode/" style="font-size: 10px;">NoCode</a> <a href="/tags/RPA/" style="font-size: 11.67px;">RPA</a> <a href="/tags/Route53/" style="font-size: 10px;">Route53</a> <a href="/tags/S3/" style="font-size: 13.33px;">S3</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/SYNCROOM/" style="font-size: 10px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 11.67px;">Steinberg UR44C</a> <a href="/tags/Teams/" style="font-size: 10px;">Teams</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/TypeScript/" style="font-size: 11.67px;">TypeScript</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="/tags/cloud9/" style="font-size: 13.33px;">cloud9</a> <a href="/tags/draw-io/" style="font-size: 10px;">draw.io</a> <a href="/tags/filter/" style="font-size: 11.67px;">filter()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iPad-Pro/" style="font-size: 13.33px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 15px;">icarus</a> <a href="/tags/map/" style="font-size: 11.67px;">map()</a> <a href="/tags/mat-checkbox/" style="font-size: 11.67px;">mat-checkbox</a> <a href="/tags/mat-selection-list/" style="font-size: 10px;">mat-selection-list</a> <a href="/tags/ngFor/" style="font-size: 10px;">ngFor</a> <a href="/tags/plantUML/" style="font-size: 10px;">plantUML</a> <a href="/tags/popIn-Aladdin2/" style="font-size: 10px;">popIn Aladdin2</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 11.67px;">ショートカット</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C/" style="font-size: 11.67px;">ファイル操作</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 10px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a> <a href="/tags/%E9%9D%99%E7%9A%84WEB-Hosting/" style="font-size: 11.67px;">静的WEB Hosting</a> <a href="/tags/%E9%9D%99%E7%9A%84WEB%E3%82%B5%E3%82%A4%E3%83%88Hosting/" style="font-size: 10px;">静的WEBサイトHosting</a>
     </div>
 </div>
     
@@ -3153,6 +3123,25 @@
         <h3 class="menu-label">
             最近の記事
         </h3>
+        
+        <article class="media">
+            
+            <a href="/Github-Pages-x-Hexo%E9%81%8B%E7%94%A8%E3%82%92Github-Actions%E3%81%A7%E8%87%AA%E5%8B%95%E5%8C%96/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84656875-59f8aa00-af4e-11ea-8cab-1639fd85a51c.png" alt="Github Pages x Hexo運用をGithub Actionsで自動化">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-17T15:23:44.000Z">2020-06-18</time></div>
+                    <a href="/Github-Pages-x-Hexo%E9%81%8B%E7%94%A8%E3%82%92Github-Actions%E3%81%A7%E8%87%AA%E5%8B%95%E5%8C%96/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Github Pages x Hexo運用をGithub Actionsで自動化</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
         
         <article class="media">
             
@@ -3230,25 +3219,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/AWS-MFA-%E5%A4%9A%E8%A6%81%E7%B4%A0%E8%AA%8D%E8%A8%BC-%E3%81%AE%E6%9C%89%E5%8A%B9%E5%8C%96-IAM%E9%81%8B%E7%94%A8%E3%81%AE%E5%9F%BA%E6%9C%AC/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84862620-714ea900-b0ae-11ea-9900-40c1bbc7b7c3.png" alt="[AWS] MFA(多要素認証)の有効化/IAM運用の基本">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-16T07:24:28.000Z">2020-06-16</time></div>
-                    <a href="/AWS-MFA-%E5%A4%9A%E8%A6%81%E7%B4%A0%E8%AA%8D%E8%A8%BC-%E3%81%AE%E6%9C%89%E5%8A%B9%E5%8C%96-IAM%E9%81%8B%E7%94%A8%E3%81%AE%E5%9F%BA%E6%9C%AC/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[AWS] MFA(多要素認証)の有効化/IAM運用の基本</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -3266,7 +3236,7 @@
                     <span class="level-item">六月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">11</span>
+                    <span class="level-item tag">12</span>
                 </span>
             </a>
         </li>
@@ -3436,7 +3406,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/CI-CD/">
                         <span class="tag">CI/CD</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -3499,14 +3469,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Github/">
                         <span class="tag">Github</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Github-Actions/">
                         <span class="tag">Github Actions</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -3548,7 +3518,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
-                        <span class="tag is-grey">9</span>
+                        <span class="tag is-grey">10</span>
                     </a>
                 </div>
                 
@@ -3912,6 +3882,25 @@
         
         <article class="media">
             
+            <a href="/Github-Pages-x-Hexo%E9%81%8B%E7%94%A8%E3%82%92Github-Actions%E3%81%A7%E8%87%AA%E5%8B%95%E5%8C%96/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84656875-59f8aa00-af4e-11ea-8cab-1639fd85a51c.png" alt="Github Pages x Hexo運用をGithub Actionsで自動化">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-17T15:23:44.000Z">2020-06-18</time></div>
+                    <a href="/Github-Pages-x-Hexo%E9%81%8B%E7%94%A8%E3%82%92Github-Actions%E3%81%A7%E8%87%AA%E5%8B%95%E5%8C%96/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Github Pages x Hexo運用をGithub Actionsで自動化</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/AWS-CroudFront%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E5%BE%A1%E3%81%BE%E3%81%A8%E3%82%81-%E7%BD%B2%E5%90%8D%E4%BB%98%E3%81%8DURL/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84862620-714ea900-b0ae-11ea-9900-40c1bbc7b7c3.png" alt="AWS CroudFront~S3のアクセス制御まとめ/署名付きURL">
@@ -3986,25 +3975,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/AWS-MFA-%E5%A4%9A%E8%A6%81%E7%B4%A0%E8%AA%8D%E8%A8%BC-%E3%81%AE%E6%9C%89%E5%8A%B9%E5%8C%96-IAM%E9%81%8B%E7%94%A8%E3%81%AE%E5%9F%BA%E6%9C%AC/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84862620-714ea900-b0ae-11ea-9900-40c1bbc7b7c3.png" alt="[AWS] MFA(多要素認証)の有効化/IAM運用の基本">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-06-16T07:24:28.000Z">2020-06-16</time></div>
-                    <a href="/AWS-MFA-%E5%A4%9A%E8%A6%81%E7%B4%A0%E8%AA%8D%E8%A8%BC-%E3%81%AE%E6%9C%89%E5%8A%B9%E5%8C%96-IAM%E9%81%8B%E7%94%A8%E3%81%AE%E5%9F%BA%E6%9C%AC/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[AWS] MFA(多要素認証)の有効化/IAM運用の基本</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -4022,7 +3992,7 @@
                     <span class="level-item">六月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">11</span>
+                    <span class="level-item tag">12</span>
                 </span>
             </a>
         </li>
@@ -4192,7 +4162,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/CI-CD/">
                         <span class="tag">CI/CD</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -4255,14 +4225,14 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Github/">
                         <span class="tag">Github</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Github-Actions/">
                         <span class="tag">Github Actions</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -4304,7 +4274,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/Hexo/">
                         <span class="tag">Hexo</span>
-                        <span class="tag is-grey">9</span>
+                        <span class="tag is-grey">10</span>
                     </a>
                 </div>
                 
