@@ -179,7 +179,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    5分 read (About 711 words)
+                    9分 read (About 1333 words)
                 </span>
                 
                 
@@ -236,16 +236,66 @@
 </ul>
 <p><img src="https://user-images.githubusercontent.com/41946222/84920443-1fce0a80-b0fe-11ea-977c-179957db0e00.png" alt="Github ACtions Editor"></p>
 <ul>
-<li>記載例</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># workflow name</span><br><span class="line">name: Hexo x Github Pages CI</span><br><span class="line"></span><br><span class="line"># master push時に発火</span><br><span class="line">on:</span><br><span class="line">  push:</span><br><span class="line">    branches: [ master ]</span><br><span class="line"></span><br><span class="line">jobs:</span><br><span class="line">  # This workflow contains a single job called &quot;build&quot;</span><br><span class="line">  changeName:</span><br><span class="line">    # The type of runner that the job will run on</span><br><span class="line">    runs-on: ubuntu-latest</span><br><span class="line"></span><br><span class="line">    # Steps represent a sequence of tasks that will be executed as part of the job</span><br><span class="line">    steps:</span><br><span class="line">    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span><br><span class="line">    - uses: actions&#x2F;checkout@v2</span><br><span class="line"></span><br><span class="line">    # Runs a single command using the runners shell</span><br><span class="line">    - name: Change hexo directory name</span><br><span class="line">      run: mv j-blog _j-blog</span><br></pre></td></tr></table></figure>
-
+<li><p>記載例</p>
 <ul>
-<li>記載後に”start commit”を押下</li>
+<li>uses: actions/checkout@vでリポジトリの中身にアクセス可能になります</li>
+<li>次にgitコマンドを使う為にgit configを実行</li>
+<li>git mvでHexoディレクトリの名称を変更</li>
+<li>git add/commit後にpushでリポジトリに変換<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"># workflow name</span><br><span class="line">name: Hexo x Github Pages CI</span><br><span class="line"></span><br><span class="line"># master push時に発火</span><br><span class="line">on:</span><br><span class="line">  push:</span><br><span class="line">    branches: [ master ]</span><br><span class="line"></span><br><span class="line">jobs:</span><br><span class="line">  # This workflow contains a single job called &quot;build&quot;</span><br><span class="line">  changeName:</span><br><span class="line">    # The type of runner that the job will run on</span><br><span class="line">    runs-on: ubuntu-latest</span><br><span class="line"></span><br><span class="line">    # Steps represent a sequence of tasks that will be executed as part of the job</span><br><span class="line">    steps:</span><br><span class="line">    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span><br><span class="line">    - uses: actions&#x2F;checkout@v2</span><br><span class="line"></span><br><span class="line">    # Runs a single command using the runners shell</span><br><span class="line">    - name: change directory name &amp; return for git</span><br><span class="line">      run: |</span><br><span class="line">        git config user.name &quot;&lt;git-user-name&gt;&quot;</span><br><span class="line">        git config user.email &quot;&lt;git-user-e-mail&gt;&quot;</span><br><span class="line">        git remote set-url origin https:&#x2F;&#x2F;:$&#123;&#123; secrets.GITHUB_PASS &#125;&#125;@github.com&#x2F;&lt;organization-name&gt;&#x2F;&lt;your-repository-name&gt;</span><br><span class="line">        git mv j-blog _j-blog</span><br><span class="line">        git add *</span><br><span class="line">        git commit -m &quot;Change directory name!&quot;</span><br><span class="line">        git push origin master</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>記載後に”start commit”を押下</p>
+<ul>
+<li>workflowを定義したymlファイルが生成されます</li>
+</ul>
+</li>
+<li><p>一旦ローカルに反映</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure></li>
+<li><p>以後masterにpushする度にworkflowが自動で実行されます</p>
+</li>
+<li><p>Actionsタブから確認出来る実行結果にチェックマークがついていれば成功です</p>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/84927346-aa673780-b107-11ea-8f8a-e723c521004a.png" alt="actions result"></p>
+<h2><span id="リポジトリにパスワードを埋め込む">リポジトリにパスワードを埋め込む</span></h2><ul>
+<li>リポジトリのセキュリティ制約が厳しい場合<ul>
+<li>Github Actionsの仮想サーバー上からリポジトリと通信するには、gitのパスワードが必要になります。workflowに直接書き込んでしまうと、Public Repositoryなら誰でも見れてしまうので、Settingsに登録して参照させます</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/84924555-a6391b00-b103-11ea-9945-072e61ef03b6.png" alt="image"></p>
+<ul>
+<li>参照方法<ul>
+<li>github actionsのworkflowに以下のように書けば値を引っ張れます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$&#123;&#123; secrets.GITHUB_PASS &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="github-actionsでworkflowを開発する際のデバッグ">Github Actionsでworkflowを開発する際のデバッグ</span></h2><ul>
+<li><p>Actionsタブのjob名から実行結果を確認出来ます</p>
+<ul>
+<li>ここに出ているのは、Github Actionsで立ち上がった仮想サーバーの中のできごとです<ul>
+<li>GithubをMicrosoftが買収したこともあって、裏はAzureの仮想サーバー(Linux)です</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>例</p>
+<ul>
+<li>Github Actionsの中でgitコマンドを実行させようとしていますが、アカウント名などを設定できていないために失敗していることが分かります。git configも実行させないとダメそうだ、と改善ポイントが定まりました。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/84923468-35ddca00-b102-11ea-8626-b012415e8e61.png" alt="Debug workflow"></p>
+<h2><span id="hexo-generateを自動化">hexo generateを自動化</span></h2><ul>
+<li>時間ができた時に追記します</li>
 </ul>
 <h2><span id="関連記事">関連記事</span></h2><ul>
 <li><a href="/CI-CD入門-Github-Actionsでビルド-テスト-デプロイを自動化/">[CI/CD入門] Github Actionsでビルド/テスト/デプロイを自動化</a></li>
-<li><a href="/Hexo-x-Github-Pages-5分以内にブログを自動生成して無料で公開するまで/">[Hexo x Github Pages] 5分以内にブログを自動生成して無料で公開するまで【完全版】</a></li>
+<li><a href="/Hexo-x-Github-Pages-5分以内にブログを自動生成して無料で公開するまで/">[Hexo x Github Pages] 5分以内にブログを自動生成して無料で公開するまで【完全版】</a><h2><span id="参考">参考</span></h2></li>
+<li><a href="https://qiita.com/ykhirao/items/65fee829ee0478187027">【GitHub Actions】CIを使って毎日自動でGitHubに草を生やそうｗｗｗ</a></li>
 </ul>
 
         </div>
