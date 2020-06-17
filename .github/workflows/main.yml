@@ -22,8 +22,12 @@ jobs:
       run: mv j-blog _j-blog
     - name: return for git
       run: |
+        git config user.name "j-ushikoshi"
+        git config user.email "j-ushikoshi@nec.com"
+        git remote set-url origin https://:${{ secrets.GITHUB_PASS }}@github.com/j-xaas/j-xaas.github.io
+        git checkout master
         git add *
-        git commit -m "Change directory name"
+        git commit -m "Change directory name!"
         git push origin master
 
 
