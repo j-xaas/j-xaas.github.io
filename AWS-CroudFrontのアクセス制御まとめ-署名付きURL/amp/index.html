@@ -3,25 +3,21 @@
   <head>
     <meta charset="utf-8">
     <link rel="canonical" href="https://j-xaas.github.io/AWS-CroudFrontのアクセス制御まとめ-署名付きURL/" >
-    <title>AWS CroudFront~S3のアクセス制御まとめ/署名付きURL - J&#39;s Tech Blog</title>
+    <title>AWS CloudFront~S3のアクセス制御まとめ/署名付きURL - J&#39;s Tech Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     
-    <meta property="og:title" content="AWS CroudFront~S3のアクセス制御まとめ/署名付きURL">
+    <meta property="og:title" content="AWS CloudFront~S3のアクセス制御まとめ/署名付きURL">
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="https://j-xaas.github.io/AWS-CroudFrontのアクセス制御まとめ-署名付きURL/">
-	
-		<meta property="og:image" content="\amp-dist\sample\sample-substituteTitleImage.png">
 	
 	<meta property="og:site_name" content="J&#39;s Tech Blog">
 	
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="J&#39;s Tech Blog">
 	<meta name="twitter:url" content="https://j-xaas.github.io/AWS-CroudFrontのアクセス制御まとめ-署名付きURL/">
-	<meta name="twitter:title" content="AWS CroudFront~S3のアクセス制御まとめ/署名付きURL - J&#39;s Tech Blog">
+	<meta name="twitter:title" content="AWS CloudFront~S3のアクセス制御まとめ/署名付きURL - J&#39;s Tech Blog">
 	
     
-    	<meta name="twitter:image" content="\amp-dist\sample\sample-substituteTitleImage.png">
-	
 	
 	
     
@@ -49,21 +45,14 @@
 		{
 			"@context": "http://schema.org",
 			"@type": "BlogPosting",
-			"headline": "AWS CroudFront~S3のアクセス制御まとめ/署名付きURL",
+			"headline": "AWS CloudFront~S3のアクセス制御まとめ/署名付きURL",
 			
 			"mainEntityOfPage":{
 			    "@type":"WebPage",
 			    "@id":"https://j-xaas.github.io/AWS-CroudFrontのアクセス制御まとめ-署名付きURL/"
 			},
 			"datePublished": "2020-06-17T07:51:29.000Z",
-			"dateModified": "2020-06-17T13:28:25.231Z",
-			
-			"image": {
-				"@type": "ImageObject",
-				"url": "\amp-dist\sample\sample-substituteTitleImage.png",
-				"width" : "1024",
-				"height" : "800"
-			},
+			"dateModified": "2020-06-22T13:28:52.498Z",
 			
 			"author": {
 			    "@type": "Person",
@@ -1818,19 +1807,11 @@ h6.categories {
 					<div class="entry-header">
 						
 						
-						
-			          	<div class="header-thumb flx">
-			          		<div class="thumbImg-w circle">
-			          			<amp-img class="thumbImg" layout="fixed" width="128" height="100" src="\amp-dist\sample\sample-substituteTitleImage.png">
-			          			</amp-img>
-			          		</div>
-			          	</div>
-			            
 			            
 			            <div class="header-cap flx">
 							
 							  <h1 class="article-title entry-title" itemprop="name">
-							    <a href="https://j-xaas.github.io/AWS-CroudFrontのアクセス制御まとめ-署名付きURL/" target="_blank" itemprop="url">AWS CroudFront~S3のアクセス制御まとめ/署名付きURL</a>
+							    <a href="https://j-xaas.github.io/AWS-CroudFrontのアクセス制御まとめ-署名付きURL/" target="_blank" itemprop="url">AWS CloudFront~S3のアクセス制御まとめ/署名付きURL</a>
 							  </h1>
 							
 						</div>
@@ -1864,6 +1845,26 @@ h6.categories {
 </ul>
 </li>
 </ul>
+<!-- toc -->
+
+<ul>
+<li><a href="#croudfront&#x306E;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x5236;&#x9650;">CroudFront&#x306E;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x5236;&#x9650;</a><ul>
+<li><a href="#croudfront&#x7D4C;&#x7531;&#x4EE5;&#x5916;&#x306E;s3&#x30D0;&#x30B1;&#x30C3;&#x30C8;&#x3078;&#x306E;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3092;&#x30B7;&#x30E3;&#x30C3;&#x30C8;&#x30A2;&#x30A6;&#x30C8;&#x3059;&#x308B;">CroudFront&#x7D4C;&#x7531;&#x4EE5;&#x5916;&#x306E;S3&#x30D0;&#x30B1;&#x30C3;&#x30C8;&#x3078;&#x306E;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3092;&#x30B7;&#x30E3;&#x30C3;&#x30C8;&#x30A2;&#x30A6;&#x30C8;&#x3059;&#x308B;</a><ul>
+<li><a href="#distribution&#x306E;&#x4F5C;&#x6210;&#x6642;&#x306B;&#x8A2D;&#x5B9A;">Distribution&#x306E;&#x4F5C;&#x6210;&#x6642;&#x306B;&#x8A2D;&#x5B9A;</a></li>
+<li><a href="#distribution&#x4F5C;&#x6210;&#x5F8C;&#x306B;&#x8A2D;&#x5B9A;">Distribution&#x4F5C;&#x6210;&#x5F8C;&#x306B;&#x8A2D;&#x5B9A;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#cloudfront-&#x30A8;&#x30C3;&#x30B8;&#x30AD;&#x30E3;&#x30C3;&#x30B7;&#x30E5;&#x5185;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3078;&#x306E;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x5236;&#x9650;">CloudFront &#x30A8;&#x30C3;&#x30B8;&#x30AD;&#x30E3;&#x30C3;&#x30B7;&#x30E5;&#x5185;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3078;&#x306E;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x5236;&#x9650;</a><ul>
+<li><a href="#&#x7F72;&#x540D;&#x4ED8;&#x304D;url&#x3067;&#x30BD;&#x30FC;&#x30B9;ip&#x3092;&#x9650;&#x5B9A;&#x3059;&#x308B;">&#x7F72;&#x540D;&#x4ED8;&#x304D;URL&#x3067;&#x30BD;&#x30FC;&#x30B9;IP&#x3092;&#x9650;&#x5B9A;&#x3059;&#x308B;</a></li>
+</ul>
+</li>
+<li><a href="#s3-bucket-policy&#x306E;&#x8A18;&#x8F09;&#x4F8B;">S3 Bucket Policy&#x306E;&#x8A18;&#x8F09;&#x4F8B;</a></li>
+<li><a href="#&#x53C2;&#x8003;">&#x53C2;&#x8003;</a></li>
+</ul>
+<!-- tocstop -->
+
 <h2><span id="croudfront&#x306E;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x5236;&#x9650;">CroudFront&#x306E;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x5236;&#x9650;</span></h2><p><!-- This img tag couldn't replace. src: <img src="https://user-images.githubusercontent.com/41946222/84876574-54bc6c00-b0c2-11ea-83e9-d3a43a5629ff.png" alt="CroudFront Image">--></p>
 <ul>
 <li><p>2&#x30EB;&#x30FC;&#x30C8;&#x3092;&#x8003;&#x3048;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;</p>
@@ -2034,8 +2035,8 @@ h6.categories {
 					    		</li>
 							
 					    		<li class="article-tag-list-item">
-					    			<a class="article-tag-list-link" href="/tags/CroudFront/">
-					    				CroudFront
+					    			<a class="article-tag-list-link" href="/tags/CloudFront/">
+					    				CloudFront
 					    			</a>
 					    		</li>
 							

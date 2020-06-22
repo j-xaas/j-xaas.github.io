@@ -1,12 +1,12 @@
 ---
-title: AWS CroudFront~S3のアクセス制御まとめ/署名付きURL
+title: AWS CloudFront~S3のアクセス制御まとめ/署名付きURL
 date: 2020-06-17 16:51:29
 categories:
 - Serverless Application Dev
 - AWS
 tags: 
 - AWS
-- CroudFront
+- CloudFront
 - S3
 toc: true
 thumbnail: https://user-images.githubusercontent.com/41946222/84862620-714ea900-b0ae-11ea-9900-40c1bbc7b7c3.png
@@ -15,6 +15,8 @@ thumbnail: https://user-images.githubusercontent.com/41946222/84862620-714ea900-
 - AWSのCloudFront x S3の構成におけるアクセス制御の手法について解説します
     - ソースIPの絞り方
     - コンテンツへのアクセスを経路をCloudFrontに限定
+
+<!-- toc -->
 
 ## CroudFrontのアクセス制限
 ![CroudFront Image](https://user-images.githubusercontent.com/41946222/84876574-54bc6c00-b0c2-11ea-83e9-d3a43a5629ff.png)
