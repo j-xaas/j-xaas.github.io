@@ -145,4 +145,5 @@ WAFで以下のトラフィックパターンを実現します
 
 ### その他
 - [AWS WAFを完全に理解する ~WAFの基礎からv2の変更点まで~](https://dev.classmethod.jp/articles/fully-understood-aws-waf-v2/)
-
+- [CloudFront + S3 での IP アドレスベースのアクセス制限設定をする](https://ceblog.mediba.jp/post/156084994102/cloudfront-s3-%E3%81%A7%E3%81%AE-ip-%E3%82%A2%E3%83%89%E3%83%AC%E3%82%B9%E3%83%99%E3%83%BC%E3%82%B9%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E5%88%B6%E9%99%90%E8%A8%AD%E5%AE%9A%E3%82%92%E3%81%99%E3%82%8B)
+- [CloudFrontでIP制限するためのWAFをCloudFormationで作成してみた](https://dev.classmethod.jp/articles/waf-enables-ip-limit-created-by-cfn/)
