@@ -127,6 +127,9 @@ git pull
 
 
 ## hexo generateを自動化
+- [Github actions marketplace hexo](https://github.com/marketplace?type=actions&query=Hexo)
+    - こちらの公開アクションを利用します
+
 - 時間ができた時に追記します
 
 
@@ -135,3 +138,4 @@ git pull
 - [[Hexo x Github Pages] 5分以内にブログを自動生成して無料で公開するまで【完全版】](/Hexo-x-Github-Pages-5分以内にブログを自動生成して無料で公開するまで/)
 ## 参考
 - [【GitHub Actions】CIを使って毎日自動でGitHubに草を生やそうｗｗｗ](https://qiita.com/ykhirao/items/65fee829ee0478187027)
+- [Github actions marketplace hexo](https://github.com/marketplace?type=actions&query=Hexo)
