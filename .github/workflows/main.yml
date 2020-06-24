@@ -20,8 +20,12 @@ jobs:
     # hexo gを実行？公開アクション
 #    - name: GitHub Action for Hexo
 #    uses: heowc/action-hexo@1.0.2-add-metadata
+    - name: Clean
+      uses: heowc/action-hexo@1.0.2-add-metadata
+      with:
+        args: clean
     - name: Generate
-      uses: heowc/action-hexo@master
+      ses: heowc/action-hexo@1.0.2-add-metadata
       with:
         args: generate
 
