@@ -25,7 +25,7 @@ jobs:
       with:
         args: clean
     - name: Generate
-      ses: heowc/action-hexo@1.0.2-add-metadata
+      uses: heowc/action-hexo@1.0.2-add-metadata
       with:
         args: generate
 
