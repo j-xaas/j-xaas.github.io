@@ -314,7 +314,12 @@ $ hexo new page "dir-name"
 
 ## Hexoサイトのカスタマイズ
 - 次はテーマを変更してみましょう
-    - [Hexoテーマ(theme)変更: icarus](https://j-xaas.github.io/2020/03/13/Hexo%E3%83%86%E3%83%BC%E3%83%9E-theme-%E5%A4%89%E6%9B%B4-icarus/)
+    - [Hexoテーマ(theme)変更: icarus](/Hexoテーマ-theme-変更-icarus/)
+    - [icarus(Hexo Theme) Tips Menuの編集](/icarus-Hexo-Theme-Tips-Menuの編集/)
 
 - その他のカスタマイズ
     - [Category/Hexo](https://j-xaas.github.io/categories/WEB-Page-Dev/Hexo/)
+
+## Hexoサイト運用の自動化
+- [Github Pages x Hexo運用をGithub Actionsで自動化](/Github-Pages-x-Hexo運用をGithub-Actionsで自動化/)
+    - 毎回hexo generateやディレクトリ名の変更作業を行うのは面倒なので自動化しました

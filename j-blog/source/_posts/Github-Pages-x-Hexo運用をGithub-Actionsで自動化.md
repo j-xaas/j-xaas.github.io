@@ -127,10 +127,60 @@ git pull
 
 
 ## hexo generateを自動化
-- [Github actions marketplace hexo](https://github.com/marketplace?type=actions&query=Hexo)
-    - こちらの公開アクションを利用します
+- 公開アクションの検討
+    - [Github actions marketplace hexo](https://github.com/marketplace?type=actions&query=Hexo)
+    - こちらの公開アクションも使ってみたのですが、バージョンの問題か失敗しました。今回は簡単なので自前で作ります。
 
-- 時間ができた時に追記します
+- 以下のworkflowでhexo generateも自動化できました
+    - remote set-url以降で自分のリポジトリを指定する箇所だけ読み替えて利用してください
+
+- hexo_cicd.yml
+```
+# workflow name
+name: Hexo x Github Pages CI
+
+# master push時に発火
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  # This workflow contains a single job called "build"
+  changeName:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    # 公開アクションでNode.js動作環境を構築
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v1.4.2
+
+    # Hexoディレクトリでhexo gを実行
+    - name: use hexo
+      run: |
+        cd j-blog
+        npm install
+        npm install -g hexo
+        hexo g
+        cd ..
+
+    # Runs a single command using the runners
+    - name: change directory name & return for git
+      run: |
+        git config user.name "j-ushikoshi"
+        git config user.email "j-ushikoshi@nec.com"
+        git remote set-url origin https://:${{ secrets.GITHUB_PASS }}@github.com/XXXXXXXX/XXXXXXXX.github.io
+        git mv j-blog _j-blog
+        git add *
+        git commit -m "Generate & Change directory name!"
+        git push origin master
+
+```
+
 
 
 ## 関連記事

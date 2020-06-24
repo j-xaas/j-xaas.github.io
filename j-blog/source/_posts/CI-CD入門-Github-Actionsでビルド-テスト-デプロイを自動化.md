@@ -350,7 +350,7 @@ on:  ## workflowのTriggerを定義
 
 - [Building Angular Apps Using GitHub Actions](https://medium.com/better-programming/building-angular-apps-using-github-actions-bf916b56ed0c)
   - buildの記載例
-
+- [GitHub Actions による GitHub Pages への自動デプロイ](https://qiita.com/peaceiris/items/d401f2e5724fdcb0759d)
 
 ### S3
 - [AWS S3にAngularアプリをデプロイする手順](https://qiita.com/BBA/items/4de0132e63a371da4626)

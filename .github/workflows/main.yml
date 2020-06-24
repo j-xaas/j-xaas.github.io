@@ -21,7 +21,7 @@ jobs:
     - name: Setup Node.js environment
       uses: actions/setup-node@v1.4.2
 
-    # hexo gを実行 node.jsが必要？
+    # hexo gを実行
     - name: use hexo
       run: |
         cd j-blog
@@ -50,7 +50,7 @@ jobs:
         git remote set-url origin https://:${{ secrets.GITHUB_PASS }}@github.com/j-xaas/j-xaas.github.io
         git mv j-blog _j-blog
         git add *
-        git commit -m "Change directory name!"
+        git commit -m "Generate & Change directory name!"
         git push origin master
 
     # git checkout master 今回は不要
