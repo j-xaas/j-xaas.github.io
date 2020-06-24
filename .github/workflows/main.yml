@@ -23,11 +23,11 @@ jobs:
     - name: Clean
       uses: heowc/action-hexo@master
       with:
-        args: clean
+        args: hexo clean
     - name: Generate
       uses: heowc/action-hexo@master
       with:
-        args: generate
+        args: hexo generate
 
 
     # Runs a single command using the runners shell
