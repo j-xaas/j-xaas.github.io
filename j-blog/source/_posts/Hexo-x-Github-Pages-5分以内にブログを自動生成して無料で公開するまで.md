@@ -82,7 +82,7 @@ alias: /2020/03/23/Hexo-x-Github-Pages-5分以内にブログを自動生成し�
         - 個人で開発したものや、開発途中のものを公開するにはとても便利です
     - Angularの解説は以下にまとめてます
         - [Category/Serverless Application Dev/Angular](https://j-xaas.github.io/categories/Serverless-Application-Dev/SPA-Angular/)
-    - フロントエンドのスキルを深めていくのであれば、次のStepとしてAngularによるWEB AP開発に取り組むのが良いと思います。書籍等で勉強してみてください（[おすすめ](https://amzn.to/2WHzoJ4)）
+    - フロントエンドのスキルを深めていくのであれば、次のStepとしてAngularによるWEB AP開発に取り組むのが良いと思います。書籍等で勉強してみてください（[おすすめ](https://amzn.to/3evl8ZV)）
 
 - Markdownやasciidoc形式のファイルをそのままおいて、ビジュアライズ表示も可能
     - push直後には失敗していた。数分後に確認したところ、確認できた。
@@ -93,16 +93,19 @@ alias: /2020/03/23/Hexo-x-Github-Pages-5分以内にブログを自動生成し�
 
 ### 2.1. 前提/環境構築
 - エディターを用意 (以下がお勧めです)
-    - Local端末の場合
+    - Local端末上で開発する
         - VS Code
             - [【ゼロから！】Visual Studio Codeのインストールと使い方](https://eng-entrance.com/texteditor-vscode)
-    - クラウド型IDEの場合 (GoogleアカウントがあればCloud Shellが楽です)
+    - クラウド型IDE上で開発する (GoogleアカウントがあればCloud Shellが楽です)
         - Google Cloud Shell
+            - [Google Cloud Shellの設定手順](/iPad-ProでWEB-AP開発/#google-cloud-shellの設定手順)
+                - 上記の記事に設定手順を書いています
             - [【GCP入門編・第9回】 Cloud Shell で、いつでもどこでも Google Cloud Platform (GCP) が操作可能に！](https://www.topgate.co.jp/gcp09-how-to-use-cloud-shell)
-        - AWS Cloud9
+        - AWS Cloud9 (AWSのアカウントを持っていればコンソールから作れます)
             - [Cloud9の使い方と便利機能！最強プログラミング開発環境（IDE）](https://www.sejuku.net/blog/385)
 - Node.jsを
     - Hexoを動かすために必要です
+        - 厳密にはHexoがJavaScriptで動くため、JavaScriptを使うための土台としてNode.jsが必要になります
     - まだ入れていなければ、インストールしましょう
         - 参考
             - [【Node.js入門】各OS別のインストール方法まとめ(Windows,Mac,Linux…)](https://www.sejuku.net/blog/72545)
