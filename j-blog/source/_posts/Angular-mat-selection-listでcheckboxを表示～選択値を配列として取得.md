@@ -293,6 +293,8 @@ submit() {
 短時間でぱっと作って機能面にかける時間を増やしましょう。
 
 ### 関連記事
-- [[Angular] map() & filter() & mat-checkboxを使って選択値を配列に格納するロジック](https://j-xaas.github.io/2020/04/13/Angular-map-fileter-mat-checkbox%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E9%81%B8%E6%8A%9E%E5%80%A4%E3%82%92%E9%85%8D%E5%88%97%E3%81%AB%E6%A0%BC%E7%B4%8D%E3%81%99%E3%82%8B%E3%83%AD%E3%82%B8%E3%83%83%E3%82%AF/)
+- [[Angular入門] mat-inputで生成したフォームから入力値を取得～双方向データバインディング](\Angular入門-mat-inputで生成したフォームから入力値を取得-双方向データバインディング)
+- [[Angular] map() & filter() & mat-checkboxを使って選択値を配列に格納するロジック](/Angular-map-fileter-mat-checkboxを使って選択値を配列に格納するロジック/)
     - 普通のcheckboxを使う場合はこっち
-- [angular - Angular Material mat-selectで値とテキストを取得する方法](https://ja.coder.work/so/angular/1130210)
+- [[Angular] mat-selection-list & ngForでcheckboxをリスト表示～選択値を配列として取得](/Angular-mat-selection-listでcheckboxを表示～選択値を配列として取得/)
+
