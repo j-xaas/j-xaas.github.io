@@ -21,11 +21,11 @@ jobs:
 #    - name: GitHub Action for Hexo
 #    uses: heowc/action-hexo@1.0.2-add-metadata
     - name: Clean
-      uses: heowc/action-hexo@1.0.2-add-metadata
+      uses: heowc/action-hexo@master
       with:
         args: clean
     - name: Generate
-      uses: heowc/action-hexo@1.0.2-add-metadata
+      uses: heowc/action-hexo@master
       with:
         args: generate
 
