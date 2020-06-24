@@ -17,20 +17,24 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
+    # directory移動が必要？？
+
     # hexo gを実行？公開アクション
 #    - name: GitHub Action for Hexo
 #    uses: heowc/action-hexo@1.0.2-add-metadata
     - name: Clean
       uses: heowc/action-hexo@master
       with:
-        args: hexo clean
+        args: |
+          cd j-blog
+          hexo clean
     - name: Generate
       uses: heowc/action-hexo@master
       with:
         args: hexo generate
 
 
-    # Runs a single command using the runners shell
+    # Runs a single command using the runners
     - name: change directory name & return for git
       run: |
         git config user.name "j-ushikoshi"
