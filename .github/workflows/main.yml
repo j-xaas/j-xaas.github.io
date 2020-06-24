@@ -17,21 +17,29 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    # directory移動が必要？？
+    # 公開アクションでNode.js動作環境を構築
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v1.4.2
 
-    # hexo gを実行？公開アクション
+    # hexo gを実行 node.jsが必要？
+    - name: use hexo
+      run: |
+        cd j-blog
+        npm install
+        npm install -g hexo
+        hexo g
+        cd ..
+    # 公開アクション
 #    - name: GitHub Action for Hexo
 #    uses: heowc/action-hexo@1.0.2-add-metadata
-    - name: Clean
-      uses: heowc/action-hexo@master
-      with:
-        args: |
-          cd j-blog
-          hexo clean
-    - name: Generate
-      uses: heowc/action-hexo@master
-      with:
-        args: hexo generate
+#    - name: Clean
+#      uses: heowc/action-hexo@master
+#      with:
+#        args: hexo clean
+#    - name: Generate
+#      uses: heowc/action-hexo@master
+#      with:
+#        args: hexo generate
 
 
     # Runs a single command using the runners
