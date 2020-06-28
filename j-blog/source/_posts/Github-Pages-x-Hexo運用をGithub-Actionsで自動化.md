@@ -29,7 +29,8 @@ thumbnail: https://user-images.githubusercontent.com/41946222/84656875-59f8aa00-
     hexo new '記事名'
     ```
     - 生成されたmdファイルを編集
-    - hexo generateを実行 
+    - hexo generateを実行
+      - mdファイルからWEB公開用のHTML/JSを自動生成 
     - ディレクトリ名を変更
         - Github Pagesはリポジトリ直下に置かれたファイルを読み込みます。そこでHexoディレクトリを読み込むとエラーが出るため、Hexoディレクトリの頭に_を付与して読み込めない状態にします
         ```
@@ -37,11 +38,18 @@ thumbnail: https://user-images.githubusercontent.com/41946222/84656875-59f8aa00-
         ```
     - add/commitしてGitにpush
 
-- 以下の単純作業は人間がやる必要が無さそうです
+- 以下の単純作業は人間がやる必要が無さそうなので自動化を試みます
     - hexo generateの実行 
     - ディレクトリ名の変更
 
-## ディレクトリ名の変更を自動化
+## 実装手順
+
+### ディレクトリ名の変更を自動化
+まずは練習として、ディレクトリ名の変更だけGithub Actionsで実行させます。
+
+- Point
+  - まずはGitのリポジトリからソースをGithub Actionsの仮想サーバーに持ってくる必要がある
+  - Github Actions上でコマンドを実行して編集したソースは、リポジトリにpushで返す必要がある
 
 - Github PagesのActionsタブを選択
     - set up a workflow yourselfを押下
@@ -63,7 +71,7 @@ thumbnail: https://user-images.githubusercontent.com/41946222/84656875-59f8aa00-
 # workflow name
 name: Hexo x Github Pages CI
 
-# master push時に発火
+# masterへのpush時に発火する様に定義
 on:
   push:
     branches: [ master ]
@@ -74,18 +82,20 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
+    # 1. GitのリポジトリからソースをGithub Actionsに環境に持ってくる
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
+    # 2. git mvでディレクトリ名を変更 ⇒ 変更したソースをGitに返す
     # Runs a single command using the runners shell
     - name: change directory name & return for git
       run: |
         git config user.name "<git-user-name>"
         git config user.email "<git-user-e-mail>"
         git remote set-url origin https://:${{ secrets.GITHUB_PASS }}@github.com/<organization-name>/<your-repository-name>
-        git mv j-blog _j-blog
+        git mv your-blog _your-blog
         git add *
         git commit -m "Change directory name!"
         git push origin master
@@ -102,31 +112,26 @@ git pull
 
 ![actions result](https://user-images.githubusercontent.com/41946222/84927346-aa673780-b107-11ea-8f8a-e723c521004a.png)
 
+- 今回は分かり易く、Github Actionsタブから編集しましたが、ローカルリポジトリでymlファイルを生成してリモートにpushしてもOK
 
-## リポジトリにパスワードを埋め込む
-- リポジトリのセキュリティ制約が厳しい場合
-    - Github Actionsの仮想サーバー上からリポジトリと通信するには、gitのパスワードが必要になります。workflowに直接書き込んでしまうと、Public Repositoryなら誰でも見れてしまうので、Settingsに登録して参照させます
-
-![image](https://user-images.githubusercontent.com/41946222/84924555-a6391b00-b103-11ea-9945-072e61ef03b6.png)
-
-- 参照方法
-    - github actionsのworkflowに以下のように書けば値を引っ張れます
-    ```
-    ${{ secrets.GITHUB_PASS }}
-    ```
-
-## Github Actionsでworkflowを開発する際のデバッグ
+### Github Actionsでworkflowを開発する際のデバッグ
 - Actionsタブのjob名から実行結果を確認出来ます
     - ここに出ているのは、Github Actionsで立ち上がった仮想サーバーの中のできごとです
         - GithubをMicrosoftが買収したこともあって、裏はAzureの仮想サーバー(Linux)です
 
 - 例
-    - Github Actionsの中でgitコマンドを実行させようとしていますが、アカウント名などを設定できていないために失敗していることが分かります。git configも実行させないとダメそうだ、と改善ポイントが定まりました。
+    - Github Actionsの中でgitコマンドを実行させようとしていますが、アカウント名などを設定できていないために失敗しており、git configも実行させないとダメそうだ、と分かります
 
 ![Debug workflow](https://user-images.githubusercontent.com/41946222/84923468-35ddca00-b102-11ea-8626-b012415e8e61.png)
 
 
-## hexo generateを自動化
+### hexo generateを自動化
+次に、先ほどのテンプレートに、Generateを実行するくだりも追加します。Hexoコマンドを
+
+- Point
+  - Hexoコマンドを実行するためには、先にNode.jsの環境構築が必要
+    - Github Actionsで立ち上がる仮想サーバーは、毎回まっさらな何も入っていないLinuxです
+
 - 公開アクションの検討
     - [Github actions marketplace hexo](https://github.com/marketplace?type=actions&query=Hexo)
     - こちらの公開アクションも使ってみたのですが、バージョンの問題か失敗しました。今回は簡単なので自前で作ります。
@@ -150,37 +155,52 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
+    # 1. GitのリポジトリからソースをGithub Actionsに環境に持ってくる
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    # 公開アクションでNode.js動作環境を構築
+    # 2. 公開アクションでNode.js動作環境を構築
     - name: Setup Node.js environment
       uses: actions/setup-node@v1.4.2
 
-    # Hexoディレクトリでhexo gを実行
+    # 3. Hexoディレクトリでhexo gを実行
     - name: use hexo
       run: |
-        cd j-blog
+        cd your-blog
         npm install
         npm install -g hexo
         hexo g
         cd ..
 
+    # 4. git mvでディレクトリ名を変更 ⇒ 変更したソースをGitに返す
     # Runs a single command using the runners
     - name: change directory name & return for git
       run: |
-        git config user.name "j-ushikoshi"
-        git config user.email "j-ushikoshi@nec.com"
+        git config user.name "<git-user-name>"
+        git config user.email "<git-user-e-mail>"
         git remote set-url origin https://:${{ secrets.GITHUB_PASS }}@github.com/XXXXXXXX/XXXXXXXX.github.io
-        git mv j-blog _j-blog
+        git mv your-blog _your-blog
         git add *
         git commit -m "Generate & Change directory name!"
         git push origin master
-
 ```
 
+
+### リポジトリにパスワードを埋め込む
+私の環境では不要でした。
+
+- リポジトリのセキュリティ制約が厳しい場合
+    - Github Actionsの仮想サーバー上からリポジトリと通信するには、gitのパスワードが必要になります。workflowに直接書き込んでしまうと、Public Repositoryなら誰でも見れてしまうので、Settingsに登録して参照させます
+
+![image](https://user-images.githubusercontent.com/41946222/84924555-a6391b00-b103-11ea-9945-072e61ef03b6.png)
+
+- 参照方法
+    - github actionsのworkflowに以下のように書けば値を引っ張れます
+    ```
+    ${{ secrets.GITHUB_PASS }}
+    ```
 
 
 ## 関連記事
@@ -189,3 +209,4 @@ jobs:
 ## 参考
 - [【GitHub Actions】CIを使って毎日自動でGitHubに草を生やそうｗｗｗ](https://qiita.com/ykhirao/items/65fee829ee0478187027)
 - [Github actions marketplace hexo](https://github.com/marketplace?type=actions&query=Hexo)
+- [GitHub Actions による GitHub Pages への自動デプロイ](https://qiita.com/peaceiris/items/d401f2e5724fdcb0759d)

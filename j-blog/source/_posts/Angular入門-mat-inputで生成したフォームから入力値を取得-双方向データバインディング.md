@@ -148,3 +148,4 @@ $your-angular-pj> ng add @angular/material
 - [angular material components](https://material.angular.io/components/categories)
 - [Angular Materialについて](https://note.com/mm_morimori/n/n18abdb6447cf)
 - [Angular Materialのインストールから使い始めまで](https://medium.com/@donuzium/angular-material%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%8B%E3%82%89%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%81%BE%E3%81%A7-d1e9c868688c)
+- [Angularで「フォーム」の入力値をコンポーネントと同期するには？（双方向バインディング）](https://www.atmarkit.co.jp/ait/articles/1707/14/news134.html)

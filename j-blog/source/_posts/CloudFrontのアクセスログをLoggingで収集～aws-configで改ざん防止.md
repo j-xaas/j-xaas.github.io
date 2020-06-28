@@ -60,6 +60,85 @@ CloudFrontのLoggin機能を有効化して、任意のS3バケットに格納�
 
 - バケット用のs3 ACLでFULL_CONTROLを付与する必要もあります。
 
+
+
+
+
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "MakeLogs",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity E2TINTLAJ7TK2U"
+            },
+            "Action": "*",
+            "Resource": "arn:aws:s3:::reacq-bucket-for-logs/*"
+        }
+    ]
+}
+```
+
+
+
+
+
+
+
+- その他のS3 Bucketのプロパティ
+  - オブジェクトレベルのログ記録
+    - 追加料金がかかっても良ければ、CroudTrailデータイベント機能を使用して記録可能
+
+### ログ削除時にSNSトピックにより通知させる
+S3 bucket内のログの削除イベントを元に、Amazon SNSトピックを利用して危険通知を自動で出せるように設定します
+
+- SNSトピックを作成する
+  - SNSトピックを利用することで設定した宛先に通知を送ることができます
+  - 手順
+    - AWS Console/Amazon Simple Notification Service
+    - トピックの作成
+      - トピック名
+        - DeleteAlert
+      - 次のステップ
+      - 表示名
+        - Log-Delete-Alert
+      - 他の設定はスルーでOK
+        - ※AWSを利用する際の原則として、タグにOwnerとPJ名程度は付けておきましょう
+      - トピックの作成
+    - トピックができたらARNを控えます
+      - ARNはAWSのリソースを一意にに藩閥するための番号
+      - 他のサービスと連携する時に必要になります
+    - 生成したトピックを選択
+    - ”サブスクリプションの作成”
+      - プロトコル
+        - 今回はEメールを選択
+        - 例えばSMSで電話番号を設定するば、よくあるWEBサービスのSMS通知を簡単に実現できます
+      - エンドポイント
+        - 今回はTeamsの開発チームのチャンネルに流したいので、そのメールアドレスを設定（Teamsはチャンネル毎にメールアドレスを取得できます）
+      - サブスクリプションの作成を押下
+    - 以上でこのSNSトピックが呼び出された際に、サブスクリプションで規定した連絡先に通知がと届くようになります
+
+![Amazon SNS サブスクリプション](https://user-images.githubusercontent.com/41946222/85717764-cfbbfd00-b728-11ea-8762-276babecb850.png)
+
+- S3側でイベントを規定
+  - S3 Bucket/プロパティタブ
+  - イベント
+    - ログの削除を検知できるようにイベントを作成します
+      - 名前
+        - DeleteLog
+      - イベント
+        - 全てのオブジェクトの削除イベント
+      - プレフィックス/サフィックスはスルーでOK
+      - 送信先
+        - SNSトピック
+      - SNSトピックのARN
+        - 事前に作成しておいたSNSトピックのARNをコピペ
+
+
+
 ### Loggingの有効化
 - aws console/CloudFront
 - 任意のディストリビューションを選択して、GeneralタブのEditを押下
@@ -73,6 +152,11 @@ CloudFrontのLoggin機能を有効化して、任意のS3バケットに格納�
 
 ### ログ記録を確認
 - S3バケットを確認するとログの記録が開始されたことを確認できます
+
+
+
+### Cloud Trail
+
 
 ### aws configで改ざんを防止
 S3にせっかくログを貯めても、削除されてしまっては無意味であるため、改ざん防止策が必須となります。
@@ -94,7 +178,10 @@ S3にせっかくログを貯めても、削除されてしまっては無意味
     - 直近のログは素早く確認したい場合
         - S3のライフサイクルポリシーを利用して、一定期間の経過後にGlacierに移行させる
 
-### 使用（ログの保存期間）
+
+
+
+
 ## 参考
 ### 関連記事
 - [[AWS WAF] CloudFrontへアクセス可能なソースIPを社内イントラに制限](/AWS-WAF-CroudFrontへアクセス可能なソースIPを社内イントラに制限/)
@@ -102,6 +189,14 @@ S3にせっかくログを貯めても、削除されてしまっては無意味
 - [s3 ssl化 https化(CloudFront/ACM/Route53)](/s3-ssl化-https化/) 
 - [[AWS S3 x Angular] 静的WEBサイトホスティングでSPAを公開/ng build/公開範囲の限定/CI/CD化](/AWS-S3-x-Angular-静的WEBサイトホスティングでSPAを公開-公開範囲の限定/)
 ### その他
-- [CloudFront開発者ガイド　アクセスログの設定および使用](https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html)
+- [CloudFront開発者ガイド/アクセスログの設定および使用](https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html)
+
 - [CloudFrontのアクセスログ設定方法](https://oji-cloud.net/2019/08/16/post-2740/)
 
+
+- [CloudFront開発者ガイド/Amazon CloudFront のログ記録とモニタリング](https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/logging-and-monitoring.html)
+
+
+
+- [CloudFront開発者ガイド/Amazon CloudWatch による CloudFront のモニタリング](https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/monitoring-using-cloudwatch.html)
+- [CloudFront開発者ガイド/AWS CloudTrail を使用して CloudFront API に送信されたリクエストをキャプチャする](https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/logging_using_cloudtrail.html)

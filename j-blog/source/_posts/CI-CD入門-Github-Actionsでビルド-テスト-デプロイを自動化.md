@@ -12,10 +12,14 @@ toc: true
 thumbnail: https://user-images.githubusercontent.com/41946222/84656875-59f8aa00-af4e-11ea-8cab-1639fd85a51c.png
 ---
 
+[Github Actions](https://github.co.jp/features/actions)というサービスを活用して、開発フローの一部を自動化する手法を勉強したので、まとめておきます。今後のデファクトになりそうな便利ツールなので覚えて損はないと思います。
+
+![CI/CD開発のイメージ](https://user-images.githubusercontent.com/41946222/85951701-e455fa80-b99f-11ea-9b16-f3c7ac73bf33.png)
+
 <!-- toc -->
 
 ## CI/CDとは
-開発の効率化を目的とした、以下の思想を指します。
+開発の効率化を目的とした、以下の思想を指します
 
 - CI (継続的インテグレーション)
     - テスト, ビルド等を自動化して小まめに行う
@@ -36,12 +40,14 @@ thumbnail: https://user-images.githubusercontent.com/41946222/84656875-59f8aa00-
 ![workflow](https://user-images.githubusercontent.com/41946222/84237526-75ba1580-ab34-11ea-8a58-0c710ef8bf93.png)
 
 - 魅力
-    - 工数削減
-        - 従来のようにGitと他のツールを連携させる手間が無くなる。設定/学習コストの削減を期待できる
-    - 再利用性
-        - 作成したWrokflowをGitでそのまま管理して、使いまわせる
+  - 工数削減
+    - 従来のようにGitと他のツールを連携させる手間が無くなる。学習コストや設定にあける工数を削減可能
+  - 再利用性
+    - 作成したWrokflowをGitでそのまま管理して、使いまわせる
+    - 公開アクションが充実しており、よくあるフローは大抵用意されている
 
-- Marketplaceから他のユーザが作成済みのActionを利用可能
+### 公開アクションの利用方法
+- Marketplaceから検索することで利用可能
   - 試しにAngularで検索してみると以下が表示された
   - [Github Actions Marketplace Angular](https://github.com/marketplace?type=actions&query=Angular)
 
@@ -54,6 +60,7 @@ thumbnail: https://user-images.githubusercontent.com/41946222/84656875-59f8aa00-
 
 ![Actions](https://user-images.githubusercontent.com/41946222/84236499-aef18600-ab32-11ea-85ad-1c1320084897.png)
 
+
 ### 料金
 - Publicリポジトリ
   - 無料
@@ -64,11 +71,22 @@ thumbnail: https://user-images.githubusercontent.com/41946222/84656875-59f8aa00-
 - 大規模開発でなければ、無料で使えそう
 
 ### 注意点
-- レガシープランユーザの場合は利用できないらしいので、GHE(Github Enterprise)を会社で利用している方は確認してください。リポジトリにActionタブが無い場合はレガシープランかもしれません。
+- Github Enterpeise Cloudには対応済みだが、Github Enterprise Serverは未対応(2020\06時点)
+  - Github社に問い合わせたところ、2020後半に対応予定とのこと
+
+- 契約プラン
+  - レガシープランユーザの場合利用できないらしいので、会社で利用している方は要確認。リポジトリにActionタブが無い場合はレガシープランかもしれません。
     - 公式説明
     ```
     Github Actionsはレガシープランユーザはご利用できません。
     ```
+
+### 実行環境
+- 裏側でVM（仮想サーバー）が立ち上がり、そこで処理を実行してくれます
+- OS
+  - Linux/Windows/macOSから選んで利用可能
+    - これもテンプレートで設定します
+  - LinuxやWindowsについては、MicorosoftがGithubを買収した経緯もあり、Azure上で動くようです
 
 ### ワークフローの定義
 - 定義方法
@@ -80,7 +98,6 @@ thumbnail: https://user-images.githubusercontent.com/41946222/84656875-59f8aa00-
     - ここにワークフローを定義
     - ファイルがワークフローの単位となる
     - ファイルは複数可、並列で実行される
-
 
 
 ### ワークフロー(YAMLファイル)の構造
@@ -122,6 +139,8 @@ thumbnail: https://user-images.githubusercontent.com/41946222/84656875-59f8aa00-
   - GithubからはWebhookのみ、AWS上でCode Builderを起動させてBuild、Code Deployでdeployを実行
 
 ### Github Actionsを利用した開発フロー 
+![CI/CD開発のイメージ](https://user-images.githubusercontent.com/41946222/85951701-e455fa80-b99f-11ea-9b16-f3c7ac73bf33.png)
+
 1. 個人で担当箇所を開発
 2. Gitの個人Branchにpush
 3. Pull Request レビューを実施
@@ -129,21 +148,21 @@ thumbnail: https://user-images.githubusercontent.com/41946222/84656875-59f8aa00-
 5. Github Actionsが起動
     - Buildを実行
     - (KarmaによるE2Eテストを実行)
+      - テストについての解説は今回は省略します
     - 本番環境(etc. S3/Firebase...)へデプロイ
     - Slack or Teamsに通知(ここはWebhookやNotificationを使ってもOK)
 
 --------------------------------
-
 ## 実装
 ### 使い方
 - workflowを定義したymlファイルを作ります
-    - 以下の例のように配置したymlファイルが読み込まれます
+    - 以下のように配置したymlファイルが読み込まれます
     ```
     your-repository\.github\workflows\sample.yml
     ```
 - workflowの生成方法（以下のどちらか）
     - Githubのブラウザ(Actionタブ)から設定
-    - Local Repositoryで生成してpush
+    - Local Repositoryでディレクトリ毎生成してpush
 
 ### Githubブラウザ側で設定
 - Githubの任意のリポジトリのActionタブで設定を行う
@@ -187,8 +206,8 @@ your-repository.github/workflows/> touch sample.yml
 
 
 ### Workflowテンプレートの開発
-- Buildを実行する設定例
-    - 解説を後述します
+- AngularアプリをBuildして、AWSのS3にデプロイするワークフローの例
+    - 解説は後述します
 ```
 name: Angular CI/CD ## workflow名を設定
 on:  ## workflowのTriggerを定義
@@ -204,29 +223,36 @@ jobs: ## ここで実行するジョブを指定
       matrix:
         node-version: [12.x]
 
-    steps: ## ここで実行する処理/コマンドを定義
+    steps: ## 以降に実行する処理/コマンドを定義
 
     ## github actionsの環境にリポジトリのソースを持ってくる
     - uses: actions/checkout@v2
 
-    ## 環境構築が必要
-    - name: install
-      run: npm install -g @angular/cli
+    ## 環境構築  
+    - name: Angular Github Actions
+      # 公開アクションでangular動作環境を構築 
+      uses: mayurrawte/github-angular-actions@latest
 
-    ## -----CI(継続的インテグレーション)----
-    ## Buildするアクション
-    - name: Build ## アクション名
-      ## 実行するコマンド
-      run: ng build --prod ## npm run build:prod?
+    ## CI: Build
+    - name: Build ## アクション名
+      ## 実行するコマンド
+      run: ng build --prod
 
-    ## Github Actions環境(仮想サーバー)で処理実行後にpushする必要がある
-    - name: Push Build to Releases
-      uses: ncipollo/release-action@v1
-      with:
-        artifacts: "dist/angular-githubaction/*"
-        token: ${{ secrets.TOKEN }}
+    ## CD: S3にデプロイ
+    - name: S3 site action 
+      uses: erangeles/s3-site-action@v1.0
+
+    ## Github Actions環境で処理後のソースをGitに返す
+    # Runs a single command using the runners
+    - name: change directory name & return for git
+      run: |
+        git config user.name "<git-user-name>"
+        git config user.email "<git-user-e-mail>"
+        git remote set-url origin https://:${{ secrets.GITHUB_PASS }}@github.com/XXXXXXXX/XXXXXXXX.github.io
+        git add *
+        git commit -m "Generate & Change directory name!"
+        git push origin master
 ```
-
 
 #### Triggerを指定
 - on: でworkflowが発火するタイミングを指定できます
@@ -238,9 +264,8 @@ on:  ## workflowのTriggerを定義
       - master
 ```
 
-
 #### 実行環境を設定
-- Github Actionsは裏側で仮想サーバーが動きます
+- Github Actionsは裏側でVM(仮想サーバー)が動きます
     - 今回はLinux (Ubunts)を設定
     - WindowsやMacOS等、一通り揃っています
 
@@ -257,7 +282,7 @@ on:  ## workflowのTriggerを定義
 - ２種類ある
   - run
     - コマンドを実行
-  - use
+  - uses
     - Githubやサードパーティの公開actionを利用
 
 - 設定の流れ
@@ -275,32 +300,27 @@ on:  ## workflowのTriggerを定義
 
 
 #### 環境設定
-- 今回はAngularのコマンドを実行するためにNode.jsをinstallする必要があります
+- Angularのコマンドを実行するためにNode.jsやAngular CLIをinstallする必要があります
+  - 今回は公開アクションで両方終わらせていますが、それぞれ設定する際の例を以下に示します
+    - 効果アクションはバージョンによって動かなくなるリスクもあるので念のため
 
 - 参考
     - [Using Node.js with GitHub Actions](https://help.github.com/en/actions/language-and-framework-guides/using-nodejs-with-github-actions)
 
+- Nodejs動作環境を公開アクションで構築
 ```
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm install
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v1.4.2
 ```
-
-
-- runでinstallコマンドを実行させます
+- angular CLIをrunでinstall
 ```
     ## 環境構築が必要
     - name: install
       run: npm install -g @angular/cli
 ```
 
-
 #### build
-- runでbuilのコマンドを実行
+- runでbuildコマンドを実行
 ```
     ## -----CI(継続的インテグレーション)----
     ## Buildするアクション
@@ -310,24 +330,41 @@ on:  ## workflowのTriggerを定義
 ```
 
 #### 処理実行後にpush
-- Github Actions環境(仮想サーバー)で処理実行したため、リポジトリへpushして反映する必要がある
+- Github Actions環境(仮想サーバー)で処理したため、リポジトリへpushで反映する必要がある
 ```
-    - name: Push Build to Releases
-      uses: ncipollo/release-action@v1
-      with:
-        artifacts: "dist/angular-githubaction/*"
-        token: ${{ secrets.TOKEN }}
+    ## Github Actions環境で処理後のソースをGitに返す
+    # Runs a single command using the runners
+    - name: change directory name & return for git
+      run: |
+        git config user.name "<git-user-name>"
+        git config user.email "<git-user-e-mail>"
+        git remote set-url origin https://:${{ secrets.GITHUB_PASS }}@github.com/XXXXXXXX/XXXXXXXX.github.io
+        git add *
+        git commit -m "Generate & Change directory name!"
+        git push origin master
 ```
 
 
 ### Github Actionsのステータス
+- Actionsタブのjob名から実行結果を確認出来ます
+    - ここに出ているのは、Github Actionsで立ち上がった仮想サーバーの中のできごとです
+        - GithubをMicrosoftが買収したこともあって、裏はAzureの仮想サーバー(Linux)です
 
 - 実行時
 ![In progress](https://user-images.githubusercontent.com/41946222/84649987-6971f600-af42-11ea-9ce4-5fa4cc1a037f.png)
 
+- workflowを開発のデバッグ例
+    - Github Actionsの中でgitコマンドを実行させようとしていますが、アカウント名などを設定できていないために失敗しており、git configも実行させないとダメそうだ、と分かります
+
+![Debug workflow](https://user-images.githubusercontent.com/41946222/84923468-35ddca00-b102-11ea-8626-b012415e8e61.png)
 
 
+### 所感
+他の方もおっしゃっているように、Github Actionsはworkflowの書式が簡単で、即日で使いこなせる”手軽さ”が魅力的でした (jenkins等はもっと学習コストがかかるイメージ)
+ディレクトリ毎コピーするだけで簡単に再利用できるため、開発チーム内で貯めていけば、より効果を発揮しそうです。
 
+- その他: Github Actions活用例
+  - [Github Pages x Hexo運用をGithub Actionsで自動化](/Github-Pages-x-Hexo運用をGithub-Actionsで自動化/)
 
 ## 参考
 ### 関連記事 (本番環境へのデプロイまで)
@@ -350,7 +387,9 @@ on:  ## workflowのTriggerを定義
 
 - [Building Angular Apps Using GitHub Actions](https://medium.com/better-programming/building-angular-apps-using-github-actions-bf916b56ed0c)
   - buildの記載例
-- [GitHub Actions による GitHub Pages への自動デプロイ](https://qiita.com/peaceiris/items/d401f2e5724fdcb0759d)
+
+
+- [GitHubの新機能「GitHub Actions」でワークフローを自動化しよう](https://codezine.jp/article/detail/11450)
 
 ### S3
 - [AWS S3にAngularアプリをデプロイする手順](https://qiita.com/BBA/items/4de0132e63a371da4626)
