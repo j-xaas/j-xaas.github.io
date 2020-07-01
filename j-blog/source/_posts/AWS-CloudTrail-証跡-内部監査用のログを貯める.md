@@ -95,3 +95,9 @@ CloudWatch側でサービス毎のログは取るので、CloudTrailはアカウ
 
 以上で証跡とS3 Bucketが生成される。内部監査対策は基本的にこれだけでOK。
 
+## 参考
+### 関連記事
+- [[AWS WAF] CloudFrontへアクセス可能なソースIPを社内イントラに制限](/AWS-WAF-CroudFrontへアクセス可能なソースIPを社内イントラに制限/)
+- [AWS CloudFront~S3のアクセス制御まとめ/署名付きURL](/AWS-CroudFrontのアクセス制御まとめ-署名付きURL/)
+- [s3 ssl化 https化(CloudFront/ACM/Route53)](/s3-ssl化-https化/) 
+- [[AWS S3 x Angular] 静的WEBサイトホスティングでSPAを公開/ng build/公開範囲の限定/CI/CD化](/AWS-S3-x-Angular-静的WEBサイトホスティングでSPAを公開-公開範囲の限定/)
