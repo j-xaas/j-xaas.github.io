@@ -12,8 +12,10 @@ toc: true
 学生時代は早稲田大学の創造理工学部で3Dプリンターの研究をしていました。コンピューターサイエンスの基礎を学ばないまま、モダンな技術を扱うことになったので、日々悪戦苦闘しています。
 
 - ざっくりスキルマップ
-    - AWS/Firebaseを活用したサービスのアーキテクチャ設計/IaCやSaaS開発のPMの経験があり、AWS Solution Architect等の資格を持っています
-    - 最近はAngularを使ってフロントエンドエンジニアっぽいことをしたり、Github ActionsでCI/CDの検証もしてます
+    - クラウド
+        - AWS/Firebaseを活用したサービスのアーキテクチャ設計/IaCやSaaS開発のPMの経験があり、AWS Solution Architect等の資格を持っています
+    - フロントエンド
+        - 最近はAngularを使ってSPAを開発したり、Github ActionsでCI/CDの検証もしてます
     - 趣味でWeb ARの勉強もしています
 
 <div style="text-align:center;">
