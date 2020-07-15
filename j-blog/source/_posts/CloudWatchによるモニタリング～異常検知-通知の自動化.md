@@ -18,9 +18,10 @@ AWSの一般的なサーバレス構成における、以下の手法を解説�
 - Amazon SNS連携による自動通知
 - コスト超過でSNS通知
 
+<!--
 今回想定するアーキテクチャ
 ![静的コンテンツをS3でHostingする際の一般的なアーキテクチャ](https://user-images.githubusercontent.com/41946222/86269988-80347000-bc05-11ea-8a3d-752ef61f5ca7.png)
-
+-->
 
 <!-- toc -->
 

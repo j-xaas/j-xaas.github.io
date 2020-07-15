@@ -14,7 +14,9 @@ thumbnail: https://user-images.githubusercontent.com/41946222/84656875-59f8aa00-
 
 [Github Actions](https://github.co.jp/features/actions)というサービスを活用して、開発フローの一部を自動化する手法を勉強したので、まとめておきます。今後のデファクトになりそうな便利ツールなので覚えて損はないと思います。
 
+<!--
 ![CI/CD開発のイメージ](https://user-images.githubusercontent.com/41946222/85951701-e455fa80-b99f-11ea-9b16-f3c7ac73bf33.png)
+-->
 
 <!-- toc -->
 

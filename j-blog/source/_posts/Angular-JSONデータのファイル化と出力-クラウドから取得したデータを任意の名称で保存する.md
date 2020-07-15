@@ -1,5 +1,5 @@
 ---
-title: '[Angular JavaScript] JSONデータのファイル化と出力 ~クラウドから取得したデータを任意の名称で保存するロジック~ (TypeScript)'
+title: '[Angular JavaScript] JSONデータのファイル化と出力 ~取得したデータを任意の名称で保存するロジック~ (TypeScript)'
 date: 2020-05-31 22:55:36
 category:
 - Serverless Application Dev
@@ -12,6 +12,7 @@ tags:
 - ファイル操作
 toc: true
 thumbnail: https://user-images.githubusercontent.com/41946222/83424662-abda0400-a467-11ea-831a-2b146d29a1c5.png
+alias: https://j-xaas.github.io/Angular-JSONデータのファイル化と出力-クラウドから取得したデータを任意の名称で保存する/
 ---
 
 Angular APでローカル端末にファイルを出力する機能をWEB APに実装する手順を解説します。外部API(ex. AWS)からService経由でGETしたデータをLocal端末に保存するケースを想定しています。色々試したものの、WEB APはセキュリティ制約が多いので、やり方が限られました。

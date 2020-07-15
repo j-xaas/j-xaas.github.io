@@ -3,7 +3,7 @@ title: '[Angular Material入門] mat-inputで生成したフォームから入�
 date: 2020-06-22 21:26:46
 categories:
 - Serverless Application Dev
-- Angular
+- SPA (Angular)
 tags: 
 - Angular
 - Angular Material
