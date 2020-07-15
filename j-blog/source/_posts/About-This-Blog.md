@@ -1,7 +1,6 @@
 ---
 title: About This Blog
 date: 2020-02-04 23:38:20
-ad: false
 toc: true
 ---
 
