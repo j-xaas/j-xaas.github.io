@@ -33,7 +33,7 @@ thumbnail: https://user-images.githubusercontent.com/41946222/77545699-2c233c80-
 </div>
 
 - 流行りのブラウザ型IDEを利用して、iPadでの開発を可能にします
-- また、iPadのRPAツールで一言でIDEが立ち上がるようにします
+- また、iPadのRPAツールとSiriで一言でIDEが立ち上がるようにします
 
 ### 基礎知識
 - ブラウザ型IDEとは？
@@ -98,7 +98,6 @@ thumbnail: https://user-images.githubusercontent.com/41946222/77545699-2c233c80-
         - fenifoxの説明には全くないのですが、接続時にパスワードを求められたら"0000","1234","1111"の何れかを入力すればOKです
     - 拘る人には[Apple純正](https://amzn.to/3dwoL1A)のマウスもあります
 
-
 ### Keyboard
 - ひとまず[Magic Keyboard](https://amzn.to/2ybfNXL)を使用しています
   - 非常に軽く、登録後は叩くだけでipadと繋がります
@@ -106,6 +105,7 @@ thumbnail: https://user-images.githubusercontent.com/41946222/77545699-2c233c80-
 - 話題のiPadが浮くキーボードは2020/05発売なので待機中です
   - [Apple Magic Keyboard](https://amzn.to/2JeoFxV)
     - イケてるけど、エントリーモデルのipadより高い...
+    - 追記：最近購入しましたが、ほぼ完全にPCになるのでお勧めです
 
     <a href="https://www.amazon.co.jp/Apple-Magic-Keyboard-12-9%E3%82%A4%E3%83%B3%E3%83%81iPad-Pro-%E7%AC%AC3%E4%B8%96%E4%BB%A3%E3%81%A8%E7%AC%AC4%E4%B8%96%E4%BB%A3/dp/B0863JB6GL/ref=as_li_ss_il?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&keywords=keyboard&qid=1585148574&s=computers&sr=1-8&linkCode=li3&tag=junjun10804-22&linkId=db9e7a94a54397fd62458a97a42bf10a&language=ja_JP" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B0863JB6GL&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun10804-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun10804-22&language=ja_JP&l=li3&o=9&a=B0863JB6GL" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
@@ -162,9 +162,8 @@ thumbnail: https://user-images.githubusercontent.com/41946222/77545699-2c233c80-
 - 『Hey Siri, GCP』と言ったらGoogle Cloud Shellが開くようにします
   - ブラウザ型IDEの欠点として、ブラウザから開く手間があります。自動化して時短＆モチベーション向上を図りましょう
 
-
 - ショートカット
-  - iPhoneやiPadで使える手軽なRPAアプリ
+  - iPhoneやiPadで使える手軽なRPAツール
   - iPadで作業するメリットの一つだと思います
 
 #### 手順
@@ -192,12 +191,12 @@ PCじゃないと無理じゃない？と言われそうな作業の代替え案
 - パワポ
   - Googleスライドを使いましょう
     - クラウド上に保存すれば、どの端末からでも見れるので便利です
-    - アクセス制限を付けて所定の人にだけ見せることを可能です
+    - アクセス制限を付けて任意の人に共有することも可能です
 - Excel
-  - せめてGoogleスプレッドシートを使いましょう
-    - IT界隈ではExcelを使うとディスられる風潮があるので気を付けてください
+  - Googleスプレッドシートを使いましょう
 
 ## 関連記事
 - [cloud9による共同編集・リモート開発](https://j-xaas.github.io/2020/03/07/cloud9%E3%81%AB%E3%82%88%E3%82%8B%E5%85%B1%E5%90%8C%E7%B7%A8%E9%9B%86%E3%83%BB%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E9%96%8B%E7%99%BA/)
 - [Cloud9 x Firebase x AngularでAP開発](https://j-xaas.github.io/2020/03/05/Cloud9-x-Angular-x-Firebase%E3%81%A7AP%E9%96%8B%E7%99%BA%EF%BC%88%E5%B0%8E%E5%85%A5%E7%B7%A8%EF%BC%89/) 
-
+- [[Google cloud shell x Hexo] 環境構築&記事編集](/Google-cloud-shell-x-Hexo-環境構築-記事編集/)
+    - このブログ自体もiPadからcloud shellを使って編集しています
