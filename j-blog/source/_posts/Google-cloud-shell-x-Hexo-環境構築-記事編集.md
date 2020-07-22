@@ -52,6 +52,13 @@ hexo server -p 8080
 
 - 以上でブラウザでWEBページの画面を確認可能です
 
+## Githuにpush時にログイン
+- 以下のようにユーザ名とパスワードの入力求められます
+```
+Username for 'https://github.com': 
+Password for 'https://user-name@github.com':
+```
+
 ## 関連記事
 ### Google Cloud Shell
 - [iPad ProでWEB AP開発 & RPA](/iPad-ProでWEB-AP開発/)

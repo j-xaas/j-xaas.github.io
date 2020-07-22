@@ -50,6 +50,9 @@ thumbnail: https://user-images.githubusercontent.com/41946222/82147139-b3ef4c80-
 
 - VS Code用のプラグインもあります
     - [Draw.io VS Code Integration](https://marketplace.visualstudio.com/items?itemName=hediet.vscode-drawio)
+    - こちらの利用方法は別記事にまとめました
+        - [draw.ioをVSCode上で使用/図表をGitで一元管理](/draw-ioをVSCode上で使用-図表をGitで一元管/)
+
 
 ![image](https://user-images.githubusercontent.com/41946222/82150925-c4a5bf80-9894-11ea-945c-aaf082ed9457.png)
 
@@ -154,5 +157,7 @@ thumbnail: https://user-images.githubusercontent.com/41946222/82147139-b3ef4c80-
     - pptやExcelで必死にレイアウトを調整する手間は
 ![image](https://user-images.githubusercontent.com/41946222/82148925-36c7d580-9890-11ea-88c3-d4990144e10d.png)
 
-今回の解説は以上です。知っておくだけで生産性が向上するものが多いので、是非同僚に教えて上げてください。
-良いツールを見つけたら追記します。お勧めがあれば教えて頂けると嬉しいです。
+今回の解説は以上です。良いツールを見つけたら追記します。
+
+## 関連記事
+- [draw.ioをVSCode上で使用/図表をGitで一元管理](/draw-ioをVSCode上で使用-図表をGitで一元管/)
