@@ -10,6 +10,8 @@
 	<meta property="og:type" content="article">
 	<meta property="og:url" content="https://j-xaas.github.io/CloudFrontのアクセスログをLoggingで収集～aws-configで改ざん防止/">
 	
+		<meta property="og:image" content="https://user-images.githubusercontent.com/41946222/85531367-ab3d2380-b649-11ea-8efe-cd98bb73dc5f.png">
+	
 	<meta property="og:site_name" content="J&#39;s Tech Blog">
 	
 	<meta name="twitter:card" content="summary_large_image" />
@@ -18,6 +20,8 @@
 	<meta name="twitter:title" content="CloudFrontのアクセスログをLoggingで収集～aws configで改ざん防止 - J&#39;s Tech Blog">
 	
     
+    	<meta name="twitter:image" content="https://user-images.githubusercontent.com/41946222/85531367-ab3d2380-b649-11ea-8efe-cd98bb73dc5f.png">
+	
 	
 	
     
@@ -52,7 +56,14 @@
 			    "@id":"https://j-xaas.github.io/CloudFrontのアクセスログをLoggingで収集～aws-configで改ざん防止/"
 			},
 			"datePublished": "2020-06-24T12:00:46.000Z",
-			"dateModified": "2020-06-28T16:12:10.521Z",
+			"dateModified": "2020-07-27T14:31:11.205Z",
+			
+			"image": {
+				"@type": "ImageObject",
+				"url": "https://user-images.githubusercontent.com/41946222/85531367-ab3d2380-b649-11ea-8efe-cd98bb73dc5f.png",
+				"width" : "785",
+				"height" : "424"
+			},
 			
 			"author": {
 			    "@type": "Person",
@@ -65,7 +76,7 @@
 			    ,
 			    "logo": {
 			      "@type": "ImageObject",
-			      "url": "https://j-xaas.github.io\amp-dist\sample\sample-logo.png",
+			      "url": "https://j-xaas.github.io/amp-dist/sample/sample-logo.png",
 			      "width": 600,
 			      "height": 60
 			    }
@@ -1807,6 +1818,14 @@ h6.categories {
 					<div class="entry-header">
 						
 						
+						
+			          	<div class="header-thumb flx">
+			          		<div class="thumbImg-w circle">
+			          			<amp-img class="thumbImg" layout="fixed" width="185" height="100" src="https://user-images.githubusercontent.com/41946222/85531367-ab3d2380-b649-11ea-8efe-cd98bb73dc5f.png">
+			          			</amp-img>
+			          		</div>
+			          	</div>
+			            
 			            
 			            <div class="header-cap flx">
 							
@@ -1866,7 +1885,7 @@ h6.categories {
 </ul>
 <!-- tocstop -->
 
-<h2><span id="&#x4ECA;&#x56DE;&#x306E;&#x69CB;&#x6210;">&#x4ECA;&#x56DE;&#x306E;&#x69CB;&#x6210;</span></h2><h2><span id="cloudfront&#x306E;logging&#x6A5F;&#x80FD;">CloudFront&#x306E;Logging&#x6A5F;&#x80FD;</span></h2><p><!-- This img tag couldn't replace. src: <img src="https://user-images.githubusercontent.com/41946222/85531367-ab3d2380-b649-11ea-8efe-cd98bb73dc5f.png" alt="ログ記録の仕組み">--></p>
+<h2><span id="&#x4ECA;&#x56DE;&#x306E;&#x69CB;&#x6210;">&#x4ECA;&#x56DE;&#x306E;&#x69CB;&#x6210;</span></h2><h2><span id="cloudfront&#x306E;logging&#x6A5F;&#x80FD;">CloudFront&#x306E;Logging&#x6A5F;&#x80FD;</span></h2><div class="amp-img-wrapper"><amp-img src="https://user-images.githubusercontent.com/41946222/85531367-ab3d2380-b649-11ea-8efe-cd98bb73dc5f.png" width="785" height="424" layout="responsive"></amp-img></div>
 <ul>
 <li>ClouFront&#x306E;&#x8A2D;&#x5B9A;&#x304B;&#x3089;Logging&#x3092;&#x6709;&#x52B9;&#x5316;&#x3059;&#x308B;&#x3060;&#x3051;&#x3067;&#x3001;&#x4E0A;&#x8A18;&#x306E;&#x56F3;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;S3&#x306B;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x30ED;&#x30B0;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x81EA;&#x52D5;&#x3067;&#x683C;&#x7D0D;&#x3059;&#x308B;&#x3088;&#x3046;&#x306B;&#x8A2D;&#x5B9A;&#x53EF;&#x80FD;&#x3067;&#x3059;&#x3002;CloudFront&#x3092;&#x7528;&#x3044;&#x308B;&#x306E;&#x3067;&#x3042;&#x308C;&#x3070;&#x3001;&#x57FA;&#x672C;&#x7684;&#x306B;&#x4F7F;&#x3046;&#x6A5F;&#x80FD;&#x3068;&#x3057;&#x3066;&#x899A;&#x3048;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</li>
 </ul>
@@ -1889,7 +1908,7 @@ h6.categories {
 </ul>
 </li>
 </ul>
-<p><!-- This img tag couldn't replace. src: <img src="https://user-images.githubusercontent.com/41946222/85527641-040abd00-b646-11ea-8216-c77ea309e464.png" alt="バケットの作成">--></p>
+<div class="amp-img-wrapper"><amp-img src="https://user-images.githubusercontent.com/41946222/85527641-040abd00-b646-11ea-8216-c77ea309e464.png" width="1954" height="1506" layout="responsive"></amp-img></div>
 <h3><span id="&#x6A29;&#x9650;&#x8A2D;&#x5B9A;">&#x6A29;&#x9650;&#x8A2D;&#x5B9A;</span></h3><ul>
 <li><p>Log&#x3092;&#x305F;&#x3081;&#x308B;&#x306B;&#x306F;CloudFront&#x304B;&#x3089;&#x306E;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x8A31;&#x53EF;&#x304C;&#x5FC5;&#x8981;</p>
 </li>
@@ -1982,7 +2001,7 @@ h6.categories {
 </ul>
 </li>
 </ul>
-<p><!-- This img tag couldn't replace. src: <img src="https://user-images.githubusercontent.com/41946222/85717764-cfbbfd00-b728-11ea-8762-276babecb850.png" alt="Amazon SNS サブスクリプション">--></p>
+<div class="amp-img-wrapper"><amp-img src="https://user-images.githubusercontent.com/41946222/85717764-cfbbfd00-b728-11ea-8762-276babecb850.png" width="625" height="566" layout="responsive"></amp-img></div>
 <ul>
 <li>S3&#x5074;&#x3067;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x898F;&#x5B9A;<ul>
 <li>S3 Bucket/&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x30BF;&#x30D6;</li>
@@ -2025,7 +2044,7 @@ h6.categories {
 </ul>
 </li>
 </ul>
-<p><!-- This img tag couldn't replace. src: <img src="https://user-images.githubusercontent.com/41946222/85528394-c6f2fa80-b646-11ea-8db0-4a0360861dfa.png" alt="Edit Distribution">--></p>
+<div class="amp-img-wrapper"><amp-img src="https://user-images.githubusercontent.com/41946222/85528394-c6f2fa80-b646-11ea-8db0-4a0360861dfa.png" width="2112" height="1842" layout="responsive"></amp-img></div>
 <h3><span id="&#x30ED;&#x30B0;&#x8A18;&#x9332;&#x3092;&#x78BA;&#x8A8D;">&#x30ED;&#x30B0;&#x8A18;&#x9332;&#x3092;&#x78BA;&#x8A8D;</span></h3><ul>
 <li>S3&#x30D0;&#x30B1;&#x30C3;&#x30C8;&#x3092;&#x78BA;&#x8A8D;&#x3059;&#x308B;&#x3068;&#x30ED;&#x30B0;&#x306E;&#x8A18;&#x9332;&#x304C;&#x958B;&#x59CB;&#x3055;&#x308C;&#x305F;&#x3053;&#x3068;&#x3092;&#x78BA;&#x8A8D;&#x3067;&#x304D;&#x307E;&#x3059;</li>
 </ul>
@@ -2111,8 +2130,8 @@ h6.categories {
 					    		</li>
 							
 					    		<li class="article-tag-list-item">
-					    			<a class="article-tag-list-link" href="/tags/S3/">
-					    				S3
+					    			<a class="article-tag-list-link" href="/tags/Logging/">
+					    				Logging
 					    			</a>
 					    		</li>
 							
@@ -2123,14 +2142,14 @@ h6.categories {
 					    		</li>
 							
 					    		<li class="article-tag-list-item">
-					    			<a class="article-tag-list-link" href="/tags/aws-config/">
-					    				aws config
+					    			<a class="article-tag-list-link" href="/tags/S3/">
+					    				S3
 					    			</a>
 					    		</li>
 							
 					    		<li class="article-tag-list-item">
-					    			<a class="article-tag-list-link" href="/tags/Logging/">
-					    				Logging
+					    			<a class="article-tag-list-link" href="/tags/aws-config/">
+					    				aws config
 					    			</a>
 					    		</li>
 							
