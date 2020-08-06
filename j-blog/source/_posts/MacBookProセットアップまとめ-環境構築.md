@@ -10,7 +10,7 @@ toc: true
 thumbnail: https://user-images.githubusercontent.com/68212997/89536696-458cab80-d833-11ea-9aa1-6bffaa39196a.png
 ---
 
-Macbook Proを買った最初にした一通りの作業のメモ
+Macbook Proを買って最初にした一通りの作業のメモ
 
 <!-- toc -->
 
