@@ -59,7 +59,8 @@ thumbnail: https://user-images.githubusercontent.com/68212997/89525922-ed00e280-
 ### アカウントを作成~ログイン
 - [UI Bakery Login](https://app.uibakery.io/auth/login)
     - 今回はGoogleアカウントでログインしてみます
-![UI_Bakery_login](https://user-images.githubusercontent.com/68212997/89510035-064a6480-d80b-11ea-9462-72a1a138bc5e.png")
+
+    ![UI_Bakery_login](https://user-images.githubusercontent.com/68212997/89510035-064a6480-d80b-11ea-9462-72a1a138bc5e.png)
 
 - Confirm
 ![UI Bakery Registration](https://user-images.githubusercontent.com/68212997/89510449-883a8d80-d80b-11ea-9390-a934816429dc.png)

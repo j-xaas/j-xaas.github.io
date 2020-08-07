@@ -29,7 +29,13 @@ Macbook Proを買って最初にした一通りの作業のメモ
 - SparkAR
     - ARフィルター開発用
 - MindNode
+    - マインドマップの作成用
 - Draw.io
+    - 図表の描画よう
+- [SYNCROOM](https://syncroom.yamaha.com/play/dl/)
+    - リモートセッションツール
+- [TOOLS FOR UR44](https://japan.steinberg.net/jp/support/downloads/ur44.html)
+    - インターフェイス用のソフト
 
 ## 本体設定
 ### キーのリピートを最速化
