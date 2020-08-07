@@ -10,8 +10,12 @@ toc: true
 thumbnail: https://user-images.githubusercontent.com/41946222/83424662-abda0400-a467-11ea-831a-2b146d29a1c5.png
 ---
 
-- 前提条件
-    - Node.jsのインストール
+　未経験からモダンなWebアプリ開発を学びたい方向けに、Angularというフレームワークについて解説します。Angularは[公式ドキュメント](https://angular.jp/)が豊富なのですが、基本的にWeb開発の経験者を想定して書かれています。極力丸めた表現で書いたので、この記事で「自分にもアプリ開発できそうだ」と一歩踏み出せれば幸いです。こういった記事や実戦経験で概要を掴んで、詳細は[書籍](https://amzn.to/2XAs0Py)で学習するという進め方がおすすめです。
+
+### 前提条件
+- Node.jsのインストール
+    - Angularで開発するにはNode.jsが必要です
+    - JavaScriptを動かすための土台のようなもの
 
 ### CLIのインストール
 - angular cliをインストール

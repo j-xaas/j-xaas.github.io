@@ -58,6 +58,10 @@ thumbnail: https://user-images.githubusercontent.com/68212997/89621335-22faa100-
 {% youtube Q7LFDT-FRzs %}
 
 
+
+- その他：DeepFaceLab
+    - 動画の加工にはこっちが主に利用されているようです
+
 <img width="844" alt="Deepface Lab" src="https://user-images.githubusercontent.com/68212997/89622466-1119fd80-d8ce-11ea-980e-49be7be11965.png">
 
 
