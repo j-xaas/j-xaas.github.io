@@ -76,7 +76,11 @@ thumbnail: https://user-images.githubusercontent.com/68212997/89672648-f83a3800-
 ![SYNCROOM チュートリアル](https://user-images.githubusercontent.com/68212997/89645980-ddeb6480-d8f5-11ea-8ebe-70b40636538a.png)
 
 - この時点でマイクやインターフェイスは接続しておく必要があります
-    - おすすめのインターフェイスと設定方法についてまとめた記事
+    - オーディオインターフェイス
+        - PCに楽器からの音を取り込むための機器
+        - ボーカルのみであればコンデンサーマイクだけで済みます
+            - [ZENLO コンデンサーマイク USBマイク 単一指向性](https://amzn.to/2XDKsXk)
+    - おすすめのインターフェイスと設定方法については以下にまとめました
         - [UR44C](https://amzn.to/33CmqQc), [UR22C](https://amzn.to/2XzxcCX)
         - [PCでDTM環境を構築 [Steinberg UR44C/Cubase ai]](/PCでDTM環境を構築-Steinberg-UR44C-Cubase-ai/)
 
@@ -147,14 +151,15 @@ thumbnail: https://user-images.githubusercontent.com/68212997/89672648-f83a3800-
 
 
 ## DTM環境
+
 以下のような環境を作っています
 
-- DTM環境を作るところから始める方は↓の記事が参考になると思います
+- DTM環境を作るところから始めたい方は↓の記事を参考にどうぞ
     - [PCでDTM環境を構築 [Steinberg UR44C/Cubase ai]](/PCでDTM環境を構築-Steinberg-UR44C-Cubase-ai/)
 
-[DTM構成](https://user-images.githubusercontent.com/41946222/79885198-61f60b00-8431-11ea-97cc-6298ae1c92a3.png)
+![DTM構成](https://user-images.githubusercontent.com/41946222/79885198-61f60b00-8431-11ea-97cc-6298ae1c92a3.png)
 
-[DTM構成②](https://user-images.githubusercontent.com/41946222/77458772-10625c80-6e42-11ea-9998-40235fa4a44c.png)
+![DTM構成②](https://user-images.githubusercontent.com/41946222/77458772-10625c80-6e42-11ea-9998-40235fa4a44c.png)
 
 
 ## 関連記事

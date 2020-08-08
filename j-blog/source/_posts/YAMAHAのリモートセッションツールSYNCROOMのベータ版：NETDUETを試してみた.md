@@ -17,6 +17,10 @@ thumbnail: https://user-images.githubusercontent.com/41946222/79638131-f573d580-
 先日4/6にYAMAHAより新しい遠隔合奏サービス「SYNCROOM」が発表されました。  
 6月～のリリースに備えて、既に公開中のβ版: NET DUETを使ってみます。（仕様はほぼそのままなので慣れとくといいかも）
 
+- 追記(2020/07)
+    - NETDUETTOの後継であるSYNCROOMについての記事を追加しました
+    - [[SYNCROOM] リモートセッションのやり方(YAMAHAの遠隔合奏アプリ)](/SYNCROOM-リモートセッションのやり方-YAMAHAの遠隔合奏アプリ/)
+
 ## YAMAHAの遠隔セッションサービス（SYNCROOM/NETDUETTO）
 
 <div style="text-align:center;">
@@ -243,3 +247,13 @@ C:\Program Files\Yamaha\NETDUETTO2\
 <div style="text-align:center;">
 <img src="https://user-images.githubusercontent.com/41946222/79640967-b26e2e00-81cf-11ea-9028-16ceb10c7d95.png" height="400px" width="500px">
 </div>
+
+- 追記(2020/07)
+    - NETDUETTOの後継であるSYNCROOMについての記事を追加しました
+    - [[SYNCROOM] リモートセッションのやり方(YAMAHAの遠隔合奏アプリ)](/SYNCROOM-リモートセッションのやり方-YAMAHAの遠隔合奏アプリ/)
+
+
+## 関連記事
+- [[SYNCROOM] リモートセッションのやり方(YAMAHAの遠隔合奏アプリ)](/SYNCROOM-リモートセッションのやり方-YAMAHAの遠隔合奏アプリ/)
+- [PCでDTM環境を構築 [Steinberg-UR44C-Cubase-ai]](/PCでDTM環境を構築-Steinberg-UR44C-Cubase-ai/)
+- [iPad ProでDTM環境を構築](/iPad-ProでDTM環境を構築/)

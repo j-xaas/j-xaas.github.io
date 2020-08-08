@@ -55,8 +55,7 @@ cd <sample-ap-name>
 ```
 - Angualr APのディレクトリ構成  
     - 以下のセットが自動生成されます
-![angular](https://user-images.githubusercontent.com/41946222/68365531-38437300-0174-11ea-9bd1-68cb595c9a80.PNG)
-
+![Angular Project構成](https://user-images.githubusercontent.com/68212997/89703973-ee015380-d98a-11ea-8417-576765f6a06e.png)
 
 ### 2.2. ビルドと実行
 - 次のserveコマンドで先の手順で生成したAP（の雛形）が起動します。
@@ -74,6 +73,9 @@ ng serve --open
 ![image](https://user-images.githubusercontent.com/41946222/82355091-b98d9380-9a3c-11ea-8f54-cd5358e6b441.png)
 
 - ここまででWEB AP開発のスタートラインに立てました。続いて生成されたファイルを弄ってUI(画面のこと)や簡単な機能を開発してみましょう。
+    - [[Angular入門] AngularCLI環境構築~PJの開始,コンポーネントの生成,初めての関数開発](/Angular入門-AngularCLI環境構築-PJの開始-コンポーネントの生成-初めての関数開発/)
+    - [[Angular Material入門] mat-inputで生成したフォームから入力値を取得(双方向データバインディング)](/Angular入門-mat-inputで生成したフォームから入力値を取得-双方向データバインディング/)
+
 
 ## 3. Angular関連のTips
 - VSCode拡張機能 
@@ -81,3 +83,8 @@ ng serve --open
         - その他にも沢山あるので随時導入してください
 - [Angular公式のチュートリアル](https://angular.jp/start)
 - [Angularよく使うコマンド](https://qiita.com/AsatoSa/items/ce7b416dc83522965d72)
+
+
+### 関連記事
+- [[Angular入門] AngularCLI環境構築~PJの開始,コンポーネントの生成,初めての関数開発](/Angular入門-AngularCLI環境構築-PJの開始-コンポーネントの生成-初めての関数開発/)
+- [[Angular Material入門] mat-inputで生成したフォームから入力値を取得(双方向データバインディング)](/Angular入門-mat-inputで生成したフォームから入力値を取得-双方向データバインディング/)

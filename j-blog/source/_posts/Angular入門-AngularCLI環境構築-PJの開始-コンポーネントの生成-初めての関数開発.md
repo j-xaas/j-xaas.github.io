@@ -145,6 +145,9 @@ angular.json            node_modules            src                     tsconfig
 e2e                     package-lock.json       tsconfig.app.json       tsconfig.spec.json
 ```
 
+- ng newで自動生成したAngular Projectの構成
+![Angular Project構成](https://user-images.githubusercontent.com/68212997/89703973-ee015380-d98a-11ea-8417-576765f6a06e.png)
+
 - 基本的にいじるのは app-name/src/appの中身
     - 見てみるとapp componentのセットが入っている
     - app componentは最も大きいコンポーネント
@@ -371,8 +374,19 @@ ng serve --open
     - [[Angular Material入門] mat-inputで生成したフォームから入力値を取得(双方向データバインディング)](/Angular入門-mat-inputで生成したフォームから入力値を取得-双方向データバインディング/)
 
 
-本記事では極力優しい表現をしているので、細かい用語などは[書籍](https://amzn.to/2XAs0Py)での学習がおすすめです。
+本記事では極力丸めた表現をしているので、細かい用語などは[書籍](https://amzn.to/2XAs0Py)での学習がおすすめです。
 
 
-### 参考記事
+## 参考記事
+- [[Angular入門] 環境構築～PJの開始/基本コマンド](Angular入門-環境構築～PJの開始-基本コマンド/)
+- [[Angular Material入門] mat-inputで生成したフォームから入力値を取得(双方向データバインディング)](/Angular入門-mat-inputで生成したフォームから入力値を取得-双方向データバインディング/)
 - [[Google cloud shell x Hexo] 環境構築&記事編集](https://j-xaas.github.io/Google-cloud-shell-x-Hexo-%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89-%E8%A8%98%E4%BA%8B%E7%B7%A8%E9%9B%86/)
+- [[Angular入門] 環境構築～PJの開始/基本コマンド](Angular入門-環境構築～PJの開始-基本コマンド/)
+
+
+## Angular関連のTips
+- VSCode拡張機能 
+    - [おすすめ](https://marketplace.visualstudio.com/items?itemName=johnpapa.angular-essentials)
+        - その他にも沢山あるので随時導入してください
+- [Angular公式のチュートリアル](https://angular.jp/start)
+- [Angularよく使うコマンド](https://qiita.com/AsatoSa/items/ce7b416dc83522965d72)
