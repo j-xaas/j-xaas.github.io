@@ -3,6 +3,7 @@ title: '[AR.js x A-Frame] WebAR入門～マーカーベースで3Dオブジェ�
 date: 2020-07-27 23:18:34
 categories:
 - AR
+- WebAR
 tags:
 - AR
 - WebAR
@@ -237,6 +238,7 @@ Netlifyは簡易的なものなので、ちゃんと公開するのであれば�
 
 ### 関連記事
 #### AR
+- [[AR.js Studio] NoCodeでWebARをGithub Pagesに公開する](/AR-js-Studio-NoCodeでWebARをGithub-Pagesに公開する/)
 - [[Spark AR] ARフィルターの作り方](/Spark-AR-ARフィルターの作り方/)
 - [iPadで3Dデータをキャプチャする手法 [display.land]](/iPadで3Dデータをキャプチャする手法-display-land/)
 #### Hosting
