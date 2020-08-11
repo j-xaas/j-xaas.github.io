@@ -17,7 +17,7 @@ thumbnail: https://user-images.githubusercontent.com/68212997/89897486-0cc94980-
 
 {% youtube lu8G6orT-QE %}
 
-- [mmhmm](https://www.youtube.com/watch?v=lu8G6orT-QE)（んーふー）
+- [mmhmm](https://www.mmhmm.app/about)（んーふー）
     - プレゼン用の仮想カメラアプリ
         - スライドと自分を重ねて表示したり、半透明にして画面を飛び回らせたりできます
         - 録画や配信機能もあります
@@ -58,9 +58,12 @@ thumbnail: https://user-images.githubusercontent.com/68212997/89897486-0cc94980-
 まだまだ追加機能を開発中とのこと
 
 ## 申込/ダウンロード
-- 8/3に公式サイトより申込
-    - 
-- 一週間後(8/11)に以下の招待メールがきました
+- まずは公式サイトより申込
+    - [Grab an invite](https://www.mmhmm.app/invite)
+
+![mmhmm grab invite](https://user-images.githubusercontent.com/68212997/89906371-4011d580-dc26-11ea-8673-53aee0aba654.png)
+
+- 8/3に申し込み、一週間後(8/11)に以下の招待メールがきました
     - ダウンロードリンクとコードが送られてきます
 <img width="833" alt="mmhmm 招待メール" src="https://user-images.githubusercontent.com/68212997/89858087-aec84200-dbd8-11ea-9b73-f7546fe8beef.png">
 
