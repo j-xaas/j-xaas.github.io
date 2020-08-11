@@ -95,12 +95,15 @@ thumbnail: https://user-images.githubusercontent.com/41946222/78471347-9c8e5100-
 
 回線が弱いと偶に切れてしまう事もありますが、同じURLから入り直してチャットルームにメンバが表示されればOKです
 
-- 大画面で鑑賞したい方向けにオススメを置いておきます
-    - [モニター 24in](https://amzn.to/3bF4XYy)
-        - 高さ調整可能で手頃
-    - [Z6 Polar Meets popIn Aladdin大画面ホームシアター](https://amzn.to/2yIArhY)
-        - Netflix等の動画配信サービスを鑑賞可能なプロジェクター
-        - HDMIでPCやゲームと繋いで、壁一面に映せます
+- 大画面で鑑賞したい方向け
+    - [popIn Aladdin](https://amzn.to/3gQo84g)
+        - Netflix等の動画配信サービスを鑑賞できるスピーカー/ライトが一体型のプロジェクター
+        - Macbookであればミラーリングで、100インチの画面を壁に映せます
+        - レビュー記事
+            - [popIn Aladdin2 レビュー 照明型プロジェクター　使用感/専用アプリ/投影サイズ/Alexa連携/設置方法](/popInAladdin-review/)
+
+![投影イメージ](https://user-images.githubusercontent.com/41946222/84030793-94eb6280-a9cf-11ea-90c4-d105d7e79b59.png)
+
 
 ## スマホやタブレットでリモート鑑賞する方法
 - Netflix Partyをモバイルで利用する手段はありません
@@ -108,3 +111,9 @@ thumbnail: https://user-images.githubusercontent.com/41946222/78471347-9c8e5100-
     - [Rave](https://rave.io/)
     - [Squad](https://squadapp.io/)
     - [Airtime](https://airtime.com/)
+
+## 関連記事
+- [mmhmm使用方法 プレゼン/配信ライブ用の万能仮想カメラで画面を飛び回り自在に操る](/mmhmm使用方法-プレゼン-配信ライブ用の万能仮想カメラで画面を飛び回り自在に操る/)
+    - オンライン飲みや配信に使えるツールの解説記事
+- [popIn Aladdin2 レビュー 照明型プロジェクター　使用感/専用アプリ/投影サイズ/Alexa連携/設置方法](/popInAladdin-review/)
+    - プロジェクターの解説記事
