@@ -112,7 +112,37 @@ WebARの概要と主な技術ついてです。
 ## 実装手順
 簡素なサンプルAPを作って公開するまで
 
-### AR.jsのサンプルコードを実装
+- 適当なディレクトリを作成
+    - ar-test
+
+### 3Dデータを用意する
+- .obj形式３Dデータを用意して、上記のhtmlから参照させます
+    - ※mtl(マテリアルデータ)までセットで必要
+
+- 今回はネットで無料のデータを拾います
+    - 以下のサイトから拾います(他の方法は後述)
+    - [Free3D](https://free3d.com/ja/3d-models/%E7%8C%AB)
+
+- 今回は猫を表示します
+    - 無料のデータと有料のデータがあります
+
+<img width="1038" alt="Free3D cat" src="https://user-images.githubusercontent.com/68212997/90363412-ac189180-e09d-11ea-819d-7cb125c0383d.png">
+
+- Freeの茶虎を選択
+    - AR.jsで利用可能なデータ形式か注意
+        - .objはAR表示可能です
+    - ダウンロード
+
+<img width="989" alt="Free3D Cat茶とら" src="https://user-images.githubusercontent.com/68212997/90363868-5d1f2c00-e09e-11ea-923b-adfe03674297.png">
+
+- ダウンロードしたZipファイルを展開
+    - .objファイルと.mtlファイルの両方が必要です
+
+<img width="482" alt="AR js Free3D Data" src="https://user-images.githubusercontent.com/68212997/90364104-d454c000-e09e-11ea-840c-83caedf0e891.png">
+
+ARで表示するデータの準備は以上でOK
+
+### AR.jsをhtmlで利用
 - 適当なディレクトリを作成
     - ar-test
 
@@ -121,37 +151,64 @@ WebARの概要と主な技術ついてです。
 
 - index.htmlを編集
 ```
+<!doctype HTML>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,intial-scale=1">
-        <title>WebAR</title>
-    </head>
-    <body style="margin:0px; overflow:hidden;">
-        <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
-        <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+<!-- A-Frame ライブラリの読み込み -->
+<script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+<!-- AR.js ライブラリの読み込み -->
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/2.2.0/aframe/build/aframe-ar.js"></script>
+<body style='margin:0px; overflow:hidden;'>
+<!-- こっからA-Frame -->
+<a-scene embedded arjs><!--="debugUIEnabled:false;trackingMethod:best;" vr-mode-ui="enabled: false"--->
 
-        <a-scene embedded arjs="debugUIEnabled:false; sourceType: webcam;">
-            <a-marker preset="custom" type='pattern' url="my-icon-marker.patt">
-              <a-text value="My name is soeyu!\n Nice to meet you!" position=" 0 0 1" align="center" rotation="-90 0 0" color="#7993ff">
-              </a-text>
-            </a-marker>
-            <a-entity camera></a-entity>
-        </a-scene>
-    </body>
+    <!-- こっからARの世界。マーカー上になにを展開するかを書く -->
+    <a-marker preset="hiro">
+        <!--objファイル: 形　mtlファイル: 表面　mtlなしでは透明になってしまう--->
+        <a-entity 
+            obj-model="obj: url(obj/12221_Cat_v1_l3.obj);
+        mtl: url(obj/12221_Cat_v1_l3.mtl)"
+            scale="0.02 0.02 0.02"
+            rotation="-90 0 0"
+        >
+        </a-entity>
+        <!--scale:サイズ　rotation: 角度 -90??-->
+             <a-text value="Cat AR by J" position="0 0.8 0" align="center"></a-text>
+    </a-marker>
+    <!-- arなのでカメラが必要 -->
+    <a-entity camera></a-entity>
+</a-scene>
+<!-- ここまででA-Frameおわり -->
+
+</body>
 </html>
 ```
 
+- このhtmlファイルでは、以下のようなWEBページを定義している
+    - アクセスするとカメラが起動
+    - a-markerで指定したマーカーをカメラに写った際にAR.jsの機能が起動
+        - a-entityで指定したオブジェクトをARとして表示
+    - a-textで空中に文字を表示
 
-### 3Dデータを用意する
-- .obj形式３Dデータを用意して、上記のhtmlから参照させます
-    - ※mtl(マテリアルデータ)までセットで必要
+### 各ファイルを同一ディレクトリにまとめる
+.objファイルと.mtlファイルをまとめる
 
-- 今回はネットで無料のデータを拾います
-    - その他の手法については後述
-    - 以下のサイトから拾います
-    - Free3D
-- 表示したいデータは
+- AR.jsはhtmlで参照する3Dデータの相対パスを指定してARを表示します
+
+- ディレクトリを作成
+    - 手動でもOK
+```
+mkdir "ar-test"
+```
+
+- ディレクトリにindex.htmlと３Dデータをコピー
+    - 以下のようにまとめる
+
+<img width="743" alt="ar-test directory" src="https://user-images.githubusercontent.com/68212997/90369760-44ffda80-e0a7-11ea-921e-b0b417a840bf.png">
+
+
+- 3Dデータはobjというフォルダにまとめる
+<img width="549" alt="ar js directory" src="https://user-images.githubusercontent.com/68212997/90370009-a1fb9080-e0a7-11ea-93f0-2eaade28caa6.png">
+
 
 
 ### APを公開
@@ -172,8 +229,7 @@ WebARの概要と主な技術ついてです。
 - ログインするとこんな感じ
 ![Netlify Login](https://user-images.githubusercontent.com/68212997/88545941-a14a7e00-d056-11ea-96e5-58b18779102e.png)
 
-先ほど作成したディレクトリ毎ここにドラッグするだけでAPを公開できます
-- 
+先ほど作成したディレクトリ（ar-test）をここにドラッグするだけでAPを公開できます
 
 
 #### その他の手法で公開
@@ -196,18 +252,27 @@ Netlifyは簡易的なものなので、ちゃんと公開するのであれば�
    - マーカー全体がカメラに収まらないと表示されません
 
 
+- 実際に公開したAPがこちら
+    - https://xenodochial-cray-e209cf.netlify.app/
+    - アクセスするとカメラが起動します
+
+- マーカーを画角に収めると猫が現れます
+
+
 
 -------------------------------
 
 ## カスタマイズしてみる
 
 ### マーカーを変更
-以下のサイトで好きなマーカーを作成できます
+自力でマーカーをいじろうとするとかなり専門的な知識を要求されますが、以下のジェネレーターで簡単にを作成できました
 
 - [AR.js marker generater](https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html)
 
 - "Upload"から好きな画像を取り込めます
     - ここで例えば、CDのジャケットを画像とし取り込めば
+
+
 
 ### 3Dデータを変更する
 #### 必要なデータ
@@ -230,12 +295,12 @@ Netlifyは簡易的なものなので、ちゃんと公開するのであれば�
 
 3. 自作する
 - CGデザイナー向けの手法
-- 私はデザイナーではありませんが、素人でもiPadのお絵描きアプリやCADで簡単なものを作れました。
+- 私はCGデザイナーではありませんが、素人でもiPadのお絵描きアプリやCADで簡単なものは作れました。
+    - AR.jsが対応可能な形式でデータを出力できるアプリであればどれでも使えます
 
 
 
 ## 参考
-
 ### 関連記事
 #### AR
 - [[AR.js Studio] NoCodeでWebARをGithub Pagesに公開する](/AR-js-Studio-NoCodeでWebARをGithub-Pagesに公開する/)
