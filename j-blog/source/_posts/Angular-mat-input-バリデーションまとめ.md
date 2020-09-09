@@ -1,15 +1,14 @@
 ---
 title: '[Angular mat-input] バリデーションまとめ'
 date: 2020-09-09 23:17:22
-category:
+categories:
 - Serverless Application Dev
 - SPA (Angular)
 tags: 
 - Angular
-- Angular Material
-- mat input
+- 'Angular Material'
+- 'mat input'
 - 双方向データバインディング
-toc: true
 thumbnail: https://user-images.githubusercontent.com/41946222/85309098-11606400-b4ed-11ea-84a1-69fee72f8208.png
 toc: true
 ---
