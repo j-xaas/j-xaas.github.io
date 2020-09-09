@@ -7,6 +7,7 @@ category:
 tags: 
 - iPad Pro
 - DTM
+- Cubasis LE
 - Alexa
 toc: true
 thumbnail: https://user-images.githubusercontent.com/41946222/77458671-eb6de980-6e41-11ea-96b1-b60dd63aef66.png
@@ -14,12 +15,15 @@ alias: /2020/03/25/iPad-ProでDTM環境を構築/
 ---
 
 こんにちは。先日、新しい[iPad 2020(第４世代)](https://amzn.to/2WMiw3M)を購入しました。発売当日に受け取り、即DTM環境を作ってみました（たぶん世界最速）Alexaにより、セッティングも自動化しました。シンプルな構成なので、入門者の方も良かったら参考にしてみてください。  
-結論から言うと、DTMをやるだけならMacBook無しでも大丈夫だと思います。
+結論から言うと、PC無しでも問題無く宅録できました。
+
+リモートセッションをやろうとするとPCが必要です。その辺りは以下を参考にどうぞ
+- [[SYNCROOM] リモートセッションのやり方(YAMAHAの遠隔合奏アプリ)](/SYNCROOM-リモートセッションのやり方-YAMAHAの遠隔合奏アプリ/)
+- [PCでDTM環境を構築 [Steinberg UR44C/Cubase ai]](/PCでDTM環境を構築-Steinberg-UR44C-Cubase-ai/)
 
 <div style="text-align:center;">
 <img src="https://user-images.githubusercontent.com/41946222/77458671-eb6de980-6e41-11ea-96b1-b60dd63aef66.png" height="370px" width="600px" alt="現在の構成">
 </div>
-
 
 <!-- toc -->
 
@@ -128,6 +132,12 @@ alias: /2020/03/25/iPad-ProでDTM環境を構築/
         - Bluetooth
             - モニター、プロジェクター、スピーカーとの連携
 
+
+- [QGeeM USB-C Hub](https://amzn.to/2RmIO9f)
+    - より強めのHubが欲しければこちらもおすすめです(こちらはMacbook用に購入したのですが、iPadにも使えました)
+
+<a href="https://www.amazon.co.jp/gp/product/B082WT3FL4/ref=as_li_ss_il?ie=UTF8&psc=1&linkCode=li2&tag=junjun1080c-22&linkId=9c77ad3aecfa8897c8c29c657143b27b&language=ja_JP" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B082WT3FL4&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun1080c-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun1080c-22&language=ja_JP&l=li2&o=9&a=B082WT3FL4" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+
 ### Bluetoothスピーカー＆イヤホン＆カメラ
 - [WF1000XM-3](https://amzn.to/2YpRKi6)
     - 立って弾く際にコードが引っかかるのが面倒で、結局生音でしかやらない節があったため採用
@@ -159,7 +169,7 @@ alias: /2020/03/25/iPad-ProでDTM環境を構築/
     <a href="https://www.amazon.co.jp/Fender-%E3%83%95%E3%82%A7%E3%83%B3%E3%83%80%E3%83%BC-%E3%83%99%E3%83%BC%E3%82%B9%E3%82%A2%E3%83%B3%E3%83%97-RUMBLE-100V/dp/B01D5R6OOK/ref=as_li_ss_il?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&dchild=1&keywords=Fender+%E3%83%99%E3%83%BC%E3%82%B9%E3%82%A2%E3%83%B3%E3%83%97&qid=1592916960&sr=8-1&th=1&linkCode=li2&tag=junjun1080c-22&linkId=415d1a6167de3f943d67dcbc11114016&language=ja_JP" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01D5R6OOK&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun1080c-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun1080c-22&language=ja_JP&l=li2&o=9&a=B01D5R6OOK" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
 ### 全体像
-- モニターに写すとこんな感じ
+- モニターに写すとこんな感じ(追記：今はもう少し整理しています)
 
 <div style="text-align:center;">
 <img src="https://user-images.githubusercontent.com/41946222/77660576-d8cbef80-6fbc-11ea-9c6e-1374d2e58d04.jpg" height="400px" width="270px" alt="Cubase_unlocked">
@@ -217,15 +227,17 @@ Alexaに「DTM」と言うと、実行される”定型アクション”を設
 
 - 手段
     - [YAMAHA NETDUETTO](https://www.netduetto.net/)
-        - ヤマハのサービスです
+        - ヤマハの遠隔合奏サービスです
+            - 無料でmacOS, Windows10, Androidに対応しています（Androidに対応ということはそのうちiOSにも対応しそう...）
         - 以下の記事で解説してます
-            - [[SYNCROOM/NETDUETTO] YAMAHAのリモートセッションツールを試してみた](/YAMAHAのリモートセッションツールSYNCROOMのベータ版：NETDUETを試してみた/)
+            - [[SYNCROOM] リモートセッションのやり方(YAMAHAの遠隔合奏アプリ)](/SYNCROOM-リモートセッションのやり方-YAMAHAの遠隔合奏アプリ/)
         - これを使うのであれば、PCで環境を作らないとダメでした
             - [PCでDTM環境を構築 Steinberg UR44C/Cubase ai](/PCでDTM環境を構築-Steinberg-UR44C-Cubase-ai/)
 
     - [JamBlaster](https://www.jamkazam.com/products/jamblaster)
         - 米国のスタートアップが最近開発したハードです
             - スマホベースでネットと繋ぐらしい。詳しくは調査中
+            - こちらであれば、iPadでのそのうち使えるようになりそう
 
 
 ### モニター部分をプロジェクターに変更
@@ -236,7 +248,7 @@ Alexaに「DTM」と言うと、実行される”定型アクション”を設
 </div>
 
 - ミラーリングするとこんな感じで、壁一面にCubasisが映ります
-    - これだけでかいと立って引きながらでも見えるので楽しいです
+    - これだけでかいと立って引きながらでも見えて楽しいです
 
 ![Cubasis@popin aladdin](https://user-images.githubusercontent.com/41946222/85407181-d9652980-b59d-11ea-9bcb-de5c466e36e5.png)
 
@@ -254,7 +266,7 @@ Alexaに「DTM」と言うと、実行される”定型アクション”を設
     <a href="https://www.amazon.co.jp/popIn-Aladdin-%E3%83%9D%E3%83%83%E3%83%97%E3%82%A4%E3%83%B3%E3%82%A2%E3%83%A9%E3%82%B8%E3%83%B3-%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%82%BF%E3%83%BC%E4%BB%98%E3%81%8D%E3%82%B7%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E3%83%A9%E3%82%A4%E3%83%88-%E9%AB%98%E9%9F%B3%E8%B3%AA%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC/dp/B07J5B3VD2/ref=as_li_ss_il?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=1TQT5K8IKNSQN&dchild=1&keywords=popin+aladdin+2&qid=1592918188&sprefix=popin+a,aps,254&sr=8-1&linkCode=li2&tag=junjun1080c-22&linkId=fd93e790d23a399bde4357044d7a1a0e&language=ja_JP" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B07J5B3VD2&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun1080c-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun1080c-22&language=ja_JP&l=li2&o=9&a=B07J5B3VD2" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
 ### AWS Componserの導入
-仕事でAWS(クラウドサービス)をよく使っているのですが、去年のSummitで機械学習用のキーボードが発表され、ずっと気になっています。
+仕事でAWS(クラウドサービス)をよく使っているのですが、去年機械学習用のキーボードが発表され、ずっと気になっています。
 
 - [AWS Composer](https://aws.amazon.com/jp/deepcomposer/)とは
     - 弾いたメロディに対して、AIがアレンジを加えて作曲
@@ -262,17 +274,15 @@ Alexaに「DTM」と言うと、実行される”定型アクション”を設
     - そのままSoundCloudにアップ可能
     - 学習モデルはオリジナルでも作成可能
 
-
-学習モデルは与える音源によって変化していくらしいです。AIに音楽のルーツを持たせられるのが人間の様でとても興味深いです。
+学習モデルは与える音源によって変化していくらしいです。AIに音楽のルーツを持たせられるのが人間らしくて興味深いです。
 
 エンジニア寄りの話になりますが、AWSでの開発もcloud9等のブラウザ型IDEを用いれば、iPadからやれてしまいます。趣味と仕事を結びつけたら楽しそうなので、時間を見つけて挑戦しようと思います。
-
 
 ## まとめ
 今回の記事は以上です。タブレットでも音源編集が可能になり、だいぶDTMの敷居が下がったように思います。私も何も知らないまま一から調べて今回の構成を作ったので、ここまでは誰でも真似できると思います。是非実践してみてください。質問やアドバイスなどあればどしどしください。
 
-
 ## 関連記事
-- [[SYNCROOM/NETDUETTO] YAMAHAのリモートセッションツールを試してみた](/YAMAHAのリモートセッションツールSYNCROOMのベータ版：NETDUETを試してみた/)
+- [[SYNCROOM] リモートセッションのやり方(YAMAHAの遠隔合奏アプリ)](/SYNCROOM-リモートセッションのやり方-YAMAHAの遠隔合奏アプリ/)
 - [PCでDTM環境を構築 [Steinberg UR44C/Cubase ai]](/PCでDTM環境を構築-Steinberg-UR44C-Cubase-ai/)
 - [popIn Aladdin2 レビュー 照明型プロジェクター　使用感/専用アプリ/投影サイズ/Alexa連携/設置方法](/popInAladdin-review/)
+- [[SYNCROOM/NETDUETTO] YAMAHAのリモートセッションツールを試してみた](/YAMAHAのリモートセッションツールSYNCROOMのベータ版：NETDUETを試してみた/)
