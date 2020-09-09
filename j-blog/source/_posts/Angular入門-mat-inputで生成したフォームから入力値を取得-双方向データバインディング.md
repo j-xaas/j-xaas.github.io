@@ -122,7 +122,25 @@ $your-angular-pj> ng add @angular/material
   key;
 ```
 
-### 未入力の場合のみ初期値を表示するロジックを開発する
+## mat-inputにバリデーションを実装する
+
+- 次に今回作ったフォームに”バリデーションチェック”を実装しましょう
+  - [[Angular mat-input] バリデーションまとめ](/Angular-mat-input-バリデーションまとめ/)
+
+- バリデーションチェックとは？
+    - 最近のWEBサービスでよく見受けられる、リアルタイムで入力値をチェックして問題があればエラーを表示してくれる機能などのこと
+        - レガシーなサービスでは、半角全角が間違っていても申請ボタンを押して更新するまで気づくことができず、ユーザがストレスを受けて利用を諦めてしまうことも
+    - 活用例
+        - 未入力の項目があれば、申請ボタンを無効化。該当箇所を赤くマーキング
+        - 利用可能な型（Ex. 全角、半角、英数）を規定して制限
+        - 文字数を制限
+            - 悪意を持った攻撃を防ぐ効果があります
+        - passwordを＊＊＊でマスク
+        - typeを規定
+            - emailの~~@~~や郵便番号や電話番号のーが挟まる形式など
+
+
+### おまけ：未入力の場合のみ初期値を表示するロジックを開発する
 - ts側に以下の様な判別ロジックを書きます
     - 入力値の有無をif(this.key === undefined)で判断しています
 ```
@@ -135,10 +153,12 @@ $your-angular-pj> ng add @angular/material
     }
 ```
 
-以上です。Angular APのUI(画面)開発はAngular Materialのページで必要そうなMaterialを探して、使い方をググりながら進めていけばいいというイメージを持てたのであれば、大きな進歩です。Angular Materialについて扱いの難しいものは解説記事をいくつか書いているので、参考にどうぞ。
+以上です。Angular APのUI(画面)開発はAngular Materialのページで必要そうなMaterialを探して、使い方をググりながら進めていくというイメージを持てればある程度自走できるようになると思います。
+Angular Materialについて、公式ドキュメントだけでは難しいものは記事に解説をまとめているので、参考にどうぞ。
 
 ## 参考
 ### 関連記事
+- [[Angular mat-input] バリデーションまとめ](/Angular-mat-input-バリデーションまとめ/)
 - [[Angular] mat-selection-list & ngForでcheckboxをリスト表示～選択値を配列として取得](/Angular-mat-selection-listでcheckboxを表示～選択値を配列として取得/)
 - [[Angular Schematics] 開閉可能なサイドナビ＆ツールバーを3分で自動生成する](/Angular-Schematics-開閉可能なサイドナビ＆ツールバーを3分で自動生成する/)
 - [[Angular] map() & filter() & mat-checkboxを使って選択値を配列に格納するロジック](/Angular-map-fileter-mat-checkboxを使って選択値を配列に格納するロジック/)
