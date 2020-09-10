@@ -132,7 +132,6 @@ alias: /2020/03/25/iPad-ProでDTM環境を構築/
         - Bluetooth
             - モニター、プロジェクター、スピーカーとの連携
 
-
 - [QGeeM USB-C Hub](https://amzn.to/2RmIO9f)
     - より強めのHubが欲しければこちらもおすすめです(こちらはMacbook用に購入したのですが、iPadにも使えました)
 
@@ -182,13 +181,11 @@ alias: /2020/03/25/iPad-ProでDTM環境を構築/
 
 
 ## 2. AlexaでSettingを自動化
-- せっかくDTM環境を作っても、セッティングに時間がかかるとやる気が失せくなりそうなので、自動化しました。電気代にも優しくなります。
-    - ITの知識が無くても簡単にできるので。良かったら真似てみてください。
-    - 機器が増えるほど効果を発揮してくると思います
+- せっかくDTM環境を作っても、セッティングの手間でやる気が失せそうなので自動化しました。
+    - 機材が増えるほど効果を発揮してくると思います
 
 ### 定型アクション
 Alexaに「DTM」と言うと、実行される”定型アクション”を設定します
-
 - Trigger
     - 音声：「DTM」
 - Action
@@ -198,6 +195,7 @@ Alexaに「DTM」と言うと、実行される”定型アクション”を設
         - エフェクターを接続
     - スマートリモコンを起動
         - Monitorのリモコンの電源ボタンを登録
+        - プロジェクターの電源をON
 
 ### 解説
 
@@ -224,14 +222,13 @@ Alexaに「DTM」と言うと、実行される”定型アクション”を設
 
 ### リモートセッション
 - ネットを介してセッションできるサービスがあります
-
 - 手段
     - [YAMAHA NETDUETTO](https://www.netduetto.net/)
         - ヤマハの遠隔合奏サービスです
             - 無料でmacOS, Windows10, Androidに対応しています（Androidに対応ということはそのうちiOSにも対応しそう...）
         - 以下の記事で解説してます
             - [[SYNCROOM] リモートセッションのやり方(YAMAHAの遠隔合奏アプリ)](/SYNCROOM-リモートセッションのやり方-YAMAHAの遠隔合奏アプリ/)
-        - これを使うのであれば、PCで環境を作らないとダメでした
+        - このサービスを利用する場合は、PCで環境を作らないとダメでした
             - [PCでDTM環境を構築 Steinberg UR44C/Cubase ai](/PCでDTM環境を構築-Steinberg-UR44C-Cubase-ai/)
 
     - [JamBlaster](https://www.jamkazam.com/products/jamblaster)
@@ -239,31 +236,27 @@ Alexaに「DTM」と言うと、実行される”定型アクション”を設
             - スマホベースでネットと繋ぐらしい。詳しくは調査中
             - こちらであれば、iPadでのそのうち使えるようになりそう
 
-
 ### モニター部分をプロジェクターに変更
-- iPadはBluetoothによって画面をミラーリングすることもできます。プロジェクターには[Popin Aladdin](https://amzn.to/37QVnB0)を使っています
+- iPadはBluetoothによって画面をミラーリングすることもできます。プロジェクターには[Popin Aladdin](https://amzn.to/3mjcjXI)を使っています
 
 <div style="text-align:center;">
 <img src="https://user-images.githubusercontent.com/41946222/77458772-10625c80-6e42-11ea-9998-40235fa4a44c.png" height="370px" width="600px" alt="プロジェクターを入れた構成">
 </div>
 
 - ミラーリングするとこんな感じで、壁一面にCubasisが映ります
-    - これだけでかいと立って引きながらでも見えて楽しいです
+    - 120インチあると立って弾きながらでも見えて楽しいです
 
 ![Cubasis@popin aladdin](https://user-images.githubusercontent.com/41946222/85407181-d9652980-b59d-11ea-9bcb-de5c466e36e5.png)
 
-
 - 採用理由
-    - 120インチを表示できるので大きいモニターよりコスパが良い
-        - 壁一面に映してリモートセッションをやってみたい...
     - 照明と一体型のプロジェクター
-        - 暗くする手間を省ける
-        - 場所を取らない
-    - 赤外線リモコンが付随しているので、スマートリモコンでAlexaから動かせる
+        - 省スペースで部屋を暗くする手間も省けます
+    - iPad, Macbook, iPhoneからのミラーリング、画面拡張
+    - 赤外線リモコンが付随しているので、スマートリモコン経由でAlexaから動かせる
     - 詳しくは以下の記事にまとめています
         - [popIn Aladdin2 レビュー 照明型プロジェクター　使用感/専用アプリ/投影サイズ/Alexa連携/設置方法](/popInAladdin-review/)
 
-    <a href="https://www.amazon.co.jp/popIn-Aladdin-%E3%83%9D%E3%83%83%E3%83%97%E3%82%A4%E3%83%B3%E3%82%A2%E3%83%A9%E3%82%B8%E3%83%B3-%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%82%BF%E3%83%BC%E4%BB%98%E3%81%8D%E3%82%B7%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E3%83%A9%E3%82%A4%E3%83%88-%E9%AB%98%E9%9F%B3%E8%B3%AA%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC/dp/B07J5B3VD2/ref=as_li_ss_il?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=1TQT5K8IKNSQN&dchild=1&keywords=popin+aladdin+2&qid=1592918188&sprefix=popin+a,aps,254&sr=8-1&linkCode=li2&tag=junjun1080c-22&linkId=fd93e790d23a399bde4357044d7a1a0e&language=ja_JP" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B07J5B3VD2&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun1080c-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun1080c-22&language=ja_JP&l=li2&o=9&a=B07J5B3VD2" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+    <a href="https://www.amazon.co.jp/popIn-Aladdin-%E3%83%9D%E3%83%83%E3%83%97%E3%82%A4%E3%83%B3%E3%82%A2%E3%83%A9%E3%82%B8%E3%83%B3-%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%82%BF%E3%83%BC%E4%BB%98%E3%81%8D%E3%82%B7%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E3%83%A9%E3%82%A4%E3%83%88-%E9%AB%98%E9%9F%B3%E8%B3%AA%E3%82%B9%E3%83%94%E3%83%BC%E3%82%AB%E3%83%BC/dp/B07J5B3VD2/ref=as_li_ss_il?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=1A61FJ6L9SV8L&dchild=1&keywords=popin+aladdin+2&qid=1599747892&sprefix=popin+a,aps,264&sr=8-1&linkCode=li2&tag=junjun1080c-22&linkId=cf739d32e44c5e59be10948c06cfa267&language=ja_JP" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B07J5B3VD2&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun1080c-22&language=ja_JP" ></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun1080c-22&language=ja_JP&l=li2&o=9&a=B07J5B3VD2" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
 
 ### AWS Componserの導入
 仕事でAWS(クラウドサービス)をよく使っているのですが、去年機械学習用のキーボードが発表され、ずっと気になっています。
@@ -276,13 +269,13 @@ Alexaに「DTM」と言うと、実行される”定型アクション”を設
 
 学習モデルは与える音源によって変化していくらしいです。AIに音楽のルーツを持たせられるのが人間らしくて興味深いです。
 
-エンジニア寄りの話になりますが、AWSでの開発もcloud9等のブラウザ型IDEを用いれば、iPadからやれてしまいます。趣味と仕事を結びつけたら楽しそうなので、時間を見つけて挑戦しようと思います。
-
 ## まとめ
-今回の記事は以上です。タブレットでも音源編集が可能になり、だいぶDTMの敷居が下がったように思います。私も何も知らないまま一から調べて今回の構成を作ったので、ここまでは誰でも真似できると思います。是非実践してみてください。質問やアドバイスなどあればどしどしください。
+今回の記事は以上です。タブレットでも音源編集が可能になり、だいぶDTMの敷居が下がったように思います。私も一から調べて今回の構成を作ったので、ここまでは誰でも真似できると思います。是非試してみてください。
 
 ## 関連記事
 - [[SYNCROOM] リモートセッションのやり方(YAMAHAの遠隔合奏アプリ)](/SYNCROOM-リモートセッションのやり方-YAMAHAの遠隔合奏アプリ/)
 - [PCでDTM環境を構築 [Steinberg UR44C/Cubase ai]](/PCでDTM環境を構築-Steinberg-UR44C-Cubase-ai/)
 - [popIn Aladdin2 レビュー 照明型プロジェクター　使用感/専用アプリ/投影サイズ/Alexa連携/設置方法](/popInAladdin-review/)
 - [[SYNCROOM/NETDUETTO] YAMAHAのリモートセッションツールを試してみた](/YAMAHAのリモートセッションツールSYNCROOMのベータ版：NETDUETを試してみた/)
+- [[LadioCast] 仮想ミキサーでMacbook内の音の流れをまとめる](/LadioCast-仮想ミキサーでMacbook内の音の流れをまとめる/)
+- [mmhmm使用方法 プレゼン/配信ライブ用の万能仮想カメラで画面を飛び回り自在に操る](/mmhmm使用方法-プレゼン-配信ライブ用の万能仮想カメラで画面を飛び回り自在に操る/)
