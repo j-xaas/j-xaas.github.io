@@ -72,3 +72,13 @@ found 0 vulnerabilities
     - 以下についても後日UP予定です
         - AWSの各リソースの利用方法、実装方法
         - Ampliyfy(BaaS)でAWSと連携させる手法
+
+## 参考
+### 関連記事
+- [[AWS SDK for JavaScript] WEBアプリ→AWSへのリクエスト認証時のエラーハンドリング](/AWS-SDK-for-JavaScript-WEBアプリ→AWSへのリクエスト認証時のエラーハンドリング/)
+- [[Angular mat-input] バリデーションまとめ](/Angular-mat-input-バリデーションまとめ/)
+- [[Angular] 複数のcheckboxで一つ以上のチェックを必須とするバリデーション](/Angular-複数のcheckboxで一つ以上のチェックを必須とするバリデーション/)
+- [[Angular Material入門] mat-inputで生成したフォームから入力値を取得(双方向データバインディング)](/Angular入門-mat-inputで生成したフォームから入力値を取得-双方向データバインディング/)
+- [[Angular] mat-selection-list & ngForでcheckboxをリスト表示～選択値を配列として取得](/Angular-mat-selection-listでcheckboxを表示～選択値を配列として取得/)
+- [[Angular Schematics] 開閉可能なサイドナビ＆ツールバーを3分で自動生成する](/Angular-Schematics-開閉可能なサイドナビ＆ツールバーを3分で自動生成する/)
+- [[Angular] map() & filter() & mat-checkboxを使って選択値を配列に格納するロジック](/Angular-map-fileter-mat-checkboxを使って選択値を配列に格納するロジック/)
