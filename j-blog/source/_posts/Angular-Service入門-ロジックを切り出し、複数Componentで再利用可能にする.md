@@ -131,7 +131,8 @@ Component側でServiceの関数を利用可能にする。以下はcomponentのt
       private timeService: GetTimeService,
     ) {
   ```
-- ComponentからServiceの関数を使用する
+#### ComponentからServiceの関数を使用する
+- constructreで宣言したservice名.関数名で実行
 ```
 // 日時取得＆整形ロジックの利用
 const time = this.timeService.getTime();
