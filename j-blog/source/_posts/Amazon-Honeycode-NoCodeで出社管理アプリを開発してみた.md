@@ -240,6 +240,12 @@ Excelやスプレッドシートによる業務運用をNoCodeでパッとアプ
 ![About App Movie](https://user-images.githubusercontent.com/68212997/94554933-c5644e80-0295-11eb-8c0a-913e23dfdffc.png)
 
 
+- App Wizaradを利用する場合の開発手順
+    0. データモデルを読み込み、そこからAP画面を自動生成
+    1. 一覧画面
+    2. 詳細画面
+    3. フォームを編集
+
 #### Step1: Tableの選択
 事前に作成したデータモデルを一覧表示する画面を自動生成します
 
@@ -333,15 +339,55 @@ App Wizardで作ったアプリの詳細をBuilderで編集する
 
 ---------------
 
-#### 不要な機能の除去
+### 不要な機能の除去
+#### 詳細画面
+- 今回単票画面(詳細画面)に含まれる不要な機能を除去する
+
+1. 編集したいアプリの画面を移動
+    - 今回弄るのは詳細画面(attendance detail)
+        - 画面左側のペイン Screens で単票画面である attendance detail を選択
+
+2. 画面中央のペインで Jump to item 機能を含む Block を選択
+
+3. 画面右側のペイン BLOCK PROPERTIES で DISPLAY タブを選択
+
+4. Set visibility に =FALSE と入力
+
+![attendance detailの編集](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-21.f4b0d0472a106066c4660a558af6a54015662a6e.png)
 
 
 #### データフォームの修正
+申請者が申請日を編集する必要が無い（自動で決定する為）ため、機能を削除します
 
 
+1. 画面左側のペイン Screens で単票画面である attendance form を選択
+
+2. 画面中央のペインで application date のデータ値を入力する Data Cell を選択
 
 
+3. 画面右側のペイン DATA CELL PROPERTIES で Editable チェックを Off にする
 
+4. 画面右側のペインで DATA タブ、Set type で Variable を選択する
+
+5. Set initial value に =NOW()+9/24 と入力する
+    - Amazon Honeycode では現在時刻を示す NOW() や今日を示す TODAY() などの関数と数式を利用可能です。NOW() 関数、TODAY() 関数のいずれも UTC を基準としているため、JST への変換を行っている
+
+-------
+- 申請者を記録するapplicantも修正
+- 代理申請を除くと申請者は操作を行ったユーザーと判断できるため、以下の手順に沿って申請者の初期値にログインユーザーを設定するとともに、利用者に入力をさせない仕様とする
+
+
+1. 画面中央のペインで applicant のデータ値を入力する Data Cell を選択
+
+2. 画面右側のペイン DATA CELL PROPERTIES で Editable チェックを Off に変更
+    - 自動入力させる為、編集不能にする
+
+3. 画面右側のペインで DATA タブ、Set type で Variable を選択
+
+4. Set initial value に =$[SYS_USER] と入力
+    - 自動的にユーザ名を入れる
+
+手直しは以上で完了
 
 ### 6. 承認フローを定義(Automationsで機能を開発)
 - Automationsでメール送信機能を開発する
@@ -354,11 +400,13 @@ App Wizardで作ったアプリの詳細をBuilderで編集する
     1. 申請者が出社申請を登時、マネージャーへ承認依頼メールを送信
     2. マネージャーの承認実施時、申請者へ結果通知メールを送信
 
-#### Automations
+### Automations
 - Automationsを起動
     - 左のAutomationsアイコン → ＋
 ![Amazon Honeycode Automations 起動](https://user-images.githubusercontent.com/68212997/94564794-60175a00-02a3-11eb-89ba-03a5a1cf1a18.png)
 
+
+#### まずは承認依頼メールを発信する機能を作る
 
 - Automationsの名称を変更
     - 上部のスリードット
@@ -377,6 +425,8 @@ App Wizardで作ったアプリの詳細をBuilderで編集する
 
     ![Amazon Honeycode Row Added](https://user-images.githubusercontent.com/68212997/94566403-40813100-02a5-11eb-9b2d-e0a8e76ea7e9.png)
 
+テーブルの行が追加されるとき＝承認依頼を実施した時
+
 
 - 処理内容を定義(Add Actions)
     - Add actions 
@@ -393,32 +443,224 @@ App Wizardで作ったアプリの詳細をBuilderで編集する
 
     ![Amazon Honeycode 承認依頼メール](https://user-images.githubusercontent.com/68212997/94567825-d5385e80-02a6-11eb-9621-289bdca0cd33.png)
 
+=データ名でデータモデルから参照してくれる
+緑のラインが入っている箇所
+
+
 - 変更を確定
     - 画面右上のPublishを押下
+    - Publish されていない、つまりは変更が加えられている状態では画面右上に Draft と表示される
 
-----------------
+![Publish Automation](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-30.5a1798cd9d49eaeb4088f8ae7067ab55069ef53a.png)
+
+- Notifyで以下のような警告が表示される場合がある
+
+![Amazon Honeycode notification alert](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-31.664a64c8daa5a674b29e2abf277e21f71c712c1b.png)
 
 
-続きは後日追記します。
+
+#### 申請者への結果通知メール送信機能を作成
+- Automationを追加
+    - 画面左側の ＋ をクリックして画面を起動
+
+![add automation](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-32.1d0540b2722023bdb2d3e145a2020a0e692f89f9.png)
+
+- automation Trigger
+    - 処理が発生するタイミングは承認者による承認結果登録を起点とする
+    - Column Changes を選択
+    - In table
+        - 申請データを格納する attendance を選択
+    - Starts when this column changes
+        - 承認結果データである `=[result]` を選択
+    - Run automation if this formula is TRUE
+        - 承認結果の入力を示す式 =`[result]<>""` を入力
+
+![Set Automation Trigger](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-33.cfa4ef36cf895b098feb641fc6536f3fb0487bc6.png)
 
 
 
+- 結果通知メールを定義
 
+```
+=applicant　様
 
+以下の出社申請への承認結果をご連絡致します。
+
+申請日：=
+申請者：
+出社希望日：
+出社先：
+出社理由：
+
+承認者：
+承認結果：
+
+本メールは、配信専用のアドレスで配信されています。
+本メールに返信されても、返信内容の確認およびご返信ができません。
+あらかじめご了承ください。
+
+```
+
+![Amazon Honeycode 申請メール例](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-35.e4518be1e7285ab66d659659e51a0e0359b5a5bf.png)
+
+- Publishで編集を完了
+
+ここまででアプリの開発は完了
+次に関係者にアプリを公開する
 
 
 ### アプリを公開
 
+#### Teamにユーザを招待
+Honeycodeで開発したアプリを使ってもらうには、事前に以下が必要
 
+- 利用者にAmazon Honeycodeのアカウントを作成してもらう
+- 同じTeamに入ってもらう
+
+- 招待の手順
+    - 画面左下の Teams アイコンをクリック
+    - チーム名をクリック
+    - 画面右上の Add team member をクリック
+
+![Amazon Honeycode Teamへの招待](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-39.baa88c65c4121533e2b5d7972cd88717280815f8.png)
+
+
+- Connect AWS account
+    - 有料プランにすればAWSのアカウントとも連携可能なよう
+    ```
+    To upgrade your team plan, connect to your AWS account.
+    ```
+
+![Amazon Honeycode add member](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-39.baa88c65c4121533e2b5d7972cd88717280815f8.png)
+
+
+- Invite to join
+    - 表示された画面でメンバーのメールアドレスを入力
+    - 役割を Admin と Member のいずれかから選択
+    - Invite ボタンをクリック
+    - 役割の違い
+        - Admin : Workbook、アプリケーション、Automations の作成。Plan とチームメンバーの管理
+        - Member : Workbook、アプリケーション、Automations の作成
+
+
+![Invite to join](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-40.d2695faff24f5fc0f21ffb8d94b0d75e1a3e5803.png)
+
+
+- 招待を受けたユーザーには以下のようなメールが送信される
+    - Join ボタンをクリックしてもらう
+
+![Amazon Honeycode invite mail](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-41.1de35eca9514a24ed0a760d06e059af8cf6c316b.png)
+
+
+事前の登録作業は以上で完了。
+一度Honeycodeのアカウントを登録すれば他のアプリを作っても使いまわせるが少し手間ではある印象
+
+
+#### share
+作成したアプリケーションの公開は関係者に Shareする
+
+- 画面左上の Amazon Honeycode アイコンをクリック
+- Workbook とアプリケーションの一覧を表示 
+- 公開したいアプリケーション右端のスリードットの左側をカーソルでポイント
+    - Share ボタンが表示されるのでクリック
+
+![Amazon Honeycode 作成したアプリを公開](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-36.f33cf32a94c7f6e19f82391abc1d9f3b8800b549.png)
+
+
+
+- 公開先のユーザアカウントを選択する
+    - ユーザー名やメールアドレスで検索
+    - リストに追加
+    - Update ボタンをクリック
+
+![Amazon Honeycode Share App](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-37.c78be716f6213589013e0b58f24df002728b6fd5.png)
+
+- 利用可能になった旨がメールで通知される
+
+![Amazon Honeycode 利用通知メール](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-38.6677a11861696040e27565cd2e1a07d9331fbe4d.png)
+
+
+
+--------
+## アプリを利用してみる
 
 ### スマホで利用
+- まずはアプリケーションの公開通知を受け取ったユーザーがスマートフォンから出社申請をする
+
+- Amazon honeycode アプリをインストール
+    - [iOS](https://apps.apple.com/jp/app/amazon-honeycode/id1502619411)
+    - [Android](https://play.google.com/store/apps/details?id=com.amazon.aws.honeycode&hl=ja)
+
+- ログイン
+    - アカウントを持っていなければここで作成
+
+- アカウント作成時に入力したメールアドレスとパスワードでログイン
+    - 自分に公開されているアプリケーションの一覧が表示される
+    - 今回作成したアプリケーションの Attendance をタップして起動
+
+![Ammazon Honeycode login画面](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-43.cc8ec316ab24eb4201ce1b5d81281cceba3e95a5.png)
+
+- アプリケーションが起動すると、ホーム画面の申請一覧が表示される
+    - データモデルを作成する際にインポートしたサンプルデータを削除していない場合はリストに表示される
+
+![ホーム画面の申請一覧](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-44.8660bf2217c6813af6a0315185745a619a2234a7.png)
+
+
+- 画面右上の + Add をタップして出社申請を行う
+![+Add](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-44.8660bf2217c6813af6a0315185745a619a2234a7.png)
+
+- 出社申請のエントリー画面で入力可能な項目を埋めていく
+
+- データモデルの作成をする際に各データ項目の formats を定めた。アプリケーションでもその結果が踏襲され、データに合わせた入力が可能
+
+- データ入力が完了したら Done ボタンをクリックし、入力を確定
+
+![](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-49.8f43f03e30b0f2449d4f99d3effeeb5177bff773.png)
+
+- 申請一覧画面に遷移し、直前の操作で作成した申請が一覧に表示される
+
+![](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-50.dfd2290c5aaa2f089365cb474e072ef127704c4d.png)
+
+
+- 申請データの登録に合わせて Automations が実行され、マネージャーにはこのようなメールが送信される
+
+![](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-51.f9c835850b9b85c9dd4eea6c2ad784a89b11b361.png)
 
 
 ### Web ブラウザで申請を承認
+- 続いては承認依頼通知を受け取ったマネージャーが出社申請を承認する
+- Amazon Honeycode は Webブラウザからも利用可能なため、マネージャーはブラウザから承認を行ってみる
+- Chrome、Edge、Firefox、Safari などの Web ブラウザで Amazon Honeycode にアクセス
+
+- 今回作成したアプリケーションの Attendance をクリックして起動
+
+![](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-52.4280892d08c050a2ebfc5558cc8fc929e17606c5.png)
+
+
+- アプリが起動すると、ホーム画面の申請一覧が表示される
+    - 承認結果が空白のデータをクリックし、出社申請の承認を実施
+
+![](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-53.e9c69922cb736196617488765db08b57927b0c38.png)
+
+
+- 出社申請の詳細画面が表示される
+    - 内容を確認して承認結果を選択
+
+![](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-54.cfd1dfef4d7df89ff56e1d23383712155745181d.png)
 
 
 
---------------------------
+- 選択すると自動的にデータが保存され、申請者にはこのようなメールが送信された
+
+![](https://d1.awsstatic.com/Developer%20Marketing/jp/magazine/2020/img_honeycode-attendance-management-55.d0c6c9a1de06dd78db8e21b65c7ade5ba5c2752d.png)
+
+
+無事に出社申請業務を実施できたので、これで動作確認は完了
+
+### 所感
+- iOS や Android のアプリストアから Amazon Honeycode アプリをダウンロードしてログインするだけで、利用者に必要なアプリケーションが表示され、配布の手間が少ない点はメリット
+    - honeycodeへのアカウント登録とTeamへの加入は必要だが、以降はアプリを追加してもすぐにShareできる
+- AWSアカウントとの連携も利用すれば、より配布の手間を削減できそう
 
 ## 参考
 ### その他
