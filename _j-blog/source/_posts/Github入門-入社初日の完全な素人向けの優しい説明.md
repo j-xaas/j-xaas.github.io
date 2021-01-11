@@ -144,10 +144,8 @@ git push
 - ここまでで、個人開発はできます。次は複数人が関わるパターンを勉強しましょう。ブランチという概念の理解が必要です。
 
 ### 4. Githubを用いた分散開発
-
-
-※続きは気が向いた時に書きます
-
+- 次に、複数名で開発を行うために必要なbranchやmergeを習得しましょう
+    - [git merge & コンフリクトの解消（複数名の編集内容を集約）](/git-merge-コンフリクトの解消（複数名の編集内容を集約）/)
 
 ### Cheat Sheat
 - [Git Cheat Sheat](https://www.softantenna.com/wp/software/git-cheat-sheet/)
@@ -155,5 +153,11 @@ git push
 - ![image](https://user-images.githubusercontent.com/41946222/69409586-94012500-0d4c-11ea-9ff0-f7fe87911596.png)
 
 ## 関連記事
-- [git merge & コンフリクトの解消（複数名の編集内容を集約）](https://j-xaas.github.io/2020/04/08/git-merge-%E3%82%B3%E3%83%B3%E3%83%95%E3%83%AA%E3%82%AF%E3%83%88%E3%81%AE%E8%A7%A3%E6%B6%88%EF%BC%88%E8%A4%87%E6%95%B0%E5%90%8D%E3%81%AE%E7%B7%A8%E9%9B%86%E5%86%85%E5%AE%B9%E3%82%92%E9%9B%86%E7%B4%84%EF%BC%89/)
-- [Github.comからGithubEnterpriseへの移行手順](https://j-xaas.github.io/2020/02/09/Github%E3%81%8B%E3%82%89GithubEnterprise%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E6%89%8B%E9%A0%86/)
+- [Github入門 ～入社初日の完全な素人でも分かる優しい説明～](/Github入門-入社初日の完全な素人向けの優しい説明/)
+- [[CI/CD入門] Github Actionsでビルド/テスト/デプロイを自動化](/CI-CD入門-Github-Actionsでビルド-テスト-デプロイを自動化/)
+- [Github x Teams Webhook/Notificationによる連携方法](/Github-x-Teams-Webhook-Notificationによる連携方法/)
+- [Github Pages x Hexo運用をGithub Actionsで自動化](/Github-Pages-x-Hexo運用をGithub-Actionsで自動化)
+- [git複数アカウントの使い分け設定](/git複数アカウントの使い分け設定/)
+- [[Hexo x Github Pages] 5分以内にブログを自動生成して無料で公開するまで【完全版】](/Hexo-x-Github-Pages-5分以内にブログを自動生成して無料で公開するまで/)
+- [git merge & コンフリクトの解消（複数名の編集内容を集約）](/git-merge-コンフリクトの解消（複数名の編集内容を集約）/)
+- [Github.comからGithubEnterpriseへの移行手順](/GithubからGithubEnterpriseへの移行手順/)

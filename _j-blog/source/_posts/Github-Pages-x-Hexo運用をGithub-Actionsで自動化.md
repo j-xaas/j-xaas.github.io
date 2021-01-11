@@ -205,7 +205,15 @@ jobs:
 
 ## 関連記事
 - [[CI/CD入門] Github Actionsでビルド/テスト/デプロイを自動化](/CI-CD入門-Github-Actionsでビルド-テスト-デプロイを自動化/)
+- [Github入門 ～入社初日の完全な素人でも分かる優しい説明～](/Github入門-入社初日の完全な素人向けの優しい説明/)
+- [Github x Teams Webhook/Notificationによる連携方法](/Github-x-Teams-Webhook-Notificationによる連携方法/)
+- [Github Pages x Hexo運用をGithub Actionsで自動化](/Github-Pages-x-Hexo運用をGithub-Actionsで自動化)
+- [git複数アカウントの使い分け設定](/git複数アカウントの使い分け設定/)
 - [[Hexo x Github Pages] 5分以内にブログを自動生成して無料で公開するまで【完全版】](/Hexo-x-Github-Pages-5分以内にブログを自動生成して無料で公開するまで/)
+- [git merge & コンフリクトの解消（複数名の編集内容を集約）](/git-merge-コンフリクトの解消（複数名の編集内容を集約）/)
+- [Github.comからGithubEnterpriseへの移行手順](/GithubからGithubEnterpriseへの移行手順/)
+
+
 ## 参考
 - [【GitHub Actions】CIを使って毎日自動でGitHubに草を生やそうｗｗｗ](https://qiita.com/ykhirao/items/65fee829ee0478187027)
 - [Github actions marketplace hexo](https://github.com/marketplace?type=actions&query=Hexo)

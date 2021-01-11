@@ -11,19 +11,20 @@ toc: true
 thumbnail: https://user-images.githubusercontent.com/41946222/83426237-d200a380-a469-11ea-8dd5-6fe92939fc8c.png
 ---
 
-- アジャイル開発におけるバックログ管理をGitで完結させる手法について、他人に説明するためのメモ
+- アジャイル開発におけるバックログ管理をGitで完結させる手法について、説明用のメモ
   - プロダクトバックログとは？
     - `ロードマップと要件に基づいて開発チームが行う作業に優先順位を設定したリスト`
     - アジャイル開発においてはタスクや検討事項を”プロダクトバックログ”として定義する(フィーチャーとも呼ぶ)
-        - バックログをリスト化 ⇒ 優先度付け ⇒ 順次消化 ⇨ チームのベロシティを計測して時期計画策定 というサイクル(イテレーション/スプリント)を回す方式が一般的
+        - バックログをリスト化 ⇒ 優先度付け ⇒ 順次消化 ⇨ チームのベロシティを計測 ⇨ 次期計画策定 というサイクル(イテレーション/スプリントと呼ぶ)を回す方式が一般的
   - 他のタスク管理ツールも色々試したが、個人的にはこの手法が最も効率が良いと感じた
-  - Zennなどを組み合わせてバーンダーンチャート化するとより状況を可視化しやすい(Velocityを計測しやすい)
+  - Zennなどを組み合わせてバーンダーンチャート化すると、より状況を可視化しやすい(Velocityを計測しやすい)
 
 ### 前提知識
 - Issue
   - ここにバックログを登録していく
-  - ラベルでカテゴリライズ可能
+  - ラベルでカテゴリライズする
     - Ex. Question(質問), Bug(バグ), enhuncement(追加機能), Documentation(ドキュメント整備)
+  - Assigne
 
 - Projects (カンバン)
   - Issueを一覧化するGitの機能
@@ -206,9 +207,22 @@ Issueを生成する際に.md形式で説明を書くことができる
   ```
   - このように書くとIssueの閉じ忘れが減る
 
+- アジャイル開発自体については以下にまとめた
+  - [アジャイル開発におけるプロジェクトマネジメントについて](/アジャイル開発におけるプロジェクトマネジメントについて/)
 
-## 関連 
-- 参考
-  - [GitHubでタスク管理ができる新機能「Project」超入門](https://qiita.com/tonkotsuboy_com/items/f627ed6b3e4c6313e78f)
-  - [開発者のタスク管理をGitHubで行ったらうまくいった話](https://dev.classmethod.jp/articles/github-issue-driven-dev/)
+---
+## 参考
+### 関連記事
+- [Github入門 ～入社初日の完全な素人でも分かる優しい説明～](/Github入門-入社初日の完全な素人向けの優しい説明/)
+- [[CI/CD入門] Github Actionsでビルド/テスト/デプロイを自動化](/CI-CD入門-Github-Actionsでビルド-テスト-デプロイを自動化/)
+- [Github x Teams Webhook/Notificationによる連携方法](/Github-x-Teams-Webhook-Notificationによる連携方法/)
+- [Github Pages x Hexo運用をGithub Actionsで自動化](/Github-Pages-x-Hexo運用をGithub-Actionsで自動化)
+- [git複数アカウントの使い分け設定](/git複数アカウントの使い分け設定/)
+- [[Hexo x Github Pages] 5分以内にブログを自動生成して無料で公開するまで【完全版】](/Hexo-x-Github-Pages-5分以内にブログを自動生成して無料で公開するまで/)
+- [git merge & コンフリクトの解消（複数名の編集内容を集約）](/git-merge-コンフリクトの解消（複数名の編集内容を集約）/)
+- [Github.comからGithubEnterpriseへの移行手順](/GithubからGithubEnterpriseへの移行手順/)
+
+### その他
+- [GitHubでタスク管理ができる新機能「Project」超入門](https://qiita.com/tonkotsuboy_com/items/f627ed6b3e4c6313e78f)
+- [開発者のタスク管理をGitHubで行ったらうまくいった話](https://dev.classmethod.jp/articles/github-issue-driven-dev/)
 ------

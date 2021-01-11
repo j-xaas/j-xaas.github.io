@@ -105,5 +105,16 @@ thumbnail: https://user-images.githubusercontent.com/68212997/89897486-0cc94980-
 <img width="1301" alt="スクリーンショット 2020-08-11 22 34 41" src="https://user-images.githubusercontent.com/68212997/89903637-dba14700-dc22-11ea-9817-a0d844799e15.png">
 
 
+## Touch Cast Studio
+- iPad持ちはより自由度の高いTouch Cast Studioがオススメです
+    - [Touch Cast Studioでオンライン会議/プレゼン/Zoomウェビナーを演出する](/Touch-Cast-Studioでオンライン会議-プレゼン-Zoomウェビナーを演出する/)
+
+- 以下の様に複数コンテンツの表示や、サウンドエフェクトの活用も可能です
+    ![Touch Cast](https://user-images.githubusercontent.com/68212997/104149701-a049b500-541a-11eb-88cb-a82ccc7a7a04.PNG)
+
+
 ## 関連記事
+- [Touch Cast Studioでオンライン会議/プレゼン/Zoomウェビナーを演出する](/Touch-Cast-Studioでオンライン会議-プレゼン-Zoomウェビナーを演出する/)
+
+
 - [Avatarify 手軽なディープフェイクの作り方　〜画像の顔をフェイストラッキングで操る〜](/Avatarify-静止画の顔をフェイストラッキングで操るアプリ/)
