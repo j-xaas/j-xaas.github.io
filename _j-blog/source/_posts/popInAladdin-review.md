@@ -158,31 +158,59 @@ thumbnail: https://user-images.githubusercontent.com/41946222/84525352-73afac80-
 - スマホ or PCゲームのユーザー
     - Bluetoothで投影可能なゲームであればpopInで写すと楽しいです
 - これからTVを購入する方
-    - 有機ELの50インチのTVを20万で買うよりよっぽどコスパが良いです
+    - 有機ELの50インチのTVを20万で買うより遥かにコスパが良いです
 - Apple製品のモニターが欲しい方
+    - MacBookの拡張モニターとしても利用しています。WEB会議に活用すると、とても便利です。
 - 子育て世代    
     - popInは教育関係のアプリに力をいれています
-    - 創造性や語学力、知識を楽しみながら培えたり、絵本を読んで寝かしつけたりするメリットは大きいです
+    - 創造性や語学力、知識を楽しみながら培えたり、絵本を読んで寝かしつけたりできるメリットは大きいです
 
 ### 見送るべきケース
 - 天井が斜めの部屋
     - 特殊な形状の場合は設置できません
-- HDMI接続限定のゲームをやりたい
+- ▲ HDMI接続のゲームをやりたい (2021/01追記: [工夫したらゲームを写せた](/Popin-Aladdin-2にゲーム-Switch-プレステ-画面を映す方法/)ので▲にしました)
     - その場合は据え置き型の[Z6 Polar Meets popIn Aladdin](https://amzn.to/2BVkM0k)をお勧めします
-    - 天井設置型のメリットは大きいので、iPhone/iPadのソシャゲやmacbookでやれるPCゲームなら通常のpopIn Aladdinがいいと思います
-    - HDMI接続してBlue Toothでそのまま飛ばせる中継器があれば写せるかも
+        - 天井設置型のメリットは大きいので、iPhone/iPadのソシャゲやmacbookでやれるPCゲームなら通常のpopIn Aladdinがいいと思います
+    - ゲームの写し方は以下の記事にまとめました。Airplayの機能を上手く利用しています (2021/01 追記)
+        - [Popin Aladdin 2にゲーム(Switch/プレステ)画面を映す方法](/Popin-Aladdin-2にゲーム-Switch-プレステ-画面を映す方法/)
 
 　近年の短焦点プロジェクターの流行りやpopInの磨き抜かれたUXを体感すると、TVを買う人もそのうち消えていきそうだなぁと思います
 
 
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=junjun1080c-22&language=ja_JP&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B07J5B3VD2&linkId=3fcb93885509328d61045fffe5215552"></iframe>
 
+## PopIn Aladdinにゲームを写す方法
+- ゲームも工夫することで以下の様に投影できます
+
+{% youtube 8jdAx8B6KyU %}
+
+- PopIn AladdinにはHDMIを指すジャックがありませんが、Airplay(Bluetooth)で対応機器の画面のミラーリングはできます。  
+- そこで、以下の手段が使えます
+1. Airplay対応機器(ex. MacBook)にゲームを繋いで写す(キャプチャーボードという機器を使えば簡単にできます) 
+2. その機器の画面をAirplayでpopInに飛ばす
+
+これにより弱点がなくなり、私はpopInのみで不自由なく暮らせています。少し面倒ですが、popinに慣れると”50インチのTVは小さすぎて物足りない”と感じる様になるため、ゲームも含めてpopInの100インチで楽しめる様にすると幸せになれます。
+
+- 詳細はいかにまとめたので参考にどうぞ
+    - [Popin Aladdin 2にゲーム(Switch/プレステ)画面を映す方法](/Popin-Aladdin-2にゲーム-Switch-プレステ-画面を映す方法/)
 
 ## Alexaと連携
-- popIn Aladdin自体はリモコンでしか動きません
-- リモコンの赤外線を記憶可能なスマートリモコンを通してAlexaと連携させてみました
-- 音声でパっと壁に投影するとSF感が出ます
+- popIn Aladdin自体は付属の赤外線リモコンでしか動かないため、直接Alexaとは連携できません
+- リモコンの赤外線を記憶可能なスマートリモコンを通してAlexaと連携させています。音声でパっと壁に投影するとSF感が出ます
+    - 私はスマートリモコンとアレクサを使って以下のアクションを一括で自動化しています
+        - 消灯 ＆ popIn投影 & カーテンを閉じる　
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=junjun1080c-22&language=ja_JP&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B07TTH5TMW&linkId=2b0efa622088d035818b9a9504d32c2c"></iframe>
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=junjun1080c-22&language=ja_JP&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B08FXFTX67&linkId=67a94ab660bb57bb08390dedbf820d3d"></iframe>
 
 ## 設置方法
 - 簡単でした。5分で終わります
 - 天井の照明を差し込む受け口に差し込むだけです
+
+## 関連記事
+- [Popin Aladdin 2にゲーム(Switch/プレステ)画面を映す方法](/Popin-Aladdin-2にゲーム-Switch-プレステ-画面を映す方法/)
+- [[LadioCast] 仮想ミキサーでMacbook内の音の流れをまとめる](/LadioCast-仮想ミキサーでMacbook内の音の流れをまとめる/)
+- [[SYNCROOM] リモートセッションのやり方(YAMAHAの遠隔合奏アプリ)](/SYNCROOM-リモートセッションのやり方-YAMAHAの遠隔合奏アプリ/)
+- [iPad Pro (第4世代)でDTM環境を構築](/iPad-ProでDTM環境を構築/)
+- [PCでDTM環境を構築 [Steinberg UR44C/Cubase ai]](/PCでDTM環境を構築-Steinberg-UR44C-Cubase-ai/)

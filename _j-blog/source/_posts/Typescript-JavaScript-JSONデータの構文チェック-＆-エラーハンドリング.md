@@ -1,13 +1,13 @@
 ---
 title: '[Typescript(JavaScript)] JSONデータの構文チェック ＆ エラーハンドリング'
-date: 2021-01-11 10:55:56
+date: 2021-01-03 10:55:56
 categories:
 - Serverless Application Dev
 - SPA (Angular)
 tags: 
 - Angular
 - TypeScript
-thumbnail: 
+thumbnail: https://user-images.githubusercontent.com/68212997/104187359-03f3d280-545b-11eb-8bcf-f00fbf82ffe2.png
 ---
 
 WEBアプリにおいて、読み込んだJSONファイルの中身が破損していないかチェックする際のメモ。

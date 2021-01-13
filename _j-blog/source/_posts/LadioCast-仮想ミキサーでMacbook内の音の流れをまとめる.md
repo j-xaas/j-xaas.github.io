@@ -13,7 +13,8 @@ toc: true
 thumbnail: https://user-images.githubusercontent.com/68212997/92405492-a67c0c00-f170-11ea-8e10-6821e0a811e6.png
 ---
 
-仮想ミキサーで音声の複数の入出力をまとめる手法について。MacBook Pro(2020) MacOS 10.15を利用しています
+仮想ミキサーで音声の複数の入出力をまとめる手法について。MacBook Pro(2020) MacOS 10.15を利用しています。  
+配信ライブや[リモートセッション](/SYNCROOM-リモートセッションのやり方-YAMAHAの遠隔合奏アプリ/)に活用すると便利そうでした。
 
 <!--toc-->
 
@@ -39,7 +40,7 @@ thumbnail: https://user-images.githubusercontent.com/68212997/92405492-a67c0c00-
 <img width="894" alt="ladiocast" src="https://user-images.githubusercontent.com/68212997/92405492-a67c0c00-f170-11ea-8e10-6821e0a811e6.png">
 
 
-## 利用例
+## 利用例: 音をまとめて動画配信ツール(Ex. Zoom)に出力する
 - 音の流れ
 <img width="1578" alt="sound_stream" src="https://user-images.githubusercontent.com/68212997/92479277-4e9bde80-f21e-11ea-9379-2711cdad986b.PNG">
 
@@ -48,6 +49,14 @@ thumbnail: https://user-images.githubusercontent.com/68212997/92405492-a67c0c00-
     - 2. LadioCastを起動し、入力1を「SoundFlower(2ch)」、ルーティングを「メイン」と「Aux1」にする
     - 3. LadioCastの出力メインを「SoundFlower(64ch)」にする ※Zoomのマイク入力になる
     - 4. Zoomのマイクを「SoundFlower(64ch)」にする
+
+- これを利用することで、以下の様な応用方法が考えられます
+    - WEB会議/プレゼンで一緒にムービーをみる
+    - 配信ライブに利用する
+        - ゲームの音声やマイク音声を混ぜて送る
+    - リモートセッションでYoutubeを流しながらメンバと合わせる
+        - リモートセッションのやり方は以下にまとめています
+        - [[SYNCROOM] リモートセッションのやり方(YAMAHAの遠隔合奏アプリ)](/SYNCROOM-リモートセッションのやり方-YAMAHAの遠隔合奏アプリ/)
 
 ## おまけ： 現在のDTM環境
 ![DTM構成](https://user-images.githubusercontent.com/41946222/79885198-61f60b00-8431-11ea-97cc-6298ae1c92a3.png)
