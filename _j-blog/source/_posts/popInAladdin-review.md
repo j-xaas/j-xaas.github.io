@@ -67,9 +67,9 @@ thumbnail: https://user-images.githubusercontent.com/41946222/84525352-73afac80-
 ## 専用アプリ
 - [popIn Aladdin](https://amzn.to/3fl7HMl)にはAndroid OSが入っていてスマホの様にアプリを追加していけます
 
-![PopIn Home](https://media.github-enterprise-9911a.paas1.nec-cloud.com/user/11/files/fcb6fa00-ad8f-11ea-82ea-69094a6a5945)
+![PopIn Home](https://user-images.githubusercontent.com/68212997/104810371-62dc9180-5837-11eb-9e65-1bf08a62390b.jpg)
 
-![PopIn Home](https://media.github-enterprise-9911a.paas1.nec-cloud.com/user/11/files/0d677000-ad90-11ea-8fc6-d43462d35b8d)
+![App Selection](https://user-images.githubusercontent.com/68212997/104808478-e98a7200-5829-11eb-9be1-d79433925e2f.png)
 
 
 ### 時計
@@ -100,7 +100,7 @@ thumbnail: https://user-images.githubusercontent.com/41946222/84525352-73afac80-
 ### 目覚ましタイマー
 - ストレスフルな音のタイマーと違って、明かりで自然に目覚められます。朝のストレスが減りました
 
-![popIn Timer](https://media.github-enterprise-9911a.paas1.nec-cloud.com/user/11/files/135e5080-ad92-11ea-95f7-4477def10074)
+![popIn Timer](https://user-images.githubusercontent.com/68212997/104810679-9ae4d400-5839-11eb-9282-35c284429046.png)
 
 
 ### Spotify
@@ -113,20 +113,27 @@ thumbnail: https://user-images.githubusercontent.com/41946222/84525352-73afac80-
 
 ### ヨガ
 - プロの講師の動画が18種類入っていました
-![Yoga](https://media.github-enterprise-9911a.paas1.nec-cloud.com/user/11/files/8e723780-ad8f-11ea-9a73-b22b76581aa8)
+- 今後もアップデートされていくそうです
+
+![Yoga](https://user-images.githubusercontent.com/68212997/104810642-6709ae80-5839-11eb-9a7b-7908444c62f1.png)
 
 
 ### Aladdin Today
 - 新着ニュースやテクノロジーを大画面で見れます
 
-![Aladdin Today Home](https://media.github-enterprise-9911a.paas1.nec-cloud.com/user/11/files/c0849900-ad91-11ea-86ed-31d9eeb6b53a)
-
-![未来のニュース](https://media.github-enterprise-9911a.paas1.nec-cloud.com/user/11/files/d42fff80-ad91-11ea-8089-3cdab7d19034)
+![未来のニュース](https://user-images.githubusercontent.com/68212997/104810828-b13f5f80-583a-11eb-8cc7-08d052825f95.png)
 
 
 ### 繋がるTV
 - Bluetooth対応のレコーダーやチューナーとの連携用アプリ
-- これを使えば地上波の番組や録画も見れます
+    - これを使えば地上波の番組や録画も見れます
+    - 専用のチューナー↓の購入が必要
+
+- [Xit Air Box](https://amzn.to/3nTx0Jc)
+    - タブレットやスマホでもTVを閲覧可能になります
+    - このチューナーにレコードーを繋ぐ事ができます
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=junjun1080c-22&language=ja_JP&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B08DR4ZCKD&linkId=a6cc5084ff59e78ba32eb784842cd29b"></iframe>
 
 
 ## 画面ミラーリング
@@ -196,13 +203,15 @@ thumbnail: https://user-images.githubusercontent.com/41946222/84525352-73afac80-
 
 ## Alexaと連携
 - popIn Aladdin自体は付属の赤外線リモコンでしか動かないため、直接Alexaとは連携できません
-- リモコンの赤外線を記憶可能なスマートリモコンを通してAlexaと連携させています。音声でパっと壁に投影するとSF感が出ます
-    - 私はスマートリモコンとアレクサを使って以下のアクションを一括で自動化しています
+- リモコンの赤外線を記憶可能な[スマートリモコン](https://amzn.to/3oQ0tF3)を通してAlexaと連携させています。音声でパっと壁に投影するとSF感が出ます
+    - 私は[スマートリモコン](https://amzn.to/3oQ0tF3)と[アレクサ](https://amzn.to/3sz1uUC)を使って以下のアクションを一括で自動化しています
         - 消灯 ＆ popIn投影 & カーテンを閉じる　
 
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=junjun1080c-22&language=ja_JP&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B07TTH5TMW&linkId=2b0efa622088d035818b9a9504d32c2c"></iframe>
 
 <iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=junjun1080c-22&language=ja_JP&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B08FXFTX67&linkId=67a94ab660bb57bb08390dedbf820d3d"></iframe>
+
+<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//rcm-fe.amazon-adsystem.com/e/cm?lt1=_blank&bc1=000000&IS2=1&bg1=FFFFFF&fc1=000000&lc1=0000FF&t=junjun1080c-22&language=ja_JP&o=9&p=8&l=as4&m=amazon&f=ifr&ref=as_ss_li_til&asins=B08DR4ZCKD&linkId=a6cc5084ff59e78ba32eb784842cd29b"></iframe>
 
 ## 設置方法
 - 簡単でした。5分で終わります
