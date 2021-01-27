@@ -259,8 +259,16 @@ promise.then(value => {
 - [[Angular Schematics] 開閉可能なサイドナビ＆ツールバーを3分で自動生成する](/Angular-Schematics-開閉可能なサイドナビ＆ツールバーを3分で自動生成する/)
 
 ### 非同期処理参考
+
 - [Angular 日本語ドキュメント/Observable と 他の技術の比較](https://angular.jp/guide/comparing-observables)
   - ここの[チートシート](https://angular.jp/guide/comparing-observables)が役立つ
 
 - [【JavaScript】非同期処理の完了をpromiseとasync/awaitで待つ方法](https://tech.playground.style/javascript/asynchronous-processing/)
 - [Promiseの使い方、それに代わるasync/awaitの使い方](https://qiita.com/suin/items/97041d3e0691c12f4974)
+
+- [JavaScript 非同期処理](https://future-architect.github.io/typescript-guide/async.html)
+  - Promise/awaitの詳細について
+- [仕事ですぐに使える TypeScript](https://future-architect.github.io/typescript-guide/typescript-guide.pdf)
+  - p128の”Promise の分岐と待ち合わせの制御”が参考になる
+- [★TypeScriptで複数の非同期処理を制御する方法](https://qiita.com/eguchiryo_tg/items/35fe7d535baba544bbf2)
+  - ページ終盤にAngularベースのソースあり
