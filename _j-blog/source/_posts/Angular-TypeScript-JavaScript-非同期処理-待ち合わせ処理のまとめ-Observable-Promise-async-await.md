@@ -237,9 +237,12 @@ promise.then(value => {
 });
 ```
 
+- 具体的な実装例は以下を参照ください
+  - [[Angular x AWS SDK for JavaScript] SPAからAWSのデータを取得する際の待ち合わせ処理(非同期処理)](/Angular-x-AWS-SDK-for-JavaScript-SPAからAWSのデータ取得する際の待ち合わせ処理/)
 
 ## 参考
 ### 関連記事
+- [[Angular x AWS SDK for JavaScript] SPAからAWSのデータを取得する際の待ち合わせ処理(非同期処理)](/Angular-x-AWS-SDK-for-JavaScript-SPAからAWSのデータ取得する際の待ち合わせ処理/)
 - [[Angular JavaScript] JSONデータのファイル化と出力 取得したデータを任意の名称で保存するロジック (TypeScript)](/Angular-JSONデータのファイル化と出力-クラウドから取得したデータを任意の名称で保存する/)
 - [[Angular] ng e2e Test 証明書エラーでハマった際の回避策(unable to get local issuer certificate))](/Angular-ng-e2e-Test-証明書エラーでハマった際の回避策/)
 - [[Angular] 複数のcheckboxで一つ以上のチェックを必須とするバリデーション](/Angular-複数のcheckboxで一つ以上のチェックを必須とするバリデーション/)
