@@ -7,7 +7,7 @@ category:
 tags:
 - Hexo
 toc: true
-thumbnail: https://media.github-enterprise-9911a.paas1.nec-cloud.com/user/11/files/dd1dd280-ad8b-11ea-8807-e89852f3b1cc
+thumbnail: https://user-images.githubusercontent.com/68212997/106413597-d2848a80-648d-11eb-8cd7-12dd07971238.png
 ---
 
 Hexoで生成したWEBページのURLリダイレクトの設定方法とプラグインについて解説します。

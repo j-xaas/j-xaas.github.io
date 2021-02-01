@@ -81,10 +81,6 @@ https://pages.<gheのURL>/<Organization名 or ユーザ名>/<リポジトリ名>
 
 - リポジトリのSettingsより、以下のようにGithub pagesを有効にしてSave
 
-<div style="text-align:center;">
-<img src="https://media.github-enterprise-16ae0.paas1.nec-cloud.com/user/16/files/e0a2e680-49b2-11ea-802c-f247b17a1e04" height="100%" width="100%">
-</div>
-
 
 - GHEにおけるGithub PagesのURLは以下
 ```
