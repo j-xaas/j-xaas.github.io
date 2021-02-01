@@ -45,8 +45,8 @@ jobs:
     # Runs a single command using the runners
     - name: change directory name & return for git
       run: |
-        git config user.name "j-ushikoshi"
-        git config user.email "j-ushikoshi@nec.com"
+        git config user.name "j-ushi"
+        git config user.email "junjunjunya108@gmail.com"
         git remote set-url origin https://:${{ secrets.GITHUB_PASS }}@github.com/j-xaas/j-xaas.github.io
         git mv j-blog _j-blog
         git add *
