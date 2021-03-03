@@ -118,5 +118,6 @@ alias: /2020/04/09/iPhone-iPadのRPAツール『ショートカット』でサ�
         - [AWS Lambda](https://aws.amazon.com/jp/lambda/)や[Google Functions](https://cloud.google.com/functions?hl=ja)辺りをキックして動かせば大抵のシステムと連携可能です
 
 ## 関連記事
-- [iPad ProでWEB AP開発 & RPA](https://j-xaas.github.io/2020/03/25/iPad-Pro%E3%81%A7WEB-AP%E9%96%8B%E7%99%BA/)
+- [[無料RPA] Windows Power Automate インストール~Webの自動操作](./無料RPA-Windows-Power-Automate-インストール-Webの自動操作/)
+- [iPad ProでWEB AP開発 & RPA](./iPad-Pro%E3%81%A7WEB-AP%E9%96%8B%E7%99%BA/)
     - 同じ要領で開発にも応用しています
