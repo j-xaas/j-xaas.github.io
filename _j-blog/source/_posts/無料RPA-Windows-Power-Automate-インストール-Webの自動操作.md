@@ -1,5 +1,5 @@
 ---
-title: '[無料RPA] Windows Power Automate インストール~Webの自動操作'
+title: '[無料RPA] Windows Power Automate Desktop インストール~Webの自動操作方法'
 date: 2021-03-03 15:35:16
 category: 
 - Tool Tips
@@ -22,7 +22,7 @@ thumbnail: https://user-images.githubusercontent.com/68212997/109756485-62ebf180
 
 - インストーラーを起動
 ![Windows Power Automate Installer](https://user-images.githubusercontent.com/41946222/109744335-77bd8a80-7c15-11eb-9870-3be0db88d107.png)
-
+F
 - 次へ
 - 使用条件にチェック/インストール
 ![Windows Power Automate Installer2](https://user-images.githubusercontent.com/41946222/109744657-06caa280-7c16-11eb-9443-73bd1b9a9196.png)
@@ -68,8 +68,8 @@ Power Automate を使用すると、コンピューターの手動のプロセ�
 ![Power Automate Desktop Action](https://user-images.githubusercontent.com/41946222/109747437-780c5480-7c1a-11eb-821c-b2028352b92f.png)
 
 - ざっと見た限り他のRPAツールで可能な大抵のことができそうでした
-    - AWSなどの他者クラウドの操作まで
-    - 無料なので、RPAベンダーは駆逐されそう
+    - AWSなどの他社クラウドの操作まで
+    - 無料なので、既存のRPAベンダーは厳しそう
 
 ### 使用例1: Webページの自動起動
 - まずはWebページを自動で起動させてみました
