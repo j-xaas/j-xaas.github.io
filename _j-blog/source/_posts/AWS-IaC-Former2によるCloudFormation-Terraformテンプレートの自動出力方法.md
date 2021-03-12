@@ -54,9 +54,9 @@ AWSアカウント内の既存のリソースから、IaCテンプレート(Clou
   - EC2のパブリックIPからFormer2を利用
 
 - 参考
+  - [ローカル環境でFormer2を使用](https://www.inomaso.com/post/2020/12/former2-terraform-import/)
   - https://qiita.com/miriwo/items/8d5b35950232c1126d36
   - https://qiita.com/jey0taka/items/237f8d62c6c171975960
-  - [Former2の起動](https://www.inomaso.com/post/2020/12/former2-terraform-import/)
 
 ## 3. Former2 Setup
 - Former2にアクセス
