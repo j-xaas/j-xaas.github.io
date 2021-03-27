@@ -54,8 +54,8 @@ thumbnail: https://user-images.githubusercontent.com/68212997/112600566-b92c0900
     - Project
         - Project毎のコスト管理に活用
     - Owner
-        - リソースの作成者が後で判別するために必要
-    - Enviroment
+        - リソースの作成者を後で判別するために必要。誰がこれ作って放置してるの？を防ぐ
+    - Environment
         - 本番、テスト環境などの判別/コスト管理のために活用
 
 CFnテンプレートを利用する場合は、上記のタグを入力値として用意しておくと、つけ忘れを防止できる
