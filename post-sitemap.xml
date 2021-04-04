@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>https://j-xaas.github.io/About-This-Blog/</loc>
+        <lastmod>2021-04-04T13:04:31.059Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://j-xaas.github.io/AWS-PJ%E6%AF%8E%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88%E7%AE%A1%E7%90%86%E3%81%BE%E3%81%A8%E3%82%81-Cost-Explorer-Cost-Anomaly-Detection-Budgets-%E3%82%BF%E3%82%B0%E4%BB%98%E3%81%91%E3%83%AB%E3%83%BC%E3%83%AB/</loc>
         <lastmod>2021-03-27T05:29:49.968Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -714,14 +722,6 @@
     <url>
         <loc>https://j-xaas.github.io/Amazon-Honeycode-NoCode%E3%81%A7%E5%87%BA%E7%A4%BE%E7%AE%A1%E7%90%86%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E9%96%8B%E7%99%BA%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F/</loc>
         <lastmod>2021-02-14T07:36:10.394Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://j-xaas.github.io/About-This-Blog/</loc>
-        <lastmod>2021-02-14T07:36:10.392Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

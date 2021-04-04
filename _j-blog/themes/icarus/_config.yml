@@ -147,30 +147,30 @@ widgets:
         # Author's current location to be shown in the profile widget
         location: Tokyo Japan
         # Path or URL to the avatar to be shown in the profile widget
-        avatar: images/oshushi.png
+        avatar: images/maro_pc_1.jpg # images/oshushi.png
         # Email address for the Gravatar to be shown in the profile widget
         gravatar:
         # Whether to show avatar image rounded or square
         avatar_rounded: true
         # Path or URL for the follow button
-        follow_link: 'https://github.com/ppoffice'
+#        follow_link: 'https://github.com/ppoffice'
         # Links to be shown on the bottom of the profile widget
         social_links:
             Github:
                 icon: fab fa-github
                 url: 'https://github.com/ppoffice'
-            Facebook:
-                icon: fab fa-facebook
-                url: 'https://facebook.com'
-            Twitter:
-                icon: fab fa-twitter
-                url: 'https://twitter.com'
-            Dribbble:
-                icon: fab fa-dribbble
-                url: 'https://dribbble.com'
-            RSS:
-                icon: fas fa-rss
-                url: /
+#            Facebook:
+#                icon: fab fa-facebook
+#                url: 'https://facebook.com'
+#            Twitter:
+#                icon: fab fa-twitter
+#                url: 'https://twitter.com'
+#            Dribbble:
+#                icon: fab fa-dribbble
+#                url: 'https://dribbble.com'
+#            RSS:
+#                icon: fas fa-rss
+#                url: /
     -
         # Widget name
         type: toc
@@ -210,6 +210,8 @@ widgets:
         type: tag
         # Where should the widget be placed, left or right
         position: right
+
+
 # Other plugin settings
 plugins:
     # Enable page animations
