@@ -17,16 +17,16 @@
 <title>[PdM/PO] プロダクトの構想フェイズについて(4層の仮説立案→リーンキャンバス→インセプションデッキ→ストーリーマッピング→プロダクトバックログ化) - J&#39;s Tech Blog</title>
 
 
-    <meta name="description" content="アジャイル開発における、プロダクト像の構想〜タスク化までについての個人的まとめ PO（プロダクトオーナー）やPdM（プロダクトマネージャー）は以下の流れで、何を作るか？をまとめていく必要がある   プロダクト像の仮説を立案 抽象度で4層程度に分解して考える   リーンキャンバスを作成 インセプションデッキを作成 エレベーターピッチ&#x2F;やらないことリスト   ユーザーストーリーマッピング 重み付け（">
+    <meta name="description" content="アジャイル開発における、プロダクト像の構想〜タスク化までについての個人的まとめ PO（プロダクトオーナー）やPdM（プロダクトマネージャー）は以下の流れで、何を作るか？をまとめていく必要がある   プロダクト像の仮説を立案 抽象度で4層程度に分解して考える   リーンキャンバスを作成 インセプションデッキを作成 ex. エレベーターピッチ&#x2F;やらないことリスト   ユーザーストーリーマッピング 重">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[PdM&#x2F;PO] プロダクトの構想フェイズについて(4層の仮説立案→リーンキャンバス→インセプションデッキ→ストーリーマッピング→プロダクトバックログ化)">
 <meta property="og:url" content="https://j-xaas.github.io/PdM-PO-%E3%83%97%E3%83%AD%E3%83%80%E3%82%AF%E3%83%88%E3%81%AE%E6%A7%8B%E6%83%B3%E3%83%95%E3%82%A7%E3%82%A4%E3%82%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6-4%E5%B1%A4%E3%81%AE%E4%BB%AE%E8%AA%AC%E7%AB%8B%E6%A1%88%E2%86%92%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%90%E3%82%B9%E2%86%92%E3%82%A8%E3%83%AC%E3%83%99%E3%83%BC%E3%82%BF%E3%83%94%E3%83%83%E3%83%81%E2%86%92%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AA%E3%83%BC%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E2%86%92%E3%83%97%E3%83%AD%E3%83%80%E3%82%AF%E3%83%88%E3%83%90%E3%83%83%E3%82%AF%E3%83%AD%E3%82%B0%E5%8C%96/index.html">
 <meta property="og:site_name" content="J&#39;s Tech Blog">
-<meta property="og:description" content="アジャイル開発における、プロダクト像の構想〜タスク化までについての個人的まとめ PO（プロダクトオーナー）やPdM（プロダクトマネージャー）は以下の流れで、何を作るか？をまとめていく必要がある   プロダクト像の仮説を立案 抽象度で4層程度に分解して考える   リーンキャンバスを作成 インセプションデッキを作成 エレベーターピッチ&#x2F;やらないことリスト   ユーザーストーリーマッピング 重み付け（">
+<meta property="og:description" content="アジャイル開発における、プロダクト像の構想〜タスク化までについての個人的まとめ PO（プロダクトオーナー）やPdM（プロダクトマネージャー）は以下の流れで、何を作るか？をまとめていく必要がある   プロダクト像の仮説を立案 抽象度で4層程度に分解して考える   リーンキャンバスを作成 インセプションデッキを作成 ex. エレベーターピッチ&#x2F;やらないことリスト   ユーザーストーリーマッピング 重">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://user-images.githubusercontent.com/68212997/114271044-7b310680-9a4a-11eb-9102-cc032c10068a.png">
 <meta property="article:published_time" content="2021-04-10T12:30:26.000Z">
-<meta property="article:modified_time" content="2021-04-10T13:22:07.446Z">
+<meta property="article:modified_time" content="2021-04-12T13:54:04.064Z">
 <meta property="article:author" content="Junya">
 <meta property="article:tag" content="アジャイル開発">
 <meta name="twitter:card" content="summary">
@@ -177,7 +177,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    32分 read (About 4842 words)
+                    37分 read (About 5497 words)
                 </span>
                 
                 
@@ -201,23 +201,62 @@
 </li>
 <li><code>リーンキャンバス</code>を作成</li>
 <li><code>インセプションデッキ</code>を作成<ul>
-<li>エレベーターピッチ/やらないことリスト</li>
+<li>ex. エレベーターピッチ/やらないことリスト</li>
 </ul>
 </li>
 <li><code>ユーザーストーリーマッピング</code></li>
 <li>重み付け（SMLを話し合う）</li>
 <li>優先順位付け→<code>プロダクトバックログ</code>化</li>
-<li><code>受入条件（DoD）</code>設定</li>
+<li><code>受入条件（DoD）</code>の設定</li>
 <li><code>プロダクトバックログアイテム</code>に分割<ul>
 <li>ここでタスク単位になる</li>
 </ul>
 </li>
 <li><code>スプリントプランニング</code>～スプリント開始<ul>
+<li>バックログの中からスプリントないで取り組む物を決定する</li>
 <li>ここで開発が始まる</li>
 </ul>
 </li>
 </ol>
-<!--toc-->
+<!-- toc -->
+
+<ul>
+<li><a href="#概要用語">概要/用語</a><ul>
+<li><a href="#popdm">PO/PdM</a></li>
+<li><a href="#ユーザーストーリーマッピング">ユーザーストーリーマッピング</a></li>
+<li><a href="#プロダクトバックログ">プロダクトバックログ</a></li>
+<li><a href="#リーンキャンバス">リーンキャンバス</a></li>
+<li><a href="#インセプションデッキ">インセプションデッキ</a></li>
+</ul>
+</li>
+<li><a href="#プロダクト像の仮説立案タスク化までの流れ">プロダクト像の仮説立案〜タスク化までの流れ</a><ul>
+<li><a href="#プロダクト像の仮説立案">プロダクト像の仮説立案</a></li>
+<li><a href="#リーンキャンパス">リーンキャンパス</a></li>
+<li><a href="#インセプションデッキエレベーターピッチやらないことリスト">インセプションデッキ/エレベーターピッチ/やらないことリスト</a></li>
+<li><a href="#ストーリーマッピング">ストーリーマッピング</a><ul>
+<li><a href="#ワークについて">ワークについて</a></li>
+<li><a href="#invest">INVEST</a></li>
+<li><a href="#エピック">エピック</a></li>
+</ul>
+</li>
+<li><a href="#ストーリーの分割">ストーリーの分割</a></li>
+<li><a href="#重みづけ">重みづけ</a></li>
+<li><a href="#プロダクトバックログの定義優先度付け">プロダクトバックログの定義（優先度付け）</a><ul>
+<li><a href="#完了の定義doddifention-of-doneを追加">完了の定義：DoD(Difention of Done)を追加</a></li>
+</ul>
+</li>
+<li><a href="#2レベルプランニング">2レベルプランニング</a></li>
+<li><a href="#リリース計画の立案">リリース計画の立案</a></li>
+<li><a href="#スプリントプランニング">スプリントプランニング</a></li>
+</ul>
+</li>
+<li><a href="#参考">参考</a><ul>
+<li><a href="#関連記事">関連記事</a></li>
+<li><a href="#その他">その他</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
 
 <hr>
 <h2><span id="概要用語">概要/用語</span></h2><ul>
@@ -267,6 +306,9 @@
 <ul>
 <li>ロードマップと要件に基づいて開発チームが行う作業に<code>優先順位を設定</code>したリスト<ul>
 <li>機能開発以外の作業も含まれる</li>
+<li>バックログへの項目の追加＆変更は誰でもいつでも可能</li>
+<li>POが項目の優先順位付とリストの管理の責任と権限を持つ</li>
+<li>プロダクトバックログはスクラムチームに限らず、誰でも(ex. ビジネスチーム)参照できる</li>
 </ul>
 </li>
 <li>ストーリーを元に作られる<ul>
@@ -426,7 +468,8 @@
 </ul>
 </li>
 <li>ストーリーマッピング(全部ワーク内でやらなくてもOK)<ul>
-<li>ストーリー出し</li>
+<li>ストーリーを書き出す</li>
+<li>時間軸で物語順に並べる</li>
 <li>フィチャーとして分類/分割<ul>
 <li>共通するワードをフィーチャーとして上に付箋を貼る</li>
 <li>その下に細かいストーリーを並べる</li>
@@ -479,6 +522,18 @@
 </ul>
 </li>
 </ul>
+<h3><span id="ストーリーの分割">ストーリーの分割</span></h3><ul>
+<li>見積もったストーリーがアジャイル開発の一反復に治らない場合にはストーリーの分割を行う。タスクへの分割とは別</li>
+</ul>
+<p>分割のガイドライン</p>
+<ol>
+<li>データ境界に沿って分割</li>
+<li>操作の境界で分割</li>
+<li>横断的な関心ごとを分離する</li>
+<li>パフォーマンス制約をストーリーにする</li>
+<li>優先度に沿ってストーリーを分割する</li>
+<li>ストーリーをタスクに分割してはならない</li>
+</ol>
 <hr>
 <h3><span id="重みづけ">重みづけ</span></h3><ul>
 <li>重み付け<ul>
@@ -493,30 +548,77 @@
 <h3><span id="プロダクトバックログの定義優先度付け">プロダクトバックログの定義（優先度付け）</span></h3><ul>
 <li><p>ストーリーを優先度順に上から並べる</p>
 </li>
-<li><p>優先順位付</p>
+<li><p><code>MVP</code>を定義しておくと優先的な機能を可視化しやすい</p>
 <ul>
-<li>バックログになる</li>
+<li>MVP (Minimum Viable Productivity)<ul>
+<li>実用最低限の製品のこと</li>
+<li>使い勝手はともかく最低限の価値を生み出せる状態</li>
 </ul>
 </li>
-<li><p>プロダクトバックログを細分化してタスクになる</p>
+</ul>
+</li>
+<li><p>優先度づけ→優先順位付け</p>
+<ul>
+<li>優先度<ul>
+<li>高中低、ABCなど</li>
+</ul>
+</li>
+<li>優先順位<ul>
+<li>明確な序列</li>
+</ul>
+</li>
+<li>優先順位がつくとバックログになる</li>
+</ul>
+</li>
+<li><p>MoSCoW法（以下のタグを定めていく）</p>
+<ul>
+<li>M　絶対必要<ul>
+<li>MVPに必要なフィーチャーはここに含まれる</li>
+</ul>
+</li>
+<li>S　できれば実装すべき</li>
+<li>C　他への影響がなければ実装できるとよい</li>
+<li>W　今回は実装しないが将来に実装するかも</li>
+</ul>
+</li>
+<li><p>狩野モデル（利用者の好みでタグ付）</p>
+<ul>
+<li>魅力的（あると魅力的）</li>
+<li>一元的（なくても良いがあると差別化できる）</li>
+<li>当たり前（あって当たり前）</li>
+<li>無関心（どうでもよい）</li>
+<li>逆行（あったら困る）</li>
+</ul>
+</li>
+<li><p>Walking Skelton</p>
+<ul>
+<li>実装が短期間内に終わる場合は注意深く優先順位付けしなくて良い</li>
+</ul>
+</li>
+<li><p>判断基準</p>
+<ul>
+<li>ビジネス価値<ul>
+<li>ex. 同等のビジネス価値を提供可能な場合、開発工数の少ないほうがROIが高いため、つけられる優先順位も高くなる</li>
+</ul>
+</li>
+<li>技術的なリスク<ul>
+<li>技術的なリスクが高い項目ほど早いスプリントで対処して、リスクを減らすべきである</li>
+<li>ただ、新設チームの場合は始めにもってこな方が良いケースもある</li>
+</ul>
+</li>
+<li>市場リスク<ul>
+<li>早くフィードバックを得る必要がある物を優先する</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>プロダクトバックログを細分化するとタスクになる</p>
 <ul>
 <li>プロダクトバックログアイテム（項目）＝タスク</li>
 </ul>
 </li>
 </ul>
-<hr>
-<h4><span id="ストーリーの分割プロダクトバックログアイテム化">ストーリーの分割（プロダクトバックログアイテム化）</span></h4><ul>
-<li>見積もったストーリーがアジャイル開発の一反復に治らない場合にはストーリーの分割を行う</li>
-</ul>
-<p>分割のガイドライン</p>
-<ol>
-<li>データ協会に沿って分割</li>
-<li>捜査の境界で分割</li>
-<li>横断的な関心ごとを分離する</li>
-<li>パフォーマンス制約をストーリーにする</li>
-<li>優先度に沿ってストーリーを分割する</li>
-<li>ストーリーをタスクに分割してはならない</li>
-</ol>
+<p>ここまでのアウトプットが優先度付されたフィーチャー/ストーリーのリスト</p>
 <hr>
 <h4><span id="完了の定義doddifention-of-doneを追加">完了の定義：DoD(Difention of Done)を追加</span></h4><ul>
 <li>バックログアイテムにDoD(Difention of Done)を近くに書いておくと良い<ul>
@@ -598,6 +700,7 @@
 <li><a href="https://careerhack.en-japan.com/report/detail/1461">新人PM「あるある失敗」を回避せよ！『プロダクトマネジメントのすべて』共同執筆、小城久美子さんの視点</a></li>
 <li><a href="https://www.ryuzee.com/contents/blog/4009">Ryuzee.com</a></li>
 <li><a href="https://flxy.jp/article/6703">プロダクトマネージャー・プロダクトオーナー・スクラムマスターとは？</a></li>
+<li><a href="https://www.ryuzee.com/contents/blog/3301">プロダクトバックログ項目の優先順位の付け方</a></li>
 </ul>
 
         </div>
@@ -771,30 +874,30 @@
         </a></li></ul></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">2.5</span>
-        <span>重みづけ</span>
+        <span>ストーリーの分割</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
         <span class="has-mr-6">2.6</span>
+        <span>重みづけ</span>
+        </a></li><li>
+        <a class="is-flex" href="#undefined">
+        <span class="has-mr-6">2.7</span>
         <span>プロダクトバックログの定義（優先度付け）</span>
         </a><ul class="menu-list"><li>
         <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">2.6.1</span>
-        <span>ストーリーの分割（プロダクトバックログアイテム化）</span>
-        </a></li><li>
-        <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">2.6.2</span>
+        <span class="has-mr-6">2.7.1</span>
         <span>完了の定義：DoD(Difention of Done)を追加</span>
         </a></li></ul></li><li>
         <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">2.7</span>
+        <span class="has-mr-6">2.8</span>
         <span>2レベルプランニング</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">2.8</span>
+        <span class="has-mr-6">2.9</span>
         <span>リリース計画の立案</span>
         </a></li><li>
         <a class="is-flex" href="#undefined">
-        <span class="has-mr-6">2.9</span>
+        <span class="has-mr-6">2.10</span>
         <span>スプリントプランニング</span>
         </a></li></ul></li><li>
         <a class="is-flex" href="#undefined">
