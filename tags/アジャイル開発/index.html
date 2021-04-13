@@ -183,7 +183,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    37分 read (About 5497 words)
+                    39分 read (About 5786 words)
                 </span>
                 
                 
@@ -211,11 +211,16 @@
 </ul>
 </li>
 <li><code>ユーザーストーリーマッピング</code></li>
-<li>重み付け（SMLを話し合う）</li>
+<li>重み付け（各ストーリーにSMLを定める）</li>
+<li>優先度付け（MoSCoW法や狩野モデルを活用する）</li>
 <li>優先順位付け→<code>プロダクトバックログ</code>化</li>
-<li><code>受入条件（DoD）</code>の設定</li>
+<li><code>受入条件</code>の設定</li>
 <li><code>プロダクトバックログアイテム</code>に分割<ul>
 <li>ここでタスク単位になる</li>
+</ul>
+</li>
+<li>DoD(完了の定義)の設定<ul>
+<li>各アイテムにはDoDが必須</li>
 </ul>
 </li>
 <li><code>スプリントプランニング</code>～スプリント開始<ul>
@@ -247,7 +252,9 @@
 </li>
 <li><a href="#ストーリーの分割">ストーリーの分割</a></li>
 <li><a href="#重みづけ">重みづけ</a></li>
-<li><a href="#プロダクトバックログの定義優先度付け">プロダクトバックログの定義（優先度付け）</a><ul>
+<li><a href="#優先度付け">優先度付け</a><ul>
+<li><a href="#プロダクトバックログの定義優先順位付け">プロダクトバックログの定義（優先順位付け）</a></li>
+<li><a href="#プラダクトバックログアイテムの定義">プラダクトバックログアイテムの定義</a></li>
 <li><a href="#完了の定義doddifention-of-doneを追加">完了の定義：DoD(Difention of Done)を追加</a></li>
 </ul>
 </li>
@@ -399,9 +406,11 @@
 </ul>
 </li>
 <li>重み付け（SMLを話し合う）</li>
+<li>優先度づけ</li>
 <li>優先順位付け</li>
-<li>受入条件（DoD）設定</li>
+<li>受入条件設定</li>
 <li>バックログアイテムに分割</li>
+<li>DoD(完了の定義)の設定</li>
 </ol>
 <h3><span id="プロダクト像の仮説立案">プロダクト像の仮説立案</span></h3><ul>
 <li>プロダクトのあるべき姿はステークホルダー間で認識齟齬が生まれ易いため、以下のような抽象度で階層分けした仮説を共有することで、アジャイルPJを円滑に進めることができる</li>
@@ -509,7 +518,7 @@
 </li>
 <li>Negociatiable　交渉可能</li>
 <li>Valuable　価値がある</li>
-<li>Estimmatable　見積もり可能</li>
+<li>Estimatable　見積もり可能</li>
 <li>Small　小さい/適切な大きさ：一つの反復に収まるサイズ</li>
 <li>testable：テスト可能<ul>
 <li>ストーリーが完了したかを示すことができる</li>
@@ -551,9 +560,7 @@
 </ul>
 </li>
 </ul>
-<h3><span id="プロダクトバックログの定義優先度付け">プロダクトバックログの定義（優先度付け）</span></h3><ul>
-<li><p>ストーリーを優先度順に上から並べる</p>
-</li>
+<h3><span id="優先度付け">優先度付け</span></h3><ul>
 <li><p><code>MVP</code>を定義しておくと優先的な機能を可視化しやすい</p>
 <ul>
 <li>MVP (Minimum Viable Productivity)<ul>
@@ -576,29 +583,47 @@
 <li>優先順位がつくとバックログになる</li>
 </ul>
 </li>
-<li><p>MoSCoW法（以下のタグを定めていく）</p>
+<li><p>MoSCoW法（各ストーリーに以下のタグを定めていく）</p>
 <ul>
-<li>M　絶対必要<ul>
+<li>Mo: Must Have<ul>
+<li>絶対必要</li>
 <li>MVPに必要なフィーチャーはここに含まれる</li>
 </ul>
 </li>
-<li>S　できれば実装すべき</li>
-<li>C　他への影響がなければ実装できるとよい</li>
-<li>W　今回は実装しないが将来に実装するかも</li>
+<li>S: Should Have<ul>
+<li>できれば実装すべき</li>
 </ul>
 </li>
-<li><p>狩野モデル（利用者の好みでタグ付）</p>
+<li>Co: Could Have<ul>
+<li>他への影響がなければ実装できるとよい</li>
+</ul>
+</li>
+<li>W: Won’t Have<ul>
+<li>今回は実装しないが将来に実装するかも</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>重み付のSMLと頭文字が被って混乱を招くことがあるので注意</p>
 <ul>
+<li>狩野モデル（利用者の好みでタグ付）<ul>
 <li>魅力的（あると魅力的）</li>
-<li>一元的（なくても良いがあると差別化できる）</li>
+<li>一元的（なくても良いがあると<code>差別化</code>できる）</li>
 <li>当たり前（あって当たり前）</li>
 <li>無関心（どうでもよい）</li>
 <li>逆行（あったら困る）</li>
 </ul>
 </li>
+</ul>
+<h4><span id="プロダクトバックログの定義優先順位付け">プロダクトバックログの定義（優先順位付け）</span></h4><ul>
+<li><p>先に各ストーリーに設定した重み付けや優先度を元に、優先順位をつける</p>
+</li>
+<li><p>ストーリーを優先度順に上から並べる</p>
+</li>
 <li><p>Walking Skelton</p>
 <ul>
-<li>実装が短期間内に終わる場合は注意深く優先順位付けしなくて良い</li>
+<li>実装が短期間で終わる場合は注意深く優先順位付けしなくて良い</li>
 </ul>
 </li>
 <li><p>判断基準</p>
@@ -613,26 +638,34 @@
 </ul>
 </li>
 <li>市場リスク<ul>
-<li>早くフィードバックを得る必要がある物を優先する</li>
+<li>早く市場に出してフィードバックを得る必要がある物を優先する</li>
+<li>他社に先出しされると致命的になる機能など</li>
 </ul>
 </li>
-</ul>
-</li>
-<li><p>プロダクトバックログを細分化するとタスクになる</p>
-<ul>
-<li>プロダクトバックログアイテム（項目）＝タスク</li>
 </ul>
 </li>
 </ul>
 <p>ここまでのアウトプットが優先度付されたフィーチャー/ストーリーのリスト</p>
 <hr>
-<h4><span id="完了の定義doddifention-of-doneを追加">完了の定義：DoD(Difention of Done)を追加</span></h4><ul>
-<li>バックログアイテムにDoD(Difention of Done)を近くに書いておくと良い<ul>
-<li>完了の定義</li>
-<li>ドキュメントがある、<br>２名以上レビュー、<br>テスト実行済み</li>
+<h4><span id="プラダクトバックログアイテムの定義">プラダクトバックログアイテムの定義</span></h4><ul>
+<li>プロダクトバックログを細分化するとタスクになる<ul>
+<li>プロダクトバックログアイテム（項目）＝タスク</li>
+<li>これらのアイテムにはDoD（完了の定義）を定める必要がある</li>
 </ul>
 </li>
 </ul>
+<h4><span id="完了の定義doddifention-of-doneを追加">完了の定義：DoD(Difention of Done)を追加</span></h4><ul>
+<li>DoD(Difention of Done)：完了の定義<ul>
+<li>アウトプット<ul>
+<li>ex. 関連すつ設計ドキュメントがある</li>
+</ul>
+</li>
+<li>状態<br>  ex. ２名以上がレビュー、テスト実行済み</li>
+</ul>
+</li>
+<li>DoDを定めなければ進捗の実態の測定や品質管理が難しくなる</li>
+</ul>
+<p>ここまでで、プロダクト像の定義〜タスク化が完了</p>
 <hr>
 <h3><span id="2レベルプランニング">2レベルプランニング</span></h3><ul>
 <li>リリース計画<ul>
@@ -707,6 +740,7 @@
 <li><a href="https://www.ryuzee.com/contents/blog/4009">Ryuzee.com</a></li>
 <li><a href="https://flxy.jp/article/6703">プロダクトマネージャー・プロダクトオーナー・スクラムマスターとは？</a></li>
 <li><a href="https://www.ryuzee.com/contents/blog/3301">プロダクトバックログ項目の優先順位の付け方</a></li>
+<li><a href="http://agile.blog.jp/agile_scrum/14974388.html">MoSCoWメソッドを使用して製品バックログに優先順位を付ける方法 How to Prioritize Product Backlog Using MoSCoW Method</a></li>
 </ul>
 
         </div>
