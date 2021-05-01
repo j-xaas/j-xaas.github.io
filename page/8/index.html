@@ -154,6 +154,155 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/Angular%E5%85%A5%E9%96%80-%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%EF%BD%9EPJ%E3%81%AE%E9%96%8B%E5%A7%8B-%E5%9F%BA%E6%9C%AC%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/" class="image is-7by1">
+            <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/83424662-abda0400-a467-11ea-831a-2b146d29a1c5.png" alt="[Angular入門] 環境構築～PJの開始/基本コマンド">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-05-19T15:07:59.000Z">2020-05-20</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8分 read (About 1198 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/Angular%E5%85%A5%E9%96%80-%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89%EF%BD%9EPJ%E3%81%AE%E9%96%8B%E5%A7%8B-%E5%9F%BA%E6%9C%AC%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/">[Angular入門] 環境構築～PJの開始/基本コマンド</a>
+            
+        </h1>
+        <div class="content">
+            <p>WEBアプリケーション開発に用いる<a href="https://sp.otsuka-shokai.co.jp/words/framework.html">フレームワーク</a>である、Angularの環境構築～アプリの雛形の生成までを解説します。<br>Angularを使えば、<a href="https://digitalidentity.co.jp/blog/creative/about-single-page-application.html">Single Page Application</a>と呼ばれるモダンなアプリを高速で開発することができます。例えば、GoogleやTwitter等のWEBアプリはこれで作られています。</p>
+<p><img src="https://user-images.githubusercontent.com/41946222/82344822-7da00180-9a2f-11ea-868c-265520c3f38f.png" alt="image"></p>
+<!-- toc -->
+
+<ul>
+<li><a href="#1-angular動作環境の準備手順">1. Angular動作環境の準備手順</a><ul>
+<li><a href="#11-nodejsのインストール">1.1. Node.jsのインストール</a></li>
+<li><a href="#12-angular-cliのインストール">1.2. Angular CLIのインストール</a></li>
+</ul>
+</li>
+<li><a href="#2-angularプロジェクトの作成~実行手順">2. Angularプロジェクトの作成~実行手順</a><ul>
+<li><a href="#21-angularプロジェクトの作成">2.1. Angularプロジェクトの作成</a></li>
+<li><a href="#22-ビルドと実行">2.2. ビルドと実行</a></li>
+</ul>
+</li>
+<li><a href="#3-angular関連のtips">3. Angular関連のTips</a><ul>
+<li><a href="#関連記事">関連記事</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="1-angular動作環境の準備手順">1. Angular動作環境の準備手順</span></h2><h3><span id="11-nodejsのインストール">1.1. Node.jsのインストール</span></h3><ul>
+<li><p>インストール済みであれば飛ばしてください</p>
+</li>
+<li><p>Node.jsとは</p>
+<ul>
+<li>JavaScriptが動くために必要な土台のようなものです</li>
+<li>Angularで開発する際には、TypeScriptというJavaScriptの拡張版の言語でコードを書きます<ul>
+<li>TypeScriptは最終的にJavaScriptに変換されて動くので、Node.jsが必須となります</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="https://nodejs.org/en/download/">Node.js Download</a></p>
+<ul>
+<li>こちらから自身のOSに合ったものをダウンロードしてください</li>
+</ul>
+</li>
+<li><p>ダウンロードしたnode-vX.XX.X-xXX.msiをダブルクリックして、インストールを開始します。<br>下記画面が表示されるので、表示される内容に従いインストールを進めてください。</p>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/68363881-a174b780-016f-11ea-9d15-039b92ae05fb.PNG" alt="nodejs_install2"></p>
+<h3><span id="12-angular-cliのインストール">1.2. Angular CLIのインストール</span></h3><ul>
+<li><p>インストール</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g @angular&#x2F;cli</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>正常にインストールされれば、ngコマンドを使用可能になります(ngはAngularの略称) </p>
+<ul>
+<li>ngコマンドを使うことで、一からコードを書かずにAPの一部を自動生成できます</li>
+<li>このように開発工数を短縮する為に使う便利な道具がフレームワークだと思ってください</li>
+</ul>
+</li>
+</ul>
+<h2><span id="2-angularプロジェクトの作成~実行手順">2. Angularプロジェクトの作成~実行手順</span></h2><h3><span id="21-angularプロジェクトの作成">2.1. Angularプロジェクトの作成</span></h3><ul>
+<li>以下のコマンドでアプリの雛形が生成されます<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ng new &lt;sample-ap-name&gt;</span><br><span class="line">cd &lt;sample-ap-name&gt;</span><br></pre></td></tr></table></figure></li>
+<li>Angualr APのディレクトリ構成  <ul>
+<li>以下のセットが自動生成されます<br><img src="https://user-images.githubusercontent.com/68212997/89703973-ee015380-d98a-11ea-8417-576765f6a06e.png" alt="Angular Project構成"></li>
+</ul>
+</li>
+</ul>
+<h3><span id="22-ビルドと実行">2.2. ビルドと実行</span></h3><ul>
+<li><p>次のserveコマンドで先の手順で生成したAP（の雛形）が起動します。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng serve --open</span><br></pre></td></tr></table></figure></li>
+<li><p>上記コマンドの機能詳細</p>
+<ul>
+<li>開発用のWEBサーバが起動し、作成したAPを起動</li>
+<li>TypeScriptコンパイラを、監視モードに</li>
+<li>ソースコードが変更される度に、ブラウザを更新</li>
+<li>–openはブラウザも同時に起動するオプション</li>
+</ul>
+</li>
+<li><p>以下のようにAngular PJの初期画面がブラウザに表示されれば成功です</p>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/41946222/82355091-b98d9380-9a3c-11ea-8f54-cd5358e6b441.png" alt="image"></p>
+<ul>
+<li>ここまででWEB AP開発のスタートラインに立てました。続いて生成されたファイルを弄ってUI(画面のこと)や簡単な機能を開発してみましょう。<ul>
+<li><a href="/Angular入門-AngularCLI環境構築-PJの開始-コンポーネントの生成-初めての関数開発/">[Angular入門] AngularCLI環境構築~PJの開始,コンポーネントの生成,初めての関数開発</a></li>
+<li><a href="/Angular入門-mat-inputで生成したフォームから入力値を取得-双方向データバインディング/">[Angular Material入門] mat-inputで生成したフォームから入力値を取得(双方向データバインディング)</a></li>
+</ul>
+</li>
+</ul>
+<h2><span id="3-angular関連のtips">3. Angular関連のTips</span></h2><ul>
+<li>VSCode拡張機能 <ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=johnpapa.angular-essentials">おすすめ</a><ul>
+<li>その他にも沢山あるので随時導入してください</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://angular.jp/start">Angular公式のチュートリアル</a></li>
+<li><a href="https://qiita.com/AsatoSa/items/ce7b416dc83522965d72">Angularよく使うコマンド</a></li>
+</ul>
+<h3><span id="関連記事">関連記事</span></h3><ul>
+<li><a href="/Angular入門-AngularCLI環境構築-PJの開始-コンポーネントの生成-初めての関数開発/">[Angular入門] AngularCLI環境構築~PJの開始,コンポーネントの生成,初めての関数開発</a></li>
+<li><a href="/Angular入門-mat-inputで生成したフォームから入力値を取得-双方向データバインディング/">[Angular Material入門] mat-inputで生成したフォームから入力値を取得(双方向データバインディング)</a></li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/Github%E5%85%A5%E9%96%80-%E5%85%A5%E7%A4%BE%E5%88%9D%E6%97%A5%E3%81%AE%E5%AE%8C%E5%85%A8%E3%81%AA%E7%B4%A0%E4%BA%BA%E5%90%91%E3%81%91%E3%81%AE%E5%84%AA%E3%81%97%E3%81%84%E8%AA%AC%E6%98%8E/" class="image is-7by1">
             <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/83426237-d200a380-a469-11ea-8dd5-6fe92939fc8c.png" alt="Github入門 ～入社初日の完全な素人でも分かる優しい説明～">
         </a>
@@ -2611,238 +2760,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/iPhone-iPad%E3%81%AERPA%E3%83%84%E3%83%BC%E3%83%AB%E3%80%8E%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88%E3%80%8F%E3%81%A7%E3%82%B5%E3%83%9C%E3%82%8A%E3%82%92%E9%98%B2%E6%AD%A2%E3%81%99%E3%82%8B/" class="image is-7by1">
-            <img class="thumbnail" src="https://user-images.githubusercontent.com/41946222/84595264-d083a200-ae91-11ea-9d57-a9b0a6e0ac4b.png" alt="iPhone/iPadのRPAツール『ショートカット』でサボりを防止する">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-04-08T15:28:09.000Z">2020-04-09</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Tool-Tips/RPA/">RPA</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    8分 read (About 1248 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/iPhone-iPad%E3%81%AERPA%E3%83%84%E3%83%BC%E3%83%AB%E3%80%8E%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88%E3%80%8F%E3%81%A7%E3%82%B5%E3%83%9C%E3%82%8A%E3%82%92%E9%98%B2%E6%AD%A2%E3%81%99%E3%82%8B/">iPhone/iPadのRPAツール『ショートカット』でサボりを防止する</a>
-            
-        </h1>
-        <div class="content">
-            <p>サボりを防止するために、勉強と関係の無いアプリを開いたら自動的に叱られるようにしてみました。<br>ネタ記事ですが、Appleのショートカットアプリはかなり応用が効く便利ツールなので覚えておいて損はないです。  </p>
-<ul>
-<li>海外版松岡修造として著名なシャイア・ラブーフさんに叱られます</li>
-</ul>
-<div class="video-container"><iframe src="https://www.youtube.com/embed/mW6S8-mofXE" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#基礎知識">基礎知識</a></li>
-<li><a href="#手順">手順</a></li>
-<li><a href="#まとめ応用例">まとめ/応用例</a></li>
-<li><a href="#it界隈の方向けの応用例">IT界隈の方向けの応用例</a></li>
-<li><a href="#関連記事">関連記事</a></li>
-</ul>
-<!-- tocstop -->
-
-<h2><span id="基礎知識">基礎知識</span></h2><ul>
-<li><p>RPA (Robotic Process Automation)</p>
-<ul>
-<li>定型的な事務作業をSoftware型のロボットが自動化する概念<ul>
-<li>昨今の働き方改革ブームの文脈でバズワードになりがち</li>
-</ul>
-</li>
-<li>直感的に利用可能なサービスが沢山出ているので、使えないとまずいです</li>
-</ul>
-</li>
-<li><p>ショートカット</p>
-<ul>
-<li><p>Apple純正のRPAアプリ</p>
-<ul>
-<li><p>このアイコンのAppです</p>
-<div style="text-align:center;">
-<img src="https://user-images.githubusercontent.com/41946222/78804246-e0e35080-79fa-11ea-82a5-5621aaefd7a5.png" height="180px" width="200px">
-</div>
-</li>
-</ul>
-</li>
-<li><p>導入の手間が無い</p>
-<ul>
-<li>iPhoneやiPadなら元から入っているため</li>
-<li>特に課金要素は無いので利用しないのはもったいないです</li>
-</ul>
-</li>
-<li><p>RPA入門者向け</p>
-<ul>
-<li>これを使えない人が仕事でPC用のRPAツールを使うのは無理です<ul>
-<li>直感的に使えるショートカットで慣れておきましょう</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Siriからも実行可能</p>
-<ul>
-<li>できる幅が広いので、使いこなせば大抵の作業を一言で完了できます</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2><span id="手順">手順</span></h2><ol>
-<li><p>ショートカットアプリを開く</p>
-</li>
-<li><p>画面下部の”オートメーション”を選択</p>
-</li>
-<li><p>画面右上の＋マークを選択</p>
-<ul>
-<li>”個人用オートメーションを作成”を戦t買う</li>
-</ul>
-</li>
-<li><p>”ショートカットを作成”を選択</p>
-<ul>
-<li>ここから以下のように設定します<ul>
-<li>トリガー<ul>
-<li>”Appを開く”</li>
-</ul>
-</li>
-<li>アクション<ul>
-<li>URLを開く</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>下にスワイプして”Appを開く”を選択</p>
-</li>
-<li><p>“Appを選択”画面で作業を邪魔するアプリを選択</p>
-<ul>
-<li>今回はTwitterを登録してみます</li>
-</ul>
-</li>
-<li><p>次へ</p>
-<ul>
-<li>アクションの設定画面に飛びます</li>
-<li>”アクションを追加”を選択</li>
-</ul>
-</li>
-<li><p>”WEB” ⇒ ”URLを開く” を選択</p>
-</li>
-<li><p>青字の”URL”にyoutubeのURLを指定</p>
-<ul>
-<li>Do itおじさん動画のURL<ul>
-<li><a href="https://www.youtube.com/watch?v=nwW4CDGucVs">https://www.youtube.com/watch?v=nwW4CDGucVs</a></li>
-</ul>
-</li>
-<li>別の動画にも応用可能です</li>
-</ul>
-</li>
-<li><p>”実行前に尋ねる”を無効化</p>
-<ul>
-<li>完了</li>
-<li>以上で適用されます</li>
-</ul>
-</li>
-<li><p>テスト</p>
-<ul>
-<li>Twitterを開いてみましょう</li>
-<li>画面上部にオートメーションを実行と表示され、Do itおじさんの動画に強制的に飛ばされます</li>
-</ul>
-</li>
-</ol>
-<div class="video-container"><iframe src="https://www.youtube.com/embed/mW6S8-mofXE" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
-
-<ul>
-<li>解除方法<ul>
-<li>オートメーションを編集</li>
-<li>“このオートメーションを有効”の横のタブを無効化すればOK</li>
-<li>試験前にアプリをわざわざ消すより手軽に対策できます</li>
-</ul>
-</li>
-</ul>
-<h2><span id="まとめ応用例">まとめ/応用例</span></h2><ul>
-<li><p>今回は”指定したURLを開く”という最も基本的な機能を利用しました</p>
-</li>
-<li><p>ショートカットはもっと複雑なことも沢山出来るので是非試してみてください</p>
-</li>
-<li><p>例</p>
-<ul>
-<li>位置情報をTriggerとした操作<ul>
-<li>外出時に自動で予定表に入れた目的地への経路案内を表示</li>
-</ul>
-</li>
-<li>時間をTriggerとした操作<ul>
-<li>タイマーを設定した時間に、IoT家電を操作<ul>
-<li>カーテンの開閉</li>
-<li>電気を点灯</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2><span id="it界隈の方向けの応用例">IT界隈の方向けの応用例</span></h2><ul>
-<li><p>最近は手軽にAPI連携を確立できるサービスがいくらでもあるので簡単に応用できます</p>
-</li>
-<li><p>例</p>
-<ul>
-<li><a href="https://ifttt.com/my_applets">IFTTT</a>との連携<ul>
-<li>This(Trigger)とThat(Action)を定めることで簡単に400種類以上のサービスとの連携を可能にするクラウドサービス<ul>
-<li>TriggerにWebhookを定めると所定のURLに対するリクエストだけで動く仕組みを作れます</li>
-</ul>
-</li>
-<li>つまり、ショートカットからIFTTTのURL宛にリクエストを送るだけで様々なサービスを動かせます</li>
-</ul>
-</li>
-<li><a href="https://knowledge.sakura.ad.jp/15940/">FaaS (Function as a Service)</a>と連携<ul>
-<li><a href="https://aws.amazon.com/jp/lambda/">AWS Lambda</a>や<a href="https://cloud.google.com/functions?hl=ja">Google Functions</a>辺りをキックして動かせば大抵のシステムと連携可能です</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2><span id="関連記事">関連記事</span></h2><ul>
-<li><a href="./無料RPA-Windows-Power-Automate-インストール-Webの自動操作/">[無料RPA] Windows Power Automate インストール~Webの自動操作</a></li>
-<li><a href="./iPad-Pro%E3%81%A7WEB-AP%E9%96%8B%E7%99%BA/">iPad ProでWEB AP開発 &amp; RPA</a><ul>
-<li>同じ要領で開発にも応用しています</li>
-</ul>
-</li>
-</ul>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -2866,6 +2783,8 @@
             <li><a class="pagination-link has-text-black-ter" href="/page/9/">9</a></li>
             
             <li><a class="pagination-link has-text-black-ter" href="/page/10/">10</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/11/">11</a></li>
             
         </ul>
     </nav>
@@ -2915,7 +2834,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            100
+                            101
                         </p>
                     </a>
                 </div>
@@ -2927,7 +2846,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            39
+                            40
                         </p>
                     </a>
                 </div>
@@ -3062,7 +2981,7 @@
                 <span class="level-item">Others</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Others/C/">
@@ -3079,6 +2998,14 @@
             </span>
             <span class="level-end">
                 <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Others/%E8%B3%87%E6%A0%BC/">
+            <span class="level-start">
+                <span class="level-item">資格</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Serverless-Application-Dev/">
@@ -3325,6 +3252,25 @@
         
         <article class="media">
             
+            <a href="/%E6%96%B0%E4%BA%BA%E3%81%8CAWS%E8%AA%8D%E5%AE%9A-SysOps-Administrator%E3%81%AB%E5%90%88%E6%A0%BC%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/116777182-1e07fe00-aaa8-11eb-8088-df57422e17b6.png" alt="新人がAWS認定 SysOps Administratorに合格するまでの学習方法詳細 (2021年)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-04-01T06:38:38.000Z">2021-04-01</time></div>
+                    <a href="/%E6%96%B0%E4%BA%BA%E3%81%8CAWS%E8%AA%8D%E5%AE%9A-SysOps-Administrator%E3%81%AB%E5%90%88%E6%A0%BC%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="title has-link-black-ter is-size-6 has-text-weight-normal">新人がAWS認定 SysOps Administratorに合格するまでの学習方法詳細 (2021年)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Others/">Others</a> / <a class="has-link-grey -link" href="/categories/Others/%E8%B3%87%E6%A0%BC/">資格</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/AWS-PJ%E6%AF%8E%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88%E7%AE%A1%E7%90%86%E3%81%BE%E3%81%A8%E3%82%81-Cost-Explorer-Cost-Anomaly-Detection-Budgets-%E3%82%BF%E3%82%B0%E4%BB%98%E3%81%91%E3%83%AB%E3%83%BC%E3%83%AB/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/112600566-b92c0900-8e54-11eb-89a7-69e5663c4651.png" alt="[AWS] PJ毎のコスト管理まとめ(Cost Explorer/Cost Anomaly Detection/Budgets/タグ付けルール)">
@@ -3380,25 +3326,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/%E7%84%A1%E6%96%99RPA-Windows-Power-Automate-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-Web%E3%81%AE%E8%87%AA%E5%8B%95%E6%93%8D%E4%BD%9C/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/109756485-62ebf180-7c2b-11eb-9cc7-2c8fa30b014c.png" alt="[無料RPA] Windows Power Automate Desktop インストール~Webの自動操作方法">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-03-03T06:35:16.000Z">2021-03-03</time></div>
-                    <a href="/%E7%84%A1%E6%96%99RPA-Windows-Power-Automate-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-Web%E3%81%AE%E8%87%AA%E5%8B%95%E6%93%8D%E4%BD%9C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[無料RPA] Windows Power Automate Desktop インストール~Webの自動操作方法</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/RPA/">RPA</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -3416,7 +3343,7 @@
                     <span class="level-item">四月 2021</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -3621,7 +3548,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/AWS/">
                         <span class="tag">AWS</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 
@@ -4536,6 +4463,25 @@
         
         <article class="media">
             
+            <a href="/%E6%96%B0%E4%BA%BA%E3%81%8CAWS%E8%AA%8D%E5%AE%9A-SysOps-Administrator%E3%81%AB%E5%90%88%E6%A0%BC%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/116777182-1e07fe00-aaa8-11eb-8088-df57422e17b6.png" alt="新人がAWS認定 SysOps Administratorに合格するまでの学習方法詳細 (2021年)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-04-01T06:38:38.000Z">2021-04-01</time></div>
+                    <a href="/%E6%96%B0%E4%BA%BA%E3%81%8CAWS%E8%AA%8D%E5%AE%9A-SysOps-Administrator%E3%81%AB%E5%90%88%E6%A0%BC%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="title has-link-black-ter is-size-6 has-text-weight-normal">新人がAWS認定 SysOps Administratorに合格するまでの学習方法詳細 (2021年)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Others/">Others</a> / <a class="has-link-grey -link" href="/categories/Others/%E8%B3%87%E6%A0%BC/">資格</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/AWS-PJ%E6%AF%8E%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88%E7%AE%A1%E7%90%86%E3%81%BE%E3%81%A8%E3%82%81-Cost-Explorer-Cost-Anomaly-Detection-Budgets-%E3%82%BF%E3%82%B0%E4%BB%98%E3%81%91%E3%83%AB%E3%83%BC%E3%83%AB/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/112600566-b92c0900-8e54-11eb-89a7-69e5663c4651.png" alt="[AWS] PJ毎のコスト管理まとめ(Cost Explorer/Cost Anomaly Detection/Budgets/タグ付けルール)">
@@ -4591,25 +4537,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/%E7%84%A1%E6%96%99RPA-Windows-Power-Automate-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-Web%E3%81%AE%E8%87%AA%E5%8B%95%E6%93%8D%E4%BD%9C/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/109756485-62ebf180-7c2b-11eb-9cc7-2c8fa30b014c.png" alt="[無料RPA] Windows Power Automate Desktop インストール~Webの自動操作方法">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-03-03T06:35:16.000Z">2021-03-03</time></div>
-                    <a href="/%E7%84%A1%E6%96%99RPA-Windows-Power-Automate-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-Web%E3%81%AE%E8%87%AA%E5%8B%95%E6%93%8D%E4%BD%9C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[無料RPA] Windows Power Automate Desktop インストール~Webの自動操作方法</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/RPA/">RPA</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -4627,7 +4554,7 @@
                     <span class="level-item">四月 2021</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -4832,7 +4759,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/AWS/">
                         <span class="tag">AWS</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 

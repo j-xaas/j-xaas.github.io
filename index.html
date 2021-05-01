@@ -815,6 +815,345 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/%E6%96%B0%E4%BA%BA%E3%81%8CAWS%E8%AA%8D%E5%AE%9A-SysOps-Administrator%E3%81%AB%E5%90%88%E6%A0%BC%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="image is-7by1">
+            <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/116777182-1e07fe00-aaa8-11eb-8088-df57422e17b6.png" alt="新人がAWS認定 SysOps Administratorに合格するまでの学習方法詳細 (2021年)">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2021-04-01T06:38:38.000Z">2021-04-01</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Others/">Others</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Others/%E8%B3%87%E6%A0%BC/">資格</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    26分 read (About 3878 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/%E6%96%B0%E4%BA%BA%E3%81%8CAWS%E8%AA%8D%E5%AE%9A-SysOps-Administrator%E3%81%AB%E5%90%88%E6%A0%BC%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/">新人がAWS認定 SysOps Administratorに合格するまでの学習方法詳細 (2021年)</a>
+            
+        </h1>
+        <div class="content">
+            <ul>
+<li>AWS認定 SysOps Administrator(SOA)の合格体験記</li>
+<li>SAA(Solution Architect)は一度もAWSを触らず<a href="https://amzn.to/2PInGNo">黒本</a>と<a href="https://aws.koiwaclub.com/">問題集</a>だけで合格できたが、SysOpsは専用の教材も無く、格段に難しかったので、学習方法やレベル感について詳細をまとめておきます</li>
+</ul>
+<!--toc-->
+
+<h2><span id="aws認定-sysops-administrator-概要">AWS認定 SysOps Administrator 概要</span></h2><p><img src="https://user-images.githubusercontent.com/68212997/116777182-1e07fe00-aaa8-11eb-8088-df57422e17b6.png" alt="AWS認定"></p>
+<ul>
+<li><p><a href="https://aws.amazon.com/jp/certification/certified-sysops-admin-associate/">AWS 認定 SysOps アドミニストレーター – アソシエイト</a></p>
+<ul>
+<li>AWSアソシエイト資格三種の一つ</li>
+<li>AWS でのデプロイ、管理、運用に関しての問題が出題される<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">認定によって検証される能力</span><br><span class="line">・スケーラブルで、高可用性および高耐障害性を備えたシステムを AWS でデプロイ、管理、運用する</span><br><span class="line">・AWS との間のデータフローを実装および制御する</span><br><span class="line">・コンピューティング、データ、セキュリティ要件に基づく適切な AWS のサービスを選択する</span><br><span class="line">・AWS 運用のベストプラクティスの適切な使用方法を識別する</span><br><span class="line">・AWS の使用コストを予測し、運用コストコントロールメカニズムを識別する</span><br><span class="line">オンプレミスワークロードを AWS に移行する</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><code>SAA(Solution Architect Associate)の次</code>にとる資格としておすすめ</p>
+</li>
+<li><p>SAAと比較してかなり実用的</p>
+<ul>
+<li>SAAは”AWSが得意”ではなく、”最低限の知識があります”程度のレベル感だが、SysOpsを持っていれば、組織内のAWSアカウントの管理や運用中のサービスの運用監視周りの設計をリードすることができる</li>
+</ul>
+</li>
+<li><p>上位資格に挑戦する前のステップになる</p>
+<ul>
+<li>AWS DevOps Professional合取得にはDeveloperの内容よりも、SysOpsの細かい内容の方が障壁になる</li>
+<li>SAP(Solution Architect Professional)はSysOpsほど細かくでないが、運用周りの細かい知識を先に固めておくと手堅く点数を稼げる</li>
+<li>DeveloperとSysOpsのどちらを先に取るべきかは実務経験にもよるが、SysOpsの方が比較的簡単</li>
+</ul>
+</li>
+</ul>
+<h3><span id="難易度">難易度</span></h3><ul>
+<li><p>SAA取得済みでProfessionalレベルに挑戦する前に受験すると丁度良い</p>
+</li>
+<li><p>SAA(AWS Solution Architect)と比較して遥かに難しく、<code>出題内容が細かい</code></p>
+<ul>
+<li>SAAは<a href="https://amzn.to/2PInGNo">黒本</a>と<a href="https://aws.koiwaclub.com/">問題集サイト</a>を1, 2ヶ月集中して取り組んだらAWSを触ることなく余裕を持って合格できたが、SysOpsは厳しかった</li>
+</ul>
+</li>
+<li><p>AWSのサービス全般についての一般的な知識があっても、<code>２択までしか絞れない</code>ことが多い</p>
+<ul>
+<li>実際に手を動かした経験のあるサービスのみ確実に答えることができるレベル</li>
+<li>問題集サイトの問題を覚えるのではなく、<code>説明まで読み込んで深く理解しなければ歯が立たない</code></li>
+</ul>
+</li>
+<li><p>SysOpsは<code>完全に机上の学習のみではハードになる</code></p>
+<ul>
+<li>少なくともCloudFormationと運用監視関係のサービスは、実務で利用する機会が無くとも、自分で触ってみた方が良い</li>
+<li>利用したことの無いサービス(KMS, Systems Manager, RDS)も沢山あったが合格できた（経験があるほど難易度が下がる程度）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2><span id="合格までの道のり">合格までの道のり</span></h2><h3><span id="0-先にsaaaws-solution-architectを取得">0. 先にSAA(AWS Solution Architect)を取得</span></h3><ul>
+<li><p>新卒配属三ヶ月程度で、AWSを一度も触ることなく受験</p>
+<ul>
+<li>SAA取得後に実務でAWSを触り始めた</li>
+</ul>
+</li>
+<li><p>運用を専門的に極めたいという特殊な希望がなければ、<code>SysOpsの前に必ずSAAを取得すべき</code></p>
+</li>
+</ul>
+<h3><span id="1-aws公式の研修を受講">1. AWS公式の研修を受講</span></h3><p><img src="https://user-images.githubusercontent.com/68212997/116775773-bf3e8680-aa9f-11eb-8405-e64a6e1c86fe.png" alt="Systems Operations on AWS"></p>
+<ul>
+<li><p><a href="https://www.aws.training/SessionSearch?pageNumber=1&courseId=10020">Systems Operations on AWS</a></p>
+<ul>
+<li>３日間の講義</li>
+<li>AWSのSolution Architectが講師を務めてくれ、質問も沢山できる</li>
+</ul>
+</li>
+<li><p>会社経由で無料だったため受講</p>
+<ul>
+<li>会社で受けられない場合は、最低限の実務経験があれば受けなくてもOK<ul>
+<li>個人では20万以上かかるので注意</li>
+</ul>
+</li>
+<li>CloudFormationも運用監視関連のサービスも利用したことない場合は、先にう毛ておくと理解し易い</li>
+</ul>
+</li>
+<li><p><code>実務経験が豊富な人以外は、これだけでは間違いなく受からない</code></p>
+</li>
+</ul>
+<h3><span id="2-書籍">2. 書籍</span></h3><p><a href="https://www.amazon.co.jp/AWS%E8%AA%8D%E5%AE%9A%E3%82%A2%E3%82%BD%E3%82%B7%E3%82%A8%E3%82%A4%E3%83%883%E8%B3%87%E6%A0%BC%E5%AF%BE%E7%AD%96-%E3%82%BD%E3%83%AA%E3%83%A5%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%88%E3%80%81%E3%83%87%E3%83%99%E3%83%AD%E3%83%83%E3%83%91%E3%83%BC%E3%80%81SysOps%E3%82%A2%E3%83%89%E3%83%9F%E3%83%8B%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%BF%E3%83%BC-%E5%B9%B3%E5%B1%B1-%E6%AF%85/dp/4865941991?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&dchild=1&keywords=AWS+3%E8%B3%87%E6%A0%BC&qid=1619856689&sr=8-1&linkCode=li3&tag=junjun1080c-22&linkId=bc75c0de42bbeb4b8e1fdf593590d143&language=ja_JP&ref_=as_li_ss_il" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=4865941991&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun1080c-22&language=ja_JP"></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun1080c-22&language=ja_JP&l=li3&o=9&a=4865941991" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;"></p>
+<ul>
+<li><a href="https://amzn.to/3aTooPe">AWS認定アソシエイト3資格対策 ソリューションアーキテクト、デベロッパー、SysOpsアドミニストレーター </a>を購入<ul>
+<li>SysOpsの試験対策になる日本語の書籍は上記のみ(2021時点)</li>
+<li>SysOps関連の項目のみを読んだ</li>
+<li>SAAの黒本と比較して、説明が細かく為になったのでおすすめ</li>
+<li>これを読めば、公式の研修を受講しなくても良さそう</li>
+</ul>
+</li>
+</ul>
+<h3><span id="3-実務経験">3. 実務経験</span></h3><p>試験合格には以下の経験が大きく活きた</p>
+<ul>
+<li><p>CloudFormationテンプレートの開発</p>
+<ul>
+<li><code>CFnを触った経験があると合格に大きく近づく</code></li>
+<li>業務内でAWSを使っていて、IaCを実践できていなければ、指示されていなくともCFnテンプレート化してみると、仕事での評価も知識も獲得できるのでおすすめ<ul>
+<li>0からテンプレートを作らなくとも、Former2という実機環境からテンプレートを自動生成できるツールを併用して仕上げてみる（変数化など）と力がつく（手順は以下の記事を参照）<ul>
+<li><a href="/AWS-IaC-Former2によるCloudFormation-Terraformテンプレートの自動出力方法/">[AWS/IaC] Former2によるCloudFormation/Terraformテンプレートの自動出力方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>業務内で使う機会が無ければ、個人でWEBに落ちているテンプレートを改造して試してみると良い経験になる</li>
+</ul>
+</li>
+<li><p>実際のサービスの運用</p>
+<ul>
+<li>CloudFront, S3, WAF, その他運用監視関係</li>
+<li><code>運用監視周りのサービスは実際に手を動かしてみなければ暗記だけでは厳しい</code><ul>
+<li>自分のアカウントを作って簡単に通知設定などを設定してみると良い</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="4-問題集サイト">4. 問題集サイト</span></h3><p><img src="https://user-images.githubusercontent.com/68212997/116777054-13993480-aaa7-11eb-935a-296fa0800e24.png" alt="AWS WEB問題集サイト"></p>
+<ul>
+<li>有名な<a href="https://aws.koiwaclub.com/">AWS 問題集サイト</a>を２週(SAAもここで学習)<ul>
+<li>試験対策の勉強はこれがメイン</li>
+<li>Udemyなどで学習した人もいるようだが、英語らしい。Linked in LearningのSysOpsの研修は情報が古かった</li>
+<li>1ヶ月ちょっと学習。余裕を持つなら二ヶ月必要<ul>
+<li>#88まであり、平日は一日５つ程度(各7問)のペースで取り組んだが、結構大変</li>
+</ul>
+</li>
+<li>他の人の体験記を見ていても<code>実務経験が浅い人は１周では危険</code></li>
+<li>サイトの問題は定期的に更新されているが、毎年の公式の更新直後は問題がかなり異なっていた<ul>
+<li>筆者は試験問題更新直後に一度受験し、問題集サイトと全く範囲が違い落ちてしまった…</li>
+<li>2度目の受験時はかなりの精度で出題範囲が似通っていた<ul>
+<li><code>各問題の説明まで全て読み込むことで合格レベルに達した</code></li>
+<li>SAAほど問題が似ていないので、深い理解が必要</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3><span id="5-模擬試験">5. 模擬試験</span></h3><ul>
+<li><code>模擬試験で高得点を取れていても本番の試験の方が難しいので注意</code></li>
+</ul>
+<h4><span id="模擬試験概要">模擬試験概要</span></h4><p>WEBから公式の模擬試験を受験することができる。<code>時期によっては問題集サイトとAWS認定試験の範囲が異なることもあるため、必ず受験して感触を掴んだ方が良い</code></p>
+<ul>
+<li>SOA-P01: AWS 認定 SysOps アドミニストレーター – アソシエイト模擬<ul>
+<li>費用: 2000円(税込み 2200)</li>
+<li>時間: 35分<ul>
+<li>試験開始前に「受験者行動規範」を読んで確認するため時間が 5 分含まれている</li>
+</ul>
+</li>
+<li>難易度<ul>
+<li>問題集サイト #88まで一周解説の読み込みまでやっていればほぼ全て解ける</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4><span id="申し込み手順">申し込み手順</span></h4><ul>
+<li><p>AWS認定の<a href="https://www.aws.training/certification?banner=exam-prep">認定サイト</a>から以下を申し込む</p>
+<ul>
+<li>SOA-P01    AWS Certified SysOps Administrator - Associate Practice</li>
+</ul>
+</li>
+<li><p>試験の申し込みタブ</p>
+<ul>
+<li>ピアソンVUE(or PSI)で模擬試験をスケジュールする</li>
+<li>画面下部の受験資格がある試験欄には模擬試験がないので注意 </li>
+</ul>
+</li>
+<li><p>受けたい試験を選択</p>
+<ul>
+<li>SOA-P01: AWS 認定 SysOps アドミニストレーター – アソシエイト模擬</li>
+</ul>
+</li>
+<li><p>試験言語を選択</p>
+</li>
+<li><p>試験の詳細が表示され、問題なければ次へ</p>
+</li>
+<li><p>支払情報と請求情報を入力</p>
+<ul>
+<li>バウチャーコードがあれば入力<ul>
+<li>本試験のバウチャーは会社から支給されていたが、模擬試験は自腹で払う必要があった…</li>
+</ul>
+</li>
+<li>バウチャがなければクレジット情報を入力</li>
+<li>住所は英語表記でなければ弾かれるので注意</li>
+</ul>
+</li>
+<li><p>申込事項に問題がなければ予約内容を確定</p>
+<ul>
+<li>予約されましたと表示される</li>
+</ul>
+</li>
+<li><p>この画面の試験開始ボタンを押すと模擬試験が始まる</p>
+<ul>
+<li>はじめに説明があるので、身構えなくてOK</li>
+</ul>
+</li>
+<li><p>試験終了後にE メールでスコアのリンクが送られてくる</p>
+<ul>
+<li>5分程度待つことになる</li>
+<li>認定サイトのピアソンVUE試験の管理からみれる</li>
+<li>スコアレポートの表示</li>
+</ul>
+</li>
+</ul>
+<h4><span id="問題集サイト88まで一周した後のスコア">問題集サイト#88まで一周した後のスコア</span></h4><ul>
+<li>合計スコア: 90% = (18/20)<ul>
+<li>ミスっていたのは以下のトピックのみなので復習をした<ul>
+<li>Monitoring and Reporting<ul>
+<li>モニタリングレポート 試験比重 22%</li>
+</ul>
+</li>
+<li>Security and Compliance<ul>
+<li>セキュリティとコンプライアンス 試験比重18%</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">トピックレベルのスコア:</span><br><span class="line">1.0. Monitoring and Reporting     80%</span><br><span class="line">2.0. High Availability            100%</span><br><span class="line">3.0. Deployment and Provisioning  100%</span><br><span class="line">4.0. Storage and Data Management  100%</span><br><span class="line">5.0. Security and Compliance      75%</span><br><span class="line">6.0. Networking                   100%</span><br><span class="line">7.0. Automation and Optimization  100%</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>一度目の受験では<code>模擬試験スコア 85%で余裕だと思ったが、本番で不合格となった</code><ul>
+<li>合格最低点720,スコア700であった</li>
+<li>本番の方が圧倒的に難しいので注意</li>
+</ul>
+</li>
+</ul>
+<h3><span id="6-試験">6. 試験</span></h3><ul>
+<li><p>オンラインか、全国の試験センターで受験可能</p>
+<ul>
+<li>コロナの影響で、2020からオンライン受験が可能になった</li>
+<li>オンラインの方が先に埋まってしまうので早めに予約した方が良い</li>
+</ul>
+</li>
+<li><p>一度目の受験</p>
+<ul>
+<li>AWS利用経験ほぼなし、問題集サイトに取組み（説明は読み込まず）、模擬試験を受けたら85%だったので甘くみて即受験</li>
+<li>合格点720に対して20点足らず不合格<ul>
+<li>試験問題更新直後で学習範囲がずれており、理解度も足らないため２択までしか絞れない問題が多かった</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>二度目の受験</p>
+<ul>
+<li>この間に運用監視サービスやCloudFormationを実務で経験</li>
+<li><a href="https://amzn.to/3vzBQje">書籍</a>の該当範囲を読み込み、問題集サイトを二週実施（説明まで読み込んだ）、間違えた問題は全てノートにまとめて復習も実施<ul>
+<li>間違えた問題はAWSの公式ページを読んで理解するよう努めた</li>
+</ul>
+</li>
+<li>本番の試験はかなり余裕を持って取り組めた</li>
+<li>900/1000点で合格。合格点は720なのでかなり余裕があった</li>
+</ul>
+</li>
+<li><p>合格すると認定サイトでスコアレポートとPDFの証明書を確認でき、デジタルバッジも発行可能になる</p>
+<ul>
+<li>PDFに書かれているValidation Numberは、本人確認のためによく使う機会があるので、控えておくと良い</li>
+</ul>
+</li>
+</ul>
+<h2><span id="関連記事">関連記事</span></h2><ul>
+<li><p><a href="/Angular-x-AWS-SDK-for-JavaScriptの始め方/">Angular x AWS SDK for JavaScriptの始め方</a></p>
+</li>
+<li><p><a href="/静的ホスティングサービスまとめ-Netlify-S3-Firebase-Hosting-Github-Pages/">静的ホスティングサービスまとめ(Netlify/S3/Firebase Hosting/Github Pages)</a></p>
+</li>
+<li><p><a href="/Angular-ReactiveForm-x-mat-input-一つの入力欄のエラーメッセージを出し分ける/">[Angular ReactiveForm x mat-input] 一つの入力欄のエラーメッセージを出し分ける</a></p>
+</li>
+<li><p><a href="/Angular-mat-input-バリデーションまとめ/">[Angular mat-input] バリデーションまとめ</a></p>
+</li>
+<li><p><a href="/Angular-複数のcheckboxで一つ以上のチェックを必須とするバリデーション/">[Angular] 複数のcheckboxで一つ以上のチェックを必須とするバリデーション</a></p>
+</li>
+<li><p><a href="/Angular入門-mat-inputで生成したフォームから入力値を取得-双方向データバインディング/">[Angular Material入門] mat-inputで生成したフォームから入力値を取得(双方向データバインディング)</a></p>
+</li>
+<li><p><a href="/Angular-mat-selection-listでcheckboxを表示～選択値を配列として取得/">[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得</a></p>
+</li>
+<li><p><a href="/Angular-JSONデータのファイル化と出力-クラウドから取得したデータを任意の名称で保存する/">[Angular JavaScript] JSONデータのファイル化と出力 取得したデータを任意の名称で保存するロジック (TypeScript)</a></p>
+</li>
+<li><p><a href="/Angular-JavaScript-JSONファイルの読み込み/">[Angular JavaScript] JSONファイル(複数)の読み込み</a></p>
+</li>
+<li><p><a href="/Angular-Schematics-開閉可能なサイドナビ＆ツールバーを3分で自動生成する/">[Angular Schematics] 開閉可能なサイドナビ＆ツールバーを3分で自動生成する</a></p>
+</li>
+<li><p><a href="/Angular-map-fileter-mat-checkboxを使って選択値を配列に格納するロジック/">[Angular] map() &amp; filter() &amp; mat-checkboxを使って選択値を配列に格納するロジック</a></p>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/AWS-PJ%E6%AF%8E%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88%E7%AE%A1%E7%90%86%E3%81%BE%E3%81%A8%E3%82%81-Cost-Explorer-Cost-Anomaly-Detection-Budgets-%E3%82%BF%E3%82%B0%E4%BB%98%E3%81%91%E3%83%AB%E3%83%BC%E3%83%AB/" class="image is-7by1">
             <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/112600566-b92c0900-8e54-11eb-89a7-69e5663c4651.png" alt="[AWS] PJ毎のコスト管理まとめ(Cost Explorer/Cost Anomaly Detection/Budgets/タグ付けルール)">
         </a>
@@ -2286,329 +2625,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/Angular-TypeScript-JavaScript-%E9%9D%9E%E5%90%8C%E6%9C%9F%E5%87%A6%E7%90%86-%E5%BE%85%E3%81%A1%E5%90%88%E3%82%8F%E3%81%9B%E5%87%A6%E7%90%86%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81-Observable-Promise-async-await/" class="image is-7by1">
-            <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/104157486-8d40e000-542e-11eb-9c5d-786957fff2b4.png" alt="[Angular/TypeScript(JavaScript)] 非同期処理/待ち合わせ処理のまとめ (Observable/subscribe/forkJoin/Promise/async/await/then)">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2021-01-26T14:35:16.000Z">2021-01-26</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    21分 read (About 3166 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/Angular-TypeScript-JavaScript-%E9%9D%9E%E5%90%8C%E6%9C%9F%E5%87%A6%E7%90%86-%E5%BE%85%E3%81%A1%E5%90%88%E3%82%8F%E3%81%9B%E5%87%A6%E7%90%86%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81-Observable-Promise-async-await/">[Angular/TypeScript(JavaScript)] 非同期処理/待ち合わせ処理のまとめ (Observable/subscribe/forkJoin/Promise/async/await/then)</a>
-            
-        </h1>
-        <div class="content">
-            <ul>
-<li>Angular等のTypeScriptベースのフレームワークでフロントエンドを開発する際には、待ち合わせ処理が度々問題となる</li>
-<li>外部通信が基本的に非同期処理であるため、返り値を加工するにはひと手間加える必要がある</li>
-</ul>
-<!--toc-->
-
-<h2><span id="前提知識">前提知識</span></h2><h3><span id="同期非同期待ち合わせ処理とは">同期/非同期/待ち合わせ処理とは？</span></h3><p>プログラムを書く前にどれが最適化か？を判断する必要がある（書き方が変わってくる）</p>
-<ul>
-<li><p>非同期処理</p>
-<ul>
-<li>実行完了を<code>待たずに</code>次の処理を並列で開始する</li>
-<li>メリット<ul>
-<li>処理の高速化を図れる。</li>
-<li>一部の処理でエラーが出ても、他の処理は問題無く動く</li>
-<li>処理完了まで<code>ユーザーを待たせない</code></li>
-</ul>
-</li>
-<li>デメリット<ul>
-<li>返り値を使って次の処理を行いたい時に問題が発生する<br>(返り値無しの状態で次の処理を実行してしまう)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>同期処理</p>
-<ul>
-<li>処理完了まで<code>他の処理をストップ</code>する</li>
-<li>メリット<ul>
-<li>処理を順に実行できるため、プログラムを書きやすい</li>
-</ul>
-</li>
-<li>デメリット<ul>
-<li>処理完了までユーザーを待たせる事になる</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>待ち合わせ処理</p>
-<ul>
-<li><code>ある条件が満たされるまで処理を待たせる</code><ul>
-<li>ex. 返り値が戻ってくるまである処理の開始を待たせる</li>
-</ul>
-</li>
-<li><code>同期処理とイコールではない</code></li>
-<li><code>複数の処理群としてみると非同期でOKだが、個々の処理は待ち合わせて順番に実行させたいケースがある</code><ul>
-<li>ユーザーが処理の完了を待つ必要がない → 非同期でOK</li>
-<li>データ取得後に加工したい → 待ち合わせ処理が必要</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>TypeScript(JavaScript)においては、以下のような処理が非同期で実行されることを考慮する必要がある</p>
-<ul>
-<li><code>API通信</code></li>
-<li><code>データベース通信</code></li>
-<li>その他の重い処理全般</li>
-</ul>
-</li>
-</ul>
-<h3><span id="typescriptjsの待ち合わせ処理問題とは">TypeScript(JS)の待ち合わせ処理問題とは</span></h3><p>上述の非同期で動く特性から、初級者は以下の問題でハマることが多い</p>
-<ul>
-<li><p>TypeScript(JS)では、<code>プログラムが書かれた順に動くとは限らない</code></p>
-<ul>
-<li><code>基本的に非同期処理</code>で動く<ul>
-<li>非同期処理は重い処理の終了を待たずに、次の処理を進められるので、高速化という意味では有効だが、困るシーンもある</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>よくあるケース</p>
-<ul>
-<li>外部APIと通信してデータを取得する場合、その戻り値が帰ってくる前に次の処理に進んでしまう。そのため、以降の処理がデータ無しで行われてしまう</li>
-<li>正しく外部にリクエストできている筈が、データ＝undefinedと出力されてしまう<ul>
-<li>この辺りはChromeの開発モードで出力順を見ると理解し易い</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>回避策: 待ち受け処理/同期処理を実現する（返り値が来た後に次の処理を実行させるように書き換える）<ul>
-<li>書き方は色々ある<ol>
-<li>Observable, subscibeを活用して待ち合わせ処理を実現する</li>
-<li>Observable, forkJoin()を活用して待ち合わせ処理を実現する</li>
-<li>aync/awaitを利用して同期処理化する</li>
-<li>Promise, then()を活用して同期処理化する</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2><span id="observable型を使って待ち合わせ処理を実現するパターン">Observable型を使って待ち合わせ処理を実現するパターン</span></h2><ul>
-<li><p>Angularでは適したケースであれば、基本的にPromiseよりもObservableが推奨されている</p>
-<ul>
-<li><a href="https://angular.jp/guide/comparing-observables">Observable と 他の技術の比較</a></li>
-</ul>
-</li>
-<li><p>service側の返り値をobservable型に定義、component側で.subscribe()で受け取り、その中に処理を書き込む</p>
-</li>
-<li><p>ポイント</p>
-<ul>
-<li><code>Observableでも待ち合わせ処理は実現できるが、同期処理はできない</code></li>
-<li>同期処理についてはPromiseを使う</li>
-<li>ストリームを扱える</li>
-</ul>
-</li>
-</ul>
-<h3><span id="1-observable-amp-subscribe">1. Observable &amp; subscribe()</span></h3><ul>
-<li><p>Service側</p>
-<ul>
-<li>返り値をObservable型で定義</li>
-</ul>
-</li>
-<li><p>Component側</p>
-<ul>
-<li>.subscribe()で返り値を受け取る</li>
-</ul>
-</li>
-<li><p>sample.service.ts</p>
-<ul>
-<li>Observable型で返り値を返す<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">getmethod()&#123;</span><br><span class="line">    return observable &#x3D; new Observable&lt;number&gt;(observer &#x3D;&gt; &#123;</span><br><span class="line">        &#x2F;&#x2F; 外部APIとの通信処理</span><br><span class="line"></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>sample.component.ts</p>
-<ul>
-<li>書式：observable.subscribe()</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">this.sampleService.getMethod().subscribe(value &#x3D;&gt; &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 返り値を利用する処理をここに書く</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h3><span id="2-observable-amp-forkjoin">2. Observable &amp; forkJoin()</span></h3><ul>
-<li><p>forkJoin()を活用すると、<code>Observableの全ての処理の完了を待って次の処理を実行できる</code></p>
-<ul>
-<li>ユースケース<ul>
-<li>複数回外部APIにリクエストを実行して、全てのデータが帰ってきてから加工</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>書式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 複数の外部リクエストを実行してobservable型で受けとる</span><br><span class="line">&#x2F;&#x2F; 配列hogehogeの中身を一つずつ引数として渡して実行する例</span><br><span class="line">const observable &#x3D; hogehoge.map(hoge &#x3D;&gt; &#123;</span><br><span class="line">    return this.sampleService.getData(hoge).pipe(catchError(e &#x3D;&gt; observableOf(&#123;&quot;error&quot;: e&#125;)))</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 待ち合わせ処理</span><br><span class="line">forkJoin(observables).subscribe( response &#x3D;&gt; &#123;</span><br><span class="line">  &#x2F;&#x2F; 以降に処理を記載</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>活用例は以下の記事に記載した</p>
-<ul>
-<li><a href="/Angular-JSONデータのファイル化と出力-クラウドから取得したデータを任意の名称で保存する/">[Angular JavaScript] JSONデータのファイル化と出力 <del>取得したデータを任意の名称で保存するロジック</del> (TypeScript)</a></li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2><span id="promise型を使って同期処理化するパターン">Promise型を使って同期処理化するパターン</span></h2><h3><span id="3-asyncawaitを活用する">3. async/awaitを活用する</span></h3><ul>
-<li><p>asyncをつけた関数の返り値はPromise型となる</p>
-</li>
-<li><p>asyncをつけた関数はawaitで待てる</p>
-</li>
-<li><p>await</p>
-<ul>
-<li>Promiseの値が取り出されるまで待つ</li>
-</ul>
-</li>
-<li><p>async</p>
-<ul>
-<li>awaitキーワードを使っている関数の頭に付ける必要がある</li>
-</ul>
-</li>
-<li><p>import必要？</p>
-</li>
-<li><p>ポイント</p>
-<ul>
-<li>同期処理化したい関数の宣言時：頭にasyncを付ける</li>
-<li>同期処理化したい関数の実行時：awaitを付ける</li>
-<li>awaitはasyncを付けた関数内でしか実行できない</li>
-</ul>
-</li>
-</ul>
-<h4><span id="serviceで外部api通信を実行-component側の変数に受け取る例">Serviceで外部API通信を実行 ⇒ Component側の変数に受け取る例</span></h4><ul>
-<li>sample.component.ts<ul>
-<li>awaitを付けた関数の処理を待つ<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let result; &#x2F;&#x2F; 返り値を受け取る変数</span><br><span class="line">  async ngOnInit() &#123;</span><br><span class="line">    &#x2F;&#x2F; Service経由で外部APIからデータを受け取る</span><br><span class="line">    this.result &#x3D; await this.sampleService.getMethod()</span><br><span class="line">    console.log(this.getData);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>sample.service.ts<ul>
-<li>関数の頭にasyncを付ける<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">async getMethod()&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h4><span id="複数の関数を順に実行する例">複数の関数を順に実行する例</span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; プログラムの大筋</span><br><span class="line">async function main() &#123;</span><br><span class="line">    const x &#x3D; await getX()</span><br><span class="line">    const y &#x3D; await getY()</span><br><span class="line">    console.log(x + y)</span><br><span class="line">&#125;</span><br><span class="line">async function getX() &#123;</span><br><span class="line">    return 1</span><br><span class="line">&#125;</span><br><span class="line">async function getY() &#123;</span><br><span class="line">    return 2</span><br><span class="line">&#125;</span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
-
-<h4><span id="アロー関数の場合はasyncをつける箇所が異なる">アロー関数の場合はasyncをつける箇所が異なる</span></h4><ul>
-<li>Angularの場合は基本的にアロー関数が推奨されているのでこの書き方も覚えた方が良い</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; functionによる関数宣言</span><br><span class="line">async function sampleFunc() &#123;</span><br><span class="line">    &#x2F;&#x2F; 処理内容</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; アロー関数による関数宣言</span><br><span class="line">const sampleFunc &#x3D; async() &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 処理内容</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3><span id="4-promise-thenを活用する">4. Promise, .then()を活用する</span></h3><ul>
-<li><p>awaitではなくthen()を使っても良い</p>
-<ul>
-<li>基本的にawaitの方がすっきり描けるので推奨はしない</li>
-</ul>
-</li>
-<li><p>async付きの関数の返り値はPromise型となる</p>
-<ul>
-<li>Promise型であればthen()関数を利用して同期処理化できる<br><a href="https://tech.playground.style/javascript/asynchronous-processing/">https://tech.playground.style/javascript/asynchronous-processing/</a></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>sample.service.ts</p>
-<ul>
-<li>Promise型で宣言<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; initiate execution</span><br><span class="line">let promise &#x3D; new Promise&lt;number&gt;((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">  &#x2F;&#x2F; Executer fn...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>sample.component.ts</p>
-<ul>
-<li>Promise型の<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">promise.then(value &#x3D;&gt; &#123;</span><br><span class="line">  &#x2F;&#x2F; handle result here</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>具体的な実装例は以下を参照ください</p>
-<ul>
-<li><a href="/Angular-x-AWS-SDK-for-JavaScript-SPAからAWSのデータ取得する際の待ち合わせ処理/">[Angular x AWS SDK for JavaScript] SPAからAWSのデータを取得する際の待ち合わせ処理(非同期処理)</a></li>
-</ul>
-</li>
-</ul>
-<h2><span id="参考">参考</span></h2><h3><span id="関連記事">関連記事</span></h3><ul>
-<li><a href="/Angular-x-AWS-SDK-for-JavaScript-SPAからAWSのデータ取得する際の待ち合わせ処理/">[Angular x AWS SDK for JavaScript] SPAからAWSのデータを取得する際の待ち合わせ処理(非同期処理)</a></li>
-<li><a href="/Angular-JSONデータのファイル化と出力-クラウドから取得したデータを任意の名称で保存する/">[Angular JavaScript] JSONデータのファイル化と出力 取得したデータを任意の名称で保存するロジック (TypeScript)</a></li>
-<li><a href="/Angular-ng-e2e-Test-証明書エラーでハマった際の回避策/">[Angular] ng e2e Test 証明書エラーでハマった際の回避策(unable to get local issuer certificate))</a></li>
-<li><a href="/Angular-複数のcheckboxで一つ以上のチェックを必須とするバリデーション/">[Angular] 複数のcheckboxで一つ以上のチェックを必須とするバリデーション</a></li>
-<li><a href="/Angular入門-mat-inputで生成したフォームから入力値を取得-双方向データバインディング/">[Angular Material入門] mat-inputで生成したフォームから入力値を取得(双方向データバインディング)</a></li>
-<li><a href="/Angular-Service入門-ロジックを切り出し、複数Componentで再利用可能にする/">[Angular Service入門] ロジックを切り出し、複数Componentで再利用可能にする</a></li>
-<li><a href="/Angular-mat-selection-listでcheckboxを表示～選択値を配列として取得/">[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得</a></li>
-<li><a href="/Angular-Schematics-開閉可能なサイドナビ＆ツールバーを3分で自動生成する/">[Angular Schematics] 開閉可能なサイドナビ＆ツールバーを3分で自動生成する</a></li>
-<li><a href="/Angular-map-fileter-mat-checkboxを使って選択値を配列に格納するロジック/">[Angular] map() &amp; filter() &amp; mat-checkboxを使って選択値を配列に格納するロジック</a></li>
-<li><a href="/Angular-JSONデータのファイル化と出力-クラウドから取得したデータを任意の名称で保存する/">[Angular JavaScript] JSONデータのファイル化と出力 <del>取得したデータを任意の名称で保存するロジック</del> (TypeScript)</a></li>
-<li><a href="/Angular-JavaScript-JSONファイルの読み込み/">[Angular JavaScript] JSONファイル(複数)の読み込み</a></li>
-<li><a href="/Angular-x-AWS-SDK-for-JavaScriptの始め方/">Angular x AWS SDK for JavaScriptの始め方</a></li>
-<li><a href="/静的ホスティングサービスまとめ-Netlify-S3-Firebase-Hosting-Github-Pages/">静的ホスティングサービスまとめ(Netlify/S3/Firebase Hosting/Github Pages)</a></li>
-<li><a href="/Angular-ReactiveForm-x-mat-input-一つの入力欄のエラーメッセージを出し分ける/">[Angular ReactiveForm x mat-input] 一つの入力欄のエラーメッセージを出し分ける</a></li>
-<li><a href="/Angular-mat-input-バリデーションまとめ/">[Angular mat-input] バリデーションまとめ</a></li>
-<li><a href="/Angular-複数のcheckboxで一つ以上のチェックを必須とするバリデーション/">[Angular] 複数のcheckboxで一つ以上のチェックを必須とするバリデーション</a></li>
-<li><a href="/Angular-mat-selection-listでcheckboxを表示～選択値を配列として取得/">[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得</a></li>
-<li><a href="/Angular-Schematics-開閉可能なサイドナビ＆ツールバーを3分で自動生成する/">[Angular Schematics] 開閉可能なサイドナビ＆ツールバーを3分で自動生成する</a></li>
-</ul>
-<h3><span id="非同期処理参考">非同期処理参考</span></h3><ul>
-<li><p><a href="https://angular.jp/guide/comparing-observables">Angular 日本語ドキュメント/Observable と 他の技術の比較</a></p>
-<ul>
-<li>ここの<a href="https://angular.jp/guide/comparing-observables">チートシート</a>が役立つ</li>
-</ul>
-</li>
-<li><p><a href="https://tech.playground.style/javascript/asynchronous-processing/">【JavaScript】非同期処理の完了をpromiseとasync/awaitで待つ方法</a></p>
-</li>
-<li><p><a href="https://qiita.com/suin/items/97041d3e0691c12f4974">Promiseの使い方、それに代わるasync/awaitの使い方</a></p>
-</li>
-<li><p><a href="https://future-architect.github.io/typescript-guide/async.html">JavaScript 非同期処理</a></p>
-<ul>
-<li>Promise/awaitの詳細について</li>
-</ul>
-</li>
-<li><p><a href="https://future-architect.github.io/typescript-guide/typescript-guide.pdf">仕事ですぐに使える TypeScript</a></p>
-<ul>
-<li>p128の”Promise の分岐と待ち合わせの制御”が参考になる</li>
-</ul>
-</li>
-<li><p><a href="https://qiita.com/eguchiryo_tg/items/35fe7d535baba544bbf2">★TypeScriptで複数の非同期処理を制御する方法</a></p>
-<ul>
-<li>ページ終盤にAngularベースのソースあり</li>
-</ul>
-</li>
-</ul>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -2627,7 +2643,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/10/">10</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/11/">11</a></li>
             
         </ul>
     </nav>
@@ -2677,7 +2693,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            100
+                            101
                         </p>
                     </a>
                 </div>
@@ -2689,7 +2705,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            39
+                            40
                         </p>
                     </a>
                 </div>
@@ -2824,7 +2840,7 @@
                 <span class="level-item">Others</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Others/C/">
@@ -2841,6 +2857,14 @@
             </span>
             <span class="level-end">
                 <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Others/%E8%B3%87%E6%A0%BC/">
+            <span class="level-start">
+                <span class="level-item">資格</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Serverless-Application-Dev/">
@@ -3087,6 +3111,25 @@
         
         <article class="media">
             
+            <a href="/%E6%96%B0%E4%BA%BA%E3%81%8CAWS%E8%AA%8D%E5%AE%9A-SysOps-Administrator%E3%81%AB%E5%90%88%E6%A0%BC%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/116777182-1e07fe00-aaa8-11eb-8088-df57422e17b6.png" alt="新人がAWS認定 SysOps Administratorに合格するまでの学習方法詳細 (2021年)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-04-01T06:38:38.000Z">2021-04-01</time></div>
+                    <a href="/%E6%96%B0%E4%BA%BA%E3%81%8CAWS%E8%AA%8D%E5%AE%9A-SysOps-Administrator%E3%81%AB%E5%90%88%E6%A0%BC%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="title has-link-black-ter is-size-6 has-text-weight-normal">新人がAWS認定 SysOps Administratorに合格するまでの学習方法詳細 (2021年)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Others/">Others</a> / <a class="has-link-grey -link" href="/categories/Others/%E8%B3%87%E6%A0%BC/">資格</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/AWS-PJ%E6%AF%8E%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88%E7%AE%A1%E7%90%86%E3%81%BE%E3%81%A8%E3%82%81-Cost-Explorer-Cost-Anomaly-Detection-Budgets-%E3%82%BF%E3%82%B0%E4%BB%98%E3%81%91%E3%83%AB%E3%83%BC%E3%83%AB/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/112600566-b92c0900-8e54-11eb-89a7-69e5663c4651.png" alt="[AWS] PJ毎のコスト管理まとめ(Cost Explorer/Cost Anomaly Detection/Budgets/タグ付けルール)">
@@ -3142,25 +3185,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/%E7%84%A1%E6%96%99RPA-Windows-Power-Automate-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-Web%E3%81%AE%E8%87%AA%E5%8B%95%E6%93%8D%E4%BD%9C/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/109756485-62ebf180-7c2b-11eb-9cc7-2c8fa30b014c.png" alt="[無料RPA] Windows Power Automate Desktop インストール~Webの自動操作方法">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-03-03T06:35:16.000Z">2021-03-03</time></div>
-                    <a href="/%E7%84%A1%E6%96%99RPA-Windows-Power-Automate-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-Web%E3%81%AE%E8%87%AA%E5%8B%95%E6%93%8D%E4%BD%9C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[無料RPA] Windows Power Automate Desktop インストール~Webの自動操作方法</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/RPA/">RPA</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -3178,7 +3202,7 @@
                     <span class="level-item">四月 2021</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -3383,7 +3407,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/AWS/">
                         <span class="tag">AWS</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 
@@ -4298,6 +4322,25 @@
         
         <article class="media">
             
+            <a href="/%E6%96%B0%E4%BA%BA%E3%81%8CAWS%E8%AA%8D%E5%AE%9A-SysOps-Administrator%E3%81%AB%E5%90%88%E6%A0%BC%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/116777182-1e07fe00-aaa8-11eb-8088-df57422e17b6.png" alt="新人がAWS認定 SysOps Administratorに合格するまでの学習方法詳細 (2021年)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-04-01T06:38:38.000Z">2021-04-01</time></div>
+                    <a href="/%E6%96%B0%E4%BA%BA%E3%81%8CAWS%E8%AA%8D%E5%AE%9A-SysOps-Administrator%E3%81%AB%E5%90%88%E6%A0%BC%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="title has-link-black-ter is-size-6 has-text-weight-normal">新人がAWS認定 SysOps Administratorに合格するまでの学習方法詳細 (2021年)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Others/">Others</a> / <a class="has-link-grey -link" href="/categories/Others/%E8%B3%87%E6%A0%BC/">資格</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/AWS-PJ%E6%AF%8E%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88%E7%AE%A1%E7%90%86%E3%81%BE%E3%81%A8%E3%82%81-Cost-Explorer-Cost-Anomaly-Detection-Budgets-%E3%82%BF%E3%82%B0%E4%BB%98%E3%81%91%E3%83%AB%E3%83%BC%E3%83%AB/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/112600566-b92c0900-8e54-11eb-89a7-69e5663c4651.png" alt="[AWS] PJ毎のコスト管理まとめ(Cost Explorer/Cost Anomaly Detection/Budgets/タグ付けルール)">
@@ -4353,25 +4396,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/%E7%84%A1%E6%96%99RPA-Windows-Power-Automate-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-Web%E3%81%AE%E8%87%AA%E5%8B%95%E6%93%8D%E4%BD%9C/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/109756485-62ebf180-7c2b-11eb-9cc7-2c8fa30b014c.png" alt="[無料RPA] Windows Power Automate Desktop インストール~Webの自動操作方法">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-03-03T06:35:16.000Z">2021-03-03</time></div>
-                    <a href="/%E7%84%A1%E6%96%99RPA-Windows-Power-Automate-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-Web%E3%81%AE%E8%87%AA%E5%8B%95%E6%93%8D%E4%BD%9C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[無料RPA] Windows Power Automate Desktop インストール~Webの自動操作方法</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/RPA/">RPA</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -4389,7 +4413,7 @@
                     <span class="level-item">四月 2021</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -4594,7 +4618,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/AWS/">
                         <span class="tag">AWS</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 

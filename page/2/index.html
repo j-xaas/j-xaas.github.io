@@ -154,6 +154,329 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/Angular-TypeScript-JavaScript-%E9%9D%9E%E5%90%8C%E6%9C%9F%E5%87%A6%E7%90%86-%E5%BE%85%E3%81%A1%E5%90%88%E3%82%8F%E3%81%9B%E5%87%A6%E7%90%86%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81-Observable-Promise-async-await/" class="image is-7by1">
+            <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/104157486-8d40e000-542e-11eb-9c5d-786957fff2b4.png" alt="[Angular/TypeScript(JavaScript)] 非同期処理/待ち合わせ処理のまとめ (Observable/subscribe/forkJoin/Promise/async/await/then)">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2021-01-26T14:35:16.000Z">2021-01-26</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/SPA-Angular/">SPA (Angular)</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    21分 read (About 3166 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/Angular-TypeScript-JavaScript-%E9%9D%9E%E5%90%8C%E6%9C%9F%E5%87%A6%E7%90%86-%E5%BE%85%E3%81%A1%E5%90%88%E3%82%8F%E3%81%9B%E5%87%A6%E7%90%86%E3%81%AE%E3%81%BE%E3%81%A8%E3%82%81-Observable-Promise-async-await/">[Angular/TypeScript(JavaScript)] 非同期処理/待ち合わせ処理のまとめ (Observable/subscribe/forkJoin/Promise/async/await/then)</a>
+            
+        </h1>
+        <div class="content">
+            <ul>
+<li>Angular等のTypeScriptベースのフレームワークでフロントエンドを開発する際には、待ち合わせ処理が度々問題となる</li>
+<li>外部通信が基本的に非同期処理であるため、返り値を加工するにはひと手間加える必要がある</li>
+</ul>
+<!--toc-->
+
+<h2><span id="前提知識">前提知識</span></h2><h3><span id="同期非同期待ち合わせ処理とは">同期/非同期/待ち合わせ処理とは？</span></h3><p>プログラムを書く前にどれが最適化か？を判断する必要がある（書き方が変わってくる）</p>
+<ul>
+<li><p>非同期処理</p>
+<ul>
+<li>実行完了を<code>待たずに</code>次の処理を並列で開始する</li>
+<li>メリット<ul>
+<li>処理の高速化を図れる。</li>
+<li>一部の処理でエラーが出ても、他の処理は問題無く動く</li>
+<li>処理完了まで<code>ユーザーを待たせない</code></li>
+</ul>
+</li>
+<li>デメリット<ul>
+<li>返り値を使って次の処理を行いたい時に問題が発生する<br>(返り値無しの状態で次の処理を実行してしまう)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>同期処理</p>
+<ul>
+<li>処理完了まで<code>他の処理をストップ</code>する</li>
+<li>メリット<ul>
+<li>処理を順に実行できるため、プログラムを書きやすい</li>
+</ul>
+</li>
+<li>デメリット<ul>
+<li>処理完了までユーザーを待たせる事になる</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>待ち合わせ処理</p>
+<ul>
+<li><code>ある条件が満たされるまで処理を待たせる</code><ul>
+<li>ex. 返り値が戻ってくるまである処理の開始を待たせる</li>
+</ul>
+</li>
+<li><code>同期処理とイコールではない</code></li>
+<li><code>複数の処理群としてみると非同期でOKだが、個々の処理は待ち合わせて順番に実行させたいケースがある</code><ul>
+<li>ユーザーが処理の完了を待つ必要がない → 非同期でOK</li>
+<li>データ取得後に加工したい → 待ち合わせ処理が必要</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>TypeScript(JavaScript)においては、以下のような処理が非同期で実行されることを考慮する必要がある</p>
+<ul>
+<li><code>API通信</code></li>
+<li><code>データベース通信</code></li>
+<li>その他の重い処理全般</li>
+</ul>
+</li>
+</ul>
+<h3><span id="typescriptjsの待ち合わせ処理問題とは">TypeScript(JS)の待ち合わせ処理問題とは</span></h3><p>上述の非同期で動く特性から、初級者は以下の問題でハマることが多い</p>
+<ul>
+<li><p>TypeScript(JS)では、<code>プログラムが書かれた順に動くとは限らない</code></p>
+<ul>
+<li><code>基本的に非同期処理</code>で動く<ul>
+<li>非同期処理は重い処理の終了を待たずに、次の処理を進められるので、高速化という意味では有効だが、困るシーンもある</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>よくあるケース</p>
+<ul>
+<li>外部APIと通信してデータを取得する場合、その戻り値が帰ってくる前に次の処理に進んでしまう。そのため、以降の処理がデータ無しで行われてしまう</li>
+<li>正しく外部にリクエストできている筈が、データ＝undefinedと出力されてしまう<ul>
+<li>この辺りはChromeの開発モードで出力順を見ると理解し易い</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>回避策: 待ち受け処理/同期処理を実現する（返り値が来た後に次の処理を実行させるように書き換える）<ul>
+<li>書き方は色々ある<ol>
+<li>Observable, subscibeを活用して待ち合わせ処理を実現する</li>
+<li>Observable, forkJoin()を活用して待ち合わせ処理を実現する</li>
+<li>aync/awaitを利用して同期処理化する</li>
+<li>Promise, then()を活用して同期処理化する</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2><span id="observable型を使って待ち合わせ処理を実現するパターン">Observable型を使って待ち合わせ処理を実現するパターン</span></h2><ul>
+<li><p>Angularでは適したケースであれば、基本的にPromiseよりもObservableが推奨されている</p>
+<ul>
+<li><a href="https://angular.jp/guide/comparing-observables">Observable と 他の技術の比較</a></li>
+</ul>
+</li>
+<li><p>service側の返り値をobservable型に定義、component側で.subscribe()で受け取り、その中に処理を書き込む</p>
+</li>
+<li><p>ポイント</p>
+<ul>
+<li><code>Observableでも待ち合わせ処理は実現できるが、同期処理はできない</code></li>
+<li>同期処理についてはPromiseを使う</li>
+<li>ストリームを扱える</li>
+</ul>
+</li>
+</ul>
+<h3><span id="1-observable-amp-subscribe">1. Observable &amp; subscribe()</span></h3><ul>
+<li><p>Service側</p>
+<ul>
+<li>返り値をObservable型で定義</li>
+</ul>
+</li>
+<li><p>Component側</p>
+<ul>
+<li>.subscribe()で返り値を受け取る</li>
+</ul>
+</li>
+<li><p>sample.service.ts</p>
+<ul>
+<li>Observable型で返り値を返す<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">getmethod()&#123;</span><br><span class="line">    return observable &#x3D; new Observable&lt;number&gt;(observer &#x3D;&gt; &#123;</span><br><span class="line">        &#x2F;&#x2F; 外部APIとの通信処理</span><br><span class="line"></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>sample.component.ts</p>
+<ul>
+<li>書式：observable.subscribe()</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">this.sampleService.getMethod().subscribe(value &#x3D;&gt; &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; 返り値を利用する処理をここに書く</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3><span id="2-observable-amp-forkjoin">2. Observable &amp; forkJoin()</span></h3><ul>
+<li><p>forkJoin()を活用すると、<code>Observableの全ての処理の完了を待って次の処理を実行できる</code></p>
+<ul>
+<li>ユースケース<ul>
+<li>複数回外部APIにリクエストを実行して、全てのデータが帰ってきてから加工</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>書式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 複数の外部リクエストを実行してobservable型で受けとる</span><br><span class="line">&#x2F;&#x2F; 配列hogehogeの中身を一つずつ引数として渡して実行する例</span><br><span class="line">const observable &#x3D; hogehoge.map(hoge &#x3D;&gt; &#123;</span><br><span class="line">    return this.sampleService.getData(hoge).pipe(catchError(e &#x3D;&gt; observableOf(&#123;&quot;error&quot;: e&#125;)))</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 待ち合わせ処理</span><br><span class="line">forkJoin(observables).subscribe( response &#x3D;&gt; &#123;</span><br><span class="line">  &#x2F;&#x2F; 以降に処理を記載</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>活用例は以下の記事に記載した</p>
+<ul>
+<li><a href="/Angular-JSONデータのファイル化と出力-クラウドから取得したデータを任意の名称で保存する/">[Angular JavaScript] JSONデータのファイル化と出力 <del>取得したデータを任意の名称で保存するロジック</del> (TypeScript)</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2><span id="promise型を使って同期処理化するパターン">Promise型を使って同期処理化するパターン</span></h2><h3><span id="3-asyncawaitを活用する">3. async/awaitを活用する</span></h3><ul>
+<li><p>asyncをつけた関数の返り値はPromise型となる</p>
+</li>
+<li><p>asyncをつけた関数はawaitで待てる</p>
+</li>
+<li><p>await</p>
+<ul>
+<li>Promiseの値が取り出されるまで待つ</li>
+</ul>
+</li>
+<li><p>async</p>
+<ul>
+<li>awaitキーワードを使っている関数の頭に付ける必要がある</li>
+</ul>
+</li>
+<li><p>import必要？</p>
+</li>
+<li><p>ポイント</p>
+<ul>
+<li>同期処理化したい関数の宣言時：頭にasyncを付ける</li>
+<li>同期処理化したい関数の実行時：awaitを付ける</li>
+<li>awaitはasyncを付けた関数内でしか実行できない</li>
+</ul>
+</li>
+</ul>
+<h4><span id="serviceで外部api通信を実行-component側の変数に受け取る例">Serviceで外部API通信を実行 ⇒ Component側の変数に受け取る例</span></h4><ul>
+<li>sample.component.ts<ul>
+<li>awaitを付けた関数の処理を待つ<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let result; &#x2F;&#x2F; 返り値を受け取る変数</span><br><span class="line">  async ngOnInit() &#123;</span><br><span class="line">    &#x2F;&#x2F; Service経由で外部APIからデータを受け取る</span><br><span class="line">    this.result &#x3D; await this.sampleService.getMethod()</span><br><span class="line">    console.log(this.getData);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>sample.service.ts<ul>
+<li>関数の頭にasyncを付ける<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">async getMethod()&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="複数の関数を順に実行する例">複数の関数を順に実行する例</span></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; プログラムの大筋</span><br><span class="line">async function main() &#123;</span><br><span class="line">    const x &#x3D; await getX()</span><br><span class="line">    const y &#x3D; await getY()</span><br><span class="line">    console.log(x + y)</span><br><span class="line">&#125;</span><br><span class="line">async function getX() &#123;</span><br><span class="line">    return 1</span><br><span class="line">&#125;</span><br><span class="line">async function getY() &#123;</span><br><span class="line">    return 2</span><br><span class="line">&#125;</span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
+
+<h4><span id="アロー関数の場合はasyncをつける箇所が異なる">アロー関数の場合はasyncをつける箇所が異なる</span></h4><ul>
+<li>Angularの場合は基本的にアロー関数が推奨されているのでこの書き方も覚えた方が良い</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; functionによる関数宣言</span><br><span class="line">async function sampleFunc() &#123;</span><br><span class="line">    &#x2F;&#x2F; 処理内容</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; アロー関数による関数宣言</span><br><span class="line">const sampleFunc &#x3D; async() &#x3D;&gt; &#123;</span><br><span class="line">    &#x2F;&#x2F; 処理内容</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3><span id="4-promise-thenを活用する">4. Promise, .then()を活用する</span></h3><ul>
+<li><p>awaitではなくthen()を使っても良い</p>
+<ul>
+<li>基本的にawaitの方がすっきり描けるので推奨はしない</li>
+</ul>
+</li>
+<li><p>async付きの関数の返り値はPromise型となる</p>
+<ul>
+<li>Promise型であればthen()関数を利用して同期処理化できる<br><a href="https://tech.playground.style/javascript/asynchronous-processing/">https://tech.playground.style/javascript/asynchronous-processing/</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>sample.service.ts</p>
+<ul>
+<li>Promise型で宣言<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; initiate execution</span><br><span class="line">let promise &#x3D; new Promise&lt;number&gt;((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">  &#x2F;&#x2F; Executer fn...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>sample.component.ts</p>
+<ul>
+<li>Promise型の<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">promise.then(value &#x3D;&gt; &#123;</span><br><span class="line">  &#x2F;&#x2F; handle result here</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>具体的な実装例は以下を参照ください</p>
+<ul>
+<li><a href="/Angular-x-AWS-SDK-for-JavaScript-SPAからAWSのデータ取得する際の待ち合わせ処理/">[Angular x AWS SDK for JavaScript] SPAからAWSのデータを取得する際の待ち合わせ処理(非同期処理)</a></li>
+</ul>
+</li>
+</ul>
+<h2><span id="参考">参考</span></h2><h3><span id="関連記事">関連記事</span></h3><ul>
+<li><a href="/Angular-x-AWS-SDK-for-JavaScript-SPAからAWSのデータ取得する際の待ち合わせ処理/">[Angular x AWS SDK for JavaScript] SPAからAWSのデータを取得する際の待ち合わせ処理(非同期処理)</a></li>
+<li><a href="/Angular-JSONデータのファイル化と出力-クラウドから取得したデータを任意の名称で保存する/">[Angular JavaScript] JSONデータのファイル化と出力 取得したデータを任意の名称で保存するロジック (TypeScript)</a></li>
+<li><a href="/Angular-ng-e2e-Test-証明書エラーでハマった際の回避策/">[Angular] ng e2e Test 証明書エラーでハマった際の回避策(unable to get local issuer certificate))</a></li>
+<li><a href="/Angular-複数のcheckboxで一つ以上のチェックを必須とするバリデーション/">[Angular] 複数のcheckboxで一つ以上のチェックを必須とするバリデーション</a></li>
+<li><a href="/Angular入門-mat-inputで生成したフォームから入力値を取得-双方向データバインディング/">[Angular Material入門] mat-inputで生成したフォームから入力値を取得(双方向データバインディング)</a></li>
+<li><a href="/Angular-Service入門-ロジックを切り出し、複数Componentで再利用可能にする/">[Angular Service入門] ロジックを切り出し、複数Componentで再利用可能にする</a></li>
+<li><a href="/Angular-mat-selection-listでcheckboxを表示～選択値を配列として取得/">[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得</a></li>
+<li><a href="/Angular-Schematics-開閉可能なサイドナビ＆ツールバーを3分で自動生成する/">[Angular Schematics] 開閉可能なサイドナビ＆ツールバーを3分で自動生成する</a></li>
+<li><a href="/Angular-map-fileter-mat-checkboxを使って選択値を配列に格納するロジック/">[Angular] map() &amp; filter() &amp; mat-checkboxを使って選択値を配列に格納するロジック</a></li>
+<li><a href="/Angular-JSONデータのファイル化と出力-クラウドから取得したデータを任意の名称で保存する/">[Angular JavaScript] JSONデータのファイル化と出力 <del>取得したデータを任意の名称で保存するロジック</del> (TypeScript)</a></li>
+<li><a href="/Angular-JavaScript-JSONファイルの読み込み/">[Angular JavaScript] JSONファイル(複数)の読み込み</a></li>
+<li><a href="/Angular-x-AWS-SDK-for-JavaScriptの始め方/">Angular x AWS SDK for JavaScriptの始め方</a></li>
+<li><a href="/静的ホスティングサービスまとめ-Netlify-S3-Firebase-Hosting-Github-Pages/">静的ホスティングサービスまとめ(Netlify/S3/Firebase Hosting/Github Pages)</a></li>
+<li><a href="/Angular-ReactiveForm-x-mat-input-一つの入力欄のエラーメッセージを出し分ける/">[Angular ReactiveForm x mat-input] 一つの入力欄のエラーメッセージを出し分ける</a></li>
+<li><a href="/Angular-mat-input-バリデーションまとめ/">[Angular mat-input] バリデーションまとめ</a></li>
+<li><a href="/Angular-複数のcheckboxで一つ以上のチェックを必須とするバリデーション/">[Angular] 複数のcheckboxで一つ以上のチェックを必須とするバリデーション</a></li>
+<li><a href="/Angular-mat-selection-listでcheckboxを表示～選択値を配列として取得/">[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得</a></li>
+<li><a href="/Angular-Schematics-開閉可能なサイドナビ＆ツールバーを3分で自動生成する/">[Angular Schematics] 開閉可能なサイドナビ＆ツールバーを3分で自動生成する</a></li>
+</ul>
+<h3><span id="非同期処理参考">非同期処理参考</span></h3><ul>
+<li><p><a href="https://angular.jp/guide/comparing-observables">Angular 日本語ドキュメント/Observable と 他の技術の比較</a></p>
+<ul>
+<li>ここの<a href="https://angular.jp/guide/comparing-observables">チートシート</a>が役立つ</li>
+</ul>
+</li>
+<li><p><a href="https://tech.playground.style/javascript/asynchronous-processing/">【JavaScript】非同期処理の完了をpromiseとasync/awaitで待つ方法</a></p>
+</li>
+<li><p><a href="https://qiita.com/suin/items/97041d3e0691c12f4974">Promiseの使い方、それに代わるasync/awaitの使い方</a></p>
+</li>
+<li><p><a href="https://future-architect.github.io/typescript-guide/async.html">JavaScript 非同期処理</a></p>
+<ul>
+<li>Promise/awaitの詳細について</li>
+</ul>
+</li>
+<li><p><a href="https://future-architect.github.io/typescript-guide/typescript-guide.pdf">仕事ですぐに使える TypeScript</a></p>
+<ul>
+<li>p128の”Promise の分岐と待ち合わせの制御”が参考になる</li>
+</ul>
+</li>
+<li><p><a href="https://qiita.com/eguchiryo_tg/items/35fe7d535baba544bbf2">★TypeScriptで複数の非同期処理を制御する方法</a></p>
+<ul>
+<li>ページ終盤にAngularベースのソースあり</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/Adobe-XD%E3%81%AB%E3%82%88%E3%82%8BUI%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3-%E3%83%97%E3%83%AD%E3%83%88%E3%82%BF%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0/" class="image is-7by1">
             <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/103886405-ce7e7a80-5124-11eb-9514-7e08e019b6b2.png" alt="Adobe XDによるUIデザイン/プロトタイピング">
         </a>
@@ -2751,184 +3074,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/Popin-Aladdin-2%E3%81%AB%E3%82%B2%E3%83%BC%E3%83%A0-Switch-%E3%83%97%E3%83%AC%E3%82%B9%E3%83%86-%E7%94%BB%E9%9D%A2%E3%82%92%E6%98%A0%E3%81%99%E6%96%B9%E6%B3%95/" class="image is-7by1">
-            <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/103165932-018d5800-4861-11eb-83a0-b7d96077fd74.jpg" alt="Popin Aladdin 2にゲーム(Switch/プレステ)画面を映す方法">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-12-27T07:27:31.000Z">2020-12-27</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/SmartHome/">SmartHome</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/SmartHome/Gadget/">Gadget</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    7分 read (About 1072 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/Popin-Aladdin-2%E3%81%AB%E3%82%B2%E3%83%BC%E3%83%A0-Switch-%E3%83%97%E3%83%AC%E3%82%B9%E3%83%86-%E7%94%BB%E9%9D%A2%E3%82%92%E6%98%A0%E3%81%99%E6%96%B9%E6%B3%95/">Popin Aladdin 2にゲーム(Switch/プレステ)画面を映す方法</a>
-            
-        </h1>
-        <div class="content">
-            <p>Popin Aladdin(プロジェクター)にゲームを映してプレイするまでの備忘録</p>
-<ul>
-<li>投影するとこんな感じ</li>
-</ul>
-<div class="video-container"><iframe src="https://www.youtube.com/embed/8jdAx8B6KyU" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
-
-
-<h2><span id="やりたいこと課題">やりたいこと・課題</span></h2><ul>
-<li>やりたいこと<ul>
-<li>ゲーム画面(Switch)をPopin Aladdin 2(プロジェクター)に写して、120インチの大画面でプレイしたい</li>
-</ul>
-</li>
-<li>課題：popin AladdinにはHDMI端子が無い<ul>
-<li>他の機器との連携は無線(WiFi/Bluetooth)のみ可能</li>
-<li>HDMI接続のゲーム全般ができないと公式サイトにも書かれている</li>
-</ul>
-</li>
-</ul>
-<h2><span id="実現方法">実現方法</span></h2><ol>
-<li>Switchの映像をHD 60 S経由でMacBookに映す</li>
-<li>MacBookの画面をAirPlayでpopin Aladdinに映す</li>
-</ol>
-<p><img src="https://user-images.githubusercontent.com/68212997/103164858-d7816900-4853-11eb-9e4a-6d71a892e336.jpg" alt="Switch → Popin Aladdin2"></p>
-<ul>
-<li>キャプチャーボードという機器を利用することで、PCにSwitchの画面を映せます</li>
-<li>音声も一緒にPopin Aladdinまで送れました</li>
-</ul>
-<h2><span id="使用機器">使用機器</span></h2><ul>
-<li>Switch ＆ HDMIケーブル </li>
-<li><a href="https://amzn.to/3puQsgL">MacBook Pro</a><ul>
-<li>AirでもAirplayの機能を使えればOK</li>
-</ul>
-</li>
-<li>キャプチャーボード: <a href="https://amzn.to/2KTmrbk">Elgato HD 60S</a><ul>
-<li>元々プロのゲーム配信者などが使っている製品。遅延が非常に小さく専用アプリを入れるだけで利用できました</li>
-<li>4Kで出力したい場合は<a href="https://amzn.to/3hkN3xU">Elgato HD60 Pro</a>でもOK</li>
-</ul>
-</li>
-</ul>
-<p><a href="https://www.amazon.co.jp/Elgato-Game-Capture-HD60-1GC109901004/dp/B01DRWCOGA/ref=as_li_ss_il?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=257MWUN9KZS35&dchild=1&keywords=elgato%2Bgame%2Bcapture%2Bhd60%2Bs&qid=1609052283&sprefix=Elgato%2B%2Caps%2C268&sr=8-5&th=1&linkCode=li2&tag=junjun1080c-22&linkId=a63c0f685cbc9b18e3a9796483484da1&language=ja_JP" target="_blank"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=B01DRWCOGA&Format=_SL160_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=junjun1080c-22&language=ja_JP"></a><img src="https://ir-jp.amazon-adsystem.com/e/ir?t=junjun1080c-22&language=ja_JP&l=li2&o=9&a=B01DRWCOGA" width="1" height="1" border="0" alt style="border:none !important; margin:0px !important;"></p>
-<ul>
-<li><p><a href="https://amzn.to/3prsdQi">USB C Hub</a></p>
-<ul>
-<li>MacBookとHD60Sの接続用</li>
-</ul>
-</li>
-<li><p><a href="https://amzn.to/3nWIJri">Popin Aladdin 2</a></p>
-<ul>
-<li>1や<a href="https://amzn.to/3nSwrjI">SE(廉価版)</a>でも恐らくOK</li>
-</ul>
-</li>
-</ul>
-<h2><span id="準備-キャプチャーボード用ソフトのインストール">準備 キャプチャーボード用ソフトのインストール</span></h2><ul>
-<li><p>Elgato HD60S(キャプチャーボード)を準備</p>
-<ul>
-<li><a href="https://amzn.to/2KTmrbk">Elgato HD 60S</a></li>
-</ul>
-</li>
-<li><p>Game Capture HDを公式サイトからダウンロード ＆ インストールする</p>
-<ul>
-<li><a href="https://www.elgato.com/en/gaming/downloads">https://www.elgato.com/en/gaming/downloads</a></li>
-</ul>
-</li>
-</ul>
-<img width="1763" alt="Elgato downloadサイト" src="https://user-images.githubusercontent.com/68212997/103148333-ea3b6580-47a1-11eb-8284-8ba603dfa1ea.png">
-
-<ul>
-<li><p>製品(HD 60 S)/OSを選択後にGame Captureをダウンロード</p>
-<img width="1688" alt="Elgato Game Capture" src="https://user-images.githubusercontent.com/68212997/103148379-65048080-47a2-11eb-8409-0165a7b6eaf2.png">
-</li>
-<li><p>Game Capture HD</p>
-<ul>
-<li>ダウンロードされたGame Capture HDを以下のように開ればOK<img width="1222" alt="Game Capture HD画面" src="https://user-images.githubusercontent.com/68212997/103148487-77cb8500-47a3-11eb-9dab-ded5295b2774.png">
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-<h2><span id="sitchからpopin-aladdinに表示するまで">SitchからPopin Aladdinに表示するまで</span></h2><h3><span id="1-switchからhdmiでhd60-sに接続">1. SwitchからHDMIでHD60 Sに接続</span></h3><ul>
-<li>SwitchのHDMI Outから”IN”と書かれているHDMIに接続</li>
-</ul>
-<h3><span id="2-game-capture-hdを起動">2. Game Capture HDを起動</span></h3><ul>
-<li>MacBookでソフトを起動しておく</li>
-<li>後でHD60を接続すると、デバイスのプルダウンの選択欄でHD60を選択可能になる</li>
-</ul>
-<h3><span id="3-hd60-sとmacbookを接続">3. HD60 SとMacBookを接続</span></h3><p><img src="https://user-images.githubusercontent.com/68212997/103153726-f4775700-47d5-11eb-8b34-99cf7babdcc7.png" alt="PCに表示したスマブラ"></p>
-<ul>
-<li>HD60 Sの USBC端子からMacBookの端子に映像を出力<ul>
-<li>OutのHDMI端子では無いので注意</li>
-</ul>
-</li>
-<li>これでMacBookにSwitchの映像を表示できる</li>
-<li>SwitchとMacBook間のラグはほぼ完全に無し</li>
-</ul>
-<h3><span id="4-airplayでpopin-aladdin-2に表示">4. AirPlayでpopin aladdin 2に表示</span></h3><ul>
-<li>MacBookとPopin Aladdinは同じWiFiに接続していれば、AirPlayで接続することができる<ul>
-<li>ここのラグはWiFiの強さや接続数で変動する</li>
-<li>基本的に全く気にならないレベル</li>
-<li>スマブラなどのラグにシビアなゲームをする場合は接続数を強い回線が良い</li>
-</ul>
-</li>
-</ul>
-<h2><span id="使用感">使用感</span></h2><ul>
-<li><p>普通のゲームは全く気にならずにプレイできるレベル</p>
-</li>
-<li><p>WiFiの状況によってはラグが発生する場合もある</p>
-<ul>
-<li>うちは大量の機器を繋いでいますが、スマブラレベルのシビアな戦いになると少しラグが気になる程度<ul>
-<li>他の接続を減らすか、それだけMacやモニターを見てプレイすると良いかもしれない</li>
-</ul>
-</li>
-<li>強い回線を使っていれば概ね問題なし</li>
-</ul>
-</li>
-<li><p>ちなみにTVやDVDは無線で接続可能な専用のチューナーや機器を購入すれば簡単に映せました</p>
-<ul>
-<li><a href="https://amzn.to/2JpDZeQ">Xit Air BOX</a></li>
-</ul>
-</li>
-</ul>
-<h2><span id="関連">関連</span></h2><ul>
-<li><a href="https://youtu.be/8jdAx8B6KyU">youtube popin Aladdin 2にSwitchを映してみた</a></li>
-<li><a href="https://kyoheyblog.com/game-commentary-mac/">【HD60S】macでSwitchのゲーム実況する方法【Catalina】</a></li>
-<li><a href="https://note.com/my_tips/n/nfe4d5ab15137">popin aladdin 2でSwitchをやってみた（HDMI出力）</a></li>
-</ul>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -2949,7 +3094,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/10/">10</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/11/">11</a></li>
             
         </ul>
     </nav>
@@ -2999,7 +3144,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            100
+                            101
                         </p>
                     </a>
                 </div>
@@ -3011,7 +3156,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            39
+                            40
                         </p>
                     </a>
                 </div>
@@ -3146,7 +3291,7 @@
                 <span class="level-item">Others</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">3</span>
+                <span class="level-item tag">4</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Others/C/">
@@ -3163,6 +3308,14 @@
             </span>
             <span class="level-end">
                 <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Others/%E8%B3%87%E6%A0%BC/">
+            <span class="level-start">
+                <span class="level-item">資格</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
             </span>
         </a></li></ul></li><li>
         <a class="level is-marginless" href="/categories/Serverless-Application-Dev/">
@@ -3409,6 +3562,25 @@
         
         <article class="media">
             
+            <a href="/%E6%96%B0%E4%BA%BA%E3%81%8CAWS%E8%AA%8D%E5%AE%9A-SysOps-Administrator%E3%81%AB%E5%90%88%E6%A0%BC%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/116777182-1e07fe00-aaa8-11eb-8088-df57422e17b6.png" alt="新人がAWS認定 SysOps Administratorに合格するまでの学習方法詳細 (2021年)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-04-01T06:38:38.000Z">2021-04-01</time></div>
+                    <a href="/%E6%96%B0%E4%BA%BA%E3%81%8CAWS%E8%AA%8D%E5%AE%9A-SysOps-Administrator%E3%81%AB%E5%90%88%E6%A0%BC%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="title has-link-black-ter is-size-6 has-text-weight-normal">新人がAWS認定 SysOps Administratorに合格するまでの学習方法詳細 (2021年)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Others/">Others</a> / <a class="has-link-grey -link" href="/categories/Others/%E8%B3%87%E6%A0%BC/">資格</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/AWS-PJ%E6%AF%8E%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88%E7%AE%A1%E7%90%86%E3%81%BE%E3%81%A8%E3%82%81-Cost-Explorer-Cost-Anomaly-Detection-Budgets-%E3%82%BF%E3%82%B0%E4%BB%98%E3%81%91%E3%83%AB%E3%83%BC%E3%83%AB/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/112600566-b92c0900-8e54-11eb-89a7-69e5663c4651.png" alt="[AWS] PJ毎のコスト管理まとめ(Cost Explorer/Cost Anomaly Detection/Budgets/タグ付けルール)">
@@ -3464,25 +3636,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/%E7%84%A1%E6%96%99RPA-Windows-Power-Automate-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-Web%E3%81%AE%E8%87%AA%E5%8B%95%E6%93%8D%E4%BD%9C/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/109756485-62ebf180-7c2b-11eb-9cc7-2c8fa30b014c.png" alt="[無料RPA] Windows Power Automate Desktop インストール~Webの自動操作方法">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-03-03T06:35:16.000Z">2021-03-03</time></div>
-                    <a href="/%E7%84%A1%E6%96%99RPA-Windows-Power-Automate-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-Web%E3%81%AE%E8%87%AA%E5%8B%95%E6%93%8D%E4%BD%9C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[無料RPA] Windows Power Automate Desktop インストール~Webの自動操作方法</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/RPA/">RPA</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -3500,7 +3653,7 @@
                     <span class="level-item">四月 2021</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -3705,7 +3858,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/AWS/">
                         <span class="tag">AWS</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 
@@ -4620,6 +4773,25 @@
         
         <article class="media">
             
+            <a href="/%E6%96%B0%E4%BA%BA%E3%81%8CAWS%E8%AA%8D%E5%AE%9A-SysOps-Administrator%E3%81%AB%E5%90%88%E6%A0%BC%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/116777182-1e07fe00-aaa8-11eb-8088-df57422e17b6.png" alt="新人がAWS認定 SysOps Administratorに合格するまでの学習方法詳細 (2021年)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-04-01T06:38:38.000Z">2021-04-01</time></div>
+                    <a href="/%E6%96%B0%E4%BA%BA%E3%81%8CAWS%E8%AA%8D%E5%AE%9A-SysOps-Administrator%E3%81%AB%E5%90%88%E6%A0%BC%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" class="title has-link-black-ter is-size-6 has-text-weight-normal">新人がAWS認定 SysOps Administratorに合格するまでの学習方法詳細 (2021年)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Others/">Others</a> / <a class="has-link-grey -link" href="/categories/Others/%E8%B3%87%E6%A0%BC/">資格</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/AWS-PJ%E6%AF%8E%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88%E7%AE%A1%E7%90%86%E3%81%BE%E3%81%A8%E3%82%81-Cost-Explorer-Cost-Anomaly-Detection-Budgets-%E3%82%BF%E3%82%B0%E4%BB%98%E3%81%91%E3%83%AB%E3%83%BC%E3%83%AB/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/112600566-b92c0900-8e54-11eb-89a7-69e5663c4651.png" alt="[AWS] PJ毎のコスト管理まとめ(Cost Explorer/Cost Anomaly Detection/Budgets/タグ付けルール)">
@@ -4675,25 +4847,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/%E7%84%A1%E6%96%99RPA-Windows-Power-Automate-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-Web%E3%81%AE%E8%87%AA%E5%8B%95%E6%93%8D%E4%BD%9C/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/109756485-62ebf180-7c2b-11eb-9cc7-2c8fa30b014c.png" alt="[無料RPA] Windows Power Automate Desktop インストール~Webの自動操作方法">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-03-03T06:35:16.000Z">2021-03-03</time></div>
-                    <a href="/%E7%84%A1%E6%96%99RPA-Windows-Power-Automate-%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB-Web%E3%81%AE%E8%87%AA%E5%8B%95%E6%93%8D%E4%BD%9C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[無料RPA] Windows Power Automate Desktop インストール~Webの自動操作方法</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Tool-Tips/">Tool Tips</a> / <a class="has-link-grey -link" href="/categories/Tool-Tips/RPA/">RPA</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -4711,7 +4864,7 @@
                     <span class="level-item">四月 2021</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -4916,7 +5069,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/AWS/">
                         <span class="tag">AWS</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">13</span>
                     </a>
                 </div>
                 
