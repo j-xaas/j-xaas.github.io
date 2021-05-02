@@ -208,6 +208,7 @@ WEBから公式の模擬試験を受験することができる。`時期によ�
 
 ## 関連記事
 - [Angular x AWS SDK for JavaScriptの始め方](/Angular-x-AWS-SDK-for-JavaScriptの始め方/)
+- [EXIN Agile Scrum Foundation 合格体験記 [スクラムマスター資格]](/Agile-Scrum-Foundation-合格体験記-スクラム資格/)
 
 - [静的ホスティングサービスまとめ(Netlify/S3/Firebase Hosting/Github Pages)](/静的ホスティングサービスまとめ-Netlify-S3-Firebase-Hosting-Github-Pages/)
 - [[Angular ReactiveForm x mat-input] 一つの入力欄のエラーメッセージを出し分ける](/Angular-ReactiveForm-x-mat-input-一つの入力欄のエラーメッセージを出し分ける/)

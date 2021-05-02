@@ -3,14 +3,14 @@ title: '[PdM/PO] プロダクトの構想フェイズについて(4層の仮説�
 date: 2021-04-10 21:30:26
 categories:
 - Others
-- PM/アジャイル
+- PM/アジャイル/スクラム
+tags: 
+- アジャイル開発
 - プロダクトオーナー
 - プロダクトマネージャー
 - PO
 - PdM
 - スクラム
-tags: 
-- アジャイル開発
 toc: true
 thumbnail: https://user-images.githubusercontent.com/68212997/114271044-7b310680-9a4a-11eb-9102-cc032c10068a.png
 ---
@@ -106,14 +106,15 @@ thumbnail: https://user-images.githubusercontent.com/68212997/114271044-7b310680
 
 - インセプションデッキ
     - プロジェクトの全体像(目的、背景、優先順位、方向性等)を端的に伝えるためのドキュメント
-    - `プロジェクト憲章に近い存在`
+    - 質問 x 10で構成されている
+    - `プロジェクト憲章に近い存在`でPJ計画書のインプットにもなる
     - 考案者: Robin Gibson (ThoughtWorks社)
     - アジャイルサムライの著者(Jonathan Rasmusson氏)によって広まった
         - 公式の説明は[The Agile Warrior](https://agilewarrior.wordpress.com/2010/11/06/the-agile-inception-deck/)でみれる
         - 日本語版のテンプレートがGitで公開されている
             - [agile-samurai-ja/support](https://github.com/agile-samurai-ja/support/tree/master/blank-inception-deck)
-    - プロジェクト計画書ができる時点で盛り込まれていればいいので、それ以前は全ては必要ない
-        - プロダクト像を揃える為の最低限として、`エレベーターピッチ`と`やらないことリスト`を作っておくと良さそう
+    - プロジェクト計画書ができる時点で盛り込まれていればいいので、初めから全て必須ではない
+        - プロダクト像を揃える為の最低限として、`エレベーターピッチ`や、`トレードオフスライダー`、`やらないことリスト`を作っておくと良い
 
 - エレベータピッチ
     - 以下の書式で[]の中身を書き換えていき、プロダクトを表現する
@@ -163,13 +164,12 @@ thumbnail: https://user-images.githubusercontent.com/68212997/114271044-7b310680
 - WEBに落ちているテンプレを使えば良い
     - [リーンキャンバステンプレート](https://watanabe-office.biz/wp-content/uploads/2018/11/%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%91%E3%82%B9.pptx)
 
-### インセプションデッキ/エレベーターピッチ/やらないことリスト
+### インセプションデッキ（エレベーターピッチ/やらないことリスト/トレードオフスライダー）
 ![インセプションデッキテンプレート](https://user-images.githubusercontent.com/68212997/114269484-533da500-9a42-11eb-98f2-073a4a168002.png)
 
 - インセプションデッキのテンプレートは以下のURLから入手可能
     - https://cacoo.com/diagrams/nsgCdwRZAHJBXTLy/F96B8
     - インセプションデッキは`アジャイル開発におけるPJ憲章`やPJ計画書に相当する
-        - なので大替になるような資料がすでにあれば全ては作らなくてもOK
     - ストーリーマッピングに入る前に、エレベーターピッチとやらないことリストを作っておくと円滑に進め易い
 
 - エレベーターピッチ
@@ -194,7 +194,7 @@ thumbnail: https://user-images.githubusercontent.com/68212997/114271044-7b310680
 - プロジェクトコミュニティ
     - ステークホルダー全員を明文化
 
-- トレードオフスライダー
+- トレードオフスライダー（何を諦めるか？）
     - 何を優先するか？メンバとスタンスを揃えられる
 
 ![トレードオフスライダー](https://user-images.githubusercontent.com/68212997/114551872-eb37ca80-9c9e-11eb-922d-dc5a4cf1e4d2.png)
@@ -420,8 +420,12 @@ thumbnail: https://user-images.githubusercontent.com/68212997/114271044-7b310680
 
 ## 参考
 ### 関連記事
+- [Githubの Issue & Project(カンバン)でプロダクトバックログ/タスクを管理する（アジャイル開発の運用）](/Githubの-Issue-Project-カンバン-でプロダクトバックログ-タスクを管理する（アジャイル開発の運用）/)
+- [EXIN Agile Scrum Foundation 合格体験記 [スクラムマスター資格]](/Agile-Scrum-Foundation-合格体験記-スクラム資格/)
 - [アジャイル開発におけるプロジェクトマネジメントについて](/アジャイル開発におけるプロジェクトマネジメントについて/)
 - [Githubの Issue & Project(カンバン)でプロダクトバックログ/タスクを管理する（アジャイル開発の運用）](/Githubの-Issue-Project-カンバン-でプロダクトバックログ-タスクを管理する（アジャイル開発の運用）/)
+- [新人がAWS認定 SysOps Administratorに合格するまでの学習方法詳細 (2021年)](/新人がAWS認定-SysOps-Administratorに合格するまで/)
+
 
 ### その他
 - [ユーザーストーリーマッピングをやってみた](https://dev.classmethod.jp/articles/user_story_mapping/)

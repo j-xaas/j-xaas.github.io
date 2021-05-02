@@ -3,7 +3,6 @@ title: '[C言語入門] コンパイル〜文字列の出力まで'
 date: 2020-09-28 20:46:04
 category:
 - Others
-- C
 tags:
 - C
 thumbnail]: https://user-images.githubusercontent.com/68212997/94435240-d483c780-01d5-11eb-8b31-496780188c8e.png

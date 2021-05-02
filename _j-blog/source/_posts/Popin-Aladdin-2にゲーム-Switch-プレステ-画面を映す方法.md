@@ -12,7 +12,7 @@ draft: true
 thumbnail: https://user-images.githubusercontent.com/68212997/103165932-018d5800-4861-11eb-83a0-b7d96077fd74.jpg
 ---
 
-Popin Aladdin(プロジェクター)にゲームを映してプレイするまでの備忘録
+[Popin Aladdin(プロジェクター)](/popInAladdin-review/)にゲームを映してプレイするまでの備忘録
 
 - 投影するとこんな感じ
 
@@ -21,8 +21,8 @@ Popin Aladdin(プロジェクター)にゲームを映してプレイするま�
 
 ## やりたいこと・課題
 - やりたいこと
-    - ゲーム画面(Switch)をPopin Aladdin 2(プロジェクター)に写して、120インチの大画面でプレイしたい
-- 課題：popin AladdinにはHDMI端子が無い
+    - ゲーム画面(Switch)を[Popin Aladdin 2(プロジェクター)](/popInAladdin-review/)に写して、120インチの大画面でプレイしたい
+- 課題：[popin Aladdin](/popInAladdin-review/)にはHDMI端子が無い
     - 他の機器との連携は無線(WiFi/Bluetooth)のみ可能
     - HDMI接続のゲーム全般ができないと公式サイトにも書かれている
 
@@ -93,7 +93,6 @@ Popin Aladdin(プロジェクター)にゲームを映してプレイするま�
     - 基本的に全く気にならないレベル
     - スマブラなどのラグにシビアなゲームをする場合は接続数を強い回線が良い
 
-
 ## 使用感
 - 普通のゲームは全く気にならずにプレイできるレベル
 - WiFiの状況によってはラグが発生する場合もある
@@ -104,7 +103,12 @@ Popin Aladdin(プロジェクター)にゲームを映してプレイするま�
 - ちなみにTVやDVDは無線で接続可能な専用のチューナーや機器を購入すれば簡単に映せました
     - [Xit Air BOX](https://amzn.to/2JpDZeQ)
 
-## 関連
+- PopIn Aladdin自体のレビューは以下
+    - [PopIn Aladdin2 レビュー 照明型プロジェクター　使用感/専用アプリ/投影サイズ/Alexa連携/設置方法](/popInAladdin-review/)
+
+
+## 関連記事
+- [Popin Aladdin2 レビュー 照明型プロジェクター　使用感/専用アプリ/投影サイズ/Alexa連携/設置方法](/popInAladdin-review/)
 - [youtube popin Aladdin 2にSwitchを映してみた](https://youtu.be/8jdAx8B6KyU)
 - [【HD60S】macでSwitchのゲーム実況する方法【Catalina】](https://kyoheyblog.com/game-commentary-mac/)
 - [popin aladdin 2でSwitchをやってみた（HDMI出力）](https://note.com/my_tips/n/nfe4d5ab15137)

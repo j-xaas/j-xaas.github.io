@@ -213,6 +213,12 @@ Issueを生成する際に.md形式で説明を書くことができる
 ---
 ## 参考
 ### 関連記事
+- [[PdM/PO] プロダクトの構想フェイズについて(4層の仮説立案→リーンキャンバス→インセプションデッキ→ストーリーマッピング→プロダクトバックログ化)](/PdM-PO-プロダクトの構想フェイズについて-4層の仮説立案→リーンキャンバス→エレベータピッチ→ストーリーマッピング→プロダクトバックログ化/)
+- [アジャイル開発におけるプロジェクトマネジメントについて](/アジャイル開発におけるプロジェクトマネジメントについて/)
+
+- [Githubの Issue & Project(カンバン)でプロダクトバックログ/タスクを管理する（アジャイル開発の運用）](/Githubの-Issue-Project-カンバン-でプロダクトバックログ-タスクを管理する（アジャイル開発の運用）/)
+- [EXIN Agile Scrum Foundation 合格体験記 [スクラムマスター資格]](/Agile-Scrum-Foundation-合格体験記-スクラム資格/)
+
 - [Github入門 ～入社初日の完全な素人でも分かる優しい説明～](/Github入門-入社初日の完全な素人向けの優しい説明/)
 - [[CI/CD入門] Github Actionsでビルド/テスト/デプロイを自動化](/CI-CD入門-Github-Actionsでビルド-テスト-デプロイを自動化/)
 - [Github x Teams Webhook/Notificationによる連携方法](/Github-x-Teams-Webhook-Notificationによる連携方法/)
@@ -221,6 +227,8 @@ Issueを生成する際に.md形式で説明を書くことができる
 - [[Hexo x Github Pages] 5分以内にブログを自動生成して無料で公開するまで【完全版】](/Hexo-x-Github-Pages-5分以内にブログを自動生成して無料で公開するまで/)
 - [git merge & コンフリクトの解消（複数名の編集内容を集約）](/git-merge-コンフリクトの解消（複数名の編集内容を集約）/)
 - [Github.comからGithubEnterpriseへの移行手順](/GithubからGithubEnterpriseへの移行手順/)
+
+- [新人がAWS認定 SysOps Administratorに合格するまでの学習方法詳細 (2021年)](/新人がAWS認定-SysOps-Administratorに合格するまで/)
 
 ### その他
 - [GitHubでタスク管理ができる新機能「Project」超入門](https://qiita.com/tonkotsuboy_com/items/f627ed6b3e4c6313e78f)
