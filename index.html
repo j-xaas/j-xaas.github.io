@@ -816,6 +816,453 @@
 <div class="card">
     
     <div class="card-image">
+        <a href="/Ionic%E5%85%A5%E9%96%80-Angular-React-Vue%E3%83%99%E3%83%BC%E3%82%B9%E3%81%A7Web-iOS-Android%E3%82%92%E5%90%8C%E6%99%82%E9%96%8B%E7%99%BA%E3%81%99%E3%82%8B%E3%82%AF%E3%83%AD%E3%82%B9%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF/" class="image is-7by1">
+            <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/116813817-bda0bb80-ab90-11eb-8b5c-f1ca7fd6977e.png" alt="[Ionic入門] Angular/React/VueベースでWeb/iOS/Androidを同時開発可能なクロスプラットフォームフレームワーク">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2021-04-05T12:38:52.000Z">2021-04-05</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Mobile-Ionic/">Mobile (Ionic)</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    31分 read (About 4610 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/Ionic%E5%85%A5%E9%96%80-Angular-React-Vue%E3%83%99%E3%83%BC%E3%82%B9%E3%81%A7Web-iOS-Android%E3%82%92%E5%90%8C%E6%99%82%E9%96%8B%E7%99%BA%E3%81%99%E3%82%8B%E3%82%AF%E3%83%AD%E3%82%B9%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF/">[Ionic入門] Angular/React/VueベースでWeb/iOS/Androidを同時開発可能なクロスプラットフォームフレームワーク</a>
+            
+        </h1>
+        <div class="content">
+            <ul>
+<li>クロスプラットフォームで動作可能なアプリを開発できるIonic Frameworkの概要と初期開発手順についてのメモ</li>
+<li>モダンフロントエンドフレームワーク(ex. Angular,React,Vue)ベースで開発したAPをモバイル(iOS/Android)に変換することができる<ul>
+<li>Web系のフロントエンドエンジニアが覚えると、ほぼ学習コスト無しで全てに対応可能になる</li>
+</ul>
+</li>
+<li>Flutterとどちらを採用すべきか？は開発チームのエンジニアによる<ul>
+<li>WEB技術(Typescript)が軸→Ionic、0からDartを学びたい→Flutter</li>
+</ul>
+</li>
+</ul>
+<!--toc-->
+
+<h2><span id="ionic-framework概要">Ionic Framework概要</span></h2><h3><span id="クロスアプリケーションフレームワーク">クロスアプリケーションフレームワーク</span></h3><p><img src="https://user-images.githubusercontent.com/68212997/116816769-45d98d80-ab9e-11eb-80e3-8f4d592873e4.png" alt="Ionic概要"></p>
+<ul>
+<li><p>SPA(Webアプリ)ベースのアプリをiOS/Androidで動くネイティブアプリに変換できるフレームワーク</p>
+<ul>
+<li>Web/iOS/Androidのアプリをハイブリット展開可能<ul>
+<li>１つのIonic Projectから Web/iOS/AndroidのAPをビルドするイメージ</li>
+</ul>
+</li>
+<li>特に、既存のWEB APのモバイル化に迅速に対応できる</li>
+</ul>
+</li>
+<li><p>コンポーネントやコード(HTML/Scss/Typescript)を使い回して開発可能</p>
+<ul>
+<li>Typescriptで書いたロジックをそのまま使い回せる</li>
+<li>Swift等を使うと、Webとモバイルで同じロジックを別言語で書き直す手間が発生する   </li>
+</ul>
+</li>
+<li><p><code>WEBフレームワークとはUI開発で一部差分</code>がある</p>
+<ul>
+<li><p>例えば、Angularで使われるWeb専用のUIコンポーネントは使用できない</p>
+<ul>
+<li>一般的にAngularでは<a href="https://material.angular.io/">Angular Material</a>を活用して、htmlやcssをあまり書かずにUIを実装していく<ul>
+<li>ヘッダー、メニュー、テーブル等の部品がある<br> <img src="https://user-images.githubusercontent.com/68212997/116815730-d2358180-ab99-11eb-9907-783a7e915133.PNG" alt="Angular Material"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Ionicでは<a href="https://ionicframework.com/jp/docs/components">モバイル向けのUIコンポーネント</a>を活用する<br>  <img src="https://user-images.githubusercontent.com/68212997/116815750-f6915e00-ab99-11eb-805b-bcd32e3e8bcf.PNG" alt="Ionic UI Component"></p>
+<ul>
+<li>Ionicの<code>UI ComponentはiOSとAndroidでそれぞれ異なる最適なマテリアルデザインが表示される</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>ネイティブ機能のAPIとドキュメントが豊富に公開されている</code></p>
+<ul>
+<li>WEBベースで開発するが、ネイティブデバイスの機能もドキュメントを見てNative APIsを使えばハマらずに実装できる</li>
+<li><a href="https://ionicframework.com/jp/docs/native">Ionic Framework - Native APIs</a></li>
+</ul>
+</li>
+</ul>
+<h3><span id="ionicの強み">Ionicの強み</span></h3><ul>
+<li>Web系のフロントエンドエンジニアが学習コストなく活用可能</li>
+<li>WEB APのロジックをそのまま使いまわせる<ul>
+<li>Flutterを採用する場合はDartで書き直さなくてはならない</li>
+</ul>
+</li>
+<li>複数のWEBフロントフレームワークに対応<ul>
+<li>Angular, React, Vue, Nuxt.js<ul>
+<li>日本ではなぜかReactが流行っているが、海外ではフルスタックなAngularやNuxt.jsが主流になりつつある認識</li>
+</ul>
+</li>
+<li>React NativeはReactにしか対応できない為</li>
+</ul>
+</li>
+</ul>
+<h3><span id="ionic-vs-flutter">Ionic vs Flutter</span></h3><ul>
+<li>組織のエンジニアのスキルベースで判断<ul>
+<li>軸がWEB(TS, JS) → Ionic</li>
+<li>軸がモバイル &amp; 一からDartを学びたい → Flutter</li>
+</ul>
+</li>
+<li>WEB/モバイル以外にも対応したい場合はFlutter<ul>
+<li>FlutterはWindowsやmacOS、Linux、車載、テレビ、スマートホーム関連のモジュールに組み込むこともできる</li>
+</ul>
+</li>
+<li>すでにWEB APが存在していて、追加でモバイル対応したいケース<ul>
+<li>Ionicであれば、ロジックの書き直しが生じない</li>
+<li>Flutterの場合はDartで書き直すことになる</li>
+</ul>
+</li>
+<li>結局は新たにDartの記法を学ぶ必要があるか？が判断ポイント<ul>
+<li>個人的には、WEBエンジニアはIonicで困ることが特に無い為、Flutterを覚える旨味が特に無いと考える</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3><span id="ionic-ui-component">Ionic UI Component</span></h3><p><img src="https://user-images.githubusercontent.com/68212997/116815750-f6915e00-ab99-11eb-805b-bcd32e3e8bcf.PNG" alt="Ionic UI Component"></p>
+<ul>
+<li>IonicのUI Componentを活用すれば、<code>iOSとAndroidでそれぞれ異なる最適なマテリアルデザインを表示できる</code><ul>
+<li>それぞれデザインする必要は無く、デザイナー無しでも高いUI品質を担保できる</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3><span id="ionic-ui-template">Ionic UI Template</span></h3><p><img src="https://user-images.githubusercontent.com/68212997/116815792-1cb6fe00-ab9a-11eb-8526-0076f79cafe1.png" alt="Ionic FirstApp Temaplate"></p>
+<ul>
+<li>Ionicではテンプレートを活用することで、↑のようなUIを自動生成することができる<ul>
+<li>タブメニューやカメラ機能程度なら自分で実装する必要が無く、手軽にモバイルAPらしさを出せるので、WEB開発になれたエンジニアでも機能開発に集中できる</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3><span id="ionicの学習方法">Ionicの学習方法</span></h3><ul>
+<li>WEBの公式ドキュメントと書籍で基本的に困ることはない</li>
+</ul>
+<h4><span id="書籍">書籍</span></h4><p>以下がとても分かりやすかった</p>
+<ul>
+<li><a href="https://amzn.to/335cTj9">Ionicで作る モバイルアプリ制作入門[Angular版]&lt;Web/iPhone/Android対応&gt;</a></li>
+<li><a href="https://amzn.to/3tbX5pA">Ionicで作る モバイルアプリ制作入門〈Web/iPhone/Android対応〉</a></li>
+</ul>
+<h4><span id="web">WEB</span></h4><p><img src="https://user-images.githubusercontent.com/68212997/116814948-35251980-ab96-11eb-9e21-59d08d7528bf.png" alt="Ionic Document"></p>
+<ul>
+<li><p><a href="https://ionicframework.com/jp/docs/">Ionic Framework - 日本語ドキュメンテーション</a></p>
+<ul>
+<li>活用するWEBフレームワーク(ex. Angular, React…)をタブで選択して、それぞれの説明を確認できる親切なドキュメントになっている</li>
+</ul>
+</li>
+<li><p><a href="https://ionicframework.com/jp/docs/components">Ionic Framework - UIコンポーネント</a></p>
+<ul>
+<li>UI開発は基本的にこちらのコンポーネントの中から使えそうなものを選定して実装していけば良い</li>
+</ul>
+</li>
+<li><p><a href="https://ionicframework.com/jp/docs/native">Ionic Framework - Native APIs</a></p>
+<ul>
+<li>ネイティブデバイスの機能を利用する場合はこちらを参照</li>
+</ul>
+</li>
+</ul>
+<p>後はベースに採用するWEBフレームワークの学習をすればOK</p>
+<hr>
+<h2><span id="ionicによるap開発手順">IonicによるAP開発手順</span></h2><h3><span id="環境構築">環境構築</span></h3><ul>
+<li>Ionicの開発に必要なものは以下<ul>
+<li>Node.js</li>
+<li>Ionic CLI </li>
+</ul>
+</li>
+</ul>
+<h4><span id="nodejs">Node.js</span></h4><ul>
+<li><p>インストール方法は以下を参照</p>
+<ul>
+<li><a href="/Angular入門-環境構築～PJの開始-基本コマンド/#11-nodejsのインストール">Node.jsのインストール</a></li>
+</ul>
+</li>
+<li><p>node -vでバージョンを確認</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; node -v</span><br><span class="line">v14.7.0</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4><span id="ionic-cliのインストール">Ionic CLIのインストール</span></h4><ul>
+<li><p>Ionic CLI</p>
+<ul>
+<li>これを入れるとIonicコマンドを実行可能になる</li>
+</ul>
+</li>
+<li><p>Nodeのバージョンが古い場合は先にバージョンアップ</p>
+</li>
+<li><p>Macの場合</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install ionic -g</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">+ ionic@5.4.16</span><br><span class="line">added 225 packages from 149 contributors in 10.316s</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Windowsの場合</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install ionic -g</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>バージョンを確認</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; ionic -v</span><br><span class="line">5.4.16</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3><span id="モバイルアプリ開発用ツールのインストール">モバイルアプリ開発用ツールのインストール</span></h3><ul>
+<li>実機での動作確認やリリース作業(App Store/Google Play)に以下が必要<ul>
+<li><a href="https://apps.apple.com/jp/app/xcode/id497799835">Xcode</a><ul>
+<li>iOSアプリの実行/リリースに必須の統合開発環境</li>
+<li>Windowsでは利用不可</li>
+</ul>
+</li>
+<li>Android Studio<ul>
+<li>Androidアプリの実行/リリースに必須の統合開発環境<br><img src="https://user-images.githubusercontent.com/68212997/116815628-5f2c0b00-ab99-11eb-84a3-855fb25c5fae.png" alt="Android Studio"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4><span id="xcode">Xcode</span></h4><ul>
+<li>XcodeはApp Storeから入手<ul>
+<li>インストールには20分以上かかった</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/68212997/116815666-871b6e80-ab99-11eb-9d16-e9192e670a4b.png" alt="Xcode App Store"></p>
+<ul>
+<li>ランタイムのインストール<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo gem install cocoapods # iOSのパッケージ管理システム</span><br><span class="line">xcode-select --install # Xcodeのコマンドラインツール</span><br><span class="line">pod repo update # CocoaPodsの依存関係を更新</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4><span id="android-studioのインストール">Android Studioのインストール</span></h4><ul>
+<li><a href="https://developer.android.com/studio">Android Sudioサイト</a>からダウンロード<ul>
+<li>インストーラーを起動してインストール</li>
+<li>指示にしたがって初期設定を実施</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/68212997/116816577-73720700-ab9d-11eb-8b95-9f840889f0e2.png" alt="About Android Studio"></p>
+<h4><span id="ionic向けのvscode-pluginをインストール">Ionic向けのVSCode Pluginをインストール</span></h4><ul>
+<li>VSCodeにはIonic/Angular向けのPluginが豊富にある<ul>
+<li>必要に応じて開発環境に取り込む</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3><span id="ionic-projectの開始テンプレートからのui自動生成">Ionic projectの開始〜テンプレートからのUI自動生成</span></h3><ul>
+<li><p>Ionic Projectを開始</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ionic start --type&#x3D;angular</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Project名を入力</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Every great app needs a name! 😍</span><br><span class="line"></span><br><span class="line">Please enter the full name of your app. You can change this at any time. To bypass this prompt next time, supply</span><br><span class="line">name, the first argument to ionic start.</span><br><span class="line"></span><br><span class="line">? Project name: sample-pj</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>次にテンプレートを選択する</p>
+<ul>
+<li>モバイルアプリのUIの大枠は自動構築できる</li>
+<li>tabs<ul>
+<li>モバイルアプリの定番のタブ型のアプリ</li>
+</ul>
+</li>
+<li>sidemenu<ul>
+<li>サイドメニューがハンバーガーで開くタイプ</li>
+</ul>
+</li>
+<li>blank<ul>
+<li>Home画面のみのシンプルな画面</li>
+</ul>
+</li>
+<li>camera with gallery<ul>
+<li>カメラ機能とデバイスの画像を操作する機能があるタイプ</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Let&#39;s pick the perfect starter template! 💪</span><br><span class="line"></span><br><span class="line">Starter templates are ready-to-go Ionic apps that come packed with everything you need to build your app. To</span><br><span class="line">bypass this prompt next time, supply template, the second argument to ionic start.</span><br><span class="line"></span><br><span class="line">? Starter template: (Use arrow keys)</span><br><span class="line">❯ tabs         | A starting project with a simple tabbed interface </span><br><span class="line">  sidemenu     | A starting project with a side menu with navigation in the content area </span><br><span class="line">  blank        | A blank starter project </span><br><span class="line">  my-first-app | An example application that builds a camera with gallery </span><br><span class="line">  conference   | A kitchen-sink application that shows off all Ionic has to offer</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>指定したProject名のディレクトリが生成される</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; ls</span><br><span class="line">sample-pj</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>プレビューを起動</p>
+<ul>
+<li>Angularのng serveと同様にlocalhostで動作確認可能<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; cd sample-pj</span><br><span class="line">ionic serve</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Sidemenuテンプレートを使った場合の初期画面</p>
+<ul>
+<li>メールアプリ風になっている</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/68212997/116816382-a5cf3480-ab9c-11eb-8f49-56fe084980a2.png" alt="Ionic tabs template"></p>
+<ul>
+<li>Tabsテンプレートを使った場合の初期画面<br>  <img src="https://user-images.githubusercontent.com/68212997/116816334-79b3b380-ab9c-11eb-8fdd-056623b3ffe7.png" alt="Ionic Tabs Tenplate"></li>
+</ul>
+<ul>
+<li>–labオプション<ul>
+<li>Ionic ComponentはiOSとAndroidでそれぞれ異なるマテリアルデザインを持っている</li>
+<li>labオプションで同時に確認可能<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ionic serve --lab</span><br></pre></td></tr></table></figure>
+<img src="https://user-images.githubusercontent.com/68212997/116816408-c1d2d600-ab9c-11eb-8e9c-a3f61be59975.png" alt="Ionic Serve Lab"></li>
+</ul>
+</li>
+</ul>
+<h3><span id="tabsテンプレートのコンポーネント構成">tabsテンプレートのコンポーネント構成</span></h3><ul>
+<li>sample-pj/src/app<ul>
+<li>ディレクトリ構成は通常のAngular PJと同様</li>
+<li>以下のコンポーネントが自動生成されている<ul>
+<li>tabs, tab1, tab2, tab3, explore-container</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app % ls</span><br><span class="line">app-routing.module.ts   app.component.scss      app.component.ts        explore-container       tab2                    tabs</span><br><span class="line">app.component.html      app.component.spec.ts   app.module.ts           tab1                    tab3</span><br></pre></td></tr></table></figure>
+
+<h3><span id="uiの改修例">UIの改修例</span></h3><ul>
+<li>自動生成されたUIの改修手順について<ul>
+<li>タブのアイコンやタイトルの変更</li>
+</ul>
+</li>
+</ul>
+<h4><span id="tabs-component">tabs component</span></h4><ul>
+<li><p>デフォルト</p>
+<ul>
+<li>tabs temlateで自動生成されるコード<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;ion-tabs&gt;</span><br><span class="line"></span><br><span class="line">  &lt;ion-tab-bar slot&#x3D;&quot;bottom&quot;&gt;</span><br><span class="line">    &lt;ion-tab-button tab&#x3D;&quot;tab1&quot;&gt;</span><br><span class="line">      &lt;ion-icon name&#x3D;&quot;triangle&quot;&gt;&lt;&#x2F;ion-icon&gt;</span><br><span class="line">      &lt;ion-label&gt;Tab 1&lt;&#x2F;ion-label&gt;</span><br><span class="line">    &lt;&#x2F;ion-tab-button&gt;</span><br><span class="line"></span><br><span class="line">    &lt;ion-tab-button tab&#x3D;&quot;tab2&quot;&gt;</span><br><span class="line">      &lt;ion-icon name&#x3D;&quot;ellipse&quot;&gt;&lt;&#x2F;ion-icon&gt;</span><br><span class="line">      &lt;ion-label&gt;Tab 2&lt;&#x2F;ion-label&gt;</span><br><span class="line">    &lt;&#x2F;ion-tab-button&gt;</span><br><span class="line"></span><br><span class="line">    &lt;ion-tab-button tab&#x3D;&quot;tab3&quot;&gt;</span><br><span class="line">      &lt;ion-icon name&#x3D;&quot;square&quot;&gt;&lt;&#x2F;ion-icon&gt;</span><br><span class="line">      &lt;ion-label&gt;Tab 3&lt;&#x2F;ion-label&gt;</span><br><span class="line">    &lt;&#x2F;ion-tab-button&gt;</span><br><span class="line">  &lt;&#x2F;ion-tab-bar&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;ion-tabs&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>改修方法</p>
+<ul>
+<li>アイコンを変更<ul>
+<li>設計した各画面に適したion-iconを選定</li>
+</ul>
+</li>
+<li>タイトルを変更<ul>
+<li>各画面のComponentのion-titleを変更</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a href="https://ionicframework.com/docs/v3/ionicons/">ion-icon</a>について</p>
+<ul>
+<li>ion-iconのアイコンは以下のマテリアルデザインの名称をname=で指定することで活用できる</li>
+<li>各画面のアイコンとしてふさわしいものを<a href="https://ionicframework.com/docs/v3/ionicons/">公式ドキュメント</a>から探せば良い<br><img src="./ion-icons.png" alt="ion-icons"></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>tabs.page.htmlを以下のように実装<ul>
+<li>タブの一つをホーム画面とする<ul>
+<li>アイコンを家マークに変更</li>
+<li>アイコン下のタイトルをHomeに変更</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;ion-tabs&gt;</span><br><span class="line"></span><br><span class="line">  &lt;ion-tab-bar slot&#x3D;&quot;bottom&quot;&gt;</span><br><span class="line">    &lt;ion-tab-button tab&#x3D;&quot;tab1&quot;&gt;</span><br><span class="line">      &lt;ion-icon name&#x3D;&quot;home&quot;&gt;&lt;&#x2F;ion-icon&gt;</span><br><span class="line">      &lt;ion-label&gt;Home&lt;&#x2F;ion-label&gt;</span><br><span class="line">    &lt;&#x2F;ion-tab-button&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>serveで変化を確認</p>
+<ul>
+<li>tabsのボタンのアイコンが切り替わっていることを確認<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ionic serve --lab</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>ion-toolbarについて</p>
+<ul>
+<li>以下の書式でツールバーとタイトルを定められる<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;ion-header [translucent]&#x3D;&quot;true&quot;&gt;</span><br><span class="line">  &lt;ion-toolbar&gt;</span><br><span class="line">    &lt;ion-title&gt;</span><br><span class="line">      &lt;!--アプリのタイトルに変更--&gt;</span><br><span class="line">    &lt;&#x2F;ion-title&gt;</span><br><span class="line">  &lt;&#x2F;ion-toolbar&gt;</span><br><span class="line">&lt;&#x2F;ion-header&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<p>ここまでで、モバイルAPらしいタブ型の基本的なUIの骨子を開発することができる。この後、使えそうなUI Componentを公式ページから探して、各画面を作り上げていく。</p>
+<h2><span id="デバイスのネイティブ機能の実装-ionic-native-api">デバイスのネイティブ機能の実装: Ionic Native API</span></h2><p><img src="https://user-images.githubusercontent.com/68212997/117120831-ca125780-adce-11eb-84a0-0b50300ff157.png" alt="Ionic - Native APIs"></p>
+<ul>
+<li><a href="https://ionicframework.jp/docs/native/">Ionic Native APIs</a><ul>
+<li>こちらを利用すればデバイス本体の機能を活用できる<ul>
+<li>ex. カメラ、センサー、写真フォルダ、3D Touch、クラウド連携…<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CapacitorやCordovaを使って、どんなIonicアプリにもネイティブデバイスの機能を簡単に追加できるようにするための、オープンソースのコレクションとプレミアムプラグインと統合します。このことによって、ネイティブパワーのアプリ体験を構築することができます。</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>ベースとするフレームワーク毎の説明がドキュメントとして公開されているので、そこで記法を確認して利用すれば良い<ul>
+<li>この豊富なAPI群により、WEB開発しか経験の無い方でも、大抵のモバイルAPを開発できる</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>その他の実装については、ベースとしたWEBフレームワークやTypeScriptの書式を調査しながら進めれば良い。</p>
+<ul>
+<li>Build方法については以下にまとめた<ul>
+<li><a href="/Ionic-Framework-Web-iOS-AndroidアプリのBuild方法/">[Ionic Framework] Web/iOS/AndroidアプリのBuild方法</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2><span id="参考">参考</span></h2><h3><span id="関連記事">関連記事</span></h3><ul>
+<li><a href="/Ionic-Framework-Web-iOS-AndroidアプリのBuild方法/">[Ionic Framework] Web/iOS/AndroidアプリのBuild方法</a></li>
+<li><a href="/Angular入門-AngularCLI環境構築-PJの開始-コンポーネントの生成-初めての関数開発/">[Angular入門] AngularCLI環境構築~PJの開始,コンポーネントの生成,初めての関数開発</a></li>
+<li><a href="/Angular入門-mat-inputで生成したフォームから入力値を取得-双方向データバインディング/">[Angular Material入門] mat-inputで生成したフォームから入力値を取得(双方向データバインディング)</a></li>
+<li><a href="/Angular-x-AWS-SDK-for-JavaScriptの始め方/">Angular x AWS SDK for JavaScriptの始め方</a></li>
+<li><a href="/Angular-TypeScript-JavaScript-非同期処理-待ち合わせ処理のまとめ-Observable-Promise-async-await/">[Angular/TypeScript(JavaScript)] 非同期処理/待ち合わせ処理のまとめ (Observable/subscribe/forkJoin/Promise/async/await/then)</a></li>
+<li><a href="/Angular-JSONデータのファイル化と出力-クラウドから取得したデータを任意の名称で保存する/">[Angular JavaScript] JSONデータのファイル化と出力 取得したデータを任意の名称で保存するロジック (TypeScript)</a></li>
+<li><a href="/Angular-ng-e2e-Test-証明書エラーでハマった際の回避策/">[Angular] ng e2e Test 証明書エラーでハマった際の回避策(unable to get local issuer certificate))</a></li>
+<li><a href="/Angular-複数のcheckboxで一つ以上のチェックを必須とするバリデーション/">[Angular] 複数のcheckboxで一つ以上のチェックを必須とするバリデーション</a></li>
+<li><a href="/Angular-Service入門-ロジックを切り出し、複数Componentで再利用可能にする/">[Angular Service入門] ロジックを切り出し、複数Componentで再利用可能にする</a></li>
+<li><a href="/Angular-mat-selection-listでcheckboxを表示～選択値を配列として取得/">[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得</a></li>
+<li><a href="/Angular-Schematics-開閉可能なサイドナビ＆ツールバーを3分で自動生成する/">[Angular Schematics] 開閉可能なサイドナビ＆ツールバーを3分で自動生成する</a></li>
+<li><a href="/Angular-map-fileter-mat-checkboxを使って選択値を配列に格納するロジック/">[Angular] map() &amp; filter() &amp; mat-checkboxを使って選択値を配列に格納するロジック</a></li>
+<li><a href="/Angular-JSONデータのファイル化と出力-クラウドから取得したデータを任意の名称で保存する/">[Angular JavaScript] JSONデータのファイル化と出力 <del>取得したデータを任意の名称で保存するロジック</del> (TypeScript)</a></li>
+<li><a href="/Angular-JavaScript-JSONファイルの読み込み/">[Angular JavaScript] JSONファイル(複数)の読み込み</a></li>
+<li><a href="/Angular-x-AWS-SDK-for-JavaScriptの始め方/">Angular x AWS SDK for JavaScriptの始め方</a></li>
+<li><a href="/静的ホスティングサービスまとめ-Netlify-S3-Firebase-Hosting-Github-Pages/">静的ホスティングサービスまとめ(Netlify/S3/Firebase Hosting/Github Pages)</a></li>
+<li><a href="/Angular-ReactiveForm-x-mat-input-一つの入力欄のエラーメッセージを出し分ける/">[Angular ReactiveForm x mat-input] 一つの入力欄のエラーメッセージを出し分ける</a></li>
+<li><a href="/Angular-mat-input-バリデーションまとめ/">[Angular mat-input] バリデーションまとめ</a></li>
+<li><a href="/Angular-複数のcheckboxで一つ以上のチェックを必須とするバリデーション/">[Angular] 複数のcheckboxで一つ以上のチェックを必須とするバリデーション</a></li>
+<li><a href="/Angular-mat-selection-listでcheckboxを表示～選択値を配列として取得/">[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得</a></li>
+<li><a href="/Angular-Schematics-開閉可能なサイドナビ＆ツールバーを3分で自動生成する/">[Angular Schematics] 開閉可能なサイドナビ＆ツールバーを3分で自動生成する</a></li>
+</ul>
+<h3><span id="その他">その他</span></h3><ul>
+<li><a href="https://amzn.to/335cTj9">Ionicで作る モバイルアプリ制作入門[Angular版]&lt;Web/iPhone/Android対応&gt;</a></li>
+<li><a href="https://amzn.to/3tbX5pA">Ionicで作る モバイルアプリ制作入門〈Web/iPhone/Android対応〉</a></li>
+<li><a href="https://ionicframework.com/jp/docs/">Ionic Framework - 日本語ドキュメンテーション</a></li>
+<li><a href="https://ionicframework.com/jp/docs/components">Ionic Framework - UIコンポーネント</a></li>
+<li><a href="https://ionicframework.com/jp/docs/native">Ionic Framework - Native APIs</a></li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
         <a href="/Agile-Scrum-Foundation-%E5%90%88%E6%A0%BC%E4%BD%93%E9%A8%93%E8%A8%98-%E3%82%B9%E3%82%AF%E3%83%A9%E3%83%A0%E8%B3%87%E6%A0%BC/" class="image is-7by1">
             <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/116783233-9a123e00-aac8-11eb-9dbb-00c836b4422f.png" alt="EXIN Agile Scrum Foundation 合格体験記 [スクラムマスター資格]">
         </a>
@@ -1346,6 +1793,164 @@
 </li>
 <li><p><a href="/Angular-map-fileter-mat-checkboxを使って選択値を配列に格納するロジック/">[Angular] map() &amp; filter() &amp; mat-checkboxを使って選択値を配列に格納するロジック</a></p>
 </li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/Ionic-Framework-Web-iOS-Android%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AEBuild%E6%96%B9%E6%B3%95/" class="image is-7by1">
+            <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/116813817-bda0bb80-ab90-11eb-8b5c-f1ca7fd6977e.png" alt="[Ionic Framework] Web/iOS/AndroidアプリのBuild方法">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2021-03-29T09:02:03.000Z">2021-03-29</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Mobile-Ionic/">Mobile (Ionic)</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    13分 read (About 1884 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/Ionic-Framework-Web-iOS-Android%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AEBuild%E6%96%B9%E6%B3%95/">[Ionic Framework] Web/iOS/AndroidアプリのBuild方法</a>
+            
+        </h1>
+        <div class="content">
+            <ul>
+<li>開発したIonic ProjectからWEB/iOS/Androidアプリをビルドする方法についてのメモ<ul>
+<li>Ionicの概要と初期開発については以下を参照<ul>
+<li><a href="/Ionic入門-Angular-React-VueベースでWeb-iOS-Androidを同時開発するクロスプラットフォームフレームワーク/">[Ionic入門] Angular/React/VueベースでWeb/iOS/Androidを同時開発可能なクロスプラットフォームフレームワーク</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!--toc-->
+
+<h2><span id="前提-モバイルの動作確認">前提： モバイルの動作確認</span></h2><ul>
+<li>以下のコマンドでiOS/Andoridのそれぞれの画面を動作確認できる<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ionic serve --lab</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/68212997/116815792-1cb6fe00-ab9a-11eb-8526-0076f79cafe1.png" alt="Ionic FirstApp Temaplate"></p>
+<h2><span id="ionic-projectのbuild">Ionic ProjectのBuild</span></h2><ul>
+<li>単一のIonic Projectから、三種のAPをビルドできる<ul>
+<li>WEB(SPA), iOS, Android</li>
+</ul>
+</li>
+<li>生成されたソースを各アプリストアで公開する</li>
+</ul>
+<h2><span id="webアプリとしてbuild">WebアプリとしてBuild</span></h2><ul>
+<li><p>ここはベースとするフレームワークと同様</p>
+<ul>
+<li>/dist配下にSPAとして動作するソースが払い出される（Angularベースの場合）</li>
+<li>S3やFirebase Hostingに置けばサービス公開できる</li>
+</ul>
+</li>
+<li><p>WEB APのビルドコマンド</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ionic build --prod</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2><span id="モバイルアプリとしてbuild">モバイルアプリとしてBuild</span></h2><h3><span id="buildに必要なパッケージをpjにインストール">buildに必要なパッケージをPJにインストール</span></h3><ul>
+<li>/wwwディレクトリが生成される<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ionic integrations enable capacitor</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3><span id="ios">iOS</span></h3><ul>
+<li>buildしてiOSアプリとして動かす<ul>
+<li>/iosディレクトリが生成される</li>
+<li>ここのソースをApple Storeに公開すれば良い<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ionic cap add ios</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<p>以下はMac前提。IonicならMacでなくとも開発自体は問題なくできるが、動作確認をするにはMacである必要がある</p>
+<ul>
+<li><p>Xcodeを起動して実機確認</p>
+<ul>
+<li>XCodeの概要とインストール方法は以下を参照<ul>
+<li><a href="/Ionic入門-Angular-React-VueベースでWeb-iOS-Androidを同時開発するクロスプラットフォームフレームワーク/#モバイルアプリ開発用ツールのインストール">モバイルアプリ開発用ツールのインストール</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>iPhoneがあれば連携可能</p>
+</li>
+</ul>
+<h3><span id="android">Android</span></h3><ul>
+<li>/androidディレクトリが生成される<ul>
+<li>ここのソースをGoogle Playに公開すれば良い<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ionic cap add android</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>Android Studioを起動して実機確認<ul>
+<li>Android Studioの概要とインストール方法については以下を参照<ul>
+<li><a href="/Ionic入門-Angular-React-VueベースでWeb-iOS-Androidを同時開発するクロスプラットフォームフレームワーク/#モバイルアプリ開発用ツールのインストール">モバイルアプリ開発用ツールのインストール</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2><span id="参考">参考</span></h2><h3><span id="関連記事">関連記事</span></h3><ul>
+<li><a href="/Ionic入門-Angular-React-VueベースでWeb-iOS-Androidを同時開発するクロスプラットフォームフレームワーク/">[Ionic入門] Angular/React/VueベースでWeb/iOS/Androidを同時開発可能なクロスプラットフォームフレームワーク</a></li>
+<li><a href="/Angular入門-AngularCLI環境構築-PJの開始-コンポーネントの生成-初めての関数開発/">[Angular入門] AngularCLI環境構築~PJの開始,コンポーネントの生成,初めての関数開発</a></li>
+<li><a href="/Angular入門-mat-inputで生成したフォームから入力値を取得-双方向データバインディング/">[Angular Material入門] mat-inputで生成したフォームから入力値を取得(双方向データバインディング)</a></li>
+<li><a href="/Angular-x-AWS-SDK-for-JavaScriptの始め方/">Angular x AWS SDK for JavaScriptの始め方</a></li>
+<li><a href="/Angular-TypeScript-JavaScript-非同期処理-待ち合わせ処理のまとめ-Observable-Promise-async-await/">[Angular/TypeScript(JavaScript)] 非同期処理/待ち合わせ処理のまとめ (Observable/subscribe/forkJoin/Promise/async/await/then)</a></li>
+<li><a href="/Angular-JSONデータのファイル化と出力-クラウドから取得したデータを任意の名称で保存する/">[Angular JavaScript] JSONデータのファイル化と出力 取得したデータを任意の名称で保存するロジック (TypeScript)</a></li>
+<li><a href="/Angular-ng-e2e-Test-証明書エラーでハマった際の回避策/">[Angular] ng e2e Test 証明書エラーでハマった際の回避策(unable to get local issuer certificate))</a></li>
+<li><a href="/Angular-複数のcheckboxで一つ以上のチェックを必須とするバリデーション/">[Angular] 複数のcheckboxで一つ以上のチェックを必須とするバリデーション</a></li>
+<li><a href="/Angular-Service入門-ロジックを切り出し、複数Componentで再利用可能にする/">[Angular Service入門] ロジックを切り出し、複数Componentで再利用可能にする</a></li>
+<li><a href="/Angular-mat-selection-listでcheckboxを表示～選択値を配列として取得/">[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得</a></li>
+<li><a href="/Angular-Schematics-開閉可能なサイドナビ＆ツールバーを3分で自動生成する/">[Angular Schematics] 開閉可能なサイドナビ＆ツールバーを3分で自動生成する</a></li>
+<li><a href="/Angular-map-fileter-mat-checkboxを使って選択値を配列に格納するロジック/">[Angular] map() &amp; filter() &amp; mat-checkboxを使って選択値を配列に格納するロジック</a></li>
+<li><a href="/Angular-JSONデータのファイル化と出力-クラウドから取得したデータを任意の名称で保存する/">[Angular JavaScript] JSONデータのファイル化と出力 <del>取得したデータを任意の名称で保存するロジック</del> (TypeScript)</a></li>
+<li><a href="/Angular-JavaScript-JSONファイルの読み込み/">[Angular JavaScript] JSONファイル(複数)の読み込み</a></li>
+<li><a href="/Angular-x-AWS-SDK-for-JavaScriptの始め方/">Angular x AWS SDK for JavaScriptの始め方</a></li>
+<li><a href="/静的ホスティングサービスまとめ-Netlify-S3-Firebase-Hosting-Github-Pages/">静的ホスティングサービスまとめ(Netlify/S3/Firebase Hosting/Github Pages)</a></li>
+<li><a href="/Angular-ReactiveForm-x-mat-input-一つの入力欄のエラーメッセージを出し分ける/">[Angular ReactiveForm x mat-input] 一つの入力欄のエラーメッセージを出し分ける</a></li>
+<li><a href="/Angular-mat-input-バリデーションまとめ/">[Angular mat-input] バリデーションまとめ</a></li>
+<li><a href="/Angular-複数のcheckboxで一つ以上のチェックを必須とするバリデーション/">[Angular] 複数のcheckboxで一つ以上のチェックを必須とするバリデーション</a></li>
+<li><a href="/Angular-mat-selection-listでcheckboxを表示～選択値を配列として取得/">[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得</a></li>
+<li><a href="/Angular-Schematics-開閉可能なサイドナビ＆ツールバーを3分で自動生成する/">[Angular Schematics] 開閉可能なサイドナビ＆ツールバーを3分で自動生成する</a></li>
+</ul>
+<h3><span id="その他">その他</span></h3><ul>
+<li><a href="https://amzn.to/335cTj9">Ionicで作る モバイルアプリ制作入門[Angular版]&lt;Web/iPhone/Android対応&gt;</a></li>
+<li><a href="https://amzn.to/3tbX5pA">Ionicで作る モバイルアプリ制作入門〈Web/iPhone/Android対応〉</a></li>
+<li><a href="https://ionicframework.com/jp/docs/">Ionic Framework - 日本語ドキュメンテーション</a></li>
+<li><a href="https://ionicframework.com/jp/docs/components">Ionic Framework - UIコンポーネント</a></li>
+<li><a href="https://ionicframework.com/jp/docs/native">Ionic Framework - Native APIs</a></li>
 </ul>
 
         </div>
@@ -2400,241 +3005,6 @@
 
 
 
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/Angular-ng-build%E6%99%82%E3%81%AE%E3%82%A8%E3%83%A9%E3%83%BC--aot/" class="image is-7by1">
-            <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/104157486-8d40e000-542e-11eb-9c5d-786957fff2b4.png" alt="[Angular] ng build時のエラー --aotについて">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2021-03-03T06:20:28.000Z">2021-03-03</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Angular/">Angular</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    10分 read (About 1538 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/Angular-ng-build%E6%99%82%E3%81%AE%E3%82%A8%E3%83%A9%E3%83%BC--aot/">[Angular] ng build時のエラー --aotについて</a>
-            
-        </h1>
-        <div class="content">
-            <ul>
-<li>Angular 9以降でデフォルト化されたAOTについてのメモ<ul>
-<li>8以前のバージョンからアップデートした際に注意すべきポイント</li>
-</ul>
-</li>
-</ul>
-<!--toc-->
-
-<h2><span id="発生する事象">発生する事象</span></h2><ul>
-<li>Angularのバージョンアップ後、build実行時にエラーが発生する<ul>
-<li>–aot オプションが必要になる<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng build --aot</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h2><span id="原因aot">原因/AOT</span></h2><ul>
-<li><p>Angular9 以降ではahead-of-time (AOT)コンパイラがデフォルトに採用されている</p>
-</li>
-<li><p><a href="https://angular.jp/guide/aot-compiler">Ahead-of-time (AOT) コンパイラ</a></p>
-<ul>
-<li>引用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Angular の ahead-of-time (AOT) コンパイラ は、ブラウザがそのコードをダウンロードして実行する前に、</span><br><span class="line">ビルドフェーズ中にAngular HTML コードと TypeScript コードを効率的な JavaScript コードに変換します。</span><br><span class="line">ビルドプロセス中にアプリケーションをコンパイルすると、ブラウザでのレンダリングが速くなります。</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>Angularには、アプリケーションをコンパイルする2つの方法がある</p>
-<ul>
-<li>Just-in-Time (JIT) <ul>
-<li>実行時にブラウザ内でアプリケーションをコンパイルします。This was the default until Angular 8.</li>
-</ul>
-</li>
-<li>Ahead-of-Time (AOT) <ul>
-<li>ビルド時にアプリとライブラリをコンパイルします。This is the default since Angular 9.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>ng build (build only)またはng serve (build and serve locally)のCLIコマンドを実行すると、<br>コンパイルの種類（JITかAOTか）は、angular.jsonで指定したビルド設定のaotプロパティの値に依存する</p>
-<ul>
-<li>Angular 8以前で開始した場合はデフォルトでtrueではない</li>
-</ul>
-</li>
-</ul>
-<p>これらの要因により今回のエラーが発生したと思われる</p>
-<h2><span id="aotの有効化">aotの有効化</span></h2><ul>
-<li><p>設定を変更することで、buildの度にオプション(–aot)を付与せずともエラーを回避可能になる</p>
-</li>
-<li><p>以下の設定ファイルでbuildの設定を変更することで解決できる</p>
-<ul>
-<li>aotをtrueとするだけ</li>
-</ul>
-</li>
-<li><p>angular-pj/angular.json</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&quot;build&quot;: &#123;</span><br><span class="line">  &quot;builder&quot;: &quot;@angular-devkit&#x2F;build-angular:browser&quot;,</span><br><span class="line">  &quot;options&quot;: &#123;</span><br><span class="line">    &quot;outputPath&quot;: &quot;dist&#x2F;reacq-pj&quot;,</span><br><span class="line">    &quot;index&quot;: &quot;src&#x2F;index.html&quot;,</span><br><span class="line">    &quot;main&quot;: &quot;src&#x2F;main.ts&quot;,</span><br><span class="line">    &quot;polyfills&quot;: &quot;src&#x2F;polyfills.ts&quot;,</span><br><span class="line">    &quot;tsConfig&quot;: &quot;tsconfig.app.json&quot;,</span><br><span class="line">    &quot;aot&quot;: true, &#x2F;&#x2F;こちらを変更</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<h2><span id="参考">参考</span></h2><h3><span id="関連記事">関連記事</span></h3><ul>
-<li><a href="/Angular-x-AWS-SDK-for-JavaScriptの始め方/">Angular x AWS SDK for JavaScriptの始め方</a></li>
-<li><a href="/Angular-TypeScript-JavaScript-非同期処理-待ち合わせ処理のまとめ-Observable-Promise-async-await/">[Angular/TypeScript(JavaScript)] 非同期処理/待ち合わせ処理のまとめ (Observable/subscribe/forkJoin/Promise/async/await/then)</a></li>
-<li><a href="/Angular-JSONデータのファイル化と出力-クラウドから取得したデータを任意の名称で保存する/">[Angular JavaScript] JSONデータのファイル化と出力 取得したデータを任意の名称で保存するロジック (TypeScript)</a></li>
-<li><a href="/Angular-ng-e2e-Test-証明書エラーでハマった際の回避策/">[Angular] ng e2e Test 証明書エラーでハマった際の回避策(unable to get local issuer certificate))</a></li>
-<li><a href="/Angular-複数のcheckboxで一つ以上のチェックを必須とするバリデーション/">[Angular] 複数のcheckboxで一つ以上のチェックを必須とするバリデーション</a></li>
-<li><a href="/Angular入門-mat-inputで生成したフォームから入力値を取得-双方向データバインディング/">[Angular Material入門] mat-inputで生成したフォームから入力値を取得(双方向データバインディング)</a></li>
-<li><a href="/Angular-Service入門-ロジックを切り出し、複数Componentで再利用可能にする/">[Angular Service入門] ロジックを切り出し、複数Componentで再利用可能にする</a></li>
-<li><a href="/Angular-mat-selection-listでcheckboxを表示～選択値を配列として取得/">[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得</a></li>
-<li><a href="/Angular-Schematics-開閉可能なサイドナビ＆ツールバーを3分で自動生成する/">[Angular Schematics] 開閉可能なサイドナビ＆ツールバーを3分で自動生成する</a></li>
-<li><a href="/Angular-map-fileter-mat-checkboxを使って選択値を配列に格納するロジック/">[Angular] map() &amp; filter() &amp; mat-checkboxを使って選択値を配列に格納するロジック</a></li>
-<li><a href="/Angular-JSONデータのファイル化と出力-クラウドから取得したデータを任意の名称で保存する/">[Angular JavaScript] JSONデータのファイル化と出力 <del>取得したデータを任意の名称で保存するロジック</del> (TypeScript)</a></li>
-<li><a href="/Angular-JavaScript-JSONファイルの読み込み/">[Angular JavaScript] JSONファイル(複数)の読み込み</a></li>
-<li><a href="/Angular-x-AWS-SDK-for-JavaScriptの始め方/">Angular x AWS SDK for JavaScriptの始め方</a></li>
-<li><a href="/静的ホスティングサービスまとめ-Netlify-S3-Firebase-Hosting-Github-Pages/">静的ホスティングサービスまとめ(Netlify/S3/Firebase Hosting/Github Pages)</a></li>
-<li><a href="/Angular-ReactiveForm-x-mat-input-一つの入力欄のエラーメッセージを出し分ける/">[Angular ReactiveForm x mat-input] 一つの入力欄のエラーメッセージを出し分ける</a></li>
-<li><a href="/Angular-mat-input-バリデーションまとめ/">[Angular mat-input] バリデーションまとめ</a></li>
-<li><a href="/Angular-複数のcheckboxで一つ以上のチェックを必須とするバリデーション/">[Angular] 複数のcheckboxで一つ以上のチェックを必須とするバリデーション</a></li>
-<li><a href="/Angular-mat-selection-listでcheckboxを表示～選択値を配列として取得/">[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得</a></li>
-<li><a href="/Angular-Schematics-開閉可能なサイドナビ＆ツールバーを3分で自動生成する/">[Angular Schematics] 開閉可能なサイドナビ＆ツールバーを3分で自動生成する</a></li>
-</ul>
-<h3><span id="その他">その他</span></h3><ul>
-<li><a href="https://angular-japan.discourse.group/">Angularコミュニティ</a></li>
-</ul>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/Angular-An-unhandled-exception-occurred-Port-4200-is-already-in-use-%E3%81%AE%E8%A7%A3%E6%B1%BA%E7%AD%96/" class="image is-7by1">
-            <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/104157486-8d40e000-542e-11eb-9c5d-786957fff2b4.png" alt="[Angular] An unhandled exception occurred: Port 4200 is already in use の解決策">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2021-03-03T05:47:47.000Z">2021-03-03</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a>&nbsp;/&nbsp;<a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Angular/">Angular</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    7分 read (About 1092 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/Angular-An-unhandled-exception-occurred-Port-4200-is-already-in-use-%E3%81%AE%E8%A7%A3%E6%B1%BA%E7%AD%96/">[Angular] An unhandled exception occurred: Port 4200 is already in use の解決策</a>
-            
-        </h1>
-        <div class="content">
-            <!-- toc -->
-
-<ul>
-<li><a href="#error">Error</a></li>
-<li><a href="#解決策">解決策</a></li>
-<li><a href="#参考">参考</a><ul>
-<li><a href="#関連記事">関連記事</a></li>
-<li><a href="#その他">その他</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-
-<p>ng serve実行時のエラーについてのメモ</p>
-<h2><span id="error">Error</span></h2><ul>
-<li>以下のエラーが出る<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; ng serve</span><br><span class="line">An unhandled exception occurred: Port 4200 is already in use. Use &#39;--port&#39; to specify a different port.</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2><span id="解決策">解決策</span></h2><p>Port 4200のプロセスをkillする</p>
-<ul>
-<li>ポートが:4200と表示されているプロセスを探す<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; netstat -a -n -o</span><br><span class="line">プロトコル  ローカル アドレス  外部アドレス         状態            PID</span><br><span class="line">TCP         127.0.0.1:62279   127.0.0.1:4200     ESTABLISHED     18492</span><br></pre></td></tr></table></figure></li>
-<li>pidを指定してプロセスをkill<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; taskkill -f &#x2F;pid 8464</span><br><span class="line">成功: PID 18492 のプロセスは強制終了されました。</span><br></pre></td></tr></table></figure></li>
-<li>以上でserve 可能になる<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; ng serve</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2><span id="参考">参考</span></h2><h3><span id="関連記事">関連記事</span></h3><ul>
-<li><a href="/Angular-x-AWS-SDK-for-JavaScriptの始め方/">Angular x AWS SDK for JavaScriptの始め方</a></li>
-<li><a href="/Angular-TypeScript-JavaScript-非同期処理-待ち合わせ処理のまとめ-Observable-Promise-async-await/">[Angular/TypeScript(JavaScript)] 非同期処理/待ち合わせ処理のまとめ (Observable/subscribe/forkJoin/Promise/async/await/then)</a></li>
-<li><a href="/Angular-JSONデータのファイル化と出力-クラウドから取得したデータを任意の名称で保存する/">[Angular JavaScript] JSONデータのファイル化と出力 取得したデータを任意の名称で保存するロジック (TypeScript)</a></li>
-<li><a href="/Angular-ng-e2e-Test-証明書エラーでハマった際の回避策/">[Angular] ng e2e Test 証明書エラーでハマった際の回避策(unable to get local issuer certificate))</a></li>
-<li><a href="/Angular-複数のcheckboxで一つ以上のチェックを必須とするバリデーション/">[Angular] 複数のcheckboxで一つ以上のチェックを必須とするバリデーション</a></li>
-<li><a href="/Angular入門-mat-inputで生成したフォームから入力値を取得-双方向データバインディング/">[Angular Material入門] mat-inputで生成したフォームから入力値を取得(双方向データバインディング)</a></li>
-<li><a href="/Angular-Service入門-ロジックを切り出し、複数Componentで再利用可能にする/">[Angular Service入門] ロジックを切り出し、複数Componentで再利用可能にする</a></li>
-<li><a href="/Angular-mat-selection-listでcheckboxを表示～選択値を配列として取得/">[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得</a></li>
-<li><a href="/Angular-Schematics-開閉可能なサイドナビ＆ツールバーを3分で自動生成する/">[Angular Schematics] 開閉可能なサイドナビ＆ツールバーを3分で自動生成する</a></li>
-<li><a href="/Angular-map-fileter-mat-checkboxを使って選択値を配列に格納するロジック/">[Angular] map() &amp; filter() &amp; mat-checkboxを使って選択値を配列に格納するロジック</a></li>
-<li><a href="/Angular-JSONデータのファイル化と出力-クラウドから取得したデータを任意の名称で保存する/">[Angular JavaScript] JSONデータのファイル化と出力 <del>取得したデータを任意の名称で保存するロジック</del> (TypeScript)</a></li>
-<li><a href="/Angular-JavaScript-JSONファイルの読み込み/">[Angular JavaScript] JSONファイル(複数)の読み込み</a></li>
-<li><a href="/Angular-x-AWS-SDK-for-JavaScriptの始め方/">Angular x AWS SDK for JavaScriptの始め方</a></li>
-<li><a href="/静的ホスティングサービスまとめ-Netlify-S3-Firebase-Hosting-Github-Pages/">静的ホスティングサービスまとめ(Netlify/S3/Firebase Hosting/Github Pages)</a></li>
-<li><a href="/Angular-ReactiveForm-x-mat-input-一つの入力欄のエラーメッセージを出し分ける/">[Angular ReactiveForm x mat-input] 一つの入力欄のエラーメッセージを出し分ける</a></li>
-<li><a href="/Angular-mat-input-バリデーションまとめ/">[Angular mat-input] バリデーションまとめ</a></li>
-<li><a href="/Angular-複数のcheckboxで一つ以上のチェックを必須とするバリデーション/">[Angular] 複数のcheckboxで一つ以上のチェックを必須とするバリデーション</a></li>
-<li><a href="/Angular-mat-selection-listでcheckboxを表示～選択値を配列として取得/">[Angular] mat-selection-list &amp; ngForでcheckboxをリスト表示～選択値を配列として取得</a></li>
-<li><a href="/Angular-Schematics-開閉可能なサイドナビ＆ツールバーを3分で自動生成する/">[Angular Schematics] 開閉可能なサイドナビ＆ツールバーを3分で自動生成する</a></li>
-</ul>
-<h3><span id="その他">その他</span></h3><ul>
-<li><a href="https://stackoverflow.com/questions/39091735/port-4200-is-already-in-use-when-running-the-ng-serve-command">https://stackoverflow.com/questions/39091735/port-4200-is-already-in-use-when-running-the-ng-serve-command</a></li>
-</ul>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -2703,7 +3073,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            102
+                            104
                         </p>
                     </a>
                 </div>
@@ -2715,7 +3085,7 @@
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            34
+                            35
                         </p>
                     </a>
                 </div>
@@ -2727,7 +3097,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            140
+                            143
                         </p>
                     </a>
                 </div>
@@ -2874,7 +3244,7 @@
                 <span class="level-item">Serverless Application Dev</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">48</span>
+                <span class="level-item tag">50</span>
             </span>
         </a><ul><li>
         <a class="level is-marginless" href="/categories/Serverless-Application-Dev/AWS/">
@@ -2907,6 +3277,14 @@
             </span>
             <span class="level-end">
                 <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/categories/Serverless-Application-Dev/Mobile-Ionic/">
+            <span class="level-start">
+                <span class="level-item">Mobile (Ionic)</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/Serverless-Application-Dev/SPA-Angular/">
@@ -3079,7 +3457,7 @@
         <h3 class="menu-label">
             タグクラウド
         </h3>
-        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AR/" style="font-size: 15px;">AR</a> <a href="/tags/AR-js/" style="font-size: 11px;">AR.js</a> <a href="/tags/AR-js-Studio/" style="font-size: 10px;">AR.js Studio</a> <a href="/tags/AWS/" style="font-size: 19px;">AWS</a> <a href="/tags/AWS-Budgets/" style="font-size: 11px;">AWS Budgets</a> <a href="/tags/AWS-Cost-Explorer/" style="font-size: 10px;">AWS Cost Explorer</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 14px;">AWS SDK for JavaScript</a> <a href="/tags/AddThis/" style="font-size: 10px;">AddThis</a> <a href="/tags/Adobe-XD/" style="font-size: 10px;">Adobe XD</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Amazon-CloudWatch/" style="font-size: 10px;">Amazon CloudWatch</a> <a href="/tags/Amazon-Honycode/" style="font-size: 10px;">Amazon Honycode</a> <a href="/tags/Amazon-SNS/" style="font-size: 11px;">Amazon SNS</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 17px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 11px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/CDN/" style="font-size: 10px;">CDN</a> <a href="/tags/CI-CD/" style="font-size: 13px;">CI/CD</a> <a href="/tags/Cloud-Craft/" style="font-size: 11px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/CloudFormation/" style="font-size: 11px;">CloudFormation</a> <a href="/tags/CloudFront/" style="font-size: 14px;">CloudFront</a> <a href="/tags/CloudTrail/" style="font-size: 10px;">CloudTrail</a> <a href="/tags/Cost-Anomaly-Detection/" style="font-size: 10px;">Cost Anomaly Detection</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/Cubasis-LE/" style="font-size: 10px;">Cubasis LE</a> <a href="/tags/DTM/" style="font-size: 14px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Elgato-HD-60S/" style="font-size: 10px;">Elgato HD 60S</a> <a href="/tags/Firebase/" style="font-size: 11px;">Firebase</a> <a href="/tags/Firebase-Hosting/" style="font-size: 10px;">Firebase Hosting</a> <a href="/tags/Former2/" style="font-size: 10px;">Former2</a> <a href="/tags/Github/" style="font-size: 11px;">Github</a> <a href="/tags/Github-Actions/" style="font-size: 11px;">Github Actions</a> <a href="/tags/Github-com/" style="font-size: 16px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 11px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 11px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 18px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/IAM/" style="font-size: 10px;">IAM</a> <a href="/tags/JSON/" style="font-size: 11px;">JSON</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/LadioCast/" style="font-size: 10px;">LadioCast</a> <a href="/tags/Logging/" style="font-size: 11px;">Logging</a> <a href="/tags/LowCode/" style="font-size: 11px;">LowCode</a> <a href="/tags/MFA/" style="font-size: 10px;">MFA</a> <a href="/tags/MS-Authentication/" style="font-size: 10px;">MS Authentication</a> <a href="/tags/MacBook-Pro-16/" style="font-size: 10px;">MacBook Pro 16</a> <a href="/tags/Mind-Node/" style="font-size: 11px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 11px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/Netlify/" style="font-size: 10px;">Netlify</a> <a href="/tags/Network/" style="font-size: 10px;">Network</a> <a href="/tags/NoCode/" style="font-size: 12px;">NoCode</a> <a href="/tags/Observable/" style="font-size: 10px;">Observable</a> <a href="/tags/PO/" style="font-size: 10px;">PO</a> <a href="/tags/PdM/" style="font-size: 10px;">PdM</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/RPA/" style="font-size: 12px;">RPA</a> <a href="/tags/ReactiveForm/" style="font-size: 10px;">ReactiveForm</a> <a href="/tags/Route53/" style="font-size: 10px;">Route53</a> <a href="/tags/S3/" style="font-size: 15px;">S3</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/SYNCROOM/" style="font-size: 11px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Spark-AR/" style="font-size: 10px;">Spark AR</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 13px;">Steinberg UR44C</a> <a href="/tags/Teams/" style="font-size: 10px;">Teams</a> <a href="/tags/Touch-Cast-Studio/" style="font-size: 10px;">Touch Cast Studio</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/TypeScript/" style="font-size: 13px;">TypeScript</a> <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/UI-Bakery/" style="font-size: 10px;">UI Bakery</a> <a href="/tags/WAF/" style="font-size: 10px;">WAF</a> <a href="/tags/WAFv2/" style="font-size: 10px;">WAFv2</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/WEB%E4%BC%9A%E8%AD%B0/" style="font-size: 11px;">WEB会議</a> <a href="/tags/WebAR/" style="font-size: 11px;">WebAR</a> <a href="/tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="/tags/Windows-Power-Automate/" style="font-size: 10px;">Windows Power Automate</a> <a href="/tags/Wireshark/" style="font-size: 10px;">Wireshark</a> <a href="/tags/aot/" style="font-size: 11px;">aot</a> <a href="/tags/async-await/" style="font-size: 10px;">async/await</a> <a href="/tags/aws-config/" style="font-size: 10px;">aws config</a> <a href="/tags/cloud9/" style="font-size: 12px;">cloud9</a> <a href="/tags/display-land/" style="font-size: 10px;">display.land</a> <a href="/tags/draw-io/" style="font-size: 11px;">draw.io</a> <a href="/tags/e2e-test/" style="font-size: 11px;">e2e test</a> <a href="/tags/filter/" style="font-size: 11px;">filter()</a> <a href="/tags/forkJoin/" style="font-size: 10px;">forkJoin()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iOS/" style="font-size: 11px;">iOS</a> <a href="/tags/iPad-Pro/" style="font-size: 12px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 13px;">icarus</a> <a href="/tags/map/" style="font-size: 11px;">map()</a> <a href="/tags/mat-input/" style="font-size: 12px;">mat input</a> <a href="/tags/mat-tree/" style="font-size: 11px;">mat tree</a> <a href="/tags/mat-checkbox/" style="font-size: 12px;">mat-checkbox</a> <a href="/tags/mat-input/" style="font-size: 10px;">mat-input</a> <a href="/tags/mat-selection-list/" style="font-size: 10px;">mat-selection-list</a> <a href="/tags/mmhmm/" style="font-size: 10px;">mmhmm</a> <a href="/tags/ngFor/" style="font-size: 10px;">ngFor</a> <a href="/tags/plantUML/" style="font-size: 11px;">plantUML</a> <a href="/tags/popIn-Aladdin2/" style="font-size: 11px;">popIn Aladdin2</a> <a href="/tags/then/" style="font-size: 10px;">then()</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%89%E3%81%8F%E3%81%8C%E3%81%8DAR/" style="font-size: 10px;">らくがきAR</a> <a href="/tags/%E3%82%A2%E3%82%B8%E3%83%A3%E3%82%A4%E3%83%AB/" style="font-size: 10px;">アジャイル</a> <a href="/tags/%E3%82%A2%E3%82%B8%E3%83%A3%E3%82%A4%E3%83%AB%E9%96%8B%E7%99%BA/" style="font-size: 12px;">アジャイル開発</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 11px;">ショートカット</a> <a href="/tags/%E3%82%B9%E3%82%AF%E3%83%A9%E3%83%A0/" style="font-size: 10px;">スクラム</a> <a href="/tags/%E3%82%B9%E3%82%AF%E3%83%A9%E3%83%A0%E9%96%8B%E7%99%BA/" style="font-size: 10px;">スクラム開発</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C/" style="font-size: 11px;">ファイル操作</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%97%E3%83%AD%E3%83%80%E3%82%AF%E3%83%88%E3%82%AA%E3%83%BC%E3%83%8A%E3%83%BC/" style="font-size: 10px;">プロダクトオーナー</a> <a href="/tags/%E3%83%97%E3%83%AD%E3%83%80%E3%82%AF%E3%83%88%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%A3%E3%83%BC/" style="font-size: 10px;">プロダクトマネージャー</a> <a href="/tags/%E3%83%97%E3%83%AD%E3%83%88%E3%82%BF%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0/" style="font-size: 10px;">プロトタイピング</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 12px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a> <a href="/tags/%E5%8F%8C%E6%96%B9%E5%90%91%E3%83%87%E3%83%BC%E3%82%BF%E3%83%90%E3%82%A4%E3%83%B3%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0/" style="font-size: 12px;">双方向データバインディング</a> <a href="/tags/%E5%BE%85%E3%81%A1%E5%90%88%E3%82%8F%E3%81%9B%E5%87%A6%E7%90%86/" style="font-size: 10px;">待ち合わせ処理</a> <a href="/tags/%E9%9D%99%E7%9A%84WEB-Hosting/" style="font-size: 11px;">静的WEB Hosting</a> <a href="/tags/%E9%9D%99%E7%9A%84WEB%E3%82%B5%E3%82%A4%E3%83%88Hosting/" style="font-size: 10px;">静的WEBサイトHosting</a>
+        <a href="/tags/EventEmitter/" style="font-size: 10px;">@EventEmitter</a> <a href="/tags/Input/" style="font-size: 10px;">@Input</a> <a href="/tags/Output/" style="font-size: 10px;">@Output</a> <a href="/tags/ViewChild/" style="font-size: 10px;">@ViewChild</a> <a href="/tags/ACM/" style="font-size: 10px;">ACM</a> <a href="/tags/AMP/" style="font-size: 10px;">AMP</a> <a href="/tags/AR/" style="font-size: 15px;">AR</a> <a href="/tags/AR-js/" style="font-size: 11px;">AR.js</a> <a href="/tags/AR-js-Studio/" style="font-size: 10px;">AR.js Studio</a> <a href="/tags/AWS/" style="font-size: 19px;">AWS</a> <a href="/tags/AWS-Budgets/" style="font-size: 11px;">AWS Budgets</a> <a href="/tags/AWS-Cost-Explorer/" style="font-size: 10px;">AWS Cost Explorer</a> <a href="/tags/AWS-SDK-for-JavaScript/" style="font-size: 14px;">AWS SDK for JavaScript</a> <a href="/tags/AddThis/" style="font-size: 10px;">AddThis</a> <a href="/tags/Adobe-XD/" style="font-size: 10px;">Adobe XD</a> <a href="/tags/Alexa/" style="font-size: 10px;">Alexa</a> <a href="/tags/Amazon-CloudWatch/" style="font-size: 10px;">Amazon CloudWatch</a> <a href="/tags/Amazon-Honycode/" style="font-size: 10px;">Amazon Honycode</a> <a href="/tags/Amazon-SNS/" style="font-size: 11px;">Amazon SNS</a> <a href="/tags/Android/" style="font-size: 11px;">Android</a> <a href="/tags/Angular/" style="font-size: 20px;">Angular</a> <a href="/tags/Angular-Material/" style="font-size: 17px;">Angular Material</a> <a href="/tags/AngularFire/" style="font-size: 11px;">AngularFire</a> <a href="/tags/Augury/" style="font-size: 10px;">Augury</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/CDN/" style="font-size: 10px;">CDN</a> <a href="/tags/CI-CD/" style="font-size: 13px;">CI/CD</a> <a href="/tags/Cloud-Craft/" style="font-size: 11px;">Cloud Craft</a> <a href="/tags/Cloud9/" style="font-size: 10px;">Cloud9</a> <a href="/tags/CloudFormation/" style="font-size: 11px;">CloudFormation</a> <a href="/tags/CloudFront/" style="font-size: 14px;">CloudFront</a> <a href="/tags/CloudTrail/" style="font-size: 10px;">CloudTrail</a> <a href="/tags/Cost-Anomaly-Detection/" style="font-size: 10px;">Cost Anomaly Detection</a> <a href="/tags/Cubase-ai/" style="font-size: 10px;">Cubase ai</a> <a href="/tags/Cubasis-LE/" style="font-size: 10px;">Cubasis LE</a> <a href="/tags/DTM/" style="font-size: 14px;">DTM</a> <a href="/tags/Disqus/" style="font-size: 10px;">Disqus</a> <a href="/tags/Elgato-HD-60S/" style="font-size: 10px;">Elgato HD 60S</a> <a href="/tags/Firebase/" style="font-size: 11px;">Firebase</a> <a href="/tags/Firebase-Hosting/" style="font-size: 10px;">Firebase Hosting</a> <a href="/tags/Former2/" style="font-size: 10px;">Former2</a> <a href="/tags/Github/" style="font-size: 11px;">Github</a> <a href="/tags/Github-Actions/" style="font-size: 11px;">Github Actions</a> <a href="/tags/Github-com/" style="font-size: 16px;">Github.com</a> <a href="/tags/GithubEnterprise/" style="font-size: 10px;">GithubEnterprise</a> <a href="/tags/GithubPages/" style="font-size: 11px;">GithubPages</a> <a href="/tags/Google-Chrome/" style="font-size: 10px;">Google Chrome</a> <a href="/tags/Google-Cloud-Shell/" style="font-size: 11px;">Google Cloud Shell</a> <a href="/tags/Hexo/" style="font-size: 18px;">Hexo</a> <a href="/tags/Hosting/" style="font-size: 10px;">Hosting</a> <a href="/tags/IAM/" style="font-size: 10px;">IAM</a> <a href="/tags/Ionic/" style="font-size: 11px;">Ionic</a> <a href="/tags/JSON/" style="font-size: 11px;">JSON</a> <a href="/tags/JavaScript/" style="font-size: 12px;">JavaScript</a> <a href="/tags/LadioCast/" style="font-size: 10px;">LadioCast</a> <a href="/tags/Logging/" style="font-size: 11px;">Logging</a> <a href="/tags/LowCode/" style="font-size: 11px;">LowCode</a> <a href="/tags/MFA/" style="font-size: 10px;">MFA</a> <a href="/tags/MS-Authentication/" style="font-size: 10px;">MS Authentication</a> <a href="/tags/MacBook-Pro-16/" style="font-size: 10px;">MacBook Pro 16</a> <a href="/tags/Mind-Node/" style="font-size: 11px;">Mind Node</a> <a href="/tags/NETDUETTO/" style="font-size: 11px;">NETDUETTO</a> <a href="/tags/Netflix-Party/" style="font-size: 10px;">Netflix Party</a> <a href="/tags/Netlify/" style="font-size: 10px;">Netlify</a> <a href="/tags/Network/" style="font-size: 10px;">Network</a> <a href="/tags/NoCode/" style="font-size: 12px;">NoCode</a> <a href="/tags/Observable/" style="font-size: 10px;">Observable</a> <a href="/tags/PO/" style="font-size: 10px;">PO</a> <a href="/tags/PdM/" style="font-size: 10px;">PdM</a> <a href="/tags/Promise/" style="font-size: 10px;">Promise</a> <a href="/tags/RPA/" style="font-size: 12px;">RPA</a> <a href="/tags/ReactiveForm/" style="font-size: 10px;">ReactiveForm</a> <a href="/tags/Route53/" style="font-size: 10px;">Route53</a> <a href="/tags/S3/" style="font-size: 15px;">S3</a> <a href="/tags/SSL/" style="font-size: 10px;">SSL</a> <a href="/tags/SYNCROOM/" style="font-size: 11px;">SYNCROOM</a> <a href="/tags/Schematics/" style="font-size: 10px;">Schematics</a> <a href="/tags/Service/" style="font-size: 10px;">Service</a> <a href="/tags/Siri/" style="font-size: 10px;">Siri</a> <a href="/tags/Sitemap/" style="font-size: 10px;">Sitemap</a> <a href="/tags/Spark-AR/" style="font-size: 10px;">Spark AR</a> <a href="/tags/Steinberg-UR44C/" style="font-size: 13px;">Steinberg UR44C</a> <a href="/tags/Teams/" style="font-size: 10px;">Teams</a> <a href="/tags/Touch-Cast-Studio/" style="font-size: 10px;">Touch Cast Studio</a> <a href="/tags/Treetable/" style="font-size: 10px;">Treetable</a> <a href="/tags/TypeScript/" style="font-size: 13px;">TypeScript</a> <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/UI-Bakery/" style="font-size: 10px;">UI Bakery</a> <a href="/tags/WAF/" style="font-size: 10px;">WAF</a> <a href="/tags/WAFv2/" style="font-size: 10px;">WAFv2</a> <a href="/tags/WEB-Page-Dev/" style="font-size: 10px;">WEB Page Dev</a> <a href="/tags/WEB%E4%BC%9A%E8%AD%B0/" style="font-size: 11px;">WEB会議</a> <a href="/tags/WebAR/" style="font-size: 11px;">WebAR</a> <a href="/tags/Webhook/" style="font-size: 10px;">Webhook</a> <a href="/tags/Windows-Power-Automate/" style="font-size: 10px;">Windows Power Automate</a> <a href="/tags/Wireshark/" style="font-size: 10px;">Wireshark</a> <a href="/tags/aot/" style="font-size: 11px;">aot</a> <a href="/tags/async-await/" style="font-size: 10px;">async/await</a> <a href="/tags/aws-config/" style="font-size: 10px;">aws config</a> <a href="/tags/cloud9/" style="font-size: 12px;">cloud9</a> <a href="/tags/display-land/" style="font-size: 10px;">display.land</a> <a href="/tags/draw-io/" style="font-size: 11px;">draw.io</a> <a href="/tags/e2e-test/" style="font-size: 11px;">e2e test</a> <a href="/tags/filter/" style="font-size: 11px;">filter()</a> <a href="/tags/forkJoin/" style="font-size: 10px;">forkJoin()</a> <a href="/tags/google-search-console/" style="font-size: 10px;">google search console</a> <a href="/tags/hexo-generator-amp/" style="font-size: 10px;">hexo-generator-amp</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a> <a href="/tags/iPad-Pro/" style="font-size: 12px;">iPad Pro</a> <a href="/tags/iPhone/" style="font-size: 10px;">iPhone</a> <a href="/tags/icarus/" style="font-size: 13px;">icarus</a> <a href="/tags/map/" style="font-size: 11px;">map()</a> <a href="/tags/mat-input/" style="font-size: 12px;">mat input</a> <a href="/tags/mat-tree/" style="font-size: 11px;">mat tree</a> <a href="/tags/mat-checkbox/" style="font-size: 12px;">mat-checkbox</a> <a href="/tags/mat-input/" style="font-size: 10px;">mat-input</a> <a href="/tags/mat-selection-list/" style="font-size: 10px;">mat-selection-list</a> <a href="/tags/mmhmm/" style="font-size: 10px;">mmhmm</a> <a href="/tags/ngFor/" style="font-size: 10px;">ngFor</a> <a href="/tags/plantUML/" style="font-size: 11px;">plantUML</a> <a href="/tags/popIn-Aladdin2/" style="font-size: 11px;">popIn Aladdin2</a> <a href="/tags/then/" style="font-size: 10px;">then()</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/%E2%80%9Dglobal-is-not-defined%E2%80%9D/" style="font-size: 10px;">”global is not defined”</a> <a href="/tags/%E3%82%89%E3%81%8F%E3%81%8C%E3%81%8DAR/" style="font-size: 10px;">らくがきAR</a> <a href="/tags/%E3%82%A2%E3%82%B8%E3%83%A3%E3%82%A4%E3%83%AB/" style="font-size: 10px;">アジャイル</a> <a href="/tags/%E3%82%A2%E3%82%B8%E3%83%A3%E3%82%A4%E3%83%AB%E9%96%8B%E7%99%BA/" style="font-size: 12px;">アジャイル開発</a> <a href="/tags/%E3%82%AF%E3%83%AD%E3%82%B9%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0/" style="font-size: 11px;">クロスプラットフォーム</a> <a href="/tags/%E3%82%B7%E3%83%A7%E3%83%BC%E3%83%88%E3%82%AB%E3%83%83%E3%83%88/" style="font-size: 11px;">ショートカット</a> <a href="/tags/%E3%82%B9%E3%82%AF%E3%83%A9%E3%83%A0/" style="font-size: 10px;">スクラム</a> <a href="/tags/%E3%82%B9%E3%82%AF%E3%83%A9%E3%83%A0%E9%96%8B%E7%99%BA/" style="font-size: 10px;">スクラム開発</a> <a href="/tags/%E3%83%86%E3%83%AC%E3%83%AF%E3%83%BC%E3%82%AF/" style="font-size: 10px;">テレワーク</a> <a href="/tags/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E6%93%8D%E4%BD%9C/" style="font-size: 11px;">ファイル操作</a> <a href="/tags/%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E5%9E%8BIDE/" style="font-size: 10px;">ブラウザ型IDE</a> <a href="/tags/%E3%83%97%E3%83%AD%E3%83%80%E3%82%AF%E3%83%88%E3%82%AA%E3%83%BC%E3%83%8A%E3%83%BC/" style="font-size: 10px;">プロダクトオーナー</a> <a href="/tags/%E3%83%97%E3%83%AD%E3%83%80%E3%82%AF%E3%83%88%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%A3%E3%83%BC/" style="font-size: 10px;">プロダクトマネージャー</a> <a href="/tags/%E3%83%97%E3%83%AD%E3%83%88%E3%82%BF%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0/" style="font-size: 10px;">プロトタイピング</a> <a href="/tags/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3/" style="font-size: 12px;">リモートセッション</a> <a href="/tags/%E5%85%B1%E5%90%8C%E9%96%8B%E7%99%BA/" style="font-size: 10px;">共同開発</a> <a href="/tags/%E5%8F%8C%E6%96%B9%E5%90%91%E3%83%87%E3%83%BC%E3%82%BF%E3%83%90%E3%82%A4%E3%83%B3%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0/" style="font-size: 12px;">双方向データバインディング</a> <a href="/tags/%E5%BE%85%E3%81%A1%E5%90%88%E3%82%8F%E3%81%9B%E5%87%A6%E7%90%86/" style="font-size: 10px;">待ち合わせ処理</a> <a href="/tags/%E9%9D%99%E7%9A%84WEB-Hosting/" style="font-size: 11px;">静的WEB Hosting</a> <a href="/tags/%E9%9D%99%E7%9A%84WEB%E3%82%B5%E3%82%A4%E3%83%88Hosting/" style="font-size: 10px;">静的WEBサイトHosting</a>
     </div>
 </div>
     
@@ -3106,6 +3484,25 @@
                     <a href="/PdM-PO-%E3%83%97%E3%83%AD%E3%83%80%E3%82%AF%E3%83%88%E3%81%AE%E6%A7%8B%E6%83%B3%E3%83%95%E3%82%A7%E3%82%A4%E3%82%BA%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6-4%E5%B1%A4%E3%81%AE%E4%BB%AE%E8%AA%AC%E7%AB%8B%E6%A1%88%E2%86%92%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%AD%E3%83%A3%E3%83%B3%E3%83%90%E3%82%B9%E2%86%92%E3%82%A8%E3%83%AC%E3%83%99%E3%83%BC%E3%82%BF%E3%83%94%E3%83%83%E3%83%81%E2%86%92%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AA%E3%83%BC%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E2%86%92%E3%83%97%E3%83%AD%E3%83%80%E3%82%AF%E3%83%88%E3%83%90%E3%83%83%E3%82%AF%E3%83%AD%E3%82%B0%E5%8C%96/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[PdM/PO] プロダクトの構想フェイズについて(4層の仮説立案→リーンキャンバス→インセプションデッキ→ストーリーマッピング→プロダクトバックログ化)</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/Others/">Others</a> / <a class="has-link-grey -link" href="/categories/Others/PM-%E3%82%A2%E3%82%B8%E3%83%A3%E3%82%A4%E3%83%AB-%E3%82%B9%E3%82%AF%E3%83%A9%E3%83%A0/">PM/アジャイル/スクラム</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/Ionic%E5%85%A5%E9%96%80-Angular-React-Vue%E3%83%99%E3%83%BC%E3%82%B9%E3%81%A7Web-iOS-Android%E3%82%92%E5%90%8C%E6%99%82%E9%96%8B%E7%99%BA%E3%81%99%E3%82%8B%E3%82%AF%E3%83%AD%E3%82%B9%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/116813817-bda0bb80-ab90-11eb-8b5c-f1ca7fd6977e.png" alt="[Ionic入門] Angular/React/VueベースでWeb/iOS/Androidを同時開発可能なクロスプラットフォームフレームワーク">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-04-05T12:38:52.000Z">2021-04-05</time></div>
+                    <a href="/Ionic%E5%85%A5%E9%96%80-Angular-React-Vue%E3%83%99%E3%83%BC%E3%82%B9%E3%81%A7Web-iOS-Android%E3%82%92%E5%90%8C%E6%99%82%E9%96%8B%E7%99%BA%E3%81%99%E3%82%8B%E3%82%AF%E3%83%AD%E3%82%B9%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Ionic入門] Angular/React/VueベースでWeb/iOS/Androidを同時開発可能なクロスプラットフォームフレームワーク</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Mobile-Ionic/">Mobile (Ionic)</a>
                     </p>
                 </div>
             </div>
@@ -3151,37 +3548,18 @@
         
         <article class="media">
             
-            <a href="/AWS-PJ%E6%AF%8E%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88%E7%AE%A1%E7%90%86%E3%81%BE%E3%81%A8%E3%82%81-Cost-Explorer-Cost-Anomaly-Detection-Budgets-%E3%82%BF%E3%82%B0%E4%BB%98%E3%81%91%E3%83%AB%E3%83%BC%E3%83%AB/" class="media-left">
+            <a href="/Ionic-Framework-Web-iOS-Android%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AEBuild%E6%96%B9%E6%B3%95/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/112600566-b92c0900-8e54-11eb-89a7-69e5663c4651.png" alt="[AWS] PJ毎のコスト管理まとめ(Cost Explorer/Cost Anomaly Detection/Budgets/タグ付けルール)">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/116813817-bda0bb80-ab90-11eb-8b5c-f1ca7fd6977e.png" alt="[Ionic Framework] Web/iOS/AndroidアプリのBuild方法">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-03-26T07:43:35.000Z">2021-03-26</time></div>
-                    <a href="/AWS-PJ%E6%AF%8E%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88%E7%AE%A1%E7%90%86%E3%81%BE%E3%81%A8%E3%82%81-Cost-Explorer-Cost-Anomaly-Detection-Budgets-%E3%82%BF%E3%82%B0%E4%BB%98%E3%81%91%E3%83%AB%E3%83%BC%E3%83%AB/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[AWS] PJ毎のコスト管理まとめ(Cost Explorer/Cost Anomaly Detection/Budgets/タグ付けルール)</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-03-29T09:02:03.000Z">2021-03-29</time></div>
+                    <a href="/Ionic-Framework-Web-iOS-Android%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AEBuild%E6%96%B9%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Ionic Framework] Web/iOS/AndroidアプリのBuild方法</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/CloudFormation-WAFv2-SCOPE-CLOUDFRONT-%E3%82%92IaC%E5%8C%96%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B%E3%83%AA%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E5%95%8F%E9%A1%8C%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/111768125-de67c700-88ea-11eb-9aa6-e31391e9a14f.png" alt="[CloudFormation] WAFv2(SCOPE: CLOUDFRONT)をIaC化する際に発生するリージョン問題について">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-03-19T10:36:08.000Z">2021-03-19</time></div>
-                    <a href="/CloudFormation-WAFv2-SCOPE-CLOUDFRONT-%E3%82%92IaC%E5%8C%96%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B%E3%83%AA%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E5%95%8F%E9%A1%8C%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[CloudFormation] WAFv2(SCOPE: CLOUDFRONT)をIaC化する際に発生するリージョン問題について</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Mobile-Ionic/">Mobile (Ionic)</a>
                     </p>
                 </div>
             </div>
@@ -3204,7 +3582,7 @@
                     <span class="level-item">四月 2021</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -3215,7 +3593,7 @@
                     <span class="level-item">三月 2021</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -3477,9 +3855,16 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Android/">
+                        <span class="tag">Android</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">39</span>
+                        <span class="tag is-grey">41</span>
                     </a>
                 </div>
                 
@@ -3690,6 +4075,13 @@
                     <a class="tags has-addons" href="/tags/IAM/">
                         <span class="tag">IAM</span>
                         <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ionic/">
+                        <span class="tag">Ionic</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -4081,7 +4473,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/iOS/">
                         <span class="tag">iOS</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -4215,6 +4607,13 @@
                     <a class="tags has-addons" href="/tags/%E3%82%A2%E3%82%B8%E3%83%A3%E3%82%A4%E3%83%AB%E9%96%8B%E7%99%BA/">
                         <span class="tag">アジャイル開発</span>
                         <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E3%82%AF%E3%83%AD%E3%82%B9%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0/">
+                        <span class="tag">クロスプラットフォーム</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -4366,6 +4765,25 @@
         
         <article class="media">
             
+            <a href="/Ionic%E5%85%A5%E9%96%80-Angular-React-Vue%E3%83%99%E3%83%BC%E3%82%B9%E3%81%A7Web-iOS-Android%E3%82%92%E5%90%8C%E6%99%82%E9%96%8B%E7%99%BA%E3%81%99%E3%82%8B%E3%82%AF%E3%83%AD%E3%82%B9%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/116813817-bda0bb80-ab90-11eb-8b5c-f1ca7fd6977e.png" alt="[Ionic入門] Angular/React/VueベースでWeb/iOS/Androidを同時開発可能なクロスプラットフォームフレームワーク">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-04-05T12:38:52.000Z">2021-04-05</time></div>
+                    <a href="/Ionic%E5%85%A5%E9%96%80-Angular-React-Vue%E3%83%99%E3%83%BC%E3%82%B9%E3%81%A7Web-iOS-Android%E3%82%92%E5%90%8C%E6%99%82%E9%96%8B%E7%99%BA%E3%81%99%E3%82%8B%E3%82%AF%E3%83%AD%E3%82%B9%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AF/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Ionic入門] Angular/React/VueベースでWeb/iOS/Androidを同時開発可能なクロスプラットフォームフレームワーク</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Mobile-Ionic/">Mobile (Ionic)</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/Agile-Scrum-Foundation-%E5%90%88%E6%A0%BC%E4%BD%93%E9%A8%93%E8%A8%98-%E3%82%B9%E3%82%AF%E3%83%A9%E3%83%A0%E8%B3%87%E6%A0%BC/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/116783233-9a123e00-aac8-11eb-9dbb-00c836b4422f.png" alt="EXIN Agile Scrum Foundation 合格体験記 [スクラムマスター資格]">
@@ -4404,37 +4822,18 @@
         
         <article class="media">
             
-            <a href="/AWS-PJ%E6%AF%8E%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88%E7%AE%A1%E7%90%86%E3%81%BE%E3%81%A8%E3%82%81-Cost-Explorer-Cost-Anomaly-Detection-Budgets-%E3%82%BF%E3%82%B0%E4%BB%98%E3%81%91%E3%83%AB%E3%83%BC%E3%83%AB/" class="media-left">
+            <a href="/Ionic-Framework-Web-iOS-Android%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AEBuild%E6%96%B9%E6%B3%95/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/112600566-b92c0900-8e54-11eb-89a7-69e5663c4651.png" alt="[AWS] PJ毎のコスト管理まとめ(Cost Explorer/Cost Anomaly Detection/Budgets/タグ付けルール)">
+                    <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/116813817-bda0bb80-ab90-11eb-8b5c-f1ca7fd6977e.png" alt="[Ionic Framework] Web/iOS/AndroidアプリのBuild方法">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-03-26T07:43:35.000Z">2021-03-26</time></div>
-                    <a href="/AWS-PJ%E6%AF%8E%E3%81%AE%E3%82%B3%E3%82%B9%E3%83%88%E7%AE%A1%E7%90%86%E3%81%BE%E3%81%A8%E3%82%81-Cost-Explorer-Cost-Anomaly-Detection-Budgets-%E3%82%BF%E3%82%B0%E4%BB%98%E3%81%91%E3%83%AB%E3%83%BC%E3%83%AB/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[AWS] PJ毎のコスト管理まとめ(Cost Explorer/Cost Anomaly Detection/Budgets/タグ付けルール)</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-03-29T09:02:03.000Z">2021-03-29</time></div>
+                    <a href="/Ionic-Framework-Web-iOS-Android%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AEBuild%E6%96%B9%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[Ionic Framework] Web/iOS/AndroidアプリのBuild方法</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/CloudFormation-WAFv2-SCOPE-CLOUDFRONT-%E3%82%92IaC%E5%8C%96%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B%E3%83%AA%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E5%95%8F%E9%A1%8C%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="https://user-images.githubusercontent.com/68212997/111768125-de67c700-88ea-11eb-9aa6-e31391e9a14f.png" alt="[CloudFormation] WAFv2(SCOPE: CLOUDFRONT)をIaC化する際に発生するリージョン問題について">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2021-03-19T10:36:08.000Z">2021-03-19</time></div>
-                    <a href="/CloudFormation-WAFv2-SCOPE-CLOUDFRONT-%E3%82%92IaC%E5%8C%96%E3%81%99%E3%82%8B%E9%9A%9B%E3%81%AB%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B%E3%83%AA%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E5%95%8F%E9%A1%8C%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">[CloudFormation] WAFv2(SCOPE: CLOUDFRONT)をIaC化する際に発生するリージョン問題について</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/AWS/">AWS</a>
+                        <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/">Serverless Application Dev</a> / <a class="has-link-grey -link" href="/categories/Serverless-Application-Dev/Mobile-Ionic/">Mobile (Ionic)</a>
                     </p>
                 </div>
             </div>
@@ -4457,7 +4856,7 @@
                     <span class="level-item">四月 2021</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -4468,7 +4867,7 @@
                     <span class="level-item">三月 2021</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -4730,9 +5129,16 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Android/">
+                        <span class="tag">Android</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Angular/">
                         <span class="tag">Angular</span>
-                        <span class="tag is-grey">39</span>
+                        <span class="tag is-grey">41</span>
                     </a>
                 </div>
                 
@@ -4943,6 +5349,13 @@
                     <a class="tags has-addons" href="/tags/IAM/">
                         <span class="tag">IAM</span>
                         <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Ionic/">
+                        <span class="tag">Ionic</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
@@ -5334,7 +5747,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/iOS/">
                         <span class="tag">iOS</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -5468,6 +5881,13 @@
                     <a class="tags has-addons" href="/tags/%E3%82%A2%E3%82%B8%E3%83%A3%E3%82%A4%E3%83%AB%E9%96%8B%E7%99%BA/">
                         <span class="tag">アジャイル開発</span>
                         <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E3%82%AF%E3%83%AD%E3%82%B9%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0/">
+                        <span class="tag">クロスプラットフォーム</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
